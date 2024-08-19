@@ -42,7 +42,7 @@ class RAGConfig(BaseModel):
 
 
 class Config(BaseModel):
-    logger_config: LoggerConfig = Field(description="日志配置")
+    logger_config: Optional[LoggerConfig] = Field(description="日志配置", default=None)
     llm_config: Dict[LLM_PROVIDER, LLMConfig]
     prompt_template_config: PromptTemplateConfig
-    rag_config: RAGConfig
+    rag_config: Optional[RAGConfig] = None

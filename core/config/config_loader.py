@@ -51,7 +51,8 @@ class ConfigLoader:
         """初始化 RAG 配置"""
         _rag = config.get("rag", {})
         if not _rag:
-            warnings.warn("配置 rag 为空。")
+            ...
+            # warnings.warn("配置 rag 为空。")
         _rag_config = RAGConfig(**_rag)
         return _rag_config
 
@@ -71,7 +72,7 @@ class ConfigLoader:
         cls.config = Config(
             llm_config=_llms_config,
             prompt_template_config=_prompt_template_config,
-            rag_config=_rag_config
+            rag_config=None
         )
         # 初始化 Prompt 加载器
         PromptLoader.from_paths(_prompt_template_config.paths)

@@ -205,15 +205,14 @@ def test_translate_layout():
 
 
 def test_translate_component():
-    components_name = ["Stack", "Button"]
-    android_component_name = "com.google.android.material.floatingactionbutton.FloatingActionButton"
-    android_component = """<com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_action_button"
-        android:layout_width="wrap_content"
+    components_name = ["Slider"]
+    android_component_name = "SeekBar"
+    android_component = """<SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        app:srcCompat="@drawable/ic_plus_24"/>"""
+        android:max="100"
+        android:progress="50" />"""
     android_component_prompt = f"""是一个专业的安卓开发者，你的任务是为示例代码编写详细的功能与效果描述：
 {android_component}
 在编写时你需要遵守以下规则：
