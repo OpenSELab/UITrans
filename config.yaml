@@ -11,14 +11,6 @@ llms:
     api_key: sk-IIbJeDBOzGgWGGyZ0b64Ae6b61C84675B484825cE99c3c41
     timeout: 3000  # 超时时间 5 分钟
 
-
-# 日志配置
-logger:
-  level: debug
-  output: console
-  format: "%(log_color)s%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-
-
 # prompt模板
 prompt:
   paths:
@@ -37,3 +29,5 @@ rag:
       model: models/embedding/jina-embeddings-v2-base-code
     text:
       model: models/embedding/jina-embeddings-v2-base-zh
+    rerank:
+      model: models/embedding/jina-reranker-v2-base-multilingual

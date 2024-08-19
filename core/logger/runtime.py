@@ -1,54 +1,53 @@
-import os
-import warnings
-from typing import Literal
+from typing import Literal, Optional
 
-from .base_logger import BaseLogger
+from core.logger.base_logger import BaseLogger
+from core.config.schema import LoggerConfig
 
-DEFAULT_LOGGER_TYPE = os.environ.get("HARMONY_PILOT_LOGGER_TYPE", "console")
-DEFAULT_LOGGER_LEVEL = os.environ.get("HARMONY_PILOT_LOGGER_LEVEL", "info").lower()
+# 日志配置
+default_logger_config = LoggerConfig(
+    level="INFO",
+    type="console",
+    fmt="%(log_color)s%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    logfile="pilot_logs/%Y%m%d.log"
+)
 
 
-class LoggerFactory:
-    _instance = None
+class LoggerManager:
+    logger_dict = {}
+    logger_config: LoggerConfig = default_logger_config
 
-    def __init__(self):
-        self.logger_dict = {}
+    @classmethod
+    def set_logger_config(cls, logger_config: LoggerConfig):
+        cls.logger_config = logger_config
 
-    def __new__(cls, *args, **kwargs):
-        if not cls._instance:
-            cls._instance = super(LoggerFactory, cls).__new__(cls)
-        return cls._instance
+    @classmethod
+    def get_logger(cls, name: str, logger_type: Optional[Literal["file", "console"]] = None) -> BaseLogger:
+        if cls.logger_config is None:
+            raise ValueError("LoggerManager 未初始化")
 
-    def get_logger(self, logger_type: Literal["file", "console"], **kwargs) -> BaseLogger:
-        if "name" in kwargs and kwargs["name"] in self.logger_dict:
-            return self.logger_dict[kwargs["name"]]
+        if name in cls.logger_dict:
+            return cls.logger_dict[name]
+        logger_type = logger_type or cls.logger_config.type
         if logger_type == "file":
             from .file_logger import FileLogger
-            if "filename" not in kwargs:
-                raise ValueError("文件日志记录器需要指定文件名")
-            logger = FileLogger(**kwargs)
+            logger = FileLogger(
+                name=name,
+                level=cls.logger_config.level,
+                fmt=cls.logger_config.fmt,
+                logfile=cls.logger_config.logfile
+            )
         elif logger_type == "console":
             from .stream_logger import StreamLogger
-            logger = StreamLogger(**kwargs)
+            logger = StreamLogger(
+                name=name,
+                level=cls.logger_config.level,
+                fmt=cls.logger_config.fmt
+            )
         else:
             raise ValueError(f"无效的日志类型: {logger_type}")
-        self.logger_dict[logger_type] = logger
+        cls.logger_dict[name] = logger
         return logger
 
 
-__LOGGER_FACTORY_INSTANCE = LoggerFactory()
-
-
-def get_logger(logger_type: Literal["file", "console"] = DEFAULT_LOGGER_TYPE, **kwargs) -> BaseLogger:
-    if "level" not in kwargs:
-        kwargs["level"] = DEFAULT_LOGGER_LEVEL
-    return __LOGGER_FACTORY_INSTANCE.get_logger(logger_type, **kwargs)
-
-
-def disable_logger():
-    """
-    禁用所有日志记录器
-    """
-    warnings.warn("禁用日志输出！")
-    for logger_type in __LOGGER_FACTORY_INSTANCE.logger_dict.keys():
-        __LOGGER_FACTORY_INSTANCE.logger_dict[logger_type].disable()
+def get_logger(name, **kwargs) -> BaseLogger:
+    return LoggerManager.get_logger(name, **kwargs)

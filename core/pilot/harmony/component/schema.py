@@ -5,7 +5,7 @@ from core.pilot.schema import JSONTypeModel
 
 
 class ComponentParam(JSONTypeModel):
-    type: str | List[str] | Dict[str, str] = Field(description="参数的类型")
+    type: str | List[str | Dict[str, str]] | Dict[str, str] = Field(description="参数的类型")
     required: bool = Field(default=False, description="是否必填参数")
     description: str = Field(description="参数的描述")
     default: Optional[Any] = Field(default=None, description="参数的默认值")

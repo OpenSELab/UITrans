@@ -205,15 +205,67 @@ def test_translate_layout():
 
 
 def test_translate_component():
-    components_name = ["Slider"]
-    android_component_name = "SeekBar"
-    android_component = """<SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="100"
-        android:progress="50" />"""
-    android_component_prompt = f"""是一个专业的安卓开发者，你的任务是为示例代码编写详细的功能与效果描述：
+    components_name = ["Column", "Row"]
+    android_component_name = "ListView"
+    android_component = """(1)activity_main.xml:
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:id="@+id/main"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+<ListView
+android:id="@+id/listView"
+android:layout_width="match_parent"
+android:layout_height="match_parent" />
+</RelativeLayout>
+
+(2)MainActivity.kt
+package com.example.myapplication
+
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import android.widget.ArrayAdapter
+import android.widget.ListView
+
+class MainActivity : AppCompatActivity() {
+override fun onCreate(savedInstanceState: Bundle?) {
+super.onCreate(savedInstanceState)
+enableEdgeToEdge()
+setContentView(R.layout.activity_main)
+ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+insets
+}
+setContentView(R.layout.activity_main)
+// 创建 ListView 对象
+val listView: ListView = findViewById(R.id.listView)
+
+// 数据源
+val data = arrayOf(
+"Item 1", "Item 2", "Item 3", "Item 4", "Item 5",
+"Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
+"Item 11", "Item 12", "Item 13", "Item 14", "Item 15",
+"Item 16", "Item 17", "Item 18", "Item 19", "Item 20"
+)
+
+// 创建适配器
+val adapter = ArrayAdapter(
+this,
+android.R.layout.simple_list_item_1, // 单项布局
+data // 数据源
+)
+
+// 设置适配器到 ListView
+listView.adapter = adapter
+}
+}"""
+    android_component_prompt = f"""你是一个专业的安卓开发者，你的任务是为示例代码编写详细的功能与效果描述：
 {android_component}
 在编写时你需要遵守以下规则：
 * 1. 详细描述该组件的主要功能和预期效果。

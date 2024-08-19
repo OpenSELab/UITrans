@@ -13,27 +13,36 @@ class StreamLogger(BaseLogger):
     将日志记录到文件中。
     """
 
-    def __init__(self, name: str = "a2x", level: str = "info"):
+    DEFAULT_FMT = "%(log_color)s%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    DEFAULT_DATE_FMT = "%Y-%m-%d %H:%M:%S"
+
+    def __init__(
+            self,
+            name: str,
+            level: str,
+            fmt: str = DEFAULT_FMT,
+            date_fmt: str = DEFAULT_DATE_FMT
+    ):
 
         self.enable = True
         self.session_id = str(uuid.uuid4())
         self.logger = logging.getLogger(f"[{name}]")
 
-        match level:
-            case "debug":
+        match level.upper():
+            case "DEBUG":
                 self.logger.setLevel(logging.DEBUG)
-            case "info":
+            case "INFO":
                 self.logger.setLevel(logging.INFO)
-            case "warning":
+            case "WARNING":
                 self.logger.setLevel(logging.WARNING)
-            case "error":
+            case "ERROR":
                 self.logger.setLevel(logging.ERROR)
             case _:
                 raise ValueError(f"Invalid log level: {level}")
         console_handler = logging.StreamHandler(sys.stdout)
         formatter = colorlog.ColoredFormatter(
-            "%(log_color)s%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-            datefmt="%Y-%m-%d %H:%M:%S",
+            fmt,
+            datefmt=date_fmt,
             log_colors={
                 "DEBUG": "cyan",
                 "INFO": "green",

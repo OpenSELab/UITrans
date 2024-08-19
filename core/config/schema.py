@@ -8,8 +8,8 @@ LLM_PROVIDER: TypeAlias = str
 class LoggerConfig(BaseModel):
     level: str = Field(description="日志级别", default="INFO")
     type: Literal["console", "file"] = Field(description="日志输出类型", default="console")
-    file: Optional[str] = Field(description="日志文件路径", default=None)
-    format: str = Field(description="日志格式", default="%(log_color)s%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    fmt: str = Field(description="日志格式", default="%(log_color)s%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    logfile: Optional[str] = Field(description="日志文件路径", default=None)
 
 
 class LLMConfig(BaseModel):
@@ -35,6 +35,7 @@ class EmbeddingModelConfig(BaseModel):
 class EmbeddingConfig(BaseModel):
     code: EmbeddingModelConfig = Field(description="代码编码模型配置")
     text: EmbeddingModelConfig = Field(description="文本编码模型配置")
+    rerank: EmbeddingModelConfig = Field(description="重排序编码模型配置")
 
 
 class RAGConfig(BaseModel):
@@ -42,7 +43,6 @@ class RAGConfig(BaseModel):
 
 
 class Config(BaseModel):
-    logger_config: Optional[LoggerConfig] = Field(description="日志配置", default=None)
     llm_config: Dict[LLM_PROVIDER, LLMConfig]
     prompt_template_config: PromptTemplateConfig
     rag_config: Optional[RAGConfig] = None
