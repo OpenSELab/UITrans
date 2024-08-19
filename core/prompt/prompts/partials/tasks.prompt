@@ -1,0 +1,7 @@
+技术经理已经将新功能的开发分解为以下任务：
+{% for task in tasks %}
+{{ loop.index }}. {{ task.description }}{% if task.done %}（已完成）{% endif %}\n
+{% endfor %}
+
+你当前需要处理的任务是：
+{{ current_task.description }}

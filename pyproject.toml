@@ -1,0 +1,23 @@
+[project]
+name = "harmony-pilot"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "王晨", email = "dawnwccc712@gmail.com"},
+]
+dependencies = [
+    "colorlog>=6.8.2",
+    "jinja2>=3.1.4",
+    "openai>=1.35.10",
+    "tenacity>=8.5.0",
+    "pyyaml>=6.0.1",
+    "pytest>=8.3.1",
+    "jsonref>=1.1.0",
+]
+requires-python = "==3.10.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false

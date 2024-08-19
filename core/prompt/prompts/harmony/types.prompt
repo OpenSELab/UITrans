@@ -1,0 +1,30 @@
+以下是关于鸿蒙ArkUI API 12的类型定义基本信息。
+
+{% for type_name, type_schema in harmony_types.items() %}
+## {{ type_name }}
+{{ type_schema.description }}
+{% if is_type_content %}
+{% if type_schema.type == 'object' %}
+{# 对象类型 #}
+{% if type_schema.properties %}
+参数：{{ type_schema.properties }}
+{% endif %}
+{% elif type_schema.type == "enum" %}
+{# 枚举类型 #}
+枚举值：{{ type_schema.enum }}
+枚举值介绍：
+{% for enum_value, enum_description in type_schema.enumDescriptions.items() %}
+* {{ enum_value }}：{{ enum_description }}
+{% endfor %}
+{% else %}
+{# 普通类型 #}
+类型：{{ type_schema.type }}
+{% endif %}
+{% if type_schema.examples %}
+### 示例
+{% for example in type_schema.examples %}
+{{ example }}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% endfor %}

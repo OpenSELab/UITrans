@@ -1,0 +1,11 @@
+{% if tools %}
+你拥有如下工具：
+{% for tool in tools %}
+## {{ tool.name }}
+工具描述：{{ tool.description }}
+工具参数：{{ tool.parameters }}
+{% endfor %}
+
+你只被允许使用[{% for tool in tools %}{{ tool.name }}{% if not loop.last %}, {% endif %}{% endfor %}]中的工具。
+你可以同时使用多个工具，但是需要注意每一个工具的调用次序。
+{% endif %}

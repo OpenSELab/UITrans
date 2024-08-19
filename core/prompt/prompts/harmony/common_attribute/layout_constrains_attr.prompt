@@ -1,0 +1,11 @@
+## 布局约束
+通过组件的宽高比和显示优先级约束组件显示效果。
+
+### aspectRatio
+指定当前组件的宽高比。
+参数：
+value: {
+    "type": "number",
+    "required": true,
+    "description": "指定当前组件的宽高比，aspectRatio = width/height。"
+}

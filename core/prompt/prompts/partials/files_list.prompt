@@ -1,0 +1,11 @@
+{% if project_files %}
+这些文件目前在项目中已经实现：
+{% for file in project_files %}
+* {{ file.path }}{% if file.description %}: {{ file.description }}{% endif %}\n
+{% if is_file_content %}
+---START_OF_FILES----
+{{ file.content }}
+---END_OF_FILES----
+{% endif %}
+{% endfor %}
+{% endif %}

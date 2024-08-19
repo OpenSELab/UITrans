@@ -1,0 +1,91 @@
+以下是鸿蒙代码的工程结构规范：
+* 1. 鸿蒙项目代码结构通常包括公共能力层、基础特性层、产品定制层三个层次，其中分别对应的文件夹为commons、features、products。
+* 2. 基础能力层（commons）应包含项目的基础能力和公共工具类，其中commons/base中存放基础能力代码。
+    * 2.1 commons/base/src/main/ets/constants文件夹存放常量定义。
+    * 2.2 commons/base/src/main/ets/utils文件夹存放存放工具类和辅助函数。
+    * 2.3 commons/base/src/main/resources存放项目公共的资源文件，如图片、配置文件等
+    * 2.4 commons/base/src/main/src/Index.ets是基础能力的对外接口类，提供基础能力的入口。
+* 3. 基础特性层（features）应包含项目的各个功能模块，每个模块对应一个特定的页面或功能。
+    * 3.1 features/{module}存放特定功能的代码，其中{module}代表具体的功能模块名称，例如`features/socialCircle`。
+    * 3.2 features/{module}/src/main/ets/constants文件夹存放模块常量定义。
+    * 3.3 features/{module}/src/main/ets/utils文件夹存放模块工具类和辅助函数。
+    * 3.4 features/{module}/src/main/ets/view文件夹存放模块视图组件。
+    * 3.5 features/{module}/src/main/ets/viewmodel文件夹存放模块视图模型。
+    * 3.6 features/{module}/src/main/resources存放该模块的资源文件，如图片、配置文件等。
+    * 3.7 features/{module}/src/main/src/Index.ets是模块的对外接口类，提供功能模块的入口。
+* 4. 产品定制层（products）应包含针对不同产品的定制内容
+    * 4.1 products/{product}存放特定产品的代码，其中{product}代表具体的产品名称，例如`products/phone`。
+    * 4.1 products/{product}/src/main/ets/entryability存放应用入口和能力类。
+    * 4.2 products/{product}/src/main/ets/pages存放页面组件。
+    * 4.5 products/{product}/src/main/resources存放产品的资源文件，如图片、配置文件等。
+    * 4.6 products/{product}/src/main/src/Index.ets是产品的入口页面。
+
+以下是几个鸿蒙代码工程结构示例：
+# 示例1：一多开发实例（长视频）
+```
+├──commons                                    // 公共能力层
+│  ├──base/src/main/ets                       // 基础能力
+│  │  ├──constants
+│  │  └──utils
+│  ├──base/src/main/resources                 // 资源文件目录
+│  └──base/src/Index.ets                      // 对外接口类
+├──features                                   // 基础特性层
+│  ├──home/src/main/ets                       // 首页
+│  │  ├──constants
+│  │  ├──utils
+│  │  ├──view
+│  │  └──viewmodel
+│  ├──home/src/main/resources                 // 资源文件目录
+│  ├──home/src/Index.ets                      // 对外接口类
+│  ├──search/src/main/ets                     // 搜索页
+│  │  ├──constants
+│  │  ├──view
+│  │  └──viewmodel
+│  ├──search/src/main/resources               // 资源文件目录
+│  ├──search/src/Index.ets                    // 对外接口类
+│  ├──videoDetail/src/main/ets                // 视频详情页
+│  │  ├──constants
+│  │  ├──utils
+│  │  ├──view
+│  │  └──viewmodel
+│  ├──videoDetail/src/main/resources          // 资源文件目录
+│  ├──videoPlayer/src/main/ets                // 全屏播放页
+│  │  ├──constants
+│  │  └──view
+│  └──videoPlayer/src/main/resources          // 资源文件目录
+└──products                                   // 产品定制层
+   ├──phone/src/main/ets                      // 支持手机、折叠屏、平板、2in1
+   │  ├──entryability
+   │  └──pages
+   └──phone/src/main/resources                // 资源文件目录
+```
+# 示例2：一多开发实例（即时通讯）
+```
+──common                                      // 公共能力层
+│  ├──base/src/main/ets                        // 基础能力
+│  │  ├──constants
+│  │  ├──utils
+│  │  ├──viewmodel
+│  │  └──views
+│  ├──base/src/main/resources                  // 资源文件目录
+│  └──base/src/Index.ets                       // 对外接口类
+├──features                                    // 基础特性层
+│  ├──home/src/main/ets                        // 首页
+│  │  ├──constants
+│  │  ├──pages
+│  │  ├──viewmodel
+│  │  └──views
+│  ├──home/src/main/resources                  // 资源文件目录
+│  ├──home/src/Index.ets                       // 对外接口类
+│  ├──socialCircle/src/main/ets                // 社交圈页
+│  │  ├──constants
+│  │  └──pages
+│  │  └──viewmodel
+│  ├──socialCircle/src/main/resources          // 资源文件目录
+│  └──socialCircle/src/Index.ets               // 对外接口类
+└──products                                    // 产品定制层
+   ├──phone/src/main/ets
+   │  ├──entryability
+   │  └──pages
+   └──phone/src/main/resources                 // 资源文件目录
+```

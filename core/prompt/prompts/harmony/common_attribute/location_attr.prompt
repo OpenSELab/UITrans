@@ -1,0 +1,72 @@
+## 位置设置
+设置组件的对齐方式、布局方向和显示位置。
+
+### align
+设置容器元素绘制区域内的子元素的对齐方式。
+参数：
+value: {
+    "type": "Alignment",
+    "required": true,
+    "description": "设置容器元素绘制区域内的子元素的对齐方式。",
+    "default": "Alignment.Center"
+}
+
+### direction
+设置容器元素内主轴方向上的布局。
+参数：
+value: {
+    "type": "Direction",
+    "required": true,
+    "description": "设置容器元素内主轴方向上的布局。属性配置为auto的时候，按照系统语言方向进行布局。",
+    "default": "Direction.Auto"
+}
+
+### position
+绝对定位，确定子组件相对父组件的位置。
+参数：
+value: {
+    "type": "Position | Edges | LocalizedEdges",
+    "required": true,
+    "description": "绝对定位，确定子组件相对父组件的位置。",
+}
+
+### markAnchor
+设置子元素在位置定位时的锚点。
+参数：
+value: {
+    "type": "Position | LocalizedPosition",
+    "required": true,
+    "description": "设置子元素在位置定位时的锚点，从position或offset的位置上，进一步偏移。",
+}
+
+### offset
+相对偏移，组件相对原本的布局位置进行偏移。
+参数：
+value: {
+    "type": "Position | Edges | LocalizedEdges",
+    "required": true,
+    "description": "相对偏移，组件相对原本的布局位置进行偏移。",
+}
+
+### alignRules
+指定设置在相对容器中子组件的对齐规则，仅当父容器为RelativeContainer时生效。
+参数：
+value: {
+    "type": "	LocalizedAlignRuleOptions",
+    "required": true,
+    "description": "指定设置在相对容器中子组件的对齐规则。",
+}
+
+### chainMode
+指定以该组件为链头所构成的链的参数，仅当父容器为RelativeContainer时生效。
+参数：
+direction: {
+    "type": "Axis",
+    "required": true,
+    "description": "链的方向。",
+}
+style: {
+    "type": "ChainStyle",
+    "required": true,
+    "description": "链的样式。",
+}

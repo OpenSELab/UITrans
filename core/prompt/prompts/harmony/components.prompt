@@ -1,0 +1,49 @@
+以下是关于鸿蒙ArkUI API 12的组件基本信息。
+
+{% for component_name, component_schema in harmony_components.items() %}
+## {{ component_name }}
+{{ component_schema.description }}
+{% if is_component_content %}
+{% if component_schema.details %}
+{{ component_schema.details }}
+{% endif %}
+{% if component_schema.interfaces %}
+### 接口（初始化组件的方法）
+{% for interface in component_schema.interfaces %}
+* {{ interface.description }}
+参数：{% if interface.params %}{{ interface.params }}{% else %}None{% endif %}\n
+{% endfor %}
+{% endif%}
+{% if component_schema.attributes %}
+### 属性
+{% for attribute_name, attribute_schema in component_schema.attributes.items() %}
+* {{ attribute_name }}：{{ attribute_schema.description }}
+参数：{% if attribute_schema.params %}{{ attribute_schema.params }}{% else %}None{% endif %}\n
+{% endfor %}
+{% endif %}
+{% if component_schema.events %}
+### 事件
+{% for event_name, event_schema in component_schema.events.items() %}
+* {{ event_name }}：{{ event_schema.description }}
+参数：{% if event_schema.params %}{{ event_schema.params }}{% else %}None{% endif %}\n
+返回值：{% if event_schema.returns %}{{ event_schema.returns }}{% else %}void{% endif %}\n
+{% endfor %}
+{% endif %}
+{# 这里过多的使用示例可能会造成文档过长，可以根据某些处理筛选过滤文档 #}
+{% if component_schema.examples %}
+### 使用示例
+{% for example in component_schema.examples %}
+* 示例{{ loop.index }}：
+{{ example }}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% endfor %}
+
+{% if custom_components %}
+以下是当前项目中的一些自定义组件：
+{% for component_name, component_schema in custom_components.items() %}
+## {{ component_name }}
+{{ component_schema.description }}
+{% endfor %}
+{% endif %}

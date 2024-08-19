@@ -1,0 +1,25 @@
+# 绘制组件
+
+## Circle
+用于绘制圆形的组件。
+
+## Ellipse
+椭圆绘制组件。
+
+## Line
+直线绘制组件。
+
+## Polyline
+折线绘制组件。
+
+## Polygon
+多边形绘制组件。
+
+## Path
+路径绘制组件，根据绘制路径生成封闭的自定义形状。
+
+## Rect
+矩形绘制组件。
+
+## Shape
+绘制组件的父组件，包含Rect、Path、Circle、Ellipse、Polyline、Polygon、Image、Text、Column、Row、Shape子组件。

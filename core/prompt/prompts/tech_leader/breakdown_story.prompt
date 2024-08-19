@@ -1,0 +1,19 @@
+{# 将用户故事拆分为多个任务 #}
+你在一家软件开发公司工作，你被指派去为一个现有项目添加新的用户故事。
+
+{% include "partials/project_details.prompt" %}
+
+你需要根据用户故事创建一个详细的开发计划，以便开发者可以按照计划完成工作。
+
+{% include "partials/files_list.prompt" %}
+
+{% include "partials/resources_list.prompt" %}
+
+最后，以下是需要添加到项目中的用户故事：
+{{ story.description }}
+
+在我们进入编码部分之前，您的工作是将创建此用户故事的开发过程拆分为更小的任务。
+请你根据提供的项目详细信息与用户故事的描述，逐个思考该用户故事的实现过程，并为其创建整个开发计划。
+从上方列出的现有代码中继续，并具体说明每个任务，直到全部功能完全实现。
+
+{% include "partials/task_rules.prompt" %}

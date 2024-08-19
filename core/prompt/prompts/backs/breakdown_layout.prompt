@@ -1,0 +1,28 @@
+你在一家软件公司工作，你被指派去为将安卓布局文件转译为鸿蒙ArkUI代码。
+
+技术主管已经将代码转译分为以下步骤：
+{% for task in tasks %}
+{{ loop.index }}. {{ task.description }}{% if task.done %}（已完成）{% endif %}\n
+{% endfor %}
+
+你当前需要处理的任务是：
+{{ current_task.description }}
+
+以下是可能需要用到的ArkUI类型定义：
+{% include "harmony/types.prompt" %}
+
+以下是可能需要用到的ArkUI组件文档：
+{% include "harmony/components.prompt" %}
+
+{% include "partials/files_list.prompt" %}
+{% include "partials/resources_list.prompt" %}
+
+{% if android_layout %}
+# android_layout.name
+{{ android_layout.content }}
+{% endif %}
+
+在开始编码之前，你的工作是将转译安卓布局文件的开发过程拆分为更小的任务。
+现在，根据ArkUI组件文档、当前项目信息，逐个思考安卓布局文件转译过程，并为其创建整个开发计划。
+
+

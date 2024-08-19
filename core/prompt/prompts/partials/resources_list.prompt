@@ -1,0 +1,25 @@
+{% if project_resources %}
+这些资源目前在项目中已经定义：
+{% if is_resource_content %}
+# 资源变量
+{% for element_key, element_values in project_resources.values.items() %}
+## {{ element_key }}
+{% for item_key, item_value in element_values.items() %}
+* {{ item_key }}: {{ item_value }}
+{% endfor %}
+{% endfor %}
+{% else %}
+# 资源变量
+{% for element_key, element_values in project_resources.values.items() %}
+## {{ element_key }}
+{% for item_key in element_values.keys() %}
+{{ item_key }}{% if not loop.last %}, {% else %}{{ "\n" }}{% endif %}
+{% endfor %}
+{% endfor %}
+
+# 资源文件
+{% for media_name, media_desc in project_resources.medias.items() %}
+{{ media_name }}{% if media_desc %}: {{ media_desc }}{% endif %}\n
+{% endfor %}
+{% endif %}
+{% endif %}

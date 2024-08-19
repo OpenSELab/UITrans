@@ -1,0 +1,149 @@
+# 基础组件
+
+## AlphabetIndexer
+可以与容器组件联动用于按逻辑结构快速定位容器显示区域的组件。
+
+## Blank
+空白填充组件，在容器主轴方向上，空白填充组件具有自动填充容器空余部分的能力，仅当父组件为Row/Column/Flex时生效。
+
+## Button
+按钮组件，可快速创建不同样式的按钮。
+
+## CalendarPicker
+日历选择器组件，提供下拉日历弹窗，可以让用户选择日期。
+
+## Checkbox
+提供多选框组件，通常用于某选项的打开或关闭。
+
+## CheckboxGroup
+多选框群组，用于控制多选框全选或者不全选状态。
+
+## Component3D
+3D渲染组件，可以加载3D模型资源并做自定义渲染，通常用于3D动效场景。
+
+## ContainerSpan
+Text组件的子组件，用于统一管理多个Span、ImageSpan的背景色及圆角弧度，可以包含Span、ImageSpan子组件。
+
+## DataPanel
+数据面板组件，用于将多个数据占比情况使用占比图进行展示。
+
+## DatePicker
+日期选择器组件，用于根据指定日期范围创建日期滑动选择器。
+
+## Divider
+提供分隔器组件，分隔不同内容块/内容元素。
+
+## Gauge
+数据量规图表组件，用于将数据展示为环形图表，可以包含单个子组件。
+
+## Image
+Image为图片组件，常用于在应用中显示图片。Image支持加载PixelMap、ResourceStr和DrawableDescriptor类型的数据源，支持png、jpg、jpeg、bmp、svg、webp、gif和heif类型的图片格式。
+
+## ImageAnimator
+提供帧动画组件来实现逐帧播放图片的能力，可以配置需要播放的图片列表，每张图片可以配置时长。
+
+## ImageSpan
+Text、ContainerSpan组件的子组件，用于显示行内图片。
+
+## LoadingProgress
+用于显示加载动效的组件。
+
+## Marquee
+跑马灯组件，用于滚动展示一段单行文本。仅当文本内容宽度超过跑马灯组件宽度时滚动，不超过时不滚动。
+为了不影响滚动帧率，建议在滚动类组件中Marquee的个数不超过4个，或者使用Text组件的TextOverflow.MARQUEE替代。
+
+## Menu
+以垂直列表形式显示的菜单，可以包含MenuItem、MenuItemGroup子组件。
+
+## MenuItem
+用来展示菜单Menu中具体的item菜单项。
+
+## MenuItemGroup
+该组件用来展示菜单MenuItem的分组，可以包含MenuItem子组件。
+
+## Navigation
+Navigation组件是路由导航的根视图容器，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区和工具栏，其中内容区默认首页显示导航内容（Navigation的子组件）或非首页显示（NavDestination的子组件），首页和非首页通过路由进行切换，可以包含子组件，推荐与NavRouter组件搭配使用。
+
+## NavRouter
+导航组件，默认提供点击响应处理，不需要开发者自定义点击事件逻辑，必须包含两个子组件，其中第二个子组件必须为NavDestination。
+
+## NavDestination
+作为子页面的根容器，用于显示Navigation的内容区，可以包含多个子组件。
+
+## NodeContainer
+基础组件，不支持尾随添加子节点。组件接受一个NodeController的实例接口。需要NodeController组合使用，不支持子组件。
+
+## PatternLock
+图案密码锁组件，以九宫格图案的方式输入密码，用于密码验证场景。手指在PatternLock组件区域按下时开始进入输入状态，手指离开屏幕时结束输入状态完成密码输入。
+
+## Progress
+进度条组件，用于显示内容加载或操作处理等进度。
+
+## QRCode
+用于显示单个二维码的组件。
+
+## Radio
+单选框，提供相应的用户交互选择项。
+
+## Rating
+提供在给定范围内选择评分的组件。
+
+## RichEditor
+支持图文混排和文本交互式编辑的组件，不包含子组件。
+
+## RichText
+富文本组件，解析并显示HTML格式文本，不包含子组件。
+
+## ScrollBar
+滚动条组件ScrollBar，用于配合可滚动组件使用，如List、Grid、Scroll，可以包含单个子组件。
+
+## Search
+搜索框组件，适用于浏览器的搜索内容输入框等应用场景。
+
+## Select
+提供下拉选择菜单，可以让用户在多个选项之间选择。
+
+## Slider
+滑动条组件，通常用于快速调节设置值，如音量调节、亮度调节等应用场景。
+
+## Span
+作为Text、ContainerSpan组件的子组件，用于显示行内文本的组件。
+
+## Stepper
+步骤导航器组件，适用于引导用户按照步骤完成任务的导航场景，仅能包含子组件StepperItem。
+
+## StepperItem
+用作Stepper组件的页面子组件，支持单个子组件。
+
+## SymbolSpan
+作为Text组件的子组件，用于显示图标小符号的组件，不支持子组件。
+
+## SymbolGlyph
+显示图标小符号的组件，不支持子组件。
+
+## Text
+显示一段文本的组件，可以包含Span、ImageSpan、SymbolSpan和ContainerSpan子组件。
+
+## TextArea
+多行文本输入框组件，当输入的文本内容超过组件宽度时会自动换行显示。
+
+## TextClock
+TextClock组件通过文本将当前系统时间显示在设备上。支持不同时区的时间显示，最高精度到秒级。
+
+## TextInput
+单行文本输入框组件。
+
+## TextPicker
+滑动选择文本内容的组件。
+
+## TextTimer
+通过文本显示计时信息并控制其计时器状态的组件。
+
+## TimePicker
+时间选择组件，根据指定参数创建选择器，支持选择小时及分钟。
+
+## Toggle
+组件提供勾选框样式、状态按钮样式及开关样式，仅当ToggleType为Button时可包含子组件。
+
+## XComponent
+可用于EGL/OpenGLES和媒体数据写入，并显示在XComponent组件，构造参数type为"component"时可以包含子组件。

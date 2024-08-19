@@ -1,0 +1,23 @@
+以下是关于鸿蒙ArkUI API 12的组件基本信息。
+
+{% include "harmony/component/basic_component.prompt" %}
+
+{% include "harmony/component/container_component.prompt" %}
+
+{% include "harmony/component/media_component.prompt" %}
+
+{% include "harmony/component/drawing_component.prompt" %}
+
+{% include "harmony/component/canvas_component.prompt" %}
+
+{% include "harmony/component/safe_component.prompt" %}
+
+{% include "harmony/component/global_component.prompt" %}
+
+{% if custom_components %}
+以下是当前项目中的一些自定义组件：
+{% for component in custom_components %}
+## {{ component.name }}
+{{ component.description }}
+{% endfor %}
+{% endif %}
