@@ -6,7 +6,7 @@ from core.config.schema import LoggerConfig
 # 日志配置
 default_logger_config = LoggerConfig(
     level="INFO",
-    type="console",
+    type="file",
     fmt="%(log_color)s%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     logfile="pilot_logs/%Y%m%d.log"
 )

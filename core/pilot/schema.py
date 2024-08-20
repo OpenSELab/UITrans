@@ -44,7 +44,7 @@ class JSONTypeModel(CommonBaseModel):
     """重写 BaseModel 的 __str__ 与 __repr__ 方法，实现在 prompt 中显示 JSON信息"""
 
     def __str__(self):
-        return str(self.model_json_schema())
+        return self.model_dump_json()
 
     def __repr__(self):
         return str(self)

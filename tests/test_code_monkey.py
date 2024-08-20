@@ -205,66 +205,15 @@ def test_translate_layout():
 
 
 def test_translate_component():
-    components_name = ["Column", "Row"]
-    android_component_name = "ListView"
-    android_component = """(1)activity_main.xml:
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:id="@+id/main"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-<ListView
-android:id="@+id/listView"
-android:layout_width="match_parent"
-android:layout_height="match_parent" />
-</RelativeLayout>
-
-(2)MainActivity.kt
-package com.example.myapplication
-
-import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import android.widget.ArrayAdapter
-import android.widget.ListView
-
-class MainActivity : AppCompatActivity() {
-override fun onCreate(savedInstanceState: Bundle?) {
-super.onCreate(savedInstanceState)
-enableEdgeToEdge()
-setContentView(R.layout.activity_main)
-ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-insets
-}
-setContentView(R.layout.activity_main)
-// 创建 ListView 对象
-val listView: ListView = findViewById(R.id.listView)
-
-// 数据源
-val data = arrayOf(
-"Item 1", "Item 2", "Item 3", "Item 4", "Item 5",
-"Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
-"Item 11", "Item 12", "Item 13", "Item 14", "Item 15",
-"Item 16", "Item 17", "Item 18", "Item 19", "Item 20"
-)
-
-// 创建适配器
-val adapter = ArrayAdapter(
-this,
-android.R.layout.simple_list_item_1, // 单项布局
-data // 数据源
-)
-
-// 设置适配器到 ListView
-listView.adapter = adapter
-}
-}"""
+    components_name = ["Row", "Toggle", "Text"]
+    android_component_name = "androidx.appcompat.widget.SwitchCompat"
+    android_component = """<androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchCompat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开关"
+        android:checked="true"
+        android:layout_margin="16dp" />"""
     android_component_prompt = f"""你是一个专业的安卓开发者，你的任务是为示例代码编写详细的功能与效果描述：
 {android_component}
 在编写时你需要遵守以下规则：
@@ -283,10 +232,9 @@ listView.adapter = adapter
     }
     current_task = {
         "done": False,
-        "description": f"实现安卓组件{android_component_name}的代码转译，生成鸿蒙ArkUI的代码。",
+        "description": f"实现安卓组件{android_component_name}的代码转译，生成鸿蒙ArkUI的代码，你可以使用多个组件来实现该功能。",
     }
     system_prompt = PromptLoader.get_prompt("code_monkey/system.prompt")
-    # openai_default_config["model"] = "deepseek-chat"
     client = OpenAIClient(openai_default_config)
     # response = client.create(messages=[
     #     {"content": system_prompt, "role": "system"},
@@ -294,7 +242,6 @@ listView.adapter = adapter
     # ], temperature=1.0)
     # android_layout["description"] = response.choices[0].message.content
     # print(response.choices[0].message.content)
-    android_layout["description"] = "Material Components for Android 库中的一个组件，用于在 Android 应用中创建浮动操作按钮（Floating Action Button，简称 FAB）。FAB 是一种圆形按钮，通常用于触发应用中的主要或最常用的操作，如添加、创建或分享等"
     translate_layout_prompt = PromptLoader.get_prompt(
         "code_monkey/translate_layout.prompt",
         tasks=[current_task],

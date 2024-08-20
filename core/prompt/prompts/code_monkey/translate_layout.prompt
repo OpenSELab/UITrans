@@ -29,4 +29,4 @@
 首先你需要认真考虑提供的安卓布局代码的功能，然后再进行转译。
 在转译过程中，你需要严格遵守以下规则：
 
-{% include "harmony/rules/layout_translation_rules.prompt" %}
+{# {% include "harmony/rules/layout_translation_rules.prompt" %} #}

@@ -1,8 +1,9 @@
 from typing import List, Dict
 
 from core.logger.runtime import get_logger
+from core.pilot.harmony.component.schema import ComponentEventReturn
 from core.pilot.harmony.model.types import TYPES, TypeModel
-from core.pilot.harmony.component.components import COMPONENTS, ComponentDeclaration
+from core.pilot.harmony.component.components import COMPONENTS
 
 logger = get_logger(name="Harmony Pilot Utils")
 
@@ -30,7 +31,11 @@ def get_component_related_types(component_name: str | List[str]) -> Dict[str, Ty
             for attribute_name, attribute_schema in component.attributes.items():
                 for param_name, param_schema in attribute_schema.params.items():
                     if isinstance(param_schema.type, list):
-                        remaining_types.update(param_schema.type)
+                        for type_name in param_schema.type:
+                            if isinstance(type_name, str):
+                                remaining_types.add(type_name)
+                        if isinstance(param_schema.type, str):
+                            remaining_types.update(param_schema.type)
                     elif isinstance(param_schema.type, dict):
                         remaining_types.update(param_schema.type.values())
                     else:
@@ -48,12 +53,16 @@ def get_component_related_types(component_name: str | List[str]) -> Dict[str, Ty
                         else:
                             remaining_types.add(param_schema.type)
                 # 对于事件返回值的处理
+                # returns有两种类型，一种是Dict[str, ComponentEventReturn]，一种是ComponentEventReturn
                 if event_schema.returns:
-                    for return_name, return_schema in event_schema.returns.items():
-                        if isinstance(return_schema.type, list):
-                            remaining_types.update(return_schema.type)
-                        else:
-                            remaining_types.add(return_schema.type)
+                    if isinstance(event_schema.returns, dict):
+                        for return_name, return_schema in event_schema.returns.items():
+                            if isinstance(return_schema.type, list):
+                                remaining_types.update(return_schema.type)
+                            else:
+                                remaining_types.add(return_schema.type)
+                    elif isinstance(event_schema.returns, ComponentEventReturn):
+                        remaining_types.add(event_schema.returns.type)
     related_types = get_related_types(list(remaining_types))
     return related_types
 

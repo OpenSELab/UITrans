@@ -316,5 +316,8 @@ async def generate_component_declaration(url: str):
 
 
 if __name__ == '__main__':
-    url = "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-with-theme-V5"
-    asyncio.run(generate_component_declaration(url))
+    urls = [
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-toggle-V5"
+    ]
+    for url in urls:
+        asyncio.run(generate_component_declaration(url))
