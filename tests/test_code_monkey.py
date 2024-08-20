@@ -205,15 +205,45 @@ def test_translate_layout():
 
 
 def test_translate_component():
-    components_name = ["Row", "Toggle", "Text"]
-    android_component_name = "androidx.appcompat.widget.SwitchCompat"
-    android_component = """<androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switchCompat"
-        android:layout_width="wrap_content"
+    components_name = ["Text", "Column"]
+    android_component_name = "com.google.android.material.card.MaterialCardView"
+    android_component = """<com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="开关"
-        android:checked="true"
-        android:layout_margin="16dp" />"""
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="#FF018786"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="16dp"
+        app:strokeColor="#FF03DAC5"
+        app:strokeWidth="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Card Title"
+                android:textColor="#FFBB86FC"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This is a sample description text for the card."
+                android:textColor="#FF6200EE"
+                android:textSize="16sp"
+                android:paddingTop="8dp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>"""
     android_component_prompt = f"""你是一个专业的安卓开发者，你的任务是为示例代码编写详细的功能与效果描述：
 {android_component}
 在编写时你需要遵守以下规则：

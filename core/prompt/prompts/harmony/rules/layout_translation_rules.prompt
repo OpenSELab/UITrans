@@ -49,7 +49,7 @@ RelativeContainer() {
 ```
 
 ### 规则 2
-安卓布局文件中"wrap_content"意味着根据其内容的大小来调整自身的大小，在鸿蒙ArkUI中若无需制定width与height即可实现。
+安卓布局文件中"wrap_content"意味着根据其内容的大小来调整自身的大小，在鸿蒙ArkUI中若无需指定width与height即可实现，因为鸿蒙ArkUI中默认就是wrap_content的效果。
 示例：
 ```
 安卓布局文件：
