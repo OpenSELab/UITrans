@@ -22,7 +22,6 @@ class FileLogger(BaseLogger):
             fmt: str = DEFAULT_FMT,
             date_fmt: str = DEFAULT_DATE_FMT
     ):
-
         # 根据当前时间创建对应文件夹, logdir中含有日期格式化字符串
         self.logfile = datetime.now().strftime(logfile)
         os.makedirs(os.path.dirname(self.logfile), exist_ok=True)

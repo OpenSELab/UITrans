@@ -205,50 +205,21 @@ def test_translate_layout():
 
 
 def test_translate_component():
-    components_name = ["Text", "Column"]
-    android_component_name = "com.google.android.material.card.MaterialCardView"
-    android_component = """<com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
+    components_name = ["Toggle"]
+    android_component_name = "androidx.appcompat.widget.AppCompatToggleButton"
+    android_component = """<androidx.appcompat.widget.AppCompatToggleButton
+        android:id="@+id/toggle_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardBackgroundColor="#FF018786"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        app:cardMaxElevation="12dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        app:contentPadding="16dp"
-        app:strokeColor="#FF03DAC5"
-        app:strokeWidth="2dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Card Title"
-                android:textColor="#FFBB86FC"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="This is a sample description text for the card."
-                android:textColor="#FF6200EE"
-                android:textSize="16sp"
-                android:paddingTop="8dp" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>"""
-    android_component_prompt = f"""你是一个专业的安卓开发者，你的任务是为示例代码编写详细的功能与效果描述：
+        android:textOn="开"
+        android:textOff="关"
+        android:checked="false"/> <!-- 默认状态为关闭 -->"""
+    android_component_prompt = f"""你是一个专业的安卓开发者，你的任务是为示例代码编写详细的功能与效果描述，同时指出组件的默认属性及默认效果：
 {android_component}
 在编写时你需要遵守以下规则：
 * 1. 详细描述该组件的主要功能和预期效果。
-* 2. 不要给出任何代码示例。
+* 2. 指出该组件的默认属性和默认效果。
+* 3. 不要给出任何代码示例。
     """
     related_harmony_components = {}
     for component_name in components_name:
@@ -266,12 +237,12 @@ def test_translate_component():
     }
     system_prompt = PromptLoader.get_prompt("code_monkey/system.prompt")
     client = OpenAIClient(openai_default_config)
-    # response = client.create(messages=[
-    #     {"content": system_prompt, "role": "system"},
-    #     {"content": android_component_prompt, "role": "user"}
-    # ], temperature=1.0)
-    # android_layout["description"] = response.choices[0].message.content
-    # print(response.choices[0].message.content)
+    response = client.create(messages=[
+        {"content": system_prompt, "role": "system"},
+        {"content": android_component_prompt, "role": "user"}
+    ], temperature=1.0)
+    android_layout["description"] = response.choices[0].message.content
+    print(response.choices[0].message.content)
     translate_layout_prompt = PromptLoader.get_prompt(
         "code_monkey/translate_layout.prompt",
         tasks=[current_task],
@@ -281,12 +252,20 @@ def test_translate_component():
         is_component_content=True,
         harmony_types=related_harmony_types,
         is_type_content=True,
-        project_resources=resource
+        # project_resources=resource
     )
     print(translate_layout_prompt)
     response = client.create(messages=[
         {"content": system_prompt, "role": "system"},
         {"content": translate_layout_prompt, "role": "user"}
-    ], temperature=0.0)
+    ], temperature=0.2)
     print(response.choices[0].message.content)
     print(response.usage)
+    # response = client.create(messages=[
+    #     {"content": system_prompt, "role": "system"},
+    #     {"content": translate_layout_prompt, "role": "user"},
+    #     {"content": response.choices[0].message.content, "role": "assistant"},
+    #     {"content": "明明不存在indeterminate属性", "role": "user"}
+    # ], temperature=0.2)
+    # print(response.choices[0].message.content)
+    # print(response.usage)

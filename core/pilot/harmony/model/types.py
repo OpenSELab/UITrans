@@ -30,7 +30,8 @@ from typing import List, Optional, Dict, Any, Literal
 
 from core.logger.runtime import get_logger
 from core.pilot.schema import JSONTypeModel
-from core.pilot.harmony.model.defs.basic_type import BASIC_TYPES
+from core.pilot.harmony.model.defs.basic_type import BASIC_TYPE
+from core.pilot.harmony.model.defs.component_type import COMPONENT_TYPE
 
 logger = get_logger(name="Harmony Types")
 
@@ -73,7 +74,11 @@ def _init_harmony_types():
     global TYPES
     logger.debug("Initializing types...")
     TYPES = {}
-    for type_name, type_schema in BASIC_TYPES.items():
+    temp_types = {
+        **BASIC_TYPE,
+        **COMPONENT_TYPE
+    }
+    for type_name, type_schema in temp_types.items():
         is_interface = type_schema.get("type") == "object"
         if is_interface:
             TYPES[type_name] = TypeInterface(**type_schema)
@@ -91,4 +96,3 @@ def get_harmony_type(type_name: Optional[str] = None) -> Dict[str, TypeModel]:
 
 
 _init_harmony_types()
-print(TypeDeclaration.model_json_schema())

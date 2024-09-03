@@ -317,7 +317,7 @@ async def generate_component_declaration(url: str):
 
 if __name__ == '__main__':
     urls = [
-        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-toggle-V5"
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5"
     ]
     for url in urls:
         asyncio.run(generate_component_declaration(url))

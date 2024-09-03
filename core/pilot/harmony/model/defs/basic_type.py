@@ -1,4 +1,4 @@
-BASIC_TYPES = {
+BASIC_TYPE = {
     "Resource": {
         "type": "Resource",
         "description": "资源引用类型，用于设置组件属性的值。可以通过$r或者$rawfile创建Resource类型对象，不可以修改Resource中的各属性的值。",

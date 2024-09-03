@@ -138,7 +138,6 @@ JSON Schema: {'properties': {'description': {'description': '组件的描述', '
 """
 from typing import Optional, Dict
 
-
 from core.pilot.harmony.component.defs.common.attributes import get_harmony_common_attributes
 from core.pilot.harmony.component.defs.basic_component import BASIC_COMPONENT
 from core.pilot.harmony.component.defs.canvas_component import CANVAS_COMPONENT
@@ -147,6 +146,7 @@ from core.pilot.harmony.component.defs.drawing_component import DRAWING_COMPONEN
 from core.pilot.harmony.component.defs.global_component import GLOBAL_COMPONENT
 from core.pilot.harmony.component.defs.media_component import MEDIA_COMPONENT
 from core.pilot.harmony.component.defs.safe_component import SAFE_COMPONENT
+from core.pilot.harmony.component.defs.advanced_component import ADVANCED_COMPONENT
 from core.logger.runtime import get_logger
 from core.pilot.harmony.component.schema import ComponentDeclaration
 
@@ -167,7 +167,8 @@ def _init_harmony_components():
         **DRAWING_COMPONENT,
         **GLOBAL_COMPONENT,
         **MEDIA_COMPONENT,
-        **SAFE_COMPONENT
+        **SAFE_COMPONENT,
+        **ADVANCED_COMPONENT
     }
     for component_name, component in temp_component.items():
         if not component.get("interfaces", None):

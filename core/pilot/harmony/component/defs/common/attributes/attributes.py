@@ -32,10 +32,11 @@ JSON Schema: {'属性名': {'properties': {'description': {'title': 'Description
 from typing import Dict, Optional
 
 from core.pilot.harmony.component.schema import ComponentAttribute
-from core.pilot.harmony.component.defs.common.defs.size_attribute import SIZE_COMMON_ATTRIBUTES
-from core.pilot.harmony.component.defs.common.defs.position_attribute import POSITION_COMMON_ATTRIBUTES
-from core.pilot.harmony.component.defs.common.defs.layout_constraints_attribute import LAYOUT_CONSTRAINTS_ATTRIBUTE
-from core.pilot.harmony.component.defs.common.defs.flex_layout_attribute import FLEX_LAYOUT_ATTRIBUTE
+from core.pilot.harmony.component.defs.common.attributes.defs.test_style_attribute import TEXT_STYLE_ATTRIBUTE
+from core.pilot.harmony.component.defs.common.attributes.defs.size_attribute import SIZE_COMMON_ATTRIBUTES
+from core.pilot.harmony.component.defs.common.attributes.defs.position_attribute import POSITION_COMMON_ATTRIBUTES
+from core.pilot.harmony.component.defs.common.attributes.defs.layout_constraints_attribute import LAYOUT_CONSTRAINTS_ATTRIBUTE
+from core.pilot.harmony.component.defs.common.attributes.defs.flex_layout_attribute import FLEX_LAYOUT_ATTRIBUTE
 
 COMMON_ATTRIBUTES: Optional[Dict[str, ComponentAttribute]] = None
 
@@ -47,7 +48,8 @@ def _init_harmony_common_attributes():
         **SIZE_COMMON_ATTRIBUTES,
         **POSITION_COMMON_ATTRIBUTES,
         **LAYOUT_CONSTRAINTS_ATTRIBUTE,
-        **FLEX_LAYOUT_ATTRIBUTE
+        **FLEX_LAYOUT_ATTRIBUTE,
+        **TEXT_STYLE_ATTRIBUTE
     }
     for attribute_name, attribute in temp_common_attribute.items():
         COMMON_ATTRIBUTES[attribute_name] = ComponentAttribute(**attribute)

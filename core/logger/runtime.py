@@ -3,12 +3,14 @@ from typing import Literal, Optional
 from core.logger.base_logger import BaseLogger
 from core.config.schema import LoggerConfig
 
+# 日志的基本路径/项目路径
+BASE_LOG_DIR = r"D:\Codes\Python\harmony-pilot"
 # 日志配置
 default_logger_config = LoggerConfig(
     level="INFO",
-    type="file",
+    type="console",
     fmt="%(log_color)s%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    logfile="pilot_logs/%Y%m%d.log"
+    logfile=f"{BASE_LOG_DIR}/pilot_logs/%Y%m%d.log"
 )
 
 
