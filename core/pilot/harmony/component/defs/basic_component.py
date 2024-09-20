@@ -2426,7 +2426,7 @@ BASIC_COMPONENT = {
         "is_common_attrs": True
     },
     "NavDestination": {
-        "description": "作为子页面的根容器，用于显示[Navigation](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-navigation-V5)的内容区。",
+        "description": "作为子页面的根容器，用于显示Navigation的内容区。",
         "interfaces": [
             {
                 "description": "NavDestination()\n\n创建NavDestination组件。",

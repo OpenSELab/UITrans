@@ -42,6 +42,9 @@ def get_llm_friendly_document(url: str):
     """使用通过在线 JinaAI Reader 获得大模型友好文档
     当文档中出现 unifiedSearch.onlySearchAnchor，说明文档有错，需要重试
     """
+    headers = {
+        "Authorization": "Bearer jina_f3b1c967a74b43128142f76f1e3a9d46nwtF-K5xpCJSGOtT-yj7RjvmgV_B"
+    }
     error_message = ["unifiedSearch.onlySearchAnchor"]
     tries_count = 0
     while True:
@@ -317,7 +320,8 @@ async def generate_component_declaration(url: str):
 
 if __name__ == '__main__':
     urls = [
-        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5"
+        # TODO: 有问题的
+        # "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-canvasrenderingcontext2d-V5",
     ]
     for url in urls:
         asyncio.run(generate_component_declaration(url))

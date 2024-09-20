@@ -939,10 +939,27 @@ BASIC_TYPE = {
             "START": "在LTR场景下，弹框显示在索引条右侧的位置。在RTL场景下，弹框显示在索引条左侧的位置。",
             "END": "在LTR场景下，弹框显示在索引条左侧的位置。在RTL场景下，弹框显示在索引条右侧的位置。"
         }
+    },
+    "ImageFit": {
+        "type": "enum",
+        "enum": ["Contain", "Cover", "Auto", "Fill", "ScaleDown", "None", "TOP_START", "TOP", "TOP_END", "START", "CENTER", "END", "BOTTOM_START", "BOTTOM", "BOTTOM_END"],
+        "description": "图片填充方式。",
+        "enumDescriptions": {
+            "Contain": "保持图片宽高比缩放图片，使图片的长边能完全显示出来。",
+            "Cover": "保持图片宽高比缩放图片，使图片的短边能完全显示出来。",
+            "Auto": "保持图片原始尺寸。",
+            "Fill": "拉伸图片，使图片填满容器。",
+            "ScaleDown": "保持图片宽高比缩放图片，使图片的长边和短边都不超过容器的边界。",
+            "None": "不缩放图片。",
+            "TOP_START": "图片在容器的左上角显示。",
+            "TOP": "图片在容器的上方居中显示。",
+            "TOP_END": "图片在容器的右上角显示。",
+            "START": "图片在容器的左边居中显示。",
+            "CENTER": "图片在容器的中间显示。",
+            "END": "图片在容器的右边居中显示。",
+            "BOTTOM_START": "图片在容器的左下角显示。",
+            "BOTTOM": "图片在容器的下方居中显示。",
+            "BOTTOM_END": "图片在容器的右下角显示。"
+        }
     }
 }
-"""
-1. 组件，利用jina/reader将组件文档提为LLM友好格式，然后利用Prompt提取格式化数据（JSON），将其存储为Python Dict格式
-2. 对于组件中涉及到的类型，编写一个Prompt，将其提取为特定格式，并存储到basic_type中
-3. 对于通用属性/通用事件，利用jina/reader将组件文档提为LLM友好格式，然后利用Prompt提取格式化数据（JSON），将其存储为Python Dict格式。
-"""

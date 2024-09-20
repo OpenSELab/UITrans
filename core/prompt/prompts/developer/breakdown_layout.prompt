@@ -8,8 +8,8 @@
 你当前需要处理的任务是：
 {{ current_task.description }}
 
-以下是可能需要用到的ArkUI类型定义：
-{% include "harmony/types.prompt" %}
+{# 以下是可能需要用到的ArkUI类型定义：
+{% include "harmony/types.prompt" %} #}
 
 以下是可能需要用到的ArkUI组件文档：
 {% include "harmony/components.prompt" %}
@@ -22,10 +22,14 @@
 {{ android_layout.content }}
 {% endif %}
 
-在开始编码之前，你的工作是将转译安卓布局文件的开发过程拆分为更小的任务，在每一个任务中负责安卓布局文件中的一部分组件的转译。
+{#
+在开始编码之前，你的工作是将转译安卓布局文件的过程拆分为更小的任务，在每一个任务中负责安卓布局文件中的一部分组件的转译。
+#}
+在开始编码之前，你的工作是将安卓布局文件的拆分为更小的转译单位，在每一个任务中负责更小的转译单位的转译。
 现在，根据ArkUI组件文档、当前项目信息，逐个思考安卓布局文件转译过程，并为其创建整个开发计划。
 **重要**：在开发计划描述中，你应该指出需要转译安卓布局组件的全部代码，你一定不可以忽略任何一个组件。
 
 {% include "partials/task_rules.prompt" %}
 
+{% include "examples/breakdown_layout_example.prompt" %}
 

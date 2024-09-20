@@ -1,0 +1,19 @@
+# 任务结果示例：
+
+## 示例 #1
+```json
+{
+    "tasks": [
+        {
+            "description": "创建ets/pages/FirstFragment.ets文件, 并定义页面布局。"，
+            "done": false,
+            "component": ""
+        },
+        {
+            "description": "在ets/pages/FirstFragment.ets文件中添加Text组件，并其布局和样式与安卓布局文件中TextView一致"，
+            "done": false,
+            "component": "<TextView\n    android:id=\"@+id/textview_first\"\n    android:layout_width=\"wrap_content\"\n    android:layout_height=\"wrap_content\"\n    android:layout_marginTop=\"16dp\"\n    android:text=\"@string/lorem_ipsum\"\n    app:layout_constraintBottom_toBottomOf=\"parent\"\n    app:layout_constraintEnd_toEndOf=\"parent\"\n    app:layout_constraintStart_toStartOf=\"parent\"\n    app:layout_constraintTop_toBottomOf=\"@id/button_first\" />"
+        }
+    ]
+}
+```

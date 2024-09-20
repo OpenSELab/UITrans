@@ -17,16 +17,33 @@
 {% include "partials/files_list.prompt" %}
 {% include "partials/resources_list.prompt" %}
 
+以下是待转译的全部安卓代码：
 {% if android_layout %}
 # {{ android_layout.name }}
 {{ android_layout.content }}
-{% if android_layout.description %}
-{{ android_layout.description }}
+{% endif %}
+
+{% if current_task.component %}
+技术主管已经将安卓代码进行拆分，你当前需要转译的内容是：
+{{ current_task.component }}
+{% else %}
+技术主管已经将转译步骤拆分，你当前需要执行的操作是：
+{{ current_task.description }}
+{% endif %}
+
+{% if arkts_layout %}
+以下是已经存在的ArkUI代码：
+# {{ arkts_layout.name }}
+{{ arkts_layout.content }}
+{% if arkts_layout.description %}
+{{ arkts_layout.description }}
 {% endif %}
 {% endif %}
 
-你的工作是根据ArkUI组件文档、当前项目信息准确地、完整的将安卓布局文件转译为鸿蒙ArkUI代码。
+你的工作是根据ArkUI组件文档、当前项目信息{% if arkts_layout %}以及当前存在的ArkUI代码{% endif %}准确地、完整的将安卓布局文件转译为鸿蒙ArkUI代码。
 首先你需要认真考虑提供的安卓布局代码的功能，然后再进行转译。
 在转译过程中，你需要严格遵守以下规则：
 
 {% include "harmony/rules/layout_translation_rules.prompt" %}
+
+直接给出鸿蒙ArkUI代码即可。

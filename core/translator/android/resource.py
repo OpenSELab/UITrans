@@ -1,3 +1,12 @@
+import json
+import os
+import shutil
+import tempfile
+from typing import Tuple
+
+from lxml import etree
+from PIL import Image
+
 from core.logger.runtime import get_logger
 
 logger = get_logger(name="Android Translator")
@@ -85,7 +94,8 @@ class HarmonyResourceJSONEncoder(json.JSONEncoder):
 
     def encode(self, obj):
         json_str = super().encode(obj)
-        return json_str.replace('\\\\', '\\')
+        return json_str
+        # return json_str.replace('\\', '\\')
 
 
 def translate_android_pixel_to_harmony_pixel(pixel: str) -> str:
@@ -379,55 +389,59 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
 
     _root = etree.parse(android_vector_drawable_xml_path).getroot()
 
-    viewport_width = get_attr(_root, "android:viewportWidth")
-    viewport_height = get_attr(_root, "android:viewportHeight")
+    if _root.tag == "vector":
+        # 安卓矢量图标文件
+        viewport_width = get_attr(_root, "android:viewportWidth")
+        viewport_height = get_attr(_root, "android:viewportHeight")
 
-    output_width = remove_dimen_suffix(get_attr(_root, "android:width"))
-    output_height = remove_dimen_suffix(get_attr(_root, "android:height"))
+        output_width = remove_dimen_suffix(get_attr(_root, "android:width"))
+        output_height = remove_dimen_suffix(get_attr(_root, "android:height"))
 
-    # 创建 svg 根元素
-    svg_root = etree.Element("svg", {
-        "xmlns": "http://www.w3.org/2000/svg",
-        "width": get_attr(_root, "android:width").replace("dp", ""),
-        "height": get_attr(_root, "android:height").replace("dp", ""),
-        "viewBox": "0 0 {viewportWidth} {viewportHeight}".format(
-            viewportWidth=viewport_width or output_width,
-            viewportHeight=viewport_height or output_height
-        )
-    })
+        # 创建 svg 根元素
+        svg_root = etree.Element("svg", {
+            "xmlns": "http://www.w3.org/2000/svg",
+            "width": get_attr(_root, "android:width").replace("dp", ""),
+            "height": get_attr(_root, "android:height").replace("dp", ""),
+            "viewBox": "0 0 {viewportWidth} {viewportHeight}".format(
+                viewportWidth=viewport_width or output_width,
+                viewportHeight=viewport_height or output_height
+            )
+        })
 
-    _defs = etree.Element("defs")
+        _defs = etree.Element("defs")
 
-    node_indices = {
-        'g': 0,
-        'path': 0,
-    }
+        node_indices = {
+            'g': 0,
+            'path': 0,
+        }
 
-    for _node in _root:
-        if isinstance(_node, etree._Comment):
-            # 注释节点
-            comment_node = etree.Comment(_node.text.strip())
-            svg_root.append(comment_node)
-            continue
-        elif isinstance(_node, etree._Element):
-            node = transform_node(_node, _root, _root, _defs)
-            _id = node.get("id")
+        for _node in _root:
+            if isinstance(_node, etree._Comment):
+                # 注释节点
+                comment_node = etree.Comment(_node.text.strip())
+                svg_root.append(comment_node)
+                continue
+            elif isinstance(_node, etree._Element):
+                node = transform_node(_node, _root, _root, _defs)
+                _id = node.get("id")
 
-            current_id = node_indices.get(node.tag, 0)
-            node_indices[node.tag] = current_id + 1
+                current_id = node_indices.get(node.tag, 0)
+                node_indices[node.tag] = current_id + 1
 
-            node.set("id", _id or f"{node.tag}_{current_id}")
-            svg_root.append(node)
-        else:
-            raise ValueError(f"Unsupported node type: {type(_node)}")
+                node.set("id", _id or f"{node.tag}_{current_id}")
+                svg_root.append(node)
+            else:
+                raise ValueError(f"Unsupported node type: {type(_node)}")
 
-    if len(_defs):
-        svg_root.append(_defs)
+        if len(_defs):
+            svg_root.append(_defs)
 
-    os.makedirs(os.path.dirname(harmony_svg_path), exist_ok=True)
-    with open(harmony_svg_path, "w", encoding="utf-8") as f:
-        f.write(etree.tostring(svg_root, pretty_print=True, encoding="unicode"))
-
+        os.makedirs(os.path.dirname(harmony_svg_path), exist_ok=True)
+        with open(harmony_svg_path, "w", encoding="utf-8") as f:
+            f.write(etree.tostring(svg_root, pretty_print=True, encoding="unicode"))
+    elif _root.tag == "bitmap":
+        # 位图文件
+        logger.warning(f"Bitmap file is not supported: {android_vector_drawable_xml_path}")
 
 def translate_android_resource_values_to_harmony(
         android_resource_values_path: str,
@@ -463,14 +477,16 @@ def translate_android_resource_values_to_harmony(
         for element in root.findall(android_resource_values_tag):
             key = element.get("name")
             value = ""
-            for element_text_line in element.text.split("\n"):
-                value += element_text_line.strip()
+            if element.text:
+                for element_text_line in element.text.split("\n"):
+                    value += element_text_line.strip()
             # TODO: 若有不同的数据类型，需要进行转换
             if harmony_resource_values_tag == "string":
                 value = ""
                 # 除去多余的空格与换行符
-                for element_text_line in element.text.split("\n"):
-                    value += element_text_line.strip()
+                if element.text:
+                    for element_text_line in element.text.split("\n"):
+                        value += element_text_line.strip()
             elif harmony_resource_values_tag == "color":
                 # ARGB
                 value = value
@@ -661,3 +677,9 @@ def translate_android_resource_to_harmony(android_resource_path, harmony_resourc
             continue
         else:
             logger.warning(f"Android Resource `{resource_dir}` is not supported")
+
+if __name__ == '__main__':
+    translate_android_resource_to_harmony(
+        r"C:\Users\14514\Desktop\bookdash\resources",
+        r"C:\Users\14514\Desktop\bookdash\resources\harmony"
+    )

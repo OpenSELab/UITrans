@@ -1,10 +1,10 @@
 import json
 import os
 from core.config.config_loader import ConfigLoader
-from core.pilot.harmony.component.components import COMPONENTS, get_harmony_component
+from core.pilot.harmony.component.components import get_harmony_component
 from core.pilot.harmony.resource import load_harmony_resource
 from core.pilot.harmony.utils import get_component_related_types
-from core.pilot.schema import BreakdownLayoutTranslation, ChooseComponent
+from core.pilot.schema import BreakdownLayoutTranslation, ChooseComponent, BreakdownLayout
 from core.prompt.prompt_loader import PromptLoader
 from template.harmony_empty_ability import HarmonyEmptyAbilityV5ProjectTemplate
 from core.llms.oai_client import OpenAIClient
@@ -66,7 +66,9 @@ layout_files = {
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-        """
+        """,
+        "contains": ["res/layout/content_main.xml"],
+        "java": ""  # java code
     },
     "res/layout/content_main.xml": {
         "name": "res/layout/content_main.xml",
@@ -89,7 +91,9 @@ layout_files = {
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/nav_graph" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-        """
+        """,
+        "contains": ["res/layout/fragment_first.xml"],
+        "java": ""  # java code
     },
     "res/layout/fragment_first.xml": {
         "name": "res/layout/fragment_first.xml",
@@ -128,7 +132,9 @@ layout_files = {
             app:layout_constraintTop_toBottomOf="@id/button_first" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>    
-        """
+        """,
+        "contains": [],
+        "java": ""  # java code
     }
 }
 
@@ -187,48 +193,36 @@ def test_choose_component():
 
 
 def test_breakdown_layout():
-    openai_default_config["model"] = "deepseek-chat"
     client = OpenAIClient(openai_default_config)
+
+    layout_files = {
+        "app/res/xml/app_preferences.xml": {
+            "name": "app/res/xml/app_preferences.xml",
+            "content": "<androidx.preference.PreferenceScreen\nxmlns:android=\"http://schemas.android.com/apk/res/android\">\n\n<androidx.preference.Preference\nandroid:key=\"tutorial_display_key\"\nandroid:summary=\"@string/show_tutorial_settings_summary\"\nandroid:title=\"@string/show_tutorial_settings_title\" />\n\n<androidx.preference.SwitchPreferenceCompat\nandroid:defaultValue=\"true\"\nandroid:key=\"pref_new_book_notification\"\nandroid:summary=\"@string/settings_new_book_notifications_summary\"\nandroid:title=\"@string/settings_new_book_notifications\"\n/>\n</androidx.preference.PreferenceScreen>",
+            "java": "",
+            "contains": [],
+            "resources": {
+                "@string/show_tutorial_settings_summary": "resources/values/strings.xml",
+                "@string/show_tutorial_settings_title": "resources/values/strings.xml",
+                "@string/settings_new_book_notifications_summary": "resources/values/strings.xml",
+                "@string/settings_new_book_notifications": "resources/values/strings.xml"
+
+            }
+        }
+    }
 
     layout_translation = BreakdownLayoutTranslation.model_validate(json.loads("""
     {
       "tasks": [
         {
-          "description": "创建ets/pages/FragmentFirst.ets页面，实现安卓布局文件res/layout/fragment_first.xml的转译。",
+          "description": "创建ets/pages/AppPreferences.ets页面，实现安卓布局文件app/res/xml/app_preferences.xml的转译。",
           "done": false,
-          "harmony": "ets/pages/FragmentFirst.ets",
-          "android": "res/layout/fragment_first.xml"
-        },
-        {
-          "description": "创建ets/pages/ContentMain.ets页面，实现安卓布局文件res/layout/content_main.xml的转译。",
-          "done": false,
-          "harmony": "ets/pages/ContentMain.ets",
-          "android": "res/layout/content_main.xml"
-        },
-        {
-          "description": "创建ets/pages/Index.ets页面，实现安卓布局文件res/layout/activity_main.xml的转译。",
-          "done": false,
-          "harmony": "ets/pages/Index.ets",
-          "android": "res/layout/activity_main.xml"
+          "harmony": "ets/pages/AppPreferences.ets",
+          "android": "app/res/xml/app_preferences.xml"
         }
       ]
     }
             """))
-
-    choose_component = ChooseComponent.common_parse_raw("""
-{
-  "components": [
-    "Scroll",
-    "Column",
-    "Button",
-    "Text"
-  ]
-}
-    """)
-    related_component = {}
-    for component in choose_component.components:
-        related_component[component] = COMPONENTS[component]
-    harmony_types = get_component_related_types(list(related_component.keys()))
     current_task_index = 0
     system_prompt = PromptLoader.get_prompt("developer/system.prompt")
     translate_layout_plan_prompt = PromptLoader.get_prompt(
@@ -236,16 +230,15 @@ def test_breakdown_layout():
         tasks=layout_translation.tasks,
         current_task=layout_translation.tasks[current_task_index],
         android_layout=layout_files[layout_translation.tasks[current_task_index].android],
-        harmony_components=related_component,
-        is_component_content=True,
-        harmony_types=harmony_types,
+        harmony_components=get_harmony_component(),
+        is_component_content=False,
         is_type_content=True,
         project_resources=resource
     )
     print(translate_layout_plan_prompt)
-    # response = client.create(messages=[
-    #     {"content": system_prompt, "role": "system"},
-    #     {"content": translate_layout_plan_prompt, "role": "user"}
-    # ], model_schema=BreakdownLayout)
-    # print(response.choices[0].message.content)
-    # print(response.usage)
+    response = client.create(messages=[
+        {"content": system_prompt, "role": "system"},
+        {"content": translate_layout_plan_prompt, "role": "user"}
+    ], model_schema=BreakdownLayout, temperature=0.2)
+    print(response.choices[0].message.content)
+    print(response.usage)

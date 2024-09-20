@@ -1,6 +1,6 @@
 import json
 import jsonref
-from typing import List, Any
+from typing import List, Any, Optional
 import re
 from pydantic import BaseModel, Field
 from pydantic.json_schema import DEFAULT_REF_TEMPLATE, GenerateJsonSchema, JsonSchemaMode
@@ -77,6 +77,14 @@ class BreakdownLayoutTranslationTask(Task):
 
 class BreakdownLayoutTranslation(CommonBaseModel):
     tasks: List[BreakdownLayoutTranslationTask] = Field(description="为实施整个计划而需要完成的任务列表。")
+
+
+class BreakdownComponentTranslationTask(Task):
+    component: str = Field(description="待翻译的安卓组件代码。")
+
+
+class BreakdownComponentTranslation(CommonBaseModel):
+    tasks: List[BreakdownComponentTranslationTask] = Field(description="为实施整个计划而需要完成的任务列表。")
 
 
 class ChooseComponent(CommonBaseModel):
