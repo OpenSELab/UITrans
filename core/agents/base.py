@@ -41,7 +41,7 @@ class Agent(ABC):
         """
         raise NotImplementedError
 
-    def execute(self, messages: Union[str, Dict[str, Any], List[Dict[str, Any]]], sender: Union[str, "Agent"],
+    def chat(self, messages: Union[str, Dict[str, Any], List[Dict[str, Any]]], sender: Union[str, "Agent"],
                 **kwargs) -> Union[str, Dict[str, Any], None]:
         """智能体对外界感知做出响应
 

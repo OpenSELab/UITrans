@@ -3,7 +3,6 @@ from typing import Dict, Any
 import yaml
 from core.config.schema import Config, LLMConfig, PromptTemplateConfig, RAGConfig, LoggerConfig
 from core.prompt.prompt_loader import PromptLoader
-from core.logger.runtime import LoggerManager
 
 
 class ConfigLoader:

@@ -1,6 +1,6 @@
 from typing import Optional, TypeAlias, List, Dict, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 LLM_PROVIDER: TypeAlias = str
 
@@ -8,7 +8,8 @@ LLM_PROVIDER: TypeAlias = str
 class LoggerConfig(BaseModel):
     level: str = Field(description="日志级别", default="INFO")
     type: Literal["console", "file"] = Field(description="日志输出类型", default="console")
-    fmt: str = Field(description="日志格式", default="%(log_color)s%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    fmt: str = Field(description="日志格式",
+                     default="%(log_color)s%(asctime)s - %(name)s - %(levelname)s - %(message)s")
     logfile: Optional[str] = Field(description="日志文件路径", default=None)
 
 
@@ -46,3 +47,26 @@ class Config(BaseModel):
     llm_config: Dict[LLM_PROVIDER, LLMConfig]
     prompt_template_config: PromptTemplateConfig
     rag_config: Optional[RAGConfig] = None
+
+
+class DBConfig(BaseModel):
+    """
+    Configuration for database connections.
+
+    Supported URL schemes:
+
+    * sqlite+aiosqlite: SQLite database using the aiosqlite driver
+    """
+
+    url: str = Field(
+        "sqlite+aiosqlite:///pythagora.db",
+        description="Database connection URL",
+    )
+    debug_sql: bool = Field(False, description="Log all SQL queries to the console")
+
+    @classmethod
+    @field_validator("url")
+    def validate_url_scheme(cls, v: str) -> str:
+        if v.startswith("sqlite+aiosqlite://"):
+            return v
+        raise ValueError(f"Unsupported database URL scheme in: {v}")

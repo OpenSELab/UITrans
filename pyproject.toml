@@ -24,6 +24,8 @@ dependencies = [
     "rank-bm25>=0.2.2",
     "chromadb>=0.5.5",
     "lxml>=5.3.0",
+    "aiosqlite>=0.20.0",
+    "pytest-asyncio>=0.24.0",
 ]
 requires-python = "==3.10.*"
 readme = "README.md"
@@ -32,3 +34,6 @@ license = {text = "MIT"}
 
 [tool.pdm]
 distribution = false
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"

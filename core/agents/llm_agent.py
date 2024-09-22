@@ -2,15 +2,18 @@ from typing import List, Any, Dict, Union, Callable, Literal, Optional
 
 from .base import Agent
 from core.llms import LLMFactory
+from core.config.schema import Config
 from core.utils.function_utils import get_function_schema
 
 
-class LLMAgent(Agent):
+class LLMAgent:
     """基于大语言模型的智能体
 
     """
 
-    def __init__(self, name: str, description: str, config: dict, system_message: str = None):
+    __agent_name__ = ""
+
+    def __init__(self, name: str, description: str, config: Config, system_message: str = None):
         """
         Args:
             name (str): 智能体的名称
@@ -20,7 +23,10 @@ class LLMAgent(Agent):
                 - client: 客户端
                 - llm_config: 大语言模型配置
         """
-        super().__init__(name, description, config)
+        # 智能体的基本属性
+        self._name = name
+        self._description = description
+        # 大模型相关配置
         self._system_message = system_message
         if "client" not in config and "llm_config" not in config:
             raise ValueError("`client` 或 `llm_config` 必须在 config 中指定")
@@ -31,8 +37,17 @@ class LLMAgent(Agent):
         self._tools = []
         self._tool_map = {}
 
-        self._client = config.get("client") if "client" in config else LLMFactory.create_llm_from_config(
-            config["llm_config"])
+        self._client = LLMFactory.create_llm_from_config(config["llm_config"])
+
+    @property
+    def name(self) -> str:
+        """智能体的名称"""
+        return self._name
+
+    @property
+    def description(self) -> str:
+        """智能体的描述"""
+        return self._description
 
     @property
     def system_message(self) -> str:
