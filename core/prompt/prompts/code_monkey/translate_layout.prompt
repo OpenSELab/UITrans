@@ -31,12 +31,12 @@
 {{ current_task.description }}
 {% endif %}
 
-{% if arkts_layout %}
+{% if harmony_layout %}
 以下是已经存在的ArkUI代码：
-# {{ arkts_layout.name }}
-{{ arkts_layout.content }}
-{% if arkts_layout.description %}
-{{ arkts_layout.description }}
+# {{ harmony_layout.name }}
+{{ harmony_layout.content }}
+{% if harmony_layout.description %}
+{{ harmony_layout.description }}
 {% endif %}
 {% endif %}
 

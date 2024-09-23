@@ -92,6 +92,7 @@ class ChooseComponent(CommonBaseModel):
 
 
 class BreakdownLayoutTask(Task):
+    # component: List[str] = Field(description="涉及的鸿蒙组件名")
     component: str = Field(description="待翻译的安卓组件布局代码。")
 
 

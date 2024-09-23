@@ -4,7 +4,7 @@ from core.config.config_loader import ConfigLoader
 from core.pilot.harmony.resource import load_harmony_resource
 from core.pilot.schema import BreakdownLayoutTranslation
 from core.prompt.prompt_loader import PromptLoader
-from template.harmony_empty_ability import HarmonyEmptyAbilityV5ProjectTemplate
+from template import HarmonyEmptyAbilityV5ProjectTemplate
 from core.llms.oai_client import OpenAIClient
 
 os.chdir("../")

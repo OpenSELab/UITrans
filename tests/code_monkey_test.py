@@ -6,7 +6,7 @@ from core.pilot.harmony.resource import load_harmony_resource
 from core.pilot.harmony.utils import get_component_related_types
 from core.pilot.schema import BreakdownLayoutTranslation, ChooseComponent, Files, BreakdownComponentTranslation
 from core.prompt.prompt_loader import PromptLoader
-from template.harmony_empty_ability import HarmonyEmptyAbilityV5ProjectTemplate
+from template import HarmonyEmptyAbilityV5ProjectTemplate
 from core.llms.oai_client import OpenAIClient
 
 os.chdir("../")
@@ -35,14 +35,44 @@ def translate_layout_test():
 {
     "tasks": [
         {
-            "description": "在ets/pages/AppPreferences.ets文件中添加第一个Preference组件，并设置其key、summary和title属性。",
+            "description": "在ets/pages/HelpTutorialPage.ets文件中添加ScrollView组件，并设置其布局和样式与安卓布局文件中的ViewPager一致。",
             "done": false,
-            "component": "<androidx.preference.Preference\nandroid:key=\"tutorial_display_key\"\nandroid:summary=\"@string/show_tutorial_settings_summary\"\nandroid:title=\"@string/show_tutorial_settings_title\" />"
+            "component": "<androidx.viewpager.widget.ViewPager\nandroid:id=\"@+id/activity_help_view_pager\"\nandroid:clipToPadding=\"false\"\nandroid:clipChildren=\"false\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:layout_above=\"@+id/linear_layout_indicator\">\n</androidx.viewpager.widget.ViewPager>"
         },
         {
-            "description": "在ets/pages/AppPreferences.ets文件中添加SwitchPreferenceCompat组件，并设置其defaultValue、key、summary和title属性。",
+            "description": "在ets/pages/HelpTutorialPage.ets文件中添加Divider组件，并设置其布局和样式与安卓布局文件中的View一致。",
             "done": false,
-            "component": "<androidx.preference.SwitchPreferenceCompat\nandroid:defaultValue=\"true\"\nandroid:key=\"pref_new_book_notification\"\nandroid:summary=\"@string/settings_new_book_notifications_summary\"\nandroid:title=\"@string/settings_new_book_notifications\"\n/>"
+            "component": "<View android:layout_width=\"match_parent\"\nandroid:layout_above=\"@+id/linear_layout_indicator\"\nandroid:layout_height=\"1dp\"\nandroid:background=\"#E0E0E0\" />"
+        },
+        {
+            "description": "在ets/pages/HelpTutorialPage.ets文件中添加Row组件，并设置其布局和样式与安卓布局文件中的LinearLayout一致。",
+            "done": false,
+            "component": "<LinearLayout\nandroid:id=\"@+id/linear_layout_indicator\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"56dp\"\nandroid:weightSum=\"1\"\nandroid:layout_alignParentBottom=\"true\"\nandroid:orientation=\"horizontal\">"
+        },
+        {
+            "description": "在ets/pages/HelpTutorialPage.ets文件中的Row组件内添加Button组件，并设置其布局和样式与安卓布局文件中的Button一致。",
+            "done": false,
+            "component": "<Button\nandroid:id=\"@+id/activity_help_skip_textview\"\nandroid:layout_width=\"0dp\"\nandroid:layout_height=\"match_parent\"\nandroid:layout_alignParentBottom=\"true\"\nandroid:layout_centerInParent=\"true\"\nstyle=\"@android:style/Widget.Holo.Button.Borderless\"\nandroid:fontFamily=\"sans-serif\"\nandroid:gravity=\"center\"\nandroid:text=\"@string/tutorial_skip\"\nandroid:textColor=\"@color/tutorial_buttonTextColor\"\nandroid:textSize=\"18sp\"\nandroid:layout_weight=\"0.25\" />"
+        },
+        {
+            "description": "在ets/pages/HelpTutorialPage.ets文件中的Row组件内添加Blank组件，并设置其布局和样式与安卓布局文件中的CirclePageIndicator一致。",
+            "done": false,
+            "component": "<za.co.riggaroo.materialhelptutorial.view.CirclePageIndicator\nandroid:id=\"@+id/activity_help_view_page_indicator\"\nandroid:layout_width=\"0dp\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_above=\"@+id/activity_help_skip_textview\"\napp:fillColor=\"#41FFFFFF\"\napp:pageColor=\"#14FFFFFF\"\napp:radius=\"6dp\"\nandroid:layout_weight=\"0.5\"\napp:strokeColor=\"#E0E0E0\"\napp:strokeWidth=\"0dp\"\nandroid:layout_gravity=\"center_vertical\"\nandroid:minHeight=\"24dp\" />"
+        },
+        {
+            "description": "在ets/pages/HelpTutorialPage.ets文件中的Row组件内添加Column组件，并设置其布局和样式与安卓布局文件中的LinearLayout一致。",
+            "done": false,
+            "component": "<LinearLayout\nandroid:layout_width=\"0dp\"\nandroid:layout_weight=\"0.25\"\nandroid:orientation=\"vertical\"\nandroid:layout_height=\"match_parent\">"
+        },
+        {
+            "description": "在ets/pages/HelpTutorialPage.ets文件中的Column组件内添加Image组件，并设置其布局和样式与安卓布局文件中的ImageButton一致。",
+            "done": false,
+            "component": "<ImageButton\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:src=\"@drawable/ic_navigate_next\"\nstyle=\"@android:style/Widget.Holo.Button.Borderless\"\nandroid:id=\"@+id/activity_next_button\"\nandroid:layout_margin=\"8dp\"\nandroid:visibility=\"visible\"\nandroid:padding=\"16dp\" />"
+        },
+        {
+            "description": "在ets/pages/HelpTutorialPage.ets文件中的Column组件内添加Button组件，并设置其布局和样式与安卓布局文件中的Button一致。",
+            "done": false,
+            "component": "<Button\nandroid:id=\"@+id/activity_tutorial_done\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nstyle=\"@android:style/Widget.Holo.Button.Borderless\"\nandroid:fontFamily=\"sans-serif\"\nandroid:gravity=\"center\"\nandroid:text=\"@string/tutorial_done\"\nandroid:textColor=\"@color/tutorial_buttonTextColor\"\nandroid:textSize=\"18sp\"\nandroid:visibility=\"gone\" />"
         }
     ]
 }
@@ -50,9 +80,13 @@ def translate_layout_test():
     choose_component = ChooseComponent.common_parse_raw("""
     {
       "components": [
-        "Image",
+        "Scroll",
+        "Divider",
+        "Row",
+        "Column",
         "Button",
-        "Scroll"
+        "Image",
+        "Blank"
       ]
     }
         """)
@@ -62,8 +96,8 @@ def translate_layout_test():
     harmony_types = get_component_related_types(list(related_component.keys()))
     current_task_index = 0
     android_layout = {
-        "name": "app/res/xml/app_preferences.xml",
-        "content": "<androidx.preference.PreferenceScreen\nxmlns:android=\"http://schemas.android.com/apk/res/android\">\n\n<androidx.preference.Preference\nandroid:key=\"tutorial_display_key\"\nandroid:summary=\"@string/show_tutorial_settings_summary\"\nandroid:title=\"@string/show_tutorial_settings_title\" />\n\n<androidx.preference.SwitchPreferenceCompat\nandroid:defaultValue=\"true\"\nandroid:key=\"pref_new_book_notification\"\nandroid:summary=\"@string/settings_new_book_notifications_summary\"\nandroid:title=\"@string/settings_new_book_notifications\"\n/>\n</androidx.preference.PreferenceScreen>",
+        "name": "materialhelptutorial/res/layout/activity_help_tutorial.xml",
+        "content": "<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:layout_width=\"match_parent\"\nandroid:id=\"@+id/activity_help_root\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\">\n\n<androidx.viewpager.widget.ViewPager\nandroid:id=\"@+id/activity_help_view_pager\"\nandroid:clipToPadding=\"false\"\nandroid:clipChildren=\"false\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:layout_above=\"@+id/linear_layout_indicator\">\n\n</androidx.viewpager.widget.ViewPager>\n\n<View android:layout_width=\"match_parent\"\n\nandroid:layout_above=\"@+id/linear_layout_indicator\"\nandroid:layout_height=\"1dp\"\nandroid:background=\"#E0E0E0\"\n/>\n<LinearLayout\nandroid:id=\"@+id/linear_layout_indicator\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"56dp\"\nandroid:weightSum=\"1\"\nandroid:layout_alignParentBottom=\"true\"\nandroid:orientation=\"horizontal\">\n\n<Button\nandroid:id=\"@+id/activity_help_skip_textview\"\nandroid:layout_width=\"0dp\"\nandroid:layout_height=\"match_parent\"\nandroid:layout_alignParentBottom=\"true\"\nandroid:layout_centerInParent=\"true\"\nstyle=\"@android:style/Widget.Holo.Button.Borderless\"\nandroid:fontFamily=\"sans-serif\"\nandroid:gravity=\"center\"\nandroid:text=\"@string/tutorial_skip\"\nandroid:textColor=\"@color/tutorial_buttonTextColor\"\nandroid:textSize=\"18sp\"\nandroid:layout_weight=\"0.25\" />\n\n<za.co.riggaroo.materialhelptutorial.view.CirclePageIndicator\nandroid:id=\"@+id/activity_help_view_page_indicator\"\nandroid:layout_width=\"0dp\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_above=\"@id/activity_help_skip_textview\"\napp:fillColor=\"#41FFFFFF\"\napp:pageColor=\"#14FFFFFF\"\napp:radius=\"6dp\"\nandroid:layout_weight=\"0.5\"\napp:strokeColor=\"#E0E0E0\"\napp:strokeWidth=\"0dp\"\nandroid:layout_gravity=\"center_vertical\"\nandroid:minHeight=\"24dp\" />\n\n<LinearLayout\nandroid:layout_width=\"0dp\"\nandroid:layout_weight=\"0.25\"\nandroid:orientation=\"vertical\"\nandroid:layout_height=\"match_parent\">\n<ImageButton\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:src=\"@drawable/ic_navigate_next\"\nstyle=\"@android:style/Widget.Holo.Button.Borderless\"\nandroid:id=\"@+id/activity_next_button\"\nandroid:layout_margin=\"8dp\"\nandroid:visibility=\"visible\"\nandroid:padding=\"16dp\" />\n<Button\nandroid:id=\"@+id/activity_tutorial_done\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nstyle=\"@android:style/Widget.Holo.Button.Borderless\"\nandroid:fontFamily=\"sans-serif\"\nandroid:gravity=\"center\"\nandroid:text=\"@string/tutorial_done\"\nandroid:textColor=\"@color/tutorial_buttonTextColor\"\nandroid:textSize=\"18sp\"\nandroid:visibility=\"gone\" />\n</LinearLayout>\n\n</LinearLayout>\n\n\n</RelativeLayout>",
     }
     # print(related_component)
     system_prompt = PromptLoader.get_prompt("code_monkey/system.prompt")
@@ -97,7 +131,7 @@ def translate_layout_test():
         current_task=layout_translation.tasks[current_task_index],
         android_layout=android_layout,
         arkts_layout={
-            "name": "ets/pages/AboutActivity.ets",
+            "name": "ets/pages/Index.ets",
             "content": harmony_code
         },
         harmony_components=related_component,

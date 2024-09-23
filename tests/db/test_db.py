@@ -51,3 +51,7 @@ async def test_db(test_session_manager):
         result = await session.execute(select(TranslationTable))
         translations = result.scalars().all()
         print(translations)
+
+@pytest.mark.asyncio
+async def insert_component_table(test_session_manager):
+    ...

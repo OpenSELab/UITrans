@@ -4,40 +4,58 @@ from .base import Agent
 from core.llms import LLMFactory
 from core.config.schema import Config
 from core.utils.function_utils import get_function_schema
+from core.config.config_loader import ConfigLoader
+from core.prompt.prompt_loader import PromptLoader
+from ..llms.base import LLMClient
 
 
 class LLMAgent:
     """基于大语言模型的智能体
 
+    Args:
+        name (str): 智能体的名称
+        llm_client (LLMClient): 大语言模型客户端
+        description (str): 智能体的描述
     """
 
-    __agent_name__ = ""
+    agent_role = "base"
+    agent_description = """功能强大且高效的AI助手，具备与外部工具、API 和插件交互的强大能力。它擅长使用预定义的函数和工具完成编码任务，同时还能通过检索信息或在需要时执行命令，高效处理各种常规任务。"""
+    default_system_message = """你是一个功能强大且高效的AI助手，具备与外部工具、API和插件交互的能力，可以收集信息、执行操作或提升任务处理效果。
+对于编码任务：
+- 使用提供给你的预定义函数和工具。不要在没有这些工具的情况下生成或猜测代码。
+- 如果缺乏完成任务所需的信息，请使用适当的工具请求额外的资源或函数。
 
-    def __init__(self, name: str, description: str, config: Config, system_message: str = None):
-        """
-        Args:
-            name (str): 智能体的名称
-            description (str): 智能体的描述
-            system_message (str): 系统提示词
-            config (dict): 配置
-                - client: 客户端
-                - llm_config: 大语言模型配置
-        """
+对于一般任务：
+- 始终努力简洁、准确并节约资源。
+- 如果外部工具或API能够帮助解决任务（例如检索信息、创建文件或执行命令），请按需调用它们。
+- 当任务完成时，如果不需要进一步的操作，请在回答的末尾添加“TERMINATE”。
+    """
+
+    def __init__(
+            self,
+            name: str,
+            llm_client: LLMClient,
+            description: str = agent_description
+    ):
         # 智能体的基本属性
         self._name = name
         self._description = description
-        # 大模型相关配置
-        self._system_message = system_message
-        if "client" not in config and "llm_config" not in config:
-            raise ValueError("`client` 或 `llm_config` 必须在 config 中指定")
-
+        # 大语言模型客户端
+        self._llm_client = llm_client
         # 对话记录：{sender: [message1, message2, ...]}
         self._chat_messages = {}
         # 工具
         self._tools = []
         self._tool_map = {}
 
-        self._client = LLMFactory.create_llm_from_config(config["llm_config"])
+        self._system_message = PromptLoader.get_prompt(
+            f"{self.agent_role}/system.prompt"
+        )
+
+    @property
+    def role(self):
+        """智能体的角色/类型"""
+        return self.agent_role
 
     @property
     def name(self) -> str:
