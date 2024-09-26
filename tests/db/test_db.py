@@ -1,3 +1,5 @@
+import os
+
 import pytest
 import pytest_asyncio
 
@@ -52,6 +54,27 @@ async def test_db(test_session_manager):
         translations = result.scalars().all()
         print(translations)
 
+
 @pytest.mark.asyncio
-async def insert_component_table(test_session_manager):
-    ...
+async def test_insert_component_table(test_session_manager):
+    import json
+    print(os.path.exists("./db/component_table.json"))
+    with open("./db/component_table.json", "r", encoding="utf-8") as f:
+        translations = json.loads(f.read())
+    translation_list = []
+    for translation in translations:
+        translation_list.append(TranslationTable(
+            source_language=translation["source_language"],
+            source_component=translation["source_component"],
+            source_component_code=translation["source_component_code"],
+            source_component_description=translation["source_component_description"],
+            source_component_version=translation["source_component_version"],
+            target_language=translation["target_language"],
+            target_component=translation["target_component"],
+            target_component_code=translation["target_component_code"],
+            target_component_description=translation["target_component_description"],
+            target_component_version=translation["target_component_version"]
+        ))
+    print(translation_list)
+    async with test_session_manager as session:
+        ...

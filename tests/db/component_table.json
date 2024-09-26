@@ -1,0 +1,686 @@
+[
+    {
+        "source_language": "android",
+        "source_component": "View",
+        "source_component_code": "<View\nandroid:id=\"@+id/transparent_bg\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:background=\"@color/transparent_black\"\nandroid:visibility=\"visible\"\n/>",
+        "source_component_description": "View 组件是构建用户界面的基本构建块，View 组件负责在屏幕上绘制自身，并处理用户交互事件",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Column"
+        ],
+        "target_component_code": "Column()\n.id(\"transparent_bg\")\n.width(\"100%\")\n.height(\"100%\")\n.backgroundColor($r(\"app.color.transparent_black\"))\n.visibility(Visibility.Visible)",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "CheckBox",
+        "source_component_code": "<CheckBox\nandroid:id=\"@+id/chbOne\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:checked=\"true\"\nandroid:text=\"吃饭\" />\n<CheckBox\nandroid:id=\"@+id/chbTwo\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"睡觉\" />\n<CheckBox\nandroid:id=\"@+id/chbThree\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"读书\" />",
+        "source_component_description": "允许用户从一组选项中选择一个或多个选项",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Checkbox"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct CheckedTextView {\n@State checked1: boolean = true;\n@State checked2: boolean = false;\n@State checked3: boolean = false;\n\nbuild() {\nFlex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {\nFlex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {\nCheckbox()\n.select($$this.checked1)\n.width(30)\n.height(30)\nText('吃饭')\n.fontSize(18)\n.onClick(() => {\nthis.checked1 = !this.checked1;\n})\n}\n\nFlex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {\nCheckbox()\n.select($$this.checked2)\n.width(30)\n.height(30)\nText('睡觉')\n.fontSize(18)\n.onClick(() => {\nthis.checked2 = !this.checked2;\n})\n}\n\nFlex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {\nCheckbox()\n.select($$this.checked3)\n.width(30)\n.height(30)\nText('读书')\n.fontSize(18)\n.onClick(() => {\nthis.checked3 = !this.checked3;\n})\n}\n}\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "EditText",
+        "source_component_code": " <EditText\nandroid:id=\"@+id/et_1\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"50dp\"\nandroid:layout_marginBottom=\"15dp\"\nandroid:autofillHints=\"\"\nandroid:hint=\"请输入文字\"\nandroid:inputType=\"text\"\nandroid:paddingLeft=\"15dp\"\nandroid:paddingRight=\"15dp\"\nandroid:textColor=\"@color/black\"\nandroid:textSize=\"16sp\"\ntools:ignore=\"MissingConstraints\" />",
+        "source_component_description": "允许用户输入和编辑文本",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "TextInput"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct Index {\n\nbuild() {\nColumn() { // 使用Column作为布局容器\nTextInput({ placeholder: '请输入文字' })\n.id('et_1')\n.width('100%') // 对应 android:layout_width=\"match_parent\"\n.height('50vp') // 对应 android:layout_height=\"50dp\"\n.margin({ bottom: '15vp' }) // 对应 android:layout_marginBottom=\"15dp\"\n.padding({ left: '15vp', right: '15vp' }) // 对应 android:paddingLeft=\"15dp\" 和 android:paddingRight=\"15dp\"\n// .textColor($r('app.color.black')) // 对应 android:textColor=\"@color/black\"\n.fontSize('16fp') // 对应 android:textSize=\"16sp\"\n.type(InputType.Normal) // 对应 android:inputType=\"text\"\n}\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "ProgressBar",
+        "source_component_code": "<ProgressBar\nandroid:id=\"@+id/progress_bar\"\nstyle=\"@style/Widget.AppCompat.ProgressBar\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_centerInParent=\"true\"\n/>",
+        "source_component_description": "用于显示任务的进度。它可以是确定的（显示具体的进度值）或不确定的（显示一个持续的动画，表示任务正在进行中但进度未知）。",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Progress"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct ProgressBarExample {\nbuild() {\nColumn() {\nProgress({ value: 30, type: ProgressType.ScaleRing })\n.id(\"progress_bar\")\n.width(\"wrap_content\")\n.height(\"wrap_content\")\n.align(Alignment.Center)\n}\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "RadioGroup",
+        "source_component_code": "<TextView\nandroid:layout_marginTop=\"20dp\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:textSize=\"30sp\"\nandroid:text=\"小牛吃什么\"\n/>\n<RadioGroup\nandroid:id=\"@+id/group_test\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:orientation=\"horizontal\"\nandroid:gravity=\"center_horizontal\"\n>\n<RadioButton\nandroid:id=\"@+id/rbtA\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"A、肉\"\n/>\n<RadioButton\nandroid:id=\"@+id/rbtB\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"B、草\"\n/>\n<RadioButton\nandroid:id=\"@+id/rbtC\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"C、虫子\"\n/>\n<RadioButton\nandroid:id=\"@+id/rbtD\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"D、鱼\"\n/>\n\n</RadioGroup>\n<Button\nandroid:id=\"@+id/btnCheck\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"提交\"\n/>",
+        "source_component_description": "用于包含一组 RadioButton 选项，并确保用户只能从中选择一个选项。",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Radio"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct RadioGroupExample {\nbuild() {\nColumn() {\nText('小牛吃什么')\n.fontSize(30)\n.margin({ top: 20 })\n\nFlex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {\nRadio({ value: 'A', group: 'group_test' })\n.id('rbtA')\n.width('wrap_content')\n.height('wrap_content')\n.onChange((isChecked: boolean) => {\nconsole.log('A is checked: ' + isChecked);\n})\nText('A、肉')\n\nRadio({ value: 'B', group: 'group_test' })\n.id('rbtB')\n.width('wrap_content')\n.height('wrap_content')\n.onChange((isChecked: boolean) => {\nconsole.log('B is checked: ' + isChecked);\n})\nText('B、草')\n\nRadio({ value: 'C', group: 'group_test' })\n.id('rbtC')\n.width('wrap_content')\n.height('wrap_content')\n.onChange((isChecked: boolean) => {\nconsole.log('C is checked: ' + isChecked);\n})\nText('C、虫子')\n\nRadio({ value: 'D', group: 'group_test' })\n.id('rbtD')\n.width('wrap_content')\n.height('wrap_content')\n.onChange((isChecked: boolean) => {\nconsole.log('D is checked: ' + isChecked);\n})\nText('D、鱼')\n}\n\nButton('提交')\n.id('btnCheck')\n.width('wrap_content')\n.height('wrap_content')\n}\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "Spinner",
+        "source_component_code": "<Spinner\nandroid:id=\"@+id/spcheak\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:entries=\"@array/spinner_options\" />",
+        "source_component_description": "它提供了一个下拉列表，允许用户从一组预定义的选项中选择一个",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Select"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct SelectExample {\n@State text: string = \"TTTTT\"\n@State index: number = -1\nbuild() {\nColumn() {\nSelect([{ value: 'aaa', icon: $r(\"app.media.startIcon\") },\n{ value: 'bbb', icon: $r(\"app.media.startIcon\") },\n{ value: 'ccc', icon: $r(\"app.media.startIcon\") },\n{ value: 'ddd', icon: $r(\"app.media.startIcon\") }])\n.selected(this.index)\n.value(this.text)\n.font({ size: 16, weight: 500 })\n.fontColor('#182431')\n.selectedOptionFont({ size: 16, weight: 400 })\n.optionFont({ size: 16, weight: 400 })\n.arrowPosition(ArrowPosition.END)\n.menuAlign(MenuAlignType.START, {dx:0, dy:0})\n.optionWidth(200)\n.optionHeight(300)\n.onSelect((index:number, text?: string | undefined)=>{\nconsole.info('Select:' + index)\nthis.index = index;\nif(text){\nthis.text = text;\n}\n})\n}.width('100%')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "NumberPicker",
+        "source_component_code": "<NumberPicker\nandroid:id=\"@+id/np\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\napp:layout_constraintLeft_toLeftOf=\"parent\"\napp:layout_constraintRight_toRightOf=\"parent\" /> ",
+        "source_component_description": "允许用户通过滚动选择一个数值。NumberPicker 通常用于设置特定范围内的数值，如年龄、数量或时间。用户可以通过垂直滚动来选择所需的数值",
+        "source_component_version": "11",
+        "target_language": "harmony",
+        "target_component": [
+            "TextInput"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct Index {\nbuild() {\nColumn() {\nTextInput()\n.type(InputType.Number)\n}\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "DatePicker",
+        "source_component_code": " <DatePicker\nandroid:id=\"@+id/datePickerView\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:spinnersShown=\"false\"\nandroid:calendarViewShown=\"true\"\nandroid:datePickerMode=\"calendar\"\nandroid:layout_gravity=\"center_horizontal\"\nandroid:layout_marginTop=\"20dp\"\nandroid:layout_marginBottom=\"20dp\"\nandroid:layout_marginLeft=\"10dp\"\nandroid:layout_marginRight=\"10dp\"/>",
+        "source_component_description": "允许用户选择日期。DatePicker 通常以日历或滚动选择器的方式显示，用户可以通过点击或滚动来选择年、月和日。DatePicker 支持设置初始日期、最小日期和最大日期，以及监听用户选择的日期变化",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "DatePicker"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct DatePickerExample {\n@State selectedDate: Date = new Date('2021-08-08') // 初始选中的日期\n\nbuild() {\nColumn() {\nDatePicker({\nstart: new Date('1970-1-1'), // 日期选择范围的起始日期\nend: new Date('2100-1-1'), // 日期选择范围的结束日期\nselected: this.selectedDate // 当前选中的日期\n})\n.disappearTextStyle({color: Color.Gray, font: {size: '16fp', weight: FontWeight.Bold}}) // 设置不可见文本的样式\n.textStyle({color: '#ff182431', font: {size: '18fp', weight: FontWeight.Normal}}) // 设置普通文本的样式\n.selectedTextStyle({color: '#ff0000FF', font: {size: '26fp', weight: FontWeight.Regular}}) // 设置选中日期的文本样式\n.margin({ top: '20vp', bottom: '20vp', left: '10vp', right: '10vp' }) // 设置外边距\n.onDateChange((value: Date) => {\nthis.selectedDate = value // 更新选中的日期\nconsole.info('select current date is: ' + value.toString()) // 输出当前选中的日期\n})\n}.width('100%')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "TimePicker",
+        "source_component_code": "<TimePicker\nandroid:id=\"@+id/timePicker\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:timePickerMode=\"spinner\" />",
+        "source_component_description": "允许用户选择时间。TimePicker 通常以时钟或滚动选择器的方式显示，用户可以通过点击或滚动来选择小时和分钟。",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "TimePicker"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct TimePickerExample {\n@State selectedTime: Date = new Date('2022-07-22T08:00:00') // 初始选中的时间\n\nbuild() {\nColumn() {\nTimePicker({\nselected: this.selectedTime, // 当前选中的时间\n})\n.onChange((value: TimePickerResult) => {\nif(value.hour >= 0) {\nthis.selectedTime.setHours(value.hour, value.minute) // 更新选中的时间\nconsole.info('select current date is: ' + JSON.stringify(value)) // 输出当前选中的时间\n}\n})\n}.width('100%')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "SearchView",
+        "source_component_code": "<SearchView\nandroid:id=\"@+id/searchView\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:queryHint=\"Search...\"\nandroid:iconifiedByDefault=\"false\" />",
+        "source_component_description": "它提供了一个可交互的搜索框，允许用户输入搜索查询并执行搜索操作",
+        "source_component_version": "11",
+        "target_language": "harmony",
+        "target_component": [
+            "Search"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct SearchExample {\n@State changeValue: string = '' // 存储搜索框的当前输入值\n\nbuild() {\nColumn() {\nSearch({ value: this.changeValue, placeholder: 'Search...' })\n.searchButton('SEARCH') // 设置搜索按钮的文本\n.width('100%') // 设置搜索框的宽度\n.height('wrap_content') // 设置搜索框的高度\n.onChange((value: string) => {\nthis.changeValue = value // 处理搜索框输入变化事件，更新当前输入值\n})\n}.width('100%')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "ImageButton",
+        "source_component_code": "<ImageButton\nandroid:id=\"@+id/imageButton\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:src=\"@drawable/img02\"\nandroid:padding=\"16dp\" />",
+        "source_component_description": "是一个特殊的按钮，其外观由图像而不是文本定义",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Button"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct ImageButtonExample {\nbuild() {\nColumn() {\nButton() {\nImage($r(\"app.media.startIcon\"))\n.objectFit(ImageFit.Contain)\n}\n.padding(16)\n.width('wrap_content')\n.height('wrap_content')\n}\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "CalendarView",
+        "source_component_code": "<CalendarView\nandroid:id=\"@+id/calendarView\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\" />",
+        "source_component_description": "它提供了一个图形化的日历视图，允许用户通过点击或滑动来选择日期",
+        "source_component_version": "14",
+        "target_language": "harmony",
+        "target_component": [
+            "CalendarPicker"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct CalendarViewExample {\nprivate selectedDate: Date = new Date('2024-03-05')\n\nbuild() {\nColumn() {\nCalendarPicker({ hintRadius: 10, selected: this.selectedDate })\n.edgeAlign(CalendarAlign.END)\n.textStyle({ color: \"#ff182431\", font: { size: 20, weight: FontWeight.Normal } })\n.margin(10)\n.onChange((value) => {\nconsole.info(\"CalendarPicker onChange:\" + JSON.stringify(value))\n})\n}.width('100%').margin({ top: 350 })\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "CheckedTextView",
+        "source_component_code": "<CheckedTextView\nandroid:id=\"@+id/checkedTextView\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Click to check\"\nandroid:checkMark=\"?android:attr/listChoiceIndicatorMultiple\"\nandroid:padding=\"16dp\"\nandroid:textSize=\"18sp\"\nandroid:gravity=\"center\" />",
+        "source_component_description": "它是一个带有复选框的文本视图，允许用户选择或取消选择文本项",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Text",
+            "Checkbox"
+        ],
+        "target_component_code": "// CheckedTextView.ets\n@Entry\n@Component\nstruct CheckedTextView {\n@State checked: boolean = false;\n\nbuild() {\nFlex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {\nCheckbox()\n.select($$this.checked)\n.width(30)\n.height(30)\n\nText('Click to check')\n.fontSize(18)\n.textAlign(TextAlign.Center)\n.onClick(() => {\nthis.checked = !this.checked\n})\n}\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "Chronometer",
+        "source_component_code": "<Chronometer\nandroid:id=\"@+id/chronometer\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:textSize=\"24sp\"\nandroid:textColor=\"@android:color/black\"\nandroid:gravity=\"center\" />",
+        "source_component_description": "倒计时组件，需要按钮或其他组件配合控制逻辑",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "TextTimer"
+        ],
+        "target_component_code": "// xxx.ets\n@Entry\n@Component\nstruct ChronometerExample {\n@State format: string = 'mm:ss'\n\nbuild() {\nColumn() {\nTextTimer()\n.format(this.format)\n.fontSize(24)\n.fontColor(Color.Black)\n.align(Alignment.Center)\n.width('wrap_content')\n.height('wrap_content')\n}\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "RatingBar",
+        "source_component_code": "<RatingBar\nandroid:id=\"@+id/rating1\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:numStars=\"5\"\nandroid:stepSize=\"0.5\"\nandroid:rating=\"3\"\nandroid:isIndicator=\"false\" />",
+        "source_component_description": "RatingBar 通常以一系列星形图标的形式显示，用户可以选择部分或全部星形来表示他们的评分",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Slider"
+        ],
+        "target_component_code": "// xxx.ets\n@Entry\n@Component\nstruct RatingBarExample {\n@State ratingValue: number = 3.0; // 初始评分值\n@State numStars: number = 5; // 星星总数\n@State stepSize: number = 0.5; // 步长\n\nbuild() {\nColumn({ space: 8 }) {\nSlider({\nvalue: this.ratingValue,\nmin: 0,\nmax: this.numStars,\nstep: this.stepSize,\nstyle: SliderStyle.OutSet\n})\n.blockColor('#FFD700') // 设置滑块颜色为金色\n.trackColor('#D3D3D3') // 设置未选中轨道颜色为浅灰色\n.selectedColor('#FFD700') // 设置选中轨道颜色为金色\n.showSteps(true) // 显示步长标记\n.onChange((value: number, mode: SliderChangeMode) => {\nthis.ratingValue = value;\nconsole.info('Rating changed to: ' + value);\n})\nText('Current Rating: ' + this.ratingValue.toFixed(1))\n.fontSize(12)\n}\n.width('100%')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "SeekBar",
+        "source_component_code": "<SeekBar\nandroid:id=\"@+id/seekBar\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:max=\"100\"\nandroid:progress=\"50\" />",
+        "source_component_description": "允许用户通过拖动滑块来选择一个数值",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Slider"
+        ],
+        "target_component_code": "// xxx.ets\n@Entry\n@Component\nstruct SeekBarExample {\n@State progressValue: number = 50; // 初始进度值\n\nbuild() {\nColumn() {\nSlider({\nvalue: this.progressValue,\nmin: 0,\nmax: 100,\nstyle: SliderStyle.OutSet\n})\n.width('100%')\n.onChange((value: number, mode: SliderChangeMode) => {\nthis.progressValue = value;\nconsole.info('Progress value: ' + value);\n})\n}\n.width('100%')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "TableLayout",
+        "source_component_code": "<TableLayout\nandroid:id=\"@+id/TableLayout2\"\nandroid:layout_width=\"fill_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:shrinkColumns=\"1\" >\n\n<TableRow>\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"one\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"two\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"three\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"four\" />\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"其他的文本....\" />\n</TableRow>\n</TableLayout>",
+        "source_component_description": "以表格形式排列其子视图，类似于 HTML 中的表格布局",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Grid",
+            "GridItem",
+            "GridCol",
+            "GridRow"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct TableLayoutExample {\nbuild() {\nColumn({ space: 0 }) {\nGrid() {\nGridItem() {\nRow() {\nButton('one')\n.width('auto')\n.height('auto')\nButton('two')\n.width('auto')\n.height('auto')\nButton('three')\n.width('auto')\n.height('auto')\nButton('four')\n.width('auto')\n.height('auto')\nText('其他的文本....')\n.width('auto')\n.height('auto')\n}\n.width('100%')\n.height('auto')\n}\n}\n.columnsTemplate('1fr 1fr 1fr 1fr 1fr')\n.rowsTemplate('1fr')\n.columnsGap(5)\n.rowsGap(10)\n.width('100%')\n.height('auto')\n}\n.width('100%')\n.height('auto')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "ZoomButton",
+        "source_component_code": "<ZoomButton\nandroid:id=\"@+id/zoomOutButton\"\nandroid:layout_width=\"64dp\"\nandroid:layout_height=\"48dp\"\nandroid:src=\"@drawable/loading\"\nandroid:background=\"@color/purple_500\"\nandroid:padding=\"16dp\" />",
+        "source_component_description": "是一个特殊的按钮，通常用于控制视图的缩放功能",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Button"
+        ],
+        "target_component_code": "// xxx.ets\n@Entry\n@Component\nstruct ZoomButtonExample {\nbuild() {\nColumn() {\nButton({ type: ButtonType.Circle, stateEffect: true }) {\nImage($r('app.media.startIcon'))\n.width(32)\n.height(32)\n}\n.width(64)\n.height(48)\n.padding(16)\n.onClick(() => {\n// 实现缩小操作的逻辑\n})\n}\n.width('100%')\n.height('100%')\n.justifyContent(FlexAlign.Center)\n.alignItems(HorizontalAlign.Center)\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "DigitalClock",
+        "source_component_code": " <DigitalClock\nandroid:id=\"@+id/digitalClock_02\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:textSize=\"24sp\"\nandroid:textColor=\"@android:color/black\"\nandroid:gravity=\"center\"\nandroid:padding=\"8dp\"\nandroid:visibility=\"visible\"\nandroid:background=\"@android:color/transparent\" />",
+        "source_component_description": "以数字形式显示当前时间",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "TextClock"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct DigitalClockExample {\n@State accumulateTime: number = 0;\ncontroller: TextClockController = new TextClockController();\n\nbuild() {\nFlex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {\nTextClock({ controller: this.controller })\n.format('HH:mm')\n.fontSize(24)\n// .fontColor(Color.Black)\n// .textAlign(TextAlign.Center)\n.padding(8)\n.visibility(Visibility.Visible)\n.backgroundColor(Color.Transparent)\n.onDateChange((value: number) => {\nthis.accumulateTime = value;\n})\n}\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "Switch",
+        "source_component_code": "<Switch\nandroid:id=\"@+id/mySwitch\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Switch\"\nandroid:textOn=\"ON\"\nandroid:textOff=\"OFF\"\nandroid:checked=\"true\"\nandroid:showText=\"true\"\nandroid:splitTrack=\"true\"\nandroid:switchMinWidth=\"56dp\"\nandroid:switchPadding=\"2dp\"\nandroid:thumbTextPadding=\"8dp\"\nandroid:trackTint=\"@color/purple_700\"\nandroid:thumbTint=\"@color/purple_200\"\nandroid:layout_margin=\"8dp\"\nandroid:visibility=\"visible\"\nandroid:background=\"@android:color/transparent\" />",
+        "source_component_description": "它提供了一个滑动开关，允许用户在两个状态之间切换，通常用于表示开启（On）或关闭（Off）",
+        "source_component_version": "14",
+        "target_language": "harmony",
+        "target_component": [
+            "Toggle"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct MySwitchComponent {\n@State isOn: boolean = true;\n\nbuild() {\nColumn() {\nToggle({ type: ToggleType.Switch, isOn: this.isOn })\n.selectedColor(Color.Blue) // 设置Switch打开状态的背景颜色\n.switchPointColor(Color.White) // 设置Switch类型的圆形滑块颜色\n.width(56) // 设置组件自身的宽度\n.height(30) // 设置组件自身的高度\n.margin({ top: 8, bottom: 8, left: 8, right: 8 }) // 设置外边距\n.visibility(Visibility.Visible) // 设置可见性\n.backgroundColor(Color.Transparent) // 设置背景颜色为透明\n.onChange((isOn: boolean) => {\nthis.isOn = isOn;\n})\n}\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "Space",
+        "source_component_code": "<!-- 上方的按钮 -->\n<Button\nandroid:id=\"@+id/button_top\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Top Button\" />\n\n<!-- Space组件 -->\n<Space\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"20dp\" />\n\n<!-- 下方的按钮 -->\n<Button\nandroid:id=\"@+id/button_bottom\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Bottom Button\" />",
+        "source_component_description": "一个轻量级的视图组件，通常用于在布局中添加空白间隔",
+        "source_component_version": "14",
+        "target_language": "harmony",
+        "target_component": [
+            "Blank"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct SpaceExample {\nbuild() {\nColumn() {\nButton('Top Button')\n.id('button_top')\n\nBlank('20vp') // 使用Blank组件来实现Space组件的功能，设置高度为20dp（转换为vp）\n\nButton('Bottom Button')\n.id('button_bottom')\n}\n.width('100%')\n.padding(10)\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "LinearLayout",
+        "source_component_code": "\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\"\nandroid:gravity=\"center\"\ntools:context=\".MainActivity\">\n<Button\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 1\" />\n<Button\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 2\" />\n<Button\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 3\" />\n</LinearLayout>",
+        "source_component_description": "是一个垂直或水平对齐所有子对象的视图组",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Column"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct MainPage {\nbuild() {\nColumn({ space: 0 }) {\nButton('Button 1')\n.width('100%')\n.height('wrap_content')\nButton('Button 2')\n.width('100%')\n.height('wrap_content')\nButton('Button 3')\n.width('100%')\n.height('wrap_content')\n}\n.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "RelativeLayout",
+        "source_component_code": "\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\"\nandroid:gravity=\"center\"\ntools:context=\".MainActivity\">\n<EditText\nandroid:id=\"@+id/name\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:hint=\"reminder\" />\n<Button\nandroid:id=\"@+id/dates_button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_below=\"@id/name\"\nandroid:layout_alignParentLeft=\"true\"\nandroid:layout_toLeftOf=\"@id/times_button\"\nandroid:text=\"Select Date\" />\n<Button\nandroid:id=\"@+id/times_button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_below=\"@id/name\"\nandroid:layout_alignParentRight=\"true\"\nandroid:text=\"Select Time\" />\n<Button\nandroid:layout_width=\"96dp\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_below=\"@id/times_button\"\nandroid:layout_alignParentRight=\"true\"\nandroid:text=\"done\" />\n</RelativeLayout>",
+        "source_component_description": "每个视图的位置可以指定为相对于同级元素或相对于父元素 。\n例如，图中Button Date放置于EditText下方，固定在父容器的左侧，Button Time也放置于EditText下方，固定在父容器右侧。 Button Done放置在Time下方，固定于父容器右侧。",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "RelativeContainer",
+            "TextInput",
+            "Button"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct MainPage {\n@State reminder: string = '';\n\nbuild() {\nRelativeContainer() {\nTextInput({ placeholder: 'reminder' })\n.id('name')\n.onChange((value: string) => {\nthis.reminder = value;\n})\n\nButton('Select Date')\n.id('dates_button')\n.alignRules({\ntop: { anchor: 'name', align: VerticalAlign.Bottom },\nleft: { anchor: '__container__', align: HorizontalAlign.Start },\nright: { anchor: 'times_button', align: HorizontalAlign.Start }\n})\n\nButton('Select Time')\n.id('times_button')\n.alignRules({\ntop: { anchor: 'name', align: VerticalAlign.Bottom },\nright: { anchor: '__container__', align: HorizontalAlign.End }\n})\n\nButton('done')\n.width(96)\n.alignRules({\ntop: { anchor: 'times_button', align: VerticalAlign.Bottom },\nright: { anchor: '__container__', align: HorizontalAlign.End }\n})\n}\n.width('100%')\n.height('100%')\n// .justifyContent(FlexAlign.Center)\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "TableLayout",
+        "source_component_code": "<TableLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\"\nandroid:gravity=\"center\"\ntools:context=\".MainActivity\">\n<TableRow>\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"姓名\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"年龄\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"城市\" />\n</TableRow>\n<TableRow>\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"张三\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"25\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"北京\" />\n</TableRow>\n<TableRow>\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"李四\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"30\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"上海\" />\n</TableRow>\n<TableRow>\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"王五\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"22\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"广州\" />\n</TableRow>\n</TableLayout>",
+        "source_component_description": "将按行和列排列视图组，容器不显示其行、列或单元格的边框线。",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Column",
+            "Grid",
+            "GridItem"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct TableLayout {\nbuild() {\nColumn({ space: 10 }) {\nRow({ space: 10 }) {\nButton('姓名')\nButton('年龄')\nButton('城市')\n}\nRow({ space: 10 }) {\nButton('张三')\nButton('25')\nButton('北京')\n}\nRow({ space: 10 }) {\nButton('李四')\nButton('30')\nButton('上海')\n}\nRow({ space: 10 }) {\nButton('王五')\nButton('22')\nButton('广州')\n}\n}\n.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center)\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "AbsoluteLayout",
+        "source_component_code": "<AbsoluteLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\"\nandroid:gravity=\"center\"\ntools:context=\".MainActivity\">\n<Button\nandroid:id=\"@+id/button1\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"按钮 1\"\nandroid:layout_x=\"50dp\"\nandroid:layout_y=\"100dp\" />\n\n<Button\nandroid:id=\"@+id/button2\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"按钮 2\"\nandroid:layout_x=\"200dp\"\nandroid:layout_y=\"100dp\" />\n</AbsoluteLayout>",
+        "source_component_description": "可以指定其子对象的精确位置（**x/y** 坐标）",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Column"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct AbsoluteLayoutExample {\nbuild() {\nColumn() {\nRow() {\nButton('按钮 1')\n.id('button1')\n.position({ x: '50vp', y: '100vp' })\n}\nRow() {\nButton('按钮 2')\n.id('button2')\n.position({ x: '200vp', y: '100vp' })\n}\n}\n.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center)\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "ListView",
+        "source_component_code": "(1)activity_main.xml:\n\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\">\n<ListView\nandroid:id=\"@+id/listView\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\" />\n</RelativeLayout>\n\n(2)MainActivity.kt\npackage com.example.myapplication\n\nimport android.os.Bundle\nimport androidx.activity.enableEdgeToEdge\nimport androidx.appcompat.app.AppCompatActivity\nimport androidx.core.view.ViewCompat\nimport androidx.core.view.WindowInsetsCompat\nimport android.widget.ArrayAdapter\nimport android.widget.ListView\n\nclass MainActivity : AppCompatActivity() {\noverride fun onCreate(savedInstanceState: Bundle?) {\nsuper.onCreate(savedInstanceState)\nenableEdgeToEdge()\nsetContentView(R.layout.activity_main)\nViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->\nval systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())\nv.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)\ninsets\n}\nsetContentView(R.layout.activity_main)\n// 创建 ListView 对象\nval listView: ListView = findViewById(R.id.listView)\n\n// 数据源\nval data = arrayOf(\n\"Item 1\", \"Item 2\", \"Item 3\", \"Item 4\", \"Item 5\",\n\"Item 6\", \"Item 7\", \"Item 8\", \"Item 9\", \"Item 10\",\n\"Item 11\", \"Item 12\", \"Item 13\", \"Item 14\", \"Item 15\",\n\"Item 16\", \"Item 17\", \"Item 18\", \"Item 19\", \"Item 20\"\n)\n\n// 创建适配器\nval adapter = ArrayAdapter(\nthis,\nandroid.R.layout.simple_list_item_1, // 单项布局\ndata // 数据源\n)\n\n// 设置适配器到 ListView\nlistView.adapter = adapter\n}\n}",
+        "source_component_description": "是一个将多个项分组并在垂直可滚动列表中显示的布局。使用从源（如数组或数据库）提取内容的适配器（adapter）将列表项自动插入到列表中。示例中共20项，滚动后可显示14-20项。",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "List"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct ListExample {\nprivate arr: string[] = [\n\"Item 1\", \"Item 2\", \"Item 3\", \"Item 4\", \"Item 5\",\n\"Item 6\", \"Item 7\", \"Item 8\", \"Item 9\", \"Item 10\",\n\"Item 11\", \"Item 12\", \"Item 13\", \"Item 14\", \"Item 15\",\n\"Item 16\", \"Item 17\", \"Item 18\", \"Item 19\", \"Item 20\"\n];\n\nbuild() {\nColumn() {\nList() {\nForEach(this.arr, (item: string) => {\nListItem() {\nText(item)\n.width('100%')\n.height(100)\n.fontSize(16)\n.textAlign(TextAlign.Center)\n.borderRadius(10)\n.backgroundColor(0xFFFFFF)\n}\n}, (item: string) => item)\n}\n.width('100%')\n.height('100%')\n}\n.width('100%')\n.height('100%')\n.backgroundColor(0xDCDCDC)\n.padding({ top: 5 })\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "GridView",
+        "source_component_code": "(1)activity_main.xml:\n\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\">\n<GridView\nandroid:id=\"@+id/gridView\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:numColumns=\"3\"\nandroid:verticalSpacing=\"16dp\"\nandroid:horizontalSpacing=\"32dp\"\nandroid:stretchMode=\"columnWidth\"\nandroid:gravity=\"center\" />\n</RelativeLayout>\n\n(2)MainActivity.kt\n\npackage com.example.myapplication\n\nimport android.os.Bundle\nimport androidx.activity.enableEdgeToEdge\nimport androidx.appcompat.app.AppCompatActivity\nimport androidx.core.view.ViewCompat\nimport androidx.core.view.WindowInsetsCompat\nimport android.view.View\nimport android.view.ViewGroup\nimport android.widget.ArrayAdapter\nimport android.widget.GridView\nimport android.widget.TextView\nimport android.widget.Toast\n\nclass MainActivity : AppCompatActivity() {\nprivate val items = arrayOf(\"Item 1\", \"Item 2\", \"Item 3\", \"Item 4\", \"Item 5\", \"Item 6\", \"Item 7\", \"Item 8\", \"Item 9\", \"Item 10\", \"Item 11\", \"Item 12\",\n\"Item 13\", \"Item 14\", \"Item 15\", \"Item 16\",\n\"Item 17\", \"Item 18\", \"Item 19\", \"Item 20\",\n\"Item 21\", \"Item 22\", \"Item 23\", \"Item 24\",\n\"Item 25\", \"Item 26\", \"Item 27\", \"Item 28\",\n\"Item 29\", \"Item 30\", \"Item 31\", \"Item 32\" )\noverride fun onCreate(savedInstanceState: Bundle?) {\nsuper.onCreate(savedInstanceState)\nenableEdgeToEdge()\nsetContentView(R.layout.activity_main)\nViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->\nval systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())\nv.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)\ninsets\n}\nsetContentView(R.layout.activity_main)\nval gridView: GridView = findViewById(R.id.gridView)\ngridView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)\n\n// 设置项的点击事件\ngridView.setOnItemClickListener { _, _, position, _ ->\nToast.makeText(this, \"Clicked: ${items[position]}\", Toast.LENGTH_SHORT).show()\n}\n}\n}",
+        "source_component_description": "在二维滚动网格（行和列）中显示项目，网格项不一定是预先确定的，可以通过适配器动态添加。",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Grid",
+            "GridItem"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct MainAbilitySlice {\nprivate items: string[] = [\n\"Item 1\", \"Item 2\", \"Item 3\", \"Item 4\", \"Item 5\", \"Item 6\", \"Item 7\", \"Item 8\", \"Item 9\", \"Item 10\",\n\"Item 11\", \"Item 12\", \"Item 13\", \"Item 14\", \"Item 15\", \"Item 16\", \"Item 17\", \"Item 18\", \"Item 19\", \"Item 20\",\n\"Item 21\", \"Item 22\", \"Item 23\", \"Item 24\", \"Item 25\", \"Item 26\", \"Item 27\", \"Item 28\", \"Item 29\", \"Item 30\",\n\"Item 31\", \"Item 32\"\n];\n\nbuild() {\nColumn() {\nGrid() {\nForEach(this.items, (item: string) => {\nGridItem() {\nText(item)\n.fontSize(16)\n.textAlign(TextAlign.Center)\n.backgroundColor(Color.White)\n.padding(10)\n.onClick(() => {\n// Toast.show({ message: `Clicked: ${item}`, duration: ToastDuration.Short });\n})\n}\n}, (item: string) => item)\n}\n.columnsTemplate('1fr 1fr 1fr')\n.columnsGap(32)\n.rowsGap(16)\n.width('100%')\n.height('100%')\n.backgroundColor(Color.Gray)\n}\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "androidx.constraintlayout.widget.ConstraintLayout",
+        "source_component_code": "<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:paddingTop=\"100dp\"\n>\n<TextView\nandroid:id=\"@+id/textView\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Hello, ConstraintLayout!\"\nandroid:textSize=\"24sp\"\napp:layout_constraintTop_toTopOf=\"parent\"\napp:layout_constraintStart_toStartOf=\"parent\"\napp:layout_constraintEnd_toEndOf=\"parent\"/>\n\n<Button\nandroid:id=\"@+id/button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Click Me\"\napp:layout_constraintTop_toBottomOf=\"@id/textView\"\napp:layout_constraintStart_toStartOf=\"parent\"\napp:layout_constraintEnd_toEndOf=\"parent\"\napp:layout_constraintVertical_bias=\"0.5\"/>\n\n</androidx.constraintlayout.widget.ConstraintLayout>",
+        "source_component_description": "ConstraintLayout 具备更强的约束功能，可以让多个视图之间建立复杂的相对关系，从而减少嵌套层次，提升性能和可维护性。",
+        "source_component_version": "9",
+        "target_language": "harmony",
+        "target_component": [
+            "RelativeContainer"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct MainPage {\nbuild() {\nRelativeContainer() {\nText('Hello, ConstraintLayout!')\n.id('textView')\n.fontSize(24)\n.alignRules({\ntop: { anchor: '__container__', align: VerticalAlign.Top },\nleft: { anchor: '__container__', align: HorizontalAlign.Start },\nright: { anchor: '__container__', align: HorizontalAlign.End }\n})\n\nButton('Click Me')\n.id('button')\n.alignRules({\ntop: { anchor: 'textView', align: VerticalAlign.Bottom },\nleft: { anchor: '__container__', align: HorizontalAlign.Start },\nright: { anchor: '__container__', align: HorizontalAlign.End }\n})\n// .bias({ vertical: 0.5 })\n}\n.padding({ top: '100vp' })\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "ScrollView",
+        "source_component_code": "(1)activity_main.xml:\n\n<ScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/scroll_view\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\"\nandroid:gravity=\"center\"\ntools:context=\".MainActivity\">\n\n<LinearLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:orientation=\"vertical\">\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"这是一个 ScrollView 示例\" />\n\n<!-- 添加更多的视图 -->\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"按钮 1\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"按钮 2\"\nandroid:layout_marginTop=\"500dp\"/>\n\n<!-- 添加占位符以增加内容 -->\n<View\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"1000dp\" /> <!-- 过多的内容以启用滚动 -->\n\n</LinearLayout>\n</ScrollView>\n\n(2)MainActivity.kt\n\n\npackage com.example.myapplication\n\nimport android.os.Bundle\nimport androidx.activity.enableEdgeToEdge\nimport androidx.appcompat.app.AppCompatActivity\nimport androidx.core.view.ViewCompat\nimport androidx.core.view.WindowInsetsCompat\nimport android.widget.ScrollView\n\n\nclass MainActivity : AppCompatActivity() {\n\noverride fun onCreate(savedInstanceState: Bundle?) {\nsuper.onCreate(savedInstanceState)\nenableEdgeToEdge()\nsetContentView(R.layout.activity_main)\n\n// 设置与窗口插图相关的填充\nViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.scroll_view)) { v, insets ->\nval systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())\nv.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)\ninsets\n}\n\n// 获取 ScrollView 并添加滚动逻辑\nval scrollView: ScrollView = findViewById(R.id.scroll_view) // 确保 ID 正确\nscrollView.post {\nscrollView.scrollTo(0, 100) // 滚动到 y = 100 位置\n}\n}\n\nprivate fun enableEdgeToEdge() {\n// 实现你的边缘到边缘设置\n}\n}",
+        "source_component_description": "",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Scroll"
+        ],
+        "target_component_code": "",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "com.google.android.material.card.MaterialCardView",
+        "source_component_code": "<com.google.android.material.card.MaterialCardView\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_margin=\"16dp\"\napp:cardBackgroundColor=\"#FF018786\"\napp:cardCornerRadius=\"16dp\"\napp:cardElevation=\"8dp\"\napp:cardMaxElevation=\"12dp\"\napp:cardPreventCornerOverlap=\"true\"\napp:cardUseCompatPadding=\"true\"\napp:contentPadding=\"16dp\"\napp:strokeColor=\"#FF03DAC5\"\napp:strokeWidth=\"2dp\">\n\n<LinearLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:orientation=\"vertical\"\nandroid:padding=\"16dp\">\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Card Title\"\nandroid:textColor=\"#FFBB86FC\"\nandroid:textSize=\"24sp\"\nandroid:textStyle=\"bold\" />\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"This is a sample description text for the card.\"\nandroid:textColor=\"#FF6200EE\"\nandroid:textSize=\"16sp\"\nandroid:paddingTop=\"8dp\" />\n</LinearLayout>\n</com.google.android.material.card.MaterialCardView>",
+        "source_component_description": "是 Material Components for Android 库中的一个组件，用于创建具有 Material Design 风格的卡片视图。它提供了圆角、阴影和自定义边框等特性，支持嵌套其他视图和布局，并能够适应不同屏幕形状",
+        "source_component_version": "21",
+        "target_language": "harmony",
+        "target_component": [
+            "Column",
+            "Text"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct MaterialCardView {\nbuild() {\nColumn({ space: 16 }) {\nColumn({ space: 16 }) {\nText('Card Title')\n.fontColor('#FFBB86FC')\n.fontSize(24)\n.fontWeight(FontWeight.Bold)\n\nText('This is a sample description text for the card.')\n.fontColor('#FF6200EE')\n.fontSize(16)\n.padding({ top: 8 })\n}\n.padding(16)\n.backgroundColor('#FF018786')\n.border({ width: 2, color: '#FF03DAC5', radius: 16 })\n.shadow({ radius: 8, color: '#000000', offsetX: 0, offsetY: 4 })\n.margin(16)\n}\n.width('100%')\n// .height('wrap_content')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "com.google.android.material.slider.Slider",
+        "source_component_code": "<com.google.android.material.slider.Slider\nandroid:id=\"@+id/slider\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_marginTop=\"16dp\"\nandroid:value=\"50\"\nandroid:valueFrom=\"0\"\nandroid:valueTo=\"100\"\nandroid:stepSize=\"1\"\napp:thumbTint=\"#FF0000\"\napp:trackTint=\"#FF0000\"\napp:tickVisible=\"true\"\napp:tickColorInactive=\"#FF0000\"\napp:tickColorActive=\"#FF0000\"\napp:haloColor=\"#FF0000\"\napp:haloRadius=\"10dp\"\napp:labelBehavior=\"gone\" />",
+        "source_component_description": "是 Material Components for Android 库中的一个组件，用于在 Android 应用中创建可拖动的滑块控件。它允许用户通过拖动滑块来选择一个数值范围中的特定值，常用于音量控制、亮度调节等场景。",
+        "source_component_version": "21",
+        "target_language": "harmony",
+        "target_component": [
+            "Slider"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct SliderExample {\n@State sliderValue: number = 50\n\nbuild() {\nColumn({ space: 8 }) {\nSlider({\nvalue: this.sliderValue,\nmin: 0,\nmax: 100,\nstep: 1\n})\n.blockColor('#FF0000') // 对应 app:thumbTint=\"#FF0000\"\n.trackColor('#FF0000') // 对应 app:trackTint=\"#FF0000\"\n.showSteps(true) // 对应 app:tickVisible=\"true\"\n.stepColor('#FF0000') // 对应 app:tickColorActive=\"#FF0000\"\n.trackBorderRadius(10) // 对应 app:haloRadius=\"10dp\"\n.onChange((value: number, mode: SliderChangeMode) => {\nthis.sliderValue = value\n})\n}\n.width('100%')\n.margin({ top: '16vp' }) // 对应 android:layout_marginTop=\"16dp\"\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "com.google.android.material.divider.MaterialDivider",
+        "source_component_code": "<!-- 上方的按钮 -->\n<Button\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Top Button\" />\n\n<!-- MaterialDivider -->\n<com.google.android.material.divider.MaterialDivider\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_marginTop=\"16dp\"\napp:dividerThickness=\"2dp\"\napp:dividerInsetStart=\"16dp\"\napp:dividerInsetEnd=\"16dp\"\napp:dividerColor=\"#FFBB86FC\" />\n\n<!-- 下方的按钮 -->\n<Button\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Bottom Button\"\nandroid:layout_marginTop=\"16dp\" />",
+        "source_component_description": "是 Material Components for Android 库中的一个组件，用于在 Android 应用中创建分割线，以清晰地分隔不同的 UI 元素或内容区域。它支持水平和垂直方向，并提供了多种自定义属性，如颜色、厚度、内边距等",
+        "source_component_version": "21",
+        "target_language": "harmony",
+        "target_component": [
+            "Divider"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct MaterialDividerExample {\nbuild() {\nColumn() {\n// 上方的按钮 (Top Button)\nButton('Top Button')\n.width('100%')\n.height('wrap_content')\n\n// MaterialDivider\nDivider()\n.strokeWidth(2)\n.color('#FFBB86FC')\n.margin({ top: 16})\n\n// 下方的按钮 (Bottom Button)\nButton('Bottom Button')\n.width('100%')\n.height('wrap_content')\n.margin({ top: 16 })\n}\n.width('100%')\n.padding(16)\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "com.google.android.material.floatingactionbutton.FloatingActionButton",
+        "source_component_code": "<com.google.android.material.floatingactionbutton.FloatingActionButton\nandroid:id=\"@+id/floating_action_button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_gravity=\"bottom|right\"\nandroid:layout_margin=\"16dp\"\napp:srcCompat=\"@drawable/ic_plus_24\"/>",
+        "source_component_description": "Material Components for Android 库中的一个组件，用于在 Android 应用中创建浮动操作按钮（Floating Action Button，简称 FAB）。FAB 是一种圆形按钮，通常用于触发应用中的主要或最常用的操作，如添加、创建或分享等",
+        "source_component_version": "21",
+        "target_language": "harmony",
+        "target_component": [
+            "Button",
+            "Stack"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct FloatingActionButtonExample {\nbuild() {\nColumn() {\nStack({ alignContent: Alignment.BottomEnd }) {\n// 假设这里放置其他布局内容\n\n// 浮动操作按钮\nButton({\ntype: ButtonType.Circle,\nstateEffect: true\n}) {\nImage($r('app.media.startIcon'))\n.width(24)\n.height(24)\n}\n.width(56)\n.height(56)\n// .backgroundColor($r('app.color.black'))\n// .margin({ bottom: 16, right: 16 })\n.onClick(() => {\n// 处理按钮点击事件\nconsole.log('Floating action button clicked');\n})\n}\n}\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "com.google.android.material.tabs.TabLayout",
+        "source_component_code": "<com.google.android.material.tabs.TabLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:background=\"@color/purple_200\"\napp:tabIndicatorColor=\"#FF6200EE\"\napp:tabTextColor=\"#FFFFFFFF\"\napp:tabSelectedTextColor=\"#FF000000\">\n\n<com.google.android.material.tabs.TabItem\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Tab 1\"\n/>\n\n<com.google.android.material.tabs.TabItem\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Tab 2\"\n/>\n\n</com.google.android.material.tabs.TabLayout>",
+        "source_component_description": "是 Material Components for Android 库中的一个组件，用于在 Android 应用中创建选项卡布局，以便用户在不同的内容视图之间进行切换。",
+        "source_component_version": "21",
+        "target_language": "harmony",
+        "target_component": [
+            "Tabs",
+            "TabContent"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct TabLayoutExample {\nbuild() {\nColumn() {\nTabs() {\nTabContent() {\nColumn() {\nText(\"Tab 1\")\n.fontSize(16)\n.fontColor('#FFFFFFFF')\n.fontWeight(FontWeight.Bold)\n}\n.width('100%')\n.height('100%')\n.backgroundColor('#FF6200EE')\n}\n.tabBar('Tab 1')\n\nTabContent() {\nColumn() {\nText(\"Tab 2\")\n.fontSize(16)\n.fontColor('#FFFFFFFF')\n.fontWeight(FontWeight.Bold)\n}\n.width('100%')\n.height('100%')\n.backgroundColor('#FF6200EE')\n}\n.tabBar('Tab 2')\n}\n.barBackgroundColor('#FF6200EE')\n// .barIndicatorColor('#FF6200EE')\n// .barTextColor('#FFFFFFFF')\n// .barSelectedTextColor('#FF000000')\n}\n.width('100%')\n.height('100%')\n.backgroundColor('#FF6200EE')\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "com.google.android.material.chip.Chip",
+        "source_component_code": "<com.google.android.material.chip.Chip\nandroid:id=\"@+id/chip\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"chip_demo\"/>",
+        "source_component_description": "Material Components for Android 库中的一个组件，用于在 Android 应用中创建小巧且可交互的标签元素。",
+        "source_component_version": "21",
+        "target_language": "harmony",
+        "target_component": [
+            "Row"
+        ],
+        "target_component_code": "import { Chip, ChipSize } from '@kit.ArkUI';\n\n@Entry\n@Component\nstruct Index {\nbuild() {\nColumn({ space: 10 }) {\nChip({\nlabel: {\ntext: \"chip_demo\", // 对应 android:text=\"chip_demo\"\nfontSize: 12, // 默认字体大小\nfontColor: Color.Black, // 默认字体颜色\nfontFamily: \"HarmonyOS Sans\", // 默认字体家族\nlabelMargin: { left: 20, right: 30 } // 默认边距\n},\nsize: ChipSize.NORMAL, // 默认大小\nallowClose: false, // 默认不显示删除图标\nenabled: true, // 默认启用\nbackgroundColor: $r('sys.color.ohos_id_color_button_normal'), // 默认背景颜色\nborderRadius: $r('sys.float.ohos_id_corner_radius_button') // 默认边框圆角\n})\n}\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "com.google.android.material.progressindicator.LinearProgressIndicator",
+        "source_component_code": "<com.google.android.material.progressindicator.LinearProgressIndicator\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:indeterminate=\"true\" />",
+        "source_component_description": "是 Material Components for Android 库中的一个组件，用于在 Android 应用中创建线性进度指示器",
+        "source_component_version": "21",
+        "target_language": "harmony",
+        "target_component": [
+            "Progress"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct LinearProgressIndicatorExample {\n@State private isIndeterminate: boolean = true;\n\nbuild() {\nColumn() {\nif (this.isIndeterminate) {\n// 使用动画模拟不确定状态\nProgress({ value: 20, type: ProgressType.Linear })\n.width('100%')\n.height('wrap_content')\n.animation({ duration: 2000, iterations: -1, curve: Curve.Linear })\n} else {\nProgress({ value: 50, type: ProgressType.Linear })\n.width('100%')\n.height('wrap_content')\n}\n}\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "com.google.android.material.progressindicator.CircularProgressIndicator",
+        "source_component_code": "<com.google.android.material.progressindicator.CircularProgressIndicator\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:indeterminate=\"true\" />",
+        "source_component_description": "是 Material Components for Android 库中的一个组件，用于在 Android 应用中创建圆形进度指示器。它通常用于显示任务的进度或加载状态，支持圆形或环形的进度条显示",
+        "source_component_version": "21",
+        "target_language": "harmony",
+        "target_component": [
+            "Progress"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct CircularProgressIndicatorExample {\n@State private value: number = 0;\n\nbuild() {\nColumn() {\nProgress({ value: this.value, type: ProgressType.Ring })\n.width('wrap_content')\n.height('wrap_content')\n}\n}\n\naboutToAppear() {\nthis.startAnimation();\n}\n\nstartAnimation() {\nanimateTo({ duration: 1000, iterations: -1, curve: Curve.Linear }, () => {\nthis.value = (this.value + 10) % 100;\n});\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "com.google.android.material.button.MaterialButtonToggleGroup",
+        "source_component_code": "<com.google.android.material.button.MaterialButtonToggleGroup\nandroid:id=\"@+id/toggleButton\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\">\n<Button\nandroid:id=\"@+id/button1\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 1\"\nstyle=\"?attr/materialButtonOutlinedStyle\"\n/>\n<Button\nandroid:id=\"@+id/button2\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 2\"\nstyle=\"?attr/materialButtonOutlinedStyle\"\n/>\n<Button\nandroid:id=\"@+id/button3\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 3\"\nstyle=\"?attr/materialButtonOutlinedStyle\"\n/>\n</com.google.android.material.button.MaterialButtonToggleGroup>",
+        "source_component_description": "",
+        "source_component_version": "21",
+        "target_language": "harmony",
+        "target_component": [
+            "Toggle"
+        ],
+        "target_component_code": "",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "com.google.android.material.switchmaterial.SwitchMaterial",
+        "source_component_code": "<com.google.android.material.switchmaterial.SwitchMaterial\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"match_parent\"\nandroid:checked=\"true\"\nandroid:text=\"Switch1\"/>",
+        "source_component_description": "是 Google 的 Material Design 库中的一个组件，它提供了一个符合 Material Design 规范的开关控件。这个组件继承自 Android 原生的 Switch 控件，但增加了 Material Design 的视觉风格和交互特性，如圆润的滑块和一致的色彩方案",
+        "source_component_version": "21",
+        "target_language": "harmony",
+        "target_component": [
+            "Toggle"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct SwitchMaterial {\n@State isOn: boolean = true;\n\nbuild() {\nColumn() {\nToggle({ type: ToggleType.Switch, isOn: this.isOn })\n.selectedColor('#007DFF') // 设置开关打开状态的背景颜色\n.switchPointColor('#FFFFFF') // 设置Switch滑块的颜色\n.onChange((isOn: boolean) => {\nthis.isOn = isOn;\n})\nText('Switch1')\n.fontSize(16)\n.fontColor('#000000')\n}\n.width('wrap_content') // 对应android:layout_width=\"wrap_content\"\n.height('match_parent') // 对应android:layout_height=\"match_parent\"\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "androidx.appcompat.widget.AppCompatButton",
+        "source_component_code": "<androidx.appcompat.widget.AppCompatButton\nandroid:id=\"@+id/button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Click me\" />",
+        "source_component_description": "它是 Button 的一个扩展，旨在确保应用在不同 Android 版本和设备上的一致性。",
+        "source_component_version": "24",
+        "target_language": "harmony",
+        "target_component": [
+            "Button"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct Example {\n@State ratingValue: number = 3.5;\n\nbuild() {\nColumn({ space: 16 }) {\nButton($r(\"app.string.text\"))\n.id(\"button\")\n}\n}\n} ",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "androidx.appcompat.widget.Toolbar",
+        "source_component_code": "<!-- Toolbar -->\n<androidx.appcompat.widget.Toolbar\nandroid:id=\"@+id/toolbar\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"?attr/actionBarSize\"\napp:title=\"My Toolbar\"\napp:titleTextColor=\"@android:color/black\" />\n\n<!-- 中间的按钮 -->\n<androidx.appcompat.widget.AppCompatButton\nandroid:id=\"@+id/button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Click me\"\napp:layout_behavior=\"@string/appbar_scrolling_view_behavior\"\nandroid:layout_gravity=\"center\" />",
+        "source_component_description": "",
+        "source_component_version": "24",
+        "target_language": "harmony",
+        "target_component": [
+            "ToolBar"
+        ],
+        "target_component_code": "",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "androidx.appcompat.widget.AppCompatRatingBar",
+        "source_component_code": "<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"请给出评分：\"\nandroid:textSize=\"18sp\"\nandroid:layout_marginBottom=\"16dp\"/>\n\n<androidx.appcompat.widget.AppCompatRatingBar\nandroid:id=\"@+id/ratingBar\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:numStars=\"5\"\nandroid:rating=\"3.5\"\nandroid:stepSize=\"0.5\" />",
+        "source_component_description": "该小部件允许用户通过星星来表示评分，通常用于应用中收集用户反馈。",
+        "source_component_version": "24",
+        "target_language": "harmony",
+        "target_component": [
+            "Slider"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct AppCompatRatingBarExample {\n@State ratingValue: number = 3.5;\n\nbuild() {\nColumn({ space: 16 }) {\nText('请给出评分：')\n.fontSize(18)\n.margin({ bottom: 16 });\n\nSlider({\nvalue: this.ratingValue,\nmin: 0,\nmax: 5,\nstep: 0.5\n})\n.width('100%')\n.showSteps(true)\n.onChange((value: number, mode: SliderChangeMode) => {\nthis.ratingValue = value;\n});\n}\n.width('100%')\n.padding(16);\n}\n} ",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "androidx.appcompat.widget.AppCompatToggleButton",
+        "source_component_code": "<androidx.appcompat.widget.AppCompatToggleButton\nandroid:id=\"@+id/toggle_button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:textOn=\"开\"\nandroid:textOff=\"关\"\nandroid:checked=\"false\"/> <!-- 默认状态为关闭 -->",
+        "source_component_description": "用于表示一个开关状态（开/关）。它可以用于让用户在两个选项之间进行切换，比如启用或禁用某个功能。",
+        "source_component_version": "24",
+        "target_language": "harmony",
+        "target_component": [
+            "Toggle"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct ToggleButtonExample {\n@State isOn: boolean = false; // 对应android:checked=\"false\"\n\nbuild() {\nColumn() {\nToggle({ type: ToggleType.Button, isOn: this.isOn }) {\nText(this.isOn ? '开' : '关') // 对应android:textOn=\"开\"和android:textOff=\"关\"\n.fontColor('#182431')\n.fontSize(12)\n}\n.id('toggle_button') // 对应android:id=\"@+id/toggle_button\"\n.onChange((isOn: boolean) => {\nthis.isOn = isOn; // 更新状态\n})\n}\n.width('100%')\n.padding(24)\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "androidx.appcompat.widget.SwitchCompat",
+        "source_component_code": "<androidx.appcompat.widget.SwitchCompat\nandroid:id=\"@+id/switchCompat\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"开关\"\nandroid:checked=\"true\"\nandroid:layout_margin=\"16dp\" />",
+        "source_component_description": "适合在需要启用/禁用某些功能的场景中使用。",
+        "source_component_version": "24",
+        "target_language": "harmony",
+        "target_component": [
+            "Toggle"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct Index {\n@State checked: boolean = true;\n\nbuild() {\nRow({ space: 16 }) {\nToggle({ type: ToggleType.Switch, isOn: this.checked })\n.id(\"switchCompat\")\n// .width(\"wrap_content\")\n// .height(\"wrap_content\")\n.margin(16)\n.onChange((isOn: boolean) => {\nthis.checked = isOn;\n})\n\nText(\"开关\")\n.fontSize(16)\n.fontColor(Color.Black)\n}\n.width('100%')\n.padding(16)\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "androidx.appcompat.widget.AppCompatCheckBox",
+        "source_component_code": "<androidx.appcompat.widget.AppCompatCheckBox\nandroid:id=\"@+id/myCheckBox\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"A\" />\n<androidx.appcompat.widget.AppCompatCheckBox\nandroid:id=\"@+id/myCheckBox2\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"B\" />",
+        "source_component_description": "是一个复选框（CheckBox）的兼容版本，它提供了与 CheckBox 相同的功能，但能够在较旧的 Android 版本上使用最新的 Material Design 样式和主题",
+        "source_component_version": "24",
+        "target_language": "harmony",
+        "target_component": [
+            "Checkbox"
+        ],
+        "target_component_code": "// Index.ets\n@Entry\n@Component\nstruct Index {\nbuild() {\nColumn() {\n// 第一个AppCompatCheckBox组件\nFlex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {\nCheckbox()\n.id('myCheckBox') // 对应android:id=\"@+id/myCheckBox\"\nText('A') // 对应android:text=\"A\"\n.fontSize(16) // 设置文本字体大小\n}\n\n// 第二个AppCompatCheckBox组件\nFlex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {\nCheckbox()\n.id('myCheckBox2') // 对应android:id=\"@+id/myCheckBox2\"\nText('B') // 对应android:text=\"B\"\n.fontSize(16) // 设置文本字体大小\n}\n}\n.width('100%') // 设置Column的宽度为100%\n.height('100%') // 设置Column的高度为100%\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "androidx.appcompat.widget.AppCompatEditText",
+        "source_component_code": "<androidx.appcompat.widget.AppCompatEditText\nandroid:id=\"@+id/myEditText\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:hint=\"请输入内容\" />",
+        "source_component_description": "可编辑文本控件，允许在应用中使用 EditText 的功能，并兼容多种 Android 版本",
+        "source_component_version": "24",
+        "target_language": "harmony",
+        "target_component": [
+            "TextInput"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct Example {\n@State value: number = 50;\n\nbuild() {\nColumn() {\nTextInput({ placeholder: $r(\"app.string.placeholder\") })\n.id(\"myEditText\")\n}\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "androidx.appcompat.widget.AppCompatRadioButton",
+        "source_component_code": "<androidx.appcompat.widget.AppCompatRadioButton\nandroid:id=\"@+id/myRadioButton\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"A\" />\n<androidx.appcompat.widget.AppCompatRadioButton\nandroid:id=\"@+id/myRadioButton2\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"B\" />",
+        "source_component_description": "用于创建单选按钮。它是 RadioButton 的增强版本，提供了更好的兼容性，支持较旧版本的 Android。",
+        "source_component_version": "24",
+        "target_language": "harmony",
+        "target_component": [
+            "Radio"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct RadioButtonExample {\nbuild() {\nFlex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {\nRadio({ value: 'A', group: 'radioGroup' })\n.id('myRadioButton')\nText('A').fontSize(20)\n\nRadio({ value: 'B', group: 'radioGroup' })\n.id('myRadioButton2')\nText('B').fontSize(20)\n}\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "androidx.appcompat.widget.AppCompatSeekBar",
+        "source_component_code": "<TextView \nandroid:id=\"@+id/textView\" \nandroid:layout_width=\"wrap_content\" \nandroid:layout_height=\"wrap_content\" \nandroid:text=\"Value: 0\" \nandroid:textSize=\"24sp\"/> \n\n<androidx.appcompat.widget.AppCompatSeekBar \nandroid:id=\"@+id/seekBar\" \nandroid:layout_width=\"match_parent\" \nandroid:layout_height=\"wrap_content\" \nandroid:max=\"100\" \nandroid:layout_marginTop=\"20dp\"/>",
+        "source_component_description": "允许用户选择一个范围内的值。它是从 SeekBar 继承的，提供了对 Material Design 的更好支持和向后兼容性",
+        "source_component_version": "24",
+        "target_language": "harmony",
+        "target_component": [
+            "Slider"
+        ],
+        "target_component_code": "@Entry\n@Component\nstruct SliderExample {\n@State value: number = 0\n\nbuild() {\nColumn({ space: 8 }) {\nText('Value: ' + this.value.toString())\n.fontSize(24)\n\nSlider({\nvalue: this.value,\nmin: 0,\nmax: 100\n})\n.width('100%')\n.onChange((value: number, mode: SliderChangeMode) => {\nthis.value = value\n})\n}\n.width('100%')\n.height('100%')\n.padding({ top: 20, left: 10, right: 10 })\n}\n}",
+        "target_component_description": "",
+        "target_component_version": "12"
+    }
+]
