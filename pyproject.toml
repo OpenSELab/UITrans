@@ -26,6 +26,7 @@ dependencies = [
     "lxml>=5.3.0",
     "aiosqlite>=0.20.0",
     "pytest-asyncio>=0.24.0",
+    "shortuuid>=1.0.13",
 ]
 requires-python = "==3.10.*"
 readme = "README.md"

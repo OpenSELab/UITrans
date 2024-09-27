@@ -1,0 +1,17 @@
+import os
+
+from core.config.config_loader import ConfigLoader
+from core.agents.llm_agent import LLMAgent
+from core.llms import LLMFactory
+from core.tools.file_tools import create_file, read_file
+
+os.chdir("../")
+config = ConfigLoader.from_file("./config.yaml")
+
+
+def test_llm_agent():
+    llm_client = LLMFactory.create_llm_from_config(llm_client_type="openai", llm_config=config.llm_config["deepseek"].dict())
+    llm_agent = LLMAgent(llm_client=llm_client)
+    llm_agent.register_tool(create_file)
+    llm_agent.register_tool(read_file)
+    print(llm_agent.tools)

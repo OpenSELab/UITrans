@@ -1,8 +1,8 @@
 import copy
 from abc import ABC
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional, List, Literal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 import jinja2
 
@@ -21,6 +21,19 @@ import jinja2
 #     base_url: str
 #     api_key: str
 #     generate_config: Optional[GenerateConfig, Dict[str, Any]]
+
+class ToolFunction(BaseModel):
+    name: str = Field(description="函数名称")
+    description: str = Field(description="函数描述")
+    parameters: Dict[str, Any] = Field(description="函数参数")
+    required: List[str] = Field(description="必填参数")
+
+
+class Tool(BaseModel):
+    """工具"""
+
+    type: Literal["function"] = "function"
+    function: ToolFunction
 
 class LLMResponseMessageToolCallFunction(BaseModel):
     name: str
@@ -79,9 +92,10 @@ class LLMClient(ABC):
         """
         Args:
             llm_config (dict): 大模型配置
-                - system_message (str): 系统提示词
+                - provider: 大模型服务提供商
                 - base_url (str): 请求基础URL
                 - api_key (str): API KEY
+                - temperature (float): 温度
                 - model (str): 模型
                 - timeout (int): 超时时间(s)
                 - generate_config (dict): 生成配置
@@ -113,7 +127,7 @@ class LLMClient(ABC):
         """生成对话回复"""
         # 是否输出JSON格式，并转为JSON对象
         model_schema = kwargs.get("model_schema", None)
-        if model_schema and issubclass(model_schema, (BaseModel, )):
+        if model_schema and issubclass(model_schema, (BaseModel,)):
             messages = self._append_json_schema_message(messages, model=model_schema)
         params = self._construct_create_params(messages, **kwargs)
         response = self.do_create(**params)
@@ -179,9 +193,9 @@ class LLMClient(ABC):
     @classmethod
     def _merge_params(cls, origin: Dict[str, Any], params: Dict[str, Any], allow_keys: List[str]) -> None:
         """合并参数"""
-        for key in params:
-            if key in allow_keys:
-                origin[key] = params[key]
+        for key in allow_keys:
+            if key in origin:
+                params[key] = origin[key]
 
     def _construct_response(self, response, **kwargs) -> LLMClientResponse:
         """构造响应"""

@@ -60,13 +60,13 @@ def get_function_schema(f: Callable[..., Any], *, name: Optional[str] = None, de
     parameters = {
         "type": "object",
         "properties": {},
-        "required": []
     }
+    required = []
     for param in signature.parameters.values():
         _param = {}
         if param.default == inspect.Signature.empty:
             # 参数没有默认值
-            parameters["required"].append(param.name)
+            required.append(param.name)
         # 构建参数信息
         if param.annotation == inspect.Signature.empty:
             raise AssertionError(f"函数 {name} 参数 {param.name} 需要注释")
@@ -98,6 +98,7 @@ def get_function_schema(f: Callable[..., Any], *, name: Optional[str] = None, de
         "function": {
             "description": description,
             "name": name,
-            "parameters": parameters
+            "parameters": parameters,
+            "required": required
         }
     }

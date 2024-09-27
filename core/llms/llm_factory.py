@@ -1,15 +1,18 @@
 from typing import Dict, Any
-from .basic_client import BasicLLMClient
-from .oai_client import OpenAIClient
+from core.llms.basic_client import BasicLLMClient
+from core.llms.oai_client import OpenAIClient
 
 
 class LLMFactory:
 
     @staticmethod
-    def create_llm_from_config(llm_config: Dict[str, Any]):
+    def create_llm_from_config(llm_client_type: str, llm_config: Dict[str, Any]):
         """根据配置创建大语言模型
+
+        Args:
+            llm_client_type (str): 大语言模型类型
+            llm_config (Dict[str, Any]): 大语言模型配置
         """
-        llm_client_type = llm_config.get("type", "default")
 
         if llm_client_type == "openai":
             return OpenAIClient(llm_config)

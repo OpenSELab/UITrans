@@ -43,6 +43,7 @@ class OpenAIClient(LLMClient):
             "stop",
             "temperature",
             "top_p",
+            "tools",
             "tool_choice"
         ]
         params = copy.deepcopy(self._generate_config)
@@ -54,7 +55,7 @@ class OpenAIClient(LLMClient):
             for message in messages
         ]
         # 其他请求参数
-        self._merge_params(self._generate_config, params, allow_keys)
+        self._merge_params(kwargs, params, allow_keys)
 
         return params
 

@@ -177,7 +177,7 @@ Function Parameters Description：{{ __a2x_inner_tool.parameters }}
             for message in messages
         ]
         # 其他请求参数
-        self._merge_params(self._generate_config, params, allow_keys)
+        self._merge_params(kwargs, params, allow_keys)
 
         return params
 
