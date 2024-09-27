@@ -31,3 +31,7 @@ rag:
       model: models/embedding/jina-embeddings-v2-base-zh
     rerank:
       model: models/embedding/jina-reranker-v2-base-multilingual
+
+# database配置
+db:
+  url: sqlite+aiosqlite:///sqlite.db

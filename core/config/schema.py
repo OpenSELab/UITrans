@@ -43,12 +43,6 @@ class RAGConfig(BaseModel):
     embedding: EmbeddingConfig = Field(description="RAG 编码模型配置")
 
 
-class Config(BaseModel):
-    llm_config: Dict[LLM_PROVIDER, LLMConfig]
-    prompt_template_config: PromptTemplateConfig
-    rag_config: Optional[RAGConfig] = None
-
-
 class DBConfig(BaseModel):
     """
     Configuration for database connections.
@@ -59,7 +53,7 @@ class DBConfig(BaseModel):
     """
 
     url: str = Field(
-        "sqlite+aiosqlite:///pythagora.db",
+        "sqlite+aiosqlite:///sqlite.db",
         description="Database connection URL",
     )
     debug_sql: bool = Field(False, description="Log all SQL queries to the console")
@@ -70,3 +64,10 @@ class DBConfig(BaseModel):
         if v.startswith("sqlite+aiosqlite://"):
             return v
         raise ValueError(f"Unsupported database URL scheme in: {v}")
+
+
+class Config(BaseModel):
+    llm_config: Dict[LLM_PROVIDER, LLMConfig]
+    prompt_template_config: PromptTemplateConfig
+    rag_config: Optional[RAGConfig] = None
+    db_config: Optional[DBConfig] = None

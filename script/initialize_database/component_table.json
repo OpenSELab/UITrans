@@ -16,56 +16,61 @@
     {
         "source_language": "android",
         "source_component": "CheckBox",
-        "source_component_code": "<CheckBox\nandroid:id=\"@+id/chbOne\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:checked=\"true\"\nandroid:text=\"吃饭\" />\n<CheckBox\nandroid:id=\"@+id/chbTwo\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"睡觉\" />\n<CheckBox\nandroid:id=\"@+id/chbThree\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"读书\" />",
+        "source_component_code": "<CheckBox\nandroid:id=\"@+id/chbOne\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:checked=\"true\"\nandroid:text=\"吃饭\" />    ",
         "source_component_description": "允许用户从一组选项中选择一个或多个选项",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
-            "Checkbox"
+            "Checkbox",
+            "Row",
+            "Text",
+            "Flex"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct CheckedTextView {\n@State checked1: boolean = true;\n@State checked2: boolean = false;\n@State checked3: boolean = false;\n\nbuild() {\nFlex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {\nFlex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {\nCheckbox()\n.select($$this.checked1)\n.width(30)\n.height(30)\nText('吃饭')\n.fontSize(18)\n.onClick(() => {\nthis.checked1 = !this.checked1;\n})\n}\n\nFlex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {\nCheckbox()\n.select($$this.checked2)\n.width(30)\n.height(30)\nText('睡觉')\n.fontSize(18)\n.onClick(() => {\nthis.checked2 = !this.checked2;\n})\n}\n\nFlex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {\nCheckbox()\n.select($$this.checked3)\n.width(30)\n.height(30)\nText('读书')\n.fontSize(18)\n.onClick(() => {\nthis.checked3 = !this.checked3;\n})\n}\n}\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_code": "@State checked1: boolean = true;\n@State checked2: boolean = false;\n@State checked3: boolean = false;\n\nbuild() {\nFlex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {\nRow() {\nCheckbox()\n.select($$this.checked1)\n.width(30)\n.height(30)\nText('吃饭')\n.fontSize(18)\n.onClick(() => {\nthis.checked1 = !this.checked1;\n})\n}\n\nRow() {\nCheckbox()\n.select($$this.checked2)\n.width(30)\n.height(30)\nText('睡觉')\n.fontSize(18)\n.onClick(() => {\nthis.checked2 = !this.checked2;\n})\n}\n\nRow() {\nCheckbox()\n.select($$this.checked3)\n.width(30)\n.height(30)\nText('读书')\n.fontSize(18)\n.onClick(() => {\nthis.checked3 = !this.checked3;\n})\n}\n}\n.width('100%')\n.height('100%')\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "EditText",
-        "source_component_code": " <EditText\nandroid:id=\"@+id/et_1\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"50dp\"\nandroid:layout_marginBottom=\"15dp\"\nandroid:autofillHints=\"\"\nandroid:hint=\"请输入文字\"\nandroid:inputType=\"text\"\nandroid:paddingLeft=\"15dp\"\nandroid:paddingRight=\"15dp\"\nandroid:textColor=\"@color/black\"\nandroid:textSize=\"16sp\"\ntools:ignore=\"MissingConstraints\" />",
+        "source_component_code": "<EditText\nandroid:id=\"@+id/et_1\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"50dp\"\nandroid:layout_marginBottom=\"15dp\"\nandroid:autofillHints=\"\"\nandroid:hint=\"请输入文字\"\nandroid:inputType=\"text\"\nandroid:paddingLeft=\"15dp\"\nandroid:paddingRight=\"15dp\"\nandroid:textColor=\"@color/black\"\nandroid:textSize=\"16sp\" />",
         "source_component_description": "允许用户输入和编辑文本",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
             "TextInput"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct Index {\n\nbuild() {\nColumn() { // 使用Column作为布局容器\nTextInput({ placeholder: '请输入文字' })\n.id('et_1')\n.width('100%') // 对应 android:layout_width=\"match_parent\"\n.height('50vp') // 对应 android:layout_height=\"50dp\"\n.margin({ bottom: '15vp' }) // 对应 android:layout_marginBottom=\"15dp\"\n.padding({ left: '15vp', right: '15vp' }) // 对应 android:paddingLeft=\"15dp\" 和 android:paddingRight=\"15dp\"\n// .textColor($r('app.color.black')) // 对应 android:textColor=\"@color/black\"\n.fontSize('16fp') // 对应 android:textSize=\"16sp\"\n.type(InputType.Normal) // 对应 android:inputType=\"text\"\n}\n}\n}",
+        "target_component_code": "TextInput({ placeholder: '请输入文字'})\n.id('et_1')\n.width('100%')\n.height(50)\n.margin({ bottom: '15vp' })\n.padding({ left: '15vp', right: '15vp' })\n.fontColor($r('app.color.black'))\n.fontSize('16fp')\n.type(InputType.Normal)\n.enableAutoFill(true)",
         "target_component_description": "",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "ProgressBar",
-        "source_component_code": "<ProgressBar\nandroid:id=\"@+id/progress_bar\"\nstyle=\"@style/Widget.AppCompat.ProgressBar\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_centerInParent=\"true\"\n/>",
+        "source_component_code": "<ProgressBar\nandroid:id=\"@+id/progress_bar\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_centerInParent=\"true\"\n/>",
         "source_component_description": "用于显示任务的进度。它可以是确定的（显示具体的进度值）或不确定的（显示一个持续的动画，表示任务正在进行中但进度未知）。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
             "Progress"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct ProgressBarExample {\nbuild() {\nColumn() {\nProgress({ value: 30, type: ProgressType.ScaleRing })\n.id(\"progress_bar\")\n.width(\"wrap_content\")\n.height(\"wrap_content\")\n.align(Alignment.Center)\n}\n}\n}",
+        "target_component_code": "Progress({ value: 30, type: ProgressType.ScaleRing })\n.id(\"progress_bar\")\n.align(Alignment.Center)",
         "target_component_description": "",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "RadioGroup",
-        "source_component_code": "<TextView\nandroid:layout_marginTop=\"20dp\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:textSize=\"30sp\"\nandroid:text=\"小牛吃什么\"\n/>\n<RadioGroup\nandroid:id=\"@+id/group_test\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:orientation=\"horizontal\"\nandroid:gravity=\"center_horizontal\"\n>\n<RadioButton\nandroid:id=\"@+id/rbtA\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"A、肉\"\n/>\n<RadioButton\nandroid:id=\"@+id/rbtB\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"B、草\"\n/>\n<RadioButton\nandroid:id=\"@+id/rbtC\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"C、虫子\"\n/>\n<RadioButton\nandroid:id=\"@+id/rbtD\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"D、鱼\"\n/>\n\n</RadioGroup>\n<Button\nandroid:id=\"@+id/btnCheck\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"提交\"\n/>",
+        "source_component_code": "<RadioGroup\nandroid:id=\"@+id/group_test\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:gravity=\"center_horizontal\"\n>\n<RadioButton\nandroid:id=\"@+id/rbtA\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"A、肉\"\n/>\n<RadioButton\nandroid:id=\"@+id/rbtB\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"B、草\"\n/>\n<RadioButton\nandroid:id=\"@+id/rbtC\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"C、虫子\"\n/>\n<RadioButton\nandroid:id=\"@+id/rbtD\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"D、鱼\"\n/>\n\n</RadioGroup>",
         "source_component_description": "用于包含一组 RadioButton 选项，并确保用户只能从中选择一个选项。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
-            "Radio"
+            "Radio",
+            "Text",
+            "Flex"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct RadioGroupExample {\nbuild() {\nColumn() {\nText('小牛吃什么')\n.fontSize(30)\n.margin({ top: 20 })\n\nFlex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {\nRadio({ value: 'A', group: 'group_test' })\n.id('rbtA')\n.width('wrap_content')\n.height('wrap_content')\n.onChange((isChecked: boolean) => {\nconsole.log('A is checked: ' + isChecked);\n})\nText('A、肉')\n\nRadio({ value: 'B', group: 'group_test' })\n.id('rbtB')\n.width('wrap_content')\n.height('wrap_content')\n.onChange((isChecked: boolean) => {\nconsole.log('B is checked: ' + isChecked);\n})\nText('B、草')\n\nRadio({ value: 'C', group: 'group_test' })\n.id('rbtC')\n.width('wrap_content')\n.height('wrap_content')\n.onChange((isChecked: boolean) => {\nconsole.log('C is checked: ' + isChecked);\n})\nText('C、虫子')\n\nRadio({ value: 'D', group: 'group_test' })\n.id('rbtD')\n.width('wrap_content')\n.height('wrap_content')\n.onChange((isChecked: boolean) => {\nconsole.log('D is checked: ' + isChecked);\n})\nText('D、鱼')\n}\n\nButton('提交')\n.id('btnCheck')\n.width('wrap_content')\n.height('wrap_content')\n}\n}\n}",
+        "target_component_code": "Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {\nRadio({ value: 'A', group: 'group_test' })\n.id('rbtA')\nText('A、肉')\n\nRadio({ value: 'B', group: 'group_test' })\n.id('rbtB')\nText('B、草')\n\nRadio({ value: 'C', group: 'group_test' })\n.id('rbtC')\nText('C、虫子')\n\nRadio({ value: 'D', group: 'group_test' })\n.id('rbtD')\nText('D、鱼')\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -79,7 +84,7 @@
         "target_component": [
             "Select"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct SelectExample {\n@State text: string = \"TTTTT\"\n@State index: number = -1\nbuild() {\nColumn() {\nSelect([{ value: 'aaa', icon: $r(\"app.media.startIcon\") },\n{ value: 'bbb', icon: $r(\"app.media.startIcon\") },\n{ value: 'ccc', icon: $r(\"app.media.startIcon\") },\n{ value: 'ddd', icon: $r(\"app.media.startIcon\") }])\n.selected(this.index)\n.value(this.text)\n.font({ size: 16, weight: 500 })\n.fontColor('#182431')\n.selectedOptionFont({ size: 16, weight: 400 })\n.optionFont({ size: 16, weight: 400 })\n.arrowPosition(ArrowPosition.END)\n.menuAlign(MenuAlignType.START, {dx:0, dy:0})\n.optionWidth(200)\n.optionHeight(300)\n.onSelect((index:number, text?: string | undefined)=>{\nconsole.info('Select:' + index)\nthis.index = index;\nif(text){\nthis.text = text;\n}\n})\n}.width('100%')\n}\n}",
+        "target_component_code": "@State arr: string[] = [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"]\n@State index: number = 0\nbuild() {\nSelect([{ value: this.arr[0], icon: $r(\"app.media.startIcon\") },\n{ value: this.arr[1], icon: $r(\"app.media.startIcon\") },\n{ value: this.arr[2], icon: $r(\"app.media.startIcon\") },\n{ value: this.arr[3], icon: $r(\"app.media.startIcon\") }])\n.value(this.arr[this.index])\n.onSelect((index:number)=>{\nthis.index = index;\n}).alignSelf(ItemAlign.Center)\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -100,14 +105,15 @@
     {
         "source_language": "android",
         "source_component": "DatePicker",
-        "source_component_code": " <DatePicker\nandroid:id=\"@+id/datePickerView\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:spinnersShown=\"false\"\nandroid:calendarViewShown=\"true\"\nandroid:datePickerMode=\"calendar\"\nandroid:layout_gravity=\"center_horizontal\"\nandroid:layout_marginTop=\"20dp\"\nandroid:layout_marginBottom=\"20dp\"\nandroid:layout_marginLeft=\"10dp\"\nandroid:layout_marginRight=\"10dp\"/>",
+        "source_component_code": "<DatePicker\nandroid:id=\"@+id/datePickerView\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:datePickerMode=\"calendar\"\nandroid:layout_gravity=\"center_horizontal\"\nandroid:layout_marginTop=\"20dp\"\nandroid:layout_marginBottom=\"20dp\"\nandroid:layout_marginLeft=\"10dp\"\nandroid:layout_marginRight=\"10dp\"/>",
         "source_component_description": "允许用户选择日期。DatePicker 通常以日历或滚动选择器的方式显示，用户可以通过点击或滚动来选择年、月和日。DatePicker 支持设置初始日期、最小日期和最大日期，以及监听用户选择的日期变化",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
-            "DatePicker"
+            "DatePicker",
+            "Column"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct DatePickerExample {\n@State selectedDate: Date = new Date('2021-08-08') // 初始选中的日期\n\nbuild() {\nColumn() {\nDatePicker({\nstart: new Date('1970-1-1'), // 日期选择范围的起始日期\nend: new Date('2100-1-1'), // 日期选择范围的结束日期\nselected: this.selectedDate // 当前选中的日期\n})\n.disappearTextStyle({color: Color.Gray, font: {size: '16fp', weight: FontWeight.Bold}}) // 设置不可见文本的样式\n.textStyle({color: '#ff182431', font: {size: '18fp', weight: FontWeight.Normal}}) // 设置普通文本的样式\n.selectedTextStyle({color: '#ff0000FF', font: {size: '26fp', weight: FontWeight.Regular}}) // 设置选中日期的文本样式\n.margin({ top: '20vp', bottom: '20vp', left: '10vp', right: '10vp' }) // 设置外边距\n.onDateChange((value: Date) => {\nthis.selectedDate = value // 更新选中的日期\nconsole.info('select current date is: ' + value.toString()) // 输出当前选中的日期\n})\n}.width('100%')\n}\n}",
+        "target_component_code": "@State selectedDate: Date = new Date('2021-08-08')\n\nbuild() {\nColumn(){\nDatePicker({\nstart: new Date('1970-1-1'),\nend: new Date('2100-1-1'),\nselected: this.selectedDate\n})\n.margin({ top: '20vp', bottom: '20vp', left: '10vp', right: '10vp' })\n.onDateChange((value: Date) => {\nthis.selectedDate = value\n})\n\n}.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center)\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -119,9 +125,10 @@
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
-            "TimePicker"
+            "TimePicker",
+            "Column"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct TimePickerExample {\n@State selectedTime: Date = new Date('2022-07-22T08:00:00') // 初始选中的时间\n\nbuild() {\nColumn() {\nTimePicker({\nselected: this.selectedTime, // 当前选中的时间\n})\n.onChange((value: TimePickerResult) => {\nif(value.hour >= 0) {\nthis.selectedTime.setHours(value.hour, value.minute) // 更新选中的时间\nconsole.info('select current date is: ' + JSON.stringify(value)) // 输出当前选中的时间\n}\n})\n}.width('100%')\n}\n}",
+        "target_component_code": "@State selectedTime: Date = new Date('2022-07-22T08:00:00')\nbuild() {\nColumn() {\nTimePicker({\nselected: this.selectedTime,\n})\n.onChange((value: TimePickerResult) => {\nif(value.hour >= 0) {\nthis.selectedTime.setHours(value.hour, value.minute)\n}\n})\n}.width('100%')\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -133,9 +140,10 @@
         "source_component_version": "11",
         "target_language": "harmony",
         "target_component": [
-            "Search"
+            "Search",
+            "Column"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct SearchExample {\n@State changeValue: string = '' // 存储搜索框的当前输入值\n\nbuild() {\nColumn() {\nSearch({ value: this.changeValue, placeholder: 'Search...' })\n.searchButton('SEARCH') // 设置搜索按钮的文本\n.width('100%') // 设置搜索框的宽度\n.height('wrap_content') // 设置搜索框的高度\n.onChange((value: string) => {\nthis.changeValue = value // 处理搜索框输入变化事件，更新当前输入值\n})\n}.width('100%')\n}\n}",
+        "target_component_code": " @State changeValue: string = ''\nbuild() {\nColumn() {\nSearch({ value: this.changeValue, placeholder: 'Search...' })\n.width('100%')\n.onChange((value: string) => {\nthis.changeValue = value\n})\n}.width('100%')\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -147,9 +155,10 @@
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
-            "Button"
+            "Button",
+            "Column"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct ImageButtonExample {\nbuild() {\nColumn() {\nButton() {\nImage($r(\"app.media.startIcon\"))\n.objectFit(ImageFit.Contain)\n}\n.padding(16)\n.width('wrap_content')\n.height('wrap_content')\n}\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_code": " Column() {\nButton() {\nImage($r(\"app.media.img02\"))\n.objectFit(ImageFit.Contain)\n}\n.padding(16)\n}\n.width('100%')\n.height('100%')",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -161,24 +170,26 @@
         "source_component_version": "14",
         "target_language": "harmony",
         "target_component": [
-            "CalendarPicker"
+            "CalendarPicker",
+            "Column"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct CalendarViewExample {\nprivate selectedDate: Date = new Date('2024-03-05')\n\nbuild() {\nColumn() {\nCalendarPicker({ hintRadius: 10, selected: this.selectedDate })\n.edgeAlign(CalendarAlign.END)\n.textStyle({ color: \"#ff182431\", font: { size: 20, weight: FontWeight.Normal } })\n.margin(10)\n.onChange((value) => {\nconsole.info(\"CalendarPicker onChange:\" + JSON.stringify(value))\n})\n}.width('100%').margin({ top: 350 })\n}\n}",
+        "target_component_code": "Column() {\nCalendarPicker({ hintRadius: 10, selected: new Date('2024-03-05') })\n}.width('100%')",
         "target_component_description": "",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "CheckedTextView",
-        "source_component_code": "<CheckedTextView\nandroid:id=\"@+id/checkedTextView\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Click to check\"\nandroid:checkMark=\"?android:attr/listChoiceIndicatorMultiple\"\nandroid:padding=\"16dp\"\nandroid:textSize=\"18sp\"\nandroid:gravity=\"center\" />",
+        "source_component_code": "<CheckedTextView\nandroid:id=\"@+id/checkedTextView\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Click to check\"\nandroid:checkMark=\"?android:attr/listChoiceIndicatorMultiple\"\nandroid:textSize=\"18sp\"\nandroid:gravity=\"center\" />",
         "source_component_description": "它是一个带有复选框的文本视图，允许用户选择或取消选择文本项",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
             "Text",
-            "Checkbox"
+            "Checkbox",
+            "Flex"
         ],
-        "target_component_code": "// CheckedTextView.ets\n@Entry\n@Component\nstruct CheckedTextView {\n@State checked: boolean = false;\n\nbuild() {\nFlex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {\nCheckbox()\n.select($$this.checked)\n.width(30)\n.height(30)\n\nText('Click to check')\n.fontSize(18)\n.textAlign(TextAlign.Center)\n.onClick(() => {\nthis.checked = !this.checked\n})\n}\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_code": "@State checked: boolean = false;\nbuild() {\nFlex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {\nCheckbox()\n.select($$this.checked)\n\nText('Click to check')\n.fontSize(18)\n.textAlign(TextAlign.Center)\n.onClick(() => {\nthis.checked = !this.checked\n})\n}\n.width('100%')\n.height('100%')\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -192,7 +203,7 @@
         "target_component": [
             "TextTimer"
         ],
-        "target_component_code": "// xxx.ets\n@Entry\n@Component\nstruct ChronometerExample {\n@State format: string = 'mm:ss'\n\nbuild() {\nColumn() {\nTextTimer()\n.format(this.format)\n.fontSize(24)\n.fontColor(Color.Black)\n.align(Alignment.Center)\n.width('wrap_content')\n.height('wrap_content')\n}\n}\n}",
+        "target_component_code": "@State format: string = 'mm:ss'\nbuild() {\nColumn() {\nTextTimer()\n.format(this.format)\n.fontSize(24)\n.fontColor(Color.Black)\n.align(Alignment.Center)\n}\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -204,9 +215,9 @@
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
-            "Slider"
+            "Rating"
         ],
-        "target_component_code": "// xxx.ets\n@Entry\n@Component\nstruct RatingBarExample {\n@State ratingValue: number = 3.0; // 初始评分值\n@State numStars: number = 5; // 星星总数\n@State stepSize: number = 0.5; // 步长\n\nbuild() {\nColumn({ space: 8 }) {\nSlider({\nvalue: this.ratingValue,\nmin: 0,\nmax: this.numStars,\nstep: this.stepSize,\nstyle: SliderStyle.OutSet\n})\n.blockColor('#FFD700') // 设置滑块颜色为金色\n.trackColor('#D3D3D3') // 设置未选中轨道颜色为浅灰色\n.selectedColor('#FFD700') // 设置选中轨道颜色为金色\n.showSteps(true) // 显示步长标记\n.onChange((value: number, mode: SliderChangeMode) => {\nthis.ratingValue = value;\nconsole.info('Rating changed to: ' + value);\n})\nText('Current Rating: ' + this.ratingValue.toFixed(1))\n.fontSize(12)\n}\n.width('100%')\n}\n}",
+        "target_component_code": " Rating({ rating: 3, indicator: false})\n.stars(5)\n.stepSize(0.5)\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -218,9 +229,10 @@
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
-            "Slider"
+            "Slider",
+            "Column"
         ],
-        "target_component_code": "// xxx.ets\n@Entry\n@Component\nstruct SeekBarExample {\n@State progressValue: number = 50; // 初始进度值\n\nbuild() {\nColumn() {\nSlider({\nvalue: this.progressValue,\nmin: 0,\nmax: 100,\nstyle: SliderStyle.OutSet\n})\n.width('100%')\n.onChange((value: number, mode: SliderChangeMode) => {\nthis.progressValue = value;\nconsole.info('Progress value: ' + value);\n})\n}\n.width('100%')\n}\n}",
+        "target_component_code": "@State progressValue: number = 50;\nbuild() {\nColumn() {\nSlider({\nvalue: this.progressValue,\nmin: 0,\nmax: 100,\nstyle: SliderStyle.OutSet\n})\n.width('100%')\n}\n.width('100%')\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -234,10 +246,9 @@
         "target_component": [
             "Grid",
             "GridItem",
-            "GridCol",
-            "GridRow"
+            "Row"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct TableLayoutExample {\nbuild() {\nColumn({ space: 0 }) {\nGrid() {\nGridItem() {\nRow() {\nButton('one')\n.width('auto')\n.height('auto')\nButton('two')\n.width('auto')\n.height('auto')\nButton('three')\n.width('auto')\n.height('auto')\nButton('four')\n.width('auto')\n.height('auto')\nText('其他的文本....')\n.width('auto')\n.height('auto')\n}\n.width('100%')\n.height('auto')\n}\n}\n.columnsTemplate('1fr 1fr 1fr 1fr 1fr')\n.rowsTemplate('1fr')\n.columnsGap(5)\n.rowsGap(10)\n.width('100%')\n.height('auto')\n}\n.width('100%')\n.height('auto')\n}\n}",
+        "target_component_code": "Grid() {\nGridItem() {\nRow() {\nButton('one')\nButton('two')\nButton('three')\nButton('four')\nText('其他的文本....')\n}\n.width('100%')\n}\n}\n.rowsTemplate('1fr')\n.width('100%')\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -249,9 +260,11 @@
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
-            "Button"
+            "Column",
+            "Button",
+            "Image"
         ],
-        "target_component_code": "// xxx.ets\n@Entry\n@Component\nstruct ZoomButtonExample {\nbuild() {\nColumn() {\nButton({ type: ButtonType.Circle, stateEffect: true }) {\nImage($r('app.media.startIcon'))\n.width(32)\n.height(32)\n}\n.width(64)\n.height(48)\n.padding(16)\n.onClick(() => {\n// 实现缩小操作的逻辑\n})\n}\n.width('100%')\n.height('100%')\n.justifyContent(FlexAlign.Center)\n.alignItems(HorizontalAlign.Center)\n}\n}",
+        "target_component_code": "Column() {\nButton({ type: ButtonType.Normal, stateEffect: true }) {\nImage($r('app.media.loading'))\n.width(32)\n.height(32)\n}.backgroundColor($r(\"app.color.purple_500\"))\n.width(64)\n.height(48)\n.padding(16)\n}\n.width('100%')\n.height('100%')\n.justifyContent(FlexAlign.Center)\n.alignItems(HorizontalAlign.Center)",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -265,7 +278,7 @@
         "target_component": [
             "TextClock"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct DigitalClockExample {\n@State accumulateTime: number = 0;\ncontroller: TextClockController = new TextClockController();\n\nbuild() {\nFlex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {\nTextClock({ controller: this.controller })\n.format('HH:mm')\n.fontSize(24)\n// .fontColor(Color.Black)\n// .textAlign(TextAlign.Center)\n.padding(8)\n.visibility(Visibility.Visible)\n.backgroundColor(Color.Transparent)\n.onDateChange((value: number) => {\nthis.accumulateTime = value;\n})\n}\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_code": "@State accumulateTime: number = 0;\ncontroller: TextClockController = new TextClockController();\nbuild() {\nFlex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {\nTextClock({ controller: this.controller })\n.format('HH:mm')\n.fontSize(24)\n.fontColor($r(\"app.color.black\"))\n.padding(8)\n.visibility(Visibility.Visible)\n.backgroundColor(Color.Transparent)\n.onDateChange((value: number) => {\nthis.accumulateTime = value;\n})\n}\n.width('100%')\n.height('100%')\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -279,21 +292,21 @@
         "target_component": [
             "Toggle"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct MySwitchComponent {\n@State isOn: boolean = true;\n\nbuild() {\nColumn() {\nToggle({ type: ToggleType.Switch, isOn: this.isOn })\n.selectedColor(Color.Blue) // 设置Switch打开状态的背景颜色\n.switchPointColor(Color.White) // 设置Switch类型的圆形滑块颜色\n.width(56) // 设置组件自身的宽度\n.height(30) // 设置组件自身的高度\n.margin({ top: 8, bottom: 8, left: 8, right: 8 }) // 设置外边距\n.visibility(Visibility.Visible) // 设置可见性\n.backgroundColor(Color.Transparent) // 设置背景颜色为透明\n.onChange((isOn: boolean) => {\nthis.isOn = isOn;\n})\n}\n}\n}",
+        "target_component_code": "private isShowText: boolean = true;\n@State isToggleOn: boolean = true;\nbuild() {\nRow() {\nText('Switch')\nToggle({ type: ToggleType.Switch, isOn: this.isToggleOn })\n.selectedColor($r('app.color.purple_700')) // 设置Switch打开状态的背景颜色\n.switchPointColor($r('app.color.purple_200')) // 设置Switch类型的圆形滑块颜色\n.width(56) // 设置组件自身的宽度\n.height(30) // 设置组件自身的高度\n.margin(8)\n.visibility(Visibility.Visible)\n.backgroundColor(Color.Transparent)\n.onChange((isOn: boolean) => {\nthis.isToggleOn = isOn;\n})\nif (this.isShowText) {\nText(this.isToggleOn? '开': '关')\n}\n}\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "Space",
-        "source_component_code": "<!-- 上方的按钮 -->\n<Button\nandroid:id=\"@+id/button_top\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Top Button\" />\n\n<!-- Space组件 -->\n<Space\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"20dp\" />\n\n<!-- 下方的按钮 -->\n<Button\nandroid:id=\"@+id/button_bottom\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Bottom Button\" />",
+        "source_component_code": "     <Space\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"20dp\" /> ",
         "source_component_description": "一个轻量级的视图组件，通常用于在布局中添加空白间隔",
         "source_component_version": "14",
         "target_language": "harmony",
         "target_component": [
             "Blank"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct SpaceExample {\nbuild() {\nColumn() {\nButton('Top Button')\n.id('button_top')\n\nBlank('20vp') // 使用Blank组件来实现Space组件的功能，设置高度为20dp（转换为vp）\n\nButton('Bottom Button')\n.id('button_bottom')\n}\n.width('100%')\n.padding(10)\n}\n}",
+        "target_component_code": "      Blank(20)\n.width('100%')",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -305,9 +318,10 @@
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
-            "Column"
+            "Column",
+            "Button"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct MainPage {\nbuild() {\nColumn({ space: 0 }) {\nButton('Button 1')\n.width('100%')\n.height('wrap_content')\nButton('Button 2')\n.width('100%')\n.height('wrap_content')\nButton('Button 3')\n.width('100%')\n.height('wrap_content')\n}\n.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n}\n}",
+        "target_component_code": "    Column({ space: 0 }) {\nButton('Button 1')\n.width('100%')\n\nButton('Button 2')\n.width('100%')\n\nButton('Button 3')\n.width('100%')\n\n}\n.id('main')\n.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center)",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -323,7 +337,7 @@
             "TextInput",
             "Button"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct MainPage {\n@State reminder: string = '';\n\nbuild() {\nRelativeContainer() {\nTextInput({ placeholder: 'reminder' })\n.id('name')\n.onChange((value: string) => {\nthis.reminder = value;\n})\n\nButton('Select Date')\n.id('dates_button')\n.alignRules({\ntop: { anchor: 'name', align: VerticalAlign.Bottom },\nleft: { anchor: '__container__', align: HorizontalAlign.Start },\nright: { anchor: 'times_button', align: HorizontalAlign.Start }\n})\n\nButton('Select Time')\n.id('times_button')\n.alignRules({\ntop: { anchor: 'name', align: VerticalAlign.Bottom },\nright: { anchor: '__container__', align: HorizontalAlign.End }\n})\n\nButton('done')\n.width(96)\n.alignRules({\ntop: { anchor: 'times_button', align: VerticalAlign.Bottom },\nright: { anchor: '__container__', align: HorizontalAlign.End }\n})\n}\n.width('100%')\n.height('100%')\n// .justifyContent(FlexAlign.Center)\n}\n}",
+        "target_component_code": "    RelativeContainer() {\nTextInput({ placeholder: 'reminder' })\n.id('name')\n.width('100%')\n\nButton('Select Date')\n.id('dates_button')\n.alignRules({\ntop: { anchor: 'name', align: VerticalAlign.Bottom },\nleft: { anchor: '__container__', align: HorizontalAlign.Start },\nright: { anchor: 'times_button', align: HorizontalAlign.Start }\n})\n\nButton('Select Time')\n.id('times_button')\n.alignRules({\ntop: { anchor: 'name', align: VerticalAlign.Bottom },\nright: { anchor: '__container__', align: HorizontalAlign.End }\n})\n\nButton('done')\n.width(96)\n.alignRules({\ntop: { anchor: 'times_button', align: VerticalAlign.Bottom },\nright: { anchor: '__container__', align: HorizontalAlign.End }\n})\n}\n.id('main')\n.width('100%')\n.height('100%')\n.alignSelf(ItemAlign.Center)",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -336,10 +350,11 @@
         "target_language": "harmony",
         "target_component": [
             "Column",
+            "Row",
             "Grid",
             "GridItem"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct TableLayout {\nbuild() {\nColumn({ space: 10 }) {\nRow({ space: 10 }) {\nButton('姓名')\nButton('年龄')\nButton('城市')\n}\nRow({ space: 10 }) {\nButton('张三')\nButton('25')\nButton('北京')\n}\nRow({ space: 10 }) {\nButton('李四')\nButton('30')\nButton('上海')\n}\nRow({ space: 10 }) {\nButton('王五')\nButton('22')\nButton('广州')\n}\n}\n.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center)\n}\n}",
+        "target_component_code": "Column() {\nRow() {\nButton('姓名')\nButton('年龄')\nButton('城市')\n}\nRow() {\nButton('张三')\nButton('25')\nButton('北京')\n}\nRow() {\nButton('李四')\nButton('30')\nButton('上海')\n}\nRow() {\nButton('王五')\nButton('22')\nButton('广州')\n}\n}\n.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center)",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -351,9 +366,26 @@
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
-            "Column"
+            "Column",
+            "Button"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct AbsoluteLayoutExample {\nbuild() {\nColumn() {\nRow() {\nButton('按钮 1')\n.id('button1')\n.position({ x: '50vp', y: '100vp' })\n}\nRow() {\nButton('按钮 2')\n.id('button2')\n.position({ x: '200vp', y: '100vp' })\n}\n}\n.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center)\n}\n}",
+        "target_component_code": "    Column() {\nButton('按钮 1')\n.id('button1')\n.position({ x: 50, y: 100 })\n\nButton('按钮 2')\n.id('button2')\n.position({ x: 200, y: 100 })\n}\n.id('main')\n.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center)",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "FrameLayout",
+        "source_component_code": "<FrameLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:foreground=\"?android:attr/selectableItemBackground\"\nandroid:foregroundGravity=\"center\"\nandroid:measureAllChildren=\"true\"> <!-- 测量所有子视图 -->\n<!-- 背景视图 -->\n<View\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:background=\"#FFDDDD\" />\n\n<!-- 顶层按钮 -->\n<Button\nandroid:id=\"@+id/button1\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"按钮\"\nandroid:layout_gravity=\"center\" />\n\n<!-- 不可见的视图 -->\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"不可见的视图\"\nandroid:visibility=\"gone\" />\n\n</FrameLayout>",
+        "source_component_description": "框架布局用于在屏幕上阻挡一个区域以显示单个项目，示例中共有两个按钮，只显示了一个",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Stack",
+            "Column",
+            "Button"
+        ],
+        "target_component_code": "Stack() {\nColumn()\n.width('100%')\n.height('100%')\n.backgroundColor('#FFDDDD')\n\nButton('按钮')\n.align(Alignment.Center)\n\nButton('不可见的视图')\n.visibility(Visibility.None)\n}\n.id('main')\n.width('100%')\n.height('100%')\n.foregroundColor($r('app.color.selectableItemBackground'))\n.align(Alignment.Center)",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -367,7 +399,7 @@
         "target_component": [
             "List"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct ListExample {\nprivate arr: string[] = [\n\"Item 1\", \"Item 2\", \"Item 3\", \"Item 4\", \"Item 5\",\n\"Item 6\", \"Item 7\", \"Item 8\", \"Item 9\", \"Item 10\",\n\"Item 11\", \"Item 12\", \"Item 13\", \"Item 14\", \"Item 15\",\n\"Item 16\", \"Item 17\", \"Item 18\", \"Item 19\", \"Item 20\"\n];\n\nbuild() {\nColumn() {\nList() {\nForEach(this.arr, (item: string) => {\nListItem() {\nText(item)\n.width('100%')\n.height(100)\n.fontSize(16)\n.textAlign(TextAlign.Center)\n.borderRadius(10)\n.backgroundColor(0xFFFFFF)\n}\n}, (item: string) => item)\n}\n.width('100%')\n.height('100%')\n}\n.width('100%')\n.height('100%')\n.backgroundColor(0xDCDCDC)\n.padding({ top: 5 })\n}\n}",
+        "target_component_code": "  private arr: string[] = [\n\"Item 1\", \"Item 2\", \"Item 3\", \"Item 4\", \"Item 5\",\n\"Item 6\", \"Item 7\", \"Item 8\", \"Item 9\", \"Item 10\",\n\"Item 11\", \"Item 12\", \"Item 13\", \"Item 14\", \"Item 15\",\n\"Item 16\", \"Item 17\", \"Item 18\", \"Item 19\", \"Item 20\"\n];\n\nbuild() {\nColumn() {\nList() {\nForEach(this.arr, (item: string) => {\nListItem() {\nText(item)\n.width('100%')\n.fontSize(16)\n.textAlign(TextAlign.Start)\n.padding(10)\n}\n.width('100%')\n}, (item: string) => item)\n}\n.width('100%')\n.height('100%')\n}\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -382,7 +414,7 @@
             "Grid",
             "GridItem"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct MainAbilitySlice {\nprivate items: string[] = [\n\"Item 1\", \"Item 2\", \"Item 3\", \"Item 4\", \"Item 5\", \"Item 6\", \"Item 7\", \"Item 8\", \"Item 9\", \"Item 10\",\n\"Item 11\", \"Item 12\", \"Item 13\", \"Item 14\", \"Item 15\", \"Item 16\", \"Item 17\", \"Item 18\", \"Item 19\", \"Item 20\",\n\"Item 21\", \"Item 22\", \"Item 23\", \"Item 24\", \"Item 25\", \"Item 26\", \"Item 27\", \"Item 28\", \"Item 29\", \"Item 30\",\n\"Item 31\", \"Item 32\"\n];\n\nbuild() {\nColumn() {\nGrid() {\nForEach(this.items, (item: string) => {\nGridItem() {\nText(item)\n.fontSize(16)\n.textAlign(TextAlign.Center)\n.backgroundColor(Color.White)\n.padding(10)\n.onClick(() => {\n// Toast.show({ message: `Clicked: ${item}`, duration: ToastDuration.Short });\n})\n}\n}, (item: string) => item)\n}\n.columnsTemplate('1fr 1fr 1fr')\n.columnsGap(32)\n.rowsGap(16)\n.width('100%')\n.height('100%')\n.backgroundColor(Color.Gray)\n}\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_code": "private items: string[] = [\n\"Item 1\", \"Item 2\", \"Item 3\", \"Item 4\", \"Item 5\", \"Item 6\", \"Item 7\", \"Item 8\", \"Item 9\", \"Item 10\",\n\"Item 11\", \"Item 12\", \"Item 13\", \"Item 14\", \"Item 15\", \"Item 16\", \"Item 17\", \"Item 18\", \"Item 19\", \"Item 20\",\n\"Item 21\", \"Item 22\", \"Item 23\", \"Item 24\", \"Item 25\", \"Item 26\", \"Item 27\", \"Item 28\", \"Item 29\", \"Item 30\",\n\"Item 31\", \"Item 32\"\n];\nbuild() {\nColumn() {\nGrid() {\nForEach(this.items, (item: string) => {\nGridItem() {\nText(item)\n.fontSize(16)\n.textAlign(TextAlign.Center)\n.backgroundColor(Color.Gray)\n.padding(10)\n.onClick(() => {\npromptAction.showToast({ message: `Clicked: ${item}`, duration: 1 });\n})\n}\n}, (item: string) => item)\n}\n.id('gridView')\n.width('100%')\n.height('100%')\n.columnsTemplate('1fr 1fr 1fr')\n.columnsGap(32)\n.rowsGap(16)\n.alignItems(GridItemAlignment.STRETCH)\n\n}\n.width('100%')\n.height('100%')\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -394,9 +426,11 @@
         "source_component_version": "9",
         "target_language": "harmony",
         "target_component": [
-            "RelativeContainer"
+            "RelativeContainer",
+            "Text",
+            "Button"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct MainPage {\nbuild() {\nRelativeContainer() {\nText('Hello, ConstraintLayout!')\n.id('textView')\n.fontSize(24)\n.alignRules({\ntop: { anchor: '__container__', align: VerticalAlign.Top },\nleft: { anchor: '__container__', align: HorizontalAlign.Start },\nright: { anchor: '__container__', align: HorizontalAlign.End }\n})\n\nButton('Click Me')\n.id('button')\n.alignRules({\ntop: { anchor: 'textView', align: VerticalAlign.Bottom },\nleft: { anchor: '__container__', align: HorizontalAlign.Start },\nright: { anchor: '__container__', align: HorizontalAlign.End }\n})\n// .bias({ vertical: 0.5 })\n}\n.padding({ top: '100vp' })\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_code": "RelativeContainer() {\nText('Hello, ConstraintLayout!')\n.id('textView')\n.fontSize(24)\n.alignRules({\ntop: { anchor: '__container__', align: VerticalAlign.Top },\nstart: { anchor: '__container__', align: HorizontalAlign.Start },\nend: { anchor: '__container__', align: HorizontalAlign.End }\n})\n\nButton('Click Me')\n.id('button')\n.alignRules({\ntop: { anchor: 'textView', align: VerticalAlign.Bottom },\nstart: { anchor: '__container__', align: HorizontalAlign.Start },\nend: { anchor: '__container__', align: HorizontalAlign.End },\nbias: { vertical: 0.5 }\n})\n}\n.padding({ top: 100 })\n.width('100%')\n.height('100%')",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -404,13 +438,16 @@
         "source_language": "android",
         "source_component": "ScrollView",
         "source_component_code": "(1)activity_main.xml:\n\n<ScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/scroll_view\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\"\nandroid:gravity=\"center\"\ntools:context=\".MainActivity\">\n\n<LinearLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:orientation=\"vertical\">\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"这是一个 ScrollView 示例\" />\n\n<!-- 添加更多的视图 -->\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"按钮 1\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"按钮 2\"\nandroid:layout_marginTop=\"500dp\"/>\n\n<!-- 添加占位符以增加内容 -->\n<View\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"1000dp\" /> <!-- 过多的内容以启用滚动 -->\n\n</LinearLayout>\n</ScrollView>\n\n(2)MainActivity.kt\n\n\npackage com.example.myapplication\n\nimport android.os.Bundle\nimport androidx.activity.enableEdgeToEdge\nimport androidx.appcompat.app.AppCompatActivity\nimport androidx.core.view.ViewCompat\nimport androidx.core.view.WindowInsetsCompat\nimport android.widget.ScrollView\n\n\nclass MainActivity : AppCompatActivity() {\n\noverride fun onCreate(savedInstanceState: Bundle?) {\nsuper.onCreate(savedInstanceState)\nenableEdgeToEdge()\nsetContentView(R.layout.activity_main)\n\n// 设置与窗口插图相关的填充\nViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.scroll_view)) { v, insets ->\nval systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())\nv.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)\ninsets\n}\n\n// 获取 ScrollView 并添加滚动逻辑\nval scrollView: ScrollView = findViewById(R.id.scroll_view) // 确保 ID 正确\nscrollView.post {\nscrollView.scrollTo(0, 100) // 滚动到 y = 100 位置\n}\n}\n\nprivate fun enableEdgeToEdge() {\n// 实现你的边缘到边缘设置\n}\n}",
-        "source_component_description": "",
+        "source_component_description": "ScrollView 是 Android 中的一个视图容器，用于显示可以滚动的内容。它主要用于当内容超出屏幕时，允许用户通过滑动来查看所有内容，图片为滚动前后对比",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
-            "Scroll"
+            "Scroll",
+            "Column",
+            "Text",
+            "Button"
         ],
-        "target_component_code": "",
+        "target_component_code": "Scroll() {\nColumn() {\nText('这是一个 ScrollView 示例')\n\nButton('按钮 1')\n\nButton('按钮 2')\n.margin({ top: 500 });\n\n// 添加占位符以增加内容\nColumn()\n.width('100%')\n.height(1000)\n}\n.width('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center);\n}\n.id('scroll_view')\n.width('100%')\n.height('100%');",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -425,7 +462,7 @@
             "Column",
             "Text"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct MaterialCardView {\nbuild() {\nColumn({ space: 16 }) {\nColumn({ space: 16 }) {\nText('Card Title')\n.fontColor('#FFBB86FC')\n.fontSize(24)\n.fontWeight(FontWeight.Bold)\n\nText('This is a sample description text for the card.')\n.fontColor('#FF6200EE')\n.fontSize(16)\n.padding({ top: 8 })\n}\n.padding(16)\n.backgroundColor('#FF018786')\n.border({ width: 2, color: '#FF03DAC5', radius: 16 })\n.shadow({ radius: 8, color: '#000000', offsetX: 0, offsetY: 4 })\n.margin(16)\n}\n.width('100%')\n// .height('wrap_content')\n}\n}",
+        "target_component_code": "Column() {\nColumn() {\nText('Card Title')\n.fontColor('#FFBB86FC')\n.fontSize(24)\n.fontWeight(FontWeight.Bold)\n\nText('This is a sample description text for the card.')\n.fontColor('#FF6200EE')\n.fontSize(16)\n.padding({ top: 8 })\n}\n.width('100%')\n.padding(16)\n}\n.width('100%')\n.margin(16)\n.backgroundColor('#FF018786')\n.shadow(8)\n.padding(16)\n.border({ width: 2, color: '#FF03DAC5', radius: 16 })",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -439,21 +476,21 @@
         "target_component": [
             "Slider"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct SliderExample {\n@State sliderValue: number = 50\n\nbuild() {\nColumn({ space: 8 }) {\nSlider({\nvalue: this.sliderValue,\nmin: 0,\nmax: 100,\nstep: 1\n})\n.blockColor('#FF0000') // 对应 app:thumbTint=\"#FF0000\"\n.trackColor('#FF0000') // 对应 app:trackTint=\"#FF0000\"\n.showSteps(true) // 对应 app:tickVisible=\"true\"\n.stepColor('#FF0000') // 对应 app:tickColorActive=\"#FF0000\"\n.trackBorderRadius(10) // 对应 app:haloRadius=\"10dp\"\n.onChange((value: number, mode: SliderChangeMode) => {\nthis.sliderValue = value\n})\n}\n.width('100%')\n.margin({ top: '16vp' }) // 对应 android:layout_marginTop=\"16dp\"\n}\n}",
+        "target_component_code": "@State sliderValue: number = 50\nbuild() {\nColumn() {\nSlider({\nvalue: this.sliderValue,\nmin: 0,\nmax: 100,\nstep: 1\n})\n.id('slider')\n.width('100%')\n.margin({ top: 16 })\n.blockColor('#FF0000')\n.trackColor('#FF0000')\n.showSteps(true)\n.selectedColor('#FF0000')\n.showTips(false)\n}\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "com.google.android.material.divider.MaterialDivider",
-        "source_component_code": "<!-- 上方的按钮 -->\n<Button\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Top Button\" />\n\n<!-- MaterialDivider -->\n<com.google.android.material.divider.MaterialDivider\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_marginTop=\"16dp\"\napp:dividerThickness=\"2dp\"\napp:dividerInsetStart=\"16dp\"\napp:dividerInsetEnd=\"16dp\"\napp:dividerColor=\"#FFBB86FC\" />\n\n<!-- 下方的按钮 -->\n<Button\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Bottom Button\"\nandroid:layout_marginTop=\"16dp\" />",
+        "source_component_code": "     <!-- MaterialDivider -->\n<com.google.android.material.divider.MaterialDivider\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_marginTop=\"16dp\"\napp:dividerThickness=\"2dp\"\napp:dividerInsetStart=\"16dp\"\napp:dividerInsetEnd=\"16dp\"\napp:dividerColor=\"#FFBB86FC\" /> ",
         "source_component_description": "是 Material Components for Android 库中的一个组件，用于在 Android 应用中创建分割线，以清晰地分隔不同的 UI 元素或内容区域。它支持水平和垂直方向，并提供了多种自定义属性，如颜色、厚度、内边距等",
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
             "Divider"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct MaterialDividerExample {\nbuild() {\nColumn() {\n// 上方的按钮 (Top Button)\nButton('Top Button')\n.width('100%')\n.height('wrap_content')\n\n// MaterialDivider\nDivider()\n.strokeWidth(2)\n.color('#FFBB86FC')\n.margin({ top: 16})\n\n// 下方的按钮 (Bottom Button)\nButton('Bottom Button')\n.width('100%')\n.height('wrap_content')\n.margin({ top: 16 })\n}\n.width('100%')\n.padding(16)\n}\n}",
+        "target_component_code": "      Divider()\n.strokeWidth(2)\n.color('#FFBB86FC')\n.margin({ top: 16, left: 16, right: 16})",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -466,9 +503,10 @@
         "target_language": "harmony",
         "target_component": [
             "Button",
-            "Stack"
+            "Stack",
+            "Image"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct FloatingActionButtonExample {\nbuild() {\nColumn() {\nStack({ alignContent: Alignment.BottomEnd }) {\n// 假设这里放置其他布局内容\n\n// 浮动操作按钮\nButton({\ntype: ButtonType.Circle,\nstateEffect: true\n}) {\nImage($r('app.media.startIcon'))\n.width(24)\n.height(24)\n}\n.width(56)\n.height(56)\n// .backgroundColor($r('app.color.black'))\n// .margin({ bottom: 16, right: 16 })\n.onClick(() => {\n// 处理按钮点击事件\nconsole.log('Floating action button clicked');\n})\n}\n}\n.width('100%')\n.height('100%')\n}\n}",
+        "target_component_code": "      Stack({ alignContent: Alignment.BottomEnd }) {\n// 位于浮动按钮下方的内容\n\n// 浮动操作按钮\nButton({\ntype: ButtonType.Circle,\nstateEffect: true\n}) {\nImage($r('app.media.ic_plus_24'))\n.width(24)\n.height(24)\n}\n.margin(16)\n.position({\nbottom: 0,\nright: 0\n})\n}\n.width('100%')\n.height('100%')\n\n}\n.width('100%')\n.height('100%')",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -483,7 +521,7 @@
             "Tabs",
             "TabContent"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct TabLayoutExample {\nbuild() {\nColumn() {\nTabs() {\nTabContent() {\nColumn() {\nText(\"Tab 1\")\n.fontSize(16)\n.fontColor('#FFFFFFFF')\n.fontWeight(FontWeight.Bold)\n}\n.width('100%')\n.height('100%')\n.backgroundColor('#FF6200EE')\n}\n.tabBar('Tab 1')\n\nTabContent() {\nColumn() {\nText(\"Tab 2\")\n.fontSize(16)\n.fontColor('#FFFFFFFF')\n.fontWeight(FontWeight.Bold)\n}\n.width('100%')\n.height('100%')\n.backgroundColor('#FF6200EE')\n}\n.tabBar('Tab 2')\n}\n.barBackgroundColor('#FF6200EE')\n// .barIndicatorColor('#FF6200EE')\n// .barTextColor('#FFFFFFFF')\n// .barSelectedTextColor('#FF000000')\n}\n.width('100%')\n.height('100%')\n.backgroundColor('#FF6200EE')\n}\n}",
+        "target_component_code": "Tabs() {\nTabContent() {\n// 子页面内容\n}\n.tabBar('Tab 1')\n.foregroundColor('')\n\nTabContent() {\n// 子页面内容\n}\n.tabBar('Tab 2')\n}\n.width('100%')\n.barBackgroundColor($r('app.color.purple_200'))",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -495,9 +533,9 @@
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
-            "Row"
+            "Chip"
         ],
-        "target_component_code": "import { Chip, ChipSize } from '@kit.ArkUI';\n\n@Entry\n@Component\nstruct Index {\nbuild() {\nColumn({ space: 10 }) {\nChip({\nlabel: {\ntext: \"chip_demo\", // 对应 android:text=\"chip_demo\"\nfontSize: 12, // 默认字体大小\nfontColor: Color.Black, // 默认字体颜色\nfontFamily: \"HarmonyOS Sans\", // 默认字体家族\nlabelMargin: { left: 20, right: 30 } // 默认边距\n},\nsize: ChipSize.NORMAL, // 默认大小\nallowClose: false, // 默认不显示删除图标\nenabled: true, // 默认启用\nbackgroundColor: $r('sys.color.ohos_id_color_button_normal'), // 默认背景颜色\nborderRadius: $r('sys.float.ohos_id_corner_radius_button') // 默认边框圆角\n})\n}\n}\n}",
+        "target_component_code": "Chip({\nlabel: {\ntext: 'chip_demo'\n},\nallowClose: false\n})",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -511,7 +549,7 @@
         "target_component": [
             "Progress"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct LinearProgressIndicatorExample {\n@State private isIndeterminate: boolean = true;\n\nbuild() {\nColumn() {\nif (this.isIndeterminate) {\n// 使用动画模拟不确定状态\nProgress({ value: 20, type: ProgressType.Linear })\n.width('100%')\n.height('wrap_content')\n.animation({ duration: 2000, iterations: -1, curve: Curve.Linear })\n} else {\nProgress({ value: 50, type: ProgressType.Linear })\n.width('100%')\n.height('wrap_content')\n}\n}\n}\n}",
+        "target_component_code": "@State private progressValue: number = 0;\nbuild() {\nColumn() {\nProgress({ value: this.progressValue, type: ProgressType.Linear })\n}\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -525,7 +563,7 @@
         "target_component": [
             "Progress"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct CircularProgressIndicatorExample {\n@State private value: number = 0;\n\nbuild() {\nColumn() {\nProgress({ value: this.value, type: ProgressType.Ring })\n.width('wrap_content')\n.height('wrap_content')\n}\n}\n\naboutToAppear() {\nthis.startAnimation();\n}\n\nstartAnimation() {\nanimateTo({ duration: 1000, iterations: -1, curve: Curve.Linear }, () => {\nthis.value = (this.value + 10) % 100;\n});\n}\n}",
+        "target_component_code": "  @State private progressValue: number = 0;\nbuild() {\nColumn() {\nProgress({ value: this.progressValue, type: ProgressType.Ring })\n}\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -533,13 +571,14 @@
         "source_language": "android",
         "source_component": "com.google.android.material.button.MaterialButtonToggleGroup",
         "source_component_code": "<com.google.android.material.button.MaterialButtonToggleGroup\nandroid:id=\"@+id/toggleButton\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\">\n<Button\nandroid:id=\"@+id/button1\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 1\"\nstyle=\"?attr/materialButtonOutlinedStyle\"\n/>\n<Button\nandroid:id=\"@+id/button2\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 2\"\nstyle=\"?attr/materialButtonOutlinedStyle\"\n/>\n<Button\nandroid:id=\"@+id/button3\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 3\"\nstyle=\"?attr/materialButtonOutlinedStyle\"\n/>\n</com.google.android.material.button.MaterialButtonToggleGroup>",
-        "source_component_description": "",
+        "source_component_description": "是 Google 的 Material Design 库中的一个组件，用于创建一组可以切换的按钮。这个组件允许用户在一组按钮中选择一个或多个按钮，类似于单选按钮组或复选框组，但具有 Material Design 的外观和感觉",
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
-            "Toggle"
+            "Toggle",
+            "Row"
         ],
-        "target_component_code": "",
+        "target_component_code": "@State toggleChecked1: boolean = true;\n@State toggleChecked2: boolean = true;\n@State toggleChecked3: boolean = true;\nbuild() {\nRow() {\nToggle({ type: ToggleType.Button, isOn: this.toggleChecked1 }) {\nText('Button 1')\n}\n.id('button1')\n.onChange((isOn: boolean) => {\nthis.toggleChecked1 = isOn;\n})\n\nToggle({ type: ToggleType.Button, isOn: this.toggleChecked2 }) {\nText('Button 2')\n}\n.id('button2')\n.onChange((isOn: boolean) => {\nthis.toggleChecked2 = isOn;\n})\n\nToggle({ type: ToggleType.Button, isOn: this.toggleChecked3 }) {\nText('Button 3')\n}\n.id('button3')\n.onChange((isOn: boolean) => {\nthis.toggleChecked3 = isOn;\n})\n}\n.id('toggleButton')\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -551,9 +590,10 @@
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
-            "Toggle"
+            "Toggle",
+            "Text"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct SwitchMaterial {\n@State isOn: boolean = true;\n\nbuild() {\nColumn() {\nToggle({ type: ToggleType.Switch, isOn: this.isOn })\n.selectedColor('#007DFF') // 设置开关打开状态的背景颜色\n.switchPointColor('#FFFFFF') // 设置Switch滑块的颜色\n.onChange((isOn: boolean) => {\nthis.isOn = isOn;\n})\nText('Switch1')\n.fontSize(16)\n.fontColor('#000000')\n}\n.width('wrap_content') // 对应android:layout_width=\"wrap_content\"\n.height('match_parent') // 对应android:layout_height=\"match_parent\"\n}\n}",
+        "target_component_code": "@State toggleChecked: boolean = true;\nbuild() {\nRow() {\nText('Switch1')\n.fontSize(16)\n.fontColor('#000000')\nToggle({ type: ToggleType.Switch, isOn: this.toggleChecked })\n.onChange((isOn: boolean) => {\nthis.toggleChecked = isOn;\n})\n}\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -567,21 +607,21 @@
         "target_component": [
             "Button"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct Example {\n@State ratingValue: number = 3.5;\n\nbuild() {\nColumn({ space: 16 }) {\nButton($r(\"app.string.text\"))\n.id(\"button\")\n}\n}\n} ",
+        "target_component_code": "      Button('Click me')\n.id('button')",
         "target_component_description": "",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "androidx.appcompat.widget.Toolbar",
-        "source_component_code": "<!-- Toolbar -->\n<androidx.appcompat.widget.Toolbar\nandroid:id=\"@+id/toolbar\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"?attr/actionBarSize\"\napp:title=\"My Toolbar\"\napp:titleTextColor=\"@android:color/black\" />\n\n<!-- 中间的按钮 -->\n<androidx.appcompat.widget.AppCompatButton\nandroid:id=\"@+id/button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Click me\"\napp:layout_behavior=\"@string/appbar_scrolling_view_behavior\"\nandroid:layout_gravity=\"center\" />",
-        "source_component_description": "",
+        "source_component_code": "<!-- Toolbar -->\n<androidx.appcompat.widget.Toolbar\nandroid:id=\"@+id/toolbar\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"?attr/actionBarSize\"\napp:title=\"My Toolbar\"\napp:titleTextColor=\"@android:color/black\" />",
+        "source_component_description": "用于应用程序内容的标准工具栏,例如标题等。",
         "source_component_version": "24",
         "target_language": "harmony",
         "target_component": [
-            "ToolBar"
+            "ComposeTitleBar"
         ],
-        "target_component_code": "",
+        "target_component_code": "      ComposeTitleBar({\ntitle: 'My Toolbar'\n})\n.id('toolbar')\n.width('100%')\n.height(Constants.ACTION_BAR_SIZE)",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -593,9 +633,9 @@
         "source_component_version": "24",
         "target_language": "harmony",
         "target_component": [
-            "Slider"
+            "Rating"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct AppCompatRatingBarExample {\n@State ratingValue: number = 3.5;\n\nbuild() {\nColumn({ space: 16 }) {\nText('请给出评分：')\n.fontSize(18)\n.margin({ bottom: 16 });\n\nSlider({\nvalue: this.ratingValue,\nmin: 0,\nmax: 5,\nstep: 0.5\n})\n.width('100%')\n.showSteps(true)\n.onChange((value: number, mode: SliderChangeMode) => {\nthis.ratingValue = value;\n});\n}\n.width('100%')\n.padding(16);\n}\n} ",
+        "target_component_code": "      Rating({\nrating: 3.5\n})\n.id('ratingBar')\n.stars(5)\n.stepSize(0.5)",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -609,7 +649,7 @@
         "target_component": [
             "Toggle"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct ToggleButtonExample {\n@State isOn: boolean = false; // 对应android:checked=\"false\"\n\nbuild() {\nColumn() {\nToggle({ type: ToggleType.Button, isOn: this.isOn }) {\nText(this.isOn ? '开' : '关') // 对应android:textOn=\"开\"和android:textOff=\"关\"\n.fontColor('#182431')\n.fontSize(12)\n}\n.id('toggle_button') // 对应android:id=\"@+id/toggle_button\"\n.onChange((isOn: boolean) => {\nthis.isOn = isOn; // 更新状态\n})\n}\n.width('100%')\n.padding(24)\n}\n}",
+        "target_component_code": "      Toggle({ type: ToggleType.Button, isOn: this.toggleChecked }) {\nText(this.toggleChecked ? '开' : '关') // 对应android:textOn=\"开\"和android:textOff=\"关\"\n.fontColor('#182431')\n.fontSize(12)\n}\n.id('toggle_button') // 对应android:id=\"@+id/toggle_button\"\n.onChange((isOn: boolean) => {\nthis.toggleChecked = isOn; // 更新状态\n})",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -623,21 +663,23 @@
         "target_component": [
             "Toggle"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct Index {\n@State checked: boolean = true;\n\nbuild() {\nRow({ space: 16 }) {\nToggle({ type: ToggleType.Switch, isOn: this.checked })\n.id(\"switchCompat\")\n// .width(\"wrap_content\")\n// .height(\"wrap_content\")\n.margin(16)\n.onChange((isOn: boolean) => {\nthis.checked = isOn;\n})\n\nText(\"开关\")\n.fontSize(16)\n.fontColor(Color.Black)\n}\n.width('100%')\n.padding(16)\n}\n}",
+        "target_component_code": "@State isToggleChecked: boolean = true;\nbuild() {\nRow() {\nText(\"开关\")\n.fontSize(16)\nToggle({ type: ToggleType.Switch, isOn: this.isToggleChecked })\n.id(\"switchCompat\")\n.margin(16)\n.onChange((isOn: boolean) => {\nthis.isToggleChecked = isOn;\n})\n}\n.id('switchCompat')\n.margin({ top: 16 })\n}",
         "target_component_description": "",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "androidx.appcompat.widget.AppCompatCheckBox",
-        "source_component_code": "<androidx.appcompat.widget.AppCompatCheckBox\nandroid:id=\"@+id/myCheckBox\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"A\" />\n<androidx.appcompat.widget.AppCompatCheckBox\nandroid:id=\"@+id/myCheckBox2\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"B\" />",
+        "source_component_code": "<androidx.appcompat.widget.AppCompatCheckBox\nandroid:id=\"@+id/myCheckBox\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"A\" />",
         "source_component_description": "是一个复选框（CheckBox）的兼容版本，它提供了与 CheckBox 相同的功能，但能够在较旧的 Android 版本上使用最新的 Material Design 样式和主题",
         "source_component_version": "24",
         "target_language": "harmony",
         "target_component": [
-            "Checkbox"
+            "Checkbox",
+            "Text",
+            "Row"
         ],
-        "target_component_code": "// Index.ets\n@Entry\n@Component\nstruct Index {\nbuild() {\nColumn() {\n// 第一个AppCompatCheckBox组件\nFlex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {\nCheckbox()\n.id('myCheckBox') // 对应android:id=\"@+id/myCheckBox\"\nText('A') // 对应android:text=\"A\"\n.fontSize(16) // 设置文本字体大小\n}\n\n// 第二个AppCompatCheckBox组件\nFlex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {\nCheckbox()\n.id('myCheckBox2') // 对应android:id=\"@+id/myCheckBox2\"\nText('B') // 对应android:text=\"B\"\n.fontSize(16) // 设置文本字体大小\n}\n}\n.width('100%') // 设置Column的宽度为100%\n.height('100%') // 设置Column的高度为100%\n}\n}",
+        "target_component_code": "Row() {\nCheckbox()\nText('A')\n.fontSize(16)\n}\n.id('myCheckBox')",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -651,21 +693,23 @@
         "target_component": [
             "TextInput"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct Example {\n@State value: number = 50;\n\nbuild() {\nColumn() {\nTextInput({ placeholder: $r(\"app.string.placeholder\") })\n.id(\"myEditText\")\n}\n}\n}",
+        "target_component_code": "TextInput({ placeholder: '请输入内容' })\n.id('myEditText')\n.width('100%')",
         "target_component_description": "",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "androidx.appcompat.widget.AppCompatRadioButton",
-        "source_component_code": "<androidx.appcompat.widget.AppCompatRadioButton\nandroid:id=\"@+id/myRadioButton\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"A\" />\n<androidx.appcompat.widget.AppCompatRadioButton\nandroid:id=\"@+id/myRadioButton2\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"B\" />",
+        "source_component_code": "<androidx.appcompat.widget.AppCompatRadioButton\nandroid:id=\"@+id/myRadioButton\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"A\" />",
         "source_component_description": "用于创建单选按钮。它是 RadioButton 的增强版本，提供了更好的兼容性，支持较旧版本的 Android。",
         "source_component_version": "24",
         "target_language": "harmony",
         "target_component": [
+            "Row",
+            "Text",
             "Radio"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct RadioButtonExample {\nbuild() {\nFlex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {\nRadio({ value: 'A', group: 'radioGroup' })\n.id('myRadioButton')\nText('A').fontSize(20)\n\nRadio({ value: 'B', group: 'radioGroup' })\n.id('myRadioButton2')\nText('B').fontSize(20)\n}\n}\n}",
+        "target_component_code": "Row() {\nRadio({ value: 'A', group: 'radioGroup' })\nText('A').fontSize(20)\n}\n.id(\"myRadioButton\")",
         "target_component_description": "",
         "target_component_version": "12"
     },
@@ -679,7 +723,7 @@
         "target_component": [
             "Slider"
         ],
-        "target_component_code": "@Entry\n@Component\nstruct SliderExample {\n@State value: number = 0\n\nbuild() {\nColumn({ space: 8 }) {\nText('Value: ' + this.value.toString())\n.fontSize(24)\n\nSlider({\nvalue: this.value,\nmin: 0,\nmax: 100\n})\n.width('100%')\n.onChange((value: number, mode: SliderChangeMode) => {\nthis.value = value\n})\n}\n.width('100%')\n.height('100%')\n.padding({ top: 20, left: 10, right: 10 })\n}\n}",
+        "target_component_code": "@State sliderValue: number = 0\nbuild() {\nColumn() {\nText('Value: ' + this.sliderValue.toString())\n.id(\"textView\")\n.fontSize(24)\n\nSlider({\nmin: 0,\nmax: 100,\nvalue: this.sliderValue\n})\n.id(\"seekBar\")\n.width('100%')\n.onChange((value: number, mode: SliderChangeMode) => {\nthis.sliderValue = value\n})\n}\n.height('100%')\n.margin({ top: 20 })\n}",
         "target_component_description": "",
         "target_component_version": "12"
     }
