@@ -1,4 +1,7 @@
+import asyncio
+
 from sqlalchemy import event
+from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 from core.config.schema import DBConfig
@@ -25,14 +28,15 @@ class SessionManager:
         :param config: Database configuration.
         """
         self.config = config
-        self.engine = create_async_engine(
+        self.async_engine = create_async_engine(
             self.config.url, echo=config.debug_sql, echo_pool="debug" if config.debug_sql else None
         )
-        self.SessionClass = async_sessionmaker(self.engine, expire_on_commit=False)
-        self.session = None
+        self.AsyncSessionClass = async_sessionmaker(self.async_engine, expire_on_commit=False)
+        self.async_session = None
+
         self.recursion_depth = 0
 
-        event.listen(self.engine.sync_engine, "connect", self._on_connect)
+        event.listen(self.async_engine.sync_engine, "connect", self._on_connect)
 
     def _on_connect(self, dbapi_connection, _):
         """Connection event handler"""
@@ -45,31 +49,31 @@ class SessionManager:
             # by default.
             dbapi_connection.execute("pragma foreign_keys=on")
 
-    async def start(self) -> AsyncSession:
-        if self.session is not None:
+    async def async_start(self) -> AsyncSession:
+        if self.async_session is not None:
             self.recursion_depth += 1
             logger.warning(f"Re-entering database session (depth: {self.recursion_depth}), potential bug", stack_info=True)
-            return self.session
+            return self.async_session
 
-        self.session = self.SessionClass()
-        return self.session
+        self.async_session = self.AsyncSessionClass()
+        return self.async_session
 
-    async def close(self):
-        if self.session is None:
+    async def async_close(self):
+        if self.async_session is None:
             logger.warning("Closing database session that was never opened", stack_info=True)
             return
         if self.recursion_depth > 0:
             self.recursion_depth -= 1
             return
 
-        await self.session.close()
-        self.session = None
+        await self.async_session.close()
+        self.async_session = None
 
     async def __aenter__(self) -> AsyncSession:
-        return await self.start()
+        return await self.async_start()
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
-        return await self.close()
+        await self.async_close()
 
 
 __all__ = ["SessionManager"]

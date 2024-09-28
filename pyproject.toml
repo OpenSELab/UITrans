@@ -3,7 +3,7 @@ name = "harmony-pilot"
 version = "0.1.0"
 description = "Default template for PDM package"
 authors = [
-    {name = "王晨", email = "dawnwccc712@gmail.com"},
+    {name = "Wang Chen", email = "dawnwccc712@gmail.com"},
 ]
 dependencies = [
     "colorlog>=6.8.2",
@@ -38,3 +38,4 @@ distribution = false
 
 [tool.pytest.ini_options]
 asyncio_default_fixture_loop_scope = "function"
+addopts = "-s"

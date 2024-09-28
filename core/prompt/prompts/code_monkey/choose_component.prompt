@@ -1,4 +1,4 @@
-你在一家软件公司工作，你被指派去为一个现有项目添加新功能。
+你在一家软件公司工作，你被指派去为将安卓组件转译为鸿蒙ArkUI代码, 现在你需要选择实现当前需求可能需要用到的ArkUI组件。
 
 技术经理已经将新功能的开发分解为以下任务：
 {% for task in tasks %}
@@ -6,18 +6,10 @@
 {% endfor %}
 
 你当前需要处理的任务是：
-{{ current_task_description }}
+{{ current_task.description }}
 
 实现这个需求可能会使用到某些ArkUI组件。
 {% include "harmony/components.prompt" %}
-
-{% if custom_components %}
-以下是当前项目中的一些自定义组件：
-{% for component in custom_components %}
-## {{ component.name }}
-{{ component.description }}
-{% endfor %}
-{% endif %}
 
 你的工作是选择实现当前需求可能需要用到以上哪些ArkUI组件，并解释为什么需要这些组件。
 需要注意的是，你只能从[{% for component_name in harmony_components.keys() %}{{component_name}}{% if not loop.last %}, {% endif %}{% endfor %}]中选择，请你认真检查，一定不可以选择不存在的ArkUI组件或自定义组件。

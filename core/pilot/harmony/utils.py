@@ -4,6 +4,7 @@ from core.logger.runtime import get_logger
 from core.pilot.harmony.component.schema import ComponentEventReturn
 from core.pilot.harmony.model.types import TYPES, TypeModel
 from core.pilot.harmony.component.components import COMPONENTS
+from core.pilot.harmony.component import get_harmony_component
 
 logger = get_logger(name="Harmony Pilot Utils")
 
@@ -94,7 +95,7 @@ def get_related_types(type_name: str | List[str]) -> Dict[str, TypeModel]:
                     for property_type in property_types:
                         if property_type not in TYPES:
                             # TODO：这里忽略了基本类型和函数类型
-                            logger.warning(f"Type {property_name} not found")
+                            # logger.warning(f"Type {property_name} not found")
                             continue
                         if property_type not in related_types and property_type not in remaining_types:
                             remaining_types.append(property_type)
@@ -103,8 +104,11 @@ def get_related_types(type_name: str | List[str]) -> Dict[str, TypeModel]:
                 for type_name in temp_types:
                     if type_name not in TYPES:
                         # TODO：这里忽略了基本类型和函数类型
-                        logger.warning(f"Type {type_name} not found")
+                        # logger.warning(f"Type {type_name} not found")
                         continue
                     if type_name not in related_types and type_name not in remaining_types:
                         remaining_types.append(type_name)
     return related_types
+
+
+__all__ = ["get_component_related_types", "get_harmony_component"]

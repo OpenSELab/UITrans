@@ -17,7 +17,7 @@ from openai import OpenAI, AsyncOpenAI
 from core.config.config_loader import ConfigLoader
 from core.pilot.harmony.component.schema import ComponentDeclaration
 
-os.chdir(r"D:\Codes\Python\harmony-pilot")
+os.chdir("../")
 ConfigLoader.from_file("./config.yaml")
 llm_client_config = ConfigLoader.get_config().llm_config.get("deepseek")
 llm_client = AsyncOpenAI(
@@ -322,6 +322,7 @@ if __name__ == '__main__':
     urls = [
         # TODO: 有问题的
         # "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-canvasrenderingcontext2d-V5",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-composetitlebar-V5"
     ]
     for url in urls:
         asyncio.run(generate_component_declaration(url))

@@ -102,7 +102,7 @@ def translate_layout_test():
     # print(related_component)
     system_prompt = PromptLoader.get_prompt("code_monkey/system.prompt")
     translate_layout_prompt = PromptLoader.get_prompt(
-        "code_monkey/translate_layout.prompt",
+        "code_monkey/translate_android_component.prompt",
         tasks=layout_translation.tasks,
         current_task=layout_translation.tasks[current_task_index],
         android_layout=android_layout,
@@ -126,7 +126,7 @@ def translate_layout_test():
     current_task_index += 1
     messages.append({"content": response.choices[0].message.content, "role": "assistant"})
     translate_layout_prompt1 = PromptLoader.get_prompt(
-        "code_monkey/translate_layout.prompt",
+        "code_monkey/translate_android_component.prompt",
         tasks=layout_translation.tasks,
         current_task=layout_translation.tasks[current_task_index],
         android_layout=android_layout,
@@ -187,7 +187,7 @@ def translate_component_test():
     # android_layout["description"] = response.choices[0].message.content
     # print(response.choices[0].message.content)
     translate_layout_prompt = PromptLoader.get_prompt(
-        "code_monkey/translate_layout.prompt",
+        "code_monkey/translate_android_component.prompt",
         tasks=[current_task],
         current_task=current_task,
         android_layout=android_layout,

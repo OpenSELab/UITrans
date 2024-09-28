@@ -12,7 +12,9 @@ llm_client = LLMFactory.create_llm_from_config(llm_client_type="openai",
 llm_agent = LLMAgent(llm_client)
 
 
-def test_agent_list_files():
+def test_agent_tool_calls():
     llm_agent.register_tool(list_files)
-    response_message = llm_agent.receive("请列出目录core/prompt/prompts下的所有文件。")
-    print(response_message)
+    llm_agent.register_tool(read_file)
+    llm_agent.register_tool(create_file)
+    llm_agent.solve("请递归列出目录core/prompt/prompts下的所有文件，包括其子目录中的文件。并任意读取一个文件的内容。你应该先查看有哪些文件，然后再挑选一个文件查看内容。", sender="test")
+    llm_agent.print_chat_messages("test")

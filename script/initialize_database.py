@@ -14,11 +14,18 @@ config = ConfigLoader.from_file("config.yaml")
 
 async def init_db():
     session = SessionManager(config.db_config)
-    async with session.engine.begin() as conn:
+    async with session.async_engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
 
+async def drop_db():
+    session = SessionManager(config.db_config)
+    async with session.async_engine.begin() as conn:
+        await conn.run_sync(Base.metadata.drop_all)
+
+
 async def main():
+    await drop_db()
     await init_db()
     with open("script/initialize_database/component_table.json", "r", encoding="utf-8") as f:
         translations = json.loads(f.read())
@@ -38,8 +45,8 @@ async def main():
         ))
     async with SessionManager(config.db_config) as session:
         # await session.execute(TranslationTable.__table__.delete())
-        # session.add_all(translation_list)
-        # await session.commit()
+        session.add_all(translation_list)
+        await session.commit()
         result = await session.execute(select(TranslationTable))
         translations = result.scalars().all()
     print(translations)

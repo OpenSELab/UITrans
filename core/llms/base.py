@@ -35,6 +35,7 @@ class Tool(BaseModel):
     type: Literal["function"] = "function"
     function: ToolFunction
 
+
 class LLMResponseMessageToolCallFunction(BaseModel):
     name: str
     arguments: Dict[str, Any] | str

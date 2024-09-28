@@ -1,0 +1,28 @@
+# 响应结果示例：
+
+## 示例 #1
+```json
+{
+    "tasks": [
+        {
+            "description": "实现安卓布局组件TextView的转译，并保持布局和样式尽可能一致。"，
+            "done": false,
+            "component": {
+                "name": "TextView",
+                "content": "<TextView\n    android:id=\"@+id/textview_first\"\n    android:layout_width=\"wrap_content\"\n    android:layout_height=\"wrap_content\"\n    android:layout_marginTop=\"16dp\"\n    android:text=\"@string/lorem_ipsum\"\n    app:layout_constraintBottom_toBottomOf=\"parent\"\n    app:layout_constraintEnd_toEndOf=\"parent\"\n    app:layout_constraintStart_toStartOf=\"parent\"\n    app:layout_constraintTop_toBottomOf=\"@id/button_first\" />"
+                "description": "一个在Android布局文件中的TextView控件。该控件的id为textview_first，便于在代码中引用。其宽度和高度都设置为根据内容自动调整大小。控件顶部具有16dp的外边距，文本内容引用了资源文件中的lorem_ipsum字符串。该控件使用约束布局，并将底部、左右两侧分别对齐到父布局，同时顶部依赖于另一个ID为button_first的控件，从而实现灵活的布局控制。"
+            }
+        },
+        {
+            "description": "实现安卓布局组件CoordinatorLayout的转译，并保持布局和样式尽可能一致。"，
+            "done": false,
+            "component": {
+                "name": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                "content": "<androidx.coordinatorlayout.widget.CoordinatorLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:fitsSystemWindows=\"true\">",
+                "description": "一个在Android布局文件中的CoordinatorLayout控件。该控件的宽度和高度都设置为匹配父布局，并且适应系统窗口。"
+            }
+        }
+        ...
+    ]
+}
+```

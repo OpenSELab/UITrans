@@ -726,5 +726,48 @@
         "target_component_code": "@State sliderValue: number = 0\nbuild() {\nColumn() {\nText('Value: ' + this.sliderValue.toString())\n.id(\"textView\")\n.fontSize(24)\n\nSlider({\nmin: 0,\nmax: 100,\nvalue: this.sliderValue\n})\n.id(\"seekBar\")\n.width('100%')\n.onChange((value: number, mode: SliderChangeMode) => {\nthis.sliderValue = value\n})\n}\n.height('100%')\n.margin({ top: 20 })\n}",
         "target_component_description": "",
         "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "TextView",
+        "source_component_code": "<TextView\nandroid:id=\"@+id/textView1\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_marginTop=\"100dp\"\nandroid:singleLine=\"true\"\nandroid:ellipsize=\"marquee\"\nandroid:focusable=\"true\"\nandroid:focusableInTouchMode=\"true\"\nandroid:scrollHorizontally=\"true\"\nandroid:textSize=\"15sp\"\nandroid:text=\"雾霾天空，隐约雷鸣，盼有风雨来，能留你在此\" />",
+        "source_component_description": "用于显示文本内容的视图组件，支持多种文本样式和属性设置",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Text"
+        ],
+        "target_component_code": "Text('雾霾天空，隐约雷鸣，盼有风雨来，能留你在此')\n.id(\"textView1\")\n.width('100%')\n.margin({ top: '100vp' })\n.maxLines(1)\n.textOverflow({ overflow: TextOverflow.MARQUEE })\n.focusable(true)\n.fontSize(15)",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "ImageView",
+        "source_component_code": "<ImageView\nandroid:id=\"@+id/iv_show\"\nandroid:layout_width=\"500dp\"\nandroid:layout_height=\"250dp\"\nandroid:layout_marginTop=\"50dp\"\nandroid:layout_gravity=\"center\"\nandroid:background=\"#ff0000\"\nandroid:src=\"@drawable/img_2\" />",
+        "source_component_description": "用于显示图像的视图组件，支持多种图像缩放和对齐方式。",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Image"
+        ],
+        "target_component_code": "      Image($r('app.media.img_2'))\n.id('iv_show')\n.width('500vp')\n.height('250vp')\n.margin({ top: '50vp' })\n.backgroundColor('#ff0000')\n.objectFit(ImageFit.Contain)",
+        "target_component_description": "",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "Button",
+        "source_component_code": "<Button\nandroid:id=\"@+id/rounded_button\"\nandroid:layout_width=\"200dp\"\nandroid:layout_height=\"100dp\"\nandroid:text=\"Click Me\"\nandroid:textColor=\"@android:color/white\"\nandroid:textSize=\"18sp\"\nandroid:gravity=\"center\"\nandroid:layout_centerInParent=\"true\"/>",
+        "source_component_description": "用于触发用户操作的视图组件，支持自定义文本、背景和点击事件",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Button",
+            "Text"
+        ],
+        "target_component_code": "      Button() {\nText('Click Me')\n.fontColor(Color.White)\n.fontSize(18)\n.textAlign(TextAlign.Center)\n.width('100%')\n}\n.id('rounded_button')\n.width('200vp')\n.height('100vp')",
+        "target_component_description": "",
+        "target_component_version": "12"
     }
 ]

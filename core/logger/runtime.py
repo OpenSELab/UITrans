@@ -7,7 +7,7 @@ from core.config.schema import LoggerConfig
 BASE_LOG_DIR = r"D:\Codes\Python\harmony-pilot"
 # 日志配置
 default_logger_config = LoggerConfig(
-    level="INFO",
+    level="DEBUG",
     type="console",
     fmt="%(log_color)s%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     logfile=f"{BASE_LOG_DIR}/pilot_logs/%Y%m%d.log"

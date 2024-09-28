@@ -223,7 +223,7 @@ def test_breakdown_layout():
     # layout_translation = BreakdownLayoutTranslation.model_validate(json.loads())
     system_prompt = PromptLoader.get_prompt("developer/system.prompt")
     translate_layout_plan_prompt = PromptLoader.get_prompt(
-        "developer/breakdown_layout.prompt",
+        "developer/breakdown_android_layout.prompt",
         tasks=layout_translation.tasks,
         current_task=layout_translation.tasks[current_task_index],
         android_layout=layout_files[layout_translation.tasks[current_task_index].android],

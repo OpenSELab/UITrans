@@ -1,5 +1,4 @@
-以下是关于鸿蒙ArkUI API 12的组件基本信息。
-
+以下是关于鸿蒙ArkUI API 12的组件基本文档：
 {% for component_name, component_schema in harmony_components.items() %}
 ## {{ component_name }}
 {{ component_schema.description }}

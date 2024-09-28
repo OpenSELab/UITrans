@@ -136,7 +136,7 @@ JSON Schema: {'properties': {'description': {'description': '组件的描述', '
 // {{ 文件名，例如xxx.ets }}
 {{ 代码，包括功能与效果描述注释、关键注释等 }}
 """
-from typing import Optional, Dict
+from typing import Optional, Dict, List
 
 from core.pilot.harmony.component.defs.common.attributes import get_harmony_common_attributes
 from core.pilot.harmony.component.defs.basic_component import BASIC_COMPONENT
@@ -179,14 +179,15 @@ def _init_harmony_components():
         COMPONENTS[component_name] = component_schema
 
 
-def get_harmony_component(component_name: Optional[str] = None) -> Dict[str, ComponentDeclaration]:
-    if component_name is not None:
-        if COMPONENTS is None:
-            _init_harmony_components()
-        if component_name in COMPONENTS:
-            return {component_name: COMPONENTS[component_name]}
-        return {component_name: None}
-    return COMPONENTS
+def get_harmony_component(component_name: Optional[str | List[str]] = None) -> Dict[str, ComponentDeclaration]:
+    if COMPONENTS is None:
+        _init_harmony_components()
+    if component_name is None:
+        return COMPONENTS
+    if isinstance(component_name, list):
+        return {name: COMPONENTS[name] for name in component_name if name in COMPONENTS}
+    else:
+        return {component_name: COMPONENTS[component_name]} if component_name in COMPONENTS else {}
 
 
 _init_harmony_components()

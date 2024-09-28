@@ -20,7 +20,7 @@ except ImportError or ModuleNotFoundError:
 
 from core.logger.runtime import get_logger
 
-logger = get_logger(name=__name__)
+logger = get_logger(name="OpenAI Client")
 
 
 class OpenAIClient(LLMClient):
@@ -57,6 +57,10 @@ class OpenAIClient(LLMClient):
         # 其他请求参数
         self._merge_params(kwargs, params, allow_keys)
 
+        # 检查是否有工具
+        if "tools" in params and not params["tools"]:
+            del params["tools"]
+
         return params
 
     def do_create(self, **params) -> ChatCompletion:
@@ -69,9 +73,9 @@ class OpenAIClient(LLMClient):
                 model=self._model,
                 **params
             )
-            logger.debug(f"LLM 调用成功: {response}, 请求参数: {params}")
+            logger.debug(f"LLM ChatCompletion Finish: response: {response}, params: {params}")
         except Exception as e:
-            logger.error(f"LLM 调用失败: {e}, 请求参数: {params}")
+            logger.error(f"LLM ChatCompletion Error: error: {e}, params: {params}")
             raise e
 
         return response

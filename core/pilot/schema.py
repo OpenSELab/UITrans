@@ -15,7 +15,7 @@ class CommonBaseModel(BaseModel):
         matches = re.search(pattern, data)
         if matches:
             data = matches.group(1)
-        return cls.parse_raw(data)
+        return cls.model_validate_json(data)
 
     @classmethod
     def model_json_schema(
@@ -89,12 +89,39 @@ class BreakdownComponentTranslation(CommonBaseModel):
 
 class ChooseComponent(CommonBaseModel):
     components: List[str] = Field(description="选择的组件列表。")
+    explanation: str = Field(description="选择组件的解释。")
 
 
-class BreakdownLayoutTask(Task):
-    # component: List[str] = Field(description="涉及的鸿蒙组件名")
-    component: str = Field(description="待翻译的安卓组件布局代码。")
+class BreakdownAndroidLayoutComponent(CommonBaseModel):
+    name: str = Field(description="安卓组件的名称。")
+    content: str = Field(description="安卓组件布局代码。")
+    description: str = Field(description="组件的描述。")
 
 
-class BreakdownLayout(CommonBaseModel):
-    tasks: List[BreakdownLayoutTask] = Field(description="为实施整个计划而需要完成的任务列表。")
+class BreakdownAndroidLayoutTask(Task):
+    component: BreakdownAndroidLayoutComponent = Field(description="待翻译的安卓布局组件")
+
+
+class BreakdownAndroidLayout(CommonBaseModel):
+    tasks: List[BreakdownAndroidLayoutTask] = Field(description="为实施整个页面转译而需要完成的组件转译任务列表。")
+
+
+class TranslateAndroidComponent(CommonBaseModel):
+    android_component: str = Field(description="待转译的Android组件")
+    harmony_component: str = Field(description="转译后的Harmony组件")
+    harmony_component_description: str = Field(description="Harmony组件的描述")
+    explanation: str = Field(description="转译过程的解释")
+
+
+class Translation(CommonBaseModel):
+    description: str = Field(description="转译任务的描述")
+
+    source_component: str = Field(description="源组件")
+    source_component_code: str = Field(description="源组件代码")
+    source_component_description: str = Field(description="源组件描述")
+
+    target_component: List[str] = Field(description="目标组件")
+    target_component_code: str = Field(description="目标组件代码")
+    target_component_description: str = Field(description="目标组件描述")
+
+    explanation: str = Field(description="转译过程的解释")
