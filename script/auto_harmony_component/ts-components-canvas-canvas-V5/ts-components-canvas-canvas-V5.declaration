@@ -1,0 +1,63 @@
+{
+    "description": "提供画布组件，用于自定义绘制图形。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Canvas(context?: CanvasRenderingContext2D | DrawingRenderingContext)",
+            "params": {
+                "context": {
+                    "type": [
+                        "CanvasRenderingContext2D",
+                        "DrawingRenderingContext"
+                    ],
+                    "required": false,
+                    "description": "CanvasRenderingContext2D: 不支持多个Canvas共用一个CanvasRenderingContext2D对象，具体描述见CanvasRenderingContext2D对象。DrawingRenderingContext: 不支持多个Canvas共用一个DrawingRenderingContext对象，具体描述见DrawingRenderingContext对象。",
+                    "default": null
+                }
+            }
+        },
+        {
+            "description": "Canvas(context: CanvasRenderingContext2D | DrawingRenderingContext, imageAIOptions: ImageAIOptions)",
+            "params": {
+                "context": {
+                    "type": [
+                        "CanvasRenderingContext2D",
+                        "DrawingRenderingContext"
+                    ],
+                    "required": false,
+                    "description": "CanvasRenderingContext2D: 不支持多个Canvas共用一个CanvasRenderingContext2D对象，具体描述见CanvasRenderingContext2D对象。DrawingRenderingContext: 不支持多个Canvas共用一个DrawingRenderingContext对象，具体描述见DrawingRenderingContext对象。",
+                    "default": null
+                },
+                "imageAIOptions": {
+                    "type": "ImageAIOptions",
+                    "required": false,
+                    "description": "给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。",
+                    "default": null
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "enableAnalyzer12+": {
+            "description": "设置组件支持AI分析，需要搭配context中的StartImageAnalyzer和StopImageAnalyzer一起使用。不能和overlay属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。",
+            "params": {
+                "enable": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "组件支持AI分析，设置为true时，组件可进行AI分析。",
+                    "default": false
+                }
+            }
+        }
+    },
+    "events": {
+        "onReady": {
+            "description": "Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件回调，当该事件被触发时画布被清空，该事件之后Canvas组件宽高确定且可获取，可使用Canvas相关API进行绘制。当Canvas组件仅发生位置变化时，只触发onAreaChange事件、不触发onReady事件。onAreaChange事件在onReady事件后触发。",
+            "params": {},
+            "returns": null
+        }
+    },
+    "rules": null,
+    "examples": [],
+    "is_common_attrs": true
+}

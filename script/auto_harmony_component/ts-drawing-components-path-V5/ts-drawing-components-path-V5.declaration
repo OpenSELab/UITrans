@@ -1,0 +1,189 @@
+{
+    "description": "路径绘制组件，根据绘制路径生成封闭的自定义形状。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Path(value?: { width?: number | string; height?: number | string; commands?: string })",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": false,
+                    "description": "路径所在矩形的宽度。值为异常值或缺省时按照自身内容需要的宽度处理。",
+                    "default": null
+                },
+                "height": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": false,
+                    "description": "路径所在矩形的高度。值为异常值或缺省时按照自身内容需要的高度处理。",
+                    "default": null
+                },
+                "commands": {
+                    "type": "string",
+                    "required": false,
+                    "description": "路径绘制的命令字符串。默认值：''。异常值按照默认值处理。",
+                    "default": null
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "commands": {
+            "description": "设置路径绘制的命令字符串，单位为px。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "线条绘制的路径。",
+                    "default": null
+                }
+            }
+        },
+        "fill": {
+            "description": "设置填充区域颜色。异常值按照默认值处理。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "填充区域颜色。",
+                    "default": null
+                }
+            }
+        },
+        "fillOpacity": {
+            "description": "设置填充区域透明度。取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "填充区域透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "stroke": {
+            "description": "设置边框颜色，不设置时，默认没有边框线条。异常值不会绘制边框线条。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "边框颜色。",
+                    "default": null
+                }
+            }
+        },
+        "strokeDashArray": {
+            "description": "设置线条间隙。线段相交时可能会出现重叠现象。异常值按照默认值处理。",
+            "params": {
+                "value": {
+                    "type": "Array<any>",
+                    "required": true,
+                    "description": "线条间隙。",
+                    "default": []
+                }
+            }
+        },
+        "strokeDashOffset": {
+            "description": "设置线条绘制起点的偏移量。异常值按照默认值处理。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "线条绘制起点的偏移量。",
+                    "default": 0
+                }
+            }
+        },
+        "strokeLineCap": {
+            "description": "设置线条端点绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineCapStyle",
+                    "required": true,
+                    "description": "线条端点绘制样式。",
+                    "default": "LineCapStyle.Butt"
+                }
+            }
+        },
+        "strokeLineJoin": {
+            "description": "设置线条拐角绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineJoinStyle",
+                    "required": true,
+                    "description": "线条拐角绘制样式。",
+                    "default": "LineJoinStyle.Miter"
+                }
+            }
+        },
+        "strokeMiterLimit": {
+            "description": "设置斜接长度与边框宽度比值的极限值。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。该属性取值需在strokeLineJoin属性取值LineJoinStyle.Miter时生效。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "斜接长度与边框宽度比值的极限值。",
+                    "default": 4
+                }
+            }
+        },
+        "strokeOpacity": {
+            "description": "设置线条透明度。该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "线条透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "strokeWidth": {
+            "description": "设置线条宽度。该属性若为string类型, 暂不支持百分比，百分比按照1px处理。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "线条宽度。",
+                    "default": 1
+                }
+            }
+        },
+        "antiAlias": {
+            "description": "设置是否开启抗锯齿效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启抗锯齿效果。",
+                    "default": true
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        "/*\\n实现思路：\\n本示例展示了如何使用Path组件绘制不同类型的图形，包括直线、直线图形和曲线图形。通过设置不同的路径命令和属性，可以创建各种复杂的图形。\\n总体功能与效果描述：\\n展示三种不同类型的图形：直线、直线图形和曲线图形。每种图形都通过Path组件实现，并设置了不同的路径命令和样式属性。\\n*/\\n\\n// PathExample.ets\\n@Entry\\n@Component\\nstruct PathExample {\\n  build() {\\n    Column({ space: 10 }) {\\n      // 显示标题：直线\\n      Text('Straight line')\\n        .fontSize(11) // 设置字体大小\\n        .fontColor(0xCCCCCC) // 设置字体颜色\\n        .width('90%') // 设置宽度\\n\\n      // 绘制一条水平直线\\n      Path()\\n        .width('600px') // 设置宽度\\n        .height('10px') // 设置高度\\n        .commands('M0 0 L600 0') // 设置路径命令，从(0,0)到(600,0)绘制直线\\n        .stroke(Color.Black) // 设置描边颜色\\n        .strokeWidth(3) // 设置描边宽度\\n\\n      // 显示标题：直线图形\\n      Text('Straight line graph')\\n        .fontSize(11) // 设置字体大小\\n        .fontColor(0xCCCCCC) // 设置字体颜色\\n        .width('90%') // 设置宽度\\n\\n      // 绘制三个不同的直线图形\\n      Flex({ justifyContent: FlexAlign.SpaceBetween }) {\\n        Path()\\n          .width('210px') // 设置宽度\\n          .height('310px') // 设置高度\\n          .commands('M100 0 L200 240 L0 240 Z') // 设置路径命令，绘制三角形\\n          .fillOpacity(0) // 设置填充透明度\\n          .stroke(Color.Black) // 设置描边颜色\\n          .strokeWidth(3) // 设置描边宽度\\n        Path()\\n          .width('210px') // 设置宽度\\n          .height('310px') // 设置高度\\n          .commands('M0 0 H200 V200 H0 Z') // 设置路径命令，绘制矩形\\n          .fillOpacity(0) // 设置填充透明度\\n          .stroke(Color.Black) // 设置描边颜色\\n          .strokeWidth(3) // 设置描边宽度\\n        Path()\\n          .width('210px') // 设置宽度\\n          .height('310px') // 设置高度\\n          .commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z') // 设置路径命令，绘制五边形\\n          .fillOpacity(0) // 设置填充透明度\\n          .stroke(Color.Black) // 设置描边颜色\\n          .strokeWidth(3) // 设置描边宽度\\n      }.width('95%') // 设置Flex组件的宽度\\n\\n      // 显示标题：曲线图形\\n      Text('Curve graphics').fontSize(11).fontColor(0xCCCCCC).width('90%')\\n\\n      // 绘制三个不同的曲线图形\\n      Flex({ justifyContent: FlexAlign.SpaceBetween }) {\\n        Path()\\n          .width('250px') // 设置宽度\\n          .height('310px') // 设置高度\\n          .commands(\"M0 300 S100 0 240 300 Z\") // 设置路径命令，绘制贝塞尔曲线\\n          .fillOpacity(0) // 设置填充透明度\\n          .stroke(Color.Black) // 设置描边颜色\\n          .strokeWidth(3) // 设置描边宽度\\n        Path()\\n          .width('210px') // 设置宽度\\n          .height('310px') // 设置高度\\n          .commands('M0 150 C0 100 140 0 200 150 L100 300 Z') // 设置路径命令，绘制曲线图形\\n          .fillOpacity(0) // 设置填充透明度\\n          .stroke(Color.Black) // 设置描边颜色\\n          .strokeWidth(3) // 设置描边宽度\\n        Path()\\n          .width('210px') // 设置宽度\\n          .height('310px') // 设置高度\\n          .commands('M0 100 A30 20 20 0 0 200 100 Z') // 设置路径命令，绘制弧线图形\\n          .fillOpacity(0) // 设置填充透明度\\n          .stroke(Color.Black) // 设置描边颜色\\n          .strokeWidth(3) // 设置描边宽度\\n      }.width('95%') // 设置Flex组件的宽度\\n    }.width('100%') // 设置Column组件的宽度\\n    .margin({ top: 5 }) // 设置上边距\\n  }\\n}"
+    ],
+    "is_common_attrs": true
+}

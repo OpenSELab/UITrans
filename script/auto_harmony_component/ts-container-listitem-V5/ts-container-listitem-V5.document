@@ -1,0 +1,499 @@
+Title: ListItem-容器组件-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-listitem-V5
+
+Markdown Content:
+用来展示列表具体item，必须配合List来使用。
+
+说明
+
+*   该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+*   该组件的父组件只能是[List](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-list-V5)或者[ListItemGroup](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-listitemgroup-V5)。
+*   当ListItem配合LazyForEach使用时，ListItem子组件在ListItem创建时创建。配合if/else、ForEach使用时，或父组件为List/ListItemGroup时，ListItem子组件在ListItem布局时创建。
+
+接口
+--
+
+### ListItem10+
+
+ListItem(value?: ListItemOptions)
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| value | [ListItemOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-listitem-V5#listitemoptions10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | 否 | 为ListItem提供可选参数, 该对象内含有ListItemStyle枚举类型的style参数。 |
+
+### ListItem(deprecated)
+
+ListItem(value?: string)
+
+从API version 10开始, 该接口不再维护，推荐使用[ListItem10+](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-listitem-V5#listitem10)。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| value | string | 否 | 无 |
+
+### sticky(deprecated)
+
+sticky(value: Sticky)
+
+设置ListItem吸顶效果。
+
+从API version9开始废弃不再使用，推荐使用[List组件sticky属性](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-list-V5#%E5%B1%9E%E6%80%A7)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| value | [Sticky](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-listitem-V5#stickydeprecated%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 是 | ListItem吸顶效果。
+默认值：Sticky.None
+
+ |
+
+### editable(deprecated)
+
+editable(value: boolean | EditMode)
+
+设置当前ListItem元素是否可编辑，进入编辑模式后可删除或移动列表项。
+
+从API version9开始废弃不再使用，无替代接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| value | boolean | [EditMode](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-listitem-V5#editmodedeprecated%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 是 | ListItem元素是否可编辑。
+默认值：false
+
+ |
+
+### selectable8+
+
+selectable(value: boolean)
+
+设置当前ListItem元素是否可以被鼠标框选。外层List容器的鼠标框选开启时，ListItem的框选才生效。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| value | boolean | 是 | ListItem元素是否可以被鼠标框选。
+默认值：true
+
+ |
+
+### selected10+
+
+selected(value: boolean)
+
+设置当前ListItem选中状态。该属性支持[$$](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-two-way-sync-V5)双向绑定变量。该属性需要在设置[选中态样式](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-polymorphic-style-V5)前使用才能生效选中态样式。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| value | boolean | 是 | 当前ListItem选中状态。
+默认值：false
+
+ |
+
+### swipeAction9+
+
+swipeAction(value: SwipeActionOptions)
+
+用于设置ListItem的划出组件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+Sticky(deprecated)枚举说明
+----------------------
+
+从API version9开始废弃不再使用，推荐使用[List组件stickyStyle枚举](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-list-V5#stickystyle9%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 枚举值 | 描述 |
+| --- | --- | --- |
+| None | 0 | 无吸顶效果。 |
+| Normal | 1 | 当前item吸顶。 |
+| Opacity | 2 | 当前item吸顶显示透明度变化效果。 |
+
+EditMode(deprecated)枚举说明
+------------------------
+
+从API version9开始废弃不再使用，无替代接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 枚举值 | 描述 |
+| --- | --- | --- |
+| None | 0 | 编辑操作不限制。 |
+| Deletable | 1 | 可删除。 |
+| Movable | 2 | 可移动。 |
+
+SwipeEdgeEffect9+枚举说明
+---------------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 枚举值 | 描述 |
+| --- | --- | --- |
+| Spring | 0 | ListItem划动距离超过划出组件大小后可以继续划动。
+如果设置了删除区域，ListItem划动距离超过删除阈值后可以继续划动，
+
+松手后按照弹簧阻尼曲线回弹。
+
+ |
+| None | 1 | ListItem划动距离不能超过划出组件大小。
+
+如果设置了删除区域，ListItem划动距离不能超过删除阈值，
+
+并且在设置删除回调的情况下，达到删除阈值后松手触发删除回调。
+
+ |
+
+SwipeActionOptions9+对象说明
+------------------------
+
+start和end对应的@builder函数中顶层必须是单个组件，不能是if/else、ForEach、LazyForEach语句。
+
+滑动手势只在listItem区域上，如果子组件划出ListItem区域外，在ListItem以外部分不会响应划动手势。所以在多列模式下，建议不要将划出组件设置太宽。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| start | [CustomBuilder](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#custombuilder8) | [SwipeActionItem](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-listitem-V5#swipeactionitem10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | 否 | ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| end | [CustomBuilder](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#custombuilder8) | [SwipeActionItem](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-listitem-V5#swipeactionitem10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | 否 | ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| edgeEffect | [SwipeEdgeEffect](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-listitem-V5#swipeedgeeffect9%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 滑动效果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| onOffsetChange11+ | (offset: number) => void | 否 | 滑动操作偏移量更改时调用。
+
+**说明：**
+
+当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）位置发生变化触发，以vp为单位。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+
+SwipeActionItem10+对象说明
+----------------------
+
+List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选项或向左滑动时，item右边的长距离滑动删除选项。
+
+List水平布局，ListItem向上滑动，item下边的长距离滑动删除选项或向下滑动时，item上边的长距离滑动删除选项。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| actionAreaDistance | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 设置组件长距离滑动删除距离阈值。
+默认值：56vp
+
+**说明：**
+
+不支持设置百分比。
+
+删除距离阈值大于item宽度减去划出组件宽度，或删除距离阈值小于等于0就不会设置删除区域。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| onAction | () => void | 否 | 组件进入长距删除区后删除ListItem时调用，进入长距删除区后抬手时触发。
+
+**说明：**
+
+滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才会触发。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| onEnterActionArea | () => void | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| onExitActionArea | () => void | 否 | 当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| builder | [CustomBuilder](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#custombuilder8) | 否 | 当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| onStateChange11+ | (swipeActionState) => void | 否 | 当列表项滑动状态变化时候触发。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+
+ListItemOptions10+对象说明
+----------------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| style | [ListItemStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-listitem-V5#listitemstyle10%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 设置List组件卡片样式。
+默认值: ListItemStyle.NONE
+
+设置为ListItemStyle.NONE时无样式。
+
+设置为ListItemStyle.CARD时，建议配合[ListItemGroup](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-listitemgroup-V5)的ListItemGroupStyle.CARD同时使用，显示默认卡片样式。
+
+卡片样式下，ListItem默认规格：高度48vp，宽度100%，左右内边距8vp。如果需要实现ListItem高度自适应，可以把height设置为undefined。
+
+卡片样式下, 为卡片内的列表选项提供了默认的focus、hover、press、selected和disable样式。
+
+**说明：**
+
+当前卡片模式下，使用默认Axis.Vertical排列方向，如果listDirection属性设置为Axis.Horizontal，会导致显示混乱；List属性alignListItem默认为ListItemAlign.Center，居中对齐显示。
+
+ |
+
+ListItemStyle10+枚举说明
+--------------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 枚举值 | 描述 |
+| --- | --- | --- |
+| NONE | 0 | 无样式。 |
+| CARD | 1 | 显示默认卡片样式。 |
+
+SwipeActionState11+枚举说明
+-----------------------
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 枚举值 | 描述 |
+| --- | --- | --- |
+| COLLAPSED | 0 | 收起状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），
+向上或向下滑动（当列方向为“水平”时）时操作项处于隐藏状态。
+
+ |
+| EXPANDED | 1 | 展开状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），
+
+向上或向下滑动（当列方向为“水平”时）时操作项处于显示状态。
+
+**说明：**
+
+需要ListItem设置向左或向右滑动（当列表方向为“垂直”时），
+
+向上或向下滑动（当列方向为“水平”时）时显示的操作项。
+
+ |
+| ACTIONING | 2 | 长距离状态，当ListItem进入长距删除区后删除ListItem的状态。
+
+**说明**:
+
+滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才能进入该状态。
+
+ |
+
+事件
+--
+
+### onSelect8+
+
+onSelect(event: (isSelected: boolean) => void)
+
+ListItem元素被鼠标框选的状态改变时触发回调。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| isSelected | boolean | 是 | 进入鼠标框选范围即被选中返回true， 移出鼠标框选范围即未被选中返回false。 |
+
+示例
+--
+
+### 示例1
+
+2.  @Entry
+3.  @Component
+4.  struct ListItemExample {
+5.    private arr: number\[\] = \[0, 1, 2, 3, 4, 5, 6, 7, 8, 9\]
+
+7.    build() {
+8.      Column() {
+9.        List({ space: 20, initialIndex: 0 }) {
+10.          ForEach(this.arr, (item: number) => {
+11.            ListItem() {
+12.              Text('' + item)
+13.                .width('100%')
+14.                .height(100)
+15.                .fontSize(16)
+16.                .textAlign(TextAlign.Center)
+17.                .borderRadius(10)
+18.                .backgroundColor(0xFFFFFF)
+19.            }
+20.          }, (item: string) => item)
+21.        }.width('90%')
+22.        .scrollBar(BarState.Off)
+23.      }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
+24.    }
+25.  }
+
+![Image 1](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151258.17323051489222692155327141064125:50001231000000:2800:41EBA38C7A01653FEE0B903E095F3B189CF5BBEC3B8D75B06E3F485AF5CFCDF6.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+2.  @Entry
+3.  @Component
+4.  struct ListItemExample2 {
+5.    @State arr: number\[\] = \[0, 1, 2, 3, 4\]
+6.    @State enterEndDeleteAreaString: string = "not enterEndDeleteArea"
+7.    @State exitEndDeleteAreaString: string = "not exitEndDeleteArea"
+
+9.    @Builder itemEnd() {
+10.      Row() {
+11.        Button("Delete").margin("4vp")
+12.        Button("Set").margin("4vp")
+13.      }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
+14.    }
+
+16.    build() {
+17.      Column() {
+18.        List({ space: 10 }) {
+19.          ForEach(this.arr, (item: number) => {
+20.            ListItem() {
+21.              Text("item" + item)
+22.                .width('100%')
+23.                .height(100)
+24.                .fontSize(16)
+25.                .textAlign(TextAlign.Center)
+26.                .borderRadius(10)
+27.                .backgroundColor(0xFFFFFF)
+28.            }
+29.            .transition({ type: TransitionType.Delete, opacity: 0 })
+30.            .swipeAction({
+31.              end: {
+32.                builder: () => { this.itemEnd() },
+33.                onAction: () => {
+34.                  animateTo({ duration: 1000 }, () => {
+35.                    let index = this.arr.indexOf(item)
+36.                    this.arr.splice(index, 1)
+37.                  })
+38.                },
+39.                actionAreaDistance: 56,
+40.                onEnterActionArea: () => {
+41.                  this.enterEndDeleteAreaString = "enterEndDeleteArea"
+42.                  this.exitEndDeleteAreaString = "not exitEndDeleteArea"
+43.                },
+44.                onExitActionArea: () => {
+45.                  this.enterEndDeleteAreaString = "not enterEndDeleteArea"
+46.                  this.exitEndDeleteAreaString = "exitEndDeleteArea"
+47.                }
+48.              }
+49.            })
+50.          }, (item: string) => item)
+51.        }
+52.        Text(this.enterEndDeleteAreaString).fontSize(20)
+53.        Text(this.exitEndDeleteAreaString).fontSize(20)
+54.      }
+55.      .padding(10)
+56.      .backgroundColor(0xDCDCDC)
+57.      .width('100%')
+58.      .height('100%')
+59.    }
+60.  }
+
+![Image 2](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151258.91778776015024253617921424310434:50001231000000:2800:72F88FAE509810211C3158B6509ED4CA9C79CD4D48B9D3DC4AD4773A12CD2238.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例3
+
+2.  @Entry
+3.  @Component
+4.  struct ListItemExample3 {
+5.    build() {
+6.      Column() {
+7.        List({ space: "4vp", initialIndex: 0 }) {
+8.          ListItemGroup({ style: ListItemGroupStyle.CARD }) {
+9.            ForEach(\[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE\], (itemStyle: number, index?: number) => {
+10.              ListItem({ style: itemStyle }) {
+11.                Text("" + index)
+12.                  .width("100%")
+13.                  .textAlign(TextAlign.Center)
+14.              }
+15.            })
+16.          }
+17.          ForEach(\[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE\], (itemStyle: number, index?: number) => {
+18.            ListItem({ style: itemStyle }) {
+19.              Text("" + index)
+20.                .width("100%")
+21.                .textAlign(TextAlign.Center)
+22.            }
+23.          })
+24.        }
+25.        .width('100%')
+26.        .multiSelectable(true)
+27.        .backgroundColor(0xDCDCDC)
+28.      }
+29.      .width('100%')
+30.      .padding({ top: 5 })
+31.    }
+32.  }
+
+![Image 3](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151258.03409234943897840017374494544530:50001231000000:2800:7E0A3FAAFF12B5B74168D461AAD5C9EBFE40E9572FEEFF69F4EBC5E833002678.jpeg?needInitFileName=true?needInitFileName=true)

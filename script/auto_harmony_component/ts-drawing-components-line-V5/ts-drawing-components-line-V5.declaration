@@ -1,0 +1,208 @@
+{
+    "description": "直线绘制组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Line(value?: {width?: string | number, height?: string | number})",
+            "params": {
+                "value": {
+                    "type": [
+                        "string",
+                        "number"
+                    ],
+                    "required": false,
+                    "description": "宽度。值为异常值或缺省时按照自身内容需要的宽度处理。",
+                    "default": null
+                },
+                "height": {
+                    "type": [
+                        "string",
+                        "number"
+                    ],
+                    "required": false,
+                    "description": "高度。值为异常值或缺省时按照自身内容需要的高度处理。",
+                    "default": null
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "startPoint": {
+            "description": "设置直线起点坐标点（相对坐标），异常值按照默认值处理。",
+            "params": {
+                "value": {
+                    "type": [
+                        "Array<Length>"
+                    ],
+                    "required": true,
+                    "description": "直线起点坐标点（相对坐标），单位vp。",
+                    "default": [
+                        0,
+                        0
+                    ]
+                }
+            }
+        },
+        "endPoint": {
+            "description": "设置直线终点坐标点（相对坐标），异常值按照默认值处理。",
+            "params": {
+                "value": {
+                    "type": [
+                        "Array<Length>"
+                    ],
+                    "required": true,
+                    "description": "直线终点坐标点（相对坐标），单位vp。",
+                    "default": [
+                        0,
+                        0
+                    ]
+                }
+            }
+        },
+        "fill": {
+            "description": "设置填充区域颜色。Line组件无法形成闭合区域，该属性设置无效。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "填充区域颜色。",
+                    "default": null
+                }
+            }
+        },
+        "fillOpacity": {
+            "description": "设置填充区域透明度。Line组件无法形成闭合区域，该属性设置无效。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "填充区域透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "stroke": {
+            "description": "设置边框颜色，不设置时，默认没有边框。异常值不会绘制边框线条。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "边框颜色。",
+                    "default": null
+                }
+            }
+        },
+        "strokeDashArray": {
+            "description": "设置边框间隙。线段相交时可能会出现重叠现象。异常值按照默认值处理。",
+            "params": {
+                "value": {
+                    "type": [
+                        "Array<Length>"
+                    ],
+                    "required": true,
+                    "description": "边框间隙。",
+                    "default": []
+                }
+            }
+        },
+        "strokeDashOffset": {
+            "description": "设置边框绘制起点的偏移量。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "边框绘制起点的偏移量。",
+                    "default": 0
+                }
+            }
+        },
+        "strokeLineCap": {
+            "description": "设置边框端点绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineCapStyle",
+                    "required": true,
+                    "description": "边框端点绘制样式。",
+                    "default": "LineCapStyle.Butt"
+                }
+            }
+        },
+        "strokeLineJoin": {
+            "description": "设置边框拐角绘制样式。Line组件无法形成拐角，该属性设置无效。",
+            "params": {
+                "value": {
+                    "type": "LineJoinStyle",
+                    "required": true,
+                    "description": "边框拐角绘制样式。",
+                    "default": "LineJoinStyle.Miter"
+                }
+            }
+        },
+        "strokeMiterLimit": {
+            "description": "设置锐角绘制成斜角的极限值。Line组件无法设置锐角图形，该属性设置无效。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "锐角绘制成斜角的极限值。",
+                    "default": 4
+                }
+            }
+        },
+        "strokeOpacity": {
+            "description": "设置边框透明度。该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "边框透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "strokeWidth": {
+            "description": "设置边框宽度。该属性若为string类型, 暂不支持百分比，百分比按照1px处理。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "边框宽度。",
+                    "default": 1
+                }
+            }
+        },
+        "antiAlias": {
+            "description": "设置是否开启抗锯齿效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启抗锯齿效果。",
+                    "default": true
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        "/*\\n实现思路：\\n本示例展示了如何使用Line组件在鸿蒙ArkUI中绘制不同风格的线条。通过设置不同的strokeLineCap属性，展示线条端点的不同样式。\\n总体功能与效果描述：\\n示例中包含三个Line组件，每个组件通过设置不同的strokeLineCap属性（Butt、Round、Square）来展示线条端点的不同样式。\\n*/\\n\\n// LineExample1.ets\\n@Entry\\n@Component\\nstruct LineExample1 {\\n  build() {\\n    Row({ space: 10 }) {\\n      // 第一个Line组件，设置线条端点为Butt样式\\n      Line()\\n        .width(100) // 设置线条宽度\\n        .height(200) // 设置线条高度\\n        .startPoint([50, 50]) // 设置线条起始点\\n        .endPoint([50, 200]) // 设置线条结束点\\n        .stroke(Color.Black) // 设置线条颜色\\n        .strokeWidth(20) // 设置线条宽度\\n        .strokeLineCap(LineCapStyle.Butt) // 设置线条端点样式为Butt\\n        .backgroundColor('#F5F5F5') // 设置背景颜色\\n        .margin(10) // 设置外边距\\n\\n      // 第二个Line组件，设置线条端点为Round样式\\n      Line()\\n        .width(100) // 设置线条宽度\\n        .height(200) // 设置线条高度\\n        .startPoint([50, 50]) // 设置线条起始点\\n        .endPoint([50, 200]) // 设置线条结束点\\n        .stroke(Color.Black) // 设置线条颜色\\n        .strokeWidth(20) // 设置线条宽度\\n        .strokeLineCap(LineCapStyle.Round) // 设置线条端点样式为Round\\n        .backgroundColor('#F5F5F5') // 设置背景颜色\\n\\n      // 第三个Line组件，设置线条端点为Square样式\\n      Line()\\n        .width(100) // 设置线条宽度\\n        .height(200) // 设置线条高度\\n        .startPoint([50, 50]) // 设置线条起始点\\n        .endPoint([50, 200]) // 设置线条结束点\\n        .stroke(Color.Black) // 设置线条颜色\\n        .strokeWidth(20) // 设置线条宽度\\n        .strokeLineCap(LineCapStyle.Square) // 设置线条端点样式为Square\\n        .backgroundColor('#F5F5F5') // 设置背景颜色\\n    }\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例展示了如何使用Line组件在鸿蒙ArkUI中绘制不同样式和属性的线条。通过设置不同的起点、终点、颜色、宽度、透明度和虚线样式，可以创建多种视觉效果的线条。\\n\\n总体功能与效果描述：\\n示例中包含了四个Line组件，每个组件展示了不同的线条样式，包括不同的起点和终点、颜色、宽度、透明度和虚线样式。\\n*/\\n\\n// LineExample.ets\\n@Entry\\n@Component\\nstruct LineExample {\\n  build() {\\n    Column({ space: 10 }) {\\n      // 第一条线：黑色线条，起点(0,0)，终点(50,100)，背景色为浅灰色\\n      Line()\\n        .width(200) // 设置线条的宽度\\n        .height(150) // 设置线条的高度\\n        .startPoint([0, 0]) // 设置线条的起点\\n        .endPoint([50, 100]) // 设置线条的终点\\n        .stroke(Color.Black) // 设置线条的颜色\\n        .backgroundColor('#F5F5F5') // 设置背景色\\n\\n      // 第二条线：橙色线条，起点(50,50)，终点(150,150)，宽度为5，半透明，背景色为浅灰色\\n      Line()\\n        .width(200)\\n        .height(150)\\n        .startPoint([50, 50])\\n        .endPoint([150, 150])\\n        .strokeWidth(5) // 设置线条的宽度\\n        .stroke(Color.Orange) // 设置线条的颜色\\n        .strokeOpacity(0.5) // 设置线条的透明度\\n        .backgroundColor('#F5F5F5')\\n\\n      // 第三条线：黑色线条，起点(0,0)，终点(100,100)，宽度为3，虚线样式，背景色为浅灰色\\n      Line()\\n        .width(200)\\n        .height(150)\\n        .startPoint([0, 0])\\n        .endPoint([100, 100])\\n        .stroke(Color.Black)\\n        .strokeWidth(3)\\n        .strokeDashArray([10, 3]) // 设置虚线样式\\n        .strokeDashOffset(5) // 设置虚线偏移\\n        .backgroundColor('#F5F5F5')\\n\\n      // 第四条线：黑色线条，起点(0,0)，终点(100,100)，宽度为3，虚线样式，背景色为浅灰色\\n      Line()\\n        .width(50)\\n        .height(50)\\n        .startPoint([0, 0])\\n        .endPoint([100, 100])\\n        .stroke(Color.Black)\\n        .strokeWidth(3)\\n        .strokeDashArray([10, 3])\\n        .backgroundColor('#F5F5F5')\\n    }\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例展示了如何使用Line组件绘制不同样式的线条。通过设置不同的属性，如startPoint、endPoint、stroke、strokeWidth和strokeDashArray，可以创建出不同外观的线条。\\n总体功能与效果描述：\\n示例中包含了五个Line组件，每个组件展示了不同的线条样式，包括实线、虚线以及不同间隔的虚线。\\n*/\\n\\n// LineExample.ets\\n@Entry\\n@Component\\nstruct LineExample {\\n  build() {\\n    Column() {\\n      // 第一个Line组件，绘制一条黑色实线\\n      Line()\\n        .width(300) // 设置线条的宽度为300\\n        .height(30) // 设置线条的高度为30\\n        .startPoint([50, 30]) // 设置线条的起始点为(50, 30)\\n        .endPoint([300, 30]) // 设置线条的结束点为(300, 30)\\n        .stroke(Color.Black) // 设置线条的颜色为黑色\\n        .strokeWidth(10) // 设置线条的宽度为10\\n\\n      // 第二个Line组件，绘制一条黑色虚线\\n      Line()\\n        .width(300) // 设置线条的宽度为300\\n        .height(30) // 设置线条的高度为30\\n        .startPoint([50, 20]) // 设置线条的起始点为(50, 20)\\n        .endPoint([300, 20]) // 设置线条的结束点为(300, 20)\\n        .stroke(Color.Black) // 设置线条的颜色为黑色\\n        .strokeWidth(10) // 设置线条的宽度为10\\n        .strokeDashArray([50]) // 设置虚线的样式，间隔为50\\n\\n      // 第三个Line组件，绘制一条黑色虚线，间隔为50和10\\n      Line()\\n        .width(300) // 设置线条的宽度为300\\n        .height(30) // 设置线条的高度为30\\n        .startPoint([50, 20]) // 设置线条的起始点为(50, 20)\\n        .endPoint([300, 20]) // 设置线条的结束点为(300, 20)\\n        .stroke(Color.Black) // 设置线条的颜色为黑色\\n        .strokeWidth(10) // 设置线条的宽度为10\\n        .strokeDashArray([50, 10]) // 设置虚线的样式，间隔为50和10\\n\\n      // 第四个Line组件，绘制一条黑色虚线，间隔为50、10和20\\n      Line()\\n        .width(300) // 设置线条的宽度为300\\n        .height(30) // 设置线条的高度为30\\n        .startPoint([50, 20]) // 设置线条的起始点为(50, 20)\\n        .endPoint([300, 20]) // 设置线条的结束点为(300, 20)\\n        .stroke(Color.Black) // 设置线条的颜色为黑色\\n        .strokeWidth(10) // 设置线条的宽度为10\\n        .strokeDashArray([50, 10, 20]) // 设置虚线的样式，间隔为50、10和20\\n\\n      // 第五个Line组件，绘制一条黑色虚线，间隔为50、10、20和30\\n      Line()\\n        .width(300) // 设置线条的宽度为300\\n        .height(30) // 设置线条的高度为30\\n        .startPoint([50, 20]) // 设置线条的起始点为(50, 20)\\n        .endPoint([300, 20]) // 设置线条的结束点为(300, 20)\\n        .stroke(Color.Black) // 设置线条的颜色为黑色\\n        .strokeWidth(10) // 设置线条的宽度为10\\n        .strokeDashArray([50, 10, 20, 30]) // 设置虚线的样式，间隔为50、10、20和30\\n    }\\n  }\\n}"
+    ],
+    "is_common_attrs": true
+}

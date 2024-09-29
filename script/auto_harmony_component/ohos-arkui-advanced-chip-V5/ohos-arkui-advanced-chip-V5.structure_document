@@ -1,0 +1,177 @@
+{
+    "description": "操作块组件，用于搜索框历史记录或者邮件发送列表等场景。",
+    "interfaces": [
+        {
+            "description": "Chip({options: ChipOptions})",
+            "params": {
+                "options": {
+                    "type": "ChipOptions",
+                    "required": true,
+                    "description": "定义chip组件的参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "size": {
+            "description": "操作块尺寸。",
+            "params": {
+                "size": {
+                    "type": ["ChipSize", "SizeOptions"],
+                    "required": false,
+                    "description": "操作块尺寸。",
+                    "default": "ChipSize.NORMAL"
+                }
+            }
+        },
+        "enabled": {
+            "description": "操作块是否可选中。",
+            "params": {
+                "enabled": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "操作块是否可选中。",
+                    "default": true
+                }
+            }
+        },
+        "activated": {
+            "description": "操作块是否为激活态。",
+            "params": {
+                "activated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "操作块是否为激活态。",
+                    "default": false
+                }
+            }
+        },
+        "prefixIcon": {
+            "description": "前缀图标属性。",
+            "params": {
+                "prefixIcon": {
+                    "type": "PrefixIconOptions",
+                    "required": false,
+                    "description": "前缀图标属性。"
+                }
+            }
+        },
+        "prefixSymbol": {
+            "description": "前缀图标属性，symbol类型。",
+            "params": {
+                "prefixSymbol": {
+                    "type": "ChipSymbolGlyphOptions",
+                    "required": false,
+                    "description": "前缀图标属性，symbol类型。"
+                }
+            }
+        },
+        "label": {
+            "description": "文本属性。",
+            "params": {
+                "label": {
+                    "type": "LabelOptions",
+                    "required": true,
+                    "description": "文本属性。"
+                }
+            }
+        },
+        "suffixIcon": {
+            "description": "后缀图标属性。",
+            "params": {
+                "suffixIcon": {
+                    "type": "SuffixIconOptions",
+                    "required": false,
+                    "description": "后缀图标属性。"
+                }
+            }
+        },
+        "suffixSymbol": {
+            "description": "后缀图标属性，symbol类型。",
+            "params": {
+                "suffixSymbol": {
+                    "type": "ChipSymbolGlyphOptions",
+                    "required": false,
+                    "description": "后缀图标属性，symbol类型。"
+                }
+            }
+        },
+        "backgroundColor": {
+            "description": "操作块背景颜色。",
+            "params": {
+                "backgroundColor": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "操作块背景颜色。",
+                    "default": "$r('sys.color.ohos_id_color_button_normal')"
+                }
+            }
+        },
+        "activatedBackgroundColor": {
+            "description": "操作块激活时的背景颜色。",
+            "params": {
+                "activatedBackgroundColor": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "操作块激活时的背景颜色。",
+                    "default": "$r('sys.color.ohos_id_color_emphasize')"
+                }
+            }
+        },
+        "borderRadius": {
+            "description": "操作块背景圆角半径大小，不支持百分比。",
+            "params": {
+                "borderRadius": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "操作块背景圆角半径大小，不支持百分比。",
+                    "default": "$r('sys.float.ohos_id_corner_radius_button')"
+                }
+            }
+        },
+        "allowClose": {
+            "description": "删除图标是否显示。",
+            "params": {
+                "allowClose": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "删除图标是否显示。",
+                    "default": true
+                }
+            }
+        }
+    },
+    "events": {
+        "onClose": {
+            "description": "默认删除图标点击事件。",
+            "params": {
+                "onClose": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "默认删除图标点击事件。"
+                }
+            }
+        },
+        "onClicked": {
+            "description": "操作块点击事件。",
+            "params": {
+                "onClicked": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "操作块点击事件。"
+                }
+            }
+        },
+        "direction": {
+            "description": "布局方向。",
+            "params": {
+                "direction": {
+                    "type": "Direction",
+                    "required": false,
+                    "description": "布局方向。",
+                    "default": "Direction.Auto"
+                }
+            }
+        }
+    }
+}

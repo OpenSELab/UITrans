@@ -1,0 +1,39 @@
+{
+    "description": "路径对象，支持通过对象的接口进行路径的描述，并通过Canvas的stroke接口或者fill接口进行绘制。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Path2D(unit?: LengthMetricsUnit)",
+            "params": {
+                "unit": {
+                    "type": "LengthMetricsUnit",
+                    "required": false,
+                    "description": "路径的单位。",
+                    "default": null
+                }
+            }
+        },
+        {
+            "description": "Path2D(description: string, unit?: LengthMetricsUnit)",
+            "params": {
+                "description": {
+                    "type": "string",
+                    "required": true,
+                    "description": "符合SVG路径描述规范的路径字符串。",
+                    "default": null
+                },
+                "unit": {
+                    "type": "LengthMetricsUnit",
+                    "required": false,
+                    "description": "路径的单位。",
+                    "default": null
+                }
+            }
+        }
+    ],
+    "attributes": {},
+    "events": {},
+    "rules": null,
+    "examples": [],
+    "is_common_attrs": false
+}

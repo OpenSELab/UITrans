@@ -1,0 +1,495 @@
+Title: @ohos.arkui.advanced.Chip (操作块组件)-高级组件-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chip-V5
+
+Markdown Content:
+操作块，用于搜索框历史记录或者邮件发送列表等场景。
+
+说明
+
+该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+Chip({options:ChipOptions})
+
+**装饰器类型：**@Builder
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数**：
+
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
+| --- | --- | --- | --- | --- |
+| options | [ChipOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chip-V5#chipoptions) | 是 | @Builder | 定义chip组件的参数。 |
+
+ChipOptions
+-----------
+
+ChipOptions定义chip的样式及具体式样参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| size | [ChipSize](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chip-V5#chipsize) | [SizeOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#sizeoptions) | 否 | 操作块尺寸。
+默认值：ChipSize：ChipSize.NORMAL，
+
+SizeOptions类型参数不支持百分比设置。
+
+ |
+| enabled | boolean | 否 | 操作块是否可选中。
+
+默认值：true
+
+ |
+| activated12+ | boolean | 否 | 操作块是否为激活态。
+
+默认值：false
+
+ |
+| prefixIcon | [PrefixIconOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chip-V5#prefixiconoptions) | 否 | 前缀图标属性。 |
+| prefixSymbol12+ | [ChipSymbolGlyphOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chip-V5#chipsymbolglyphoptions12) | 否 | 前缀图标属性，symbol类型。 |
+| label | [LabelOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chip-V5#labeloptions) | 是 | 文本属性。 |
+| suffixIcon | [SuffixIconOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chip-V5#suffixiconoptions) | 否 | 后缀图标属性。 |
+| suffixSymbol12+ | [ChipSymbolGlyphOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chip-V5#chipsymbolglyphoptions12) | 否 | 后缀图标属性，symbol类型。 |
+| backgroundColor | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 操作块背景颜色。
+
+默认值：$r('sys.color.ohos\_id\_color\_button\_normal')
+
+ |
+| activatedBackgroundColor12+ | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 操作块激活时的背景颜色。
+
+默认值：$r('sys.color.ohos\_id\_color\_emphasize')。
+
+ |
+| borderRadius | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10) | 否 | 操作块背景圆角半径大小，不支持百分比。
+
+默认值：$r('sys.float.ohos\_id\_corner\_radius\_button')
+
+ |
+| allowClose | boolean | 否 | 删除图标是否显示。
+
+默认值：true
+
+ |
+| onClose | ()=>void | 否 | 默认删除图标点击事件。 |
+| onClicked12+ | ()=>void | 否 | 操作块点击事件。 |
+| direction12+ | [Direction](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#direction) | 否 | 布局方向。
+
+默认值：Direction.Auto
+
+ |
+
+说明
+
+1.suffixSymbol有传入参数时，suffixIcon和allowClose不生效；suffixSymbol没有传入参数、suffixIcon有传入参数时，allowClose不生效；suffixSymbol和suffixIcon都没有传入参数时，allowClose决定是否显示删除图标。
+
+2.backgroundColor和activatedBackgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
+
+3.prefixSymbol/suffixSymbol的fontColor默认值，normalFontColor: \[$r('sys.color.ohos\_id\_color\_primary')\]、activatedFontColor: \[$r('sys.color.ohos\_id\_color\_text\_primary\_contrary')\]。fontColor默认值为16。
+
+4.prefixIcon的fillColor默认值：$r('sys.color.ohos\_id\_color\_secondary')，suffixIcon的fillColor默认值：$r('sys.color.ohos\_id\_color\_primary')。fillColor对颜色的解析与Image组件保持一致。
+
+5.prefixIcon的activatedFillColor默认值：$r('sys.color.ohos\_id\_color\_text\_primary\_contrary')，suffixIcon的activatedFillColor默认值：$r('sys.color.ohos\_id\_color\_text\_primary\_contrary')。activatedFillColor对颜色的解析与Image组件保持一致。
+
+ChipSize
+--------
+
+ChipSize是chip可指定的尺寸类型，如普通型Chip。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 描述 |
+| --- | --- | --- |
+| NORMAL | "NORMAL" | normal尺寸操作块。 |
+| SMALL | "SMALL" | small尺寸操作块。 |
+
+IconCommonOptions
+-----------------
+
+IconCommonOptions定义图标的共通属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+说明
+
+仅在图片格式为svg时，fillColor和activatedFillColor生效。
+
+PrefixIconOptions
+-----------------
+
+PrefixIconOptions定义前缀图标的属性。
+
+继承于[IconCommonOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chip-V5#iconcommonoptions)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+SuffixIconOptions
+-----------------
+
+SuffixIconOptions定义后缀图标的属性。
+
+继承于[IconCommonOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chip-V5#iconcommonoptions)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| action | () => void | 否 | 后缀图标设定事件。 |
+
+ChipSymbolGlyphOptions12+
+-------------------------
+
+ChipSymbolGlyphOptions定义前缀图标和后缀图标的属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+说明
+
+不支持通过symbolEffect修改动效类型和effectStrategy设置动效。
+
+LabelOptions
+------------
+
+LabelOptions定义文本的属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| text | string | 是 | 文本文字内容。 |
+| fontSize | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10) | 否 | 文字字号，不支持百分比。
+默认值：$r('sys.float.ohos\_id\_text\_size\_button2')
+
+ |
+| fontColor | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 文字颜色。
+
+默认值：$r('sys.color.ohos\_id\_color\_text\_primary')
+
+ |
+| activatedFontColor12+ | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 操作块激活时的文字颜色。
+
+默认值：$r('sys.color.ohos\_id\_color\_text\_primary\_contrary')
+
+ |
+| fontFamily | string | 否 | 文字字体。
+
+默认值："HarmonyOS Sans"
+
+ |
+| labelMargin | [LabelMarginOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chip-V5#labelmarginoptions) | 否 | 文本与左右侧图标之间间距。 |
+| localizedLabelMargin12+ | [LocalizedLabelMarginOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chip-V5#localizedlabelmarginoptions12) | 否 | 本地化文本与左右侧图标之间间距。
+
+默认值：{
+
+start: LengthMetrics.vp(6), end: LengthMetrics.vp(6)
+
+}
+
+ |
+
+LabelMarginOptions
+------------------
+
+LabelMarginOptions定义文本与左右侧图标之间间距。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+LocalizedLabelMarginOptions12+
+------------------------------
+
+LocalizedLabelMarginOptions定义本地化文本与左右侧图标之间间距。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+示例
+--
+
+### 示例1
+
+自定义删除图标的操作块。
+
+1.  import { Chip, ChipSize } from '@kit.ArkUI';
+
+3.  @Entry
+4.  @Component
+5.  struct Index {
+6.    build() {
+7.      Column({ space: 10 }) {
+8.        Chip({
+9.          prefixIcon: {
+10.            src: $r('app.media.chips'),
+11.            size: { width: 16, height: 16 },
+12.            fillColor: Color.Red
+13.          },
+14.          label: {
+15.            text: "操作块",
+16.            fontSize: 12,
+17.            fontColor: Color.Blue,
+18.            fontFamily: "HarmonyOS Sans",
+19.            labelMargin: { left: 20, right: 30 }
+20.          },
+21.          suffixIcon: {
+22.            src: $r('app.media.close'),
+23.            size: { width: 16, height: 16 },
+24.            fillColor: Color.Red
+25.          },
+26.          size: ChipSize.NORMAL,
+27.          allowClose: false,
+28.          enabled: true,
+29.          backgroundColor: $r('sys.color.ohos\_id\_color\_button\_normal'),
+30.          borderRadius: $r('sys.float.ohos\_id\_corner\_radius\_button')
+31.        })
+32.      }
+33.    }
+34.  }
+
+![Image 1](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122253.83627523786443489118803537370122:50001231000000:2800:AF9AB4DF417569E3971E3DAD61B6991D8250275FFC3C3BC8665EA5BC8A79BB85.png?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+使用默认删除图标的操作块。
+
+1.  import { Chip, ChipSize } from '@kit.ArkUI';
+
+3.  @Entry
+4.  @Component
+5.  struct Index {
+6.    build() {
+7.      Column({ space: 10 }) {
+8.        Chip({
+9.          prefixIcon: {
+10.            src: $r('app.media.chips'),
+11.            size: { width: 16, height: 16 },
+12.            fillColor: Color.Blue
+13.          },
+14.          label: {
+15.            text: "操作块",
+16.            fontSize: 12,
+17.            fontColor: Color.Blue,
+18.            fontFamily: "HarmonyOS Sans",
+19.            labelMargin: { left: 20, right: 30 }
+20.          },
+21.          size: ChipSize.NORMAL,
+22.          allowClose: true,
+23.          enabled: true,
+24.          backgroundColor: $r('sys.color.ohos\_id\_color\_button\_normal'),
+25.          borderRadius: $r('sys.float.ohos\_id\_corner\_radius\_button')
+26.        })
+27.      }
+28.    }
+29.  }
+
+![Image 2](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122253.53572943074715029369600176131644:50001231000000:2800:EB03CB5BA8E36816AE4E3945EB45331B97288D77F51AA3B8FED396BEECCF1AA7.png?needInitFileName=true?needInitFileName=true)
+
+### 示例3
+
+不显示删除图标的操作块。
+
+1.  import { Chip, ChipSize } from '@kit.ArkUI';
+
+3.  @Entry
+4.  @Component
+5.  struct Index {
+6.    build() {
+7.      Column({ space: 10 }) {
+8.        Chip({
+9.          prefixIcon: {
+10.            src: $r('app.media.chips'),
+11.            size: { width: 16, height: 16 },
+12.            fillColor: Color.Blue
+13.          },
+14.          label: {
+15.            text: "操作块",
+16.            fontSize: 12,
+17.            fontColor: Color.Blue,
+18.            fontFamily: "HarmonyOS Sans",
+19.            labelMargin: { left: 20, right: 30 }
+20.          },
+21.          size: ChipSize.SMALL,
+22.          allowClose: false,
+23.          enabled: true,
+24.          backgroundColor: $r('sys.color.ohos\_id\_color\_button\_normal'),
+25.          borderRadius: $r('sys.float.ohos\_id\_corner\_radius\_button'),
+26.          onClose:()=>{
+27.            console.log("chip on close")
+28.        }
+29.        })
+30.      }
+31.    }
+32.  }
+
+![Image 3](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122254.07473488912777262108883762897737:50001231000000:2800:ACC4F6FEA48D897CD8B46991B7D4B88F228898D46846A57C663B1368856F121C.png?needInitFileName=true?needInitFileName=true)
+
+### 示例4
+
+激活态操作块。
+
+1.  import { Chip, ChipSize } from '@kit.ArkUI';
+
+3.  @Entry
+4.  @Component
+5.  struct Index {
+6.    @State isActivated: boolean = false
+
+8.    build() {
+9.      Column({ space: 10 }) {
+10.        Chip({
+11.          prefixIcon: {
+12.            src: $r('app.media.chips'),
+13.            size: { width: 16, height: 16 },
+14.            fillColor: Color.Blue,
+15.            activatedFillColor: $r('sys.color.ohos\_id\_color\_text\_primary\_contrary')
+16.          },
+17.          label: {
+18.            text: "操作块",
+19.            fontSize: 12,
+20.            fontColor: Color.Blue,
+21.            activatedFontColor: $r('sys.color.ohos\_id\_color\_text\_primary\_contrary'),
+22.            fontFamily: "HarmonyOS Sans",
+23.            labelMargin: { left: 20, right: 30 }
+24.          },
+25.          size: ChipSize.NORMAL,
+26.          allowClose: true,
+27.          enabled: true,
+28.          activated: this.isActivated,
+29.          backgroundColor: $r('sys.color.ohos\_id\_color\_button\_normal'),
+30.          activatedBackgroundColor: $r('sys.color.ohos\_id\_color\_emphasize'),
+31.          borderRadius: $r('sys.float.ohos\_id\_corner\_radius\_button'),
+32.          onClose:()=>{
+33.            console.log("chip on close")
+34.          },
+35.          onClicked:()=>{
+36.            console.log("chip on clicked")
+37.          }
+38.        })
+
+40.        Button('改变激活状态').onClick(()=>{
+41.          this.isActivated = !this.isActivated
+42.        })
+43.      }
+44.    }
+45.  }
+
+![Image 4](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122254.41642403195511622370712048519774:50001231000000:2800:C10A2DF0BDCFBA6700FB5D942E50F155307CBAD0088C112947D576EC2CFCBD80.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例5
+
+Chip组件的前缀、后缀图标使用symbol类型资源展示。
+
+1.  import { Chip, ChipSize, SymbolGlyphModifier } from '@kit.ArkUI';
+
+3.  @Entry
+4.  @Component
+5.  struct Index {
+6.    @State isActivated: boolean = false
+
+8.    build() {
+9.      Column({ space: 10 }) {
+10.        Chip({
+11.          prefixIcon: {
+12.            src: $r('app.media.chips'),
+13.            size: { width: 16, height: 16 },
+14.            fillColor: Color.Blue,
+15.            activatedFillColor: $r('sys.color.ohos\_id\_color\_text\_primary\_contrary')
+16.          },
+17.          prefixSymbol: {
+18.            normal: new SymbolGlyphModifier($r('sys.symbol.ohos\_star')).fontSize(16).fontColor(\[Color.Green\]),
+19.            activated: new SymbolGlyphModifier($r('sys.symbol.ohos\_star')).fontSize(16).fontColor(\[Color.Red\]),
+20.          },
+21.          label: {
+22.            text: "操作块",
+23.            fontSize: 12,
+24.            fontColor: Color.Blue,
+25.            activatedFontColor: $r('sys.color.ohos\_id\_color\_text\_primary\_contrary'),
+26.            fontFamily: "HarmonyOS Sans",
+27.            labelMargin: { left: 20, right: 30 },
+28.          },
+29.          size: ChipSize.NORMAL,
+30.          allowClose: true,
+31.          enabled: true,
+32.          activated: this.isActivated,
+33.          backgroundColor: $r('sys.color.ohos\_id\_color\_button\_normal'),
+34.          activatedBackgroundColor: $r('sys.color.ohos\_id\_color\_emphasize'),
+35.          borderRadius: $r('sys.float.ohos\_id\_corner\_radius\_button'),
+36.          onClose:()=>{
+37.            console.log("chip on close")
+38.          },
+39.          onClicked:()=>{
+40.            console.log("chip on clicked")
+41.          }
+42.        })
+
+44.        Button('改变激活状态').onClick(()=>{
+45.          this.isActivated = !this.isActivated
+46.        })
+47.      }
+48.    }
+49.  }
+
+![Image 5](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122254.44540114784726586410998238432992:50001231000000:2800:DE813BCD9F4695395218B94DD2759D69DF8EE2F0E67A9DFB1D6AC1A2536A71D5.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例6
+
+Chip布局镜像化展示
+
+1.  import { Chip, ChipSize,LengthMetrics } from '@kit.ArkUI';
+
+3.  @Entry
+4.  @Component
+5.  struct ChipPage {
+6.    @State message: string = 'Hello World';
+
+8.    build() {
+9.      Column() {
+10.        Chip({
+11.          direction: Direction.Rtl,
+12.          prefixIcon: {
+13.            src: $r('app.media.chips'),
+14.            size: { width: 16, height: 16 },
+15.            fillColor: Color.Red,
+16.          },
+17.          label: {
+18.            text: "操作块",
+19.            fontSize: 12,
+20.            fontColor: Color.Blue,
+21.            fontFamily: "HarmonyOS Sans",
+22.            localizedLabelMargin: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) },
+23.          },
+24.          suffixIcon: {
+25.            src: $r('app.media.close'),
+26.            size: { width: 16, height: 16 },
+27.            fillColor: Color.Red,
+28.          },
+29.          size: ChipSize.NORMAL,
+30.          allowClose: false,
+31.          enabled: true,
+32.          backgroundColor: $r('sys.color.ohos\_id\_color\_button\_normal'),
+33.          borderRadius: $r('sys.float.ohos\_id\_corner\_radius\_button')
+34.        })
+35.      }.justifyContent(FlexAlign.Center)
+36.      .width('100%')
+37.      .height('100%')
+38.    }
+39.  }
+
+![Image 6](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122254.41098160038378054752836508800625:50001231000000:2800:E2BCA55A16D647DF3650A00F850D96F4D065A98D8ED97D9648180EBDD182CDF6.png?needInitFileName=true?needInitFileName=true)

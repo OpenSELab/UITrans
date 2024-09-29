@@ -1,0 +1,22 @@
+{
+    "description": "渐变对象。",
+    "interfaces": [
+        {
+            "description": "addColorStop(offset: number, color: string): void",
+            "params": {
+                "offset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "设置渐变点距离起点的位置占总体长度的比例，范围为0到1。"
+                },
+                "color": {
+                    "type": "string",
+                    "required": true,
+                    "description": "设置渐变的颜色。颜色格式参考ResourceColor中string类型说明"
+                }
+            }
+        }
+    ],
+    "attributes": {},
+    "events": {}
+}

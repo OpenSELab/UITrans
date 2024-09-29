@@ -1,0 +1,22 @@
+{
+    "description": "一个Object对象，使用createPattern方法创建，通过指定图像和重复方式创建图片填充的模板。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "setTransform(transform?: Matrix2D): void",
+            "params": {
+                "transform": {
+                    "type": "Matrix2D",
+                    "required": false,
+                    "description": "转换矩阵。",
+                    "default": null
+                }
+            }
+        }
+    ],
+    "attributes": {},
+    "events": {},
+    "rules": null,
+    "examples": [],
+    "is_common_attrs": true
+}

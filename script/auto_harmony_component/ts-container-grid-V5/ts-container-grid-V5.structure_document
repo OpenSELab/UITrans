@@ -1,0 +1,406 @@
+{
+    "description": "网格容器，由“行”和“列”分割的单元格所组成，通过指定“项目”所在的单元格做出各种各样的布局。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)",
+            "params": {
+                "scroller": {
+                    "type": "Scroller",
+                    "description": "可滚动组件的控制器。用于与可滚动组件进行绑定。"
+                },
+                "layoutOptions": {
+                    "type": "GridLayoutOptions",
+                    "description": "布局选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "columnsTemplate": {
+            "description": "设置当前网格布局列的数量、固定列宽或最小列宽值，不设置时默认1列。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "当前网格布局列的数量或最小列宽值。"
+                }
+            }
+        },
+        "rowsTemplate": {
+            "description": "设置当前网格布局行的数量、固定行高或最小行高值，不设置时默认1行。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "当前网格布局行的数量或最小行高值。"
+                }
+            }
+        },
+        "columnsGap": {
+            "description": "设置列与列的间距。设置为小于0的值时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "列与列的间距。",
+                    "default": "0"
+                }
+            }
+        },
+        "rowsGap": {
+            "description": "设置行与行的间距。设置为小于0的值时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "行与行的间距。",
+                    "default": "0"
+                }
+            }
+        },
+        "scrollBar": {
+            "description": "设置滚动条状态。",
+            "params": {
+                "value": {
+                    "type": "BarState",
+                    "required": true,
+                    "description": "滚动条状态。",
+                    "default": "BarState.Auto"
+                }
+            }
+        },
+        "scrollBarColor": {
+            "description": "设置滚动条的颜色。",
+            "params": {
+                "value": {
+                    "type": ["Color", "number", "string"],
+                    "required": true,
+                    "description": "滚动条的颜色。",
+                    "default": "'#182431'（40%不透明度）"
+                }
+            }
+        },
+        "scrollBarWidth": {
+            "description": "设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过Grid组件主轴方向的高度，则滚动条的宽度会变为默认值。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "滚动条的宽度。",
+                    "default": "4"
+                }
+            }
+        },
+        "cachedCount": {
+            "description": "设置预加载的GridItem的数量，只在LazyForEach和开启了virtualScroll开关的Repeat中生效。设置为小于0的值时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "预加载的GridItem的数量。",
+                    "default": "1"
+                }
+            }
+        },
+        "editMode": {
+            "description": "设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "Grid是否进入编辑模式。",
+                    "default": "false"
+                }
+            }
+        },
+        "layoutDirection": {
+            "description": "设置布局的主轴方向。",
+            "params": {
+                "value": {
+                    "type": "GridDirection",
+                    "required": true,
+                    "description": "布局的主轴方向。",
+                    "default": "GridDirection.Row"
+                }
+            }
+        },
+        "maxCount": {
+            "description": "设置可显示的最大行数或列数。设置为小于1的值时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "可显示的最大行数或列数。",
+                    "default": "Infinity"
+                }
+            }
+        },
+        "minCount": {
+            "description": "设置可显示的最小行数或列数。设置为小于1的值时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "可显示的最小行数或列数。",
+                    "default": "1"
+                }
+            }
+        },
+        "cellLength": {
+            "description": "设置一行的高度或者一列的宽度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "一行的高度或者一列的宽度。",
+                    "default": "第一个元素的大小"
+                }
+            }
+        },
+        "multiSelectable": {
+            "description": "设置是否开启鼠标框选。开启框选后，可以配合Griditem的selected属性和onSelect事件获取GridItem的选中状态，还可以设置选中态样式（无默认选中样式）。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启鼠标框选。",
+                    "default": "false"
+                }
+            }
+        },
+        "supportAnimation": {
+            "description": "设置是否支持动画。当前支持GridItem拖拽动画。仅在滚动模式下（只设置rowsTemplate、columnsTemplate其中一个）支持动画。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否支持动画。",
+                    "default": "false"
+                }
+            }
+        },
+        "edgeEffect": {
+            "description": "设置边缘滑动效果。",
+            "params": {
+                "value": {
+                    "type": "EdgeEffect",
+                    "required": true,
+                    "description": "Grid组件的边缘滑动效果，支持弹簧效果和阴影效果。",
+                    "default": "EdgeEffect.None"
+                },
+                "options": {
+                    "type": "EdgeEffectOptions",
+                    "description": "组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。",
+                    "default": "{ alwaysEnabled: false }"
+                }
+            }
+        },
+        "enableScrollInteraction": {
+            "description": "设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否支持滚动手势。",
+                    "default": "true"
+                }
+            }
+        },
+        "nestedScroll": {
+            "description": "设置嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。",
+            "params": {
+                "value": {
+                    "type": "NestedScrollOptions",
+                    "required": true,
+                    "description": "嵌套滚动选项。"
+                }
+            }
+        },
+        "friction": {
+            "description": "设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。",
+            "params": {
+                "value": {
+                    "type": ["number", "Resource"],
+                    "required": true,
+                    "description": "摩擦系数。",
+                    "default": "非可穿戴设备为0.75，可穿戴设备为0.9。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onScrollIndex": {
+            "description": "当前网格显示的起始位置/终止位置的item发生变化时触发。网格初始化时会触发一次。Grid显示区域上第一个子组件/最后一个组件的索引值有变化就会触发。",
+            "params": {
+                "first": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前显示的网格起始位置的索引值。"
+                },
+                "last": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前显示的网格终止位置的索引值。"
+                }
+            }
+        },
+        "onItemDragStart": {
+            "description": "开始拖拽网格元素时触发。返回void表示不能拖拽。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": true,
+                    "description": "拖拽点的信息。"
+                },
+                "itemIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "被拖拽网格元素索引值。"
+                }
+            }
+        },
+        "onItemDragEnter": {
+            "description": "拖拽进入网格元素范围内时触发。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": true,
+                    "description": "拖拽点的信息。"
+                }
+            }
+        },
+        "onItemDragMove": {
+            "description": "拖拽在网格元素范围内移动时触发。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": true,
+                    "description": "拖拽点的信息。"
+                },
+                "itemIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "拖拽起始位置。"
+                },
+                "insertIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "拖拽插入位置。"
+                }
+            }
+        },
+        "onItemDragLeave": {
+            "description": "拖拽离开网格元素时触发。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": true,
+                    "description": "拖拽点的信息。"
+                },
+                "itemIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "拖拽离开的网格元素索引值。"
+                }
+            }
+        },
+        "onItemDrop": {
+            "description": "绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": true,
+                    "description": "拖拽点的信息。"
+                },
+                "itemIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "拖拽起始位置。"
+                },
+                "insertIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "拖拽插入位置。"
+                },
+                "isSuccess": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否成功释放。"
+                }
+            }
+        },
+        "onScrollBarUpdate": {
+            "description": "当前网格显示的起始位置item发生变化时触发，可通过该回调设置滚动条的位置及长度。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前显示的网格起始位置的索引值。"
+                },
+                "offset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前显示的网格起始位置元素相对网格显示起始位置的偏移，单位vp。"
+                }
+            },
+            "returns": {
+                "type": "ComputedBarAttribute",
+                "description": "滚动条的位置及长度。"
+            }
+        },
+        "onReachStart": {
+            "description": "网格到达起始位置时触发。",
+            "params": {}
+        },
+        "onReachEnd": {
+            "description": "网格到达末尾位置时触发。",
+            "params": {}
+        },
+        "onScrollFrameBegin": {
+            "description": "网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。",
+            "params": {
+                "offset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "即将发生的滑动量，单位vp。"
+                },
+                "state": {
+                    "type": "ScrollState",
+                    "required": true,
+                    "description": "当前滑动状态。"
+                }
+            },
+            "returns": {
+                "type": "{ offsetRemain: number }",
+                "description": "实际滑动量，单位vp。"
+            }
+        },
+        "onScrollStart": {
+            "description": "网格滑动开始时触发。手指拖动网格或网格的滚动条触发的滑动开始时，会触发该事件。使用Scroller滑动控制器触发的带动画的滑动，动画开始时会触发该事件。",
+            "params": {}
+        },
+        "onScrollStop": {
+            "description": "网格滑动停止时触发。手指拖动网格或网格的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件。使用Scroller滑动控制器触发的带动画的滑动，动画停止会触发该事件。",
+            "params": {}
+        },
+        "onScroll": {
+            "description": "网格滑动时触发。",
+            "params": {
+                "scrollOffset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负。单位vp。"
+                },
+                "scrollState": {
+                    "type": "ScrollState",
+                    "required": true,
+                    "description": "当前滑动状态。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

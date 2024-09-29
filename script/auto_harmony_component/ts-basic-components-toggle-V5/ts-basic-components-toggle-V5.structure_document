@@ -1,0 +1,69 @@
+{
+    "description": "组件提供勾选框样式、状态按钮样式及开关样式。",
+    "interfaces": [
+        {
+            "description": "Toggle(options: { type: ToggleType, isOn?: boolean })",
+            "params": {
+                "type": {
+                    "type": "ToggleType",
+                    "description": "开关的样式。"
+                },
+                "isOn": {
+                    "type": "boolean",
+                    "description": "开关是否打开，true：打开，false：关闭。",
+                    "default": false
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "selectedColor": {
+            "description": "设置组件打开状态的背景颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "description": "组件打开状态的背景颜色。"
+                }
+            }
+        },
+        "switchPointColor": {
+            "description": "设置Switch类型的圆形滑块颜色。仅对type为ToggleType.Switch生效。",
+            "params": {
+                "color": {
+                    "type": "ResourceColor",
+                    "description": "Switch类型的圆形滑块颜色。",
+                    "default": "#ffffffff"
+                }
+            }
+        },
+        "switchStyle": {
+            "description": "设置Switch类型的样式。仅对type为ToggleType.Switch生效。",
+            "params": {
+                "value": {
+                    "type": "SwitchStyle",
+                    "description": "Switch类型的样式配置。"
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制Toggle内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<ToggleConfiguration>",
+                    "description": "定制Toggle内容区的方法。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "开关状态切换时触发该事件。",
+            "params": {
+                "isOn": {
+                    "type": "boolean",
+                    "description": "为true时，代表状态从关切换为开。false时，代表状态从开切换为关。"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,202 @@
+{
+    "description": "绘制组件的父组件，实现类似SVG的效果。绘制组件单独使用，用于在页面上绘制指定的图形。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Shape(value?: PixelMap)",
+            "params": {
+                "value": {
+                    "type": "PixelMap",
+                    "required": false,
+                    "description": "绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。",
+                    "default": null
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "viewPort": {
+            "description": "设置形状的视口。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "形状的视口。",
+                    "default": {
+                        "x": 0,
+                        "y": 0,
+                        "width": 0,
+                        "height": 0
+                    }
+                }
+            }
+        },
+        "fill": {
+            "description": "设置填充区域颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "填充区域颜色。",
+                    "default": null
+                }
+            }
+        },
+        "fillOpacity": {
+            "description": "设置填充区域透明度。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "填充区域透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "stroke": {
+            "description": "设置边框颜色，不设置时，默认没有边框。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "边框颜色。",
+                    "default": null
+                }
+            }
+        },
+        "strokeDashArray": {
+            "description": "设置边框间隙。",
+            "params": {
+                "value": {
+                    "type": "Array<any>",
+                    "required": true,
+                    "description": "边框间隙。",
+                    "default": []
+                }
+            }
+        },
+        "strokeDashOffset": {
+            "description": "设置边框绘制起点的偏移量。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "边框绘制起点的偏移量。",
+                    "default": 0
+                }
+            }
+        },
+        "strokeLineCap": {
+            "description": "设置边框端点绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineCapStyle",
+                    "required": true,
+                    "description": "边框端点绘制样式。",
+                    "default": "LineCapStyle.Butt"
+                }
+            }
+        },
+        "strokeLineJoin": {
+            "description": "设置边框拐角绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineJoinStyle",
+                    "required": true,
+                    "description": "边框拐角绘制样式。",
+                    "default": "LineJoinStyle.Miter"
+                }
+            }
+        },
+        "strokeMiterLimit": {
+            "description": "设置斜接长度与边框宽度比值的极限值。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "斜接长度与边框宽度比值的极限值。",
+                    "default": 4
+                }
+            }
+        },
+        "strokeOpacity": {
+            "description": "设置边框透明度。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "边框透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "strokeWidth": {
+            "description": "设置边框宽度。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "边框宽度。",
+                    "default": 1
+                }
+            }
+        },
+        "antiAlias": {
+            "description": "设置是否开启抗锯齿效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启抗锯齿效果。",
+                    "default": true
+                }
+            }
+        },
+        "mesh": {
+            "description": "设置mesh效果。",
+            "params": {
+                "value": {
+                    "type": "Array<number>",
+                    "required": true,
+                    "description": "长度（column + 1）* （row + 1）* 2的数组，它记录了扭曲后的位图各个顶点位置。",
+                    "default": null
+                },
+                "column": {
+                    "type": "number",
+                    "required": true,
+                    "description": "mesh矩阵列数。",
+                    "default": null
+                },
+                "row": {
+                    "type": "number",
+                    "required": true,
+                    "description": "mesh矩阵行数。",
+                    "default": null
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        "/*\\n实现思路：\\n本示例展示了如何在鸿蒙ArkUI中使用Shape组件绘制不同的图形，并通过设置各种属性来调整图形的样式。\\n总体功能与效果描述：\\n展示了矩形、椭圆、路径等基本图形的绘制，并通过不同的属性设置（如填充颜色、边框样式、虚线效果等）来展示图形的多样性。\\n*/\\n\\n// ShapeExample.ets\\n@Entry\\n@Component\\nstruct ShapeExample {\\n  build() {\\n    Column({ space: 10 }) {\\n      // 文本标签，用于标识下面的图形示例\\n      Text('basic').fontSize(11).fontColor(0xCCCCCC).width(320)\\n\\n      // 第一个Shape示例，包含矩形、椭圆和路径\\n      Shape() {\\n        Rect().width(300).height(50) // 绘制一个宽度300，高度50的矩形\\n        Ellipse().width(300).height(50).offset({ x: 0, y: 60 }) // 绘制一个宽度300，高度50的椭圆，并向下偏移60\\n        Path().width(300).height(10).commands('M0 0 L900 0').offset({ x: 0, y: 120 }) // 绘制一个宽度300，高度10的路径，并向下偏移120\\n      }\\n      .width(350)\\n      .height(140)\\n      .viewPort({ x: -2, y: -2, width: 304, height: 130 }) // 设置视口位置和大小\\n      .fill(0x317AF7) // 设置填充颜色\\n      .stroke(Color.Black) // 设置边框颜色\\n      .strokeWidth(4) // 设置边框宽度\\n      .strokeDashArray([20]) // 设置虚线样式\\n      .strokeDashOffset(10) // 设置虚线偏移\\n      .strokeLineCap(LineCapStyle.Round) // 设置线帽样式\\n      .strokeLineJoin(LineJoinStyle.Round) // 设置线连接样式\\n      .antiAlias(true) // 开启抗锯齿\\n\\n      // 第二个Shape示例，仅包含矩形\\n      Shape() {\\n        Rect().width(300).height(50) // 绘制一个宽度300，高度50的矩形\\n      }\\n      .width(350)\\n      .height(80)\\n      .viewPort({ x: 0, y: 0, width: 320, height: 70 }) // 设置视口位置和大小\\n      .fill(0x317AF7) // 设置填充颜色\\n      .stroke(Color.Black) // 设置边框颜色\\n      .strokeWidth(10) // 设置边框宽度\\n\\n      // 第三个Shape示例，仅包含矩形\\n      Shape() {\\n        Rect().width(300).height(50) // 绘制一个宽度300，高度50的矩形\\n      }\\n      .width(350)\\n      .height(80)\\n      .viewPort({ x: -5, y: -5, width: 320, height: 70 }) // 设置视口位置和大小\\n      .fill(0x317AF7) // 设置填充颜色\\n      .stroke(Color.Black) // 设置边框颜色\\n      .strokeWidth(10) // 设置边框宽度\\n\\n      // 文本标签，用于标识下面的路径示例\\n      Text('path').fontSize(11).fontColor(0xCCCCCC).width(320)\\n\\n      // 第四个Shape示例，仅包含路径\\n      Shape() {\\n        Path().width(300).height(10).commands('M0 0 L900 0') // 绘制一个宽度300，高度10的路径\\n      }\\n      .width(350)\\n      .height(20)\\n      .viewPort({ x: 0, y: -5, width: 300, height: 20 }) // 设置视口位置和大小\\n      .stroke(0xEE8443) // 设置边框颜色\\n      .strokeWidth(10) // 设置边框宽度\\n      .strokeDashArray([20]) // 设置虚线样式\\n\\n      // 第五个Shape示例，仅包含路径\\n      Shape() {\\n        Path().width(300).height(10).commands('M0 0 L900 0') // 绘制一个宽度300，高度10的路径\\n      }\\n      .width(350)\\n      .height(20)\\n      .viewPort({ x: 0, y: -5, width: 300, height: 20 }) // 设置视口位置和大小\\n      .stroke(0xEE8443) // 设置边框颜色\\n      .strokeWidth(10) // 设置边框宽度\\n      .strokeDashArray([20]) // 设置虚线样式\\n      .strokeDashOffset(10) // 设置虚线偏移\\n\\n      // 第六个Shape示例，仅包含路径\\n      Shape() {\\n        Path().width(300).height(10).commands('M0 0 L900 0') // 绘制一个宽度300，高度10的路径\\n      }\\n      .width(350)\\n      .height(20)\\n      .viewPort({ x: 0, y: -5, width: 300, height: 20 }) // 设置视口位置和大小\\n      .stroke(0xEE8443) // 设置边框颜色\\n      .strokeWidth(10) // 设置边框宽度\\n      .strokeOpacity(0.5) // 设置边框透明度\\n\\n      // 第七个Shape示例，仅包含路径\\n      Shape() {\\n        Path().width(300).height(10).commands('M0 0 L900 0') // 绘制一个宽度300，高度10的路径\\n      }\\n      .width(350)\\n      .height(20)\\n      .viewPort({ x: 0, y: -5, width: 300, height: 20 }) // 设置视口位置和大小\\n      .stroke(0xEE8443) // 设置边框颜色\\n      .strokeWidth(10) // 设置边框宽度\\n      .strokeDashArray([20]) // 设置虚线样式\\n      .strokeLineCap(LineCapStyle.Round) // 设置线帽样式\\n\\n      // 第八个Shape示例，包含一个闭合路径\\n      Shape() {\\n        Path().width(200).height(60).commands('M0 0 L400 0 L400 150 Z') // 绘制一个宽度200，高度60的闭合路径\\n      }\\n      .width(300)\\n      .height(200)\\n      .viewPort({ x: -20, y: -5, width: 310, height: 90 }) // 设置视口位置和大小\\n      .fill(0x317AF7) // 设置填充颜色\\n      .stroke(0xEE8443) // 设置边框颜色\\n      .strokeWidth(10) // 设置边框宽度\\n      .strokeLineJoin(LineJoinStyle.Miter) // 设置线连接样式\\n      .strokeMiterLimit(5) // 设置斜接限制\\n    }.width('100%').margin({ top: 15 })\\n  }\\n}"
+    ],
+    "is_common_attrs": true
+}

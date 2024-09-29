@@ -1,0 +1,157 @@
+{
+    "description": "路径绘制组件，根据绘制路径生成封闭的自定义形状。",
+    "interfaces": [
+        {
+            "description": "Path(value?: { width?: number | string; height?: number | string; commands?: string })",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "description": "路径所在矩形的宽度。值为异常值或缺省时按照自身内容需要的宽度处理。"
+                },
+                "height": {
+                    "type": ["number", "string"],
+                    "description": "路径所在矩形的高度。值为异常值或缺省时按照自身内容需要的高度处理。"
+                },
+                "commands": {
+                    "type": "string",
+                    "description": "路径绘制的命令字符串。默认值：''。异常值按照默认值处理。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "commands": {
+            "description": "设置路径绘制的命令字符串，单位为px。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "线条绘制的路径。"
+                }
+            }
+        },
+        "fill": {
+            "description": "设置填充区域颜色。异常值按照默认值处理。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "填充区域颜色。"
+                }
+            }
+        },
+        "fillOpacity": {
+            "description": "设置填充区域透明度。取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理。",
+            "params": {
+                "value": {
+                    "type": ["number", "string", "Resource"],
+                    "required": true,
+                    "description": "填充区域透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "stroke": {
+            "description": "设置边框颜色，不设置时，默认没有边框线条。异常值不会绘制边框线条。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "边框颜色。"
+                }
+            }
+        },
+        "strokeDashArray": {
+            "description": "设置线条间隙。线段相交时可能会出现重叠现象。异常值按照默认值处理。",
+            "params": {
+                "value": {
+                    "type": "Array<any>",
+                    "required": true,
+                    "description": "线条间隙。",
+                    "default": []
+                }
+            }
+        },
+        "strokeDashOffset": {
+            "description": "设置线条绘制起点的偏移量。异常值按照默认值处理。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "线条绘制起点的偏移量。",
+                    "default": 0
+                }
+            }
+        },
+        "strokeLineCap": {
+            "description": "设置线条端点绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineCapStyle",
+                    "required": true,
+                    "description": "线条端点绘制样式。",
+                    "default": "LineCapStyle.Butt"
+                }
+            }
+        },
+        "strokeLineJoin": {
+            "description": "设置线条拐角绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineJoinStyle",
+                    "required": true,
+                    "description": "线条拐角绘制样式。",
+                    "default": "LineJoinStyle.Miter"
+                }
+            }
+        },
+        "strokeMiterLimit": {
+            "description": "设置斜接长度与边框宽度比值的极限值。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。该属性取值需在strokeLineJoin属性取值LineJoinStyle.Miter时生效。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "斜接长度与边框宽度比值的极限值。",
+                    "default": 4
+                }
+            }
+        },
+        "strokeOpacity": {
+            "description": "设置线条透明度。该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理。",
+            "params": {
+                "value": {
+                    "type": ["number", "string", "Resource"],
+                    "required": true,
+                    "description": "线条透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "strokeWidth": {
+            "description": "设置线条宽度。该属性若为string类型, 暂不支持百分比，百分比按照1px处理。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "线条宽度。",
+                    "default": 1
+                }
+            }
+        },
+        "antiAlias": {
+            "description": "设置是否开启抗锯齿效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启抗锯齿效果。",
+                    "default": true
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

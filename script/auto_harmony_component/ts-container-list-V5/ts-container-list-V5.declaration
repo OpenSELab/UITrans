@@ -1,0 +1,522 @@
+{
+    "description": "列表包含一系列相同宽度的列表项。适合连续、多行呈现同类数据，例如图片和文本。可以包含ListItem、ListItemGroup子组件，支持渲染控制类型（if/else、ForEach、LazyForEach和Repeat）。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "List(value?:{space?: number | string, initialIndex?: number, scroller?: Scroller})",
+            "params": {
+                "space": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": False,
+                    "description": "子组件主轴方向的间隔。默认值：0。参数类型为number时单位为vp。设置为负数或者大于等于List内容区长度时，按默认值显示。space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。",
+                    "default": null
+                },
+                "initialIndex": {
+                    "type": "number",
+                    "required": False,
+                    "description": "设置当前List初次加载时视口起始位置显示的item的索引值。默认值：0。设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。",
+                    "default": null
+                },
+                "scroller": {
+                    "type": "Scroller",
+                    "required": False,
+                    "description": "可滚动组件的控制器。用于与可滚动组件进行绑定。不允许和其他滚动类组件绑定同一个滚动控制对象。",
+                    "default": null
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "listDirection": {
+            "description": "设置List组件排列方向。",
+            "params": {
+                "value": {
+                    "type": "Axis",
+                    "required": True,
+                    "description": "组件的排列方向。默认值：Axis.Vertical",
+                    "default": null
+                }
+            }
+        },
+        "divider": {
+            "description": "设置ListItem分割线样式，默认无分割线。",
+            "params": {
+                "value": {
+                    "type": {
+                        "strokeWidth": "Length",
+                        "color": "ResourceColor",
+                        "startMargin": "Length",
+                        "endMargin": "Length"
+                    },
+                    "required": True,
+                    "description": "ListItem分割线样式。strokeWidth: 分割线的线宽。color: 分割线的颜色。默认值：0x08000000。startMargin: 分割线与列表侧边起始端的距离。默认值：0，单位：vp。endMargin: 分割线与列表侧边结束端的距离。默认值：0，单位：vp。",
+                    "default": null
+                }
+            }
+        },
+        "scrollBar": {
+            "description": "设置滚动条状态。",
+            "params": {
+                "value": {
+                    "type": "BarState",
+                    "required": True,
+                    "description": "滚动条状态。默认值：BarState.Auto",
+                    "default": null
+                }
+            }
+        },
+        "cachedCount": {
+            "description": "设置列表中ListItem/ListItemGroup的预加载数量，懒加载场景只会预加载List显示区域外cachedCount的内容，非懒加载场景会全部加载。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": True,
+                    "description": "ListItem/ListItemGroup的预加载数量。默认值：1",
+                    "default": null
+                }
+            }
+        },
+        "editMode": {
+            "description": "设置当前List组件是否处于可编辑模式。从API version9开始废弃不再使用，无替代接口。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": True,
+                    "description": "当前List组件是否处于可编辑模式。默认值：false",
+                    "default": null
+                }
+            }
+        },
+        "edgeEffect": {
+            "description": "设置边缘滑动效果。",
+            "params": {
+                "value": {
+                    "type": "EdgeEffect",
+                    "required": True,
+                    "description": "List组件的边缘滑动效果，支持弹簧效果和阴影效果。默认值：EdgeEffect.Spring",
+                    "default": null
+                },
+                "options": {
+                    "type": {
+                        "alwaysEnabled": "boolean"
+                    },
+                    "required": False,
+                    "description": "组件内容大小小于组件自身时，是否开启滑动效果。默认值：{ alwaysEnabled: false }",
+                    "default": null
+                }
+            }
+        },
+        "chainAnimation": {
+            "description": "设置当前List是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": True,
+                    "description": "是否启用链式联动动效。默认值：false，不启用链式联动。true，启用链式联动。",
+                    "default": null
+                }
+            }
+        },
+        "multiSelectable": {
+            "description": "设置是否开启鼠标框选。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": True,
+                    "description": "是否开启鼠标框选。默认值：false，关闭框选。true，开启框选。",
+                    "default": null
+                }
+            }
+        },
+        "lanes": {
+            "description": "设置List组件的布局列数或行数。gutter为列间距，当列数大于1时生效。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        {
+                            "minLength": "number",
+                            "maxLength": "number"
+                        }
+                    ],
+                    "required": True,
+                    "description": "List组件的布局列数或行数。",
+                    "default": null
+                },
+                "gutter": {
+                    "type": "Dimension",
+                    "required": False,
+                    "description": "列间距。",
+                    "default": null
+                }
+            }
+        },
+        "alignListItem": {
+            "description": "设置List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式。",
+            "params": {
+                "value": {
+                    "type": "ListItemAlign",
+                    "required": True,
+                    "description": "交叉轴方向的布局方式。默认值：ListItemAlign.Start",
+                    "default": null
+                }
+            }
+        },
+        "sticky": {
+            "description": "配合ListItemGroup组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。sticky属性可以设置为 StickyStyle.Header | StickyStyle.Footer 以同时支持header吸顶和footer吸底。",
+            "params": {
+                "value": {
+                    "type": "StickyStyle",
+                    "required": True,
+                    "description": "ListItemGroup吸顶或吸底效果。默认值：StickyStyle.None",
+                    "default": null
+                }
+            }
+        },
+        "scrollSnapAlign": {
+            "description": "设置列表项滚动结束对齐效果。只支持ListItem等高情况下，设置列表项滚动结束对齐效果。触控板和鼠标滑动List结束后不支持对齐效果。",
+            "params": {
+                "value": {
+                    "type": "ScrollSnapAlign",
+                    "required": True,
+                    "description": "列表项滚动结束对齐效果。",
+                    "default": null
+                }
+            }
+        },
+        "enableScrollInteraction": {
+            "description": "设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": True,
+                    "description": "是否支持滚动手势。默认值：true",
+                    "default": null
+                }
+            }
+        },
+        "nestedScroll": {
+            "description": "设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。",
+            "params": {
+                "value": {
+                    "type": {
+                        "forward": "NestedScrollOptions",
+                        "backward": "NestedScrollOptions"
+                    },
+                    "required": True,
+                    "description": "向前向后两个方向上的嵌套滚动模式。",
+                    "default": null
+                }
+            }
+        },
+        "friction": {
+            "description": "设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "Resource"
+                    ],
+                    "required": True,
+                    "description": "摩擦系数。默认值：非可穿戴设备为0.75，可穿戴设备为0.9。",
+                    "default": null
+                }
+            }
+        },
+        "contentStartOffset": {
+            "description": "设置内容区域起始偏移量。列表滚动到起始位置时，列表内容与列表显示区域边界保留指定距离。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": True,
+                    "description": "内容区域起始偏移量。默认值：0。单位：vp",
+                    "default": null
+                }
+            }
+        },
+        "contentEndOffset": {
+            "description": "设置内容区末尾偏移量。列表滚动到末尾位置时，列表内容与列表显示区域边界保留指定距离。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": True,
+                    "description": "内容区末尾偏移量。默认值：0。单位：vp",
+                    "default": null
+                }
+            }
+        },
+        "childrenMainSize": {
+            "description": "设置List组件的子组件在主轴方向的大小信息。",
+            "params": {
+                "value": {
+                    "type": "ChildrenMainSize",
+                    "required": True,
+                    "description": "通过ChildrenMainSize对象向List组件准确提供所有子组件在主轴方向的大小信息，能够使List组件在子组件的主轴大小不一致、增删子组件、使用scrollToIndex等场景也能维护自己准确的滑动位置，进而使scrollTo能跳转到准确的指定位置，currentOffset能够获取到当前准确的滑动位置，内置滚动条能够平滑移动无跳变。",
+                    "default": null
+                }
+            }
+        }
+    },
+    "events": {
+        "onItemDelete": {
+            "description": "当List组件在编辑模式时，点击ListItem右边出现的删除按钮时触发。从API version9开始废弃不再使用，无替代接口。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": True,
+                    "description": "被删除的列表项的索引值。",
+                    "default": null
+                }
+            },
+            "returns": null
+        },
+        "onScrollIndex": {
+            "description": "有子组件划入或划出List显示区域时触发。计算索引值时，ListItemGroup作为一个整体占一个索引值，不计算ListItemGroup内部ListItem的索引值。",
+            "params": {
+                "start": {
+                    "type": "number",
+                    "required": True,
+                    "description": "List显示区域内第一个子组件的索引值",
+                    "default": null
+                },
+                "end": {
+                    "type": "number",
+                    "required": True,
+                    "description": "List显示区域内最后一个子组件的索引值。",
+                    "default": null
+                },
+                "center": {
+                    "type": "number",
+                    "required": True,
+                    "description": "List显示区域内中间位置子组件的索引值。",
+                    "default": null
+                }
+            },
+            "returns": null
+        },
+        "onReachStart": {
+            "description": "列表到达起始位置时触发。",
+            "params": {},
+            "returns": null
+        },
+        "onReachEnd": {
+            "description": "列表到底末尾位置时触发。",
+            "params": {},
+            "returns": null
+        },
+        "onScrollFrameBegin": {
+            "description": "列表开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。",
+            "params": {
+                "offset": {
+                    "type": "number",
+                    "required": True,
+                    "description": "即将发生的滑动量，单位vp。",
+                    "default": null
+                },
+                "state": {
+                    "type": "ScrollState",
+                    "required": True,
+                    "description": "当前滑动状态。",
+                    "default": null
+                }
+            },
+            "returns": null
+        },
+        "onScrollStart": {
+            "description": "列表滑动开始时触发。手指拖动列表或列表的滚动条触发的滑动开始时，会触发该事件。使用Scroller滑动控制器触发的带动画的滑动，动画开始时会触发该事件",
+            "params": {},
+            "returns": null
+        },
+        "onScrollStop": {
+            "description": "列表滑动停止时触发。手拖动列表或列表的滚动条触发的滑动，手离开屏幕并且滑动停止时会触发该事件。使用Scroller滑动控制器触发的带动画的滑动，动画停止会触发该事件。",
+            "params": {},
+            "returns": null
+        },
+        "onItemMove": {
+            "description": "列表元素发生移动时触发。",
+            "params": {
+                "from": {
+                    "type": "number",
+                    "required": True,
+                    "description": "移动前索引值。",
+                    "default": null
+                },
+                "to": {
+                    "type": "number",
+                    "required": True,
+                    "description": "移动后索引值。",
+                    "default": null
+                }
+            },
+            "returns": null
+        },
+        "onItemDragStart": {
+            "description": "开始拖拽列表元素时触发。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": True,
+                    "description": "拖拽点的信息。",
+                    "default": null
+                },
+                "itemIndex": {
+                    "type": "number",
+                    "required": True,
+                    "description": "被拖拽列表元素索引值。",
+                    "default": null
+                }
+            },
+            "returns": null
+        },
+        "onItemDragEnter": {
+            "description": "拖拽进入列表元素范围内时触发。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": True,
+                    "description": "拖拽点的信息。",
+                    "default": null
+                }
+            },
+            "returns": null
+        },
+        "onItemDragMove": {
+            "description": "拖拽在列表元素范围内移动时触发。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": True,
+                    "description": "拖拽点的信息。",
+                    "default": null
+                },
+                "itemIndex": {
+                    "type": "number",
+                    "required": True,
+                    "description": "拖拽起始位置。",
+                    "default": null
+                },
+                "insertIndex": {
+                    "type": "number",
+                    "required": True,
+                    "description": "拖拽插入位置。",
+                    "default": null
+                }
+            },
+            "returns": null
+        },
+        "onItemDragLeave": {
+            "description": "拖拽离开列表元素时触发。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": True,
+                    "description": "拖拽点的信息。",
+                    "default": null
+                },
+                "itemIndex": {
+                    "type": "number",
+                    "required": True,
+                    "description": "拖拽离开的列表元素索引值。",
+                    "default": null
+                }
+            },
+            "returns": null
+        },
+        "onItemDrop": {
+            "description": "绑定该事件的列表元素可作为拖拽释放目标，当在列表元素内停止拖拽时触发。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": True,
+                    "description": "拖拽点的信息。",
+                    "default": null
+                },
+                "itemIndex": {
+                    "type": "number",
+                    "required": True,
+                    "description": "拖拽起始位置。",
+                    "default": null
+                },
+                "insertIndex": {
+                    "type": "number",
+                    "required": True,
+                    "description": "拖拽插入位置。",
+                    "default": null
+                },
+                "isSuccess": {
+                    "type": "boolean",
+                    "required": True,
+                    "description": "是否成功释放",
+                    "default": null
+                }
+            },
+            "returns": null
+        },
+        "onScroll": {
+            "description": "列表滑动时触发。从API version 12开始废弃不再使用，推荐使用onDidScroll事件替代。",
+            "params": {
+                "scrollOffset": {
+                    "type": "number",
+                    "required": True,
+                    "description": "每帧滚动的偏移量，List的内容向上滚动时偏移量为正，向下滚动时偏移量为负。单位vp。",
+                    "default": null
+                },
+                "scrollState": {
+                    "type": "ScrollState",
+                    "required": True,
+                    "description": "当前滑动状态。",
+                    "default": null
+                }
+            },
+            "returns": null
+        },
+        "onWillScroll": {
+            "description": "列表滑动前触发。回调当前帧将要滑动的偏移量，当前滑动状态和滑动操作来源，其中回调的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。可以通过该回调返回值指定列表将要滑动的偏移。",
+            "params": {
+                "handler": {
+                    "type": "OnWillScrollCallback",
+                    "required": True,
+                    "description": "列表滑动前触发的回调函数。",
+                    "default": null
+                }
+            },
+            "returns": null
+        },
+        "onDidScroll": {
+            "description": "列表滑动时触发，返回当前帧滑动的偏移量和当前滑动状态。",
+            "params": {
+                "handler": {
+                    "type": "OnScrollCallback",
+                    "required": True,
+                    "description": "列表滑动时触发的回调函数。",
+                    "default": null
+                }
+            },
+            "returns": null
+        },
+        "onScrollVisibleContentChange": {
+            "description": "有子组件划入或划出List显示区域时触发。计算触发条件时，每一个ListItem/ListItemGroup中的header/ListItemGroup中的footer都算一个子组件。",
+            "params": {
+                "handler": {
+                    "type": "OnScrollVisibleContentChangeCallback",
+                    "required": True,
+                    "description": "有子组件划入或划出List显示区域时触发的回调函数。",
+                    "default": null
+                }
+            },
+            "returns": null
+        }
+    },
+    "rules": null,
+    "examples": [
+        "/*\\n实现思路：\\n本示例通过使用鸿蒙ArkUI框架中的List组件和相关事件回调，实现了一个纵向滚动的列表。列表中的每一项是一个简单的文本显示，同时监听了列表的滚动事件，并在控制台输出相关索引信息。\\n\\n总体功能与效果描述：\\n1. 创建一个包含数字的数组，并将其显示为纵向列表。\\n2. 列表项之间有20像素的间距，初始显示第一个列表项。\\n3. 列表的滚动条被隐藏，滚动摩擦系数为0.6。\\n4. 列表项之间有分隔线，分隔线的颜色和宽度可配置。\\n5. 当列表滚动时，会触发滚动索引回调，输出当前显示的第一个和最后一个列表项的索引。\\n6. 当列表可见内容发生变化时，输出可见内容的起始和结束信息。\\n7. 当列表实际滚动时，输出滚动偏移量和滚动状态。\\n*/\\n\\n// ListExample.ets\\n@Entry\\n@Component\\nstruct ListExample {\\n  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] // 定义一个包含数字的数组\\n\\n  build() {\\n    Column() {\\n      List({ space: 20, initialIndex: 0 }) { // 创建一个列表，设置项间距为20，初始显示第一个项\\n        ForEach(this.arr, (item: number) => { // 遍历数组，生成列表项\\n          ListItem() {\\n            Text('' + item) // 显示数组中的数字\\n              .width('100%').height(100).fontSize(16) // 设置文本的宽度、高度和字体大小\\n              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF) // 设置文本居中对齐、圆角和背景颜色\\n          }\\n        }, (item: string) => item) // 定义列表项的唯一键\\n      }\\n      .listDirection(Axis.Vertical) // 设置列表为纵向滚动\\n      .scrollBar(BarState.Off) // 隐藏滚动条\\n      .friction(0.6) // 设置滚动摩擦系数\\n      .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 设置列表项之间的分隔线\\n      .edgeEffect(EdgeEffect.Spring) // 设置边缘效果为弹性效果\\n      .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => { // 监听滚动索引变化\\n        console.info('first' + firstIndex) // 输出第一个可见项的索引\\n        console.info('last' + lastIndex) // 输出最后一个可见项的索引\\n        console.info('center' + centerIndex) // 输出中间可见项的索引\\n      })\\n      .onScrollVisibleContentChange((start: VisibleListContentInfo, end: VisibleListContentInfo) => { // 监听可见内容变化\\n        console.log(' start index: ' + start.index + // 输出起始可见内容的索引\\n                    ' start item group area: ' + start.itemGroupArea + // 输出起始可见内容的项目组区域\\n                    ' start index in group: ' + start.itemIndexInGroup) // 输出起始可见内容在组中的索引\\n        console.log(' end index: ' + end.index + // 输出结束可见内容的索引\\n                    ' end item group area: ' + end.itemGroupArea + // 输出结束可见内容的项目组区域\\n                    ' end index in group: ' + end.itemIndexInGroup) // 输出结束可见内容在组中的索引\\n      })\\n      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => { // 监听实际滚动事件\\n        console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset) // 输出滚动状态和滚动偏移量\\n      })\\n      .width('90%') // 设置列表宽度为父容器的90%\\n    }\\n    .width('100%') // 设置列的宽度为父容器的100%\\n    .height('100%') // 设置列的高度为父容器的100%\\n    .backgroundColor(0xDCDCDC) // 设置背景颜色\\n    .padding({ top: 5 }) // 设置顶部内边距\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例展示了如何在鸿蒙ArkUI中使用List组件和ListItem组件来创建一个可滚动的列表，并动态改变列表项的对齐方式。通过点击按钮，可以循环切换列表项的对齐方式（Start、Center、End）。\\n\\n总体功能与效果描述：\\n1. 创建一个包含20个项目的列表，每个项目显示一个数字。\\n2. 列表项具有固定的宽度和高度，并带有边框和背景色。\\n3. 列表具有固定的宽度和高度，并带有边框和滚动条。\\n4. 通过点击按钮，可以切换列表项的对齐方式。\\n*/\\n\\n// ListLanesExample.ets\\n@Entry\\n@Component\\nstruct ListLanesExample {\\n  @State arr: string[] = [\"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"19\"]\\n  @State alignListItem: ListItemAlign = ListItemAlign.Start\\n\\n  build() {\\n    Column() {\\n      List({ space: 20, initialIndex: 0 }) {\\n        ForEach(this.arr, (item: string) => {\\n          ListItem() {\\n            Text('' + item)\\n              .width('100%') // 设置文本宽度为100%\\n              .height(100) // 设置文本高度为100\\n              .fontSize(16) // 设置字体大小为16\\n              .textAlign(TextAlign.Center) // 设置文本居中对齐\\n              .borderRadius(10) // 设置边框圆角\\n              .backgroundColor(0xFFFFFF) // 设置背景颜色为白色\\n          }\\n          .border({ width: 2, color: Color.Green }) // 设置列表项的边框\\n        }, (item: string) => item)\\n      }\\n      .height(300) // 设置列表高度为300\\n      .width(\"90%\") // 设置列表宽度为90%\\n      .friction(0.6) // 设置列表的摩擦系数\\n      .border({ width: 3, color: Color.Red }) // 设置列表的边框\\n      .lanes({ minLength: 40, maxLength: 40 }) // 设置列表的行数\\n      .alignListItem(this.alignListItem) // 设置列表项的对齐方式\\n      .scrollBar(BarState.Off) // 关闭滚动条\\n\\n      Button(\"点击更改alignListItem:\" + this.alignListItem).onClick(() => {\\n        if (this.alignListItem == ListItemAlign.Start) {\\n          this.alignListItem = ListItemAlign.Center // 切换到中心对齐\\n        } else if (this.alignListItem == ListItemAlign.Center) {\\n          this.alignListItem = ListItemAlign.End // 切换到尾部对齐\\n        } else {\\n          this.alignListItem = ListItemAlign.Start // 切换到头部对齐\\n        }\\n      })\\n    }\\n    .width('100%') // 设置列的宽度为100%\\n    .height('100%') // 设置列的高度为100%\\n    .backgroundColor(0xDCDCDC) // 设置背景颜色为灰色\\n    .padding({ top: 5 }) // 设置顶部内边距\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例展示了如何在鸿蒙ArkUI中创建一个可编辑的列表组件。列表中的每个项包含一个文本和一个删除按钮。通过点击“edit list”按钮，用户可以切换编辑模式，从而显示或隐藏删除按钮。点击删除按钮可以移除对应的列表项。\\n\\n总体功能与效果描述：\\n1. 显示一个包含数字的列表。\\n2. 提供一个按钮来切换编辑模式。\\n3. 在编辑模式下，每个列表项旁边显示一个删除按钮。\\n4. 点击删除按钮可以移除对应的列表项。\\n*/\\n\\n// ListExample.ets\\n@Entry\\n@Component\\nstruct ListExample {\\n  @State arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] // 初始化列表数据\\n  @State editFlag: boolean = false // 控制编辑模式的标志\\n\\n  build() {\\n    Stack({ alignContent: Alignment.TopStart }) {\\n      Column() {\\n        List({ space: 20, initialIndex: 0 }) {\\n          ForEach(this.arr, (item: number, index?: number) => {\\n            ListItem() {\\n              Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {\\n                Text('' + item) // 显示列表项的文本\\n                  .width('100%')\\n                  .height(80)\\n                  .fontSize(20)\\n                  .textAlign(TextAlign.Center)\\n                  .borderRadius(10)\\n                  .backgroundColor(0xFFFFFF)\\n                  .flexShrink(1)\\n                if (this.editFlag) {\\n                  Button() {\\n                    Text(\"delete\").fontSize(16) // 显示删除按钮的文本\\n                  }.width('30%').height(40)\\n                  .onClick(() => {\\n                    if (index != undefined) {\\n                      console.info(this.arr[index] + 'Delete') // 打印删除信息\\n                      this.arr.splice(index, 1) // 移除对应的列表项\\n                      console.info(JSON.stringify(this.arr)) // 打印更新后的列表数据\\n                      this.editFlag = false // 退出编辑模式\\n                    }\\n                  }).stateEffect(true) // 启用按钮的状态效果\\n                }\\n              }\\n            }\\n          }, (item: string) => item) // 使用item作为唯一键\\n        }.width('90%')\\n        .scrollBar(BarState.Off) // 禁用滚动条\\n        .friction(0.6) // 设置列表的摩擦系数\\n      }.width('100%')\\n\\n      Button('edit list') // 显示编辑列表按钮\\n        .onClick(() => {\\n          this.editFlag = !this.editFlag // 切换编辑模式\\n        }).margin({ top: 5, left: 20 })\\n    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例展示了如何在鸿蒙ArkUI中创建一个水平滚动的列表组件。通过使用List组件和ForEach循环，动态生成列表项，并设置列表的滚动效果和样式。\\n\\n总体功能与效果描述：\\n该组件在页面加载时生成一个包含20个数字的水平滚动列表。列表项具有圆角边框和居中对齐的文本，列表本身具有弹性边缘效果和居中对齐的滚动吸附效果。\\n*/\\n\\n// ListExample.ets\\n@Entry\\n@Component\\nstruct ListExample {\\n  // 定义一个数组用于存储列表数据\\n  private arr: number[] = [];\\n  // 定义一个Scroller对象用于控制列表的滚动\\n  private scrollerForList: Scroller = new Scroller();\\n\\n  // 组件即将显示时，初始化数组数据\\n  aboutToAppear() {\\n    for (let i = 0; i < 20; i++) {\\n      this.arr.push(i); // 向数组中添加数字\\n    }\\n  }\\n\\n  build() {\\n    Column() {\\n      Row() {\\n        List({ space: 20, initialIndex: 3, scroller: this.scrollerForList }) {\\n          // 使用ForEach循环生成列表项\\n          ForEach(this.arr, (item: number) => {\\n            ListItem() {\\n              Text('' + item) // 显示列表项的文本\\n                .width('100%').height(100).fontSize(16)\\n                .textAlign(TextAlign.Center) // 文本居中对齐\\n            }\\n            .borderRadius(10).backgroundColor(0xFFFFFF) // 设置列表项的圆角边框和背景色\\n            .width('60%')\\n            .height('80%')\\n          }, (item: number) => JSON.stringify(item)) // 使用JSON.stringify作为键值生成器\\n        }\\n        .chainAnimation(true) // 启用列表项的链式动画\\n        .edgeEffect(EdgeEffect.Spring) // 设置列表的弹性边缘效果\\n        .listDirection(Axis.Horizontal) // 设置列表为水平方向\\n        .height('100%')\\n        .width('100%')\\n        .scrollSnapAlign(ScrollSnapAlign.CENTER) // 设置滚动吸附效果为居中对齐\\n        .borderRadius(10) // 设置列表的圆角边框\\n        .backgroundColor(0xDCDCDC) // 设置列表的背景色\\n      }\\n      .width('100%')\\n      .height('100%')\\n      .backgroundColor(0xDCDCDC) // 设置容器的背景色\\n      .padding({ top: 10 }) // 设置容器的顶部内边距\\n    }\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例展示了如何在鸿蒙ArkUI中使用List组件，并通过设置childrenMainSize属性来确保在子组件高度不一致时，调用scrollTo接口也能准确跳转到指定位置。示例中还包含了动态调整子组件尺寸和滚动到指定位置的功能。\\n\\n总体功能与效果描述：\\n1. 创建一个包含不同高度的子组件的List。\\n2. 通过按钮动态调整子组件的默认尺寸。\\n3. 通过按钮调用scrollTo接口，实现滚动到指定位置。\\n*/\\n\\n// ListExample.ets\\n@Entry\\n@Component\\nstruct ListExample {\\n  // 定义一个数组用于存储列表项的索引\\n  private arr: number[] = []\\n  // 创建一个ListScroller实例，用于滚动操作\\n  private scroller: ListScroller = new ListScroller()\\n  // 定义列表项之间的间距\\n  @State listSpace: number = 10\\n  // 定义子组件的主尺寸，初始值为100\\n  @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100)\\n\\n  // 组件初始化时执行的操作\\n  aboutToAppear() {\\n    // 填充数组，包含0到9的数字\\n    for (let i = 0; i < 10; i++) {\\n      this.arr.push(i)\\n    }\\n    // 设置前5个子组件的高度为300\\n    this.listChildrenSize.splice(0, 5, [300, 300, 300, 300, 300])\\n  }\\n\\n  build() {\\n    Column() {\\n      // 创建一个List组件，设置间距、初始索引和滚动控制器\\n      List({ space: this.listSpace, initialIndex: 4, scroller: this.scroller }) {\\n        // 使用ForEach循环生成列表项\\n        ForEach(this.arr, (item: number) => {\\n          ListItem() {\\n            // 创建文本组件，显示列表项的索引\\n            Text('item-' + item)\\n              .height(item < 5 ? 300 : this.listChildrenSize.childDefaultSize) // 设置高度，前5项为300，其余为默认尺寸\\n              .width('90%') // 设置宽度\\n              .fontSize(16) // 设置字体大小\\n              .textAlign(TextAlign.Center) // 设置文本对齐方式\\n              .borderRadius(10) // 设置边框圆角\\n              .backgroundColor(0xFFFFFF) // 设置背景颜色\\n          }\\n        }, (item: string) => item) // 指定键值生成函数\\n      }\\n      .backgroundColor(Color.Gray) // 设置列表背景颜色\\n      .layoutWeight(1) // 设置布局权重\\n      .scrollBar(BarState.On) // 显示滚动条\\n      .childrenMainSize(this.listChildrenSize) // 设置子组件的主尺寸\\n      .alignListItem(ListItemAlign.Center) // 设置列表项对齐方式\\n\\n      // 创建一行按钮，用于调整子组件尺寸和滚动到指定位置\\n      Row() {\\n        Button() { Text('item size + 50') }\\n          .onClick(() => {\\n            this.listChildrenSize.childDefaultSize += 50 // 增加子组件默认尺寸\\n          })\\n          .height('50%') // 设置按钮高度\\n          .width('30%') // 设置按钮宽度\\n        Button() { Text('item size - 50') }\\n          .onClick(() => {\\n            if (this.listChildrenSize.childDefaultSize === 0) {\\n              return // 如果默认尺寸为0，则不执行减小操作\\n            }\\n            this.listChildrenSize.childDefaultSize -= 50 // 减小子组件默认尺寸\\n          })\\n          .height('50%') // 设置按钮高度\\n          .width('30%') // 设置按钮宽度\\n        Button() { Text('scrollTo (0, 310)') }\\n          .onClick(() => {\\n            this.scroller.scrollTo({ xOffset: 0, yOffset: 310 }) // 滚动到指定位置\\n          })\\n          .height('50%') // 设置按钮高度\\n          .width('30%') // 设置按钮宽度\\n      }\\n      .height('20%') // 设置行的高度\\n    }\\n  }\\n}"
+    ],
+    "is_common_attrs": true
+}

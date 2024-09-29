@@ -1,0 +1,192 @@
+{
+    "description": "多边形绘制组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Polygon(value?: {width?: string | number, height?: string | number})",
+            "params": {
+                "value": {
+                    "type": [
+                        "object",
+                        "null"
+                    ],
+                    "required": false,
+                    "description": "组件的初始化参数。",
+                    "default": null
+                },
+                "width": {
+                    "type": [
+                        "string",
+                        "number"
+                    ],
+                    "required": false,
+                    "description": "宽度。",
+                    "default": 0
+                },
+                "height": {
+                    "type": [
+                        "string",
+                        "number"
+                    ],
+                    "required": false,
+                    "description": "高度。",
+                    "default": 0
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "points": {
+            "description": "设置多边形的顶点坐标列表。",
+            "params": {
+                "value": {
+                    "type": "Array<[Point](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-drawing-components-polyline-V5#point)>",
+                    "required": true,
+                    "description": "多边形的顶点坐标列表。",
+                    "default": []
+                }
+            }
+        },
+        "fill": {
+            "description": "设置填充区域颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "填充区域颜色。",
+                    "default": null
+                }
+            }
+        },
+        "fillOpacity": {
+            "description": "设置填充区域透明度。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "填充区域透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "stroke": {
+            "description": "设置边框颜色，不设置时，默认没有边框。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "边框颜色。",
+                    "default": null
+                }
+            }
+        },
+        "strokeDashArray": {
+            "description": "设置边框间隙。",
+            "params": {
+                "value": {
+                    "type": "Array<any>",
+                    "required": true,
+                    "description": "边框间隙。",
+                    "default": []
+                }
+            }
+        },
+        "strokeDashOffset": {
+            "description": "设置边框绘制起点的偏移量。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "边框绘制起点的偏移量。",
+                    "default": 0
+                }
+            }
+        },
+        "strokeLineCap": {
+            "description": "设置边框端点绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineCapStyle",
+                    "required": true,
+                    "description": "边框端点绘制样式。",
+                    "default": "LineCapStyle.Butt"
+                }
+            }
+        },
+        "strokeLineJoin": {
+            "description": "设置边框拐角绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineJoinStyle",
+                    "required": true,
+                    "description": "边框拐角绘制样式。",
+                    "default": "LineJoinStyle.Miter"
+                }
+            }
+        },
+        "strokeMiterLimit": {
+            "description": "设置斜接长度与边框宽度比值的极限值。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "斜接长度与边框宽度比值的极限值。",
+                    "default": 4
+                }
+            }
+        },
+        "strokeOpacity": {
+            "description": "设置边框透明度。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "边框透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "strokeWidth": {
+            "description": "设置边框宽度。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "边框宽度。",
+                    "default": 1
+                }
+            }
+        },
+        "antiAlias": {
+            "description": "设置是否开启抗锯齿效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启抗锯齿效果。",
+                    "default": true
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        "/*\\n实现思路：\\n本示例展示了如何使用Polygon组件绘制不同形状的多边形，并通过不同的属性设置来调整其外观。\\n总体功能与效果描述：\\n通过三个不同的Polygon实例，展示了如何绘制三角形、矩形和五边形，并分别设置了不同的填充颜色、边框样式和透明度。\\n*/\\n\\n// PolygonExample.ets\\n@Entry\\n@Component\\nstruct PolygonExample {\\n  build() {\\n    Column({ space: 10 }) {\\n      // 第一个Polygon实例，绘制一个三角形\\n      // 功能与效果描述：绘制一个绿色的三角形，顶点坐标分别为(0, 0), (50, 100), (100, 0)\\n      Polygon({ width: 100, height: 100 })\\n        .points([[0, 0], [50, 100], [100, 0]])\\n        .fill(Color.Green)\\n\\n      // 第二个Polygon实例，绘制一个矩形\\n      // 功能与效果描述：绘制一个蓝色边框的矩形，顶点坐标分别为(0, 0), (0, 100), (100, 100), (100, 0)，无填充颜色\\n      Polygon().width(100).height(100)\\n        .points([[0, 0], [0, 100], [100, 100], [100, 0]])\\n        .fillOpacity(0) // 设置填充透明度为0，即无填充颜色\\n        .strokeWidth(5) // 设置边框宽度为5\\n        .stroke(Color.Blue) // 设置边框颜色为蓝色\\n\\n      // 第三个Polygon实例，绘制一个五边形\\n      // 功能与效果描述：绘制一个半透明的红色五边形，顶点坐标分别为(50, 0), (0, 50), (20, 100), (80, 100), (100, 50)\\n      Polygon().width(100).height(100)\\n        .points([[50, 0], [0, 50], [20, 100], [80, 100], [100, 50]])\\n        .fill(Color.Red) // 设置填充颜色为红色\\n        .fillOpacity(0.6) // 设置填充透明度为0.6，即半透明\\n    }.width('100%').margin({ top: 10 })\\n  }\\n}"
+    ],
+    "is_common_attrs": true
+}
