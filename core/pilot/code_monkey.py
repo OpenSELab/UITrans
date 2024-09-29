@@ -131,8 +131,14 @@ class CodeMonkeyAgent(LLMAgent):
             project_resources=resource,
             android_component=task["component"]
         )
+        print()
+        print(translate_android_component_prompt)
+        print(task["description"])
         messages = self.generate_reply(translate_android_component_prompt, remember=False, model_schema=TranslateAndroidComponent)
+        print(messages[-1]["content"])
         translate_android_component = TranslateAndroidComponent.common_parse_raw(messages[-1]["content"])
+        print(translate_android_component.harmony_component)
+        print(translate_android_component.harmony_component_description)
         translation = Translation(
             description=task["description"],
             source_language="android",
