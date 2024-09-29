@@ -19,7 +19,7 @@ from core.pilot.harmony.utils import get_harmony_component, get_component_relate
 logger = get_logger(name="Code Monkey Agent")
 
 from core.pilot.harmony.resource import load_harmony_resource
-resource = load_harmony_resource(r"D:\Code\Harmony\NormalAbility\entry\src\main\resources")
+resource = load_harmony_resource(r"D:\Codes\ArkTS\dashbook\entry\src\main\resources")
 class CodeMonkeyAgent(LLMAgent):
     """技术领导智能体
 
@@ -45,7 +45,7 @@ class CodeMonkeyAgent(LLMAgent):
 
         Args:
             component (Dict[str]): 安卓组件
-                - name (str): 组件名称
+                - name (List[str]): 组件名称
                 - content (str): 组件内容
                 - description (str): 组件描述
 
@@ -56,7 +56,7 @@ class CodeMonkeyAgent(LLMAgent):
         async with SessionManager(ConfigLoader.get_config().db_config) as session:
             result = await session.execute(
                 select(TranslationTable)
-                .where(TranslationTable.source_component == component_name and TranslationTable.source_language == "android")
+                .where(TranslationTable.source_component.in_(component_name) & (TranslationTable.source_language == "android"))
             )
             translations = list(result.scalars().all())
         self.logger.debug(f"Querying Harmony Component From DB: {component_name}, Size: {len(translations)}")
@@ -131,7 +131,6 @@ class CodeMonkeyAgent(LLMAgent):
             project_resources=resource,
             android_component=task["component"]
         )
-        print()
         print(translate_android_component_prompt)
         print(task["description"])
         messages = self.generate_reply(translate_android_component_prompt, remember=False, model_schema=TranslateAndroidComponent)

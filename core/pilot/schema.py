@@ -93,9 +93,9 @@ class ChooseComponent(CommonBaseModel):
 
 
 class BreakdownAndroidLayoutComponent(CommonBaseModel):
-    name: str = Field(description="安卓组件的名称。")
-    content: str = Field(description="安卓组件布局代码。")
-    description: str = Field(description="组件的描述。")
+    name: List[str] = Field(description="待转译的所有安卓组件名称。")
+    content: str = Field(description="待转译的安卓组件布局代码。")
+    description: str = Field(description="待转译的组件的描述。")
 
 
 class BreakdownAndroidLayoutTask(Task):

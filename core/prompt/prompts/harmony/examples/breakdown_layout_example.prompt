@@ -1,25 +1,26 @@
 # 响应结果示例：
+对于非安卓默认组件，你需要指出该组件的所属的组件库。
 
 ## 示例 #1
 ```json
 {
     "tasks": [
         {
-            "description": "实现安卓布局组件TextView的转译，并保持布局和样式尽可能一致。"，
+            "description": "实现安卓布局组件 com.google.android.material.card.MaterialCardView 的转译，并保持布局和样式尽可能一致。"，
             "done": false,
             "component": {
-                "name": "TextView",
-                "content": "<TextView\n    android:id=\"@+id/textview_first\"\n    android:layout_width=\"wrap_content\"\n    android:layout_height=\"wrap_content\"\n    android:layout_marginTop=\"16dp\"\n    android:text=\"@string/lorem_ipsum\"\n    app:layout_constraintBottom_toBottomOf=\"parent\"\n    app:layout_constraintEnd_toEndOf=\"parent\"\n    app:layout_constraintStart_toStartOf=\"parent\"\n    app:layout_constraintTop_toBottomOf=\"@id/button_first\" />"
-                "description": "一个在Android布局文件中的TextView控件。该控件的id为textview_first，便于在代码中引用。其宽度和高度都设置为根据内容自动调整大小。控件顶部具有16dp的外边距，文本内容引用了资源文件中的lorem_ipsum字符串。该控件使用约束布局，并将底部、左右两侧分别对齐到父布局，同时顶部依赖于另一个ID为button_first的控件，从而实现灵活的布局控制。"
+                "name": ["com.google.android.material.card.MaterialCardView", "LinearLayout", "TextView"],
+                "content": "\n    <com.google.android.material.card.MaterialCardView\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_margin=\"16dp\"\n        app:cardBackgroundColor=\"#FF018786\"\n        app:cardCornerRadius=\"16dp\"\n        app:cardElevation=\"8dp\"\n        app:cardMaxElevation=\"12dp\"\n        app:cardPreventCornerOverlap=\"true\"\n        app:cardUseCompatPadding=\"true\"\n        app:contentPadding=\"16dp\"\n        app:strokeColor=\"#FF03DAC5\"\n        app:strokeWidth=\"2dp\">\n\n        <LinearLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:orientation=\"vertical\"\n            android:padding=\"16dp\">\n\n            <TextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"Card Title\"\n                android:textColor=\"#FFBB86FC\"\n                android:textSize=\"24sp\"\n                android:textStyle=\"bold\" />\n\n            <TextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"This is a sample description text for the card.\"\n                android:textColor=\"#FF6200EE\"\n                android:textSize=\"16sp\"\n                android:paddingTop=\"8dp\" />\n        </LinearLayout>\n    </com.google.android.material.card.MaterialCardView>\n    ",
+                "description": "一个带有自定义样式的 com.google.android.material.card.MaterialCardView，包括16dp的圆角、8dp的阴影高度和12dp的最大阴影高度，以及2dp宽的边框。卡片内部使用了一个垂直布局，包含一个24sp加粗的标题和一段16sp的描述文字。整体布局简洁，遵循 Material Design 风格，提供了良好的视觉层次感。"
             }
         },
         {
-            "description": "实现安卓布局组件CoordinatorLayout的转译，并保持布局和样式尽可能一致。"，
+            "description": "实现安卓标题工具栏的转译，并保持布局和样式尽可能一致。"，
             "done": false,
             "component": {
-                "name": "androidx.coordinatorlayout.widget.CoordinatorLayout",
-                "content": "<androidx.coordinatorlayout.widget.CoordinatorLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:fitsSystemWindows=\"true\">",
-                "description": "一个在Android布局文件中的CoordinatorLayout控件。该控件的宽度和高度都设置为匹配父布局，并且适应系统窗口。"
+                "name": ["com.google.android.material.appbar.AppBarLayout", "com.google.android.material.appbar.MaterialToolbar"],
+                "content": "    <com.google.android.material.appbar.AppBarLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:fitsSystemWindows=\"true\">\n\n        <com.google.android.material.appbar.MaterialToolbar\n            android:id=\"@+id/toolbar\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"?attr/actionBarSize\" />\n\n    </com.google.android.material.appbar.AppBarLayout>",
+                "description": "一个带有 Material Design 风格的标题工具栏，包含一个 MaterialToolbar 组件，高度与系统默认的标题栏高度相同。"
             }
         }
         ...

@@ -12,15 +12,72 @@ from core.pilot.schema import BreakdownAndroidLayout
 os.chdir("../")
 config = ConfigLoader.from_file("./config.yaml")
 llm_client = LLMFactory.create_llm_from_config(llm_client_type="openai",
-                                               llm_config=config.llm_config["openai"].dict())
-resource = load_harmony_resource(r"D:\Code\Harmony\NormalAbility\entry\src\main\resources")
+                                               llm_config=config.llm_config["deepseek"].dict())
+resource = load_harmony_resource(r"D:\Codes\ArkTS\dashbook\entry\src\main\resources")
 
 
 class TestCodeMonkeyAgent(unittest.TestCase):
 
     def test_translate_component(self):
         breakdown_android_layout = BreakdownAndroidLayout.common_parse_raw(r"""
-        {"tasks":[{"description":"实现安卓布局组件CoordinatorLayout的转译，并保持布局和样式尽可能一致。","done":false,"component":{"name":"androidx.coordinatorlayout.widget.CoordinatorLayout","content":"<androidx.coordinatorlayout.widget.CoordinatorLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:fitsSystemWindows=\"true\">","description":"一个在Android布局文件中的CoordinatorLayout控件。该控件的宽度和高度都设置为匹配父布局，并且适应系统窗口。"}},{"description":"实现安卓布局组件ImageView的转译，并保持布局和样式尽可能一致。","done":false,"component":{"name":"ImageView","content":"<ImageView\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:scaleType=\"centerCrop\"\n    android:src=\"@drawable/appbackground\"/>","description":"一个在Android布局文件中的ImageView控件。该控件的宽度和高度都设置为匹配父布局，使用centerCrop缩放类型，并引用drawable资源中的appbackground图像。"}},{"description":"实现安卓布局组件AppBarLayout的转译，并保持布局和样式尽可能一致。","done":false,"component":{"name":"com.google.android.material.appbar.AppBarLayout","content":"<com.google.android.material.appbar.AppBarLayout\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"?attr/actionBarSize\"\n    android:fitsSystemWindows=\"true\">","description":"一个在Android布局文件中的AppBarLayout控件。该控件的宽度和高度分别设置为匹配父布局和actionBarSize，并且适应系统窗口。"}},{"description":"实现安卓布局组件Toolbar的转译，并保持布局和样式尽可能一致。","done":false,"component":{"name":"androidx.appcompat.widget.Toolbar","content":"<androidx.appcompat.widget.Toolbar\n    android:id=\"@+id/toolbar\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:background=\"?attr/colorPrimary\"\n    android:fitsSystemWindows=\"true\"\n    android:minHeight=\"?attr/actionBarSize\"\n    android:title=\"@string/action_about\"\n    app:layout_scrollFlags=\"scroll|enterAlways\"\n    app:popupTheme=\"@style/ThemeOverlay.AppCompat.Light\"\n    app:theme=\"@style/ThemeOverlay.AppCompat.Dark.ActionBar\"/>","description":"一个在Android布局文件中的Toolbar控件。该控件的宽度和高度分别设置为匹配父布局和wrap_content，背景颜色引用colorPrimary，最小高度为actionBarSize，标题引用字符串资源action_about，并设置了滚动和弹出主题。"}},{"description":"实现安卓布局组件ScrollView的转译，并保持布局和样式尽可能一致。","done":false,"component":{"name":"ScrollView","content":"<ScrollView\n    android:id=\"@+id/nestedScrollView\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:layout_marginTop=\"?attr/actionBarSize\"\n    android:fitsSystemWindows=\"true\">","description":"一个在Android布局文件中的ScrollView控件。该控件的宽度和高度都设置为匹配父布局，顶部外边距为actionBarSize，并且适应系统窗口。"}},{"description":"实现安卓布局组件LinearLayout的转译，并保持布局和样式尽可能一致。","done":false,"component":{"name":"LinearLayout","content":"<LinearLayout\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:orientation=\"vertical\"\n    android:paddingBottom=\"@dimen/activity_vertical_margin\"\n    android:paddingTop=\"@dimen/activity_vertical_margin\">","description":"一个在Android布局文件中的LinearLayout控件。该控件的宽度和高度分别设置为匹配父布局和wrap_content，方向为垂直，上下内边距引用dimen资源。"}},{"description":"实现安卓布局组件CardView的转译，并保持布局和样式尽可能一致。","done":false,"component":{"name":"androidx.cardview.widget.CardView","content":"<androidx.cardview.widget.CardView\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:layout_marginBottom=\"4dp\"\n    android:layout_marginLeft=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginRight=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginTop=\"4dp\"\n    android:padding=\"16dp\"\n    app:cardCornerRadius=\"8dp\">","description":"一个在Android布局文件中的CardView控件。该控件的宽度和高度分别设置为匹配父布局和wrap_content，上下左右外边距和内边距设置为固定值或引用dimen资源，圆角半径为8dp。"}},{"description":"实现安卓布局组件TextView的转译，并保持布局和样式尽可能一致。","done":false,"component":{"name":"TextView","content":"<TextView\n    android:id=\"@+id/text_view_about\"\n    android:layout_width=\"wrap_content\"\n    android:layout_height=\"wrap_content\"\n    android:layout_marginBottom=\"24dp\"\n    android:layout_marginLeft=\"16dp\"\n    android:layout_marginRight=\"16dp\"\n    android:layout_marginTop=\"16dp\"\n    android:breakStrategy=\"high_quality\"\n    android:hyphenationFrequency=\"full\"\n    android:text=\"@string/heading_about\"\n    android:textAppearance=\"?android:attr/textAppearanceMedium\"\n    android:textIsSelectable=\"true\"\n    android:textSize=\"16sp\">","description":"一个在Android布局文件中的TextView控件。该控件的宽度和高度都设置为根据内容自动调整大小，上下左右外边距设置为固定值，文本内容引用字符串资源heading_about，文本外观引用系统属性，文本大小为16sp，支持断字和连字。"}},{"description":"实现安卓布局组件Button的转译，并保持布局和样式尽可能一致。","done":false,"component":{"name":"Button","content":"<Button\n    android:id=\"@+id/button_learn_more\"\n    style=\"@style/Widget.AppCompat.Button.Borderless\"\n    android:layout_width=\"wrap_content\"\n    android:layout_height=\"wrap_content\"\n    android:layout_marginBottom=\"8dp\"\n    android:layout_marginLeft=\"8dp\"\n    android:layout_marginRight=\"8dp\"\n    android:fontFamily=\"sans-serif\"\n    android:text=\"@string/learn_more\"\n    android:textColor=\"@color/colorAccent\">","description":"一个在Android布局文件中的Button控件。该控件的宽度和高度都设置为根据内容自动调整大小，上下左右外边距设置为固定值，文本内容引用字符串资源learn_more，文本颜色引用colorAccent，样式为无边框按钮。"}}]}
+        {
+    "tasks": [
+        {
+            "description": "实现安卓布局组件 androidx.coordinatorlayout.widget.CoordinatorLayout 的转译，并保持布局和样式尽可能一致。",
+            "done": false,
+            "component": {
+                "name": ["androidx.coordinatorlayout.widget.CoordinatorLayout"],
+                "content": "<androidx.coordinatorlayout.widget.CoordinatorLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:fitsSystemWindows=\"true\">\n\n    <!-- 内部组件将会在此处实现 -->\n</androidx.coordinatorlayout.widget.CoordinatorLayout>",
+                "description": "整体容器，适用于协调应用内的多种布局及其行为，包括滚动效果等。"
+            }
+        },
+        {
+            "description": "实现安卓布局组件 com.google.android.material.appbar.AppBarLayout 的转译，并保持布局和样式尽可能一致。",
+            "done": false,
+            "component": {
+                "name": ["com.google.android.material.appbar.AppBarLayout", "androidx.appcompat.widget.Toolbar"],
+                "content": "<com.google.android.material.appbar.AppBarLayout\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"?attr/actionBarSize\"\n    android:fitsSystemWindows=\"true\">\n\n    <androidx.appcompat.widget.Toolbar\n        android:id=\"@+id/toolbar\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:background=\"?attr/colorPrimary\"\n        android:fitsSystemWindows=\"true\"\n        android:minHeight=\"?attr/actionBarSize\"\n        app:layout_scrollFlags=\"scroll|enterAlways\"\n        app:popupTheme=\"@style/ThemeOverlay.AppCompat.Light\"\n        app:theme=\"@style/ThemeOverlay.AppCompat.Dark.ActionBar\" />\n\n</com.google.android.material.appbar.AppBarLayout>",
+                "description": "一个顶栏布局，包含 Toolbar，用于应用导航和操作，它符合 Material Design 规范。"
+            }
+        },
+        {
+            "description": "实现安卓布局组件 ScrollView 的转译，并保持布局和样式尽可能一致。",
+            "done": false,
+            "component": {
+                "name": ["ScrollView"],
+                "content": "<ScrollView\n    android:id=\"@+id/nestedScrollView\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:layout_marginTop=\"?attr/actionBarSize\"\n    android:fitsSystemWindows=\"true\">\n\n    <!-- 内部组件将会在此处实现 -->\n</ScrollView>",
+                "description": "一个可滚动的视图容器，允许在单个页面中显示内容超出可见范围时进行滚动。"
+            }
+        },
+        {
+            "description": "实现安卓布局组件 androidx.cardview.widget.CardView 的转译，并保持布局和样式尽可能一致。",
+            "done": false,
+            "component": {
+                "name": ["androidx.cardview.widget.CardView", "LinearLayout", "TextView"],
+                "content": "<androidx.cardview.widget.CardView\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:layout_marginBottom=\"4dp\"\n    android:layout_marginLeft=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginRight=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginTop=\"4dp\"\n    android:padding=\"16dp\"\n    app:cardCornerRadius=\"8dp\">\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"vertical\">\n\n        <TextView\n            android:id=\"@+id/text_view_about\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginBottom=\"24dp\"\n            android:layout_marginLeft=\"16dp\"\n            android:layout_marginRight=\"16dp\"\n            android:layout_marginTop=\"16dp\"\n            android:breakStrategy=\"high_quality\"\n            android:hyphenationFrequency=\"full\"\n            android:text=\"@string/heading_about\"\n            android:textAppearance=\"?android:attr/textAppearanceMedium\"\n            android:textIsSelectable=\"true\"\n            android:textSize=\"16sp\">\n            <requestFocus/>\n        </TextView>\n\n    </LinearLayout>\n</androidx.cardview.widget.CardView>",
+                "description": "一个CardView，用于展示关于信息的内容，具有较好的视觉效果和交互富有层次感。"
+            }
+        },
+        {
+            "description": "实现安卓布局组件 androidx.cardview.widget.CardView 的转译，并保持布局和样式尽可能一致。",
+            "done": false,
+            "component": {
+                "name": ["androidx.cardview.widget.CardView", "ImageView", "LinearLayout"],
+                "content": "<androidx.cardview.widget.CardView\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:layout_marginBottom=\"4dp\"\n    android:layout_marginLeft=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginRight=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginTop=\"4dp\"\n    android:padding=\"16dp\"\n    app:cardCornerRadius=\"8dp\">\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"vertical\"\n        android:padding=\"8dp\">\n\n        <ImageView\n            android:id=\"@+id/imageViewLogo\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"200dp\"\n            android:layout_gravity=\"center\"\n            android:layout_marginBottom=\"8dp\"\n            android:layout_marginLeft=\"8dp\"\n            android:layout_marginRight=\"8dp\"\n            android:layout_marginTop=\"8dp\"\n            app:srcCompat=\"@drawable/bookdash_logo\" />\n\n    </LinearLayout>\n</androidx.cardview.widget.CardView>",
+                "description": "一个CardView，用于展示Logo图像，具有圆角效果并适应不同设备的屏幕宽度。"
+            }
+        },
+        {
+            "description": "实现安卓布局组件 androidx.cardview.widget.CardView 的转译，并保持布局和样式尽可能一致。",
+            "done": false,
+            "component": {
+                "name": ["androidx.cardview.widget.CardView", "LinearLayout", "TextView", "Button"],
+                "content": "<androidx.cardview.widget.CardView\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:layout_marginBottom=\"4dp\"\n    android:layout_marginLeft=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginRight=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginTop=\"4dp\"\n    android:padding=\"16dp\"\n    app:cardCornerRadius=\"8dp\">\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"vertical\">\n\n        <TextView\n            android:id=\"@+id/textViewHeading\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginBottom=\"8dp\"\n            android:layout_marginLeft=\"16dp\"\n            android:layout_marginRight=\"16dp\"\n            android:layout_marginTop=\"16dp\"\n            android:text=\"@string/why_bookdash_heading\"\n            android:textAppearance=\"?android:attr/textAppearanceLarge\"\n            android:textIsSelectable=\"true\"\n            android:textSize=\"24sp\" />\n\n        <TextView\n            android:id=\"@+id/text_why_bookdash\"\n            style=\"@style/TextAppearance.AppCompat.Medium\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginBottom=\"16dp\"\n            android:layout_marginLeft=\"16dp\"\n            android:layout_marginRight=\"16dp\"\n            android:breakStrategy=\"high_quality\"\n            android:fontFamily=\"sans-serif\"\n            android:hyphenationFrequency=\"normal\"\n            android:text=\"@string/why_bookdash\"\n            android:textIsSelectable=\"true\"\n            android:textSize=\"16sp\" />\n\n        <Button\n            android:id=\"@+id/button_learn_more\"\n            style=\"@style/Widget.AppCompat.Button.Borderless\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginBottom=\"8dp\"\n            android:layout_marginLeft=\"8dp\"\n            android:layout_marginRight=\"8dp\"\n            android:fontFamily=\"sans-serif\"\n            android:text=\"@string/learn_more\"\n            android:textColor=\"@color/colorAccent\" />\n    </LinearLayout>\n</androidx.cardview.widget.CardView>",
+                "description": "一个CardView，用于呈现说明和互动按钮，集合了文本和按钮，强调用户的操作。"
+            }
+        }
+    ]
+}
         """)
         code_monkey_agent = CodeMonkeyAgent(llm_client=llm_client)
         all_translations = code_monkey_agent.translate_component(breakdown_android_layout)

@@ -1739,7 +1739,6 @@ CONTAINER_COMPONENT = {
         },
         "events": {},
         "rules": [
-            "该组件从API Version 9开始支持。",
             "该组件的父组件只能是List。",
             "ListItemGroup组件不支持设置通用属性aspectRatio。",
             "当ListItemGroup的父组件List的listDirection属性为Axis.Vertical时，设置通用属性height属性不生效。",

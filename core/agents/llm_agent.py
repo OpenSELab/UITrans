@@ -157,7 +157,6 @@ class LLMAgent:
             **kwargs: 其他参数
         """
         current_round = 0
-        messages = []
         while current_round < max_rounds:
             if current_round == 0:
                 temp_messages = self.generate_reply(messages, sender, **kwargs)
@@ -191,7 +190,7 @@ class LLMAgent:
         }
         if response.choices[0].message.tool_calls:
             response_message["tool_calls"] = [
-                tool_call.dict() for tool_call in response.choices[0].message.tool_calls
+                tool_call.model_dump() for tool_call in response.choices[0].message.tool_calls
             ]
         return response_message
 

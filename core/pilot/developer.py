@@ -51,7 +51,9 @@ class DeveloperAgent(LLMAgent):
             current_task=layout_translation.tasks[current_task_index],
             android_layout=android_layouts[layout_translation.tasks[current_task_index].android]
         )
-        messages = self.generate_reply(breakdown_android_layout_prompt, model_schema=BreakdownAndroidLayout, remember=False)
+        print(breakdown_android_layout_prompt)
+        messages = self.generate_reply(breakdown_android_layout_prompt, model_schema=BreakdownAndroidLayout, remember=False, temperatur=0.0)
+        print(messages[-1]["content"])
         response = BreakdownAndroidLayout.common_parse_raw(messages[-1]["content"])
         self.logger.info(f"Breakdown Android Layout: {response}")
         return response

@@ -1,4 +1,5 @@
 import os
+import unittest
 
 import pytest
 import pytest_asyncio
@@ -8,6 +9,7 @@ from core.config.schema import DBConfig
 from core.db.model.base import Base
 from core.db.model.translation import TranslationTable
 from core.db.session import SessionManager
+
 
 
 @pytest_asyncio.fixture
