@@ -12,7 +12,7 @@ from core.pilot.schema import BreakdownAndroidLayout
 os.chdir("../")
 config = ConfigLoader.from_file("./config.yaml")
 llm_client = LLMFactory.create_llm_from_config(llm_client_type="openai",
-                                               llm_config=config.llm_config["deepseek"].dict())
+                                               llm_config=config.llm_config["openai"].dict())
 resource = load_harmony_resource(r"D:\Code\Harmony\NormalAbility\entry\src\main\resources")
 
 
