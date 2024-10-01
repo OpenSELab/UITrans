@@ -18,7 +18,7 @@
 #}
 
 {% include "partials/files_list.prompt" %}
-{% include "partials/resources_list.prompt" %}
+{# {% include "partials/resources_list.prompt" %} #}
 
 以下是待转译的安卓布局代码：
 {% if android_layout %}

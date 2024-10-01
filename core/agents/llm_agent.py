@@ -6,10 +6,11 @@ from typing import List, Any, Dict, Union, Callable, Literal, Optional, Protocol
 import shortuuid
 from core.logger.base_logger import BaseLogger
 from core.logger.runtime import get_logger
-from core.llms.base import Tool
 from core.utils.function_utils import get_function_schema
 from core.prompt.prompt_loader import PromptLoader
-from core.llms.base import LLMClient
+from core.llms.base import Tool, LLMClient
+from core.agents.schema import AgentTasks
+
 
 logger = get_logger(name="LLM Agent")
 
@@ -112,7 +113,36 @@ class LLMAgent:
             else:
                 print("Role: {role}\nContent: {content}\n\n".format(role=message["role"], content=message["content"]))
 
-    def generate_reply(self, messages: Union[str, List[Dict[str, Any]]], sender: Sender = "__temp__", remember: bool = True,
+    def make_plan(self, requirement: str, interactive: bool = False, **kwargs) -> AgentTasks:
+        """制定计划
+
+        Args:
+            requirement (str): 需求
+            interactive (bool): 是否支持交互式
+
+        Jinja2 Variables:
+            requirement: 需求
+            tools (): 工具列表
+            project_files (dict): 项目文件列表
+            is_file_content (bool): 是否显示文件内容，默认为空
+            project_resources (dict): 项目资源列表
+            is_resource_content (bool): 是否显示资源内容，默认为空
+        """
+        make_plan_prompt = PromptLoader.get_prompt(
+            f"base/make_plan.prompt",
+            requirement=requirement,
+            tools=self._tools,
+            **kwargs
+        )
+        print(requirement)
+        print(make_plan_prompt)
+        make_plan_messages = self.generate_reply(make_plan_prompt, remember=False, model_schema=AgentTasks)
+        print(make_plan_messages)
+        print(make_plan_messages[-1]["content"])
+        print(make_plan_messages[-1].get("tool_calls", None))
+
+    def generate_reply(self, messages: Union[str, List[Dict[str, Any]]], sender: Sender = "__temp__",
+                       remember: bool = True,
                        **kwargs) -> List[Dict[str, Any]]:
         """生成大模型回复
 
@@ -146,7 +176,8 @@ class LLMAgent:
         return messages
 
     def solve(self, messages: Union[str, List[Dict[str, Any]]], sender: Sender = "__temp__", *,
-              terminate_trigger: Callable = default_terminate_trigger, max_rounds: int = 3, **kwargs) -> List[Dict[str, Any]]:
+              terminate_trigger: Callable = default_terminate_trigger, max_rounds: int = 3, plan: bool = True,
+              **kwargs) -> List[Dict[str, Any]]:
         """通过多次循环来解决问题
 
         Args:
@@ -154,8 +185,10 @@ class LLMAgent:
             sender (str | Agent): 发送者
             terminate_trigger (Callable): 终止触发器
             max_rounds (int): 最大循环次数
+            plan (bool): 是否规划, 若开启规划，则 max_rounds 失效
             **kwargs: 其他参数
         """
+        model_schema = kwargs.pop("model_schema", None)
         current_round = 0
         while current_round < max_rounds:
             if current_round == 0:
@@ -183,7 +216,8 @@ class LLMAgent:
         # 过滤掉工具调用消息
         messages = [message for message in messages if "tool_calls" not in message]
         response = self._llm_client.create(messages, tools=self._tools, **kwargs)
-        self.logger.debug("generate_llm_reply: messages={messages}, response={response}".format(messages=messages, response=response))
+        self.logger.debug(
+            "generate_llm_reply: messages={messages}, response={response}".format(messages=messages, response=response))
         response_message = {
             "role": "assistant",
             "content": response.choices[0].message.content,
@@ -235,7 +269,8 @@ class LLMAgent:
             "role": "user",
             "content": tool_calls_message_content,
         }
-        self.logger.debug("generate_tool_reply: messages={messages}, response={response}".format(messages=messages, response=response))
+        self.logger.debug("generate_tool_reply: messages={messages}, response={response}".format(messages=messages,
+                                                                                                 response=response))
         return response
 
     def register_reply_hook(self, function: ReplyHookFunction) -> None:

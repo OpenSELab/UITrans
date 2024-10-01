@@ -236,7 +236,7 @@ async def generate_example_document(document: str):
                 break
         return example_document.replace("\n", "\\n")
 
-    example_pattern = re.compile("示例\d*\n([\s\S]*?)(?=\n\!\[Image|\Z)", re.DOTALL)
+    example_pattern = re.compile("示例\d*\n+([\s\S]*?)(?=\n\!\[|\Z)", re.DOTALL)
     all_examples = example_pattern.findall(document)
     async_tasks = []
     for example in all_examples:
@@ -280,7 +280,7 @@ async def generate_component_declaration(url: str):
             component_structure_document = await generate_component_document(component_document)
             with open(component_structure_document_filepath, "w", encoding="utf-8") as f:
                 f.write(component_structure_document)
-        print("================= 生成组件结构化完成 =================")
+        print("================= 生成组件结构化文档完成 =================")
         return component_structure_document
 
     async_tasks.append(generate_component_document_task())
@@ -320,9 +320,9 @@ async def generate_component_declaration(url: str):
 
 if __name__ == '__main__':
     urls = [
-        # TODO: 有问题的
+        # TODO: 该组件文档存在问题的
         # "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-canvasrenderingcontext2d-V5",
-        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-composetitlebar-V5"
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-relativecontainer-V5"
     ]
     for url in urls:
         asyncio.run(generate_component_declaration(url))

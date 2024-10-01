@@ -1,0 +1,41 @@
+你在一家软件公司工作，与团队协作完成一个项目，现在你被指派去完成以下任务。
+
+{# 任务描述 #}
+# 任务：
+{{ requirement }}
+
+
+{% include "partials/tools_list.prompt" %}
+{% include "partials/files_list.prompt" %}
+{% include "partials/resources_list.prompt" %}
+
+在开始任务之前，你需要将任务分解为一系列明确的、可以逐步执行的子任务。
+然后，你需要根据子任务的要求，逐步思考，制定一个详细的计划，以便你能够顺利完成任务。
+
+{% include "partials/plan_rules.prompt" %}
+
+示例：
+```json
+{
+    tasks: [
+        {
+            "type": "tool",
+            "description": "创建字符串资源 title，并将其值设置为 'Hello, World!'"
+            "tool": {
+                "name": "create_string_resource",
+                "parameters": {
+                    "name": "title",
+                    "value": "Hello, World!"
+                }
+            },
+            "explanation": "当前安卓组件中引用字符串资源 title，但鸿蒙项目中不存在字符串资源 title，需要创建一个名为 title 的字符串资源。"
+        },
+        {
+            "type": "normal",
+            "description": "将安卓组件 ConstraintLayout 转译为对应的鸿蒙ArkUI组件，并保持布局和样式尽可能一致。",
+            "tool": null,
+            "explanation": "当前安卓组件 ConstraintLayout 需要转译为鸿蒙ArkUI组件，保持布局和样式尽可能一致。"
+        }
+    ]
+}
+```

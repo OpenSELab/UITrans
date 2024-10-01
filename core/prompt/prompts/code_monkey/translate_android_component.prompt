@@ -25,6 +25,7 @@
 以下是待转译的安卓代码：
 {% if android_component %}
 # {{ android_component.name }}
+{{ android_component.description }}
 {{ android_component.content }}
 {% endif %}
 
@@ -50,12 +51,12 @@
 你的工作是根据ArkUI组件文档、当前项目信息准确地、完整的将安卓组件转译为鸿蒙ArkUI组件。
 在转译时你需要确保转译过程中所用的每个ArkUI组件、属性和事件与安卓组件实现的功能、行为一致。
 在整个过程中，请严格遵循文档规范，每一步都需要详细对照官方文档，确保没有任何遗漏或误解。
-**重要**：必须确保所选用的组件、类型、属性和方法完全符合鸿蒙ArkUI官方文档的定义与规范。
+**重要**：必须确保所选用的组件、类型、属性和方法完全符合鸿蒙ArkUI官方文档的定义与规范, 必须确保使用的资源文件都已被定义。
 {#首先你需要认真考虑提供的安卓布局代码的功能，然后再进行转译。#}
 
 
-在转译过程中，你需要严格遵守以下规则：
-{% include "harmony/rules/layout_translation_rules.prompt" %}
+
+{#{% include "harmony/rules/layout_translation_rules.prompt" %}#}
 
 
 {#直接给出鸿蒙ArkUI代码即可。#}

@@ -1,45 +1,21 @@
 import json
 
-a = {
-    "a": """
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardBackgroundColor="#FF018786"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        app:cardMaxElevation="12dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        app:contentPadding="16dp"
-        app:strokeColor="#FF03DAC5"
-        app:strokeWidth="2dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Card Title"
-                android:textColor="#FFBB86FC"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="This is a sample description text for the card."
-                android:textColor="#FF6200EE"
-                android:textSize="16sp"
-                android:paddingTop="8dp" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-    """
+a = r"""
+{
+  "android_component": "<LinearLayout\n    android:id=\"@+id/linearLayout4\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:background=\"@color/black_trans80\"\n    android:gravity=\"bottom|center\"\n    android:orientation=\"horizontal\"\n    android:padding=\"20sp\">\n\n    <TextView\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"match_parent\"\n        android:gravity=\"bottom\"\n        android:text=\"Don't have an Account?\"\n        android:textColor=\"@color/blue_grey\"\n        android:textSize=\"15sp\" />\n\n    <TextView\n        android:id=\"@+id/signup\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"match_parent\"\n        android:clickable=\"true\"\n        android:focusable=\"true\"\n        android:gravity=\"bottom\"\n        android:text=\"SignUp\"\n        android:textColor=\"@color/blue_grey\"\n        android:textSize=\"15sp\"\n        android:textStyle=\"bold\" />\n</LinearLayout>",
+  "harmony_component": "Column({\n  space: 0\n}) {\n  Text('Don\'t have an Account?')\n    .width('wrap_content')\n    .height('match_parent')\n    .align(Alignment.Bottom)\n    .fontColor($r('app.color.blue_grey'))\n    .fontSize(15)\n\n  Text('SignUp')\n    .id('signup')\n    .width('wrap_content')\n    .height('match_parent')\n    .clickable(true)\n    .focusable(true)\n    .align(Alignment.Bottom)\n    .fontColor($r('app.color.blue_grey'))\n    .fontSize(15)\n    .fontWeight(FontWeight.Bolder)\n}\n.id('linearLayout4')\n.width('match_parent')\n.height('wrap_content')\n.backgroundColor($r('app.color.black_trans80'))\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.End)\n.padding(20)",
+  "harmony_component_description": "通过Column布局实现了一个包含提示账户注册的文本和一个可点击的注册链接的界面。布局的宽度占据整个屏幕，高度为wrap_content，背景颜色为black_trans80，内部包含两个Text组件，分别显示“Don't have an Account?”和“SignUp”。整个布局使用了HorizontalAlign.Center和FlexAlign.End来确保文本在布局中居中对齐并位于底部。用户可以通过点击“SignUp”文本触发相应的操作。",
+  "explanation": "1. 使用Column组件替代LinearLayout，设置space为0以确保子组件之间的间距为0。\n2. 使用Text组件替代TextView，设置width为'wrap_content'，height为'match_parent'，align为Alignment.Bottom，fontColor为$r('app.color.blue_grey')，fontSize为15。\n3. 对于“SignUp”文本，额外设置clickable和focusable为true，fontWeight为FontWeight.Bolder以实现加粗效果。\n4. 设置Column的id为'linearLayout4'，width为'match_parent'，height为'wrap_content'，backgroundColor为$r('app.color.black_trans80')，alignItems为HorizontalAlign.Center，justifyContent为FlexAlign.End，padding为20。"
 }
+"""
 
-print(json.dumps(a))
+b = r"""
+{
+  "android_component": "<LinearLayout\n    android:id=\"@+id/linearLayout4\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:background=\"@color/black_trans80\"\n    android:gravity=\"bottom|center\"\n    android:orientation=\"horizontal\"\n    android:padding=\"20sp\">\n\n    <TextView\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"match_parent\"\n        android:gravity=\"bottom\"\n        android:text=\"Don't have an Account?\"\n        android:textColor=\"@color/blue_grey\"\n        android:textSize=\"15sp\" />\n\n    <TextView\n        android:id=\"@+id/signup\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"match_parent\"\n        android:clickable=\"true\"\n        android:focusable=\"true\"\n        android:gravity=\"bottom\"\n        android:text=\"SignUp\"\n        android:textColor=\"@color/blue_grey\"\n        android:textSize=\"15sp\"\n        android:textStyle=\"bold\" />\n</LinearLayout>",
+  "harmony_component": "Column({\n  space: 0\n}) {\n  Text('Don\'t have an Account?')\n    .width('wrap_content')\n    .height('match_parent')\n    .align(Alignment.Bottom)\n    .fontColor($r('app.color.blue_grey'))\n    .fontSize(15)\n\n  Text('SignUp')\n    .id('signup')\n    .width('wrap_content')\n    .height('match_parent')\n    .clickable(true)\n    .focusable(true)\n    .align(Alignment.Bottom)\n    .fontColor($r('app.color.blue_grey'))\n    .fontSize(15)\n    .fontWeight(FontWeight.Bolder)\n}\n.id('linearLayout4')\n.width('match_parent')\n.height('wrap_content')\n.backgroundColor($r('app.color.black_trans80'))\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.End)\n.padding(20)"
+}
+"""
+
+from core.pilot.schema import TranslateAndroidComponent
+translate_android_component = TranslateAndroidComponent.common_parse_raw(a)
+print(translate_android_component.harmony_component)

@@ -8,6 +8,13 @@
 你当前需要处理的任务是：
 {{ current_task.description }}
 
+{% if android_component %}
+待转译的安卓组件如下：
+# {{ android_component.name }}
+{{ android_component.description }}
+{{ android_component.content }}
+{% endif %}
+
 实现这个需求可能会使用到某些ArkUI组件。
 {% include "harmony/components.prompt" %}
 

@@ -10,6 +10,11 @@ logger = get_logger(name="Global State")
 class GlobalState:
     """全局状态
     记录当前项目的全局状态信息
+
+    project_name: 项目名称
+    project_path: 项目路径
+
+
     """
     _instance = None
 

@@ -1,43 +1,6 @@
-import json
-import jsonref
-from typing import List, Any, Optional
-import re
+from typing import List
 from pydantic import BaseModel, Field
-from pydantic.json_schema import DEFAULT_REF_TEMPLATE, GenerateJsonSchema, JsonSchemaMode
-
-
-class CommonBaseModel(BaseModel):
-
-    @classmethod
-    def common_parse_raw(cls, data: str):
-        """对Markdown代码块格式的json进行解析并生成队形实例"""
-        pattern = r"```json\s*([\s\S]*?)\s*```"
-        matches = re.search(pattern, data)
-        if matches:
-            data = matches.group(1)
-        return cls.model_validate_json(data)
-
-    @classmethod
-    def model_json_schema(
-            cls,
-            by_alias: bool = True,
-            ref_template: str = DEFAULT_REF_TEMPLATE,
-            schema_generator: type[GenerateJsonSchema] = GenerateJsonSchema,
-            mode: JsonSchemaMode = 'validation',
-    ) -> dict[str, Any]:
-        """没有$defs，$ref引用的JSON Schema。"""
-
-        def remove_defs(d):
-            if isinstance(d, dict):
-                return {k: remove_defs(v) for k, v in d.items() if k != "$defs"}
-            elif isinstance(d, list):
-                return [remove_defs(v) for v in d]
-            else:
-                return d
-
-        schema = super().model_json_schema()
-        schema = remove_defs(jsonref.loads(json.dumps(schema)))
-        return schema
+from core.agents.schema import CommonBaseModel
 
 
 class JSONTypeModel(CommonBaseModel):

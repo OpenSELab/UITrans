@@ -1,4 +1,5 @@
 import asyncio
+import time
 from typing import List, Dict, Any, Coroutine
 
 import shortuuid
@@ -15,11 +16,13 @@ from core.pilot.schema import BreakdownAndroidLayout, TranslateAndroidComponent,
 from core.prompt import PromptLoader
 from core.pilot.harmony.utils import get_harmony_component, get_component_related_types
 
-
 logger = get_logger(name="Code Monkey Agent")
 
 from core.pilot.harmony.resource import load_harmony_resource
-resource = load_harmony_resource(r"D:\Codes\ArkTS\dashbook\entry\src\main\resources")
+
+resource = load_harmony_resource(r"D:\Code\Harmony\dashbook\entry\src\main\resources")
+
+
 class CodeMonkeyAgent(LLMAgent):
     """技术领导智能体
 
@@ -56,7 +59,8 @@ class CodeMonkeyAgent(LLMAgent):
         async with SessionManager(ConfigLoader.get_config().db_config) as session:
             result = await session.execute(
                 select(TranslationTable)
-                .where(TranslationTable.source_component.in_(component_name) & (TranslationTable.source_language == "android"))
+                .where(TranslationTable.source_component.in_(component_name) & (
+                            TranslationTable.source_language == "android"))
             )
             translations = list(result.scalars().all())
         self.logger.debug(f"Querying Harmony Component From DB: {component_name}, Size: {len(translations)}")
@@ -64,12 +68,13 @@ class CodeMonkeyAgent(LLMAgent):
             return self._filter_translations(component, translations)
         return translations  # []
 
-    def _filter_translations(self, component: Dict[str, Any], translations: List[TranslationTable]) -> List[TranslationTable]:
+    def _filter_translations(self, component: Dict[str, Any], translations: List[TranslationTable]) -> List[
+        TranslationTable]:
         """利用向量相似度及关键词匹配过滤转译表
 
         Args:
             component (Dict[str]): 安卓组件
-                - name (str): 组件名称
+                - name (List[str]): 组件名称
                 - content (str): 组件内容
                 - description (str): 组件描述
             translations (List[TranslationTable]): 转译表
@@ -78,12 +83,13 @@ class CodeMonkeyAgent(LLMAgent):
             return []
         return translations
 
-    def _filter_component_documents(self, component: Dict[str, Any], harmony_components: Dict[str, Any]) -> Dict[str, Any]:
+    def _filter_component_documents(self, component: Dict[str, Any], harmony_components: Dict[str, Any]) -> Dict[
+        str, Any]:
         """利用向量相似度及关键词匹配过滤组件文档
 
         Args:
             component (Dict[str]): 安卓组件
-                - name (str): 组件名称
+                - name (List[str]): 组件名称
                 - content (str): 组件内容
                 - description (str): 组件描述
             harmony_components (Dict[str, Any]): 鸿蒙组件文档
@@ -100,7 +106,7 @@ class CodeMonkeyAgent(LLMAgent):
                 - done (bool): 任务是否完成
                 - description (str): 任务描述
                 - component (Dict[str]): 安卓组件
-                    - name (str): 组件名称
+                    - name (List[str]): 组件名称
                     - content (str): 组件内容
                     - description (str): 组件描述
             - translations (List[TranslationTable]): 转译表
@@ -117,7 +123,8 @@ class CodeMonkeyAgent(LLMAgent):
         related_harmony_components = set()
         for translation in translations:
             related_harmony_components.update(translation.target_component)
-        harmony_components = self._filter_component_documents(task["component"], get_harmony_component(list(related_harmony_components)))
+        harmony_components = self._filter_component_documents(task["component"],
+                                                              get_harmony_component(list(related_harmony_components)))
         harmony_types = get_component_related_types(list(harmony_components.keys()))
 
         translate_android_component_prompt = PromptLoader.get_prompt(
@@ -133,15 +140,27 @@ class CodeMonkeyAgent(LLMAgent):
         )
         print(translate_android_component_prompt)
         print(task["description"])
-        messages = self.generate_reply(translate_android_component_prompt, remember=False, model_schema=TranslateAndroidComponent)
+        messages = self.generate_reply(translate_android_component_prompt, remember=False,
+                                       model_schema=TranslateAndroidComponent)
         print(messages[-1]["content"])
         translate_android_component = TranslateAndroidComponent.common_parse_raw(messages[-1]["content"])
         print(translate_android_component.harmony_component)
         print(translate_android_component.harmony_component_description)
+        print(translate_android_component.explanation)
+        check_messages = messages + [{
+            "role": "user",
+            "content": "请检查所选用的组件、类型、属性和方法完全符合鸿蒙ArkUI官方文档的定义与规范, 以及使用的资源文件都已被定义"
+        }]
+        response_messages = self.generate_reply(check_messages, remember=False, model_schema=TranslateAndroidComponent)
+        print(response_messages[-1]["content"])
+        translate_android_component = TranslateAndroidComponent.common_parse_raw(messages[-1]["content"])
+        print(translate_android_component.harmony_component)
+        print(translate_android_component.harmony_component_description)
+        print(translate_android_component.explanation)
         translation = Translation(
             description=task["description"],
             source_language="android",
-            source_component=task["component"]["name"],
+            source_component=task["component"]["name"][0],
             source_component_code=task["component"]["content"],
             source_component_description=task["component"]["description"],
             target_language="harmony",
@@ -160,7 +179,7 @@ class CodeMonkeyAgent(LLMAgent):
                 - done (bool): 任务是否完成
                 - description (str): 任务描述
                 - component (Dict[str]): 安卓组件
-                    - name (str): 组件名称
+                    - name (List[str]): 组件名称
                     - content (str): 组件内容
                     - description (str): 组件描述
         """
@@ -171,14 +190,18 @@ class CodeMonkeyAgent(LLMAgent):
         choose_component_prompt = PromptLoader.get_prompt(
             f"{self.agent_role}/choose_component.prompt",
             current_task=task,
+            android_component=task["component"],
             # 全部组件文档，但没有使用说明，只有简介
             harmony_components=get_harmony_component(),
             is_component_content=False,
         )
-        choose_component_messages = self.generate_reply(choose_component_prompt, remember=False, model_schema=ChooseComponent)
+        choose_component_messages = self.generate_reply(choose_component_prompt, remember=False,
+                                                        model_schema=ChooseComponent)
         choose_component = ChooseComponent.common_parse_raw(choose_component_messages[-1]["content"])
+        print(choose_component.components)
         # 2. 查询组件文档以及类型文档
-        harmony_components = self._filter_component_documents(task["component"], get_harmony_component(list(choose_component.components)))
+        harmony_components = self._filter_component_documents(task["component"],
+                                                              get_harmony_component(list(choose_component.components)))
         harmony_types = get_component_related_types(list(choose_component.components))
         # 3. 根据组件文档生成鸿蒙代码
         generate_harmony_component_prompt = PromptLoader.get_prompt(
@@ -191,12 +214,15 @@ class CodeMonkeyAgent(LLMAgent):
             project_resources=resource,
             android_component=task["component"]
         )
-        generate_harmony_component_messages = self.generate_reply(generate_harmony_component_prompt, remember=False, model_schema=TranslateAndroidComponent)
-        translate_android_component = TranslateAndroidComponent.common_parse_raw(generate_harmony_component_messages[-1]["content"])
+        generate_harmony_component_messages = self.generate_reply(generate_harmony_component_prompt, remember=False,
+                                                                  model_schema=TranslateAndroidComponent)
+        translate_android_component = TranslateAndroidComponent.common_parse_raw(
+            generate_harmony_component_messages[-1]["content"])
+        print(translate_android_component.harmony_component)
         translation = Translation(
             description=task["description"],
             source_language="android",
-            source_component=task["component"]["name"],
+            source_component=task["component"]["name"][0],
             source_component_code=task["component"]["content"],
             source_component_description=task["component"]["description"],
             target_language="harmony",
@@ -213,7 +239,7 @@ class CodeMonkeyAgent(LLMAgent):
         Args:
             - breakdown_android_layout (BreakdownAndroidLayout): 任务列表
         """
-        # TODO: 修改为并发查询
+
         # 异步查询所有组件的转译表
         async def async_query_translations():
             # 从数据库中查询转译表
@@ -222,6 +248,7 @@ class CodeMonkeyAgent(LLMAgent):
                 query_translations_tasks.append(self._query_translations_from_db(task.component.model_dump()))
             # 等待所有查询任务完成
             return await asyncio.gather(*query_translations_tasks)
+
         # 转译表: [[...], [...], ...]
         translations = asyncio.run(async_query_translations())
 
@@ -231,8 +258,6 @@ class CodeMonkeyAgent(LLMAgent):
             translate_component_tasks: List[Coroutine[Any, Any, Translation]] = []
             for index, (task, translation) in enumerate(zip(breakdown_android_layout.tasks, translations)):
                 if len(translation) == 0:
-                    # TODO: 提高生成的效果，目前跳过生成
-                    continue
                     translate_component_tasks.append(self._generate_component(task.model_dump()))
                 else:
                     translate_component_tasks.append(self._translate_component(task.model_dump(), translation))
@@ -241,4 +266,3 @@ class CodeMonkeyAgent(LLMAgent):
         translate_android_components = asyncio.run(async_translate_components())
 
         return list(translate_android_components)
-

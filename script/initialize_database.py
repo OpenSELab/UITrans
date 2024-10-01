@@ -55,8 +55,8 @@ async def main():
         translation_list.append(TranslationTable(
             source_language=translation["source_language"],
             source_component=translation["source_component"],
-            source_component_code=translation["source_component_code"],
-            source_component_description=translation["source_component_description"],
+            source_component_code=translation["source_component_code"].strip(),
+            source_component_description=translation["source_component_description"].strip(),
             source_component_version=translation["source_component_version"],
             target_language=translation["target_language"],
             target_component=translation["target_component"],

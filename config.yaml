@@ -16,8 +16,10 @@ prompt:
   paths:
     - core/prompt/prompts
 
-# 鸿蒙配置
+# 鸿蒙 Harmony配置
 harmony:
+  toolkit:
+    bin: D:/Devkits/Harmony/command-line-tools/bin
   template:
     base_dir: template
 

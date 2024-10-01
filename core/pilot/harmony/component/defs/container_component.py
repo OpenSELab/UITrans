@@ -1754,52 +1754,149 @@ CONTAINER_COMPONENT = {
     "Navigator": {"description": "路由容器组件，提供路由跳转能力，可以包含子组件。"},
     "Refresh": {"description": "可以进行页面下拉操作并显示刷新动效的容器组件，支持单个子组件。"},
     "RelativeContainer": {
-        "description": "相对布局组件，用于复杂场景中元素对齐的布局，支持多个子组件。",
-        "details": "规则说明\n----\n\n*   容器内子组件区分水平方向，垂直方向：\n    *   水平方向为left， middle， right，对应容器的HorizontalAlign.Start， HorizontalAlign.Center， HorizontalAlign.End。\n    *   垂直方向为top， center， bottom，对应容器的VerticalAlign.Top， VerticalAlign.Center， VerticalAlign.Bottom。\n*   子组件可以将容器、guideline、barrier或者其他子组件设为锚点：\n    *   参与相对布局的容器内组件，不设置id的组件能显示，但是不能被其他子组件作为锚点，相对布局容器会为其拼接id，此id的规律无法被应用感知；容器id固定为\_\_container\_\_；guideline和barrier的id不能与组件重复，重复的话按照组件 > guideline > barrier的优先级生效。\n    *   此子组件某一方向上的三个位置（水平方向为left、middle、right，垂直方向为top、center、bottom）可以指定容器或其他子组件同方向的三个位置（水平方向为HorizontalAlign.Start、HorizontalAlign.Center、HorizontalAlign.End，垂直方向为VerticalAlign.Top、VerticalAlign.Center、VerticalAlign.Bottom）为锚点。若同方向上设置两个以上锚点，水平方向Start和Center优先，垂直方向Top和Center优先。例如，水平方向上指定了left以容器的HorizontalAlign.Start为锚点，middle以容器的HorizontalAlign.Center为锚点，又指定right的锚点为容器的HorizontalAlign.End，当组件的width和容器的width不能同时满足3条约束规则时，优先取Start和Center的约束规则。\n    *   当同时存在前端页面设置的子组件尺寸和相对布局规则时，子组件的绘制尺寸取决于约束规则。从API Version 11开始，该规则发生变化，子组件绘制尺寸取决于前端页面设置的尺寸。\n    *   对齐后需要额外偏移可设置offset(API Version 11上新增了[bias](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-location-V5#bias%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)， 不建议再使用offset)。\n    *   从API Version 11开始，在RelativeContainer组件中，width、height设置auto表示自适应子组件。\n    *   当width设置auto时，如果水平方向上子组件以容器作为锚点，则auto不生效，垂直方向上同理。\n    *   相对布局容器内的子组件的margin含义不同于通用属性的margin，其含义为到该方向上的锚点的距离。若该方向上没有锚点，则该方向的margin不生效。\n    *   guideline的位置在不声明或者声明异常值(如undefined)时，取start：0的位置；start和end两种方式声明一种即可，同时声明时仅start生效。\n    *   当容器在某个方向的size声明为“auto”时，该方向上guideline的位置只能使用start的方式声明(不可使用百分比)。\n    *   垂直方向的guideline和barrier只能作为组件水平方向的锚点，作为垂直方向的锚点时取0；水平方向的guideline和barrier只能作为组件垂直方向的锚点，作为水平方向的锚点时取0。\n    *   链的形成依靠组件间的依赖关系。以一个组件A、组件B组成的最小水平链为例，需要有锚点1 <-- 组件A <---> 组件B --> 锚点2的依赖关系，即A具有left锚点，B具有right锚点，同时A的right锚点是B的HorizontalAlign.Start，B的left锚点是A的HorizontalAlign.End。\n    *   链的方向和格式声明在链头组件的[chainMode](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-location-V5#chainmode12)接口；链内元素的bias属性全部失效，链头元素的bias作为整个链的bias生效。\n    *   链内所有元素的size如果超出链的锚点约束，超出的部分将均分在链的两侧。在[Packed](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#chainstyle12)链中，超出部分的分布可以通过[bias](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-location-V5#bias%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)来设置。\n*   特殊情况\n    *   根据约束条件和子组件本身的size属性无法确定子组件大小，则子组件不绘制。\n    *   互相依赖、环形依赖时容器内子组件全部不绘制。\n    *   同方向上两个及以上位置设置锚点但锚点位置逆序时此子组件大小为0，即不绘制。",
-        "interfaces": [
-            {
-                "description": "创建RelativeContainer组件。",
-                "params": {}
-            }
-        ],
-        "attributes": {
-            "guideLine": {
-                "description": "设置RelativeContainer容器内的辅助线，Array中每个项目即为一条guideline。",
-                "params": {
-                    "value": {
-                        "type": "Array<GuideLineStyle>",
-                        "required": True,
-                        "description": "RelativeContainer容器内的辅助线。"
-                    }
-                }
-            },
-            "barrier": {
-                "description": "设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier。",
-                "params": {
-                    "value": {
-                        "type": "Array<BarrierStyle>",
-                        "required": True,
-                        "description": "RelativeContainer容器内的屏障。"
-                    }
+    "description": "相对布局组件，用于复杂场景中元素对齐的布局。",
+    "details": "该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "RelativeContainer()",
+            "params": {}
+        },
+        {
+            "description": "guideLine(value: Array<GuideLineStyle>)",
+            "params": {
+                "value": {
+                    "type": "Array<GuideLineStyle>",
+                    "required": True,
+                    "description": "设置RelativeContainer容器内的辅助线，Array中每个项目即为一条guideline。",
+                    "default": None
                 }
             }
         },
-        "events": {},
-        "examples": [
-            "示例1：以容器和容器内组件作为锚点进行布局的用法。",
-            "示例2：容器内子组件设置margin的用法。",
-            "示例3：容器大小适应内容（声明size为\"auto\"）的用法。",
-            "示例4：bias的用法。",
-            "示例5：guideline的声明和以guideline为锚点的用法。",
-            "示例6：barrier的声明和以barrier为锚点的用法。",
-            "示例7：通过chainMode接口实现了水平方向的SPREAD链。",
-            "示例8：通过chainMode接口实现了水平方向的SPREAD_INSIDE链。",
-            "示例9：通过chainMode接口实现了水平方向的PACKED链。",
-            "示例10：通过chainMode和bias接口实现了水平方向的带bias的PACKED链。",
-            "示例11：在RTL模式下以barrier为锚点时使用LocalizedAlignRuleOptions和LocalizedBarrierDirection设置对齐方式的用法。"
-        ],
-        "is_common_attrs": True
+        {
+            "description": "barrier(value: Array<BarrierStyle>)",
+            "params": {
+                "value": {
+                    "type": "Array<BarrierStyle>",
+                    "required": True,
+                    "description": "设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier。",
+                    "default": None
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "alignRules": {
+            "description": "子组件可以将容器、guideline、barrier或者其他子组件设为锚点。",
+            "params": {
+                "top": {
+                    "type": "AlignRule",
+                    "required": False,
+                    "description": "垂直方向的顶部对齐规则。",
+                    "default": None
+                },
+                "center": {
+                    "type": "AlignRule",
+                    "required": False,
+                    "description": "垂直方向的中心对齐规则。",
+                    "default": None
+                },
+                "bottom": {
+                    "type": "AlignRule",
+                    "required": False,
+                    "description": "垂直方向的底部对齐规则。",
+                    "default": None
+                },
+                "left": {
+                    "type": "AlignRule",
+                    "required": False,
+                    "description": "水平方向的左侧对齐规则。",
+                    "default": None
+                },
+                "middle": {
+                    "type": "AlignRule",
+                    "required": False,
+                    "description": "水平方向的中间对齐规则。",
+                    "default": None
+                },
+                "right": {
+                    "type": "AlignRule",
+                    "required": False,
+                    "description": "水平方向的右侧对齐规则。",
+                    "default": None
+                },
+                "bias": {
+                    "type": "Bias",
+                    "required": False,
+                    "description": "对齐后的额外偏移。",
+                    "default": None
+                }
+            }
+        },
+        "margin": {
+            "description": "子组件的margin含义不同于通用属性的margin，其含义为到该方向上的锚点的距离。若该方向上没有锚点，则该方向的margin不生效。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": True,
+                    "description": "margin值。",
+                    "default": None
+                }
+            }
+        },
+        "width": {
+            "description": "设置容器的宽度。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": True,
+                    "description": "宽度值，可以为具体数值或'auto'。",
+                    "default": None
+                }
+            }
+        },
+        "height": {
+            "description": "设置容器的高度。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": True,
+                    "description": "高度值，可以为具体数值或'auto'。",
+                    "default": None
+                }
+            }
+        }
     },
+    "events": {},
+    "rules": [
+        "容器内子组件区分水平方向，垂直方向。",
+        "子组件可以将容器、guideline、barrier或者其他子组件设为锚点。",
+        "当同时存在前端页面设置的子组件尺寸和相对布局规则时，子组件的绘制尺寸取决于约束规则。",
+        "对齐后需要额外偏移可设置offset。",
+        "当width设置auto时，如果水平方向上子组件以容器作为锚点，则auto不生效，垂直方向上同理。",
+        "相对布局容器内的子组件的margin含义不同于通用属性的margin，其含义为到该方向上的锚点的距离。",
+        "guideline的位置在不声明或者声明异常值(如undefined)时，取start：0的位置。",
+        "当容器在某个方向的size声明为“auto”时，该方向上guideline的位置只能使用start的方式声明(不可使用百分比)。",
+        "垂直方向的guideline和barrier只能作为组件水平方向的锚点，作为垂直方向的锚点时取0；水平方向的guideline和barrier只能作为组件垂直方向的锚点，作为水平方向的锚点时取0。",
+        "链的形成依靠组件间的依赖关系。",
+        "链的方向和格式声明在链头组件的chainMode接口；链内元素的bias属性全部失效，链头元素的bias作为整个链的bias生效。",
+        "链内所有元素的size如果超出链的锚点约束，超出的部分将均分在链的两侧。",
+        "特殊情况：根据约束条件和子组件本身的size属性无法确定子组件大小，则子组件不绘制。",
+        "互相依赖、环形依赖时容器内子组件全部不绘制。",
+        "同方向上两个及以上位置设置锚点但锚点位置逆序时此子组件大小为0，即不绘制。"
+    ],
+    "examples": [
+        "/*\\n实现思路：\\n本示例展示了如何在鸿蒙ArkUI中使用Guideline组件来定位其他组件。通过定义垂直和水平方向的Guideline，并将其作为其他组件的锚点，可以精确控制组件的位置。\\n总体功能与效果描述：\\n示例中创建了一个RelativeContainer，并在其中定义了两个Guideline（一个垂直，一个水平）。一个红色的Row组件通过这些Guideline进行定位，使其左边缘和上边缘分别与Guideline对齐。\\n*/\\n\\n// Index.ets\\n@Entry\\n@Component\\nstruct Index {\\n  build() {\\n    Row() {\\n      RelativeContainer() {\\n        // 创建一个红色的Row组件，宽度为100，高度为100\\n        Row().width(100).height(100)\\n          .backgroundColor(\"#FF3333\")\\n          // 设置Row组件的定位规则\\n          .alignRules({\\n            // 左边缘与guideline1的末端对齐\\n            left: {anchor: \"guideline1\", align: HorizontalAlign.End},\\n            // 上边缘与guideline2的顶部对齐\\n            top: {anchor: \"guideline2\", align: VerticalAlign.Top}\\n          })\\n          .id(\"row1\")\\n      }\\n      // 设置RelativeContainer的宽度和高度，并添加边框\\n      .width(300).height(300)\\n      .margin({left: 50})\\n      .border({width:2, color: \"#6699FF\"})\\n      // 定义两个Guideline，一个垂直，一个水平，分别位于容器的50像素处\\n      .guideLine([\\n        {id:\"guideline1\", direction: Axis.Vertical, position:{start:50}},\\n        {id:\"guideline2\", direction: Axis.Horizontal, position:{start:50}}\\n      ])\\n    }\\n    .height('100%')\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例展示了如何在鸿蒙ArkUI中使用RelativeContainer组件的bias属性来控制子组件的垂直偏移。通过设置bias属性，可以使子组件相对于其父容器的顶部和底部进行偏移，从而实现更灵活的布局效果。\\n\\n总体功能与效果描述：\\n该示例创建了一个包含红色矩形的RelativeContainer，并通过bias属性将其垂直偏移到父容器的30%位置。矩形的其他对齐规则（如顶部、底部、左侧、右侧）也进行了设置，以确保其在父容器中的位置。\\n*/\\n\\n// Index.ets\\n@Entry\\n@Component\\nstruct Index {\\n  build() {\\n    Row() {\\n      RelativeContainer() {\\n        // 创建一个宽度为100，高度为100的红色矩形\\n        Row().width(100).height(100)\\n          .backgroundColor(\"#FF3333\")\\n          .alignRules({\\n            // 矩形的顶部与父容器的顶部对齐\\n            top: {anchor: \"__container__\", align: VerticalAlign.Top},\\n            // 矩形的底部与父容器的底部对齐\\n            bottom: {anchor: \"__container__\", align: VerticalAlign.Bottom},\\n            // 矩形的左侧与父容器的左侧对齐\\n            left: {anchor: \"__container__\", align: HorizontalAlign.Start},\\n            // 矩形的右侧与父容器的右侧对齐\\n            right: {anchor: \"__container__\", align: HorizontalAlign.End},\\n            // 设置矩形的垂直偏移，使其相对于父容器的顶部和底部偏移30%\\n            bias: {vertical: 0.3}\\n          })\\n          .id(\"row1\")\\n      }\\n      .width(300).height(300)\\n      .margin({left: 50}) // 设置RelativeContainer的左边距为50\\n      .border({width:2, color: \"#6699FF\"}) // 为RelativeContainer添加一个宽度为2的蓝色边框\\n    }\\n    .height('100%') // 设置Row的高度为100%\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例展示了如何在容器内为子组件设置margin，并通过RelativeContainer组件实现子组件的相对定位。通过设置不同的alignRules，子组件可以在容器内以不同的方式排列。\\n总体功能与效果描述：\\n该示例展示了四个不同颜色的矩形（Row组件）在RelativeContainer内的布局。每个矩形都有不同的背景颜色，并且通过margin属性设置了外边距。通过alignRules属性，矩形之间实现了相对定位，形成了一个复杂的布局效果。\\n*/\\n\\n// Index.ets\\n@Entry\\n@Component\\nstruct Index {\\n  build() {\\n    Row() {\\n      RelativeContainer() {\\n        // 第一个矩形，红色背景，位于容器的左上角，设置了10像素的margin\\n        Row(){Text('row1')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FF3333\")\\n          .alignRules({\\n            top: {anchor: \"__container__\", align: VerticalAlign.Top}, // 顶部对齐容器顶部\\n            left: {anchor: \"__container__\", align: HorizontalAlign.Start} // 左侧对齐容器左侧\\n          })\\n          .id(\"row1\")\\n          .margin(10) // 设置外边距为10像素\\n\\n        // 第二个矩形，黄色背景，位于第一个矩形的右侧\\n        Row(){Text('row2')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FFCC00\")\\n          .alignRules({\\n            left: {anchor: \"row1\", align: HorizontalAlign.End}, // 左侧对齐第一个矩形的右侧\\n            top: {anchor: \"row1\", align: VerticalAlign.Top} // 顶部对齐第一个矩形的顶部\\n          })\\n          .id(\"row2\")\\n\\n        // 第三个矩形，橙色背景，位于第一个矩形的下方\\n        Row(){Text('row3')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FF6633\")\\n          .alignRules({\\n            left: {anchor: \"row1\", align: HorizontalAlign.Start}, // 左侧对齐第一个矩形的左侧\\n            top: {anchor: \"row1\", align: VerticalAlign.Bottom} // 顶部对齐第一个矩形的底部\\n          })\\n          .id(\"row3\")\\n\\n        // 第四个矩形，浅橙色背景，位于第三个矩形的右侧，第二个矩形的下方，设置了10像素的margin\\n        Row(){Text('row4')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FF9966\")\\n          .alignRules({\\n            left: {anchor: \"row3\", align: HorizontalAlign.End}, // 左侧对齐第三个矩形的右侧\\n            top: {anchor: \"row2\", align: VerticalAlign.Bottom} // 顶部对齐第二个矩形的底部\\n          })\\n          .id(\"row4\")\\n          .margin(10) // 设置外边距为10像素\\n      }\\n      .width(300).height(300) // 设置RelativeContainer的宽度和高度\\n      .margin({left: 50}) // 设置RelativeContainer的左侧外边距为50像素\\n      .border({width:2, color: \"#6699FF\"}) // 设置RelativeContainer的边框\\n    }\\n    .height('100%') // 设置Row的高度为100%\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例通过使用RelativeContainer组件和Row组件，结合chainMode和bias接口，实现了水平方向的带bias的PACKED链布局。通过设置不同的alignRules，控制子组件在容器中的相对位置和对齐方式。\\n总体功能与效果描述：\\n该示例展示了如何在RelativeContainer中使用chainMode和bias属性，实现水平方向的PACKED链布局。每个Row组件通过设置alignRules来定义其在容器中的相对位置和对齐方式，最终形成一个水平排列的布局效果。\\n*/\\n\\n// Index.ets\\n@Entry\\n@Component\\nstruct Index {\\n  build() {\\n    Row() {\\n      RelativeContainer() {\\n        // 第一个Row组件，包含文本'row1'，设置为居中对齐，宽度80，高度80，背景色为红色\\n        Row(){Text('row1')}.justifyContent(FlexAlign.Center)\\n          .width(80).height(80)\\n          .backgroundColor(\"#FF3333\")\\n          // 设置alignRules，定义组件的相对位置和对齐方式\\n          .alignRules({\\n            left: {anchor: \"__container__\", align: HorizontalAlign.Start}, // 左对齐到容器左侧\\n            right: {anchor: \"row2\", align : HorizontalAlign.Start}, // 右对齐到row2的左侧\\n            center: {anchor: \"__container__\", align: VerticalAlign.Center}, // 垂直居中对齐到容器\\n            bias : {horizontal : 0} // 水平方向的bias值为0\\n          })\\n          .id(\"row1\") // 设置组件ID为row1\\n          .chainMode(Axis.Horizontal, ChainStyle.PACKED) // 设置水平方向的链模式为PACKED\\n\\n        // 第二个Row组件，包含文本'row2'，设置为居中对齐，宽度80，高度80，背景色为黄色\\n        Row(){Text('row2')}.justifyContent(FlexAlign.Center)\\n          .width(80).height(80)\\n          .backgroundColor(\"#FFCC00\")\\n          // 设置alignRules，定义组件的相对位置和对齐方式\\n          .alignRules({\\n            left: {anchor: \"row1\", align: HorizontalAlign.End}, // 左对齐到row1的右侧\\n            right: {anchor: \"row3\", align : HorizontalAlign.Start}, // 右对齐到row3的左侧\\n            top: {anchor: \"row1\", align: VerticalAlign.Top} // 顶部对齐到row1的顶部\\n          })\\n          .id(\"row2\") // 设置组件ID为row2\\n\\n        // 第三个Row组件，包含文本'row3'，设置为居中对齐，宽度80，高度80，背景色为橙色\\n        Row(){Text('row3')}.justifyContent(FlexAlign.Center)\\n          .width(80).height(80)\\n          .backgroundColor(\"#FF6633\")\\n          // 设置alignRules，定义组件的相对位置和对齐方式\\n          .alignRules({\\n            left: {anchor: \"row2\", align: HorizontalAlign.End}, // 左对齐到row2的右侧\\n            right: {anchor: \"__container__\", align : HorizontalAlign.End}, // 右对齐到容器右侧\\n            top: {anchor: \"row1\", align: VerticalAlign.Top} // 顶部对齐到row1的顶部\\n          })\\n          .id(\"row3\") // 设置组件ID为row3\\n      }\\n      .width(300).height(300) // 设置RelativeContainer的宽度和高度\\n      .margin({left: 50}) // 设置左侧外边距\\n      .border({width:2, color: \"#6699FF\"}) // 设置边框宽度和颜色\\n    }\\n    .height('100%') // 设置Row的高度为100%\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例展示了如何使用RelativeContainer组件来实现容器内子组件的相对定位。通过设置子组件的alignRules属性，可以指定子组件相对于其他子组件的位置。整个RelativeContainer的大小会根据其内容自动调整，即设置width和height为\"auto\"。\\n\\n总体功能与效果描述：\\n1. 创建一个RelativeContainer，其中包含四个Row组件，每个Row组件内有一个Text组件。\\n2. 每个Row组件通过alignRules属性相对于其他Row组件进行定位。\\n3. RelativeContainer的大小会根据其内容自动调整，并且有一个蓝色的边框。\\n*/\\n\\n// Index.ets\\n@Entry\\n@Component\\nstruct Index {\\n  build() {\\n    Row() {\\n      RelativeContainer() {\\n        // 第一个Row组件，包含一个Text组件，内容为'row1'，宽度为100，高度为100，背景颜色为红色，居中对齐\\n        Row(){Text('row1')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FF3333\")\\n          .id(\"row1\") // 设置id为\"row1\"，用于后续的相对定位\\n\\n        // 第二个Row组件，包含一个Text组件，内容为'row2'，宽度为100，高度为100，背景颜色为黄色，相对于\"row1\"进行定位\\n        Row(){Text('row2')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FFCC00\")\\n          .alignRules({\\n            left: {anchor: \"row1\", align: HorizontalAlign.End}, // 相对于\"row1\"的右边\\n            top: {anchor: \"row1\", align: VerticalAlign.Top} // 相对于\"row1\"的顶部\\n          })\\n          .id(\"row2\") // 设置id为\"row2\"，用于后续的相对定位\\n\\n        // 第三个Row组件，包含一个Text组件，内容为'row3'，宽度为100，高度为100，背景颜色为橙色，相对于\"row1\"进行定位\\n        Row(){Text('row3')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FF6633\")\\n          .alignRules({\\n            left: {anchor: \"row1\", align: HorizontalAlign.Start}, // 相对于\"row1\"的左边\\n            top: {anchor: \"row1\", align: VerticalAlign.Bottom} // 相对于\"row1\"的底部\\n          })\\n          .id(\"row3\") // 设置id为\"row3\"，用于后续的相对定位\\n\\n        // 第四个Row组件，包含一个Text组件，内容为'row4'，宽度为100，高度为100，背景颜色为浅橙色，相对于\"row3\"和\"row2\"进行定位\\n        Row(){Text('row4')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FF9966\")\\n          .alignRules({\\n            left: {anchor: \"row3\", align: HorizontalAlign.End}, // 相对于\"row3\"的右边\\n            top: {anchor: \"row2\", align: VerticalAlign.Bottom} // 相对于\"row2\"的底部\\n          })\\n          .id(\"row4\") // 设置id为\"row4\"，用于后续的相对定位\\n      }\\n      .width(\"auto\").height(\"auto\") // 设置RelativeContainer的宽度和高度为\"auto\"，使其大小适应内容\\n      .margin({left: 50}) // 设置左边距为50\\n      .border({width:2, color: \"#6699FF\"}) // 设置边框宽度为2，颜色为蓝色\\n    }\\n    .height('100%') // 设置Row的高度为100%\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例展示了如何使用RelativeContainer和barrier来实现复杂的布局。通过定义多个Row组件，并使用alignRules和barrier来控制它们的位置关系，实现了一种灵活的布局方式。\\n\\n总体功能与效果描述：\\n示例展示了四个Row组件在RelativeContainer中的布局。通过barrier定义了两个虚拟的边界线，这些边界线作为锚点，帮助其他组件进行定位。最终效果是四个不同颜色的矩形在容器中以特定的相对位置排列。\\n*/\\n\\n// Index.ets\\n@Entry\\n@Component\\nstruct Index {\\n  build() {\\n    Row() {\\n      RelativeContainer() {\\n        // 第一个Row组件，显示文本'row1'，背景色为红色，宽度高度均为100，居中对齐\\n        Row(){Text('row1')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FF3333\")\\n          .id(\"row1\") // 为该组件设置ID，方便后续组件引用\\n\\n        // 第二个Row组件，显示文本'row2'，背景色为黄色，宽度高度均为100，相对于row1进行定位\\n        Row(){Text('row2')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FFCC00\")\\n          .alignRules({\\n            middle: {anchor: \"row1\", align: HorizontalAlign.End}, // 水平方向上与row1的右边缘对齐\\n            top: {anchor: \"row1\", align: VerticalAlign.Bottom} // 垂直方向上与row1的底边缘对齐\\n          })\\n          .id(\"row2\") // 为该组件设置ID，方便后续组件引用\\n\\n        // 第三个Row组件，显示文本'row3'，背景色为橙色，宽度高度均为100，相对于barrier1进行定位\\n        Row(){Text('row3')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FF6633\")\\n          .alignRules({\\n            left: {anchor: \"barrier1\", align: HorizontalAlign.End}, // 水平方向上与barrier1的右边缘对齐\\n            top: {anchor: \"row1\", align: VerticalAlign.Top} // 垂直方向上与row1的顶边缘对齐\\n          })\\n          .id(\"row3\") // 为该组件设置ID，方便后续组件引用\\n\\n        // 第四个Row组件，显示文本'row4'，背景色为浅橙色，宽度高度均为50，相对于row1和barrier2进行定位\\n        Row(){Text('row4')}.justifyContent(FlexAlign.Center)\\n          .width(50).height(50)\\n          .backgroundColor(\"#FF9966\")\\n          .alignRules({\\n            left: {anchor: \"row1\", align: HorizontalAlign.Start}, // 水平方向上与row1的左边缘对齐\\n            top: {anchor: \"barrier2\", align: VerticalAlign.Bottom} // 垂直方向上与barrier2的底边缘对齐\\n          })\\n          .id(\"row4\") // 为该组件设置ID，方便后续组件引用\\n      }\\n      .width(300).height(300) // 设置RelativeContainer的宽度和高度\\n      .margin({left: 50}) // 设置左边距\\n      .border({width:2, color: \"#6699FF\"}) // 设置边框\\n      .barrier([\\n        {id: \"barrier1\", direction: BarrierDirection.RIGHT, referencedId:[\"row1\", \"row2\"]}, // 定义barrier1，方向为右，参考row1和row2的右边缘\\n        {id: \"barrier2\", direction: BarrierDirection.BOTTOM, referencedId:[\"row1\", \"row2\"]} // 定义barrier2，方向为下，参考row1和row2的底边缘\\n      ])\\n    }\\n    .height('100%') // 设置Row的高度为100%\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例展示了如何使用RelativeContainer组件进行相对布局。通过设置不同的alignRules，我们可以将子组件相对于容器或其他子组件进行定位。每个Row组件代表一个子组件，通过id属性进行标识，并在alignRules中引用这些id来定义相对位置。\\n\\n总体功能与效果描述：\\n该示例展示了五个不同颜色的Row组件，它们在RelativeContainer中以不同的相对位置进行布局。每个Row组件通过alignRules属性定义了相对于容器或其他Row组件的位置，从而实现复杂的相对布局效果。\\n*/\\n\\n// Index.ets\\n@Entry\\n@Component\\nstruct Index {\\n  build() {\\n    Row() {\\n      RelativeContainer() {\\n        // 第一个Row组件，位于容器的左上角\\n        Row(){Text('row1')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FF3333\")\\n          .alignRules({\\n            top: {anchor: \"__container__\", align: VerticalAlign.Top}, // 顶部与容器顶部对齐\\n            left: {anchor: \"__container__\", align: HorizontalAlign.Start} // 左侧与容器左侧对齐\\n          })\\n          .id(\"row1\") // 设置id以便在其他组件中引用\\n\\n        // 第二个Row组件，位于容器的右上角\\n        Row(){Text('row2')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FFCC00\")\\n          .alignRules({\\n            top: {anchor: \"__container__\", align: VerticalAlign.Top}, // 顶部与容器顶部对齐\\n            right: {anchor: \"__container__\", align: HorizontalAlign.End} // 右侧与容器右侧对齐\\n          })\\n          .id(\"row2\") // 设置id以便在其他组件中引用\\n\\n        // 第三个Row组件，位于row1的右下角，并且与row2的左侧对齐\\n        Row(){Text('row3')}.justifyContent(FlexAlign.Center)\\n          .height(100)\\n          .backgroundColor(\"#FF6633\")\\n          .alignRules({\\n            top: {anchor: \"row1\", align: VerticalAlign.Bottom}, // 顶部与row1的底部对齐\\n            left: {anchor: \"row1\", align: HorizontalAlign.End}, // 左侧与row1的右侧对齐\\n            right: {anchor: \"row2\", align: HorizontalAlign.Start} // 右侧与row2的左侧对齐\\n          })\\n          .id(\"row3\") // 设置id以便在其他组件中引用\\n\\n        // 第四个Row组件，位于row3的下方，并且与容器的左下角和row1的右侧对齐\\n        Row(){Text('row4')}.justifyContent(FlexAlign.Center)\\n          .backgroundColor(\"#FF9966\")\\n          .alignRules({\\n            top: {anchor: \"row3\", align: VerticalAlign.Bottom}, // 顶部与row3的底部对齐\\n            bottom: {anchor: \"__container__\", align: VerticalAlign.Bottom}, // 底部与容器底部对齐\\n            left: {anchor: \"__container__\", align: HorizontalAlign.Start}, // 左侧与容器左侧对齐\\n            right: {anchor: \"row1\", align: HorizontalAlign.End} // 右侧与row1的右侧对齐\\n          })\\n          .id(\"row4\") // 设置id以便在其他组件中引用\\n\\n        // 第五个Row组件，位于row3的下方，并且与row2的左侧和容器的右下角对齐\\n        Row(){Text('row5')}.justifyContent(FlexAlign.Center)\\n          .backgroundColor(\"#FF66FF\")\\n          .alignRules({\\n            top: {anchor: \"row3\", align: VerticalAlign.Bottom}, // 顶部与row3的底部对齐\\n            bottom: {anchor: \"__container__\", align: VerticalAlign.Bottom}, // 底部与容器底部对齐\\n            left: {anchor: \"row2\", align: HorizontalAlign.Start}, // 左侧与row2的左侧对齐\\n            right: {anchor: \"__container__\", align: HorizontalAlign.End} // 右侧与容器右侧对齐\\n          })\\n          .id(\"row5\") // 设置id以便在其他组件中引用\\n      }\\n      .width(300).height(300) // 设置RelativeContainer的宽度和高度\\n      .margin({left: 50}) // 设置左侧外边距\\n      .border({width:2, color: \"#6699FF\"}) // 设置边框\\n    }\\n    .height('100%') // 设置Row的高度为100%\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例展示了在RTL（Right-to-Left）模式下，使用RelativeContainer组件来实现多个Row组件的对齐布局。通过设置LocalizedAlignRuleOptions和LocalizedBarrierDirection，我们可以灵活地控制组件的对齐方式和锚点。示例中使用了barrier作为锚点，并通过alignRules属性来指定每个Row组件的对齐规则。\\n\\n总体功能与效果描述：\\n1. 创建一个RelativeContainer组件，并在其中放置四个Row组件。\\n2. 每个Row组件通过alignRules属性设置其相对于其他组件或barrier的对齐方式。\\n3. 使用barrier来定义两个虚拟的锚点，分别用于水平和垂直方向的对齐。\\n4. 设置RelativeContainer的方向为RTL，以展示在RTL模式下的布局效果。\\n*/\\n\\n// Index.ets\\n@Entry\\n@Component\\nstruct Index {\\n  build() {\\n    Row() {\\n      RelativeContainer() {\\n        // 第一个Row组件，显示文本'row1'，并设置其宽度和高度为100，背景颜色为红色\\n        Row(){Text('row1')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FF3333\")\\n          .id(\"row1\") // 设置组件的id为\"row1\"，用于后续的对齐规则引用\\n\\n        // 第二个Row组件，显示文本'row2'，并设置其宽度和高度为100，背景颜色为黄色\\n        Row(){Text('row2')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FFCC00\")\\n          .alignRules({\\n            middle: {anchor: \"row1\", align: HorizontalAlign.End}, // 水平方向上，row2相对于row1的右侧对齐\\n            top: {anchor: \"row1\", align: VerticalAlign.Bottom} // 垂直方向上，row2相对于row1的底部对齐\\n          })\\n          .id(\"row2\") // 设置组件的id为\"row2\"，用于后续的对齐规则引用\\n\\n        // 第三个Row组件，显示文本'row3'，并设置其宽度和高度为100，背景颜色为橙色\\n        Row(){Text('row3')}.justifyContent(FlexAlign.Center)\\n          .width(100).height(100)\\n          .backgroundColor(\"#FF6633\")\\n          .alignRules({\\n            start: {anchor: \"barrier1\", align: HorizontalAlign.End}, // 水平方向上，row3相对于barrier1的右侧对齐\\n            top: {anchor: \"row1\", align: VerticalAlign.Top} // 垂直方向上，row3相对于row1的顶部对齐\\n          })\\n          .id(\"row3\") // 设置组件的id为\"row3\"，用于后续的对齐规则引用\\n\\n        // 第四个Row组件，显示文本'row4'，并设置其宽度和高度为50，背景颜色为浅橙色\\n        Row(){Text('row4')}.justifyContent(FlexAlign.Center)\\n          .width(50).height(50)\\n          .backgroundColor(\"#FF9966\")\\n          .alignRules({\\n            start: {anchor: \"row1\", align: HorizontalAlign.Start}, // 水平方向上，row4相对于row1的左侧对齐\\n            top: {anchor: \"barrier2\", align: VerticalAlign.Bottom} // 垂直方向上，row4相对于barrier2的底部对齐\\n          })\\n          .id(\"row4\") // 设置组件的id为\"row4\"，用于后续的对齐规则引用\\n      }\\n      .direction(Direction.Rtl) // 设置RelativeContainer的方向为RTL，即从右到左布局\\n      .width(300).height(300) // 设置RelativeContainer的宽度和高度为300\\n      .margin({left: 50}) // 设置RelativeContainer的左边距为50\\n      .border({width:2, color: \"#6699FF\"}) // 设置RelativeContainer的边框宽度和颜色\\n      .barrier([\\n        {id: \"barrier1\", localizedDirection: LocalizedBarrierDirection.END, referencedId:[\"row1\", \"row2\"]}, // 定义barrier1，水平方向上位于row1和row2的右侧\\n        {id: \"barrier2\", localizedDirection: LocalizedBarrierDirection.BOTTOM, referencedId:[\"row1\", \"row2\"]} // 定义barrier2，垂直方向上位于row1和row2的底部\\n      ])\\n    }\\n    .height('100%') // 设置Row组件的高度为100%\\n  }\\n}",
+        "/*\\n实现思路：\\n本示例通过使用RelativeContainer组件和chainMode接口，展示了如何在水平方向上实现不同的链布局效果。具体来说，示例中分别实现了SPREAD链、SPREAD_INSIDE链和PACKED链。每个链布局通过设置不同的alignRules和chainMode来实现。\\n\\n总体功能与效果描述：\\n该示例展示了三种不同的水平链布局效果：SPREAD、SPREAD_INSIDE和PACKED。每个链布局由多个Row组件组成，每个Row组件通过设置alignRules来确定其在容器中的位置，并通过chainMode来定义链的布局方式。最终效果是三个不同布局的链在同一个容器中展示。\\n*/\\n\\n// Index.ets\\n@Entry\\n@Component\\nstruct Index {\\n  build() {\\n    Row() {\\n      RelativeContainer() {\\n        // 第一个链布局：SPREAD\\n        Row(){Text('row1')}.justifyContent(FlexAlign.Center)\\n          .width(80).height(80)\\n          .backgroundColor(\"#FF3333\")\\n          .alignRules({\\n            left: {anchor: \"__container__\", align: HorizontalAlign.Start}, // 左对齐容器\\n            right: {anchor: \"row2\", align : HorizontalAlign.Start}, // 右对齐row2的左侧\\n            top: {anchor: \"__container__\", align: VerticalAlign.Top} // 顶部对齐容器\\n          })\\n          .id(\"row1\")\\n          .chainMode(Axis.Horizontal, ChainStyle.SPREAD) // 设置水平方向的SPREAD链布局\\n\\n        Row(){Text('row2')}.justifyContent(FlexAlign.Center)\\n          .width(80).height(80)\\n          .backgroundColor(\"#FFCC00\")\\n          .alignRules({\\n            left: {anchor: \"row1\", align: HorizontalAlign.End}, // 左对齐row1的右侧\\n            right: {anchor: \"row3\", align : HorizontalAlign.Start}, // 右对齐row3的左侧\\n            top: {anchor: \"row1\", align: VerticalAlign.Top} // 顶部对齐row1的顶部\\n          })\\n          .id(\"row2\")\\n\\n        Row(){Text('row3')}.justifyContent(FlexAlign.Center)\\n          .width(80).height(80)\\n          .backgroundColor(\"#FF6633\")\\n          .alignRules({\\n            left: {anchor: \"row2\", align: HorizontalAlign.End}, // 左对齐row2的右侧\\n            right: {anchor: \"__container__\", align : HorizontalAlign.End}, // 右对齐容器的右侧\\n            top: {anchor: \"row1\", align: VerticalAlign.Top} // 顶部对齐row1的顶部\\n          })\\n          .id(\"row3\")\\n\\n        // 第二个链布局：SPREAD_INSIDE\\n        Row(){Text('row4')}.justifyContent(FlexAlign.Center)\\n          .width(80).height(80)\\n          .backgroundColor(\"#FF3333\")\\n          .alignRules({\\n            left: {anchor: \"__container__\", align: HorizontalAlign.Start}, // 左对齐容器\\n            right: {anchor: \"row5\", align : HorizontalAlign.Start}, // 右对齐row5的左侧\\n            center: {anchor: \"__container__\", align: VerticalAlign.Center} // 垂直居中对齐容器\\n          })\\n          .id(\"row4\")\\n          .chainMode(Axis.Horizontal, ChainStyle.SPREAD_INSIDE) // 设置水平方向的SPREAD_INSIDE链布局\\n\\n        Row(){Text('row5')}.justifyContent(FlexAlign.Center)\\n          .width(80).height(80)\\n          .backgroundColor(\"#FFCC00\")\\n          .alignRules({\\n            left: {anchor: \"row4\", align: HorizontalAlign.End}, // 左对齐row4的右侧\\n            right: {anchor: \"row6\", align : HorizontalAlign.Start}, // 右对齐row6的左侧\\n            top: {anchor: \"row4\", align: VerticalAlign.Top} // 顶部对齐row4的顶部\\n          })\\n          .id(\"row5\")\\n\\n        Row(){Text('row6')}.justifyContent(FlexAlign.Center)\\n          .width(80).height(80)\\n          .backgroundColor(\"#FF6633\")\\n          .alignRules({\\n            left: {anchor: \"row5\", align: HorizontalAlign.End}, // 左对齐row5的右侧\\n            right: {anchor: \"__container__\", align : HorizontalAlign.End}, // 右对齐容器的右侧\\n            top: {anchor: \"row4\", align: VerticalAlign.Top} // 顶部对齐row4的顶部\\n          })\\n          .id(\"row6\")\\n\\n        // 第三个链布局：PACKED\\n        Row(){Text('row7')}.justifyContent(FlexAlign.Center)\\n          .width(80).height(80)\\n          .backgroundColor(\"#FF3333\")\\n          .alignRules({\\n            left: {anchor: \"__container__\", align: HorizontalAlign.Start}, // 左对齐容器\\n            right: {anchor: \"row8\", align : HorizontalAlign.Start}, // 右对齐row8的左侧\\n            bottom: {anchor: \"__container__\", align: VerticalAlign.Bottom} // 底部对齐容器\\n          })\\n          .id(\"row7\")\\n          .chainMode(Axis.Horizontal, ChainStyle.PACKED) // 设置水平方向的PACKED链布局\\n\\n        Row(){Text('row8')}.justifyContent(FlexAlign.Center)\\n          .width(80).height(80)\\n          .backgroundColor(\"#FFCC00\")\\n          .alignRules({\\n            left: {anchor: \"row7\", align: HorizontalAlign.End}, // 左对齐row7的右侧\\n            right: {anchor: \"row9\", align : HorizontalAlign.Start}, // 右对齐row9的左侧\\n            top: {anchor: \"row7\", align: VerticalAlign.Top} // 顶部对齐row7的顶部\\n          })\\n          .id(\"row8\")\\n\\n        Row(){Text('row9')}.justifyContent(FlexAlign.Center)\\n          .width(80).height(80)\\n          .backgroundColor(\"#FF6633\")\\n          .alignRules({\\n            left: {anchor: \"row8\", align: HorizontalAlign.End}, // 左对齐row8的右侧\\n            right: {anchor: \"__container__\", align : HorizontalAlign.End}, // 右对齐容器的右侧\\n            top: {anchor: \"row7\", align: VerticalAlign.Top} // 顶部对齐row7的顶部\\n          })\\n          .id(\"row9\")\\n      }\\n      .width(300).height(300) // 设置RelativeContainer的宽度和高度\\n      .margin({left: 50}) // 设置左侧外边距\\n      .border({width:2, color: \"#6699FF\"}) // 设置边框\\n    }\\n    .height('100%') // 设置Row的高度为100%\\n  }\\n}"
+    ],
+    "is_common_attrs": True
+},
     "Row": {
         "description": "沿水平方向布局容器，可以包含子组件。",
         "interfaces": [

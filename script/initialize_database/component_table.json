@@ -3,21 +3,21 @@
         "source_language": "android",
         "source_component": "View",
         "source_component_code": "<View\nandroid:id=\"@+id/transparent_bg\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:background=\"@color/transparent_black\"\nandroid:visibility=\"visible\"\n/>",
-        "source_component_description": "View 组件是构建用户界面的基本构建块，View 组件负责在屏幕上绘制自身，并处理用户交互事件",
+        "source_component_description": "该代码片段定义了一个透明的背景视图，用于在 Android 应用中创建一个覆盖整个屏幕的半透明黑色背景。背景视图的宽度占据整个屏幕，高度也占据整个屏幕，背景颜色通过资源文件 @color/transparent_black 进行自定义。视图的可见性设置为 visible，确保其在界面上显示。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
             "Column"
         ],
         "target_component_code": "Column()\n.id(\"transparent_bg\")\n.width(\"100%\")\n.height(\"100%\")\n.backgroundColor($r(\"app.color.transparent_black\"))\n.visibility(Visibility.Visible)",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个透明的背景视图，用于在应用中创建一个覆盖整个屏幕的半透明黑色背景。背景视图的宽度占据整个屏幕，高度也为 100%，背景颜色通过资源文件 $r(\"app.color.transparent_black\") 进行设置。视图的可见性设置为 Visible，确保其在界面上显示。用户可以通过背景视图查看和操作相关内容。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "CheckBox",
         "source_component_code": "<CheckBox\nandroid:id=\"@+id/chbOne\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:checked=\"true\"\nandroid:text=\"吃饭\" />    ",
-        "source_component_description": "允许用户从一组选项中选择一个或多个选项",
+        "source_component_description": "该代码片段定义了一个 CheckBox，用于在 Android 应用中创建一个可选择的复选框。复选框的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。复选框默认处于选中状态，文本内容为“吃饭”。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -27,42 +27,42 @@
             "Flex"
         ],
         "target_component_code": "@State checked1: boolean = true;\n@State checked2: boolean = false;\n@State checked3: boolean = false;\n\nbuild() {\nFlex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {\nRow() {\nCheckbox()\n.select($$this.checked1)\n.width(30)\n.height(30)\nText('吃饭')\n.fontSize(18)\n.onClick(() => {\nthis.checked1 = !this.checked1;\n})\n}\n\nRow() {\nCheckbox()\n.select($$this.checked2)\n.width(30)\n.height(30)\nText('睡觉')\n.fontSize(18)\n.onClick(() => {\nthis.checked2 = !this.checked2;\n})\n}\n\nRow() {\nCheckbox()\n.select($$this.checked3)\n.width(30)\n.height(30)\nText('读书')\n.fontSize(18)\n.onClick(() => {\nthis.checked3 = !this.checked3;\n})\n}\n}\n.width('100%')\n.height('100%')\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Flex 布局实现了一个包含三个复选框的界面，用于在应用中创建一个选择列表。布局的宽度占据整个屏幕，高度也为 100%，内部包含三个 Row 组件，每个 Row 组件包含一个 Checkbox 和一个 Text 组件。复选框的宽度为 30vp，高度也为 30vp，文本字体大小为 18vp。用户可以通过点击复选框或文本来切换复选框的状态。整个布局使用了 FlexDirection.Row、ItemAlign.Center 和 FlexAlign.Start 来确保复选框和文本在水平方向上居中对齐，并且从左到右排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "EditText",
         "source_component_code": "<EditText\nandroid:id=\"@+id/et_1\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"50dp\"\nandroid:layout_marginBottom=\"15dp\"\nandroid:autofillHints=\"\"\nandroid:hint=\"请输入文字\"\nandroid:inputType=\"text\"\nandroid:paddingLeft=\"15dp\"\nandroid:paddingRight=\"15dp\"\nandroid:textColor=\"@color/black\"\nandroid:textSize=\"16sp\" />",
-        "source_component_description": "允许用户输入和编辑文本",
+        "source_component_description": "该代码片段定义了一个 EditText，用于在 Android 应用中创建一个可输入文本的编辑框。编辑框的宽度占据整个父布局，高度固定为 50dp，底部留有 15dp 的边距。编辑框的提示文本为“请输入文字”，输入类型为普通文本。编辑框的左右内边距分别为 15dp，文本颜色为黑色，字体大小为 16sp。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
             "TextInput"
         ],
         "target_component_code": "TextInput({ placeholder: '请输入文字'})\n.id('et_1')\n.width('100%')\n.height(50)\n.margin({ bottom: '15vp' })\n.padding({ left: '15vp', right: '15vp' })\n.fontColor($r('app.color.black'))\n.fontSize('16fp')\n.type(InputType.Normal)\n.enableAutoFill(true)",
-        "target_component_description": "",
+        "target_component_description": "通过 TextInput 组件实现了一个可输入文本的编辑框，用于在应用中创建一个输入界面。编辑框的宽度占据整个父布局，高度为 50vp，底部边距为 15vp，左右内边距分别为 15vp。编辑框的提示文本为“请输入文字”，字体颜色通过资源文件 $r('app.color.black') 进行设置，字体大小为 16fp，输入类型为普通文本，并启用了自动填充功能。用户可以在编辑框中输入文本进行操作。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "ProgressBar",
         "source_component_code": "<ProgressBar\nandroid:id=\"@+id/progress_bar\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_centerInParent=\"true\"\n/>",
-        "source_component_description": "用于显示任务的进度。它可以是确定的（显示具体的进度值）或不确定的（显示一个持续的动画，表示任务正在进行中但进度未知）。",
+        "source_component_description": "该代码片段定义了一个 ProgressBar，用于在 Android 应用中创建一个进度条。进度条的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。进度条位于父布局的中心位置，确保其在界面上居中显示。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
             "Progress"
         ],
         "target_component_code": "Progress({ value: 30, type: ProgressType.ScaleRing })\n.id(\"progress_bar\")\n.align(Alignment.Center)",
-        "target_component_description": "",
+        "target_component_description": "通过 Progress 组件实现了一个进度条，用于在应用中创建一个进度指示器。进度条的当前值为 30，类型为 ScaleRing，表示一个环形进度条。进度条位于布局的中心位置，确保其在界面上居中显示。用户可以通过进度条查看任务的进度状态。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "RadioGroup",
         "source_component_code": "<RadioGroup\nandroid:id=\"@+id/group_test\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:gravity=\"center_horizontal\"\n>\n<RadioButton\nandroid:id=\"@+id/rbtA\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"A、肉\"\n/>\n<RadioButton\nandroid:id=\"@+id/rbtB\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"B、草\"\n/>\n<RadioButton\nandroid:id=\"@+id/rbtC\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"C、虫子\"\n/>\n<RadioButton\nandroid:id=\"@+id/rbtD\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"D、鱼\"\n/>\n\n</RadioGroup>",
-        "source_component_description": "用于包含一组 RadioButton 选项，并确保用户只能从中选择一个选项。",
+        "source_component_description": "该代码片段定义了一个 RadioGroup，用于在 Android 应用中创建一组单选按钮。RadioGroup 的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小，并且水平居中对齐。RadioGroup 内部包含四个 RadioButton，分别对应选项“A、肉”、“B、草”、“C、虫子”和“D、鱼”。每个 RadioButton 的宽度和高度均为 wrap_content，根据文本内容自动调整大小。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -71,42 +71,42 @@
             "Flex"
         ],
         "target_component_code": "Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {\nRadio({ value: 'A', group: 'group_test' })\n.id('rbtA')\nText('A、肉')\n\nRadio({ value: 'B', group: 'group_test' })\n.id('rbtB')\nText('B、草')\n\nRadio({ value: 'C', group: 'group_test' })\n.id('rbtC')\nText('C、虫子')\n\nRadio({ value: 'D', group: 'group_test' })\n.id('rbtD')\nText('D、鱼')\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Flex 布局实现了一个包含四个单选按钮的界面，用于在应用中创建一个选择列表。布局的排列方向为水平方向，内容居中对齐，内部包含四个 Radio 组件和对应的 Text 组件。每个 Radio 组件的值分别为“A”、“B”、“C”和“D”，属于同一个组 group_test。用户可以通过点击单选按钮来选择不同的选项。整个布局使用了 FlexDirection.Row、FlexAlign.Center 和 ItemAlign.Center 来确保单选按钮和文本在水平方向上居中对齐，并且从左到右排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "Spinner",
         "source_component_code": "<Spinner\nandroid:id=\"@+id/spcheak\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:entries=\"@array/spinner_options\" />",
-        "source_component_description": "它提供了一个下拉列表，允许用户从一组预定义的选项中选择一个",
+        "source_component_description": "该代码片段定义了一个 Spinner，用于在 Android 应用中创建一个下拉选择框。Spinner 的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。Spinner 的选项通过 @array/spinner_options 资源文件进行定义，用户可以通过下拉选择框选择不同的选项。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
             "Select"
         ],
         "target_component_code": "@State arr: string[] = [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"]\n@State index: number = 0\nbuild() {\nSelect([{ value: this.arr[0], icon: $r(\"app.media.startIcon\") },\n{ value: this.arr[1], icon: $r(\"app.media.startIcon\") },\n{ value: this.arr[2], icon: $r(\"app.media.startIcon\") },\n{ value: this.arr[3], icon: $r(\"app.media.startIcon\") }])\n.value(this.arr[this.index])\n.onSelect((index:number)=>{\nthis.index = index;\n}).alignSelf(ItemAlign.Center)\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Select 组件实现了一个下拉选择框，用于在应用中创建一个选择界面。选择框的选项值来自 arr 数组，包含四个选项：“Option 1”、“Option 2”、“Option 3”和“Option 4”，每个选项都有一个图标 $r(\"app.media.startIcon\")。选择框的当前值为 arr 数组中的第 index 个元素，初始值为 0。用户可以通过选择框选择不同的选项，选择框的值会根据用户的选择进行更新。整个布局使用了 ItemAlign.Center 来确保选择框在布局中居中对齐。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "NumberPicker",
         "source_component_code": "<NumberPicker\nandroid:id=\"@+id/np\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\napp:layout_constraintLeft_toLeftOf=\"parent\"\napp:layout_constraintRight_toRightOf=\"parent\" /> ",
-        "source_component_description": "允许用户通过滚动选择一个数值。NumberPicker 通常用于设置特定范围内的数值，如年龄、数量或时间。用户可以通过垂直滚动来选择所需的数值",
+        "source_component_description": "该代码片段定义了一个 NumberPicker，用于在 Android 应用中创建一个数字选择器。NumberPicker 的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。数字选择器位于父布局的中心位置，确保其在界面上水平居中显示。用户可以通过数字选择器选择不同的数值。",
         "source_component_version": "11",
         "target_language": "harmony",
         "target_component": [
             "TextInput"
         ],
         "target_component_code": "@Entry\n@Component\nstruct Index {\nbuild() {\nColumn() {\nTextInput()\n.type(InputType.Number)\n}\n}\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个包含数字输入框的界面，用于在应用中创建一个输入界面。布局内部包含一个 TextInput 组件，输入类型为数字。用户可以在输入框中输入数字进行操作。整个布局使用了 Column 布局来确保输入框在垂直方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "DatePicker",
         "source_component_code": "<DatePicker\nandroid:id=\"@+id/datePickerView\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:datePickerMode=\"calendar\"\nandroid:layout_gravity=\"center_horizontal\"\nandroid:layout_marginTop=\"20dp\"\nandroid:layout_marginBottom=\"20dp\"\nandroid:layout_marginLeft=\"10dp\"\nandroid:layout_marginRight=\"10dp\"/>",
-        "source_component_description": "允许用户选择日期。DatePicker 通常以日历或滚动选择器的方式显示，用户可以通过点击或滚动来选择年、月和日。DatePicker 支持设置初始日期、最小日期和最大日期，以及监听用户选择的日期变化",
+        "source_component_description": "该代码片段定义了一个 DatePicker，用于在 Android 应用中创建一个日期选择器。日期选择器的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。日期选择器采用日历模式，并水平居中对齐。日期选择器的上下左右边距分别为 20dp、20dp、10dp 和 10dp，确保其在界面上具有适当的间距。用户可以通过日期选择器选择特定的日期。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -114,14 +114,14 @@
             "Column"
         ],
         "target_component_code": "@State selectedDate: Date = new Date('2021-08-08')\n\nbuild() {\nColumn(){\nDatePicker({\nstart: new Date('1970-1-1'),\nend: new Date('2100-1-1'),\nselected: this.selectedDate\n})\n.margin({ top: '20vp', bottom: '20vp', left: '10vp', right: '10vp' })\n.onDateChange((value: Date) => {\nthis.selectedDate = value\n})\n\n}.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center)\n}",
-        "target_component_description": "",
+        "target_component_description": "该代码片段通过 Column 布局实现了一个日期选择器界面，用于在应用中创建一个日期选择界面。布局的宽度占据整个屏幕，高度也为 100%，内部包含一个 DatePicker 组件。日期选择器的起始日期为 1970 年 1 月 1 日，结束日期为 2100 年 1 月 1 日，默认选中日期为 2021 年 8 月 8 日。日期选择器的上下左右边距分别为 20vp、20vp、10vp 和 10vp。用户可以通过日期选择器选择特定的日期，选中的日期会更新到 selectedDate 状态变量中。整个布局使用了 HorizontalAlign.Center 和 FlexAlign.Center 来确保日期选择器在布局中居中对齐。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "TimePicker",
         "source_component_code": "<TimePicker\nandroid:id=\"@+id/timePicker\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:timePickerMode=\"spinner\" />",
-        "source_component_description": "允许用户选择时间。TimePicker 通常以时钟或滚动选择器的方式显示，用户可以通过点击或滚动来选择小时和分钟。",
+        "source_component_description": "该代码片段定义了一个 TimePicker，用于在 Android 应用中创建一个时间选择器。时间选择器的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。时间选择器采用旋转模式，用户可以通过旋转选择器选择特定的时间。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -129,14 +129,14 @@
             "Column"
         ],
         "target_component_code": "@State selectedTime: Date = new Date('2022-07-22T08:00:00')\nbuild() {\nColumn() {\nTimePicker({\nselected: this.selectedTime,\n})\n.onChange((value: TimePickerResult) => {\nif(value.hour >= 0) {\nthis.selectedTime.setHours(value.hour, value.minute)\n}\n})\n}.width('100%')\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个时间选择器界面，用于在应用中创建一个时间选择界面。布局的宽度占据整个屏幕，内部包含一个 TimePicker 组件。时间选择器的默认选中时间为 2022 年 7 月 22 日 8:00:00。用户可以通过时间选择器选择特定的时间，选中的时间会更新到 selectedTime 状态变量中。整个布局使用了 Column 布局来确保时间选择器在垂直方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "SearchView",
         "source_component_code": "<SearchView\nandroid:id=\"@+id/searchView\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:queryHint=\"Search...\"\nandroid:iconifiedByDefault=\"false\" />",
-        "source_component_description": "它提供了一个可交互的搜索框，允许用户输入搜索查询并执行搜索操作",
+        "source_component_description": "该代码片段定义了一个 SearchView，用于在 Android 应用中创建一个搜索框。搜索框的宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小。搜索框的提示文本为“Search...”，默认状态下不隐藏搜索图标。用户可以在搜索框中输入文本进行搜索操作。",
         "source_component_version": "11",
         "target_language": "harmony",
         "target_component": [
@@ -144,14 +144,14 @@
             "Column"
         ],
         "target_component_code": " @State changeValue: string = ''\nbuild() {\nColumn() {\nSearch({ value: this.changeValue, placeholder: 'Search...' })\n.width('100%')\n.onChange((value: string) => {\nthis.changeValue = value\n})\n}.width('100%')\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个搜索框界面，用于在应用中创建一个搜索界面。布局的宽度占据整个屏幕，内部包含一个 Search 组件。搜索框的默认值为空字符串，提示文本为“Search...”。用户可以在搜索框中输入文本进行搜索，输入的文本会更新到 changeValue 状态变量中。整个布局使用了 Column 布局来确保搜索框在垂直方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "ImageButton",
         "source_component_code": "<ImageButton\nandroid:id=\"@+id/imageButton\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:src=\"@drawable/img02\"\nandroid:padding=\"16dp\" />",
-        "source_component_description": "是一个特殊的按钮，其外观由图像而不是文本定义",
+        "source_component_description": "该代码片段定义了一个 ImageButton，用于在 Android 应用中创建一个带有图像的按钮。按钮的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。按钮的图像资源通过 @drawable/img02 进行设置，内边距为 16dp，确保图像周围有足够的空间。用户可以通过点击按钮触发相应的操作。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -159,14 +159,14 @@
             "Column"
         ],
         "target_component_code": " Column() {\nButton() {\nImage($r(\"app.media.img02\"))\n.objectFit(ImageFit.Contain)\n}\n.padding(16)\n}\n.width('100%')\n.height('100%')",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个包含图像按钮的界面，用于在应用中创建一个按钮界面。布局的宽度占据整个屏幕，高度也为 100%，内部包含一个 Button 组件。按钮内部包含一个 Image 组件，图像资源通过 $r(\"app.media.img02\") 进行设置，图像适应方式为 ImageFit.Contain。按钮的内边距为 16vp。用户可以通过点击按钮触发相应的操作。整个布局使用了 Column 布局来确保按钮在垂直方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "CalendarView",
         "source_component_code": "<CalendarView\nandroid:id=\"@+id/calendarView\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\" />",
-        "source_component_description": "它提供了一个图形化的日历视图，允许用户通过点击或滑动来选择日期",
+        "source_component_description": "该代码片段定义了一个 CalendarView，用于在 Android 应用中创建一个日历视图。日历视图的宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小。用户可以通过日历视图选择特定的日期，并查看日期相关的信息。",
         "source_component_version": "14",
         "target_language": "harmony",
         "target_component": [
@@ -174,14 +174,14 @@
             "Column"
         ],
         "target_component_code": "Column() {\nCalendarPicker({ hintRadius: 10, selected: new Date('2024-03-05') })\n}.width('100%')",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个日历选择器界面，用于在应用中创建一个日历选择界面。布局的宽度占据整个屏幕，内部包含一个 CalendarPicker 组件。日历选择器的提示圆角半径为 10vp，默认选中日期为 2024 年 3 月 5 日。用户可以通过日历选择器选择特定的日期。整个布局使用了 Column 布局来确保日历选择器在垂直方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "CheckedTextView",
         "source_component_code": "<CheckedTextView\nandroid:id=\"@+id/checkedTextView\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Click to check\"\nandroid:checkMark=\"?android:attr/listChoiceIndicatorMultiple\"\nandroid:textSize=\"18sp\"\nandroid:gravity=\"center\" />",
-        "source_component_description": "它是一个带有复选框的文本视图，允许用户选择或取消选择文本项",
+        "source_component_description": "该代码片段定义了一个 CheckedTextView，用于在 Android 应用中创建一个带有复选标记的文本视图。文本视图的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。文本内容为“Click to check”，字体大小为 18sp，文本居中对齐。复选标记通过 ?android:attr/listChoiceIndicatorMultiple 属性进行设置，用户可以通过点击文本视图来切换复选状态。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -190,42 +190,42 @@
             "Flex"
         ],
         "target_component_code": "@State checked: boolean = false;\nbuild() {\nFlex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {\nCheckbox()\n.select($$this.checked)\n\nText('Click to check')\n.fontSize(18)\n.textAlign(TextAlign.Center)\n.onClick(() => {\nthis.checked = !this.checked\n})\n}\n.width('100%')\n.height('100%')\n}",
-        "target_component_description": "",
+        "target_component_description": "该代码片段通过 Flex 布局实现了一个包含复选框和文本的界面，用于在应用中创建一个选择界面。布局的宽度占据整个屏幕，高度也为 100%，内部包含一个 Checkbox 组件和一个 Text 组件。复选框的选中状态通过 checked 状态变量进行管理，初始值为 false。文本内容为“Click to check”，字体大小为 18vp，文本居中对齐。用户可以通过点击复选框或文本来切换复选框的状态。整个布局使用了 FlexDirection.Row、ItemAlign.Center 和 FlexAlign.Center 来确保复选框和文本在水平方向上居中对齐。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "Chronometer",
         "source_component_code": "<Chronometer\nandroid:id=\"@+id/chronometer\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:textSize=\"24sp\"\nandroid:textColor=\"@android:color/black\"\nandroid:gravity=\"center\" />",
-        "source_component_description": "倒计时组件，需要按钮或其他组件配合控制逻辑",
+        "source_component_description": "该代码片段定义了一个 Chronometer，用于在 Android 应用中创建一个计时器。计时器的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。计时器的字体大小为 24sp，文本颜色为黑色，文本居中对齐。用户可以通过计时器查看和控制时间流逝。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
             "TextTimer"
         ],
         "target_component_code": "@State format: string = 'mm:ss'\nbuild() {\nColumn() {\nTextTimer()\n.format(this.format)\n.fontSize(24)\n.fontColor(Color.Black)\n.align(Alignment.Center)\n}\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个计时器文本界面，用于在应用中创建一个计时器显示界面。布局内部包含一个 TextTimer 组件，计时器的格式为“mm:ss”，字体大小为 24vp，字体颜色为黑色，文本居中对齐。用户可以通过计时器文本查看和控制时间流逝。整个布局使用了 Column 布局来确保计时器文本在垂直方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "RatingBar",
         "source_component_code": "<RatingBar\nandroid:id=\"@+id/rating1\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:numStars=\"5\"\nandroid:stepSize=\"0.5\"\nandroid:rating=\"3\"\nandroid:isIndicator=\"false\" />",
-        "source_component_description": "RatingBar 通常以一系列星形图标的形式显示，用户可以选择部分或全部星形来表示他们的评分",
+        "source_component_description": "该代码片段定义了一个 RatingBar，用于在 Android 应用中创建一个星级评分条。评分条的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。评分条包含 5 颗星，步长为 0.5，初始评分为 3 颗星，并且用户可以交互调整评分。用户可以通过评分条对内容进行评分。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
             "Rating"
         ],
         "target_component_code": " Rating({ rating: 3, indicator: false})\n.stars(5)\n.stepSize(0.5)\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Rating 组件实现了一个星级评分条，用于在应用中创建一个评分界面。评分条的初始评分为 3 颗星，包含 5 颗星，步长为 0.5，并且用户可以交互调整评分。用户可以通过评分条对内容进行评分。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "SeekBar",
         "source_component_code": "<SeekBar\nandroid:id=\"@+id/seekBar\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:max=\"100\"\nandroid:progress=\"50\" />",
-        "source_component_description": "允许用户通过拖动滑块来选择一个数值",
+        "source_component_description": "该代码片段定义了一个 SeekBar，用于在 Android 应用中创建一个可拖动的进度条。进度条的宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小。进度条的最大值为 100，初始进度为 50。用户可以通过拖动进度条来调整进度值。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -233,14 +233,14 @@
             "Column"
         ],
         "target_component_code": "@State progressValue: number = 50;\nbuild() {\nColumn() {\nSlider({\nvalue: this.progressValue,\nmin: 0,\nmax: 100,\nstyle: SliderStyle.OutSet\n})\n.width('100%')\n}\n.width('100%')\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个滑块控件界面，用于在应用中创建一个可拖动的进度条。布局的宽度占据整个屏幕，内部包含一个 Slider 组件。滑块的当前值为 50，取值范围从 0 到 100，样式为 SliderStyle.OutSet。用户可以通过拖动滑块来调整数值。整个布局使用了 Column 布局来确保滑块在垂直方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "TableLayout",
         "source_component_code": "<TableLayout\nandroid:id=\"@+id/TableLayout2\"\nandroid:layout_width=\"fill_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:shrinkColumns=\"1\" >\n\n<TableRow>\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"one\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"two\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"three\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"four\" />\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"其他的文本....\" />\n</TableRow>\n</TableLayout>",
-        "source_component_description": "以表格形式排列其子视图，类似于 HTML 中的表格布局",
+        "source_component_description": "该代码片段定义了一个 TableLayout，用于在 Android 应用中创建一个表格布局。表格布局的宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小。表格布局的第二列设置为可收缩，以适应不同屏幕尺寸。表格内部包含一个 TableRow，其中包含五个子视图：四个按钮和一个 TextView。每个按钮的宽度和高度均为 wrap_content，根据文本内容自动调整大小。TextView 用于显示额外的文本内容。用户可以通过表格布局查看和操作相关内容。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -249,14 +249,14 @@
             "Row"
         ],
         "target_component_code": "Grid() {\nGridItem() {\nRow() {\nButton('one')\nButton('two')\nButton('three')\nButton('four')\nText('其他的文本....')\n}\n.width('100%')\n}\n}\n.rowsTemplate('1fr')\n.width('100%')\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Grid 布局实现了一个包含多个按钮和文本的界面，用于在应用中创建一个表格布局。布局的宽度占据整个屏幕，内部包含一个 GridItem 组件。GridItem 内部包含一个 Row 组件，Row 组件内部包含四个 Button 组件和一个 Text 组件，按钮的文本分别为“one”、“two”、“three”和“four”，文本内容为“其他的文本....”。整个布局使用了 Grid 布局来确保按钮和文本在水平方向上排列。用户可以通过点击按钮触发相应的操作。  ",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "ZoomButton",
         "source_component_code": "<ZoomButton\nandroid:id=\"@+id/zoomOutButton\"\nandroid:layout_width=\"64dp\"\nandroid:layout_height=\"48dp\"\nandroid:src=\"@drawable/loading\"\nandroid:background=\"@color/purple_500\"\nandroid:padding=\"16dp\" />",
-        "source_component_description": "是一个特殊的按钮，通常用于控制视图的缩放功能",
+        "source_component_description": "该代码片段定义了一个 ZoomButton，用于在 Android 应用中创建一个缩放按钮。按钮的宽度为 64dp，高度为 48dp，背景颜色通过 @color/purple_500 资源文件进行自定义。按钮的图像资源通过 @drawable/loading 进行设置，内边距为 16dp，确保图像周围有足够的空间。用户可以通过点击按钮进行缩放操作。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -265,56 +265,56 @@
             "Image"
         ],
         "target_component_code": "Column() {\nButton({ type: ButtonType.Normal, stateEffect: true }) {\nImage($r('app.media.loading'))\n.width(32)\n.height(32)\n}.backgroundColor($r(\"app.color.purple_500\"))\n.width(64)\n.height(48)\n.padding(16)\n}\n.width('100%')\n.height('100%')\n.justifyContent(FlexAlign.Center)\n.alignItems(HorizontalAlign.Center)",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个包含图像按钮的界面，用于在应用中创建一个按钮界面。布局的宽度占据整个屏幕，高度也为 100%，内部包含一个 Button 组件。按钮的类型为 ButtonType.Normal，启用状态效果，背景颜色通过 $r(\"app.color.purple_500\") 资源文件进行设置，宽度为 64vp，高度为 48vp，内边距为 16vp。按钮内部包含一个 Image 组件，图像资源通过 $r('app.media.loading') 进行设置，宽度为 32vp，高度为 32vp。整个布局使用了 FlexAlign.Center 和 HorizontalAlign.Center 来确保按钮在布局中居中对齐。用户可以通过点击按钮触发相应的操作。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "DigitalClock",
         "source_component_code": " <DigitalClock\nandroid:id=\"@+id/digitalClock_02\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:textSize=\"24sp\"\nandroid:textColor=\"@android:color/black\"\nandroid:gravity=\"center\"\nandroid:padding=\"8dp\"\nandroid:visibility=\"visible\"\nandroid:background=\"@android:color/transparent\" />",
-        "source_component_description": "以数字形式显示当前时间",
+        "source_component_description": "该代码片段定义了一个 DigitalClock，用于在 Android 应用中创建一个数字时钟。时钟的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。时钟的字体大小为 24sp，文本颜色为黑色，文本居中对齐，内边距为 8dp。时钟的背景颜色为透明，可见性设置为 visible，确保其在界面上显示。用户可以通过数字时钟查看当前时间。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
             "TextClock"
         ],
         "target_component_code": "@State accumulateTime: number = 0;\ncontroller: TextClockController = new TextClockController();\nbuild() {\nFlex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {\nTextClock({ controller: this.controller })\n.format('HH:mm')\n.fontSize(24)\n.fontColor($r(\"app.color.black\"))\n.padding(8)\n.visibility(Visibility.Visible)\n.backgroundColor(Color.Transparent)\n.onDateChange((value: number) => {\nthis.accumulateTime = value;\n})\n}\n.width('100%')\n.height('100%')\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Flex 布局实现了一个数字时钟界面，用于在应用中创建一个时钟显示界面。布局的宽度占据整个屏幕，高度也为 100%，内部包含一个 TextClock 组件。时钟的格式为“HH:mm”，字体大小为 24vp，字体颜色通过 $r(\"app.color.black\") 资源文件进行设置，内边距为 8vp，可见性为 Visibility.Visible，背景颜色为透明。时钟的时间变化会更新到 accumulateTime 状态变量中。整个布局使用了 FlexDirection.Column、ItemAlign.Center 和 FlexAlign.Center 来确保时钟在布局中居中对齐。用户可以通过数字时钟查看当前时间。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "Switch",
         "source_component_code": "<Switch\nandroid:id=\"@+id/mySwitch\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Switch\"\nandroid:textOn=\"ON\"\nandroid:textOff=\"OFF\"\nandroid:checked=\"true\"\nandroid:showText=\"true\"\nandroid:splitTrack=\"true\"\nandroid:switchMinWidth=\"56dp\"\nandroid:switchPadding=\"2dp\"\nandroid:thumbTextPadding=\"8dp\"\nandroid:trackTint=\"@color/purple_700\"\nandroid:thumbTint=\"@color/purple_200\"\nandroid:layout_margin=\"8dp\"\nandroid:visibility=\"visible\"\nandroid:background=\"@android:color/transparent\" />",
-        "source_component_description": "它提供了一个滑动开关，允许用户在两个状态之间切换，通常用于表示开启（On）或关闭（Off）",
+        "source_component_description": "该代码片段定义了一个 Switch，用于在 Android 应用中创建一个开关控件。开关的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。开关的文本标签为“Switch”，开启状态文本为“ON”，关闭状态文本为“OFF”，默认状态为开启。开关的最小宽度为 56dp，开关滑块和轨道之间的间距为 2dp，滑块文本的内边距为 8dp。轨道和滑块的颜色分别通过 @color/purple_700 和 @color/purple_200 资源文件进行自定义。开关的上下左右边距为 8dp，背景颜色为透明，可见性设置为 visible，确保其在界面上显示。用户可以通过开关控件切换状态。",
         "source_component_version": "14",
         "target_language": "harmony",
         "target_component": [
             "Toggle"
         ],
         "target_component_code": "private isShowText: boolean = true;\n@State isToggleOn: boolean = true;\nbuild() {\nRow() {\nText('Switch')\nToggle({ type: ToggleType.Switch, isOn: this.isToggleOn })\n.selectedColor($r('app.color.purple_700')) // 设置Switch打开状态的背景颜色\n.switchPointColor($r('app.color.purple_200')) // 设置Switch类型的圆形滑块颜色\n.width(56) // 设置组件自身的宽度\n.height(30) // 设置组件自身的高度\n.margin(8)\n.visibility(Visibility.Visible)\n.backgroundColor(Color.Transparent)\n.onChange((isOn: boolean) => {\nthis.isToggleOn = isOn;\n})\nif (this.isShowText) {\nText(this.isToggleOn? '开': '关')\n}\n}\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Row 布局实现了一个包含开关控件和文本的界面，用于在应用中创建一个开关界面。布局内部包含一个 Text 组件和一个 Toggle 组件。开关的类型为 ToggleType.Switch，初始状态为开启，开启状态的背景颜色通过 $r('app.color.purple_700') 资源文件进行设置，圆形滑块颜色通过 $r('app.color.purple_200') 资源文件进行设置，宽度为 56vp，高度为 30vp，上下左右边距为 8vp，可见性为 Visibility.Visible，背景颜色为透明。开关的状态变化会更新到 isToggleOn 状态变量中。如果 isShowText 为 true，则显示开关状态的文本（“开”或“关”）。用户可以通过开关控件切换状态。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "Space",
         "source_component_code": "     <Space\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"20dp\" /> ",
-        "source_component_description": "一个轻量级的视图组件，通常用于在布局中添加空白间隔",
+        "source_component_description": "该代码片段定义了一个 Space，用于在 Android 应用中创建一个空白间隔。空白间隔的宽度占据整个父布局，高度为 20dp，用于在布局中添加垂直间距。空白间隔不包含任何内容，仅用于调整布局元素之间的距离。",
         "source_component_version": "14",
         "target_language": "harmony",
         "target_component": [
             "Blank"
         ],
         "target_component_code": "      Blank(20)\n.width('100%')",
-        "target_component_description": "",
+        "target_component_description": "通过 Blank 组件实现了一个空白间隔，用于在应用中创建一个空白区域。空白间隔的高度为 20vp，宽度占据整个父布局。空白间隔不包含任何内容，仅用于调整布局元素之间的距离。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "LinearLayout",
         "source_component_code": "\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\"\nandroid:gravity=\"center\"\ntools:context=\".MainActivity\">\n<Button\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 1\" />\n<Button\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 2\" />\n<Button\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 3\" />\n</LinearLayout>",
-        "source_component_description": "是一个垂直或水平对齐所有子对象的视图组",
+        "source_component_description": "该代码片段定义了一个 LinearLayout，用于在 Android 应用中创建一个垂直布局。布局的宽度占据整个父布局，高度也为 match_parent，确保占据整个屏幕。布局的子元素垂直排列，并且所有子元素居中对齐。布局内部包含三个按钮，每个按钮的宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小。按钮的文本分别为“Button 1”、“Button 2”和“Button 3”。用户可以通过点击按钮触发相应的操作。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -322,14 +322,14 @@
             "Button"
         ],
         "target_component_code": "    Column({ space: 0 }) {\nButton('Button 1')\n.width('100%')\n\nButton('Button 2')\n.width('100%')\n\nButton('Button 3')\n.width('100%')\n\n}\n.id('main')\n.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center)",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个包含三个按钮的界面，用于在应用中创建一个按钮列表。布局的宽度占据整个屏幕，高度也为 100%，内部包含三个 Button 组件，每个按钮的宽度占据整个父布局，文本分别为“Button 1”、“Button 2”和“Button 3”。整个布局使用了 HorizontalAlign.Center 和 FlexAlign.Center 来确保按钮在布局中居中对齐。用户可以通过点击按钮触发相应的操作。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "RelativeLayout",
         "source_component_code": "\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\"\nandroid:gravity=\"center\"\ntools:context=\".MainActivity\">\n<EditText\nandroid:id=\"@+id/name\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:hint=\"reminder\" />\n<Button\nandroid:id=\"@+id/dates_button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_below=\"@id/name\"\nandroid:layout_alignParentLeft=\"true\"\nandroid:layout_toLeftOf=\"@id/times_button\"\nandroid:text=\"Select Date\" />\n<Button\nandroid:id=\"@+id/times_button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_below=\"@id/name\"\nandroid:layout_alignParentRight=\"true\"\nandroid:text=\"Select Time\" />\n<Button\nandroid:layout_width=\"96dp\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_below=\"@id/times_button\"\nandroid:layout_alignParentRight=\"true\"\nandroid:text=\"done\" />\n</RelativeLayout>",
-        "source_component_description": "每个视图的位置可以指定为相对于同级元素或相对于父元素 。\n例如，图中Button Date放置于EditText下方，固定在父容器的左侧，Button Time也放置于EditText下方，固定在父容器右侧。 Button Done放置在Time下方，固定于父容器右侧。",
+        "source_component_description": "该代码片段定义了一个 RelativeLayout，用于在 Android 应用中创建一个相对布局。布局的宽度占据整个父布局，高度也为 match_parent，确保占据整个屏幕。布局内部包含一个 EditText 和三个按钮，通过相对位置进行排列。EditText 用于输入提醒内容，位于布局的顶部。两个按钮分别用于选择日期和时间，位于 EditText 下方，分别靠左和靠右对齐。第三个按钮用于完成操作，位于选择时间按钮的下方，靠右对齐。用户可以通过这些控件输入提醒内容并选择日期和时间。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -338,14 +338,14 @@
             "Button"
         ],
         "target_component_code": "    RelativeContainer() {\nTextInput({ placeholder: 'reminder' })\n.id('name')\n.width('100%')\n\nButton('Select Date')\n.id('dates_button')\n.alignRules({\ntop: { anchor: 'name', align: VerticalAlign.Bottom },\nleft: { anchor: '__container__', align: HorizontalAlign.Start },\nright: { anchor: 'times_button', align: HorizontalAlign.Start }\n})\n\nButton('Select Time')\n.id('times_button')\n.alignRules({\ntop: { anchor: 'name', align: VerticalAlign.Bottom },\nright: { anchor: '__container__', align: HorizontalAlign.End }\n})\n\nButton('done')\n.width(96)\n.alignRules({\ntop: { anchor: 'times_button', align: VerticalAlign.Bottom },\nright: { anchor: '__container__', align: HorizontalAlign.End }\n})\n}\n.id('main')\n.width('100%')\n.height('100%')\n.alignSelf(ItemAlign.Center)",
-        "target_component_description": "",
+        "target_component_description": "通过 RelativeContainer 布局实现了一个包含多个按钮和文本输入框的界面，用于在应用中创建一个相对布局界面。布局的宽度占据整个屏幕，高度也为 100%，内部包含一个 TextInput 组件和三个 Button 组件。TextInput 组件的提示文本为“reminder”，宽度占据整个父布局。三个按钮的文本分别为“Select Date”、“Select Time”和“done”，通过相对位置规则进行排列。整个布局使用了 ItemAlign.Center 来确保布局在父容器中居中对齐。用户可以通过按钮和文本输入框进行操作。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "TableLayout",
         "source_component_code": "<TableLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\"\nandroid:gravity=\"center\"\ntools:context=\".MainActivity\">\n<TableRow>\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"姓名\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"年龄\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"城市\" />\n</TableRow>\n<TableRow>\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"张三\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"25\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"北京\" />\n</TableRow>\n<TableRow>\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"李四\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"30\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"上海\" />\n</TableRow>\n<TableRow>\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"王五\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"22\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"广州\" />\n</TableRow>\n</TableLayout>",
-        "source_component_description": "将按行和列排列视图组，容器不显示其行、列或单元格的边框线。",
+        "source_component_description": "该代码片段定义了一个 TableLayout，用于在 Android 应用中创建一个表格布局。表格布局的宽度占据整个父布局，高度也为 match_parent，确保占据整个屏幕。表格内部包含四个 TableRow，每个 TableRow 包含三个按钮，分别表示姓名、年龄和城市。每个按钮的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。表格布局用于展示和操作相关数据。用户可以通过表格布局查看和操作姓名、年龄和城市信息。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -355,14 +355,14 @@
             "GridItem"
         ],
         "target_component_code": "Column() {\nRow() {\nButton('姓名')\nButton('年龄')\nButton('城市')\n}\nRow() {\nButton('张三')\nButton('25')\nButton('北京')\n}\nRow() {\nButton('李四')\nButton('30')\nButton('上海')\n}\nRow() {\nButton('王五')\nButton('22')\nButton('广州')\n}\n}\n.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center)",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个包含多个按钮的表格界面，用于在应用中创建一个表格布局。布局的宽度占据整个屏幕，高度也为 100%，内部包含四个 Row 组件，每个 Row 组件包含三个 Button 组件。按钮的文本分别为“姓名”、“年龄”、“城市”、“张三”、“25”、“北京”、“李四”、“30”、“上海”、“王五”、“22”和“广州”。整个布局使用了 HorizontalAlign.Center 和 FlexAlign.Center 来确保按钮在布局中居中对齐。用户可以通过点击按钮触发相应的操作。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "AbsoluteLayout",
         "source_component_code": "<AbsoluteLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\"\nandroid:gravity=\"center\"\ntools:context=\".MainActivity\">\n<Button\nandroid:id=\"@+id/button1\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"按钮 1\"\nandroid:layout_x=\"50dp\"\nandroid:layout_y=\"100dp\" />\n\n<Button\nandroid:id=\"@+id/button2\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"按钮 2\"\nandroid:layout_x=\"200dp\"\nandroid:layout_y=\"100dp\" />\n</AbsoluteLayout>",
-        "source_component_description": "可以指定其子对象的精确位置（**x/y** 坐标）",
+        "source_component_description": "该代码片段定义了一个 AbsoluteLayout，用于在 Android 应用中创建一个绝对布局。布局的宽度占据整个父布局，高度也为 match_parent，确保占据整个屏幕。布局内部包含两个按钮，分别位于绝对位置 (50dp, 100dp) 和 (200dp, 100dp)。每个按钮的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。用户可以通过点击按钮触发相应的操作。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -370,14 +370,14 @@
             "Button"
         ],
         "target_component_code": "    Column() {\nButton('按钮 1')\n.id('button1')\n.position({ x: 50, y: 100 })\n\nButton('按钮 2')\n.id('button2')\n.position({ x: 200, y: 100 })\n}\n.id('main')\n.width('100%')\n.height('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center)",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个包含两个按钮的界面，用于在应用中创建一个绝对布局界面。布局的宽度占据整个屏幕，高度也为 100%，内部包含两个 Button 组件，按钮的文本分别为“按钮 1”和“按钮 2”。按钮 1 的位置为 (50, 100)，按钮 2 的位置为 (200, 100)。整个布局使用了 HorizontalAlign.Center 和 FlexAlign.Center 来确保按钮在布局中居中对齐。用户可以通过点击按钮触发相应的操作。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "FrameLayout",
         "source_component_code": "<FrameLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:foreground=\"?android:attr/selectableItemBackground\"\nandroid:foregroundGravity=\"center\"\nandroid:measureAllChildren=\"true\"> <!-- 测量所有子视图 -->\n<!-- 背景视图 -->\n<View\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:background=\"#FFDDDD\" />\n\n<!-- 顶层按钮 -->\n<Button\nandroid:id=\"@+id/button1\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"按钮\"\nandroid:layout_gravity=\"center\" />\n\n<!-- 不可见的视图 -->\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"不可见的视图\"\nandroid:visibility=\"gone\" />\n\n</FrameLayout>",
-        "source_component_description": "框架布局用于在屏幕上阻挡一个区域以显示单个项目，示例中共有两个按钮，只显示了一个",
+        "source_component_description": "该代码片段定义了一个 FrameLayout，用于在 Android 应用中创建一个帧布局。布局的宽度占据整个父布局，高度也为 match_parent，确保占据整个屏幕。布局的前景设置为 selectableItemBackground，前景重力居中，并且测量所有子视图。布局内部包含一个背景视图，一个居中的按钮，以及一个不可见的按钮。背景视图占据整个布局，按钮居中显示，不可见的按钮设置为 gone，不显示在界面上。用户可以通过点击居中的按钮触发相应的操作。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -386,28 +386,28 @@
             "Button"
         ],
         "target_component_code": "Stack() {\nColumn()\n.width('100%')\n.height('100%')\n.backgroundColor('#FFDDDD')\n\nButton('按钮')\n.align(Alignment.Center)\n\nButton('不可见的视图')\n.visibility(Visibility.None)\n}\n.id('main')\n.width('100%')\n.height('100%')\n.foregroundColor($r('app.color.selectableItemBackground'))\n.align(Alignment.Center)",
-        "target_component_description": "",
+        "target_component_description": "通过 Stack 布局实现了一个包含背景视图和按钮的界面，用于在应用中创建一个堆叠布局界面。布局的宽度占据整个屏幕，高度也为 100%，前景颜色通过 $r('app.color.selectableItemBackground') 资源文件进行设置，内容居中对齐。布局内部包含一个 Column 组件和一个 Button 组件。Column 组件的宽度占据整个屏幕，高度也为 100%，背景颜色为 #FFDDDD。Button 组件的文本为“按钮”，位于布局的中心位置。另一个 Button 组件的文本为“不可见的视图”，可见性设置为 Visibility.None，不显示在界面上。用户可以通过点击按钮触发相应的操作。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "ListView",
         "source_component_code": "(1)activity_main.xml:\n\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\">\n<ListView\nandroid:id=\"@+id/listView\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\" />\n</RelativeLayout>\n\n(2)MainActivity.kt\npackage com.example.myapplication\n\nimport android.os.Bundle\nimport androidx.activity.enableEdgeToEdge\nimport androidx.appcompat.app.AppCompatActivity\nimport androidx.core.view.ViewCompat\nimport androidx.core.view.WindowInsetsCompat\nimport android.widget.ArrayAdapter\nimport android.widget.ListView\n\nclass MainActivity : AppCompatActivity() {\noverride fun onCreate(savedInstanceState: Bundle?) {\nsuper.onCreate(savedInstanceState)\nenableEdgeToEdge()\nsetContentView(R.layout.activity_main)\nViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->\nval systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())\nv.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)\ninsets\n}\nsetContentView(R.layout.activity_main)\n// 创建 ListView 对象\nval listView: ListView = findViewById(R.id.listView)\n\n// 数据源\nval data = arrayOf(\n\"Item 1\", \"Item 2\", \"Item 3\", \"Item 4\", \"Item 5\",\n\"Item 6\", \"Item 7\", \"Item 8\", \"Item 9\", \"Item 10\",\n\"Item 11\", \"Item 12\", \"Item 13\", \"Item 14\", \"Item 15\",\n\"Item 16\", \"Item 17\", \"Item 18\", \"Item 19\", \"Item 20\"\n)\n\n// 创建适配器\nval adapter = ArrayAdapter(\nthis,\nandroid.R.layout.simple_list_item_1, // 单项布局\ndata // 数据源\n)\n\n// 设置适配器到 ListView\nlistView.adapter = adapter\n}\n}",
-        "source_component_description": "是一个将多个项分组并在垂直可滚动列表中显示的布局。使用从源（如数组或数据库）提取内容的适配器（adapter）将列表项自动插入到列表中。示例中共20项，滚动后可显示14-20项。",
+        "source_component_description": "该代码片段定义了一个 MainActivity，用于在 Android 应用中创建一个包含 ListView 的活动。活动布局使用 RelativeLayout，宽度占据整个父布局，高度也为 match_parent，确保占据整个屏幕。ListView 占据整个布局，用于显示列表项。在 MainActivity 中，通过 ArrayAdapter 将数据源绑定到 ListView，数据源包含 20 个字符串项。用户可以通过 ListView 查看和选择列表项。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
             "List"
         ],
         "target_component_code": "  private arr: string[] = [\n\"Item 1\", \"Item 2\", \"Item 3\", \"Item 4\", \"Item 5\",\n\"Item 6\", \"Item 7\", \"Item 8\", \"Item 9\", \"Item 10\",\n\"Item 11\", \"Item 12\", \"Item 13\", \"Item 14\", \"Item 15\",\n\"Item 16\", \"Item 17\", \"Item 18\", \"Item 19\", \"Item 20\"\n];\n\nbuild() {\nColumn() {\nList() {\nForEach(this.arr, (item: string) => {\nListItem() {\nText(item)\n.width('100%')\n.fontSize(16)\n.textAlign(TextAlign.Start)\n.padding(10)\n}\n.width('100%')\n}, (item: string) => item)\n}\n.width('100%')\n.height('100%')\n}\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个包含列表的界面，用于在应用中创建一个列表显示界面。布局的宽度占据整个屏幕，高度也为 100%，内部包含一个 List 组件。列表的数据源来自 arr 数组，包含 20 个字符串项。每个列表项包含一个 Text 组件，用于显示列表项的文本内容，文本宽度占据整个父布局，字体大小为 16vp，文本左对齐，内边距为 10vp。用户可以通过列表查看和选择不同的项。整个布局使用了 Column 布局来确保列表在垂直方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "GridView",
         "source_component_code": "(1)activity_main.xml:\n\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\">\n<GridView\nandroid:id=\"@+id/gridView\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:numColumns=\"3\"\nandroid:verticalSpacing=\"16dp\"\nandroid:horizontalSpacing=\"32dp\"\nandroid:stretchMode=\"columnWidth\"\nandroid:gravity=\"center\" />\n</RelativeLayout>\n\n(2)MainActivity.kt\n\npackage com.example.myapplication\n\nimport android.os.Bundle\nimport androidx.activity.enableEdgeToEdge\nimport androidx.appcompat.app.AppCompatActivity\nimport androidx.core.view.ViewCompat\nimport androidx.core.view.WindowInsetsCompat\nimport android.view.View\nimport android.view.ViewGroup\nimport android.widget.ArrayAdapter\nimport android.widget.GridView\nimport android.widget.TextView\nimport android.widget.Toast\n\nclass MainActivity : AppCompatActivity() {\nprivate val items = arrayOf(\"Item 1\", \"Item 2\", \"Item 3\", \"Item 4\", \"Item 5\", \"Item 6\", \"Item 7\", \"Item 8\", \"Item 9\", \"Item 10\", \"Item 11\", \"Item 12\",\n\"Item 13\", \"Item 14\", \"Item 15\", \"Item 16\",\n\"Item 17\", \"Item 18\", \"Item 19\", \"Item 20\",\n\"Item 21\", \"Item 22\", \"Item 23\", \"Item 24\",\n\"Item 25\", \"Item 26\", \"Item 27\", \"Item 28\",\n\"Item 29\", \"Item 30\", \"Item 31\", \"Item 32\" )\noverride fun onCreate(savedInstanceState: Bundle?) {\nsuper.onCreate(savedInstanceState)\nenableEdgeToEdge()\nsetContentView(R.layout.activity_main)\nViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->\nval systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())\nv.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)\ninsets\n}\nsetContentView(R.layout.activity_main)\nval gridView: GridView = findViewById(R.id.gridView)\ngridView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)\n\n// 设置项的点击事件\ngridView.setOnItemClickListener { _, _, position, _ ->\nToast.makeText(this, \"Clicked: ${items[position]}\", Toast.LENGTH_SHORT).show()\n}\n}\n}",
-        "source_component_description": "在二维滚动网格（行和列）中显示项目，网格项不一定是预先确定的，可以通过适配器动态添加。",
+        "source_component_description": "该代码片段定义了一个 MainActivity，用于在 Android 应用中创建一个包含 GridView 的活动。活动布局使用 RelativeLayout，宽度占据整个父布局，高度也为 match_parent，确保占据整个屏幕。GridView 占据整个布局，设置为 3 列，垂直和水平间距分别为 16dp 和 32dp，列宽自动拉伸，内容居中对齐。在 MainActivity 中，通过 ArrayAdapter 将数据源绑定到 GridView，数据源包含 32 个字符串项。用户可以通过点击 GridView 中的项，显示相应的提示信息。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -415,14 +415,14 @@
             "GridItem"
         ],
         "target_component_code": "private items: string[] = [\n\"Item 1\", \"Item 2\", \"Item 3\", \"Item 4\", \"Item 5\", \"Item 6\", \"Item 7\", \"Item 8\", \"Item 9\", \"Item 10\",\n\"Item 11\", \"Item 12\", \"Item 13\", \"Item 14\", \"Item 15\", \"Item 16\", \"Item 17\", \"Item 18\", \"Item 19\", \"Item 20\",\n\"Item 21\", \"Item 22\", \"Item 23\", \"Item 24\", \"Item 25\", \"Item 26\", \"Item 27\", \"Item 28\", \"Item 29\", \"Item 30\",\n\"Item 31\", \"Item 32\"\n];\nbuild() {\nColumn() {\nGrid() {\nForEach(this.items, (item: string) => {\nGridItem() {\nText(item)\n.fontSize(16)\n.textAlign(TextAlign.Center)\n.backgroundColor(Color.Gray)\n.padding(10)\n.onClick(() => {\npromptAction.showToast({ message: `Clicked: ${item}`, duration: 1 });\n})\n}\n}, (item: string) => item)\n}\n.id('gridView')\n.width('100%')\n.height('100%')\n.columnsTemplate('1fr 1fr 1fr')\n.columnsGap(32)\n.rowsGap(16)\n.alignItems(GridItemAlignment.STRETCH)\n\n}\n.width('100%')\n.height('100%')\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个包含网格布局的界面，用于在应用中创建一个网格显示界面。布局的宽度占据整个屏幕，高度也为 100%，内部包含一个 Grid 组件。网格的数据源来自 items 数组，包含 32 个字符串项。每个网格项包含一个 Text 组件，用于显示网格项的文本内容，字体大小为 16vp，文本居中对齐，背景颜色为灰色，内边距为 10vp。用户可以通过点击网格项显示相应的提示信息。整个布局使用了 Grid 布局来确保网格项在水平和垂直方向上排列，列模板为 1fr 1fr 1fr，列间距为 32vp，行间距为 16vp，网格项对齐方式为 GridItemAlignment.STRETCH。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "androidx.constraintlayout.widget.ConstraintLayout",
         "source_component_code": "<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:paddingTop=\"100dp\"\n>\n<TextView\nandroid:id=\"@+id/textView\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Hello, ConstraintLayout!\"\nandroid:textSize=\"24sp\"\napp:layout_constraintTop_toTopOf=\"parent\"\napp:layout_constraintStart_toStartOf=\"parent\"\napp:layout_constraintEnd_toEndOf=\"parent\"/>\n\n<Button\nandroid:id=\"@+id/button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Click Me\"\napp:layout_constraintTop_toBottomOf=\"@id/textView\"\napp:layout_constraintStart_toStartOf=\"parent\"\napp:layout_constraintEnd_toEndOf=\"parent\"\napp:layout_constraintVertical_bias=\"0.5\"/>\n\n</androidx.constraintlayout.widget.ConstraintLayout>",
-        "source_component_description": "ConstraintLayout 具备更强的约束功能，可以让多个视图之间建立复杂的相对关系，从而减少嵌套层次，提升性能和可维护性。",
+        "source_component_description": "该代码片段定义了一个 ConstraintLayout，用于在 Android 应用中创建一个约束布局。布局的宽度占据整个父布局，高度也为 match_parent，确保占据整个屏幕，顶部内边距为 100dp。布局内部包含一个 TextView 和一个 Button，通过约束关系进行排列。TextView 显示文本“Hello, ConstraintLayout!”，字体大小为 24sp，位于布局的顶部，水平居中对齐。Button 显示文本“Click Me”，位于 TextView 下方，水平居中对齐，垂直偏移为 0.5。用户可以通过点击按钮触发相应的操作。",
         "source_component_version": "9",
         "target_language": "harmony",
         "target_component": [
@@ -431,14 +431,14 @@
             "Button"
         ],
         "target_component_code": "RelativeContainer() {\nText('Hello, ConstraintLayout!')\n.id('textView')\n.fontSize(24)\n.alignRules({\ntop: { anchor: '__container__', align: VerticalAlign.Top },\nstart: { anchor: '__container__', align: HorizontalAlign.Start },\nend: { anchor: '__container__', align: HorizontalAlign.End }\n})\n\nButton('Click Me')\n.id('button')\n.alignRules({\ntop: { anchor: 'textView', align: VerticalAlign.Bottom },\nstart: { anchor: '__container__', align: HorizontalAlign.Start },\nend: { anchor: '__container__', align: HorizontalAlign.End },\nbias: { vertical: 0.5 }\n})\n}\n.padding({ top: 100 })\n.width('100%')\n.height('100%')",
-        "target_component_description": "",
+        "target_component_description": "通过 RelativeContainer 布局实现了一个包含文本和按钮的界面，用于在应用中创建一个相对布局界面。布局的宽度占据整个屏幕，高度也为 100%，顶部内边距为 100vp。布局内部包含一个 Text 组件和一个 Button 组件。Text 组件的文本内容为“Hello, ConstraintLayout!”，字体大小为 24vp，通过相对位置规则进行排列，位于布局的顶部，水平居中对齐。Button 组件的文本为“Click Me”，通过相对位置规则进行排列，位于 Text 组件的下方，水平居中对齐，垂直偏移为 0.5。用户可以通过点击按钮触发相应的操作",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "ScrollView",
         "source_component_code": "(1)activity_main.xml:\n\n<ScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:id=\"@+id/scroll_view\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\"\nandroid:gravity=\"center\"\ntools:context=\".MainActivity\">\n\n<LinearLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:orientation=\"vertical\">\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"这是一个 ScrollView 示例\" />\n\n<!-- 添加更多的视图 -->\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"按钮 1\" />\n\n<Button\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"按钮 2\"\nandroid:layout_marginTop=\"500dp\"/>\n\n<!-- 添加占位符以增加内容 -->\n<View\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"1000dp\" /> <!-- 过多的内容以启用滚动 -->\n\n</LinearLayout>\n</ScrollView>\n\n(2)MainActivity.kt\n\n\npackage com.example.myapplication\n\nimport android.os.Bundle\nimport androidx.activity.enableEdgeToEdge\nimport androidx.appcompat.app.AppCompatActivity\nimport androidx.core.view.ViewCompat\nimport androidx.core.view.WindowInsetsCompat\nimport android.widget.ScrollView\n\n\nclass MainActivity : AppCompatActivity() {\n\noverride fun onCreate(savedInstanceState: Bundle?) {\nsuper.onCreate(savedInstanceState)\nenableEdgeToEdge()\nsetContentView(R.layout.activity_main)\n\n// 设置与窗口插图相关的填充\nViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.scroll_view)) { v, insets ->\nval systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())\nv.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)\ninsets\n}\n\n// 获取 ScrollView 并添加滚动逻辑\nval scrollView: ScrollView = findViewById(R.id.scroll_view) // 确保 ID 正确\nscrollView.post {\nscrollView.scrollTo(0, 100) // 滚动到 y = 100 位置\n}\n}\n\nprivate fun enableEdgeToEdge() {\n// 实现你的边缘到边缘设置\n}\n}",
-        "source_component_description": "ScrollView 是 Android 中的一个视图容器，用于显示可以滚动的内容。它主要用于当内容超出屏幕时，允许用户通过滑动来查看所有内容，图片为滚动前后对比",
+        "source_component_description": "该代码片段定义了一个 ScrollView，用于在 Android 应用中创建一个可滚动的视图容器。ScrollView 的宽度占据整个父布局，高度也为 match_parent，确保占据整个屏幕。ScrollView 内部包含一个 LinearLayout，用于垂直排列子视图。布局内部包含一个 TextView 和两个 Button，以及一个占位符视图，用于增加内容高度以启用滚动。用户可以通过滚动视图查看超出屏幕范围的内容。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -448,14 +448,14 @@
             "Button"
         ],
         "target_component_code": "Scroll() {\nColumn() {\nText('这是一个 ScrollView 示例')\n\nButton('按钮 1')\n\nButton('按钮 2')\n.margin({ top: 500 });\n\n// 添加占位符以增加内容\nColumn()\n.width('100%')\n.height(1000)\n}\n.width('100%')\n.alignItems(HorizontalAlign.Center)\n.justifyContent(FlexAlign.Center);\n}\n.id('scroll_view')\n.width('100%')\n.height('100%');",
-        "target_component_description": "",
+        "target_component_description": "通过 Scroll 布局实现了一个可滚动的视图容器，用于在应用中创建一个滚动界面。布局的宽度占据整个屏幕，高度也为 100%，内部包含一个 Column 组件。Column 组件内部包含一个 Text 组件和两个 Button 组件，以及一个占位符 Column 组件，用于增加内容高度以启用滚动。Text 组件的文本内容为“这是一个 ScrollView 示例”，两个按钮的文本分别为“按钮 1”和“按钮 2”，按钮 2 的顶部边距为 500vp。占位符 Column 组件的宽度占据整个父布局，高度为 1000vp。用户可以通过滚动视图查看超出屏幕范围的内容。整个布局使用了 HorizontalAlign.Center 和 FlexAlign.Center 来确保内容在布局中居中对齐。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "com.google.android.material.card.MaterialCardView",
         "source_component_code": "<com.google.android.material.card.MaterialCardView\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_margin=\"16dp\"\napp:cardBackgroundColor=\"#FF018786\"\napp:cardCornerRadius=\"16dp\"\napp:cardElevation=\"8dp\"\napp:cardMaxElevation=\"12dp\"\napp:cardPreventCornerOverlap=\"true\"\napp:cardUseCompatPadding=\"true\"\napp:contentPadding=\"16dp\"\napp:strokeColor=\"#FF03DAC5\"\napp:strokeWidth=\"2dp\">\n\n<LinearLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:orientation=\"vertical\"\nandroid:padding=\"16dp\">\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Card Title\"\nandroid:textColor=\"#FFBB86FC\"\nandroid:textSize=\"24sp\"\nandroid:textStyle=\"bold\" />\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"This is a sample description text for the card.\"\nandroid:textColor=\"#FF6200EE\"\nandroid:textSize=\"16sp\"\nandroid:paddingTop=\"8dp\" />\n</LinearLayout>\n</com.google.android.material.card.MaterialCardView>",
-        "source_component_description": "是 Material Components for Android 库中的一个组件，用于创建具有 Material Design 风格的卡片视图。它提供了圆角、阴影和自定义边框等特性，支持嵌套其他视图和布局，并能够适应不同屏幕形状",
+        "source_component_description": "该代码片段定义了一个 MaterialCardView，用于在 Android 应用中创建一个带有自定义样式的卡片。卡片宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小。卡片背景颜色为 #FF018786，圆角半径为 16dp，阴影高度为 8dp，最大阴影高度为 12dp。卡片边框颜色为 #FF03DAC5，边框宽度为 2dp。卡片内部使用了一个垂直布局，包含一个加粗的标题和一个描述文字。标题字体大小为 24sp，颜色为 #FFBB86FC，描述文字字体大小为 16sp，颜色为 #FF6200EE，上下内边距为 16dp，标题和描述之间设置了 8dp 的上边距。用户可以通过卡片查看和操作相关内容。",
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
@@ -463,42 +463,42 @@
             "Text"
         ],
         "target_component_code": "Column() {\nColumn() {\nText('Card Title')\n.fontColor('#FFBB86FC')\n.fontSize(24)\n.fontWeight(FontWeight.Bold)\n\nText('This is a sample description text for the card.')\n.fontColor('#FF6200EE')\n.fontSize(16)\n.padding({ top: 8 })\n}\n.width('100%')\n.padding(16)\n}\n.width('100%')\n.margin(16)\n.backgroundColor('#FF018786')\n.shadow(8)\n.padding(16)\n.border({ width: 2, color: '#FF03DAC5', radius: 16 })",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个自定义的卡片视图，用于在应用中创建一个卡片显示界面。布局的宽度占据整个屏幕，上下左右外边距为 16vp，背景颜色为 #FF018786，阴影高度为 8vp，上下左右内边距为 16vp，边框宽度为 2vp，边框颜色为 #FF03DAC5，圆角半径为 16vp。卡片内部包含一个 Column 组件，宽度占据整个父布局，上下左右内边距为 16vp。Column 组件内部包含两个 Text 组件，标题文本内容为“Card Title”，字体颜色为 #FFBB86FC，字体大小为 24vp，字体加粗。描述文本内容为“This is a sample description text for the card.”，字体颜色为 #FF6200EE，字体大小为 16vp，顶部内边距为 8vp。整个布局使用了 Column 布局来确保卡片在视觉上具有良好的层次感和适当的间距，适合用于展示简洁的标题和描述内容。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "com.google.android.material.slider.Slider",
         "source_component_code": "<com.google.android.material.slider.Slider\nandroid:id=\"@+id/slider\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_marginTop=\"16dp\"\nandroid:value=\"50\"\nandroid:valueFrom=\"0\"\nandroid:valueTo=\"100\"\nandroid:stepSize=\"1\"\napp:thumbTint=\"#FF0000\"\napp:trackTint=\"#FF0000\"\napp:tickVisible=\"true\"\napp:tickColorInactive=\"#FF0000\"\napp:tickColorActive=\"#FF0000\"\napp:haloColor=\"#FF0000\"\napp:haloRadius=\"10dp\"\napp:labelBehavior=\"gone\" />",
-        "source_component_description": "是 Material Components for Android 库中的一个组件，用于在 Android 应用中创建可拖动的滑块控件。它允许用户通过拖动滑块来选择一个数值范围中的特定值，常用于音量控制、亮度调节等场景。",
+        "source_component_description": "该代码片段定义了一个 com.google.android.material.slider.Slider，用于在 Android 应用中创建一个可拖动的滑块控件。滑块的宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小，顶部边距为 16dp。滑块的初始值为 50，取值范围从 0 到 100，步长为 1。滑块的拇指、轨道、刻度线和光晕颜色均为红色 (#FF0000)，光晕半径为 10dp，标签行为设置为隐藏。用户可以通过拖动滑块来调整数值。",
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
             "Slider"
         ],
         "target_component_code": "@State sliderValue: number = 50\nbuild() {\nColumn() {\nSlider({\nvalue: this.sliderValue,\nmin: 0,\nmax: 100,\nstep: 1\n})\n.id('slider')\n.width('100%')\n.margin({ top: 16 })\n.blockColor('#FF0000')\n.trackColor('#FF0000')\n.showSteps(true)\n.selectedColor('#FF0000')\n.showTips(false)\n}\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个滑块控件界面，用于在应用中创建一个可拖动的进度条。布局内部包含一个 Slider 组件，滑块的当前值为 50，取值范围从 0 到 100，步长为 1。滑块的宽度占据整个父布局，顶部边距为 16vp，滑块的颜色为红色 (#FF0000)，轨道颜色为红色，显示步长，选中颜色为红色，不显示提示信息。用户可以通过拖动滑块来调整数值。整个布局使用了 Column 布局来确保滑块在垂直方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "com.google.android.material.divider.MaterialDivider",
         "source_component_code": "     <!-- MaterialDivider -->\n<com.google.android.material.divider.MaterialDivider\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_marginTop=\"16dp\"\napp:dividerThickness=\"2dp\"\napp:dividerInsetStart=\"16dp\"\napp:dividerInsetEnd=\"16dp\"\napp:dividerColor=\"#FFBB86FC\" /> ",
-        "source_component_description": "是 Material Components for Android 库中的一个组件，用于在 Android 应用中创建分割线，以清晰地分隔不同的 UI 元素或内容区域。它支持水平和垂直方向，并提供了多种自定义属性，如颜色、厚度、内边距等",
+        "source_component_description": "该代码片段定义了一个 com.google.android.material.divider.MaterialDivider，用于在 Android 应用中创建一个分隔线。分隔线的宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小，顶部边距为 16dp。分隔线的厚度为 2dp，左右内边距分别为 16dp，颜色为 #FFBB86FC。分隔线用于在布局中分隔不同的内容区域。",
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
             "Divider"
         ],
         "target_component_code": "      Divider()\n.strokeWidth(2)\n.color('#FFBB86FC')\n.margin({ top: 16, left: 16, right: 16})",
-        "target_component_description": "",
+        "target_component_description": "通过 Divider 组件实现了一个分隔线，用于在应用中创建一个分隔界面。分隔线的宽度为 2vp，颜色为 #FFBB86FC，上下左右边距分别为 16vp、16vp、16vp 和 16vp。分隔线用于在布局中分隔不同的内容区域。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "com.google.android.material.floatingactionbutton.FloatingActionButton",
         "source_component_code": "<com.google.android.material.floatingactionbutton.FloatingActionButton\nandroid:id=\"@+id/floating_action_button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_gravity=\"bottom|right\"\nandroid:layout_margin=\"16dp\"\napp:srcCompat=\"@drawable/ic_plus_24\"/>",
-        "source_component_description": "Material Components for Android 库中的一个组件，用于在 Android 应用中创建浮动操作按钮（Floating Action Button，简称 FAB）。FAB 是一种圆形按钮，通常用于触发应用中的主要或最常用的操作，如添加、创建或分享等",
+        "source_component_description": "该代码片段定义了一个 com.google.android.material.floatingactionbutton.FloatingActionButton，用于在 Android 应用中创建一个浮动操作按钮。按钮的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小，位于布局的右下角，上下左右边距为 16dp。按钮的图标通过 @drawable/ic_plus_24 资源文件进行设置。用户可以通过点击按钮触发相应的操作。",
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
@@ -507,14 +507,14 @@
             "Image"
         ],
         "target_component_code": "      Stack({ alignContent: Alignment.BottomEnd }) {\n// 位于浮动按钮下方的内容\n\n// 浮动操作按钮\nButton({\ntype: ButtonType.Circle,\nstateEffect: true\n}) {\nImage($r('app.media.ic_plus_24'))\n.width(24)\n.height(24)\n}\n.margin(16)\n.position({\nbottom: 0,\nright: 0\n})\n}\n.width('100%')\n.height('100%')\n\n}\n.width('100%')\n.height('100%')",
-        "target_component_description": "",
+        "target_component_description": "通过 Stack 布局实现了一个包含浮动操作按钮的界面，用于在应用中创建一个浮动按钮界面。布局的宽度占据整个屏幕，高度也为 100%，内部包含一个 Button 组件。按钮的类型为 ButtonType.Circle，启用状态效果，上下左右边距为 16vp，位置为右下角。按钮内部包含一个 Image 组件，图像资源通过 $r('app.media.ic_plus_24') 进行设置，宽度为 24vp，高度为 24vp。用户可以通过点击浮动按钮触发相应的操作。整个布局使用了 Stack 布局来确保浮动按钮在布局中居中对齐。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "com.google.android.material.tabs.TabLayout",
         "source_component_code": "<com.google.android.material.tabs.TabLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:background=\"@color/purple_200\"\napp:tabIndicatorColor=\"#FF6200EE\"\napp:tabTextColor=\"#FFFFFFFF\"\napp:tabSelectedTextColor=\"#FF000000\">\n\n<com.google.android.material.tabs.TabItem\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Tab 1\"\n/>\n\n<com.google.android.material.tabs.TabItem\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Tab 2\"\n/>\n\n</com.google.android.material.tabs.TabLayout>",
-        "source_component_description": "是 Material Components for Android 库中的一个组件，用于在 Android 应用中创建选项卡布局，以便用户在不同的内容视图之间进行切换。",
+        "source_component_description": "该代码片段定义了一个 com.google.android.material.tabs.TabLayout，用于在 Android 应用中创建一个选项卡布局。选项卡布局的宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小，背景颜色通过 @color/purple_200 资源文件进行设置。选项卡指示器的颜色为 #FF6200EE，未选中选项卡的文本颜色为白色 (#FFFFFFFF)，选中选项卡的文本颜色为黑色 (#FF000000)。选项卡布局内部包含两个 TabItem，分别显示文本“Tab 1”和“Tab 2”。用户可以通过点击选项卡切换不同的内容。",
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
@@ -522,56 +522,56 @@
             "TabContent"
         ],
         "target_component_code": "Tabs() {\nTabContent() {\n// 子页面内容\n}\n.tabBar('Tab 1')\n.foregroundColor('')\n\nTabContent() {\n// 子页面内容\n}\n.tabBar('Tab 2')\n}\n.width('100%')\n.barBackgroundColor($r('app.color.purple_200'))",
-        "target_component_description": "",
+        "target_component_description": "通过 Tabs 组件实现了一个选项卡布局，用于在应用中创建一个选项卡界面。布局的宽度占据整个屏幕，选项卡栏的背景颜色通过 $r('app.color.purple_200') 资源文件进行设置。选项卡布局内部包含两个 TabContent 组件，每个 TabContent 组件对应一个选项卡，选项卡的文本分别为“Tab 1”和“Tab 2”。用户可以通过点击选项卡切换不同的内容。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "com.google.android.material.chip.Chip",
         "source_component_code": "<com.google.android.material.chip.Chip\nandroid:id=\"@+id/chip\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"chip_demo\"/>",
-        "source_component_description": "Material Components for Android 库中的一个组件，用于在 Android 应用中创建小巧且可交互的标签元素。",
+        "source_component_description": "该代码片段定义了一个com.google.android.material.chip.Chip，用于在 Android 应用中创建一个标签控件。标签的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。标签的文本内容为“chip_demo”。用户可以通过点击标签触发相应的操作。",
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
             "Chip"
         ],
         "target_component_code": "Chip({\nlabel: {\ntext: 'chip_demo'\n},\nallowClose: false\n})",
-        "target_component_description": "",
+        "target_component_description": "通过 Chip 组件实现了一个标签控件，用于在应用中创建一个标签显示界面。标签的文本内容为“chip_demo”，不允许关闭。用户可以通过标签查看和操作相关内容。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "com.google.android.material.progressindicator.LinearProgressIndicator",
         "source_component_code": "<com.google.android.material.progressindicator.LinearProgressIndicator\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:indeterminate=\"true\" />",
-        "source_component_description": "是 Material Components for Android 库中的一个组件，用于在 Android 应用中创建线性进度指示器",
+        "source_component_description": "该代码片段定义了一个 com.google.android.material.progressindicator.LinearProgressIndicator，用于在 Android 应用中创建一个线性进度指示器。进度指示器的宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小。进度指示器设置为不确定模式，表示进度未知，进度条会持续滚动。用户可以通过进度指示器查看任务的进度状态。",
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
             "Progress"
         ],
         "target_component_code": "@State private progressValue: number = 0;\nbuild() {\nColumn() {\nProgress({ value: this.progressValue, type: ProgressType.Linear })\n}\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个线性进度条界面，用于在应用中创建一个进度指示器。布局内部包含一个 Progress 组件，进度条的当前值为 progressValue，类型为 ProgressType.Linear，表示一个线性进度条。用户可以通过进度条查看任务的进度状态。整个布局使用了 Column 布局来确保进度条在垂直方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "com.google.android.material.progressindicator.CircularProgressIndicator",
         "source_component_code": "<com.google.android.material.progressindicator.CircularProgressIndicator\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:indeterminate=\"true\" />",
-        "source_component_description": "是 Material Components for Android 库中的一个组件，用于在 Android 应用中创建圆形进度指示器。它通常用于显示任务的进度或加载状态，支持圆形或环形的进度条显示",
+        "source_component_description": "该代码片段定义了一个 com.google.android.material.progressindicator.CircularProgressIndicator，用于在 Android 应用中创建一个圆形进度指示器。进度指示器的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。进度指示器设置为不确定模式，表示进度未知，进度条会持续旋转。用户可以通过进度指示器查看任务的进度状态。",
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
             "Progress"
         ],
         "target_component_code": "  @State private progressValue: number = 0;\nbuild() {\nColumn() {\nProgress({ value: this.progressValue, type: ProgressType.Ring })\n}\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个环形进度条界面，用于在应用中创建一个进度指示器。布局内部包含一个 Progress 组件，进度条的当前值为 progressValue，类型为 ProgressType.Ring，表示一个环形进度条。用户可以通过进度条查看任务的进度状态。整个布局使用了 Column 布局来确保进度条在垂直方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "com.google.android.material.button.MaterialButtonToggleGroup",
         "source_component_code": "<com.google.android.material.button.MaterialButtonToggleGroup\nandroid:id=\"@+id/toggleButton\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\">\n<Button\nandroid:id=\"@+id/button1\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 1\"\nstyle=\"?attr/materialButtonOutlinedStyle\"\n/>\n<Button\nandroid:id=\"@+id/button2\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 2\"\nstyle=\"?attr/materialButtonOutlinedStyle\"\n/>\n<Button\nandroid:id=\"@+id/button3\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Button 3\"\nstyle=\"?attr/materialButtonOutlinedStyle\"\n/>\n</com.google.android.material.button.MaterialButtonToggleGroup>",
-        "source_component_description": "是 Google 的 Material Design 库中的一个组件，用于创建一组可以切换的按钮。这个组件允许用户在一组按钮中选择一个或多个按钮，类似于单选按钮组或复选框组，但具有 Material Design 的外观和感觉",
+        "source_component_description": "该代码片段定义了一个 com.google.android.material.button.MaterialButtonToggleGroup，用于在 Android 应用中创建一个按钮切换组。切换组的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。切换组内部包含三个按钮，每个按钮的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。按钮的文本分别为“Button 1”、“Button 2”和“Button 3”，样式为 materialButtonOutlinedStyle。用户可以通过点击按钮在切换组中选择不同的选项。",
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
@@ -579,14 +579,14 @@
             "Row"
         ],
         "target_component_code": "@State toggleChecked1: boolean = true;\n@State toggleChecked2: boolean = true;\n@State toggleChecked3: boolean = true;\nbuild() {\nRow() {\nToggle({ type: ToggleType.Button, isOn: this.toggleChecked1 }) {\nText('Button 1')\n}\n.id('button1')\n.onChange((isOn: boolean) => {\nthis.toggleChecked1 = isOn;\n})\n\nToggle({ type: ToggleType.Button, isOn: this.toggleChecked2 }) {\nText('Button 2')\n}\n.id('button2')\n.onChange((isOn: boolean) => {\nthis.toggleChecked2 = isOn;\n})\n\nToggle({ type: ToggleType.Button, isOn: this.toggleChecked3 }) {\nText('Button 3')\n}\n.id('button3')\n.onChange((isOn: boolean) => {\nthis.toggleChecked3 = isOn;\n})\n}\n.id('toggleButton')\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Row 布局实现了一个包含三个按钮切换组的界面，用于在应用中创建一个按钮切换界面。布局内部包含三个 Toggle 组件，每个 Toggle 组件的类型为 ToggleType.Button，初始状态分别为 toggleChecked1、toggleChecked2 和 toggleChecked3。每个 Toggle 组件内部包含一个 Text 组件，文本内容分别为“Button 1”、“Button 2”和“Button 3”。用户可以通过点击按钮切换不同的选项。整个布局使用了 Row 布局来确保按钮在水平方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "com.google.android.material.switchmaterial.SwitchMaterial",
         "source_component_code": "<com.google.android.material.switchmaterial.SwitchMaterial\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"match_parent\"\nandroid:checked=\"true\"\nandroid:text=\"Switch1\"/>",
-        "source_component_description": "是 Google 的 Material Design 库中的一个组件，它提供了一个符合 Material Design 规范的开关控件。这个组件继承自 Android 原生的 Switch 控件，但增加了 Material Design 的视觉风格和交互特性，如圆润的滑块和一致的色彩方案",
+        "source_component_description": "该代码片段定义了一个 SwitchMaterial，用于在 Android 应用中创建一个开关控件。开关的宽度为 wrap_content，高度为 match_parent，确保占据整个父布局的高度。开关的文本标签为“Switch1”，默认状态为开启。用户可以通过点击开关控件切换状态。",
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
@@ -594,84 +594,84 @@
             "Text"
         ],
         "target_component_code": "@State toggleChecked: boolean = true;\nbuild() {\nRow() {\nText('Switch1')\n.fontSize(16)\n.fontColor('#000000')\nToggle({ type: ToggleType.Switch, isOn: this.toggleChecked })\n.onChange((isOn: boolean) => {\nthis.toggleChecked = isOn;\n})\n}\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Row 布局实现了一个包含开关控件和文本的界面，用于在应用中创建一个开关界面。布局内部包含一个 Text 组件和一个 Toggle 组件。文本内容为“Switch1”，字体大小为 16vp，字体颜色为黑色。开关的类型为 ToggleType.Switch，初始状态为 toggleChecked。用户可以通过点击开关控件切换状态。整个布局使用了 Row 布局来确保文本和开关在水平方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "androidx.appcompat.widget.AppCompatButton",
         "source_component_code": "<androidx.appcompat.widget.AppCompatButton\nandroid:id=\"@+id/button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Click me\" />",
-        "source_component_description": "它是 Button 的一个扩展，旨在确保应用在不同 Android 版本和设备上的一致性。",
+        "source_component_description": "该代码片段定义了一个 AppCompatButton，用于在 Android 应用中创建一个按钮。按钮的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。按钮的文本内容为“Click me”。用户可以通过点击按钮触发相应的操作。",
         "source_component_version": "24",
         "target_language": "harmony",
         "target_component": [
             "Button"
         ],
         "target_component_code": "      Button('Click me')\n.id('button')",
-        "target_component_description": "",
+        "target_component_description": "通过 Button 组件实现了一个按钮，用于在应用中创建一个按钮界面。按钮的文本内容为“Click me”，并设置了唯一的标识符 id 为“button”。用户可以通过点击按钮触发相应的操作。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "androidx.appcompat.widget.Toolbar",
         "source_component_code": "<!-- Toolbar -->\n<androidx.appcompat.widget.Toolbar\nandroid:id=\"@+id/toolbar\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"?attr/actionBarSize\"\napp:title=\"My Toolbar\"\napp:titleTextColor=\"@android:color/black\" />",
-        "source_component_description": "用于应用程序内容的标准工具栏,例如标题等。",
+        "source_component_description": "该代码片段定义了一个 androidx.appcompat.widget.Toolbar，用于在 Android 应用中创建一个工具栏。工具栏的宽度占据整个父布局，高度为 actionBarSize，确保与标准的应用栏高度一致。工具栏的标题文本为“My Toolbar”，标题文本颜色为黑色。用户可以通过工具栏进行导航和操作。  ",
         "source_component_version": "24",
         "target_language": "harmony",
         "target_component": [
             "ComposeTitleBar"
         ],
         "target_component_code": "      ComposeTitleBar({\ntitle: 'My Toolbar'\n})\n.id('toolbar')\n.width('100%')\n.height(Constants.ACTION_BAR_SIZE)",
-        "target_component_description": "",
+        "target_component_description": "通过 ComposeTitleBar 组件实现了一个工具栏，用于在应用中创建一个工具栏界面。工具栏的标题文本为“My Toolbar”，并设置了唯一的标识符 id 为“toolbar”。工具栏的宽度占据整个屏幕，高度为 Constants.ACTION_BAR_SIZE，确保与标准的应用栏高度一致。用户可以通过工具栏进行导航和操作。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "androidx.appcompat.widget.AppCompatRatingBar",
         "source_component_code": "<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"请给出评分：\"\nandroid:textSize=\"18sp\"\nandroid:layout_marginBottom=\"16dp\"/>\n\n<androidx.appcompat.widget.AppCompatRatingBar\nandroid:id=\"@+id/ratingBar\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:numStars=\"5\"\nandroid:rating=\"3.5\"\nandroid:stepSize=\"0.5\" />",
-        "source_component_description": "该小部件允许用户通过星星来表示评分，通常用于应用中收集用户反馈。",
+        "source_component_description": "该代码片段定义了一个 TextView 和一个 androidx.appcompat.widget.AppCompatRatingBar，用于在 Android 应用中创建一个评分界面。TextView 的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小，文本内容为“请给出评分：”，字体大小为 18sp，底部边距为 16dp。AppCompatRatingBar 的宽度为 wrap_content，高度也为 wrap_content，包含 5 颗星，初始评分为 3.5 颗星，步长为 0.5。用户可以通过评分条对内容进行评分。",
         "source_component_version": "24",
         "target_language": "harmony",
         "target_component": [
             "Rating"
         ],
         "target_component_code": "      Rating({\nrating: 3.5\n})\n.id('ratingBar')\n.stars(5)\n.stepSize(0.5)",
-        "target_component_description": "",
+        "target_component_description": "通过 Rating 组件实现了一个星级评分条，用于在应用中创建一个评分界面。评分条的初始评分为 3.5 颗星，包含 5 颗星，步长为 0.5，并设置了唯一的标识符 id 为“ratingBar”。用户可以通过评分条对内容进行评分。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "androidx.appcompat.widget.AppCompatToggleButton",
         "source_component_code": "<androidx.appcompat.widget.AppCompatToggleButton\nandroid:id=\"@+id/toggle_button\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:textOn=\"开\"\nandroid:textOff=\"关\"\nandroid:checked=\"false\"/> <!-- 默认状态为关闭 -->",
-        "source_component_description": "用于表示一个开关状态（开/关）。它可以用于让用户在两个选项之间进行切换，比如启用或禁用某个功能。",
+        "source_component_description": "该代码片段定义了一个 androidx.appcompat.widget.AppCompatToggleButton，用于在 Android 应用中创建一个切换按钮。按钮的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。按钮的开启状态文本为“开”，关闭状态文本为“关”，默认状态为关闭。用户可以通过点击按钮切换状态。",
         "source_component_version": "24",
         "target_language": "harmony",
         "target_component": [
             "Toggle"
         ],
         "target_component_code": "      Toggle({ type: ToggleType.Button, isOn: this.toggleChecked }) {\nText(this.toggleChecked ? '开' : '关') // 对应android:textOn=\"开\"和android:textOff=\"关\"\n.fontColor('#182431')\n.fontSize(12)\n}\n.id('toggle_button') // 对应android:id=\"@+id/toggle_button\"\n.onChange((isOn: boolean) => {\nthis.toggleChecked = isOn; // 更新状态\n})",
-        "target_component_description": "",
+        "target_component_description": "通过 Toggle 组件实现了一个按钮切换控件，用于在应用中创建一个开关界面。按钮的类型为 ToggleType.Button，初始状态为 toggleChecked。按钮的文本内容根据 toggleChecked 状态显示“开”或“关”，字体颜色为 #182431，字体大小为 12vp。按钮的唯一标识符 id 为“toggle_button”。用户可以通过点击按钮切换状态，状态变化会更新到 toggleChecked 状态变量中。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "androidx.appcompat.widget.SwitchCompat",
         "source_component_code": "<androidx.appcompat.widget.SwitchCompat\nandroid:id=\"@+id/switchCompat\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"开关\"\nandroid:checked=\"true\"\nandroid:layout_margin=\"16dp\" />",
-        "source_component_description": "适合在需要启用/禁用某些功能的场景中使用。",
+        "source_component_description": "该代码片段定义了一个 androidx.appcompat.widget.SwitchCompat，用于在 Android 应用中创建一个开关控件。开关的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。开关的文本标签为“开关”，默认状态为开启，上下左右边距为 16dp。用户可以通过点击开关控件切换状态。",
         "source_component_version": "24",
         "target_language": "harmony",
         "target_component": [
             "Toggle"
         ],
         "target_component_code": "@State isToggleChecked: boolean = true;\nbuild() {\nRow() {\nText(\"开关\")\n.fontSize(16)\nToggle({ type: ToggleType.Switch, isOn: this.isToggleChecked })\n.id(\"switchCompat\")\n.margin(16)\n.onChange((isOn: boolean) => {\nthis.isToggleChecked = isOn;\n})\n}\n.id('switchCompat')\n.margin({ top: 16 })\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Row 布局实现了一个包含开关控件和文本的界面，用于在应用中创建一个开关界面。布局内部包含一个 Text 组件和一个 Toggle 组件。文本内容为“开关”，字体大小为 16vp。开关的类型为 ToggleType.Switch，初始状态为 isToggleChecked，唯一标识符 id 为“switchCompat”，上下左右边距为 16vp。用户可以通过点击开关控件切换状态，状态变化会更新到 isToggleChecked 状态变量中。整个布局使用了 Row 布局来确保文本和开关在水平方向上排列，并且顶部边距为 16vp。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "androidx.appcompat.widget.AppCompatCheckBox",
         "source_component_code": "<androidx.appcompat.widget.AppCompatCheckBox\nandroid:id=\"@+id/myCheckBox\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"A\" />",
-        "source_component_description": "是一个复选框（CheckBox）的兼容版本，它提供了与 CheckBox 相同的功能，但能够在较旧的 Android 版本上使用最新的 Material Design 样式和主题",
+        "source_component_description": "该代码片段定义了一个 androidx.appcompat.widget.AppCompatCheckBox，用于在 Android 应用中创建一个复选框。复选框的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。复选框的文本内容为“A”。用户可以通过点击复选框切换选中状态。",
         "source_component_version": "24",
         "target_language": "harmony",
         "target_component": [
@@ -680,28 +680,28 @@
             "Row"
         ],
         "target_component_code": "Row() {\nCheckbox()\nText('A')\n.fontSize(16)\n}\n.id('myCheckBox')",
-        "target_component_description": "",
+        "target_component_description": "通过 Row 布局实现了一个包含复选框和文本的界面，用于在应用中创建一个复选框界面。布局内部包含一个 Checkbox 组件和一个 Text 组件。文本内容为“A”，字体大小为 16vp。复选框的唯一标识符 id 为“myCheckBox”。用户可以通过点击复选框切换选中状态。整个布局使用了 Row 布局来确保复选框和文本在水平方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "androidx.appcompat.widget.AppCompatEditText",
         "source_component_code": "<androidx.appcompat.widget.AppCompatEditText\nandroid:id=\"@+id/myEditText\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:hint=\"请输入内容\" />",
-        "source_component_description": "可编辑文本控件，允许在应用中使用 EditText 的功能，并兼容多种 Android 版本",
+        "source_component_description": "该代码片段定义了一个 androidx.appcompat.widget.AppCompatEditText，用于在 Android 应用中创建一个可输入文本的编辑框。编辑框的宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小。编辑框的提示文本为“请输入内容”。用户可以在编辑框中输入文本进行操作。",
         "source_component_version": "24",
         "target_language": "harmony",
         "target_component": [
             "TextInput"
         ],
         "target_component_code": "TextInput({ placeholder: '请输入内容' })\n.id('myEditText')\n.width('100%')",
-        "target_component_description": "",
+        "target_component_description": "通过 TextInput 组件实现了一个可输入文本的编辑框，用于在应用中创建一个输入界面。编辑框的提示文本为“请输入内容”，并设置了唯一的标识符 id 为“myEditText”。编辑框的宽度占据整个父布局。用户可以在编辑框中输入文本进行操作。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "androidx.appcompat.widget.AppCompatRadioButton",
         "source_component_code": "<androidx.appcompat.widget.AppCompatRadioButton\nandroid:id=\"@+id/myRadioButton\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"A\" />",
-        "source_component_description": "用于创建单选按钮。它是 RadioButton 的增强版本，提供了更好的兼容性，支持较旧版本的 Android。",
+        "source_component_description": "该代码片段定义了一个 androidx.appcompat.widget.AppCompatRadioButton，用于在 Android 应用中创建一个单选按钮。单选按钮的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小。单选按钮的文本内容为“A”。用户可以通过点击单选按钮选择不同的选项。",
         "source_component_version": "24",
         "target_language": "harmony",
         "target_component": [
@@ -710,56 +710,56 @@
             "Radio"
         ],
         "target_component_code": "Row() {\nRadio({ value: 'A', group: 'radioGroup' })\nText('A').fontSize(20)\n}\n.id(\"myRadioButton\")",
-        "target_component_description": "",
+        "target_component_description": "通过 Row 布局实现了一个包含单选按钮和文本的界面，用于在应用中创建一个单选按钮界面。布局内部包含一个 Radio 组件和一个 Text 组件。单选按钮的值为“A”，属于 radioGroup 组。文本内容为“A”，字体大小为 20vp。单选按钮的唯一标识符 id 为“myRadioButton”。用户可以通过点击单选按钮选择不同的选项。整个布局使用了 Row 布局来确保单选按钮和文本在水平方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "androidx.appcompat.widget.AppCompatSeekBar",
         "source_component_code": "<TextView \nandroid:id=\"@+id/textView\" \nandroid:layout_width=\"wrap_content\" \nandroid:layout_height=\"wrap_content\" \nandroid:text=\"Value: 0\" \nandroid:textSize=\"24sp\"/> \n\n<androidx.appcompat.widget.AppCompatSeekBar \nandroid:id=\"@+id/seekBar\" \nandroid:layout_width=\"match_parent\" \nandroid:layout_height=\"wrap_content\" \nandroid:max=\"100\" \nandroid:layout_marginTop=\"20dp\"/>",
-        "source_component_description": "允许用户选择一个范围内的值。它是从 SeekBar 继承的，提供了对 Material Design 的更好支持和向后兼容性",
+        "source_component_description": "该代码片段定义了一个 TextView 和一个 androidx.appcompat.widget.AppCompatSeekBar，用于在 Android 应用中创建一个带有滑块的界面。TextView 的宽度为 wrap_content，高度也为 wrap_content，根据内容自动调整大小，文本内容为“Value: 0”，字体大小为 24sp。AppCompatSeekBar 的宽度占据整个父布局，高度为 wrap_content，最大值为 100，顶部边距为 20dp。用户可以通过拖动滑块来调整数值，并在 TextView 中显示当前值。",
         "source_component_version": "24",
         "target_language": "harmony",
         "target_component": [
             "Slider"
         ],
         "target_component_code": "@State sliderValue: number = 0\nbuild() {\nColumn() {\nText('Value: ' + this.sliderValue.toString())\n.id(\"textView\")\n.fontSize(24)\n\nSlider({\nmin: 0,\nmax: 100,\nvalue: this.sliderValue\n})\n.id(\"seekBar\")\n.width('100%')\n.onChange((value: number, mode: SliderChangeMode) => {\nthis.sliderValue = value\n})\n}\n.height('100%')\n.margin({ top: 20 })\n}",
-        "target_component_description": "",
+        "target_component_description": "通过 Column 布局实现了一个包含滑块控件和文本的界面，用于在应用中创建一个滑块界面。布局的高度占据整个屏幕，顶部边距为 20vp，内部包含一个 Text 组件和一个 Slider 组件。Text 组件的文本内容为“Value: ”加上 sliderValue 的值，字体大小为 24vp，唯一标识符 id 为“textView”。Slider 组件的取值范围从 0 到 100，当前值为 sliderValue，唯一标识符 id 为“seekBar”，宽度占据整个父布局。用户可以通过拖动滑块来调整数值，数值变化会更新到 sliderValue 状态变量中，并实时显示在 Text 组件中。整个布局使用了 Column 布局来确保滑块和文本在垂直方向上排列。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "TextView",
         "source_component_code": "<TextView\nandroid:id=\"@+id/textView1\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_marginTop=\"100dp\"\nandroid:singleLine=\"true\"\nandroid:ellipsize=\"marquee\"\nandroid:focusable=\"true\"\nandroid:focusableInTouchMode=\"true\"\nandroid:scrollHorizontally=\"true\"\nandroid:textSize=\"15sp\"\nandroid:text=\"雾霾天空，隐约雷鸣，盼有风雨来，能留你在此\" />",
-        "source_component_description": "用于显示文本内容的视图组件，支持多种文本样式和属性设置",
+        "source_component_description": "该代码片段定义了一个 TextView，用于在 Android 应用中创建一个单行滚动的文本视图。文本视图的宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小，顶部边距为 100dp。文本内容为“雾霾天空，隐约雷鸣，盼有风雨来，能留你在此”，字体大小为 15sp。文本视图设置为单行显示，当文本超出视图宽度时，使用跑马灯效果滚动显示。用户可以通过触摸文本视图使其获得焦点并滚动显示文本。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
             "Text"
         ],
         "target_component_code": "Text('雾霾天空，隐约雷鸣，盼有风雨来，能留你在此')\n.id(\"textView1\")\n.width('100%')\n.margin({ top: '100vp' })\n.maxLines(1)\n.textOverflow({ overflow: TextOverflow.MARQUEE })\n.focusable(true)\n.fontSize(15)",
-        "target_component_description": "",
+        "target_component_description": "通过 Text 组件实现了一个单行滚动的文本视图，用于在应用中创建一个滚动文本界面。文本视图的文本内容为“雾霾天空，隐约雷鸣，盼有风雨来，能留你在此”，唯一标识符 id 为“textView1”，宽度占据整个父布局，顶部边距为 100vp，最大行数为 1，文本溢出时使用跑马灯效果，可聚焦，字体大小为 15vp。用户可以通过滚动文本视图查看超出屏幕范围的内容。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "ImageView",
         "source_component_code": "<ImageView\nandroid:id=\"@+id/iv_show\"\nandroid:layout_width=\"500dp\"\nandroid:layout_height=\"250dp\"\nandroid:layout_marginTop=\"50dp\"\nandroid:layout_gravity=\"center\"\nandroid:background=\"#ff0000\"\nandroid:src=\"@drawable/img_2\" />",
-        "source_component_description": "用于显示图像的视图组件，支持多种图像缩放和对齐方式。",
+        "source_component_description": "该代码片段定义了一个 ImageView，用于在 Android 应用中显示图像。图像视图的宽度为 500dp，高度为 250dp，顶部边距为 50dp，位于布局的中心位置。图像视图的背景颜色为红色 (#ff0000)，图像资源通过 @drawable/img_2 进行设置。用户可以通过图像视图查看和操作图像内容。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
             "Image"
         ],
         "target_component_code": "      Image($r('app.media.img_2'))\n.id('iv_show')\n.width('500vp')\n.height('250vp')\n.margin({ top: '50vp' })\n.backgroundColor('#ff0000')\n.objectFit(ImageFit.Contain)",
-        "target_component_description": "",
+        "target_component_description": "通过 Image 组件实现了一个图像显示界面，用于在应用中创建一个图像显示界面。图像视图的图像资源通过 $r('app.media.img_2') 进行设置，唯一标识符 id 为“iv_show”，宽度为 500vp，高度为 250vp，顶部边距为 50vp，背景颜色为红色 (#ff0000)，图像适应方式为 ImageFit.Contain。用户可以通过图像视图查看和操作图像内容。",
         "target_component_version": "12"
     },
     {
         "source_language": "android",
         "source_component": "Button",
         "source_component_code": "<Button\nandroid:id=\"@+id/rounded_button\"\nandroid:layout_width=\"200dp\"\nandroid:layout_height=\"100dp\"\nandroid:text=\"Click Me\"\nandroid:textColor=\"@android:color/white\"\nandroid:textSize=\"18sp\"\nandroid:gravity=\"center\"\nandroid:layout_centerInParent=\"true\"/>",
-        "source_component_description": "用于触发用户操作的视图组件，支持自定义文本、背景和点击事件",
+        "source_component_description": "该代码片段定义了一个 Button，用于在 Android 应用中创建一个圆角按钮。按钮的宽度为 200dp，高度为 100dp，文本内容为“Click Me”，文本颜色为白色，字体大小为 18sp，文本居中对齐，位于布局的中心位置。用户可以通过点击按钮触发相应的操作。",
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
@@ -767,7 +767,37 @@
             "Text"
         ],
         "target_component_code": "      Button() {\nText('Click Me')\n.fontColor(Color.White)\n.fontSize(18)\n.textAlign(TextAlign.Center)\n.width('100%')\n}\n.id('rounded_button')\n.width('200vp')\n.height('100vp')",
-        "target_component_description": "",
+        "target_component_description": "通过 Button 组件实现了一个按钮，用于在应用中创建一个按钮界面。按钮的文本内容为“Click Me”，字体颜色为白色，字体大小为 18vp，文本居中对齐，宽度占据整个父布局。按钮的唯一标识符 id 为“rounded_button”，宽度为 200vp，高度为 100vp。用户可以通过点击按钮触发相应的操作。",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "androidx.cardview.widget.CardView",
+        "source_component_code": "<androidx.cardview.widget.CardView\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_marginBottom=\"16dp\"\nandroid:backgroundTint=\"@color/cardview_light_background\"\napp:cardCornerRadius=\"12dp\"\napp:cardElevation=\"8dp\"\napp:cardUseCompatPadding=\"true\"\napp:strokeWidth=\"1dp\"\napp:strokeColor=\"@color/cardview_shadow_start_color\">\n\n<LinearLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:orientation=\"vertical\"\nandroid:padding=\"20dp\">\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Elegant Card Title 1\"\nandroid:textSize=\"20sp\"\nandroid:textStyle=\"bold\"\nandroid:textColor=\"@color/design_default_color_on_primary\" />\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"This is an enhanced description for Card 1. It has more padding and better styling.\"\nandroid:textSize=\"16sp\"\nandroid:lineSpacingExtra=\"4dp\"\nandroid:textColor=\"@color/design_default_color_on_primary\"\nandroid:layout_marginTop=\"8dp\" />\n</LinearLayout>\n</androidx.cardview.widget.CardView>",
+        "source_component_description": "一个带有自定义样式的 CardView，卡片具有 12dp 的圆角、8dp 的阴影高度，并设置了 1dp 宽的边框，边框颜色和背景颜色可通过资源文件进行自定义。卡片内部使用了一个垂直布局，其中包含 20sp 的加粗标题 和 16sp 描述文字。描述文字通过 4dp 的额外行间距 提高了可读性，并在标题和描述之间设置了 8dp 的上边距。",
+        "source_component_version": "9",
+        "target_language": "harmony",
+        "target_component": [
+            "Column",
+            "Text"
+        ],
+        "target_component_code": "      Column() {\nColumn() {\nText('Elegant Card Title 1')\n.fontSize(20)\n.fontWeight(FontWeight.Bold)\n.fontColor($r('app.color.title_text_color'))\n\nText('This is an enhanced description for Card 1. It has more padding and better styling.')\n.fontSize(16)\n.lineSpacing(LengthMetrics.vp(4))\n.fontColor($r('app.color.description_text_color'))\n.margin({ top: 8 })\n}\n.width('100%')\n.padding(20)\n}\n.width('100%')\n.margin({ bottom: 16 })\n.backgroundColor($r('app.color.card_background_color'))\n.borderRadius(12)\n.shadow(8)\n.borderWidth(1)\n.borderColor($r('app.color.card_border_color'))",
+        "target_component_description": "通过 Column 布局实现了一个自定义的卡片视图，使用 12vp 的圆角、8vp 的阴影高度 以及 1vp 的边框 来定义卡片的外观，边框和背景颜色可以通过资源文件设置。卡片内部包含两个文本元素，标题采用 20vp 的加粗字体，描述文字为 16vp，并通过 4vp 的行间距 增强可读性，同时设置了 8vp 的上边距。整个布局使用了 20vp 的内边距 和 16vp 的底部外边距，确保卡片在视觉上具有良好的层次感和适当的间距，适合用于展示简洁的标题和描述内容。",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "ScrollView",
+        "source_component_code": "<ScrollView\nxmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:fillViewport=\"true\"\nandroid:background=\"@android:color/background_light\">\n\n<LinearLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:orientation=\"vertical\"\nandroid:padding=\"16dp\"\nandroid:divider=\"?android:attr/dividerHorizontal\"\nandroid:showDividers=\"middle\">\n\n<!-- 第一个 CardView -->\n<androidx.cardview.widget.CardView\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_marginBottom=\"16dp\"\nandroid:backgroundTint=\"@color/cardBackgroundColor\"\napp:cardCornerRadius=\"12dp\"\napp:cardElevation=\"8dp\"\napp:cardUseCompatPadding=\"true\"\napp:strokeWidth=\"1dp\"\napp:strokeColor=\"@color/cardStrokeColor\">\n\n<LinearLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:orientation=\"vertical\"\nandroid:padding=\"20dp\">\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Elegant Card Title 1\"\nandroid:textSize=\"20sp\"\nandroid:textStyle=\"bold\"\nandroid:textColor=\"@color/titleTextColor\"\n/>\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"This is an enhanced description for Card 1. It has more padding and better styling.\"\nandroid:textSize=\"16sp\"\nandroid:lineSpacingExtra=\"4dp\"\nandroid:textColor=\"@color/descriptionTextColor\"\nandroid:layout_marginTop=\"8dp\"\n/>\n</LinearLayout>\n</androidx.cardview.widget.CardView>\n\n<!-- 第二个 CardView -->\n<androidx.cardview.widget.CardView\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_marginBottom=\"16dp\"\nandroid:backgroundTint=\"@color/cardBackgroundColor\"\napp:cardCornerRadius=\"12dp\"\napp:cardElevation=\"8dp\"\napp:cardUseCompatPadding=\"true\"\napp:strokeWidth=\"1dp\"\napp:strokeColor=\"@color/cardStrokeColor\">\n\n<LinearLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:orientation=\"vertical\"\nandroid:padding=\"20dp\">\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Elegant Card Title 2\"\nandroid:textSize=\"20sp\"\nandroid:textStyle=\"bold\"\nandroid:textColor=\"@color/titleTextColor\"\n/>\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"This is an enhanced description for Card 2. It has more padding and better styling.\"\nandroid:textSize=\"16sp\"\nandroid:lineSpacingExtra=\"4dp\"\nandroid:textColor=\"@color/descriptionTextColor\"\nandroid:layout_marginTop=\"8dp\"\n/>\n</LinearLayout>\n</androidx.cardview.widget.CardView>\n\n<!-- 第三个 CardView -->\n<androidx.cardview.widget.CardView\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_marginBottom=\"16dp\"\nandroid:backgroundTint=\"@color/cardBackgroundColor\"\napp:cardCornerRadius=\"12dp\"\napp:cardElevation=\"8dp\"\napp:cardUseCompatPadding=\"true\"\napp:strokeWidth=\"1dp\"\napp:strokeColor=\"@color/cardStrokeColor\">\n\n<LinearLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:orientation=\"vertical\"\nandroid:padding=\"20dp\">\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"Elegant Card Title 3\"\nandroid:textSize=\"20sp\"\nandroid:textStyle=\"bold\"\nandroid:textColor=\"@color/titleTextColor\"\n/>\n\n<TextView\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\"\nandroid:text=\"This is an enhanced description for Card 3. It has more padding and better styling.\"\nandroid:textSize=\"16sp\"\nandroid:lineSpacingExtra=\"4dp\"\nandroid:textColor=\"@color/descriptionTextColor\"\nandroid:layout_marginTop=\"8dp\"\n/>\n</LinearLayout>\n</androidx.cardview.widget.CardView>\n\n</LinearLayout>\n</ScrollView>",
+        "source_component_description": "一个带有自定义样式的 ScrollView，其中包含多个带有美化样式的 CardView 卡片。每个 CardView 配置了 12dp 的圆角、8dp 的阴影高度 以及 1dp 宽的边框，边框颜色和卡片背景均可自定义。卡片内部使用了带有 20sp 加粗标题 和 16sp 描述文字 的垂直布局，描述文字通过 4dp 的行距 提升了可读性。",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Column",
+            "Text"
+        ],
+        "target_component_code": " @State lengthMetrics:LengthMetrics = new LengthMetrics(4)\nbuild() {\nColumn({space:20}){\nColumn(){\nText(\"Elegant Card Title 1\")\n.fontSize(20)\n.font({weight:FontWeight.Bold})\n.fontColor('#FF5733')\nText(\"This is an enhanced description for Card 1. It has more padding and better styling.\")\n.fontSize(16)\n.fontColor('#808080')\n.lineSpacing(this.lengthMetrics)\n.margin({top:'8'})\n}\n.borderRadius(12)\n.padding(20)\n.backgroundColor('F5F5F5')\n.shadow({radius:10,color:Color.Gray})\n\nColumn(){\nText(\"Elegant Card Title 2\")\n.fontSize(20)\n.font({weight:FontWeight.Bold})\n.fontColor('#FF5733')\nText(\"This is an enhanced description for Card 2. It has more padding and better styling.\")\n.fontSize(16)\n.fontColor('#808080')\n.lineSpacing(this.lengthMetrics)\n.margin({top:'8'})\n}\n.borderRadius(12)\n.padding(20)\n.shadow({radius:10,color:Color.Gray})\n\nColumn(){\nText(\"Elegant Card Title 3\")\n.fontSize(20)\n.font({weight:FontWeight.Bold})\n.fontColor('#FF5733')\nText(\"This is an enhanced description for Card 3. It has more padding and better styling.\")\n.fontSize(16)\n.fontColor('#808080')\n.lineSpacing(this.lengthMetrics)\n.margin({top:'8'})\n}\n.borderRadius(12)\n.padding(20)\n.shadow({radius:10,color:Color.Gray})\n\n}\n.margin({bottom:16})\n.height(\"100%\")\n.width('90%')\n.margin({top:20})\n\n\n}",
+        "target_component_description": "通过 Column 布局实现了一个自定义的卡片视图，使用 12vp 的圆角、10vp 的阴影半径以及 20vp 的内边距来定义卡片的外观，背景颜色为 #F5F5F5，阴影颜色为 Color.Gray。卡片内部包含两个文本元素，标题采用 20vp 的加粗字体，颜色为 #FF5733，描述文字为 16vp，颜色为 #808080，并通过 LengthMetrics 对象设置 4vp 的行间距，增强可读性，同时设置了 8vp 的上边距。整个布局使用了 20vp 的内边距和 16vp 的底部外边距，确保卡片在视觉上具有良好的层次感和适当的间距，适合用于展示简洁的标题和描述内容。",
         "target_component_version": "12"
     }
 ]
