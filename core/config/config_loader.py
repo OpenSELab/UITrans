@@ -1,3 +1,4 @@
+import os.path
 from typing import Dict, Any
 
 import yaml
@@ -20,9 +21,13 @@ class ConfigLoader:
     """
     config: Config = None
 
+    default_config_filepath = "config.yaml"
+
     @classmethod
     def get_config(cls):
         if cls.config is None:
+            if os.path.exists(cls.default_config_filepath):
+                return cls.from_file(cls.default_config_filepath)
             raise ValueError("config 未被初始化。")
         return cls.config
 

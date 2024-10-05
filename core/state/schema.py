@@ -1,14 +1,60 @@
 from typing import Dict, List, Any, Optional
-
 from pydantic import BaseModel
 
 HarmonyResourceQualifierType = str
 HarmonyResourceValueType = Dict[str, Dict[str, str]]
 
 
+class State(BaseModel):
+    """
+    支持a.b.c的访问方式
+    Examples:
+        >>> state = State()
+        >>> state.set("a.b.c", 1)
+        >>> state.get("a.b.c")
+    """
+
+    def __init__(self, /, **data: Any):
+        super().__init__(**data)
+        self._data = {}
+
+    def get(self, key: str, default: Optional[Any] = None) -> Any:
+        keys = key.split(".")
+        data = self._data
+        # 逐层访问
+        for key in keys:
+            # 除非最后一层外，否则必须是dict
+            if not isinstance(data, dict):
+                raise ValueError(f"Invalid key: {key}, value is not a dict")
+            if key not in data:
+                return default
+            data = data[key]
+        return data
+
+    def set(self, key: str, value: Any):
+        keys = key.split(".")
+        data = self._data
+        for key in keys[:-1]:
+            data = data.setdefault(key, {})
+        data[keys[-1]] = value
+
+    def update(self, key: str, value: Any):
+        keys = key.split(".")
+        data = self._data
+        for key in keys[:-1]:
+            data = data.setdefault(key, {})
+        data.update({keys[-1]: value})
+
+
 class HarmonyResource(BaseModel):
-    """Harmony Resource"""
-    pages: List[str]
+    """Harmony Resource
+
+    Attributes:
+        values: 资源值
+        medias: 媒体资源
+        all_values: 所有资源值
+        all_medias: 所有媒体资源
+    """
     values: HarmonyResourceValueType
     medias: Dict[str, str]
     all_values: Dict[HarmonyResourceQualifierType, HarmonyResourceValueType]

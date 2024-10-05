@@ -1,0 +1,31 @@
+# 基本语法描述
+ArkTS UI通常由装饰器、UI描述、自定义组件、系统组件、属性方法、事件方法组成。
+以下是一段ArkTS UI代码的示例：
+```ets
+@Entry
+@Component
+struct Hello {
+  @State myText: string = 'World';
+
+  build() {
+   Column() {
+     Text(`Hello ${this.myText}`)
+       .fontSize(50)
+     Divider()
+     Button('Click me')
+       .onClick(() => {
+         this.myText = 'ArkUI'
+       })
+       .height(50)
+       .width(100)
+       .margin({ top: 20 })
+   }
+  }
+}
+```
+- 装饰器：用于装饰类、结构、方法以及变量，并赋予其特殊的含义。如上述示例中@Entry、@Component和@State都是装饰器，@Component表示自定义组件，@Entry表示该自定义组件为入口组件，@State表示组件中的状态变量，状态变量变化会触发UI刷新。
+- UI描述：以声明式的方式来描述UI的结构，例如build()方法中的代码块。
+- 自定义组件：可复用的UI单元，可组合其他组件，如上述被@Component装饰的struct Hello。
+- 系统组件：ArkUI框架中默认内置的基础和容器组件，可直接被开发者调用，比如示例中的Column、Text、Divider、Button。
+- 属性方法：组件可以通过链式调用配置多项属性，如fontSize()、width()、height()、backgroundColor()等。
+- 事件方法：组件可以通过链式调用设置多个事件的响应逻辑，如跟随在Button后面的onClick()。

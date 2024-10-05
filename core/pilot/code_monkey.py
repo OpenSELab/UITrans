@@ -1,18 +1,20 @@
 import asyncio
-import time
 from typing import List, Dict, Any, Coroutine
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import shortuuid
 
 from sqlalchemy import select
 
+from core.agents.schema import AgentTasks
 from core.config.config_loader import ConfigLoader
 from core.db.model.translation import TranslationTable
 from core.db.session import SessionManager
 from core.llms.base import LLMClient
 from core.logger.runtime import get_logger
 from core.agents.llm_agent import LLMAgent
-from core.pilot.schema import BreakdownAndroidLayout, TranslateAndroidComponent, ChooseComponent, Translation
+from core.pilot.schema import BreakdownAndroidLayout, TranslateAndroidComponent, ChooseComponent, Translation, \
+    WriteComponentQuery
 from core.prompt import PromptLoader
 from core.pilot.harmony.utils import get_harmony_component, get_component_related_types
 
@@ -20,7 +22,7 @@ logger = get_logger(name="Code Monkey Agent")
 
 from core.pilot.harmony.resource import load_harmony_resource
 
-resource = load_harmony_resource(r"D:\Code\Harmony\dashbook\entry\src\main\resources")
+resource = load_harmony_resource(r"D:\Code\Harmony\bookdash\entry\src\main\resources")
 
 
 class CodeMonkeyAgent(LLMAgent):
@@ -43,6 +45,37 @@ class CodeMonkeyAgent(LLMAgent):
     ):
         super(CodeMonkeyAgent, self).__init__(llm_client, name, description, logger=logger)
 
+    def make_plan(self, requirement: str, interactive: bool = False, **kwargs) -> AgentTasks:
+        """制定计划
+
+        Args:
+            requirement (str): 需求
+            interactive (bool): 是否支持交互式
+
+        Jinja2 Variables:
+            requirement (dict): 需求
+            tools (list): 工具列表
+            project_files (list): 项目文件列表
+            is_file_content (bool): 是否显示文件内容，默认为空
+            project_resources (dict): 项目资源列表
+            is_resource_content (bool): 是否显示资源内容，默认为空
+        """
+        make_plan_prompt = PromptLoader.get_prompt(
+            f"{self.agent_role}/make_plan.prompt",
+            requirement=requirement,
+            harmony_components=get_harmony_component(),
+            is_component_content=False,
+            tools=self._tools,
+            project_files=[],
+            project_resources=resource,
+            **kwargs
+        )
+        print(make_plan_prompt)
+        make_plan_messages = self.generate_reply(make_plan_prompt, remember=False, temperature=0.01)
+        print(make_plan_messages)
+        print(make_plan_messages[-1]["content"])
+        print(make_plan_messages[-1].get("tool_calls", None))
+
     async def _query_translations_from_db(self, component: Dict[str, Any]) -> List[TranslationTable]:
         """查询数据库获得安卓组件对应的鸿蒙组件的转译表
 
@@ -60,7 +93,7 @@ class CodeMonkeyAgent(LLMAgent):
             result = await session.execute(
                 select(TranslationTable)
                 .where(TranslationTable.source_component.in_(component_name) & (
-                            TranslationTable.source_language == "android"))
+                        TranslationTable.source_language == "android"))
             )
             translations = list(result.scalars().all())
         self.logger.debug(f"Querying Harmony Component From DB: {component_name}, Size: {len(translations)}")
@@ -98,7 +131,7 @@ class CodeMonkeyAgent(LLMAgent):
         """
         return harmony_components
 
-    async def _translate_component(self, task: Dict[str, Any], translations: List[TranslationTable]) -> Translation:
+    def _translate_component(self, task: Dict[str, Any], translations: List[TranslationTable]) -> Translation:
         """根据转译表转译组件
 
         Args:
@@ -171,7 +204,7 @@ class CodeMonkeyAgent(LLMAgent):
         )
         return translation
 
-    async def _generate_component(self, task: Dict[str, Any]) -> Translation:
+    def _generate_component(self, task: Dict[str, Any]) -> Translation:
         """根据安卓组件及鸿蒙文档生成对应组件
 
         Args:
@@ -196,7 +229,7 @@ class CodeMonkeyAgent(LLMAgent):
             is_component_content=False,
         )
         choose_component_messages = self.generate_reply(choose_component_prompt, remember=False,
-                                                        model_schema=ChooseComponent)
+                                                        model_schema=WriteComponentQuery)
         choose_component = ChooseComponent.common_parse_raw(choose_component_messages[-1]["content"])
         print(choose_component.components)
         # 2. 查询组件文档以及类型文档
@@ -252,7 +285,23 @@ class CodeMonkeyAgent(LLMAgent):
         # 转译表: [[...], [...], ...]
         translations = asyncio.run(async_query_translations())
 
-        # 修改为并发转译
+        # TODO: 修改为并发转译
+        # with ThreadPoolExecutor(max_workers=len(breakdown_android_layout.tasks)) as executor:
+        #     # 生成所有组件的转译任务
+        #     translate_component_tasks = {}
+        #     for index, (task, translation) in enumerate(zip(breakdown_android_layout.tasks, translations)):
+        #         if len(translation) == 0:
+        #             future = executor.submit(self._generate_component, task.model_dump())
+        #         else:
+        #             future = executor.submit(self._translate_component, task.model_dump(), translation)
+        #         translate_component_tasks[future] = index
+        #
+        #     # 等待所有转译任务完成
+        #     translate_component_results = []
+        #     for future in as_completed(translate_component_tasks):
+        #         translate_component_results.append((translate_component_tasks[future], future.result()))
+        # return [result[1] for result in sorted(translate_component_results, key=lambda x: x[0])]
+
         # 异步转译所有组件
         async def async_translate_components():
             translate_component_tasks: List[Coroutine[Any, Any, Translation]] = []
@@ -260,9 +309,9 @@ class CodeMonkeyAgent(LLMAgent):
                 if len(translation) == 0:
                     translate_component_tasks.append(self._generate_component(task.model_dump()))
                 else:
+                    continue
                     translate_component_tasks.append(self._translate_component(task.model_dump(), translation))
             return await asyncio.gather(*translate_component_tasks)
 
         translate_android_components = asyncio.run(async_translate_components())
-
         return list(translate_android_components)

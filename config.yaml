@@ -26,14 +26,15 @@ harmony:
 
 # RAG配置
 rag:
+  persist_directory: db/rag
   embedding:
     code:
       model: models/embedding/jina-embeddings-v2-base-code
     text:
-      model: models/embedding/jina-embeddings-v2-base-zh
+      model: models/embedding/gte-large-zh
     rerank:
       model: models/embedding/jina-reranker-v2-base-multilingual
 
 # database配置
 db:
-  url: sqlite+aiosqlite:///sqlite.db
+  url: sqlite+aiosqlite:///db/sqlite.db

@@ -66,7 +66,7 @@ class StreamLogger(BaseLogger):
     def warning(self, msg: str, *args, **kwargs) -> None:
         if not self.enable:
             return
-        self.logger.debug(msg)
+        self.logger.warning(msg)
 
     def error(self, msg: str, *args, **kwargs) -> None:
         if not self.enable:

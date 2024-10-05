@@ -1,8 +1,6 @@
-{% if project_files %}
 这些工具目前已经实现：
 {% for tool in tools %}
 # {{ tool.name }}
 {{ tool.description }}
 {{ tool.parameters }}
 {% endfor %}
-{% endif %}

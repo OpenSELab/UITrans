@@ -11,7 +11,6 @@ from core.logger.runtime import get_logger
 
 logger = get_logger(name="Android Translator")
 
-
 ANDROID_RESOURCE_VALUES_TAG_MAP = {
     "strings": "string",
     "colors": "color",
@@ -443,6 +442,7 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
         # 位图文件
         logger.warning(f"Bitmap file is not supported: {android_vector_drawable_xml_path}")
 
+
 def translate_android_resource_values_to_harmony(
         android_resource_values_path: str,
         harmony_resource_values_path: str,
@@ -677,6 +677,7 @@ def translate_android_resource_to_harmony(android_resource_path, harmony_resourc
             continue
         else:
             logger.warning(f"Android Resource `{resource_dir}` is not supported")
+
 
 if __name__ == '__main__':
     translate_android_resource_to_harmony(

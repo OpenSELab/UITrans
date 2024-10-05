@@ -40,6 +40,7 @@ class EmbeddingConfig(BaseModel):
 
 
 class RAGConfig(BaseModel):
+    persist_directory: str = Field(description="持久化目录")
     embedding: EmbeddingConfig = Field(description="RAG 编码模型配置")
 
 

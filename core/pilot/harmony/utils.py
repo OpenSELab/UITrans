@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 from core.logger.runtime import get_logger
 from core.pilot.harmony.component.schema import ComponentEventReturn
@@ -9,7 +9,7 @@ from core.pilot.harmony.component import get_harmony_component
 logger = get_logger(name="Harmony Pilot Utils")
 
 
-def get_component_related_types(component_name: str | List[str]) -> Dict[str, TypeModel]:
+def get_component_related_types(component_name: str | List[str], attributes_and_events: Optional[List[str]] = None) -> Dict[str, TypeModel]:
     """获得组件相关的所有类型"""
     remaining_types = set()
     components_name = component_name if isinstance(component_name, list) else [component_name]
@@ -30,6 +30,8 @@ def get_component_related_types(component_name: str | List[str]) -> Dict[str, Ty
         # 对于属性的处理
         if component.attributes:
             for attribute_name, attribute_schema in component.attributes.items():
+                if attributes_and_events and attribute_name not in attributes_and_events:
+                    continue
                 for param_name, param_schema in attribute_schema.params.items():
                     if isinstance(param_schema.type, list):
                         for type_name in param_schema.type:
@@ -44,6 +46,8 @@ def get_component_related_types(component_name: str | List[str]) -> Dict[str, Ty
         # 对于事件的处理
         if component.events:
             for event_name, event_schema in component.events.items():
+                if attributes_and_events and event_name not in attributes_and_events:
+                    continue
                 # 对于事件参数的处理
                 if event_schema.params:
                     for param_name, param_schema in event_schema.params.items():
@@ -112,3 +116,7 @@ def get_related_types(type_name: str | List[str]) -> Dict[str, TypeModel]:
 
 
 __all__ = ["get_component_related_types", "get_harmony_component"]
+
+
+if __name__ == '__main__':
+    print(get_component_related_types("Button"))

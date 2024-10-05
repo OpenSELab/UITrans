@@ -167,7 +167,10 @@ class LLMAgent:
             # 若回复为空，则继续下一个回复钩子
             if not message:
                 continue
-            messages.append(message)
+            if isinstance(message, list):
+                messages.extend(message)
+            else:
+                messages.append(message)
 
         if sender != "__temp__" and remember:
             # 记住对话记录
@@ -213,8 +216,6 @@ class LLMAgent:
                 "role": "system",
                 "content": self.system_message
             })
-        # 过滤掉工具调用消息
-        messages = [message for message in messages if "tool_calls" not in message]
         response = self._llm_client.create(messages, tools=self._tools, **kwargs)
         self.logger.debug(
             "generate_llm_reply: messages={messages}, response={response}".format(messages=messages, response=response))
@@ -229,7 +230,7 @@ class LLMAgent:
         return response_message
 
     def _generate_tool_reply(self, messages: List[Dict[str, Any]], sender: Sender,
-                             **kwargs) -> Dict[str, Any] | None:
+                             **kwargs) -> Dict[str, Any] | List[Dict[str, Any]] |None:
         """生成工具回复
 
         Args:
@@ -242,7 +243,8 @@ class LLMAgent:
         if "tool_calls" not in messages[-1] or messages[-1]["tool_calls"] is None:
             return
         # [(tool_name, tool_args, result), ...]
-        tool_calls_message_content = ""
+        # tool_calls_message_content = ""
+        tool_call_result_messages = []
         for tool_call in messages[-1]["tool_calls"]:
             tool_name = tool_call["function"]["name"]
             tool_json_args = tool_call["function"]["arguments"]
@@ -260,18 +262,22 @@ class LLMAgent:
                 [f'{k}={v}' for k, v in tool_args.items()]))
             try:
                 tool_response = tool(**tool_args)
-                tool_calls_message_content += "# {tool_signature}\n工具调用结果：{tool_response}\n".format(
-                    tool_signature=tool_signature, tool_response=tool_response)
+                tool_call_message = {
+                    "role": "tool",
+                    "content": f"工具调用：{tool_signature}\n工具调用结果：{tool_response}",
+                    "tool_call_id": tool_call["id"]
+                }
             except Exception as e:
-                tool_calls_message_content += "# {tool_signature}\n工具调用错误：{error}\n".format(
-                    tool_signature=tool_signature, error=e)
-        response = {
-            "role": "user",
-            "content": tool_calls_message_content,
-        }
-        self.logger.debug("generate_tool_reply: messages={messages}, response={response}".format(messages=messages,
-                                                                                                 response=response))
-        return response
+                tool_call_message = {
+                    "role": "tool",
+                    "content": f"工具调用：{tool_signature}\n工具调用错误：{e}",
+                    "tool_call_id": tool_call["id"]
+                }
+            tool_call_result_messages.append(tool_call_message)
+        self.logger.debug("generate_tool_reply: messages={messages}, response={response}".format(messages=messages, response=tool_call_result_messages))
+        # tool_call_response_message = self._generate_llm_reply(messages + tool_call_result_messages, sender, **kwargs)
+        # return tool_call_result_messages + [tool_call_response_message]
+        return tool_call_result_messages
 
     def register_reply_hook(self, function: ReplyHookFunction) -> None:
         """注册回复钩子

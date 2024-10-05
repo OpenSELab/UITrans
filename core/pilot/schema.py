@@ -55,6 +55,16 @@ class ChooseComponent(CommonBaseModel):
     explanation: str = Field(description="选择组件的解释。")
 
 
+class WriteComponentQueryComponent(CommonBaseModel):
+    component: str = Field(description="选择的组件。")
+    query: str = Field(description="选择组件的查询描述。")
+
+
+class WriteComponentQuery(CommonBaseModel):
+    components: List[WriteComponentQueryComponent] = Field(description="选择的组件列表。")
+    explanation: str = Field(description="选择组件的解释。")
+
+
 class BreakdownAndroidLayoutComponent(CommonBaseModel):
     name: List[str] = Field(description="待转译的所有安卓组件名称。")
     content: str = Field(description="待转译的安卓组件布局代码。")

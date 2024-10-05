@@ -1,0 +1,31 @@
+# 自定义组件
+
+在ArkUI中，UI显示的内容均为组件，由框架直接提供的称为系统组件，由开发者定义的称为自定义组件。在进行 UI 界面开发时，通常不是简单的将系统组件进行组合使用，而是需要考虑代码可复用性、业务逻辑与UI分离，后续版本演进等因素。因此，将UI和部分业务逻辑封装成自定义组件是不可或缺的能力。
+
+自定义组件具有以下特点：
+- 可组合：允许开发者组合使用系统组件、及其属性和方法。
+- 可重用：自定义组件可以被其他组件重用，并作为不同的实例在不同的父组件或容器中使用。
+- 数据驱动UI更新：通过状态变量的改变，来驱动UI的刷新。
+
+## 自定义组件的基本用法
+**重要**：如果在另外的文件中引用该自定义组件，需要使用export关键字导出，并在使用的页面import该自定义组件。
+
+```ets
+@Component
+struct HelloComponent {
+  @State message: string = 'Hello, World!';
+
+  build() {
+    // HelloComponent自定义组件组合系统组件Row和Text
+    Row() {
+      Text(this.message)
+        .onClick(() => {
+          // 状态变量message的改变驱动UI刷新，UI从'Hello, World!'刷新为'Hello, ArkUI!'
+          this.message = 'Hello, ArkUI!';
+        })
+    }
+  }
+}
+```
+
+##
