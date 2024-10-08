@@ -35,6 +35,7 @@ db_client = Chroma(
     }
 )
 
+
 async def init_db():
     session = SessionManager(config.db_config)
     async with session.async_engine.begin() as conn:
@@ -70,6 +71,10 @@ async def insert():
 
 
 async def init_translation_table():
+    # 清空表
+    async with SessionManager(config.db_config) as session:
+        await session.execute(delete(TranslationTable))
+        await session.commit()
     with open("script/initialize_database/component_table.json", "r", encoding="utf-8") as f:
         translations = json.loads(f.read())
     translation_list = []
@@ -213,7 +218,8 @@ async def init_component_examples():
                     await session.commit()
                 documents.append(Document(
                     page_content=component_example_description,
-                    metadata={"source": "harmony-component-example-doc", "component_name": component_name, "table_id": component_example_entity.id},
+                    metadata={"source": "harmony-component-example-doc", "component_name": component_name,
+                              "table_id": component_example_entity.id},
                 ))
         else:
             print(f"组件{component_name}没有不存在示例")
@@ -221,14 +227,14 @@ async def init_component_examples():
 
 
 async def main():
-    await drop_db()
+    # await drop_db()
     await init_db()
     # 初始化转译表
     await init_translation_table()
     # 初始化组件示例库
-    init_component_rag_database()
+    # init_component_rag_database()
     # 初始化示例库
-    await init_component_examples()
+    # await init_component_examples()
 
 
 asyncio.run(main())

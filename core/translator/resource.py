@@ -313,6 +313,91 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
                 svg_group.set(key, value)
         return svg_group
 
+    def parse_shape_element(root, shape_element):
+        """处理 shape 节点"""
+        svg_group = root.makeelement("g")
+
+        # 初始化shape相关属性
+        fill_color = None
+        stroke_color = None
+        stroke_width = None
+        rx = None
+        ry = None
+
+        for child in shape_element:
+            if child.tag == "solid":
+                fill_color = get_attr(child, "android:color")
+                if fill_color:
+                    fill_color = translate_argb_to_rgba(fill_color)
+            elif child.tag == "stroke":
+                stroke_color = get_attr(child, "android:color")
+                if stroke_color:
+                    stroke_color = translate_argb_to_rgba(stroke_color)
+                stroke_width = get_attr(child, "android:width")
+            elif child.tag == "corners":
+                rx = get_attr(child, "android:radius")
+                ry = rx  # 使用相同的圆角半径，除非定义了不同的rx和ry
+            elif child.tag == "gradient":
+                svg_gradient = parse_gradient(root, child)
+                size = len(root.findall(".//defs/linearGradient")) + len(root.findall(".//defs/radialGradient"))
+                gradient_id = f"gradient_{size}"
+                svg_gradient.set("id", gradient_id)
+                root.find(".//defs").append(svg_gradient)
+                fill_color = f"url(#{gradient_id})"
+
+        # 创建基本的形状
+        shape_type = get_attr(shape_element, "android:shape")
+        if shape_type == "rectangle":
+            svg_rect = root.makeelement("rect", {
+                "width": "100%",  # 使用相对尺寸
+                "height": "100%",
+                "fill": fill_color or "none",
+                "stroke": stroke_color or "none",
+                "stroke-width": stroke_width or "1",
+                "rx": rx or "0",
+                "ry": ry or "0"
+            })
+            svg_group.append(svg_rect)
+        elif shape_type == "oval":
+            svg_oval = root.makeelement("ellipse", {
+                "cx": "50%",  # 中心点在SVG视口的中央
+                "cy": "50%",
+                "rx": "50%",
+                "ry": "50%",
+                "fill": fill_color or "none",
+                "stroke": stroke_color or "none",
+                "stroke-width": stroke_width or "1"
+            })
+            svg_group.append(svg_oval)
+        elif shape_type == "line":
+            x1 = "0%"
+            x2 = "100%"
+            y1 = "50%"
+            y2 = "50%"
+            svg_line = root.makeelement("line", {
+                "x1": x1,
+                "y1": y1,
+                "x2": x2,
+                "y2": y2,
+                "stroke": stroke_color or "none",
+                "stroke-width": stroke_width or "1"
+            })
+            svg_group.append(svg_line)
+        elif shape_type == "ring":
+            inner_radius = get_attr(shape_element, "android:innerRadius")
+            thickness = get_attr(shape_element, "android:thickness")
+            svg_ring = root.makeelement("circle", {
+                "cx": "50%",
+                "cy": "50%",
+                "r": f"{float(inner_radius) + float(thickness)}",
+                "fill": "none",
+                "stroke": stroke_color or fill_color or "none",
+                "stroke-width": thickness or "1"
+            })
+            svg_group.append(svg_ring)
+
+        return svg_group
+
     def transform_node(node, parent, root, defs):
         if node.tag == "path":
             svg_path = parse_path_element(root, node)
@@ -359,6 +444,10 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
                     svg_group.append(child_path)
 
             return svg_group
+
+        elif node.tag == "shape":
+            svg_shape = parse_shape_element(root, node)
+            return svg_shape
 
         elif node.tag == "clip-path":
             path_data = get_attr(node, "android:pathData")
@@ -438,6 +527,9 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
         os.makedirs(os.path.dirname(harmony_svg_path), exist_ok=True)
         with open(harmony_svg_path, "w", encoding="utf-8") as f:
             f.write(etree.tostring(svg_root, pretty_print=True, encoding="unicode"))
+    elif _root.tag == "shape":
+        parse_shape_element()
+        logger.warning(f"Shape file is not supported: {android_vector_drawable_xml_path}")
     elif _root.tag == "bitmap":
         # 位图文件
         logger.warning(f"Bitmap file is not supported: {android_vector_drawable_xml_path}")
@@ -684,3 +776,5 @@ if __name__ == '__main__':
         r"C:\Users\14514\Desktop\bookdash\resources",
         r"C:\Users\14514\Desktop\bookdash\resources\harmony"
     )
+
+# 你是谁
