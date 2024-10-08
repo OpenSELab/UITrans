@@ -1,0 +1,6 @@
+[
+    {
+        "description": "该组件通过Column布局实现了一个展示两条折线（Polyline）的界面。布局宽度占据整个屏幕，高度由内容自动调整。组件的垂直方向上被分为两个部分，每个部分包含一个Polyline组件。每个Polyline组件的宽度为100vp，高度为100vp，且通过points属性定义了折线的顶点坐标。\n\n第一条折线的样式包括填充透明度为0（即不填充），线条颜色为蓝色，线条宽度为3vp。第二条折线的样式包括填充透明度为0（即不填充），线条颜色为红色，线条宽度为8vp，线条连接处和线条端点的样式均为圆角。\n\n整个布局通过Column布局保证Polyline组件在垂直方向上有序排列，确保界面整洁美观。",
+        "code": "@Entry\n@Component\nstruct PolylineExample {\n  build() {\n    Column({ space: 10 }) { // 创建一个垂直布局，组件之间的间距为10vp\n\n      Polyline({ width: 100, height: 100 }) // 创建一个宽度为100vp，高度为100vp的Polyline组件\n        .points([[0, 0], [20, 60], [100, 100]]) // 设置折线的顶点坐标\n        .fillOpacity(0) // 设置填充透明度为0，即不填充\n        .stroke(Color.Blue) // 设置线条颜色为蓝色\n        .strokeWidth(3) // 设置线条宽度为3vp\n\n      Polyline() // 创建一个Polyline组件\n        .width(100) // 设置宽度为100vp\n        .height(100) // 设置高度为100vp\n        .fillOpacity(0) // 设置填充透明度为0，即不填充\n        .stroke(Color.Red) // 设置线条颜色为红色\n        .strokeWidth(8) // 设置线条宽度为8vp\n        .points([[20, 0], [0, 100], [100, 90]]) // 设置折线的顶点坐标\n        .strokeLineJoin(LineJoinStyle.Round) // 设置线条连接处的样式为圆角\n        .strokeLineCap(LineCapStyle.Round) // 设置线条端点的样式为圆角\n    }.width('100%') // 设置Column布局的宽度为100%\n  }\n}"
+    }
+]

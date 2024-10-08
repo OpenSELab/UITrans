@@ -1,0 +1,141 @@
+{
+    "description": "作为子页面的根容器，用于显示Navigation的内容区。NavDestination组件必须配合Navigation使用，作为Navigation目的页面的根节点，单独使用只能作为普通容器组件，不具备路由相关属性能力。",
+    "details": "该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "NavDestination()",
+            "params": {}
+        }
+    ],
+    "attributes": {
+        "title": {
+            "description": "设置页面标题。",
+            "params": {
+                "value": {
+                    "type": ["string", "CustomBuilder", "NavDestinationCommonTitle", "NavDestinationCustomTitle"],
+                    "required": true,
+                    "description": "页面标题。"
+                },
+                "options": {
+                    "type": "NavigationTitleOptions",
+                    "required": false,
+                    "description": "标题选项。"
+                }
+            }
+        },
+        "hideTitleBar": {
+            "description": "设置是否隐藏标题栏。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否隐藏标题栏。",
+                    "default": false
+                }
+            }
+        },
+        "mode": {
+            "description": "设置NavDestination类型，不支持动态修改。",
+            "params": {
+                "value": {
+                    "type": "NavDestinationMode",
+                    "required": true,
+                    "description": "NavDestination类型。",
+                    "default": "NavDestinationMode.STANDARD"
+                }
+            }
+        },
+        "backButtonIcon": {
+            "description": "设置标题栏返回键图标。",
+            "params": {
+                "value": {
+                    "type": ["ResourceStr", "PixelMap", "SymbolGlyphModifier"],
+                    "required": true,
+                    "description": "返回键图标。"
+                }
+            }
+        },
+        "menus": {
+            "description": "设置页面右上角菜单。",
+            "params": {
+                "value": {
+                    "type": ["Array<NavigationMenuItem>", "CustomBuilder"],
+                    "required": true,
+                    "description": "页面右上角菜单。"
+                }
+            }
+        },
+        "ignoreLayoutSafeArea": {
+            "description": "控制组件的布局，使其扩展到非安全区域。",
+            "params": {
+                "types": {
+                    "type": ["Array<LayoutSafeAreaType>"],
+                    "required": false,
+                    "description": "配置扩展安全区域的类型。",
+                    "default": ["LayoutSafeAreaType.SYSTEM"]
+                },
+                "edges": {
+                    "type": ["Array<LayoutSafeAreaEdge>"],
+                    "required": false,
+                    "description": "配置扩展安全区域的方向。",
+                    "default": ["LayoutSafeAreaEdge.TOP", "LayoutSafeAreaEdge.BOTTOM"]
+                }
+            }
+        },
+        "systemBarStyle": {
+            "description": "当Navigation中显示当前NavDestination时，设置对应系统状态栏的样式。",
+            "params": {
+                "style": {
+                    "type": "Optional<SystemBarStyle>",
+                    "required": true,
+                    "description": "系统状态栏的样式。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onShown": {
+            "description": "当该NavDestination页面显示时触发此回调。",
+            "params": {}
+        },
+        "onHidden": {
+            "description": "当该NavDestination页面隐藏时触发此回调。",
+            "params": {}
+        },
+        "onWillAppear": {
+            "description": "当该Destination挂载之前触发此回调。",
+            "params": {}
+        },
+        "onWillShow": {
+            "description": "当该Destination显示之前触发此回调。",
+            "params": {}
+        },
+        "onWillHide": {
+            "description": "当该Destination隐藏之前触发此回调。",
+            "params": {}
+        },
+        "onWillDisappear": {
+            "description": "当该Destination卸载之前触发的生命周期(有转场动画时，在转场动画开始之前触发)。",
+            "params": {}
+        },
+        "onBackPressed": {
+            "description": "当与Navigation绑定的页面栈中存在内容时，此回调生效。当点击返回键时，触发该回调。返回值为true时，表示重写返回键逻辑，返回值为false时，表示回退到上一个页面。",
+            "params": {}
+        },
+        "onReady": {
+            "description": "当NavDestination即将构建子组件之前会触发此回调。",
+            "params": {
+                "callback": {
+                    "type": "Callback<NavDestinationContext>",
+                    "required": true,
+                    "description": "回调函数。"
+                }
+            }
+        }
+    },
+    "rules": [
+        "NavDestination组件必须配合Navigation使用，作为Navigation目的页面的根节点，单独使用只能作为普通容器组件，不具备路由相关属性能力。"
+    ],
+    "examples": null,
+    "is_common_attrs": true
+}

@@ -1,0 +1,508 @@
+Title: @ohos.arkui.advanced.ToolBar (工具栏)-高级组件-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5
+
+Markdown Content:
+@ohos.arkui.advanced.ToolBar (工具栏)-高级组件-ArkTS组件-ArkUI（方舟UI框架）-应用框架 - 华为HarmonyOS开发者
+===============
+
+简体中文
+
+*   简体中文
+*   Русский
+*   English
+*   Español (América Latina)
+*   Português (Brasil)
+*   Français (Europe)
+*   Deutsch
+*   日本語
+*   한국어
+
+[App](https://developer.huawei.com/consumer/cn/huawei-app/)
+
+[](https://developer.huawei.com/consumer/cn/)
+
+*   探索
+*   设计
+*   开发
+*   分发
+*   推广与变现
+*   生态合作
+*   支持
+
+*   更多
+
+*   [探索](https://developer.huawei.com/consumer/cn/discover/)
+    
+*   [设计](https://developer.huawei.com/consumer/cn/design/)
+    
+*   [开发](https://developer.huawei.com/consumer/cn/develop/)
+    
+*   [分发](https://developer.huawei.com/consumer/cn/distribute/)
+    
+*   更多
+    *   [推广与变现](https://developer.huawei.com/consumer/cn/promote/)
+        
+    *   [生态合作](https://developer.huawei.com/consumer/cn/cooperate/)
+        
+    *   [支持](https://developer.huawei.com/consumer/cn/support/)
+        
+
+搜索
+
+热门搜索 _换一换_
+
+*   HarmonyOS NEXT
+*   HarmonyOS应用开发
+*   仓颉
+*   DevEco Studio
+*   开发者能力认证
+*   模拟器
+*   Navigation
+*   List
+*   Web
+*   TextInput
+*   Image
+*   AppGallery Connect
+
+[文档](https://developer.huawei.com/consumer/cn/doc/)[管理中心](https://developer.huawei.com/consumer/cn/console)
+
+HarmonyOS NEXT
+
+Developer Beta5
+
+API参考
+
+*   [版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/releasenotes-baseline-V5?istab=1&catalogVersion=V5)
+*   [指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/application-dev-guide-V5?istab=1&catalogVersion=V5)
+*   [API参考](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/development-intro-api-V5?istab=1&catalogVersion=V5)
+*   [最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-develop-once-deploy-everywhere-V5?istab=1&catalogVersion=V5)
+*   [FAQ](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-development-V5?istab=1&catalogVersion=V5)
+*   [变更预告](https://developer.huawei.com/consumer/cn/doc/harmonyos-roadmap-V5/changelogs-in-31-V5?istab=1&catalogVersion=V5)
+*   更多
+
+筛选元服务API集
+
+API参考概述
+
+应用框架
+
+[Ability Kit（程序框架服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ability-api-V5)
+
+[Accessibility Kit（无障碍服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/accessibility-api-V5)
+
+[ArkData（方舟数据管理）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkdata-api-V5)
+
+[ArkTS（方舟编程语言）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkts-api-V5)
+
+[ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5)
+
+[ArkTS API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-V5)
+
+[ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5)
+
+[组件导读](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-components-summary-V5)
+
+[组件通用信息](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_2_u7ec4_u4ef6_u901a_u7528_u4fe1_u606f-V5)
+
+[基础组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_3_u57fa_u7840_u7ec4_u4ef6-V5)
+
+[容器组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_4_u5bb9_u5668_u7ec4_u4ef6-V5)
+
+[媒体组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_5_u5a92_u4f53_u7ec4_u4ef6-V5)
+
+[绘制组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_6_u7ed8_u5236_u7ec4_u4ef6-V5)
+
+[画布组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_7_u753b_u5e03_u7ec4_u4ef6-V5)
+
+[渲染组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_8_u6e32_u67d3_u7ec4_u4ef6-V5)
+
+[高级组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_9_u9ad8_u7ea7_u7ec4_u4ef6-V5)
+
+[@ohos.arkui.advanced.Chip (操作块组件)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chip-V5)
+
+[@ohos.arkui.advanced.ChipGroup (操作块组组件)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-chipgroup-V5)
+
+[@ohos.arkui.advanced.ComposeListItem (列表)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-composelistitem-V5)
+
+[@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-composetitlebar-V5)
+
+[@ohos.arkui.advanced.Counter (计数器组件)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-counter-V5)
+
+[@ohos.arkui.advanced.Dialog (弹出框)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-dialog-V5)
+
+[@ohos.arkui.advanced.DownloadFileButton（下载文件按钮）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5)
+
+[@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-editabletitlebar-V5)
+
+[@ohos.arkui.advanced.ExceptionPrompt (异常提示)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-exceptionprompt-V5)
+
+[@ohos.arkui.advanced.Filter (多条件筛选)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-filter-V5)
+
+[@ohos.arkui.advanced.FormMenu (应用内添加卡片到桌面菜单)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-formmenu-V5)
+
+[@ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动元服务组件)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-fullscreenlaunchcomponent-V5)
+
+[@ohos.arkui.advanced.GridObjectSortComponent (网格对象的编辑排序)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-gridobjectsortcomponent-V5)
+
+[@ohos.arkui.advanced.ProgressButton (下载按钮)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-progressbutton-V5)
+
+[@ohos.arkui.advanced.Popup (气泡组件)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-popup-V5)
+
+[@ohos.arkui.advanced.SegmentButton (分段按钮)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5)
+
+[@ohos.arkui.advanced.SelectionMenu (文本选择菜单)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-selectionmenu-V5)
+
+[@ohos.arkui.advanced.SelectTitleBar (下拉菜单标题栏)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-selecttitlebar-V5)
+
+[@ohos.arkui.advanced.SplitLayout (上下结构布局)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-splitlayout-V5)
+
+[@ohos.arkui.advanced.SubHeader (子标题)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-subheader-V5)
+
+[@ohos.arkui.advanced.SwipeRefresher (内容加载)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-swiperefresher-V5)
+
+[@ohos.arkui.advanced.TabTitleBar (页签型标题栏)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-tabtitlebar-V5)
+
+[@ohos.arkui.advanced.ToolBar (工具栏)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5)
+
+[@ohos.arkui.advanced.TreeView (树视图)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-treeview-V5)
+
+[@ohos.arkui.advanced.FoldSplitContainer (分栏布局)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-foldsplitcontainer-V5)
+
+[@ohos.atomicservice.AtomicServiceNavigation (导航根视图容器)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-atomicservice-atomicservicenavigation-V5)
+
+[@ohos.atomicservice.AtomicServiceTabs (页签容器)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-atomicservice-atomicservicetabs-V5)
+
+[@ohos.atomicservice.AtomicServiceWeb（Web高阶组件）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-atomicservice-atomicserviceweb-V5)
+
+[@ohos.atomicservice.InterstitialDialogAction (弹框)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-atomicservice-interstitialdialogaction-V5)
+
+[安全控件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_10_u5b89_u5168_u63a7_u4ef6-V5)
+
+[动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_11_u52a8_u753b-V5)
+
+[全局UI方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_12_u5168_u5c40ui_u65b9_u6cd5-V5)
+
+[自定义组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_13_u81ea_u5b9a_u4e49_u7ec4_u4ef6-V5)
+
+[类型定义](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_14_u7c7b_u578b_u5b9a_u4e49-V5)
+
+[应用级变量的状态管理](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-state-management-V5)
+
+[渲染控制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_16_u6e32_u67d3_u63a7_u5236-V5)
+
+[像素单位](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-pixel-units-V5)
+
+[枚举说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5)
+
+[设置事件回调](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-uicommonevent-V5)
+
+[属性字符串](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-styled-string-V5)
+
+[已停止维护的组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/21_u5df2_u505c_u6b62_u7ef4_u62a4_u7684_u7ec4_u4ef6-V5)
+
+[已停止维护的接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/22_u5df2_u505c_u6b62_u7ef4_u62a4_u7684_u63a5_u53e3-V5)
+
+[JS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-js-comp-V5)
+
+[C API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-c-V5)
+
+[错误码](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-errcode-V5)
+
+[ArkWeb（方舟Web）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkweb-api-V5)
+
+[Background Tasks Kit（后台任务开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/background-tasks-api-V5)
+
+[Core File Kit（文件基础服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/core-file-api-V5)
+
+[Form Kit（卡片开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/form-api-V5)
+
+[IME Kit（输入法开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ime-api-V5)
+
+[IPC Kit（进程间通信服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ipc-api-V5)
+
+[Localization Kit（本地化开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/localization-api-V5)
+
+[UI Design Kit（UI设计套件）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ui-design-api-V5)
+
+系统
+
+媒体
+
+图形
+
+应用服务
+
+AI
+
+公共基础能力
+
+标准库
+
+您当前正在浏览HarmonyOS NEXT Developer Beta5版本的配套文档，该版本API能力级别为API 12 Beta5，详细版本配套关系请参考[版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/overview-db5-V5)。
+
+API参考 应用框架 [ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5) [ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5) [高级组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_9_u9ad8_u7ea7_u7ec4_u4ef6-V5) @ohos.arkui.advanced.ToolBar (工具栏)
+
+@ohos.arkui.advanced.ToolBar (工具栏)
+==================================
+
+更新时间: 2024-08-21 06:17
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+本文导读
+
+[导入模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5#%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%97)
+
+[子组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5#%E5%AD%90%E7%BB%84%E4%BB%B6)
+
+[属性](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5#%E5%B1%9E%E6%80%A7)
+
+[ToolBar](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5#toolbar)
+
+[ToolBarOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5#toolbaroptions)
+
+[ToolBarOption](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5#toolbaroption)
+
+[ItemState](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5#itemstate)
+
+[事件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5#%E4%BA%8B%E4%BB%B6)
+
+[示例](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5#%E7%A4%BA%E4%BE%8B)
+
+展开章节
+
+工具栏用于展示针对当前界面内容的操作选项，在界面底部显示。底部最多显示5个入口，超过则收纳入“更多”子项中，在最右侧显示。
+
+说明
+
+该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+导入模块
+----
+
+已复制
+
+1.  import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
+
+子组件
+---
+
+无
+
+属性
+--
+
+支持[通用属性](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-size-V5)
+
+ToolBar
+-------
+
+Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsController})
+
+**装饰器类型：**@Component
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
+| :-- | :-- | :-- | :-- | :-- |
+| toolBarList | [ToolBarOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5#toolbaroptions) | 是 | @ObjectLink | 工具栏列表。 |
+| activateIndex | number | 否 | @Prop | 激活态的子项。
+默认值：-1。
+
+ |
+| controller | [TabsController](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabs-V5#tabscontroller) | 是 | \- | 筛选器的样式类型。 |
+
+ToolBarOptions
+--------------
+
+继承于 Array<[ToolBarOption](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5#toolbaroption)\>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ToolBarOption
+-------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 类型 | 必填 | 说明 |
+| :-- | :-- | :-- | :-- |
+| content | [ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr) | 是 | 工具栏子项的文本。 |
+| action | () => void | 否 | 工具栏子项点击事件。 |
+| icon | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | 否 | 工具栏子项的图标。 |
+| state | [ItemState](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-toolbar-V5#itemstate) | 否 | 工具栏子项的状态，默认为ENABLE。 |
+
+ItemState
+---------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 值 | 说明 |
+| :-- | :-- | :-- |
+| ENABLE | 1 | 工具栏子项为正常可点击状态。 |
+| DISABLE | 2 | 工具栏子项为不可点击状态。 |
+| ACTIVATE | 3 | 工具栏子项为激活状态，可点击。 |
+
+事件
+--
+
+支持[通用事件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-events-click-V5)
+
+示例
+--
+
+已复制
+
+1.  import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
+
+3.  enum ItemState {
+4.    ENABLE = 1,
+5.    DISABLE = 2,
+6.    ACTIVATE = 3
+7.  }
+
+9.  @Entry
+10.  @Component
+11.  struct Index {
+12.    @State toolbarList: ToolBarOptions = new ToolBarOptions()
+13.    aboutToAppear() {
+14.      this.toolbarList.push({
+15.        content: '剪贴我是超超超超超超超超超长样式',
+16.        icon: $r('sys.media.ohos\_ic\_public\_share'),
+17.        action: () => {
+18.        },
+19.      })
+20.      this.toolbarList.push({
+21.        content: '拷贝',
+22.        icon: $r('sys.media.ohos\_ic\_public\_copy'),
+23.        action: () => {
+24.        },
+25.        state:ItemState.DISABLE
+26.      })
+27.      this.toolbarList.push({
+28.        content: '粘贴',
+29.        icon: $r('sys.media.ohos\_ic\_public\_paste'),
+30.        action: () => {
+31.        },
+32.        state:ItemState.ACTIVATE
+33.      })
+34.      this.toolbarList.push({
+35.        content: '全选',
+36.        icon: $r('sys.media.ohos\_ic\_public\_select\_all'),
+37.        action: () => {
+38.        },
+39.      })
+40.      this.toolbarList.push({
+41.        content: '分享',
+42.        icon: $r('sys.media.ohos\_ic\_public\_share'),
+43.        action: () => {
+44.        },
+45.      })
+46.      this.toolbarList.push({
+47.        content: '分享',
+48.        icon: $r('sys.media.ohos\_ic\_public\_share'),
+49.        action: () => {
+50.        },
+51.      })
+52.    }
+53.    build() {
+54.      Row() {
+55.        Stack() {
+56.          Column() {
+57.            ToolBar({
+58.              activateIndex: 2,
+59.              toolBarList: this.toolbarList,
+60.            })
+61.          }
+62.        }.align(Alignment.Bottom)
+63.        .width('100%').height('100%')
+64.      }
+65.    }
+66.  }
+
+![Image 1](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122302.27615971387368737793510535095478:50001231000000:2800:2C56871FBADD126C987794E44BF446DD03B28164C7D25D5AB9BFDD5C9BE416BB.png?needInitFileName=true?needInitFileName=true)
+
+[@ohos.arkui.advanced.TabTitleBar (页签型标题栏)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-tabtitlebar-V5 "@ohos.arkui.advanced.TabTitleBar (页签型标题栏)")
+
+[@ohos.arkui.advanced.TreeView (树视图)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-treeview-V5 "@ohos.arkui.advanced.TreeView (树视图)")
+
+**以上内容对您是否有帮助？**
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+意见反馈
+
+更多帮助请到“[社区论坛](https://developer.huawei.com/consumer/cn/forum/)”，如需要其他帮助，请通过“[智能客服](https://developer.huawei.com/consumer/cn/customerService/#/bot-dev-top/faq-top/faq-talk-top)”提问。
+
+简体中文
+
+*   ![Image 2](https://developer.huawei.com/images/foot/icon-xinlang-normal.png)
+*   ![Image 3](https://developer.huawei.com/images/home/Bi-hover.png)
+*   ![Image 4](https://developer.huawei.com/images/foot/icon-weixin-normal.png)
+    
+    ![Image 5](https://developer.huawei.com/consumer/cn/doc/assets/images/head/hua_wei_kai_fa_zhe_lian_meng_fu_wu_wei_xin_er_wei_ma_fu_ben_0.jpg)
+    
+    微信公众号
+    
+*   ![Image 6](https://developer.huawei.com/images/foot/icon-app-normal.png)
+    
+    ![Image 7](https://developer.huawei.com/consumer/cn/doc/assets/images/head/APPerweima.png)
+    
+    下载APP
+    
+*   ![Image 8](https://developer.huawei.com/images/foot/icon-xinxi-normal.png)
+*   ![Image 9](https://developer.huawei.com/images/foot/ic_blog_hover.svg)
+
+华为开发者联盟 版权所有 ©2023-2024
+
+[使用条款](https://developer.huawei.com/consumer/cn/devservice/use)
+
+[关于华为开发者联盟与隐私的声明](https://developer.huawei.com/consumer/cn/devservice/term)
+
+[隐私政策](https://consumer.huawei.com/cn/legal/privacy-policy/)
+
+[cookies](https://consumer.huawei.com/cn/legal/cookie-policy/)
+
+[开源软件声明](https://developer.huawei.com/consumer/cn/opensource/)
+
+在 API参考 中进行搜索
+
+只在 应用框架 中搜索只搜索章节标题
+
+请输入您想要搜索的关键词
+
+*   智能客服
+    
+    您的每一次的提问，都能匹配最合适的答案
+    
+
+*   合作咨询
+    
+    我们的专家服务团队将竭诚为您提供专业的合作咨询服务
+    
+
+*   解决方案
+    
+    精准高效的一站式服务支持，助力开发者商业成功
+    
+
+*   快速入门
+    
+    面向开发者提供快速入门指南，轻松找到你想要的各类资源
+    
+
+文档内容搜索功能移到这里了
+
+好的，知道了

@@ -1,0 +1,44 @@
+{
+    "description": "WithTheme组件用于设置应用局部页面自定义主题风格，可设置子组件深浅色模式和自定义配色。",
+    "details": "该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "WithTheme(options: WithThemeOptions)",
+            "params": {
+                "options": {
+                    "type": "WithThemeOptions",
+                    "required": true,
+                    "description": "设置WithTheme作用域内组件缺省样式及深浅色模式。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "WithThemeOptions": {
+            "description": "设置WithTheme作用域内组件缺省样式及深浅色模式。",
+            "params": {
+                "theme": {
+                    "type": "CustomTheme",
+                    "required": false,
+                    "description": "用于自定义WithTheme作用域内组件缺省配色。",
+                    "default": "undefined"
+                },
+                "colorMode": {
+                    "type": "ThemeColorMode",
+                    "required": false,
+                    "description": "用于指定WithTheme作用域内组件深浅色模式。",
+                    "default": "ThemeColorMode.System"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过 Flex 布局实现了一个展示多种类型按钮（如普通按钮、胶囊按钮、圆形按钮）及其状态效果的界面。布局宽度占据整个屏幕，高度设为 400vp，内边距为左右 35vp、顶部 35vp。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组按钮。每个按钮组的按钮以水平布局方式排列，按钮之间的间距均匀分布，且对齐方式为居中对齐。\n按钮的样式包括背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。按钮组之间通过 Flex 组件进行分隔。按钮的功能包括点击事件和状态效果，用户可以通过点击按钮触发相应操作，按钮也可以在启用或禁用状态下进行展示。\n整个布局通过 Flex 布局保证按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ButtonExample {\n  build() {\n    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {\n      // 标题部分\n      Text('按钮示例')\n        .fontSize(24)\n        .fontWeight(FontWeight.Bold)\n        .margin({ bottom: 20 })\n        .textAlign(TextAlign.Center)\n\n      // 普通按钮部分\n      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {\n        Button('普通按钮')\n          .width(150)\n          .height(50)\n          .backgroundColor('#007DFF')\n          .borderRadius(8)\n          .onClick(() => {\n            // 点击事件处理逻辑\n            console.log('普通按钮被点击');\n          })\n\n        Button('禁用按钮')\n          .width(150)\n          .height(50)\n          .backgroundColor('#CCCCCC')\n          .borderRadius(8)\n          .enabled(false)\n          .onClick(() => {\n            // 点击事件处理逻辑\n            console.log('禁用按钮被点击');\n          })\n      }\n      .margin({ bottom: 20 })\n\n      // 胶囊按钮部分\n      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {\n        Button('胶囊按钮')\n          .width(150)\n          .height(50)\n          .backgroundColor('#007DFF')\n          .borderRadius(25)\n          .onClick(() => {\n            // 点击事件处理逻辑\n            console.log('胶囊按钮被点击');\n          })\n\n        Button('禁用胶囊按钮')\n          .width(150)\n          .height(50)\n          .backgroundColor('#CCCCCC')\n          .borderRadius(25)\n          .enabled(false)\n          .onClick(() => {\n            // 点击事件处理逻辑\n            console.log('禁用胶囊按钮被点击');\n          })\n      }\n      .margin({ bottom: 20 })\n\n      // 圆形按钮部分\n      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {\n        Button('圆形按钮')\n          .width(80)\n          .height(80)\n          .backgroundColor('#007DFF')\n          .borderRadius(40)\n          .onClick(() => {\n            // 点击事件处理逻辑\n            console.log('圆形按钮被点击');\n          })\n\n        Button('禁用圆形按钮')\n          .width(80)\n          .height(80)\n          .backgroundColor('#CCCCCC')\n          .borderRadius(40)\n          .enabled(false)\n          .onClick(() => {\n            // 点击事件处理逻辑\n            console.log('禁用圆形按钮被点击');\n          })\n      }\n    }\n    .width('100%')\n    .height(400)\n    .padding({ left: 35, right: 35, top: 35 })\n    .backgroundColor('#F1F3F5')\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

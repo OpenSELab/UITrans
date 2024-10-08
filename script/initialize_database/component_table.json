@@ -799,5 +799,21 @@
         "target_component_code": " @State lengthMetrics:LengthMetrics = new LengthMetrics(4)\nbuild() {\nColumn({space:20}){\nColumn(){\nText(\"Elegant Card Title 1\")\n.fontSize(20)\n.font({weight:FontWeight.Bold})\n.fontColor('#FF5733')\nText(\"This is an enhanced description for Card 1. It has more padding and better styling.\")\n.fontSize(16)\n.fontColor('#808080')\n.lineSpacing(this.lengthMetrics)\n.margin({top:'8'})\n}\n.borderRadius(12)\n.padding(20)\n.backgroundColor('F5F5F5')\n.shadow({radius:10,color:Color.Gray})\n\nColumn(){\nText(\"Elegant Card Title 2\")\n.fontSize(20)\n.font({weight:FontWeight.Bold})\n.fontColor('#FF5733')\nText(\"This is an enhanced description for Card 2. It has more padding and better styling.\")\n.fontSize(16)\n.fontColor('#808080')\n.lineSpacing(this.lengthMetrics)\n.margin({top:'8'})\n}\n.borderRadius(12)\n.padding(20)\n.shadow({radius:10,color:Color.Gray})\n\nColumn(){\nText(\"Elegant Card Title 3\")\n.fontSize(20)\n.font({weight:FontWeight.Bold})\n.fontColor('#FF5733')\nText(\"This is an enhanced description for Card 3. It has more padding and better styling.\")\n.fontSize(16)\n.fontColor('#808080')\n.lineSpacing(this.lengthMetrics)\n.margin({top:'8'})\n}\n.borderRadius(12)\n.padding(20)\n.shadow({radius:10,color:Color.Gray})\n\n}\n.margin({bottom:16})\n.height(\"100%\")\n.width('90%')\n.margin({top:20})\n\n\n}",
         "target_component_description": "通过 Column 布局实现了一个自定义的卡片视图，使用 12vp 的圆角、10vp 的阴影半径以及 20vp 的内边距来定义卡片的外观，背景颜色为 #F5F5F5，阴影颜色为 Color.Gray。卡片内部包含两个文本元素，标题采用 20vp 的加粗字体，颜色为 #FF5733，描述文字为 16vp，颜色为 #808080，并通过 LengthMetrics 对象设置 4vp 的行间距，增强可读性，同时设置了 8vp 的上边距。整个布局使用了 20vp 的内边距和 16vp 的底部外边距，确保卡片在视觉上具有良好的层次感和适当的间距，适合用于展示简洁的标题和描述内容。",
         "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "EditText",
+        "source_component_code": "一个带有自定义图标的EditText，最外层为一个RelativeLayout，其中包含一个 EditText 和一个 ImageView。EditText 用于输入密码，配置了 460px 的宽度和 80px 的高度，顶部和右侧分别有 10px 和 80px 的边距。EditText 的提示文字为“请输入密码”，输入类型为密码，提示文字颜色为 #DCDCDC，文字大小为 35px，文字颜色为黑色，右侧内边距为 65px。ImageView 配置了 60px 的宽度和高度，显示的图标为 @drawable/add，内边距为 15px，并与 EditText 的底部、左侧和顶部对齐。",
+        "source_component_description": "<RelativeLayout\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"wrap_content\">\n<EditText\nandroid:id=\"@+id/et_devOps_passWord\"\nandroid:layout_width=\"460px\"\nandroid:layout_height=\"80px\"\nandroid:layout_marginTop=\"10px\"\nandroid:layout_marginLeft=\"80px\"\nandroid:hint=\"请输入密码\"\nandroid:inputType=\"textPassword\"\nandroid:textColorHint=\"#DCDCDC\"\nandroid:textSize=\"35px\"\nandroid:textColor=\"@color/black\"\nandroid:paddingLeft=\"65px\"\nandroid:paddingStart=\"65px\"\n/>\n\n<ImageView\nandroid:layout_width=\"60px\"\nandroid:layout_height=\"60px\"\nandroid:src=\"@drawable/add\"\nandroid:padding=\"15px\"\nandroid:layout_alignBottom=\"@id/et_devOps_passWord\"\nandroid:layout_alignLeft=\"@id/et_devOps_passWord\"\nandroid:layout_alignStart=\"@id/et_devOps_passWord\"\nandroid:layout_alignTop=\"@id/et_devOps_passWord\"\n/>\n</RelativeLayout>",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Row",
+            "Image",
+            "TextInput"
+        ],
+        "target_component_code": "Row(){\n      Image($r('app.media.input_text'))\n        .width(60)\n        .height(60)\n        .padding(15)\n        .align(Alignment.Start)\n      TextInput({placeholder:\"请输入密码\"})\n        .type(InputType.Password)\n        .placeholderColor('#DCDCDC')\n        .placeholderFont({size:'35px'})\n        .fontSize('35px')\n        .fontColor(Color.Black)\n        .width('460px')\n        .height('80px')\n        .padding({\n          right:'65px'\n        })\n        .margin({\n          top:'10px',\n          right:'80px'\n        })\n    }",
+        "target_component_description": "通过 Row 布局实现了一个自定义的输入视图，包含一个图标和一个密码输入框。图标使用 Image 组件，宽度为 60vp，高度为 60vp，内边距为 15vp，并设置为左对齐。密码输入框使用 TextInput 组件，占位符文本为“请输入密码”，输入类型为密码，占位符颜色为 #DCDCDC，占位符字体大小为 35px，字体大小为 35px，字体颜色为黑色，宽度为 460px，高度为 80px，右侧内边距为 65px，顶部和右侧外边距分别为 10px 和 80px。整个布局确保了图标和输入框在视觉上具有良好的对齐和适当的间距，适合用于用户输入密码的场景。",
+        "target_component_version": "12"
     }
 ]

@@ -1,0 +1,178 @@
+{
+    "description": "椭圆绘制组件。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。从API version 11开始，该接口支持在元服务中使用。",
+    "interfaces": [
+        {
+            "description": "Ellipse(options?: {width?: string | number, height?: string | number})",
+            "params": {
+                "options": {
+                    "type": "object",
+                    "description": "椭圆的宽度和高度选项。",
+                    "params": {
+                        "width": {
+                            "type": [
+                                "string",
+                                "number"
+                            ],
+                            "description": "宽度。",
+                            "default": 0
+                        },
+                        "height": {
+                            "type": [
+                                "string",
+                                "number"
+                            ],
+                            "description": "高度。",
+                            "default": 0
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "fill": {
+            "description": "设置填充区域颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "填充区域颜色。",
+                    "default": "Color.Black"
+                }
+            }
+        },
+        "fillOpacity": {
+            "description": "设置填充区域透明度。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "填充区域透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "stroke": {
+            "description": "设置边框颜色，不设置时，默认没有边框。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "边框颜色。"
+                }
+            }
+        },
+        "strokeDashArray": {
+            "description": "设置边框间隙。",
+            "params": {
+                "value": {
+                    "type": "Array<any>",
+                    "required": true,
+                    "description": "边框间隙。",
+                    "default": []
+                }
+            }
+        },
+        "strokeDashOffset": {
+            "description": "设置边框绘制起点的偏移量。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "边框绘制起点的偏移量。",
+                    "default": 0
+                }
+            }
+        },
+        "strokeLineCap": {
+            "description": "设置边框端点绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineCapStyle",
+                    "required": true,
+                    "description": "边框端点绘制样式。",
+                    "default": "LineCapStyle.Butt"
+                }
+            }
+        },
+        "strokeLineJoin": {
+            "description": "设置边框拐角绘制样式。Ellipse组件无法形成拐角，该属性设置无效。",
+            "params": {
+                "value": {
+                    "type": "LineJoinStyle",
+                    "required": true,
+                    "description": "边框拐角绘制样式。",
+                    "default": "LineJoinStyle.Miter"
+                }
+            }
+        },
+        "strokeMiterLimit": {
+            "description": "设置斜接长度与边框宽度比值的极限值。Ellipse组件无法设置尖角图形，该属性设置无效。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "斜接长度与边框宽度比值的极限值。",
+                    "default": 4
+                }
+            }
+        },
+        "strokeOpacity": {
+            "description": "设置边框透明度。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "边框透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "strokeWidth": {
+            "description": "设置边框宽度。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "边框宽度。",
+                    "default": 1
+                }
+            }
+        },
+        "antiAlias": {
+            "description": "设置是否开启抗锯齿效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启抗锯齿效果。",
+                    "default": true
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过 Column 布局实现了一个展示两个椭圆形状的界面。布局宽度占据整个屏幕，高度由内容自动调整。组件的垂直方向上被分为两个部分，每个部分包含一个椭圆。\n第一个椭圆的宽度为 150vp，高度为 80vp，填充颜色为默认颜色（通常为黑色）。第二个椭圆的宽度为 150vp，高度为 100vp，填充透明度为 0（即无填充颜色），边框颜色为蓝色，边框宽度为 3vp。\n椭圆的排列方式为垂直排列，每个椭圆之间有 10vp 的间距。整个布局通过 Column 布局保证椭圆在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "// xxx.ets\n@Entry\n@Component\nstruct EllipseExample {\n  build() {\n    Column({ space: 10 }) { // 创建一个垂直布局，子组件之间的间距为 10vp\n      // 绘制一个 150 * 80 的椭圆\n      Ellipse({ width: 150, height: 80 }) // 创建一个宽度为 150vp，高度为 80vp 的椭圆，填充颜色为默认颜色\n      \n      // 绘制一个 150 * 100 、线条为蓝色的椭圆环\n      Ellipse()\n        .width(150) // 设置椭圆的宽度为 150vp\n        .height(100) // 设置椭圆的高度为 100vp\n        .fillOpacity(0) // 设置椭圆的填充透明度为 0，即无填充颜色\n        .stroke(Color.Blue) // 设置椭圆的边框颜色为蓝色\n        .strokeWidth(3) // 设置椭圆的边框宽度为 3vp\n    }.width('100%') // 设置 Column 的宽度为 100%，占据整个屏幕宽度\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

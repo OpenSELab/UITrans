@@ -1,0 +1,132 @@
+{
+    "description": "提供多选框组件，通常用于某选项的打开或关闭。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Checkbox(options?: CheckboxOptions)",
+            "params": {
+                "options": {
+                    "type": "CheckboxOptions",
+                    "required": false,
+                    "description": "多选框的配置选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "name": {
+            "description": "用于指定多选框名称。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": false,
+                    "description": "多选框名称。"
+                }
+            }
+        },
+        "group": {
+            "description": "用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": false,
+                    "description": "多选框所属群组的名称。"
+                }
+            }
+        },
+        "indicatorBuilder": {
+            "description": "配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。indicatorBuilder设置为undefined/null时，默认为indicatorBuilder未设置状态。",
+            "params": {
+                "value": {
+                    "type": "CustomBuilder",
+                    "required": false,
+                    "description": "自定义组件的构造器。"
+                }
+            }
+        },
+        "select": {
+            "description": "设置多选框是否选中。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "多选框是否选中。",
+                    "default": false
+                }
+            }
+        },
+        "selectedColor": {
+            "description": "设置多选框选中状态颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "多选框选中状态颜色。",
+                    "default": "$r('sys.color.ohos_id_color_text_primary_activated')"
+                }
+            }
+        },
+        "unselectedColor": {
+            "description": "设置多选框非选中状态边框颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "多选框非选中状态边框颜色。",
+                    "default": "$r('sys.color.ohos_id_color_switch_outline_off')"
+                }
+            }
+        },
+        "mark": {
+            "description": "设置多选框内部图标样式。",
+            "params": {
+                "value": {
+                    "type": "MarkStyle",
+                    "required": true,
+                    "description": "多选框内部图标样式。",
+                    "default": {
+                        "strokeColor": "$r('sys.color.ohos_id_color_foreground_contrary')",
+                        "strokeWidth": "$r('sys.float.ohos_id_checkbox_stroke_width')",
+                        "size": "20vp"
+                    }
+                }
+            }
+        },
+        "shape": {
+            "description": "设置CheckBox组件形状, 包括圆形和圆角方形。",
+            "params": {
+                "value": {
+                    "type": "CheckBoxShape",
+                    "required": true,
+                    "description": "CheckBox组件形状。",
+                    "default": "CheckBoxShape.CIRCLE"
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制CheckBox内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<CheckBoxConfiguration>",
+                    "required": false,
+                    "description": "定制CheckBox内容区的方法。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "当选中状态发生变化时，触发该回调。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "返回true时，表示已选中。返回false时，表示未选中。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

@@ -1,0 +1,48 @@
+{
+    "description": "用于显示加载动效的组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "LoadingProgress()",
+            "params": {}
+        }
+    ],
+    "attributes": {
+        "color": {
+            "description": "设置加载进度条前景色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "加载进度条的前景色。",
+                    "default": "#ff666666"
+                }
+            }
+        },
+        "enableLoading": {
+            "description": "设置LoadingProgress动画显示或者不显示。LoadingProgress动画不显示时，该组件依旧占位。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "LoadingProgress动画是否显示。",
+                    "default": true
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制LoadingProgress内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<LoadingProgressConfiguration>",
+                    "required": true,
+                    "description": "定制LoadingProgress内容区的方法。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

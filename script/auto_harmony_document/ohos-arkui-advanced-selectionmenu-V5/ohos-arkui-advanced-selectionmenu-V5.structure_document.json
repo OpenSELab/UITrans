@@ -1,0 +1,92 @@
+{
+    "description": "文本选择菜单，适用于富文本组件通过bindSelectionMenu绑定自定义文本选择菜单，建议绑定鼠标右键或者鼠标选中方式弹出，不支持作为普通组件单独使用。",
+    "details": "该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "SelectionMenu(options: SelectionMenuOptions)",
+            "params": {
+                "options": {
+                    "type": "SelectionMenuOptions",
+                    "description": "SelectionMenu的可选菜单类型项及其具体配置参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "editorMenuOptions": {
+            "description": "编辑菜单。",
+            "params": {
+                "value": {
+                    "type": "Array<EditorMenuOptions>",
+                    "description": "编辑菜单选项。"
+                }
+            }
+        },
+        "expandedMenuOptions": {
+            "description": "扩展下拉菜单。",
+            "params": {
+                "value": {
+                    "type": "Array<ExpandedMenuOptions>",
+                    "description": "扩展下拉菜单选项。"
+                }
+            }
+        },
+        "controller": {
+            "description": "富文本控制器。",
+            "params": {
+                "value": {
+                    "type": "RichEditorController",
+                    "description": "富文本控制器。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onCopy": {
+            "description": "替代内置系统菜单复制项的事件回调。",
+            "params": {
+                "event": {
+                    "type": "EditorEventInfo",
+                    "description": "返回信息。"
+                }
+            }
+        },
+        "onPaste": {
+            "description": "替代内置系统菜单粘贴项的事件回调。",
+            "params": {
+                "event": {
+                    "type": "EditorEventInfo",
+                    "description": "返回信息。"
+                }
+            }
+        },
+        "onCut": {
+            "description": "替代内置系统菜单剪切项的事件回调。",
+            "params": {
+                "event": {
+                    "type": "EditorEventInfo",
+                    "description": "返回信息。"
+                }
+            }
+        },
+        "onSelectAll": {
+            "description": "替代内置系统菜单全选项的事件回调。",
+            "params": {
+                "event": {
+                    "type": "EditorEventInfo",
+                    "description": "返回信息。"
+                }
+            }
+        }
+    },
+    "rules": [
+        "点击自定义文本选择菜单内置复制功能选项后，自定义菜单消失选中文本高亮保留。",
+        "点击自定义文本选择菜单内置全选功能选项后，自定义菜单消失文本全选高亮。",
+        "点击自定义文本选择菜单内置粘贴功能选项后，空白处粘贴或者选中文本替换粘贴均是保留被复制文本的样式。",
+        "当富文本组件RichEditor的copyOptions属性设置为CopyOptions.None时，内置的复制剪切功能不会被限制。"
+    ],
+    "examples": [
+        "import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI'"
+    ],
+    "is_common_attrs": false
+}

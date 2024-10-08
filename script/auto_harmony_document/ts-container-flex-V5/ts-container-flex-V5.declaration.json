@@ -1,0 +1,110 @@
+{
+    "description": "以弹性方式布局子组件的容器组件。",
+    "interfaces": [
+        {
+            "description": "标准Flex布局容器。具体指南请参考",
+            "params": {
+                "value": {
+                    "type": "FlexOptions",
+                    "required": false,
+                    "description": "Flex布局的配置选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "direction": {
+            "description": "子组件在Flex容器上排列的方向，即主轴的方向。",
+            "params": {
+                "value": {
+                    "type": "FlexDirection",
+                    "required": false,
+                    "description": "子组件排列方向。",
+                    "default": "FlexDirection.Row"
+                }
+            }
+        },
+        "wrap": {
+            "description": "Flex容器是单行/列还是多行/列排列。在多行布局时，通过交叉轴方向，确认新行堆叠方向。",
+            "params": {
+                "value": {
+                    "type": "FlexWrap",
+                    "required": false,
+                    "description": "容器排列方式。",
+                    "default": "FlexWrap.NoWrap"
+                }
+            }
+        },
+        "justifyContent": {
+            "description": "所有子组件在Flex容器主轴上的对齐格式。",
+            "params": {
+                "value": {
+                    "type": "FlexAlign",
+                    "required": false,
+                    "description": "主轴对齐格式。",
+                    "default": "FlexAlign.Start"
+                }
+            }
+        },
+        "alignItems": {
+            "description": "所有子组件在Flex容器交叉轴上的对齐格式。",
+            "params": {
+                "value": {
+                    "type": "ItemAlign",
+                    "required": false,
+                    "description": "交叉轴对齐格式。",
+                    "default": "ItemAlign.Start"
+                }
+            }
+        },
+        "alignContent": {
+            "description": "交叉轴中有额外的空间时，多行内容的对齐方式。仅在wrap为Wrap或WrapReverse下生效。",
+            "params": {
+                "value": {
+                    "type": "FlexAlign",
+                    "required": false,
+                    "description": "多行内容对齐方式。",
+                    "default": "FlexAlign.Start"
+                }
+            }
+        },
+        "space": {
+            "description": "所有子组件在Flex容器主轴或交叉轴的space。space为负数、百分比或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。可选值为大于等于0的数字，或者可以转换为数字的字符串。",
+            "params": {
+                "value": {
+                    "type": "FlexSpaceOptions",
+                    "required": false,
+                    "description": "主轴或交叉轴的space。",
+                    "default": "{main: LengthMetrics.px(0), cross: LengthMetrics.px(0)}"
+                }
+            }
+        }
+    },
+    "events": {},
+    "examples": [
+        {
+            "description": "实现一个展示Flex布局不同wrap模式的示例，通过设置不同的FlexWrap属性，展示子组件在多行、单行和反向多行布局下的效果。",
+            "code": "@Entry\n@Component\nstruct FlexExample2 {\n  build() {\n    Column() {\n      Column({ space: 5 }) {\n        // 显示标题“Wrap”，字体大小为9，颜色为灰色，宽度为90%\n        Text('Wrap').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 使用Flex布局，设置wrap模式为FlexWrap.Wrap，子组件将多行布局\n        Flex({ wrap: FlexWrap.Wrap }) {\n          Text('1').width('50%').height(50).backgroundColor(0xF5DEB3) // 文本“1”，宽度50%，高度50，背景色为浅棕色\n          Text('2').width('50%').height(50).backgroundColor(0xD2B48C) // 文本“2”，宽度50%，高度50，背景色为棕色\n          Text('3').width('50%').height(50).backgroundColor(0xD2B48C) // 文本“3”，宽度50%，高度50，背景色为棕色\n        }\n        .width('90%') // Flex组件宽度为90%\n        .padding(10) // 内边距为10\n        .backgroundColor(0xAFEEEE) // 背景色为浅蓝色\n\n        // 显示标题“NoWrap”，字体大小为9，颜色为灰色，宽度为90%\n        Text('NoWrap').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 使用Flex布局，设置wrap模式为FlexWrap.NoWrap，子组件将单行布局\n        Flex({ wrap: FlexWrap.NoWrap }) {\n          Text('1').width('50%').height(50).backgroundColor(0xF5DEB3) // 文本“1”，宽度50%，高度50，背景色为浅棕色\n          Text('2').width('50%').height(50).backgroundColor(0xD2B48C) // 文本“2”，宽度50%，高度50，背景色为棕色\n          Text('3').width('50%').height(50).backgroundColor(0xF5DEB3) // 文本“3”，宽度50%，高度50，背景色为浅棕色\n        }\n        .width('90%') // Flex组件宽度为90%\n        .padding(10) // 内边距为10\n        .backgroundColor(0xAFEEEE) // 背景色为浅蓝色\n\n        // 显示标题“WrapReverse”，字体大小为9，颜色为灰色，宽度为90%\n        Text('WrapReverse').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 使用Flex布局，设置wrap模式为FlexWrap.WrapReverse，子组件将反向多行布局，方向为行\n        Flex({ wrap: FlexWrap.WrapReverse , direction:FlexDirection.Row }) {\n          Text('1').width('50%').height(50).backgroundColor(0xF5DEB3) // 文本“1”，宽度50%，高度50，背景色为浅棕色\n          Text('2').width('50%').height(50).backgroundColor(0xD2B48C) // 文本“2”，宽度50%，高度50，背景色为棕色\n          Text('3').width('50%').height(50).backgroundColor(0xD2B48C) // 文本“3”，宽度50%，高度50，背景色为棕色\n        }\n        .width('90%') // Flex组件宽度为90%\n        .height(120) // 高度为120\n        .padding(10) // 内边距为10\n        .backgroundColor(0xAFEEEE) // 背景色为浅蓝色\n      }.width('100%').margin({ top: 5 }) // 内部Column组件宽度为100%，顶部外边距为5\n    }.width('100%') // 外部Column组件宽度为100%\n  }\n}"
+        },
+        {
+            "description": "实现一个展示Flex布局不同wrap模式的示例组件。通过设置不同的FlexWrap模式（Wrap、NoWrap、WrapReverse），展示子组件在不同布局模式下的排列效果。每个Flex容器内的子组件通过设置不同的宽度和高度，以及背景颜色，来直观展示布局效果。",
+            "code": "import {LengthMetrics} from '@kit.ArkUI';\n\n@Entry\n@Component\nstruct FlexExample2 {\n  build() {\n    Column() {\n      Column({ space: 5 }) {\n        // 标题文本，显示“Wrap”，字体大小为9，颜色为灰色，宽度为90%\n        Text('Wrap').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // Flex容器，设置为多行布局（FlexWrap.Wrap），主轴和交叉轴的间距均为50px\n        Flex({ wrap: FlexWrap.Wrap, space: {main: LengthMetrics.px(50), cross: LengthMetrics.px(50)} }) { // 子组件多行布局\n          Text('1').width('40%').height(50).backgroundColor(0xF5DEB3) // 文本“1”，宽度40%，高度50，背景色为浅棕色\n          Text('2').width('40%').height(50).backgroundColor(0xD2B48C) // 文本“2”，宽度40%，高度50，背景色为棕色\n          Text('3').width('40%').height(50).backgroundColor(0xD2B48C) // 文本“3”，宽度40%，高度50，背景色为棕色\n        }\n        .width('90%') // Flex容器的宽度为90%\n        .padding(10) // 内边距为10\n        .backgroundColor(0xAFEEEE) // 背景色为浅蓝色\n\n        // 标题文本，显示“NoWrap”，字体大小为9，颜色为灰色，宽度为90%\n        Text('NoWrap').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // Flex容器，设置为单行布局（FlexWrap.NoWrap），主轴和交叉轴的间距均为50px\n        Flex({ wrap: FlexWrap.NoWrap, space: {main: LengthMetrics.px(50), cross: LengthMetrics.px(50)} }) { // 子组件单行布局\n          Text('1').width('50%').height(50).backgroundColor(0xF5DEB3) // 文本“1”，宽度50%，高度50，背景色为浅棕色\n          Text('2').width('50%').height(50).backgroundColor(0xD2B48C) // 文本“2”，宽度50%，高度50，背景色为棕色\n          Text('3').width('50%').height(50).backgroundColor(0xF5DEB3) // 文本“3”，宽度50%，高度50，背景色为浅棕色\n        }\n        .width('90%') // Flex容器的宽度为90%\n        .padding(10) // 内边距为10\n        .backgroundColor(0xAFEEEE) // 背景色为浅蓝色\n\n        // 标题文本，显示“WrapReverse”，字体大小为9，颜色为灰色，宽度为90%\n        Text('WrapReverse').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // Flex容器，设置为反向多行布局（FlexWrap.WrapReverse），主轴为行方向（FlexDirection.Row），主轴和交叉轴的间距均为50px\n        Flex({ wrap: FlexWrap.WrapReverse, direction:FlexDirection.Row, space: {main: LengthMetrics.px(50), cross: LengthMetrics.px(50)} }) { // 子组件反向多行布局\n          Text('1').width('40%').height(50).backgroundColor(0xF5DEB3) // 文本“1”，宽度40%，高度50，背景色为浅棕色\n          Text('2').width('40%').height(50).backgroundColor(0xD2B48C) // 文本“2”，宽度40%，高度50，背景色为棕色\n          Text('3').width('40%').height(50).backgroundColor(0xD2B48C) // 文本“3”，宽度40%，高度50，背景色为棕色\n        }\n        .width('90%') // Flex容器的宽度为90%\n        .height(120) // 高度为120\n        .padding(10) // 内边距为10\n        .backgroundColor(0xAFEEEE) // 背景色为浅蓝色\n      }.width('100%').margin({ top: 5 }) // 内部Column的宽度为100%，上外边距为5\n    }.width('100%') // 外部Column的宽度为100%\n  }\n}"
+        },
+        {
+            "description": "实现一个Flex布局示例，展示不同justifyContent属性值对子组件在主轴上对齐方式的影响。\n通过设置不同的justifyContent值，子组件在Flex容器中的对齐方式会有所不同，包括首端对齐、居中对齐、尾端对齐、均分布局等。\n@Component\nstruct JustifyContentFlex {\n定义一个属性justifyContent，用于设置Flex容器的justifyContent属性\njustifyContent : number = 0;\nbuild() {\n创建一个Flex容器，并设置其justifyContent属性为传入的值\nFlex({ justifyContent: this.justifyContent }) {\n创建一个Text组件，显示数字'1'，设置宽度为20%，高度为50，背景颜色为0xF5DEB3\nText('1').width('20%').height(50).backgroundColor(0xF5DEB3)\n创建一个Text组件，显示数字'2'，设置宽度为20%，高度为50，背景颜色为0xD2B48C\nText('2').width('20%').height(50).backgroundColor(0xD2B48C)\n创建一个Text组件，显示数字'3'，设置宽度为20%，高度为50，背景颜色为0xF5DEB3\nText('3').width('20%').height(50).backgroundColor(0xF5DEB3)\n}\n设置Flex容器的宽度为90%\n.width('90%')\n设置Flex容器的内边距为10\n.padding(10)\n设置Flex容器的背景颜色为0xAFEEEE\n.backgroundColor(0xAFEEEE)\n}\n}",
+            "code": "@Entry\n@Component\nstruct FlexExample3 {\n  build() {\n    // 创建一个Column容器，用于垂直排列子组件\n    Column() {\n      // 创建一个Column容器，设置子组件之间的间距为5\n      Column({ space: 5 }) {\n        // 创建一个Text组件，显示'justifyContent:Start'，设置字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        Text('justifyContent:Start').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个JustifyContentFlex组件，设置justifyContent属性为FlexAlign.Start，子组件在容器主轴上首端对齐\n        JustifyContentFlex({ justifyContent: FlexAlign.Start })\n\n        // 创建一个Text组件，显示'justifyContent:Center'，设置字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        Text('justifyContent:Center').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个JustifyContentFlex组件，设置justifyContent属性为FlexAlign.Center，子组件在容器主轴上居中对齐\n        JustifyContentFlex({ justifyContent: FlexAlign.Center })\n\n        // 创建一个Text组件，显示'justifyContent:End'，设置字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        Text('justifyContent:End').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个JustifyContentFlex组件，设置justifyContent属性为FlexAlign.End，子组件在容器主轴上尾端对齐\n        JustifyContentFlex({ justifyContent: FlexAlign.End })\n\n        // 创建一个Text组件，显示'justifyContent:SpaceBetween'，设置字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        Text('justifyContent:SpaceBetween').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个JustifyContentFlex组件，设置justifyContent属性为FlexAlign.SpaceBetween，子组件在容器主轴上均分容器布局，第一个子组件与行首对齐，最后一个子组件与行尾对齐\n        JustifyContentFlex({ justifyContent: FlexAlign.SpaceBetween })\n\n        // 创建一个Text组件，显示'justifyContent:SpaceAround'，设置字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        Text('justifyContent:SpaceAround').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个JustifyContentFlex组件，设置justifyContent属性为FlexAlign.SpaceAround，子组件在容器主轴上均分容器布局，第一个子组件到行首的距离和最后一个子组件到行尾的距离是相邻子组件之间距离的一半\n        JustifyContentFlex({ justifyContent: FlexAlign.SpaceAround })\n\n        // 创建一个Text组件，显示'justifyContent:SpaceEvenly'，设置字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        Text('justifyContent:SpaceEvenly').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个JustifyContentFlex组件，设置justifyContent属性为FlexAlign.SpaceEvenly，子组件在容器主轴上均分容器布局，子组件之间的距离与第一子组件到行首、最后一个子组件到行尾的距离相等\n        JustifyContentFlex({ justifyContent: FlexAlign.SpaceEvenly })\n      }\n      // 设置Column容器的宽度为100%，并设置顶部外边距为5\n      .width('100%').margin({ top: 5 })\n    }\n    // 设置Column容器的宽度为100%\n    .width('100%')\n  }\n}"
+        },
+        {
+            "description": "实现一个Flex布局示例，展示不同alignItems属性值对子组件在交叉轴上的对齐方式的影响。通过不同的alignItems值，子组件可以在交叉轴上分别实现自动对齐、首部对齐、居中对齐、尾部对齐、拉伸填充以及基线对齐。\n定义一个名为AlignItemsFlex的组件，该组件用于展示不同alignItems属性值的效果\n@Component\nstruct AlignItemsFlex {\n定义一个alignItems属性，用于接收外部传入的对齐方式\nalignItems : number = 0;\n构建方法，用于定义组件的布局和样式\nbuild() {\n使用Flex布局，并设置alignItems属性为外部传入的值\nFlex({ alignItems: this.alignItems }) {\n第一个子组件，文本内容为'1'，宽度为33%，高度为30，背景颜色为0xF5DEB3\nText('1').width('33%').height(30).backgroundColor(0xF5DEB3)\n第二个子组件，文本内容为'2'，宽度为33%，高度为40，背景颜色为0xD2B48C\nText('2').width('33%').height(40).backgroundColor(0xD2B48C)\n第三个子组件，文本内容为'3'，宽度为33%，高度为50，背景颜色为0xF5DEB3\nText('3').width('33%').height(50).backgroundColor(0xF5DEB3)\n}\n设置Flex容器的尺寸，宽度为90%，高度为80\n.size({width: '90%', height: 80})\n设置Flex容器的内边距为10\n.padding(10)\n设置Flex容器的背景颜色为0xAFEEEE\n.backgroundColor(0xAFEEEE)\n}\n}\n定义一个名为FlexExample4的入口组件，该组件用于展示不同alignItems值的效果",
+            "code": "@Entry\n@Component\nstruct FlexExample4 {\n  // 构建方法，用于定义组件的布局和样式\n  build() {\n    // 使用Column布局，用于垂直排列子组件\n    Column() {\n      // 使用Column布局，设置子组件之间的间距为5\n      Column({ space: 5 }) {\n        // 文本组件，显示'alignItems:Auto'，字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        Text('alignItems:Auto').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 使用AlignItemsFlex组件，传入alignItems值为ItemAlign.Auto，子组件在交叉轴上自动对齐\n        AlignItemsFlex({ alignItems: ItemAlign.Auto })\n\n        // 文本组件，显示'alignItems:Start'，字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        Text('alignItems:Start').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 使用AlignItemsFlex组件，传入alignItems值为ItemAlign.Start，子组件在交叉轴上首部对齐\n        AlignItemsFlex({ alignItems: ItemAlign.Start })\n\n        // 文本组件，显示'alignItems:Center'，字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        Text('alignItems:Center').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 使用AlignItemsFlex组件，传入alignItems值为ItemAlign.Center，子组件在交叉轴上居中对齐\n        AlignItemsFlex({ alignItems: ItemAlign.Center })\n\n        // 文本组件，显示'alignItems:End'，字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        Text('alignItems:End').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 使用AlignItemsFlex组件，传入alignItems值为ItemAlign.End，子组件在交叉轴上尾部对齐\n        AlignItemsFlex({ alignItems: ItemAlign.End })\n\n        // 文本组件，显示'alignItems:Stretch'，字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        Text('alignItems:Stretch').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 使用AlignItemsFlex组件，传入alignItems值为ItemAlign.Stretch，子组件在交叉轴上拉伸填充\n        AlignItemsFlex({ alignItems: ItemAlign.Stretch })\n\n        // 文本组件，显示'alignItems:Baseline'，字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        Text('alignItems:Baseline').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 使用AlignItemsFlex组件，传入alignItems值为ItemAlign.Baseline，子组件在交叉轴上与文本基线对齐\n        AlignItemsFlex({ alignItems: ItemAlign.Baseline })\n      }\n      // 设置Column容器的宽度为100%，并设置顶部外边距为5\n      .width('100%').margin({ top: 5 })\n    }\n    // 设置Column容器的宽度为100%\n    .width('100%')\n  }\n}"
+        },
+        {
+            "description": "实现一个展示Flex布局不同方向的示例组件。通过设置Flex组件的direction属性，展示子组件在容器主轴上的不同布局方式，包括行布局、反向行布局、列布局和反向列布局。每个布局示例都包含四个文本组件，分别显示不同的背景颜色，以便直观地展示布局效果。",
+            "code": "@Entry\n@Component\nstruct FlexExample1 {\n  build() {\n    Column() {\n      Column({ space: 5 }) {\n        // 显示标题文本，字体大小为9，颜色为灰色，宽度为90%\n        Text('direction:Row').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个Flex容器，设置布局方向为行布局\n        Flex({ direction: FlexDirection.Row }) { // 子组件在容器主轴上行布局\n          // 创建四个文本组件，宽度为20%，高度为50，背景颜色分别为浅棕色和深棕色\n          Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)\n          Text('2').width('20%').height(50).backgroundColor(0xD2B48C)\n          Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)\n          Text('4').width('20%').height(50).backgroundColor(0xD2B48C)\n        }\n        .height(70) // 设置Flex容器的高度为70\n        .width('90%') // 设置Flex容器的宽度为90%\n        .padding(10) // 设置Flex容器的内边距为10\n        .backgroundColor(0xAFEEEE) // 设置Flex容器的背景颜色为浅蓝色\n\n        // 显示标题文本，字体大小为9，颜色为灰色，宽度为90%\n        Text('direction:RowReverse').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个Flex容器，设置布局方向为反向行布局\n        Flex({ direction: FlexDirection.RowReverse }) { // 子组件在容器主轴上反向行布局\n          // 创建四个文本组件，宽度为20%，高度为50，背景颜色分别为浅棕色和深棕色\n          Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)\n          Text('2').width('20%').height(50).backgroundColor(0xD2B48C)\n          Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)\n          Text('4').width('20%').height(50).backgroundColor(0xD2B48C)\n        }\n        .height(70) // 设置Flex容器的高度为70\n        .width('90%') // 设置Flex容器的宽度为90%\n        .padding(10) // 设置Flex容器的内边距为10\n        .backgroundColor(0xAFEEEE) // 设置Flex容器的背景颜色为浅蓝色\n\n        // 显示标题文本，字体大小为9，颜色为灰色，宽度为90%\n        Text('direction:Column').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个Flex容器，设置布局方向为列布局\n        Flex({ direction: FlexDirection.Column }) { // 子组件在容器主轴上列布局\n          // 创建四个文本组件，宽度为100%，高度为40，背景颜色分别为浅棕色和深棕色\n          Text('1').width('100%').height(40).backgroundColor(0xF5DEB3)\n          Text('2').width('100%').height(40).backgroundColor(0xD2B48C)\n          Text('3').width('100%').height(40).backgroundColor(0xF5DEB3)\n          Text('4').width('100%').height(40).backgroundColor(0xD2B48C)\n        }\n        .height(160) // 设置Flex容器的高度为160\n        .width('90%') // 设置Flex容器的宽度为90%\n        .padding(10) // 设置Flex容器的内边距为10\n        .backgroundColor(0xAFEEEE) // 设置Flex容器的背景颜色为浅蓝色\n\n        // 显示标题文本，字体大小为9，颜色为灰色，宽度为90%\n        Text('direction:ColumnReverse').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个Flex容器，设置布局方向为反向列布局\n        Flex({ direction: FlexDirection.ColumnReverse }) { // 子组件在容器主轴上反向列布局\n          // 创建四个文本组件，宽度为100%，高度为40，背景颜色分别为浅棕色和深棕色\n          Text('1').width('100%').height(40).backgroundColor(0xF5DEB3)\n          Text('2').width('100%').height(40).backgroundColor(0xD2B48C)\n          Text('3').width('100%').height(40).backgroundColor(0xF5DEB3)\n          Text('4').width('100%').height(40).backgroundColor(0xD2B48C)\n        }\n        .height(160) // 设置Flex容器的高度为160\n        .width('90%') // 设置Flex容器的宽度为90%\n        .padding(10) // 设置Flex容器的内边距为10\n        .backgroundColor(0xAFEEEE) // 设置Flex容器的背景颜色为浅蓝色\n      }.width('100%').margin({ top: 5 }) // 设置内部Column容器的宽度为100%，顶部外边距为5\n    }.width('100%') // 设置外部Column容器的宽度为100%\n  }\n}"
+        },
+        {
+            "description": "实现一个Flex布局示例，展示不同alignContent属性值对多行子组件布局的影响。通过设置不同的alignContent属性，可以控制多行子组件在Flex容器中的对齐方式。\n@Component\nstruct AlignContentFlex {\nalignContent: number = 0;  定义alignContent属性，用于控制多行子组件的对齐方式\nbuild() {\nFlex({ wrap: FlexWrap.Wrap, alignContent: this.alignContent }) {\n创建一个Flex容器，设置换行属性为FlexWrap.Wrap，并根据传入的alignContent属性值进行对齐\nText('1').width('50%').height(20).backgroundColor(0xF5DEB3)  创建一个宽度为50%、高度为20的文本组件，背景色为0xF5DEB3\nText('2').width('50%').height(20).backgroundColor(0xD2B48C)  创建一个宽度为50%、高度为20的文本组件，背景色为0xD2B48C\nText('3').width('50%').height(20).backgroundColor(0xD2B48C)  创建一个宽度为50%、高度为20的文本组件，背景色为0xD2B48C\n}\n.size({ width: '90%', height: 90 })  设置Flex容器的尺寸为宽度90%、高度90\n.padding(10)  设置Flex容器的内边距为10\n.backgroundColor(0xAFEEEE)  设置Flex容器的背景色为0xAFEEEE\n}\n}",
+            "code": "@Entry\n@Component\nstruct FlexExample5 {\n  build() {\n    Column() {\n      Column({ space: 5 }) {\n        // 创建一个Column容器，设置子组件之间的间距为5\n        Text('alignContent:Start').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个文本组件，显示alignContent:Start，字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        AlignContentFlex({ alignContent: FlexAlign.Start }) // 创建AlignContentFlex组件，设置alignContent属性为FlexAlign.Start，多行布局下子组件首部对齐\n\n        Text('alignContent:Center').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个文本组件，显示alignContent:Center，字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        AlignContentFlex({ alignContent: FlexAlign.Center }) // 创建AlignContentFlex组件，设置alignContent属性为FlexAlign.Center，多行布局下子组件居中对齐\n\n        Text('alignContent:End').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个文本组件，显示alignContent:End，字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        AlignContentFlex({ alignContent: FlexAlign.End }) // 创建AlignContentFlex组件，设置alignContent属性为FlexAlign.End，多行布局下子组件尾部对齐\n\n        Text('alignContent:SpaceBetween').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个文本组件，显示alignContent:SpaceBetween，字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        AlignContentFlex({ alignContent: FlexAlign.SpaceBetween }) // 创建AlignContentFlex组件，设置alignContent属性为FlexAlign.SpaceBetween，多行布局下第一行子组件与列首对齐，最后一行子组件与列尾对齐\n\n        Text('alignContent:SpaceAround').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个文本组件，显示alignContent:SpaceAround，字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        AlignContentFlex({ alignContent: FlexAlign.SpaceAround }) // 创建AlignContentFlex组件，设置alignContent属性为FlexAlign.SpaceAround，多行布局下第一行子组件到列首的距离和最后一行子组件到列尾的距离是相邻行之间距离的一半\n\n        Text('alignContent:SpaceEvenly').fontSize(9).fontColor(0xCCCCCC).width('90%')\n        // 创建一个文本组件，显示alignContent:SpaceEvenly，字体大小为9，字体颜色为0xCCCCCC，宽度为90%\n        Flex({\n          wrap: FlexWrap.Wrap,\n          alignContent: FlexAlign.SpaceEvenly\n        }) { // 创建一个Flex容器，设置换行属性为FlexWrap.Wrap，alignContent属性为FlexAlign.SpaceEvenly，多行布局下相邻行之间的距离与第一行子组件到列首的距离、最后一行子组件到列尾的距离完全一样\n          Text('1').width('50%').height(20).backgroundColor(0xF5DEB3) // 创建一个宽度为50%、高度为20的文本组件，背景色为0xF5DEB3\n          Text('2').width('50%').height(20).backgroundColor(0xD2B48C) // 创建一个宽度为50%、高度为20的文本组件，背景色为0xD2B48C\n          Text('3').width('50%').height(20).backgroundColor(0xF5DEB3) // 创建一个宽度为50%、高度为20的文本组件，背景色为0xF5DEB3\n          Text('4').width('50%').height(20).backgroundColor(0xD2B48C) // 创建一个宽度为50%、高度为20的文本组件，背景色为0xD2B48C\n          Text('5').width('50%').height(20).backgroundColor(0xF5DEB3) // 创建一个宽度为50%、高度为20的文本组件，背景色为0xF5DEB3\n        }\n        .size({ width: '90%', height: 100 }) // 设置Flex容器的尺寸为宽度90%、高度100\n        .padding({ left: 10, right: 10 }) // 设置Flex容器的左右内边距为10\n        .backgroundColor(0xAFEEEE) // 设置Flex容器的背景色为0xAFEEEE\n      }.width('100%').margin({ top: 5 }) // 设置Column容器的宽度为100%，上外边距为5\n    }.width('100%') // 设置Column容器的宽度为100%\n  }\n}"
+        }
+    ]
+}

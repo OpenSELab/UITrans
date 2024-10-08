@@ -1,0 +1,109 @@
+{
+    "description": "用来展示菜单Menu中具体的item菜单项。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "MenuItem(value?: MenuItemOptions| CustomBuilder)",
+            "params": {
+                "value": {
+                    "type": [
+                        "MenuItemOptions",
+                        "CustomBuilder"
+                    ],
+                    "required": false,
+                    "description": "包含设置MenuItem的各项信息。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "selected": {
+            "description": "设置菜单项是否选中。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "菜单项是否选中。",
+                    "default": false
+                }
+            }
+        },
+        "selectIcon": {
+            "description": "设置当菜单项被选中时，是否显示被选中的图标。",
+            "params": {
+                "value": {
+                    "type": [
+                        "boolean",
+                        "ResourceStr",
+                        "SymbolGlyphModifier"
+                    ],
+                    "required": true,
+                    "description": "菜单项被选中时，是否显示被选中的图标。",
+                    "default": false
+                }
+            }
+        },
+        "contentFont": {
+            "description": "设置菜单项中内容信息的字体样式。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "菜单项中内容信息的字体样式。"
+                }
+            }
+        },
+        "contentFontColor": {
+            "description": "设置菜单项中内容信息的字体颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "菜单项中内容信息的字体颜色。",
+                    "default": "#E5000000"
+                }
+            }
+        },
+        "labelFont": {
+            "description": "设置菜单项中标签信息的字体样式。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "菜单项中标签信息的字体样式。"
+                }
+            }
+        },
+        "labelFontColor": {
+            "description": "设置菜单项中标签信息的字体颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "菜单项中标签信息的字体颜色。",
+                    "default": "#99000000"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "当选中状态发生变化时，触发该回调。只有手动触发且MenuItem状态改变时才会触发onChange回调。",
+            "params": {
+                "selected": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "选中状态发生变化时，触发该回调。返回值为true时，表示已选中，为false时，表示未选中。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过 Flex 布局实现了一个展示菜单（Menu）及其菜单项（MenuItem）的界面。布局宽度占据整个屏幕，高度设为 400vp，内边距为左右 35vp、顶部 35vp。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一个菜单。每个菜单项以水平布局方式排列，菜单项之间的间距均匀分布，且对齐方式为居中对齐。\n菜单的样式包括背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。菜单项组之间通过 Flex 组件进行分隔。菜单的功能包括点击事件和状态效果，用户可以通过点击菜单项触发相应操作，菜单项也可以在启用或禁用状态下进行展示。\n整个布局通过 Flex 布局保证菜单项在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct MenuExample {\n  @State selected: number = 0; // 用于记录当前选中的菜单项索引\n\n  build() {\n    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {\n      Text('Menu').fontSize(20).fontColor(Color.Black).margin({ top: 10, bottom: 10 }) // 标题文本，字体大小为20，颜色为黑色，上下边距为10vp\n\n      Menu() {\n        MenuItemGroup({ header: 'Group1' }) { // 菜单项组1，标题为\"Group1\"\n          MenuItem({ content: 'Item1' }) // 菜单项1，内容为\"Item1\"\n          MenuItem({ content: 'Item2' }) // 菜单项2，内容为\"Item2\"\n        }\n        MenuItemGroup({ header: 'Group2' }) { // 菜单项组2，标题为\"Group2\"\n          MenuItem({ content: 'Item3' }) // 菜单项3，内容为\"Item3\"\n          MenuItem({ content: 'Item4' }) // 菜单项4，内容为\"Item4\"\n        }\n      }\n      .width('100%') // 菜单宽度占据父容器的100%\n      .height(200) // 菜单高度为200vp\n      .backgroundColor(Color.White) // 菜单背景颜色为白色\n      .borderRadius(10) // 菜单边框圆角为10vp\n      .padding(10) // 菜单内边距为10vp\n      .onSelect((value: number) => { // 菜单项选中事件\n        this.selected = value; // 更新选中状态\n        console.log(`Selected: ${value}`); // 打印选中项的索引\n      })\n\n      Text(`Selected: ${this.selected}`).fontSize(16).fontColor(Color.Gray).margin({ top: 20 }) // 显示当前选中的菜单项索引，字体大小为16，颜色为灰色，上边距为20vp\n    }\n    .width('100%') // 整体布局宽度占据父容器的100%\n    .height(400) // 整体布局高度为400vp\n    .padding({ left: 35, right: 35, top: 35 }) // 整体布局内边距为左右35vp、顶部35vp\n    .backgroundColor(Color.LightGray) // 整体布局背景颜色为浅灰色\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

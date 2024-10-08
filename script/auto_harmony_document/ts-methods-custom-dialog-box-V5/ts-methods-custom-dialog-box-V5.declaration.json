@@ -1,0 +1,206 @@
+{
+    "description": "通过CustomDialogController类显示自定义弹窗。使用弹窗组件时，可优先考虑自定义弹窗，便于自定义弹窗的样式与内容。",
+    "details": "自定义弹窗的所有参数，不支持动态刷新。",
+    "interfaces": [
+        {
+            "description": "constructor(value: CustomDialogControllerOptions)",
+            "params": {
+                "value": {
+                    "type": "CustomDialogControllerOptions",
+                    "required": true,
+                    "description": "配置自定义弹窗的参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "CustomDialogControllerOptions": {
+            "description": "配置自定义弹窗的参数对象。",
+            "params": {
+                "builder": {
+                    "type": "CustomDialog",
+                    "required": true,
+                    "description": "自定义弹窗内容构造器。"
+                },
+                "cancel": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "返回、ESC键和点击遮障层弹窗退出时的回调。"
+                },
+                "autoCancel": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否允许点击遮障层退出，true表示关闭弹窗。false表示不关闭弹窗。",
+                    "default": true
+                },
+                "alignment": {
+                    "type": "DialogAlignment",
+                    "required": false,
+                    "description": "弹窗在竖直方向上的对齐方式。",
+                    "default": "DialogAlignment.Default"
+                },
+                "offset": {
+                    "type": "Offset",
+                    "required": false,
+                    "description": "弹窗相对alignment所在位置的偏移量。",
+                    "default": {
+                        "dx": 0,
+                        "dy": 0
+                    }
+                },
+                "customStyle": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "弹窗容器样式是否自定义。",
+                    "default": false
+                },
+                "gridCount": {
+                    "type": "number",
+                    "required": false,
+                    "description": "弹窗宽度占栅格宽度的个数。",
+                    "default": "自适应"
+                },
+                "maskColor": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "自定义蒙层颜色。",
+                    "default": "0x33000000"
+                },
+                "maskRect": {
+                    "type": "Rectangle",
+                    "required": false,
+                    "description": "弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。",
+                    "default": {
+                        "x": 0,
+                        "y": 0,
+                        "width": "100%",
+                        "height": "100%"
+                    }
+                },
+                "openAnimation": {
+                    "type": "AnimateParam",
+                    "required": false,
+                    "description": "自定义设置弹窗弹出的动画效果相关参数。"
+                },
+                "closeAnimation": {
+                    "type": "AnimateParam",
+                    "required": false,
+                    "description": "自定义设置弹窗关闭的动画效果相关参数。"
+                },
+                "showInSubWindow": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。",
+                    "default": false
+                },
+                "backgroundColor": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "设置弹窗背板填充。",
+                    "default": "Color.Transparent"
+                },
+                "cornerRadius": {
+                    "type": "BorderRadiuses",
+                    "required": false,
+                    "description": "设置背板的圆角半径。",
+                    "default": {
+                        "topLeft": "32vp",
+                        "topRight": "32vp",
+                        "bottomLeft": "32vp",
+                        "bottomRight": "32vp"
+                    }
+                },
+                "isModal": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。",
+                    "default": true
+                },
+                "onWillDismiss": {
+                    "type": "Callback<DismissDialogAction>",
+                    "required": false,
+                    "description": "交互式关闭回调函数。"
+                },
+                "borderWidth": {
+                    "type": [
+                        "Dimension",
+                        "EdgeWidths"
+                    ],
+                    "required": false,
+                    "description": "设置弹窗背板的边框宽度。",
+                    "default": 0
+                },
+                "borderColor": {
+                    "type": [
+                        "ResourceColor",
+                        "EdgeColors"
+                    ],
+                    "required": false,
+                    "description": "设置弹窗背板的边框颜色。",
+                    "default": "Color.Black"
+                },
+                "borderStyle": {
+                    "type": [
+                        "BorderStyle",
+                        "EdgeStyles"
+                    ],
+                    "required": false,
+                    "description": "设置弹窗背板的边框样式。",
+                    "default": "BorderStyle.Solid"
+                },
+                "width": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "设置弹窗背板的宽度。",
+                    "default": "400vp"
+                },
+                "height": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "设置弹窗背板的高度。",
+                    "default": "0.9 * (窗口高度 - 安全区域)"
+                },
+                "shadow": {
+                    "type": [
+                        "ShadowOptions",
+                        "ShadowStyle"
+                    ],
+                    "required": false,
+                    "description": "设置弹窗背板的阴影。"
+                },
+                "backgroundBlurStyle": {
+                    "type": "BlurStyle",
+                    "required": false,
+                    "description": "弹窗背板模糊材质。",
+                    "default": "BlurStyle.COMPONENT_ULTRA_THICK"
+                }
+            }
+        }
+    },
+    "events": {
+        "open": {
+            "description": "open(): void",
+            "params": {}
+        },
+        "close": {
+            "description": "close(): void",
+            "params": {}
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该示例展示了如何在鸿蒙ArkUI中创建和使用自定义对话框（CustomDialog）。布局上，对话框内容通过Column组件垂直排列，包含一个文本和一个按钮。文本内容为“可展示在主窗口外的弹窗”，字体大小为30vp，高度为100vp。按钮文本为“点我关闭弹窗”，点击按钮会触发关闭对话框的操作。按钮的边距为20vp。\n\n在样式上，文本和按钮的布局和样式都相对简单，主要通过设置字体大小、高度和边距来控制显示效果。按钮的点击事件通过onClick方法实现，点击后调用对话框控制器的close方法关闭对话框。\n\n功能上，CustomDialogExample结构体定义了一个自定义对话框的模板，通过CustomDialogController控制对话框的显示和隐藏。CustomDialogUser结构体则是一个入口组件，通过按钮点击事件触发对话框的显示。对话框的显示位置通过alignment和offset属性设置为屏幕中心偏上20vp的位置。对话框的显示模式为模态（isModal: true），即显示时会阻止用户与主窗口的交互。对话框的圆角半径为10vp，显示在子窗口中（showInSubWindow: true）。\n\n交互方面，对话框提供了取消和确认的回调函数，分别在点击对话框的取消和确认按钮时触发。此外，对话框还提供了onWillDismiss回调，用于在对话框即将关闭时执行一些操作，例如根据关闭原因（如按下返回键或点击对话框外部）决定是否关闭对话框。",
+            "code": "// xxx.ets\n@CustomDialog\nstruct CustomDialogExample {\n  controller?: CustomDialogController // 对话框控制器，用于控制对话框的显示和隐藏\n  cancel: () => void = () => { // 取消按钮的回调函数，默认空函数\n  }\n  confirm: () => void = () => { // 确认按钮的回调函数，默认空函数\n  }\n  build() {\n    Column() {\n      Text('可展示在主窗口外的弹窗') // 对话框中的文本内容\n        .fontSize(30) // 字体大小为30vp\n        .height(100) // 文本高度为100vp\n      Button('点我关闭弹窗') // 关闭对话框的按钮\n        .onClick(() => { // 按钮点击事件\n          if (this.controller != undefined) { // 检查对话框控制器是否存在\n            this.controller.close() // 调用控制器的close方法关闭对话框\n          }\n        })\n        .margin(20) // 按钮的边距为20vp\n    }\n  }\n}\n\n@Entry\n@Component\nstruct CustomDialogUser {\n  dialogController: CustomDialogController | null = new CustomDialogController({\n    builder: CustomDialogExample({ // 使用CustomDialogExample作为对话框的内容\n      cancel: ()=> { this.onCancel() }, // 设置取消按钮的回调函数\n      confirm: ()=> { this.onAccept() } // 设置确认按钮的回调函数\n    }),\n    cancel: this.existApp, // 设置点击对话框外部区域的回调函数\n    autoCancel: true, // 设置对话框是否在点击外部区域时自动关闭\n    onWillDismiss:(dismissDialogAction: DismissDialogAction)=> { // 对话框即将关闭时的回调函数\n      console.info(\"reason=\" + JSON.stringify(dismissDialogAction.reason)) // 打印关闭原因\n      console.log(\"dialog onWillDismiss\") // 打印日志\n      if (dismissDialogAction.reason == DismissReason.PRESS_BACK) { // 如果关闭原因是按下返回键\n        dismissDialogAction.dismiss() // 关闭对话框\n      }\n      if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) { // 如果关闭原因是点击对话框外部\n        dismissDialogAction.dismiss() // 关闭对话框\n      }\n    },\n    alignment: DialogAlignment.Center, // 对话框在屏幕中的对齐方式为居中\n    offset: { dx: 0, dy: -20 }, // 对话框相对于对齐位置的偏移量，向上偏移20vp\n    gridCount: 4, // 对话框的网格布局列数\n    showInSubWindow: true, // 对话框是否显示在子窗口中\n    isModal: true, // 对话框是否为模态，即是否阻止用户与主窗口的交互\n    customStyle: false, // 是否使用自定义样式\n    cornerRadius: 10, // 对话框的圆角半径为10vp\n  })\n\n  // 在自定义组件即将析构销毁时将dialogController置空\n  aboutToDisappear() {\n    this.dialogController = null // 将dialogController置空\n  }\n\n  onCancel() {\n    console.info('Callback when the first button is clicked') // 取消按钮点击时的回调函数\n  }\n\n  onAccept() {\n    console.info('Callback when the second button is clicked') // 确认按钮点击时的回调函数\n  }\n\n  existApp() {\n    console.info('Click the callback in the blank area') // 点击对话框外部区域时的回调函数\n  }\n\n  build() {\n    Column() {\n      Button('click me') // 触发对话框显示的按钮\n        .onClick(() => { // 按钮点击事件\n          if (this.dialogController != null) { // 检查对话框控制器是否存在\n            this.dialogController.open() // 调用控制器的open方法显示对话框\n          }\n        }).backgroundColor(0x317aff) // 按钮的背景颜色为0x317aff\n    }.width('100%').margin({ top: 5 }) // 按钮的宽度为100%，顶部边距为5vp\n  }\n}"
+        },
+        {
+            "description": "该示例展示了如何在鸿蒙ArkUI中创建和使用自定义对话框（CustomDialog）。布局上，对话框的宽度为300vp，高度为200vp，背景颜色为白色，边框为蓝色虚线，边框宽度为1vp，圆角半径为20vp，阴影效果为灰色，阴影半径为20vp，水平偏移为50vp，垂直偏移为0vp。对话框的内容区域包含一个文本组件和一个按钮组件，文本组件显示“这是自定义弹窗”，字体大小为30vp，高度为100vp。按钮组件显示“点我关闭弹窗”，点击按钮后会关闭对话框。对话框的排列方式为居中对齐，垂直方向上偏移-20vp。\n\n组件的样式和外观方面，对话框的背景颜色为白色，边框为蓝色虚线，圆角半径为20vp，阴影效果为灰色，阴影半径为20vp，水平偏移为50vp，垂直偏移为0vp。文本组件的字体大小为30vp，高度为100vp。按钮组件的背景颜色为默认，点击后会触发关闭对话框的操作。\n\n组件的排列和嵌套关系方面，对话框的内容区域通过Column组件进行垂直布局，包含一个文本组件和一个按钮组件。文本组件和按钮组件在垂直方向上依次排列。\n\n组件的功能和交互方面，点击按钮组件会触发关闭对话框的操作。对话框的打开和关闭由CustomDialogController控制，对话框的打开和关闭操作可以通过调用controller的open和close方法实现。",
+            "code": "// xxx.ets\n\n// 定义一个自定义对话框组件\n@CustomDialog\nstruct CustomDialogExample {\n  // 对话框控制器，用于控制对话框的打开和关闭\n  controller?: CustomDialogController\n  \n  // 取消按钮的回调函数，默认空函数\n  cancel: () => void = () => {\n  }\n  \n  // 确认按钮的回调函数，默认空函数\n  confirm: () => void = () => {\n  }\n  \n  // 构建对话框的内容\n  build() {\n    Column() {\n      // 文本组件，显示“这是自定义弹窗”，字体大小为30vp，高度为100vp\n      Text('这是自定义弹窗')\n        .fontSize(30)\n        .height(100)\n      \n      // 按钮组件，显示“点我关闭弹窗”，点击后会关闭对话框\n      Button('点我关闭弹窗')\n        .onClick(() => {\n          // 如果对话框控制器存在，则调用close方法关闭对话框\n          if (this.controller != undefined) {\n            this.controller.close()\n          }\n        })\n        .margin(20) // 按钮的外边距为20vp\n    }\n  }\n}\n\n// 定义一个入口组件，用于使用自定义对话框\n@Entry\n@Component\nstruct CustomDialogUser {\n  // 对话框控制器，用于控制对话框的打开和关闭\n  dialogController: CustomDialogController | null = new CustomDialogController({\n    // 对话框的内容构建器，使用CustomDialogExample组件\n    builder: CustomDialogExample({\n      // 取消按钮的回调函数，调用onCancel方法\n      cancel: ()=> { this.onCancel() },\n      // 确认按钮的回调函数，调用onAccept方法\n      confirm: ()=> { this.onAccept() }\n    }),\n    \n    // 点击空白区域时的回调函数，调用existApp方法\n    cancel: this.existApp,\n    \n    // 是否自动取消对话框，设置为true\n    autoCancel: true,\n    \n    // 对话框即将关闭时的回调函数，打印关闭原因\n    onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {\n      console.info(\"reason=\" + JSON.stringify(dismissDialogAction.reason))\n      console.log(\"dialog onWillDismiss\")\n      // 如果关闭原因是按下返回键，则关闭对话框\n      if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {\n        dismissDialogAction.dismiss()\n      }\n      // 如果关闭原因是点击对话框外部，则关闭对话框\n      if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {\n        dismissDialogAction.dismiss()\n      }\n    },\n    \n    // 对话框的对齐方式，设置为居中对齐\n    alignment: DialogAlignment.Center,\n    \n    // 对话框的偏移量，垂直方向上偏移-20vp\n    offset: { dx: 0, dy: -20 },\n    \n    // 是否使用自定义样式，设置为false\n    customStyle: false,\n    \n    // 对话框的圆角半径，设置为20vp\n    cornerRadius: 20,\n    \n    // 对话框的宽度，设置为300vp\n    width: 300,\n    \n    // 对话框的高度，设置为200vp\n    height: 200,\n    \n    // 对话框的边框宽度，设置为1vp\n    borderWidth: 1,\n    \n    // 对话框的边框样式，设置为虚线\n    borderStyle: BorderStyle.Dashed, // 使用borderStyle属性，需要和borderWidth属性一起使用\n    \n    // 对话框的边框颜色，设置为蓝色\n    borderColor: Color.Blue, // 使用borderColor属性，需要和borderWidth属性一起使用\n    \n    // 对话框的背景颜色，设置为白色\n    backgroundColor: Color.White,\n    \n    // 对话框的阴影效果，阴影半径为20vp，颜色为灰色，水平偏移为50vp，垂直偏移为0vp\n    shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),\n  })\n  \n  // 在自定义组件即将析构销毁时将dialogController置空\n  aboutToDisappear() {\n    this.dialogController = null // 将dialogController置空\n  }\n\n  // 取消按钮的回调函数，打印日志\n  onCancel() {\n    console.info('Callback when the first button is clicked')\n  }\n\n  // 确认按钮的回调函数，打印日志\n  onAccept() {\n    console.info('Callback when the second button is clicked')\n  }\n\n  // 点击空白区域时的回调函数，打印日志\n  existApp() {\n    console.info('Click the callback in the blank area')\n  }\n\n  // 构建入口组件的内容\n  build() {\n    Column() {\n      // 按钮组件，显示“click me”，点击后会打开对话框\n      Button('click me')\n        .onClick(() => {\n          // 如果对话框控制器存在，则调用open方法打开对话框\n          if (this.dialogController != null) {\n            this.dialogController.open()\n          }\n        }).backgroundColor(0x317aff) // 按钮的背景颜色为0x317aff\n    }.width('100%').margin({ top: 5 }) // 按钮的宽度为100%，顶部外边距为5vp\n  }\n}"
+        },
+        {
+            "description": "该示例展示了如何在鸿蒙ArkUI中使用自定义对话框（CustomDialog）组件。布局上，主要使用了Column和Flex组件来实现垂直和水平布局。样式上，使用了字体大小、高度、边距、背景颜色、字体颜色等属性来定义组件的外观。功能上，实现了对话框的打开、关闭、文本输入、按钮点击等交互操作。\n\n布局属性：\n- Column组件用于垂直布局，包含多个子组件。\n- Flex组件用于水平布局，包含两个按钮，按钮之间通过SpaceAround对齐方式均匀分布。\n- 按钮的背景颜色、字体颜色、边距、高度等属性用于定义按钮的样式。\n\n组件的样式和外观：\n- Text组件的字体大小、高度、边距等属性用于定义文本的样式。\n- Button组件的背景颜色、字体颜色、边距、高度等属性用于定义按钮的样式。\n- TextInput组件的高度、宽度、边距等属性用于定义输入框的样式。\n\n组件的排列和嵌套关系：\n- Column组件包含Text、TextInput、Flex和Button组件，实现垂直布局。\n- Flex组件包含两个Button组件，实现水平布局。\n\n组件的功能和交互：\n- Button组件的onClick事件用于触发对话框的打开和关闭操作。\n- TextInput组件的onChange事件用于实时更新输入的文本值。\n- CustomDialogController用于控制对话框的打开和关闭，以及对话框的样式和位置。",
+            "code": "// xxx.ets\n@CustomDialog\nstruct CustomDialogExampleTwo {\n  controllerTwo?: CustomDialogController // 定义对话框控制器\n  build() {\n    Column() {\n      Text('我是第二个弹窗')\n        .fontSize(30) // 设置字体大小\n        .height(100) // 设置高度\n      Button('点我关闭第二个弹窗')\n        .onClick(() => {\n          if (this.controllerTwo != undefined) {\n            this.controllerTwo.close() // 点击按钮关闭对话框\n          }\n        })\n        .margin(20) // 设置边距\n    }\n  }\n}\n\n@CustomDialog\n@Component\nstruct CustomDialogExample {\n  @Link textValue: string // 绑定文本值\n  @Link inputValue: string // 绑定输入值\n  dialogControllerTwo: CustomDialogController | null = new CustomDialogController({\n    builder: CustomDialogExampleTwo(), // 定义第二个对话框\n    alignment: DialogAlignment.Bottom, // 对话框对齐方式\n    onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {\n      console.info(\"reason=\" + JSON.stringify(dismissDialogAction.reason))\n      console.log(\"dialog onWillDismiss\")\n      if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {\n        dismissDialogAction.dismiss() // 按下返回键关闭对话框\n      }\n      if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {\n        dismissDialogAction.dismiss() // 点击对话框外部关闭对话框\n      }\n    },\n    offset: { dx: 0, dy: -25 } // 对话框偏移量\n  })\n  controller?: CustomDialogController // 定义对话框控制器\n  cancel: () => void = () => { } // 取消按钮回调函数\n  confirm: () => void = () => { } // 确认按钮回调函数\n\n  build() {\n    Column() {\n      Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 }) // 设置文本样式和边距\n      TextInput({ placeholder: '', text: this.textValue }).height(60).width('90%')\n        .onChange((value: string) => {\n          this.textValue = value // 输入框内容变化时更新文本值\n        })\n      Text('Whether to change a text?').fontSize(16).margin({ bottom: 10 }) // 设置文本样式和边距\n      Flex({ justifyContent: FlexAlign.SpaceAround }) {\n        Button('cancel')\n          .onClick(() => {\n            if (this.controller != undefined) {\n              this.controller.close() // 点击取消按钮关闭对话框\n              this.cancel() // 调用取消回调函数\n            }\n          }).backgroundColor(0xffffff).fontColor(Color.Black) // 设置按钮样式\n        Button('confirm')\n          .onClick(() => {\n            if (this.controller != undefined) {\n              this.inputValue = this.textValue // 更新输入值\n              this.controller.close() // 点击确认按钮关闭对话框\n              this.confirm() // 调用确认回调函数\n            }\n          }).backgroundColor(0xffffff).fontColor(Color.Red) // 设置按钮样式\n      }.margin({ bottom: 10 })\n\n      Button('点我打开第二个弹窗')\n        .onClick(() => {\n          if (this.dialogControllerTwo != null) {\n            this.dialogControllerTwo.open() // 点击按钮打开第二个对话框\n          }\n        })\n        .margin(20) // 设置边距\n    }.borderRadius(10) // 设置边框圆角\n  }\n}\n\n@Entry\n@Component\nstruct CustomDialogUser {\n  @State textValue: string = '' // 定义状态文本值\n  @State inputValue: string = 'click me' // 定义状态输入值\n  dialogController: CustomDialogController | null = new CustomDialogController({\n    builder: CustomDialogExample({\n      cancel: ()=> { this.onCancel() }, // 取消按钮回调函数\n      confirm: ()=> { this.onAccept() }, // 确认按钮回调函数\n      textValue: $textValue, // 绑定文本值\n      inputValue: $inputValue // 绑定输入值\n    }),\n    cancel: this.exitApp, // 取消按钮回调函数\n    autoCancel: true, // 自动取消\n    onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {\n      console.info(\"reason=\" + JSON.stringify(dismissDialogAction.reason))\n      console.log(\"dialog onWillDismiss\")\n      if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {\n        dismissDialogAction.dismiss() // 按下返回键关闭对话框\n      }\n      if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {\n        dismissDialogAction.dismiss() // 点击对话框外部关闭对话框\n      }\n    },\n    alignment: DialogAlignment.Bottom, // 对话框对齐方式\n    offset: { dx: 0, dy: -20 }, // 对话框偏移量\n    gridCount: 4, // 网格数量\n    customStyle: false, // 自定义样式\n    cornerRadius: 10, // 边框圆角\n  })\n\n  aboutToDisappear() {\n    this.dialogController = null // 组件销毁时将对话框控制器置空\n  }\n\n  onCancel() {\n    console.info('Callback when the first button is clicked') // 取消按钮点击回调\n  }\n\n  onAccept() {\n    console.info('Callback when the second button is clicked') // 确认按钮点击回调\n  }\n\n  exitApp() {\n    console.info('Click the callback in the blank area') // 空白区域点击回调\n  }\n\n  build() {\n    Column() {\n      Button(this.inputValue)\n        .onClick(() => {\n          if (this.dialogController != null) {\n            this.dialogController.open() // 点击按钮打开对话框\n          }\n        }).backgroundColor(0x317aff) // 设置按钮背景颜色\n    }.width('100%').margin({ top: 5 }) // 设置布局宽度和边距\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

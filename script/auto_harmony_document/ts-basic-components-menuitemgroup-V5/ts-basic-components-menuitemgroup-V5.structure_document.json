@@ -1,0 +1,42 @@
+{
+    "description": "该组件用来展示菜单MenuItem的分组。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "MenuItemGroup(value?: MenuItemGroupOptions)",
+            "params": {
+                "value": {
+                    "type": "MenuItemGroupOptions",
+                    "required": false,
+                    "description": "包含设置MenuItemGroup的标题和尾部显示信息。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "header": {
+            "description": "设置对应group的标题显示信息。",
+            "params": {
+                "value": {
+                    "type": ["ResourceStr", "CustomBuilder"],
+                    "required": false,
+                    "description": "标题显示信息。"
+                }
+            }
+        },
+        "footer": {
+            "description": "设置对应group的尾部显示信息。",
+            "params": {
+                "value": {
+                    "type": ["ResourceStr", "CustomBuilder"],
+                    "required": false,
+                    "description": "尾部显示信息。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

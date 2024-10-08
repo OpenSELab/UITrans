@@ -1,0 +1,96 @@
+{
+    "description": "提供勾选框样式、状态按钮样式及开关样式。",
+    "details": "该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Toggle(options: { type: ToggleType, isOn?: boolean })",
+            "params": {
+                "options": {
+                    "type": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "ToggleType",
+                                "required": true,
+                                "description": "开关的样式。",
+                                "default": "ToggleType.Switch"
+                            },
+                            "isOn": {
+                                "type": "boolean",
+                                "required": false,
+                                "description": "开关是否打开，true：打开，false：关闭。",
+                                "default": false
+                            }
+                        }
+                    },
+                    "required": true,
+                    "description": "开关的配置选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "selectedColor": {
+            "description": "设置组件打开状态的背景颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "组件打开状态的背景颜色。"
+                }
+            }
+        },
+        "switchPointColor": {
+            "description": "设置Switch类型的圆形滑块颜色。仅对type为ToggleType.Switch生效。",
+            "params": {
+                "color": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "Switch类型的圆形滑块颜色。",
+                    "default": "#ffffffff"
+                }
+            }
+        },
+        "switchStyle": {
+            "description": "设置Switch类型的样式。仅对type为ToggleType.Switch生效。",
+            "params": {
+                "value": {
+                    "type": "SwitchStyle",
+                    "required": true,
+                    "description": "Switch类型的样式配置。"
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制Toggle内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<ToggleConfiguration>",
+                    "required": true,
+                    "description": "定制Toggle内容区的方法。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "开关状态切换时触发该事件。",
+            "params": {
+                "isOn": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "为true时，代表状态从关切换为开。false时，代表状态从开切换为关。"
+                }
+            }
+        }
+    },
+    "rules": [
+        "仅当ToggleType为Button时可包含子组件。"
+    ],
+    "examples": [
+        "示例1：展示了不同ToggleType的Toggle组件的使用。",
+        "示例2：展示了自定义设置Toggle组件Switch样式的圆形滑块半径、关闭状态的背景颜色、圆形滑块颜色、滑轨的圆角。",
+        "示例3：展示了自定义Toggle样式的功能，实现了通过按钮切换圆形颜色的功能。"
+    ],
+    "is_common_attrs": true
+}

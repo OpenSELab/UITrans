@@ -1,0 +1,423 @@
+Title: Menu-菜单-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-menu-V5
+
+Markdown Content:
+以垂直列表形式显示的菜单。
+
+说明
+
+*   该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+    
+*   Menu组件需和[bindMenu](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-menu-V5#bindmenu)或[bindContextMenu](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-menu-V5#bindcontextmenu8)方法配合使用，不支持作为普通组件单独使用。
+    
+
+接口
+--
+
+Menu()
+
+作为菜单的固定容器，无参数。
+
+说明
+
+菜单和菜单项宽度计算规则：
+
+布局过程中，期望每个菜单项的宽度一致。若子组件设置了宽度，则以[尺寸计算规则](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-size-V5#constraintsize)为准。
+
+不设置宽度的情况：菜单组件会对子组件MenuItem、MenuItemGroup设置默认2栅格的宽度，若菜单项内容区比2栅格宽，则会自适应撑开。
+
+设置宽度的情况：菜单组件会对子组件MenuItem、MenuItemGroup设置减去padding后的固定宽度。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### fontSize(deprecated)
+
+fontSize(value: Length)
+
+统一设置Menu中所有文本的尺寸。
+
+从API Version 10开始废弃，建议使用[font](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-menu-V5#font10)代替。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+是
+
+Menu中所有文本的尺寸，Length为number类型时，使用fp单位。
+
+### font10+
+
+font(value: Font)
+
+统一设置Menu中所有文本的尺寸。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Font](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#font)
+
+是
+
+Menu中所有文本的尺寸。
+
+默认值：
+
+{
+
+size: 16,
+
+family: 'HarmonyOS Sans',
+
+weight: FontWeight.Medium,
+
+style: FontStyle.Normal
+
+}
+
+### fontColor10+
+
+fontColor(value: ResourceColor)
+
+统一设置Menu中所有文本的颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### radius10+
+
+radius(value: Dimension | BorderRadiuses)
+
+设置Menu边框圆角半径。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10) | [BorderRadiuses](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#borderradiuses9)
+
+是
+
+Menu边框圆角半径。
+
+默认值：2in1设备上默认值为8vp，其他设备上默认值为20vp。
+
+从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。
+
+### width10+
+
+width(value: Length)
+
+设置Menu边框宽度，支持设置的最小宽度为64vp。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+是
+
+Menu边框宽度。
+
+menuItemDivider(options: DividerStyleOptions | undefined)
+
+设置menuItem分割线样式, 不设置该属性则不展示分割线。
+
+startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+options
+
+[DividerStyleOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#DividerStyleOptions) | undefined
+
+是
+
+设置menuItem分割线样式。
+
+\-strokeWidth:分割线的线宽。
+
+\-color：分割线的颜色。
+
+\-startMargin：分割线与menuItem侧边起端的距离。
+
+\-endMargin：分割线与menuItem侧边结束端的距离。
+
+menuItemGroupDivider(options: DividerStyleOptions | undefined)
+
+设置menuItemGroup上下分割线的样式, 不设置该属性则默认展示分割线。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+options
+
+[DividerStyleOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#DividerStyleOptions) | undefined
+
+是
+
+设置menuItemGroup顶部和底部分割线样式。
+
+\-strokeWidth:分割线的线宽, 默认值是1px。
+
+\-color：分割线的颜色, 默认值是 #33000000。
+
+\-startMargin：分割线与menuItemGroup侧边起端的距离, 默认值是16。
+
+\-endMargin：分割线与menuItemGroup侧边结束端的距离, 默认值是16。
+
+### subMenuExpandingMode12+
+
+subMenuExpandingMode(mode: SubMenuExpandingMode)
+
+设置Menu子菜单展开样式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+SubMenuExpandingMode12+枚举说明
+---------------------------
+
+Menu子菜单展开样式枚举。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+描述
+
+SIDE\_EXPAND
+
+默认展开样式, 子菜单位于同一平面侧边展开。
+
+EMBEDDED\_EXPAND
+
+直接展开样式, 子菜单嵌于主菜单内展开。
+
+STACK\_EXPAND
+
+堆叠样式, 子菜单浮于主菜单上方展开。
+
+示例
+--
+
+### 示例1
+
+1.  @Entry
+2.  @Component
+3.  struct Index {
+4.    @State select: boolean = true
+5.    private iconStr: ResourceStr = $r("app.media.view\_list\_filled")
+6.    private iconStr2: ResourceStr = $r("app.media.arrow\_right\_filled")
+
+8.    @Builder
+9.    SubMenu() {
+10.      Menu() {
+11.        MenuItem({ content: "复制", labelInfo: "Ctrl+C" })
+12.        MenuItem({ content: "粘贴", labelInfo: "Ctrl+V" })
+13.      }
+14.    }
+
+16.    @Builder
+17.    MyMenu(){
+18.      Menu() {
+19.        MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" })
+20.        MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" })
+21.          .enabled(false)
+22.        MenuItem({
+23.          startIcon: this.iconStr,
+24.          content: "菜单选项",
+25.          endIcon: this.iconStr2,
+26.          builder: ():void\=\>this.SubMenu()
+27.        })
+28.        MenuItemGroup({ header: '小标题' }) {
+29.          MenuItem({
+30.            startIcon: this.iconStr,
+31.            content: "菜单选项",
+32.            endIcon: this.iconStr2,
+33.            builder: ():void\=\>this.SubMenu()
+34.          })
+35.          MenuItem({
+36.            startIcon: $r("app.media.app\_icon"),
+37.            content: "菜单选项",
+38.            endIcon: this.iconStr2,
+39.            builder: ():void\=\>this.SubMenu()
+40.          })
+41.        }
+42.        MenuItem({
+43.          startIcon: this.iconStr,
+44.          content: "菜单选项",
+45.        })
+46.      }
+47.    }
+
+49.    build() {
+50.      Row() {
+51.        Column() {
+52.          Text('click to show menu')
+53.            .fontSize(50)
+54.            .fontWeight(FontWeight.Bold)
+55.        }
+56.        .bindMenu(this.MyMenu)
+57.        .width('100%')
+58.      }
+59.      .height('100%')
+60.    }
+61.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114518.52427087859822305561296079233305:50001231000000:2800:BB4CA6800250DA34059026FC5BB54198DF5DCFC9A697F3686CE305E59E429C80.png?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+普通菜单(使用symbol类型图标)
+
+2.  import { SymbolGlyphModifier } from '@kit.ArkUI';
+
+4.  @Entry
+5.  @Component
+6.  struct Index {
+7.    @State startIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos\_mic')).fontSize('24vp');
+8.    @State endIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos\_trash')).fontSize('24vp');
+9.    @State selectIconModifier: SymbolGlyphModifier =
+10.      new SymbolGlyphModifier($r('sys.symbol.checkmark')).fontSize('24vp');
+11.    @State select: boolean = true;
+
+13.    @Builder
+14.    SubMenu() {
+15.      Menu() {
+16.        MenuItem({ content: "复制", labelInfo: "Ctrl+C" })
+17.        MenuItem({ content: "粘贴", labelInfo: "Ctrl+V" })
+18.      }
+19.    }
+
+21.    @Builder
+22.    MyMenu() {
+23.      Menu() {
+24.        MenuItem({ symbolStartIcon: this.startIconModifier, content: "菜单选项" })
+25.        MenuItem({ symbolStartIcon: this.startIconModifier, content: "菜单选项" })
+26.          .enabled(false)
+27.        MenuItem({
+28.          symbolStartIcon: this.startIconModifier,
+29.          content: "菜单选项",
+30.          symbolEndIcon: this.endIconModifier,
+31.          builder: (): void =\> this.SubMenu()
+32.        })
+33.        MenuItemGroup({ header: '小标题' }) {
+34.          MenuItem({
+35.            symbolStartIcon: this.startIconModifier,
+36.            content: "菜单选项",
+37.            symbolEndIcon: this.endIconModifier,
+38.            builder: (): void =\> this.SubMenu()
+39.          })
+40.          MenuItem({
+41.            symbolStartIcon: this.startIconModifier,
+42.            content: "菜单选项",
+43.            symbolEndIcon: this.endIconModifier,
+44.            builder: (): void =\> this.SubMenu()
+45.          })
+46.        }
+47.        MenuItem({
+48.          content: "菜单选项",
+49.        }).selected(this.select).selectIcon(this.selectIconModifier)
+50.      }
+51.    }
+
+53.    build() {
+54.      Row() {
+55.        Column() {
+56.          Text('click to show menu')
+57.            .fontSize(50)
+58.            .fontWeight(FontWeight.Bold)
+59.        }
+60.        .bindMenu(this.MyMenu)
+61.        .width('100%')
+62.      }
+63.      .height('100%')
+64.    }
+65.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114518.39262323872689797315325481992033:50001231000000:2800:D0139E5A19A77043A2A3538E67FEA32D7945EF50AFCFACD07DDEAB3642557A66.jpg?needInitFileName=true?needInitFileName=true)

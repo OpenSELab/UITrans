@@ -1,0 +1,90 @@
+{
+    "description": "CanvasRenderingContext2D 是一个用于在 Canvas 组件上进行绘制的接口，支持绘制矩形、文本、图片等对象。",
+    "interfaces": [
+        {
+            "description": "CanvasRenderingContext2D(settings?: RenderingContextSettings, unit?: LengthMetricsUnit)",
+            "params": {
+                "settings": {
+                    "type": "RenderingContextSettings",
+                    "required": false,
+                    "description": "用来配置 CanvasRenderingContext2D 对象的参数，见 RenderingContextSettings。"
+                },
+                "unit12+": {
+                    "type": "LengthMetricsUnit",
+                    "required": false,
+                    "description": "用来配置 CanvasRenderingContext2D 对象的单位模式，配置后无法更改，见 LengthMetricsUnit。",
+                    "default": "DEFAULT"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "fillStyle": {
+            "description": "填充绘画的颜色和样式。"
+        },
+        "lineWidth": {
+            "description": "线条的宽度。"
+        },
+        "strokeStyle": {
+            "description": "边框的颜色和样式。"
+        },
+        "lineCap": {
+            "description": "线条的端点样式。"
+        },
+        "lineJoin": {
+            "description": "线条的连接样式。"
+        },
+        "miterLimit": {
+            "description": "线条的最大斜接长度。"
+        },
+        "font": {
+            "description": "绘制文本时的当前文本样式。"
+        },
+        "textAlign": {
+            "description": "文本的对齐方式。"
+        },
+        "textBaseline": {
+            "description": "文本的基线。"
+        },
+        "globalAlpha": {
+            "description": "绘制内容的透明度。"
+        },
+        "lineDashOffset": {
+            "description": "线条的虚线偏移量。"
+        },
+        "globalCompositeOperation": {
+            "description": "绘制新形状时应用的合成操作的类型。"
+        },
+        "shadowBlur": {
+            "description": "阴影的模糊级别。"
+        },
+        "shadowColor": {
+            "description": "阴影的颜色。"
+        },
+        "shadowOffsetX": {
+            "description": "阴影的水平偏移量。"
+        },
+        "shadowOffsetY": {
+            "description": "阴影的垂直偏移量。"
+        },
+        "imageSmoothingEnabled": {
+            "description": "图片是否平滑。"
+        },
+        "height": {
+            "description": "画布的高度。"
+        },
+        "width": {
+            "description": "画布的宽度。"
+        },
+        "imageSmoothingQuality": {
+            "description": "图片平滑质量。"
+        },
+        "direction": {
+            "description": "文本的方向。"
+        },
+        "filter": {
+            "description": "应用的滤镜效果。"
+        }
+    },
+    "events": {}
+}

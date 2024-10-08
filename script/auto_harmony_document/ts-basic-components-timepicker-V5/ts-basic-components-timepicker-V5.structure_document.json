@@ -1,0 +1,132 @@
+{
+    "description": "时间选择组件，根据指定参数创建选择器，支持选择小时及分钟。",
+    "details": "该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "TimePicker(options?: TimePickerOptions)",
+            "params": {
+                "options": {
+                    "type": "TimePickerOptions",
+                    "required": false,
+                    "description": "配置时间选择组件的参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "useMilitaryTime": {
+            "description": "设置展示时间是否为24小时制。当展示时间为12小时制时，上下午与小时无联动关系。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "展示时间是否为24小时制。",
+                    "default": "false"
+                }
+            }
+        },
+        "disappearTextStyle10+": {
+            "description": "设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "required": true,
+                    "description": "所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。",
+                    "default": {
+                        "color": "#ff182431",
+                        "font": {
+                            "size": "14fp",
+                            "weight": "FontWeight.Regular"
+                        }
+                    }
+                }
+            }
+        },
+        "textStyle10+": {
+            "description": "设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "required": true,
+                    "description": "所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。",
+                    "default": {
+                        "color": "#ff182431",
+                        "font": {
+                            "size": "16fp",
+                            "weight": "FontWeight.Regular"
+                        }
+                    }
+                }
+            }
+        },
+        "selectedTextStyle10+": {
+            "description": "设置选中项的文本颜色、字号、字体粗细。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "required": true,
+                    "description": "选中项的文本颜色、字号、字体粗细。",
+                    "default": {
+                        "color": "#ff007dff",
+                        "font": {
+                            "size": "20vp",
+                            "weight": "FontWeight.Medium"
+                        }
+                    }
+                }
+            }
+        },
+        "loop11+": {
+            "description": "设置是否启用循环模式。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否启用循环模式。",
+                    "default": "true"
+                }
+            }
+        },
+        "dateTimeOptions12+": {
+            "description": "设置时分秒是否显示前置0。",
+            "params": {
+                "value": {
+                    "type": "DateTimeOptions",
+                    "required": true,
+                    "description": "设置时分秒是否显示前置0，目前只支持设置hour、minute和second参数。",
+                    "default": {
+                        "hour": "24小时制默认为'2-digit'，即有前置0；12小时制默认为'numeric'，即没有前置0。",
+                        "minute": "'2-digit'，即有前置0。",
+                        "second": "'2-digit'，即有前置0。"
+                    }
+                }
+            }
+        },
+        "enableHapticFeedback12+": {
+            "description": "是否支持触控反馈。",
+            "params": {
+                "enable": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启触控反馈。",
+                    "default": "true"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "选择时间时触发该事件。",
+            "params": {
+                "value": {
+                    "type": "TimePickerResult",
+                    "required": true,
+                    "description": "24小时制时间。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

@@ -1,0 +1,262 @@
+{
+    "description": "弹出框是一种模态窗口，通常用于在保持当前的上下文环境时，临时展示用户需关注的信息或待处理的操作，用户在模态弹出框内完成上述交互任务。模态弹出框需要用户进行交互才能够退出模态模式。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: SizeOptions, title?: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, checkAction?: (isChecked: boolean) => void, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})",
+            "params": {
+                "controller": {
+                    "type": "CustomDialogController",
+                    "required": true,
+                    "description": "提示弹出框控制器。"
+                },
+                "imageRes": {
+                    "type": [
+                        "ResourceStr",
+                        "PixelMap"
+                    ],
+                    "required": true,
+                    "description": "展示的图片。"
+                },
+                "imageSize": {
+                    "type": "SizeOptions",
+                    "required": false,
+                    "description": "自定义图片尺寸。",
+                    "default": "64*64vp"
+                },
+                "title": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "提示弹出框标题。"
+                },
+                "content": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "提示弹出框内容。"
+                },
+                "checkTips": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "checkbox的提示内容。"
+                },
+                "isChecked": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "value为true时，表示checkbox已选中，value为false时，表示未选中。",
+                    "default": false
+                },
+                "checkAction": {
+                    "type": "(isChecked: boolean) => void",
+                    "required": false,
+                    "description": "现推荐使用 onCheckedChange12+。"
+                },
+                "primaryButton": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "提示框左侧按钮。"
+                },
+                "secondaryButton": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "提示框右侧按钮。"
+                }
+            }
+        },
+        {
+            "description": "SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, selectedIndex?: number, confirm?: ButtonOptions, radioContent: Array<SheetInfo>})",
+            "params": {
+                "controller": {
+                    "type": "CustomDialogController",
+                    "required": true,
+                    "description": "选择弹出框控制器。"
+                },
+                "title": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "选择弹出框标题。"
+                },
+                "content": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "选择弹出框内容。"
+                },
+                "selectedIndex": {
+                    "type": "number",
+                    "required": false,
+                    "description": "选择弹出框的选中项。",
+                    "default": -1
+                },
+                "confirm": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "选择弹出框底部按钮。"
+                },
+                "radioContent": {
+                    "type": "Array<SheetInfo>",
+                    "required": true,
+                    "description": "选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。"
+                }
+            }
+        },
+        {
+            "description": "ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})",
+            "params": {
+                "controller": {
+                    "type": "CustomDialogController",
+                    "required": true,
+                    "description": "确认弹出框控制器。"
+                },
+                "title": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "确认弹出框标题。"
+                },
+                "content": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "确认弹出框内容。"
+                },
+                "checkTips": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "checkbox的提示内容。"
+                },
+                "isChecked": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "value为true时，表示checkbox已选中，value为false时，表示未选中。",
+                    "default": false
+                },
+                "primaryButton": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "确认框左侧按钮。"
+                },
+                "secondaryButton": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "确认框右侧按钮。"
+                }
+            }
+        },
+        {
+            "description": "AlertDialog({controller: CustomDialogController, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})",
+            "params": {
+                "controller": {
+                    "type": "CustomDialogController",
+                    "required": true,
+                    "description": "确认弹出框控制器。"
+                },
+                "primaryTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "确认框一级标题。"
+                },
+                "secondaryTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "确认框二级标题。"
+                },
+                "content": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "确认弹出框内容。"
+                },
+                "primaryButton": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "确认框左侧按钮。"
+                },
+                "secondaryButton": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "确认框右侧按钮。"
+                }
+            }
+        },
+        {
+            "description": "LoadingDialog({controller: CustomDialogController, content?: ResourceStr})",
+            "params": {
+                "controller": {
+                    "type": "CustomDialogController",
+                    "required": true,
+                    "description": "加载弹出框控制器。"
+                },
+                "content": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "加载弹出框内容。"
+                }
+            }
+        },
+        {
+            "description": "CustomContentDialog({controller: CustomDialogController, contentBuilder: () => void, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, contentAreaPadding?: Padding, buttons?: ButtonOptions[]})",
+            "params": {
+                "controller": {
+                    "type": "CustomDialogController",
+                    "required": true,
+                    "description": "自定义内容区弹出框控制器。"
+                },
+                "contentBuilder": {
+                    "type": "() => void",
+                    "required": true,
+                    "description": "自定义内容区构建函数。"
+                },
+                "primaryTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "自定义内容区弹出框一级标题。"
+                },
+                "secondaryTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "自定义内容区弹出框二级标题。"
+                },
+                "contentAreaPadding": {
+                    "type": "Padding",
+                    "required": false,
+                    "description": "自定义内容区填充。"
+                },
+                "buttons": {
+                    "type": "ButtonOptions[]",
+                    "required": false,
+                    "description": "自定义内容区按钮。"
+                }
+            }
+        }
+    ],
+    "attributes": {},
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件实现了一个带有进度条的弹出框，通过点击按钮触发弹出框的显示。布局宽度占据整个屏幕，高度设为 100%，背景图像尺寸为全屏。组件的垂直方向上包含一个按钮，按钮位于屏幕底部，点击按钮后会弹出一个带有进度条的对话框。\n按钮的样式包括宽度为 96vp，高度为 40vp，点击事件触发对话框的显示。对话框的内容为一段文本，文本内容为“文本文本文本文本文本...”。\n整个布局通过 Stack 和 Column 组件实现，确保按钮在垂直方向上位于底部，且按钮与屏幕底部有 300vp 的间距。",
+            "code": "import { LoadingDialog } from '@kit.ArkUI'\n\n@Entry\n@Component\nstruct Index {\n  // 创建一个自定义对话框控制器，用于控制进度条弹出框的显示与隐藏\n  dialogControllerProgress: CustomDialogController = new CustomDialogController({\n    builder: LoadingDialog({\n      content: '文本文本文本文本文本...', // 对话框中显示的文本内容\n    }),\n  })\n\n  build() {\n    Row() {\n      Stack() {\n        Column() {\n          Button(\"进度条弹出框\") // 创建一个按钮，按钮文本为“进度条弹出框”\n            .width(96) // 设置按钮宽度为 96vp\n            .height(40) // 设置按钮高度为 40vp\n            .onClick(() => { // 设置按钮点击事件\n              this.dialogControllerProgress.open() // 点击按钮后打开进度条弹出框\n            })\n        }.margin({ bottom: 300 }) // 设置按钮与屏幕底部的间距为 300vp\n      }.align(Alignment.Bottom) // 设置 Stack 组件的对齐方式为底部对齐\n      .width('100%').height('100%') // 设置 Stack 组件的宽度和高度为 100%\n    }\n    .backgroundImageSize({ width: '100%', height: '100%' }) // 设置背景图像尺寸为全屏\n    .height('100%') // 设置 Row 组件的高度为 100%\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个弹出纯文本弹出框的功能。布局宽度占据整个屏幕，高度设为 100%，内边距为底部 300vp。组件的垂直方向上被分为一个按钮区域，按钮区域通过 Stack 组件进行布局，对齐方式为底部对齐。\n按钮的样式包括宽度为 96vp，高度为 40vp，按钮的背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。按钮的功能包括点击事件，用户可以通过点击按钮触发弹出框的显示。\n弹出框的内容包括一级标题、二级标题和文本内容，以及两个按钮（取消和确认）。确认按钮的样式为错误按钮样式，点击确认按钮会触发相应的回调函数。\n整个布局通过 Row 和 Stack 布局保证按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "import { AlertDialog } from '@kit.ArkUI' // 导入 AlertDialog 组件\n\n@Entry\n@Component\nstruct Index {\n  dialogControllerConfirm: CustomDialogController = new CustomDialogController({\n    builder: AlertDialog({\n      primaryTitle: '弹框一级标题', // 弹出框的一级标题\n      secondaryTitle: '弹框二级标题', // 弹出框的二级标题\n      content: '文本文本文本文本文本', // 弹出框的文本内容\n      primaryButton: {\n        value: '取消', // 取消按钮的文本\n        action: () => {\n          // 取消按钮的点击事件回调函数\n        },\n      },\n      secondaryButton: {\n        value: '确认', // 确认按钮的文本\n        role: ButtonRole.ERROR, // 确认按钮的样式为错误按钮样式\n        action: () => {\n          console.info('Callback when the second button is clicked') // 确认按钮的点击事件回调函数\n        }\n      },\n    }),\n  })\n\n  build() {\n    Row() {\n      Stack() {\n        Column() {\n          Button(\"纯文本弹出框\") // 创建一个按钮，文本为“纯文本弹出框”\n            .width(96) // 按钮的宽度为 96vp\n            .height(40) // 按钮的高度为 40vp\n            .onClick(() => {\n              this.dialogControllerConfirm.open() // 点击按钮时打开弹出框\n            })\n        }.margin({ bottom: 300 }) // 按钮区域的底部边距为 300vp\n      }.align(Alignment.Bottom) // 按钮区域对齐方式为底部对齐\n      .width('100%').height('100%') // 按钮区域的宽度为 100%，高度为 100%\n    }\n    .backgroundImageSize({ width: '100%', height: '100%' }) // 背景图片的尺寸为 100% 宽度，100% 高度\n    .height('100%') // 整个布局的高度为 100%\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个支持自定义内容的弹出框。布局宽度占据整个屏幕，高度设为 100%，内边距为 0。组件的垂直方向上被分为两个部分：一个按钮和一个弹出框。按钮位于屏幕中央，点击按钮后会弹出自定义内容的弹出框。\n弹出框的样式包括标题、辅助文本、内容区和按钮组。标题和辅助文本位于弹出框的顶部，内容区位于中间，按钮组位于底部。按钮组的按钮以水平布局方式排列，按钮之间的间距均匀分布，且对齐方式为居中对齐。\n按钮的样式包括背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。按钮组之间通过 Flex 组件进行分隔。按钮的功能包括点击事件和状态效果，用户可以通过点击按钮触发相应操作，按钮也可以在启用或禁用状态下进行展示。\n整个布局通过 Flex 布局保证按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "import { CustomContentDialog } from '@kit.ArkUI'\n\n@Entry\n@Component\nstruct Index {\n  // 创建一个 CustomDialogController 实例，用于控制弹出框的显示和隐藏\n  dialogController: CustomDialogController = new CustomDialogController({\n    builder: CustomContentDialog({\n      // 设置弹出框的主标题\n      primaryTitle: '标题',\n      // 设置弹出框的辅助文本\n      secondaryTitle: '辅助文本',\n      // 设置弹出框的内容区，使用 buildContent 方法构建内容\n      contentBuilder: () => {\n        this.buildContent();\n      },\n      // 设置弹出框的按钮组，包含两个按钮\n      buttons: [\n        { \n          value: '按钮1', \n          buttonStyle: ButtonStyleMode.TEXTUAL, \n          action: () => {\n            // 按钮1点击后的回调函数\n            console.info('Callback when the button is clicked')\n          } \n        }, \n        { \n          value: '按钮2', \n          buttonStyle: ButtonStyleMode.TEXTUAL, \n          role: ButtonRole.ERROR \n        }\n      ],\n    }),\n  });\n\n  build() {\n    Column() {\n      // 创建一个按钮，点击后打开弹出框\n      Button(\"支持自定义内容弹出框\")\n        .onClick(() => {\n          // 调用 dialogController 的 open 方法打开弹出框\n          this.dialogController.open()\n        })\n    }\n    .width('100%') // 设置布局宽度为 100%\n    .height('100%') // 设置布局高度为 100%\n    .justifyContent(FlexAlign.Center) // 设置布局内容居中对齐\n  }\n\n  @Builder\n  buildContent(): void {\n    Column() {\n      // 创建一个文本组件，显示在弹出框的内容区\n      Text('内容区')\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个自定义主题风格的弹框功能。布局上，组件使用了一个 Row 容器来包裹整个界面，内部嵌套了一个 Stack 容器，用于实现按钮的定位。按钮位于 Stack 容器的底部，通过设置 margin 属性使其与底部保持一定距离。按钮的宽度为 96vp，高度为 40vp，点击按钮时会触发弹框的显示。\n\n样式上，按钮的背景颜色、字体颜色等通过 CustomTheme 和 CustomColors 接口进行自定义。弹框的内容为文本，主题风格由 CustomTheme 实例决定。整个布局的背景通过 backgroundImageSize 属性设置为全屏显示。\n\n功能上，组件通过 CustomDialogController 控制弹框的显示与隐藏。点击按钮时，调用 dialogController.open() 方法显示弹框。弹框的内容和主题风格在创建 CustomDialogController 实例时通过 builder 属性进行配置。",
+            "code": "import { CustomColors, CustomTheme, LoadingDialog } from '@kit.ArkUI'; // 导入自定义颜色、主题和加载弹框组件\n\n// 定义一个实现 CustomTheme 接口的类，用于自定义主题\nclass CustomThemeImpl implements CustomTheme {\n  colors?: CustomColors; // 可选的 CustomColors 实例，用于定义主题颜色\n\n  constructor(colors: CustomColors) {\n    this.colors = colors; // 初始化主题颜色\n  }\n}\n\n// 定义一个实现 CustomColors 接口的类，用于自定义颜色\nclass CustomThemeColors implements CustomColors {\n  fontPrimary = '#ffd0a300'; // 主字体颜色\n  iconSecondary = '#ffd000cd'; // 次要图标颜色\n}\n\n@Entry // 标记为入口组件\n@Component // 标记为组件\nstruct Index {\n  @State customTheme: CustomTheme = new CustomThemeImpl(new CustomThemeColors()); // 定义一个状态变量，用于存储自定义主题\n  dialogController: CustomDialogController = new CustomDialogController({\n    builder: LoadingDialog({\n      content: 'text', // 弹框内容为文本\n      theme: this.customTheme, // 使用自定义主题\n    })\n  }); // 创建一个 CustomDialogController 实例，用于控制弹框的显示与隐藏\n\n  build() {\n    Row() { // 创建一个 Row 容器\n      Stack() { // 创建一个 Stack 容器\n        Column() { // 创建一个 Column 容器\n          Button('dialog') // 创建一个按钮，文本为 'dialog'\n            .width(96) // 设置按钮宽度为 96vp\n            .height(40) // 设置按钮高度为 40vp\n            .onClick(() => { // 设置按钮点击事件\n              this.dialogController.open(); // 点击按钮时显示弹框\n            })\n        }.margin({ bottom: 300 }) // 设置 Column 容器的底部外边距为 300vp\n      }.align(Alignment.Bottom) // 设置 Stack 容器的对齐方式为底部对齐\n      .width('100%').height('100%') // 设置 Stack 容器的宽度和高度为 100%\n    }\n    .backgroundImageSize({ width: '100%', height: '100%' }) // 设置 Row 容器的背景图片尺寸为全屏\n    .height('100%') // 设置 Row 容器的高度为 100%\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个带有文本和勾选框的弹出对话框。布局宽度占据整个屏幕，高度设为 100%，内边距为底部 300vp。组件的垂直方向上包含一个按钮，按钮位于屏幕底部，点击按钮后弹出对话框。\n对话框的标题为“文本标题”，内容为一段较长的文本，底部有两个按钮，分别为“禁止”和“允许”。对话框底部有一个勾选框，勾选框的提示文本为“禁止后不再提示”。\n按钮的样式包括宽度为 96vp，高度为 40vp，点击按钮后触发对话框的显示。对话框的布局对齐方式为底部对齐，自动取消属性为 true，表示点击对话框外部区域时对话框会自动关闭。\n对话框的功能包括点击按钮触发相应操作，勾选框的状态变化会触发回调函数，对话框的显示和隐藏通过 CustomDialogController 控制。",
+            "code": "import { ConfirmDialog } from '@kit.ArkUI'\n\n@Entry\n@Component\nstruct Index {\n  // 定义一个布尔变量，用于控制勾选框的状态\n  isChecked = false;\n\n  // 创建一个 CustomDialogController 实例，用于控制对话框的显示和隐藏\n  dialogControllerCheckBox: CustomDialogController = new CustomDialogController({\n    // 对话框的内容构建器，使用 ConfirmDialog 组件\n    builder: ConfirmDialog({\n      // 对话框的标题\n      title: '文本标题',\n      // 对话框的内容，一段较长的文本\n      content: '文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本',\n      // 勾选框的初始状态，与 isChecked 变量绑定\n      isChecked: this.isChecked,\n      // 勾选框的提示文本\n      checkTips: '禁止后不再提示',\n      // 主要按钮的配置，包括按钮的文本和点击事件\n      primaryButton: {\n        value: '禁止',\n        action: () => {},\n      },\n      // 次要按钮的配置，包括按钮的文本和点击事件\n      secondaryButton: {\n        value: '允许',\n        action: () => {\n          // 点击次要按钮后，将 isChecked 变量设置为 false\n          this.isChecked = false;\n          // 打印日志，表示次要按钮被点击\n          console.info('Callback when the second button is clicked');\n        }\n      },\n      // 勾选框状态变化时的回调函数\n      onCheckedChange: () => {\n        // 打印日志，表示勾选框状态发生变化\n        console.info('Callback when the checkbox is clicked');\n      },\n    }),\n    // 对话框的自动取消属性，设置为 true，表示点击对话框外部区域时对话框会自动关闭\n    autoCancel: true,\n    // 对话框的对齐方式，设置为底部对齐\n    alignment: DialogAlignment.Bottom\n  })\n\n  build() {\n    Row() {\n      Stack() {\n        Column() {\n          // 创建一个按钮，按钮文本为“文本+勾选弹出框”\n          Button(\"文本+勾选弹出框\")\n            .width(96) // 设置按钮的宽度为 96vp\n            .height(40) // 设置按钮的高度为 40vp\n            .onClick(() => {\n              // 点击按钮后，打开对话框\n              this.dialogControllerCheckBox.open();\n            })\n        }\n        .margin({ bottom: 300 }) // 设置按钮的底部外边距为 300vp\n      }\n      .align(Alignment.Bottom) // 设置按钮的对齐方式为底部对齐\n      .width('100%') // 设置按钮的宽度为 100%\n      .height('100%') // 设置按钮的高度为 100%\n    }\n    .backgroundImageSize({ width: '100%', height: '100%' }) // 设置背景图片的尺寸为 100% 宽度，100% 高度\n    .height('100%') // 设置 Row 的高度为 100%\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个弹出纯列表弹出框的功能。布局上，整个界面由一个按钮和一个弹出框组成。按钮位于屏幕底部，宽度为96vp，高度为40vp，点击按钮时会弹出一个列表弹出框。弹出框包含一个标题和多个单选选项，用户可以选择其中一个选项，并在点击“取消”按钮后关闭弹出框。\n\n布局属性方面，按钮的宽度为96vp，高度为40vp，位于屏幕底部，通过margin属性设置底部边距为300vp。弹出框的布局和样式由SelectDialog组件内部定义。\n\n组件的样式和外观方面，按钮的样式由Button组件的属性定义，包括宽度、高度等。弹出框的样式由SelectDialog组件内部定义，包括标题的字体、颜色、选项的排列方式等。\n\n组件的排列和嵌套关系方面，按钮位于一个Column组件中，Column组件嵌套在一个Stack组件中，Stack组件又嵌套在一个Row组件中。通过Stack组件的align属性设置按钮在屏幕底部的对齐方式。\n\n组件的功能和交互方面，按钮具有点击事件，点击后会调用dialogControllerList的open方法打开弹出框。弹出框中的每个选项具有点击事件，点击后会更新radioIndex的值，并在弹出框关闭后反映用户的选择。",
+            "code": "import { SelectDialog } from '@kit.ArkUI'\n\n@Entry\n@Component\nstruct Index {\n  // 定义一个变量用于存储当前选中的单选选项的索引\n  radioIndex = 0;\n\n  // 创建一个CustomDialogController实例，用于控制弹出框的显示和隐藏\n  dialogControllerList: CustomDialogController = new CustomDialogController({\n    builder: SelectDialog({\n      // 弹出框的标题\n      title: '文本标题',\n      // 当前选中的单选选项的索引\n      selectedIndex: this.radioIndex,\n      // 取消按钮的配置\n      confirm: {\n        // 取消按钮的文本\n        value: '取消',\n        // 取消按钮的点击事件，目前为空函数\n        action: () => {},\n      },\n      // 单选选项的内容\n      radioContent: [\n        {\n          // 第一个单选选项的标题\n          title: '文本文本文本文本文本',\n          // 第一个单选选项的点击事件，点击后将radioIndex设置为0\n          action: () => {\n            this.radioIndex = 0\n          }\n        },\n        {\n          // 第二个单选选项的标题\n          title: '文本文本文本文本',\n          // 第二个单选选项的点击事件，点击后将radioIndex设置为1\n          action: () => {\n            this.radioIndex = 1\n          }\n        },\n        {\n          // 第三个单选选项的标题\n          title: '文本文本文本文本',\n          // 第三个单选选项的点击事件，点击后将radioIndex设置为2\n          action: () => {\n            this.radioIndex = 2\n          }\n        },\n      ]\n    }),\n  })\n\n  build() {\n    Row() {\n      Stack() {\n        Column() {\n          // 创建一个按钮，按钮文本为“纯列表弹出框”\n          Button(\"纯列表弹出框\")\n            .width(96) // 设置按钮的宽度为96vp\n            .height(40) // 设置按钮的高度为40vp\n            .onClick(() => {\n              // 点击按钮时，调用dialogControllerList的open方法打开弹出框\n              this.dialogControllerList.open()\n            })\n        }.margin({ bottom: 300 }) // 设置按钮的底部边距为300vp\n      }.align(Alignment.Bottom) // 设置Stack组件的对齐方式为底部对齐\n      .width('100%').height('100%') // 设置Stack组件的宽度和高度为100%\n    }\n    .backgroundImageSize({ width: '100%', height: '100%' }) // 设置Row组件的背景图片尺寸为100%\n    .height('100%') // 设置Row组件的高度为100%\n  }\n}"
+        },
+        {
+            "description": "该示例展示了一个带有图像和文本的弹出对话框，用户可以通过点击按钮触发对话框的显示。布局上，对话框分为上下两部分：上部分显示图像，下部分显示文本和按钮。对话框的样式包括图像的尺寸、文本的字体和颜色、按钮的样式和颜色等。对话框的功能包括点击按钮触发相应操作，如取消或删除操作，并且可以通过复选框触发额外的回调。\n\n布局属性：\n- 对话框的整体布局采用垂直布局，图像位于顶部，文本和按钮位于底部。\n- 按钮的布局采用水平布局，两个按钮分别位于左右两侧。\n- 按钮的宽度为96vp，高度为40vp，按钮之间的间距均匀分布。\n\n组件的样式和外观：\n- 图像的资源名称为`$r('sys.media.ohos_ic_public_voice')`，显示在对话框的顶部。\n- 文本内容为“想要卸载这个APP嘛?”，显示在图像下方。\n- 按钮的样式包括背景颜色、边框圆角、宽度和高度等属性，支持不同的样式展示。\n- 按钮的文本颜色和背景颜色根据按钮的角色（如ERROR）进行调整。\n\n组件的排列和嵌套关系：\n- 对话框的图像和文本部分采用垂直布局，图像位于顶部，文本位于中间。\n- 按钮部分采用水平布局，两个按钮分别位于左右两侧。\n- 对话框的整体布局通过垂直布局保证图像、文本和按钮在垂直方向上有序排列。\n\n组件的功能和交互：\n- 用户可以通过点击“上图下文弹出框”按钮触发对话框的显示。\n- 对话框中的按钮支持点击事件，点击“取消”按钮会触发取消操作的回调，点击“删除”按钮会触发删除操作的回调。\n- 对话框中的复选框支持点击事件，点击复选框会触发复选框状态变化的回调。",
+            "code": "import { TipsDialog } from '@kit.ArkUI'; // 导入TipsDialog组件\nimport { image } from '@kit.ImageKit'; // 导入ImageKit组件\n\n@Entry\n@Component\nstruct Index {\n  @State pixelMap: PixelMap | undefined = undefined; // 定义一个状态变量pixelMap，用于存储图像的像素数据\n  isChecked = false; // 定义一个布尔变量isChecked，用于表示复选框的状态\n  dialogControllerImage: CustomDialogController = new CustomDialogController({\n    builder: TipsDialog({\n      imageRes: $r('sys.media.ohos_ic_public_voice'), // 设置对话框顶部的图像资源\n      content: '想要卸载这个APP嘛?', // 设置对话框的文本内容\n      primaryButton: {\n        value: '取消', // 设置第一个按钮的文本内容\n        action: () => {\n          console.info('Callback when the first button is clicked') // 设置第一个按钮的点击回调\n        },\n      },\n      secondaryButton: {\n        value: '删除', // 设置第二个按钮的文本内容\n        role: ButtonRole.ERROR, // 设置第二个按钮的角色为ERROR\n        action: () => {\n          console.info('Callback when the second button is clicked') // 设置第二个按钮的点击回调\n        }\n      },\n      onCheckedChange: () => {\n        console.info('Callback when the checkbox is clicked') // 设置复选框状态变化的回调\n      }\n    }),\n  })\n\n  build() {\n    Row() {\n      Stack() {\n        Column(){\n          Button(\"上图下文弹出框\") // 创建一个按钮，文本内容为“上图下文弹出框”\n            .width(96) // 设置按钮的宽度为96vp\n            .height(40) // 设置按钮的高度为40vp\n            .onClick(() => {\n              this.dialogControllerImage.open() // 设置按钮的点击事件，点击后打开对话框\n            })\n        }.margin({bottom: 300}) // 设置按钮的底部外边距为300vp\n      }.align(Alignment.Bottom) // 设置Stack组件的对齐方式为底部对齐\n      .width('100%').height('100%') // 设置Stack组件的宽度和高度为100%\n    }\n    .backgroundImageSize({ width: '100%', height: '100%' }) // 设置背景图像的尺寸为100%\n    .height('100%') // 设置Row组件的高度为100%\n  }\n\n  aboutToAppear(): void {\n    this.getPixmapFromMedia($r('app.media.app_icon')); // 页面即将显示时，调用getPixmapFromMedia方法获取图像的像素数据\n  }\n\n  async getPixmapFromMedia(resource: Resource) {\n    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({\n      bundleName: resource.bundleName, // 获取资源的bundleName\n      moduleName: resource.moduleName, // 获取资源的moduleName\n      id: resource.id // 获取资源的id\n    })\n    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength)) // 创建图像源\n    this.pixelMap = await imageSource.createPixelMap({\n      desiredPixelFormat: image.PixelMapFormat.RGBA_8888 // 设置像素格式为RGBA_8888\n    })\n    await imageSource.release() // 释放图像源\n    return this.pixelMap; // 返回图像的像素数据\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

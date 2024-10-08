@@ -1,0 +1,60 @@
+{
+    "description": "提供分隔器组件，分隔不同内容块/内容元素。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Divider()",
+            "params": {}
+        }
+    ],
+    "attributes": {
+        "vertical": {
+            "description": "设置分割线的方向。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "使用水平分割线还是垂直分割线。",
+                    "default": false
+                }
+            }
+        },
+        "color": {
+            "description": "设置分割线的颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "分割线颜色。",
+                    "default": "#33182431"
+                }
+            }
+        },
+        "strokeWidth": {
+            "description": "设置分割线的宽度。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "分割线宽度。",
+                    "default": "1px"
+                }
+            }
+        },
+        "lineCap": {
+            "description": "设置分割线的端点样式。",
+            "params": {
+                "value": {
+                    "type": "LineCapStyle",
+                    "required": true,
+                    "description": "分割线的端点样式。",
+                    "default": "LineCapStyle.Butt"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

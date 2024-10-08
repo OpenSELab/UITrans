@@ -1,0 +1,127 @@
+{
+    "description": "下拉菜单标题栏包含一个下拉菜单，可用于页面之间的切换；可用于一级页面、二级及其以上界面（配置返回键）。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "SelectTitleBar({selected: number, options: Array<SelectOption>, menuItems?: Array<SelectTitleBarMenuItem>, subtitle?: ResourceStr, badgeValue?: number, hidesBackButton?: boolean, onSelected?: (index: number) => void})",
+            "params": {
+                "selected": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前选中项目的索引。第一项的索引为0。如果不设置该属性，则默认值为-1。",
+                    "default": -1
+                },
+                "options": {
+                    "type": ["Array", "SelectOption"],
+                    "required": true,
+                    "description": "下拉菜单中的项目。"
+                },
+                "menuItems": {
+                    "type": ["Array", "SelectTitleBarMenuItem"],
+                    "required": false,
+                    "description": "右侧菜单项目列表，定义标题栏右侧的菜单项目。"
+                },
+                "subtitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "子标题。"
+                },
+                "badgeValue": {
+                    "type": "number",
+                    "required": false,
+                    "description": "新事件标记。"
+                },
+                "hidesBackButton": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否隐藏左侧的返回箭头。",
+                    "default": false
+                },
+                "onSelected": {
+                    "type": ["Function", "number"],
+                    "required": false,
+                    "description": "下拉菜单项目选中触发的回调函数，传入选中项的索引。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "selected": {
+            "description": "当前选中项目的索引。第一项的索引为0。如果不设置该属性，则默认值为-1。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前选中项目的索引。",
+                    "default": -1
+                }
+            }
+        },
+        "options": {
+            "description": "下拉菜单中的项目。",
+            "params": {
+                "value": {
+                    "type": ["Array", "SelectOption"],
+                    "required": true,
+                    "description": "下拉菜单中的项目。"
+                }
+            }
+        },
+        "menuItems": {
+            "description": "右侧菜单项目列表，定义标题栏右侧的菜单项目。",
+            "params": {
+                "value": {
+                    "type": ["Array", "SelectTitleBarMenuItem"],
+                    "required": false,
+                    "description": "右侧菜单项目列表。"
+                }
+            }
+        },
+        "subtitle": {
+            "description": "子标题。",
+            "params": {
+                "value": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "子标题。"
+                }
+            }
+        },
+        "badgeValue": {
+            "description": "新事件标记。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": false,
+                    "description": "新事件标记。"
+                }
+            }
+        },
+        "hidesBackButton": {
+            "description": "是否隐藏左侧的返回箭头。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否隐藏左侧的返回箭头。",
+                    "default": false
+                }
+            }
+        }
+    },
+    "events": {
+        "onSelected": {
+            "description": "下拉菜单项目选中触发的回调函数，传入选中项的索引。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "选中项的索引。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

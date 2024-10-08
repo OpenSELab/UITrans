@@ -1,0 +1,2396 @@
+Title: Swiper-滚动与滑动-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5
+
+Markdown Content:
+滑块视图容器，提供子组件滑动轮播显示的能力。
+
+说明
+
+*   该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+    
+*   Swiper组件[通用属性clip](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-sharp-clipping-V5)的默认值为true。
+    
+
+子组件
+---
+
+可以包含子组件。
+
+说明
+
+*   子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-rendering-control-ifelse-V5)、[ForEach](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-rendering-control-foreach-V5)、[LazyForEach](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-rendering-control-lazyforeach-V5)和[Repeat](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-new-rendering-control-repeat-V5)）。不建议子组件中混用懒加载组件（包括LazyForEach、Repeat）和非懒加载组件，或者子组件中使用多个懒加载组件，否则可能导致懒加载组件预加载能力失效等问题。
+    
+*   Swiper子组件的visibility属性设置为None，Swiper的displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数。
+    
+*   Swiper子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
+    
+*   当Swiper子组件个数小于等于Swiper组件内容区内显示的节点总个数(totalDisplayCount = DisplayCount + prevMargin? (1 : 0) + nextMargin? (1 : 0))时，一般按照非循环模式布局处理，此时，前后边距对应子组件不显示，但依然会在视窗内占位。Swiper组件按照totalDisplayCount个数判断测算规格。例外情况如下：
+    
+    *   当Swiper子组件个数等于Swiper组件内容区内显示的节点总个数且prevMargin和nextMargin都生效时，设置loop为true支持循环。
+        
+    *   当Swiper子组件个数等于Swiper组件DisplayCount数 + 1，且prevMargin和nextMargin至少一个生效时，设置loop为true会生成截图占位组件(如果使用图片异步加载等显示耗时较长的组件可能不能正确生成截图，不建议在该场景开启循环)，支持循环。
+        
+*   当Swiper子组件设置了offset属性时，会按照子组件的层级进行绘制，层级高的子组件会覆盖层级低的子组件。例如，Swiper包含3个子组件，其中第3个子组件设置了offset({ x : 100 })，那么在横向循环滑动中，第3个子组件会覆盖第1个子组件，此时可设置第1个子组件的zIndex属性值大于第3个子组件，使第1个子组件层级高于第3个子组件。
+    
+*   不建议在执行翻页动画过程中增加或减少子组件，会导致未进行动画的子组件提前进入视窗，引起显示异常。
+    
+
+接口
+--
+
+Swiper(controller?: SwiperController)
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### index
+
+index(value: number)
+
+设置当前在容器中显示的子组件的索引值。设置小于0或大于等于子组件数量时，按照默认值0处理。
+
+从API version 10开始，该属性支持[$$](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-two-way-sync-V5)双向绑定变量。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+当前在容器中显示的子组件的索引值。
+
+默认值：0
+
+**说明：**
+
+设置的值小于0或大于最大页面索引时，取0。
+
+### autoPlay
+
+autoPlay(value: boolean)
+
+设置子组件是否自动播放。
+
+loop为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。当Swiper不可见时会停止轮播。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+子组件是否自动播放。
+
+默认值：false
+
+### interval
+
+interval(value: number)
+
+设置使用自动播放时播放的时间间隔。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+自动播放时播放的时间间隔。
+
+默认值：3000
+
+单位：毫秒
+
+### indicator
+
+indicator(value: DotIndicator | DigitIndicator | boolean)
+
+设置可选导航点指示器样式。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[DotIndicator](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#dotindicator10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)10+ | [DigitIndicator](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#digitindicator10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)10+ | boolean
+
+是
+
+可选导航点指示器样式。
+
+\- DotIndicator：圆点指示器样式。
+
+\- DigitIndicator：数字指示器样式。
+
+\- boolean：是否启用导航点指示器。设置为true启用，false不启用。
+
+默认值：true
+
+默认类型：DotIndicator
+
+### loop
+
+loop(value: boolean)
+
+设置是否开启循环。设置为true时表示开启循环，在LazyForEach懒循环加载模式下，加载的组件数量建议大于5个。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+是否开启循环。
+
+默认值：true
+
+### duration
+
+duration(value: number)
+
+设置子组件切换的动画时长。
+
+duration需要和[curve](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#curve8)一起使用。
+
+curve默认曲线为[interpolatingSpring](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-curve-V5#curvesinterpolatingspring10)，此时动画时长只受曲线自身参数影响，不再受duration的控制。不受duration控制的曲线可以查阅[插值计算](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-curve-V5)模块，比如，[springMotion](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-curve-V5#curvesspringmotion9)
+
+、[responsiveSpringMotion](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-curve-V5#curvesresponsivespringmotion9)和interpolatingSpring类型的曲线不受duration控制。如果希望动画时长受到duration控制，需要给curve设置其他曲线。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+子组件切换的动画时长。
+
+默认值：400
+
+单位：毫秒
+
+### vertical
+
+vertical(value: boolean)
+
+设置是否为纵向滑动。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+是否为纵向滑动。true为纵向滑动，false为横向滑动。
+
+默认值：false
+
+### itemSpace
+
+itemSpace(value: number | string)
+
+设置子组件与子组件之间间隙。不支持设置百分比。
+
+类型为number时，默认单位vp。类型为string时，需要显式指定像素单位，如'10px'；未指定像素单位时，如'10'，单位为vp。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number | string
+
+是
+
+子组件与子组件之间间隙。
+
+默认值：0
+
+### displayMode
+
+displayMode(value: SwiperDisplayMode)
+
+设置主轴方向上元素排列的模式，优先以displayCount设置的个数显示，displayCount未设置时本属性生效。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### cachedCount8+
+
+cachedCount(value: number)
+
+设置预加载子组件个数，以当前页面为基准，加载当前显示页面的前后个数。例如cachedCount=1时，会将当前显示的页面的前面一页和后面一页的子组件都预加载。如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如cachedCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+预加载子组件个数。
+
+默认值：1
+
+### disableSwipe8+
+
+disableSwipe(value: boolean)
+
+设置禁用组件滑动切换功能。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+禁用组件滑动切换功能。设置为true禁用，false不禁用。
+
+默认值：false
+
+### curve8+
+
+curve(value: Curve | string | ICurve)
+
+设置Swiper的动画曲线，默认为弹簧插值曲线，常用曲线参考[Curve枚举说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#curve)，也可以通过[插值计算](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-curve-V5)模块提供的接口创建自定义的插值曲线对象。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Curve](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#curve) | string | [ICurve](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-curve-V5#icurve9)10+
+
+是
+
+Swiper的动画曲线。
+
+默认值：interpolatingSpring(-1, 1, 328, 34)
+
+### indicatorStyle(deprecated)
+
+indicatorStyle(value?: IndicatorStyle)
+
+设置导航点样式。
+
+从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#indicator10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)代替。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### displayCount8+
+
+displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
+
+设置Swiper视窗内元素显示个数。
+
+字符串类型仅支持设置为'auto'。
+
+使用number类型且设置小于等于0时，按默认值1显示。
+
+使用number类型时，子组件按照主轴均分Swiper宽度（减去displayCount-1个itemSpace）的方式进行主轴拉伸（收缩）布局。
+
+使用SwiperAutoFill类型时，通过设置一个子组件最小宽度值minSize，会根据Swiper当前宽度和minSize值自动计算并更改一页内元素显示个数。当minSize为空或者小于等于0时，Swiper显示1列。
+
+当按组进行翻页时，如果最后一组的子元素数量小于displayCount时，会使用占位子元素补齐。占位子元素只是用于布局占位，不显示任何内容。在占位子元素的位置会直接显示Swiper自身的背景样式。
+
+在按组翻页时，判断翻页的拖拽距离阈值条件，会更新为Swiper自身宽度的一半。（按子元素翻页时，该阈值为子元素自身宽度的一半）。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number | string | [SwiperAutoFill](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#swiperautofill10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)10+
+
+是
+
+视窗内显示的子元素个数。
+
+默认值：1
+
+swipeByGroup11+
+
+boolean
+
+否
+
+是否按组进行翻页。如果设为true，在翻页时会按组进行翻页，每组内子元素的数量为displayCount value的值；如果为false，则为默认翻页行为，即按照子元素进行翻页。
+
+默认值：false
+
+### effectMode8+
+
+effectMode(value: EdgeEffect)
+
+设置边缘滑动效果，loop = false时生效。 目前支持的滑动效果参见EdgeEffect的枚举说明。控制器接口调用时不生效回弹。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[EdgeEffect](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#edgeeffect)
+
+是
+
+边缘滑动效果。
+
+默认值：EdgeEffect.Spring
+
+### displayArrow10+
+
+displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
+
+设置导航点箭头样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[ArrowStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#arrowstyle10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | boolean
+
+是
+
+支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。设置为false不显示箭头和底板，true显示默认的箭头和底板样式。
+
+默认值：false
+
+isHoverShow
+
+boolean
+
+否
+
+设置鼠标悬停时是否显示箭头。
+
+默认值：false
+
+**说明：**
+
+isHoverShow为false时，常驻显示箭头，支持点击翻页。
+
+isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。
+
+### nextMargin10+
+
+nextMargin(value: Length, ignoreBlank?:boolean)
+
+设置后边距，用于露出后一项的一小部分。仅当Swiper子组件的布局方式为拉伸时生效，主要包括两种场景：1、displayMode属性设置为SwiperDisplayMode.STRETCH；2、displayCount属性设置为number类型。
+
+当主轴方向为横向布局时，nextMargin/prevMargin中任意一个大于子组件测算的宽度，nextMargin和prevMargin均不显示。
+
+当主轴方向为纵向布局时，nextMargin/prevMargin中任意一个大于子组件测算的高度，nextMargin和prevMargin均不显示。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+是
+
+后边距。
+
+默认值：0
+
+ignoreBlank12+
+
+boolean
+
+否
+
+非loop场景下尾页不显示nextMargin。在非loop场景下，设置为true时，尾页不显示空白的nextMargin，尾页的右边缘与Swiper视窗右边缘对齐；设置false时，尾页显示空白nextMargin，尾页的右边缘与Swiper视窗右边缘的距离为nextMargin。
+
+默认值：false
+
+**说明：**
+
+尾页场景下，prevMargin和nextMargin的值相加作为左边边距显示前一个页面。
+
+### prevMargin10+
+
+prevMargin(value: Length, ignoreBlank?:boolean)
+
+设置前边距，用于露出前一项的一小部分。仅当Swiper子组件的布局方式为拉伸时生效，主要包括两种场景：1、displayMode属性设置为SwiperDisplayMode.STRETCH；2、displayCount属性设置为number类型。
+
+当主轴方向为横向布局时，nextMargin/prevMargin中任意一个大于子组件测算的宽度，nextMargin和prevMargin均不显示。
+
+当主轴方向为纵向布局时，nextMargin/prevMargin中任意一个大于子组件测算的高度，nextMargin和prevMargin均不显示。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+是
+
+前边距。
+
+默认值：0
+
+ignoreBlank12+
+
+boolean
+
+否
+
+非loop场景下首页不显示prevMargin。在非loop场景下，设置为true时，首页不显示空白的prevMargin，首页的左边缘与Swiper视窗左边缘对齐；设置false时，首页显示空白prevMargin，首页的左边缘与Swiper视窗左边缘的距离为prevMargin。
+
+默认值：false
+
+**说明：**
+
+首页场景下，prevMargin和nextMargin的值相加作为右边边距显示后一个页面。
+
+### nestedScroll11+
+
+nestedScroll(value: SwiperNestedScrollMode)
+
+设置Swiper组件和父组件的嵌套滚动模式。loop为true时Swiper组件没有边缘，不会触发父组件嵌套滚动。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+说明
+
+由于Swiper的抛滑动画逻辑和其它滚动类组件不同（Swiper一次只能滑动一页，抛滑时做翻页动画），当Swiper内嵌套其它滚动组件时，如果Swiper的翻页动画已经启动，将无法接受子节点上传的滚动偏移量。这时Swiper的翻页动画和子节点的边缘效果动画会同时执行。
+
+### indicatorInteractive12+
+
+indicatorInteractive(value: boolean)
+
+设置禁用组件导航点交互功能。设置为true时表示导航点可交互。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+导航点是否可交互。
+
+默认值：true
+
+IndicatorStyle(deprecated)对象说明
+------------------------------
+
+从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#indicator10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)代替。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+left
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+否
+
+设置导航点左侧相对于Swiper的位置。
+
+未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐
+
+设置为0时：按照0位置布局计算
+
+优先级：高于right属性
+
+取值范围：\[0,Swiper宽度-导航点区域宽度\]，超出该范围时，取最近的的边界值。
+
+top
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+否
+
+设置导航点顶部相对于Swiper的位置。
+
+未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致
+
+设置为0时：按照0位置布局计算
+
+优先级：高于bottom属性
+
+取值范围：\[0,Swiper高度-导航点区域高度\]，超出该范围时，取最近的边界值。
+
+right
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+否
+
+设置导航点右侧相对于Swiper的位置。
+
+未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐
+
+设置为0时：按照0位置布局计算
+
+优先级：低于left属性
+
+取值范围：\[0,Swiper宽度-导航点区域宽度\]，超出该范围时，取最近的边界值。
+
+bottom
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+否
+
+设置导航点底部相对于Swiper的位置。
+
+未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致
+
+设置为0时：按照0位置布局计算
+
+优先级：低于top属性
+
+取值范围：\[0,Swiper高度-导航点区域高度\]，超出该范围时，取最近的边界值。
+
+size
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+否
+
+设置导航点的直径，不支持设置百分比。
+
+默认值：6vp
+
+mask
+
+boolean
+
+否
+
+设置是否显示导航点蒙层样式。
+
+color
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+否
+
+设置导航点的颜色。
+
+selectedColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+否
+
+设置选中的导航点的颜色。
+
+SwiperDisplayMode枚举说明
+---------------------
+
+Swiper在主轴上的尺寸大小模式枚举。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+描述
+
+Stretch(deprecated)
+
+Swiper滑动一页的宽度为Swiper组件自身的宽度。
+
+从API version 10开始不再维护，建议使用STRETCH代替。
+
+**卡片能力：** 从API version 7开始，该接口支持在ArkTS卡片中使用。
+
+AutoLinear(deprecated)
+
+Swiper滑动一页的宽度为子组件宽度中的最大值。
+
+从API version 10开始不再维护，建议使用[Scroller.scrollTo](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-scroll-V5#scrollto)代替。
+
+**卡片能力：** 从API version 7开始，该接口支持在ArkTS卡片中使用。
+
+STRETCH10+
+
+Swiper滑动一页的宽度为Swiper组件自身的宽度。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+AUTO\_LINEAR(deprecated)
+
+Swiper滑动一页的宽度为视窗内最左侧子组件的宽度。
+
+从API version 10开始支持，从API version 12开始不再维护，建议使用[Scroller.scrollTo](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-scroll-V5#scrollto)代替。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+Swiper组件和父组件的嵌套滚动模式枚举。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+值
+
+描述
+
+SELF\_ONLY
+
+0
+
+Swiper只自身滚动，不与父组件联动。
+
+SELF\_FIRST
+
+1
+
+Swiper自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则Swiper触发边缘效果。
+
+SwiperController
+----------------
+
+Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，可以通过它控制翻页。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 导入对象
+
+1.  let controller: SwiperController = new SwiperController()
+
+### constructor
+
+constructor()
+
+SwiperController的构造函数。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### showNext
+
+showNext()
+
+翻至下一页。翻页带动效切换过程，时长通过duration指定。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### showPrevious
+
+showPrevious()
+
+翻至上一页。翻页带动效切换过程，时长通过duration指定。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### changeIndex12+
+
+changeIndex(index: number, useAnimation?: boolean)
+
+翻至指定页面。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+index
+
+number
+
+是
+
+指定页面在Swiper中的索引值。
+
+**说明：**
+
+设置的值小于0或大于最大页面索引时，取0。
+
+useAnimation
+
+boolean
+
+否
+
+设置翻至指定页面时是否有动效，true表示有动效，false表示没有动效。
+
+默认值：false。
+
+### finishAnimation
+
+finishAnimation(callback?: () =\> void)
+
+停止播放动画。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+callback
+
+() =\> void
+
+否
+
+动画结束的回调。
+
+Indicator10+对象说明
+----------------
+
+设置导航点距离Swiper组件距离。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+名称
+
+类型
+
+必填
+
+说明
+
+left
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+是
+
+设置导航点左侧相对于Swiper的位置。
+
+未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐
+
+设置为0时：按照0位置布局计算
+
+优先级：高于right属性
+
+取值范围：\[0,Swiper宽度-导航点区域宽度\]，超出该范围时，取最近的的边界值。
+
+top
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+是
+
+设置导航点顶部相对于Swiper的位置。
+
+未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致
+
+设置为0时：按照0位置布局计算
+
+优先级：高于bottom属性
+
+取值范围：\[0,Swiper高度-导航点区域高度\]，超出该范围时，取最近的边界值。
+
+right
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+是
+
+设置导航点右侧相对于Swiper的位置。
+
+未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐
+
+设置为0时：按照0位置布局计算
+
+优先级：低于left属性
+
+取值范围：\[0,Swiper宽度-导航点区域宽度\]，超出该范围 时，取最近的边界值。
+
+bottom
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+是
+
+设置导航点底部相对于Swiper的位置。
+
+未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致
+
+设置为0时：按照0位置布局计算
+
+优先级：低于top属性
+
+取值范围：\[0,Swiper高度-导航点区域高度\]，超出该范围时，取最近的边界值。
+
+start12+
+
+[LengthMetrics](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-graphics-V5#lengthmetrics12)
+
+是
+
+在RTL模式下为导航点距离Swiper组件右边的距离，在LTR模式下为导航点距离Swiper组件左边的距离
+
+默认值：0
+
+单位：vp
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+end12+
+
+[LengthMetrics](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-graphics-V5#lengthmetrics12)
+
+是
+
+在RTL模式下为导航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。
+
+默认值：0
+
+单位：vp
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+### dot
+
+static dot(): DotIndicator
+
+返回一个DotIndicator对象。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### digit
+
+static digit(): DigitIndicator
+
+返回一个DigitIndicator对象。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+DotIndicator10+对象说明
+-------------------
+
+圆点指示器属性及功能继承自[Indicator](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#indicator10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+itemWidth
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+是
+
+设置Swiper组件圆点导航指示器的宽，不支持设置百分比。
+
+默认值：6
+
+单位：vp
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+itemHeight
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+是
+
+设置Swiper组件圆点导航指示器的高，不支持设置百分比。
+
+默认值：6
+
+单位：vp
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+selectedItemWidth
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+是
+
+设置选中Swiper组件圆点导航指示器的宽，不支持设置百分比。
+
+默认值：12
+
+单位：vp
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+selectedItemHeight
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+是
+
+设置选中Swiper组件圆点导航指示器的高，不支持设置百分比。
+
+默认值：6
+
+单位：vp
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+mask
+
+boolean
+
+是
+
+设置是否显示Swiper组件圆点导航指示器的蒙版样式。
+
+默认值：false
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+color
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+是
+
+设置Swiper组件圆点导航指示器的颜色。
+
+默认值：'#182431'（10%透明度）
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+selectedColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+是
+
+设置选中Swiper组件圆点导航指示器的颜色。
+
+默认值：'#007DFF'
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+maxDisplayCount12+
+
+number
+
+是
+
+设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。
+
+默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。
+
+取值范围：6-9
+
+**说明：**
+
+1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。
+
+2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+### constructor
+
+constructor()
+
+DotIndicator的构造函数。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+说明
+
+按压导航点时，导航点会放大至1.33倍显示，因此非按压态时导航点的可见范围边界至实际范围边界存在一定距离，该距离会随着itemWidth、itemHeight、selectedItemWidth、selectedItemHeight等参数变大而变大。
+
+DigitIndicator10+对象说明
+---------------------
+
+数字指示器属性及功能继承自[Indicator](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#indicator10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+fontColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+是
+
+设置Swiper组件数字导航点的字体颜色。
+
+默认值：'#ff182431'
+
+selectedFontColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+是
+
+设置选中Swiper组件数字导航点的字体颜色。
+
+默认值：'#ff182431'
+
+digitFont
+
+{
+
+size?:[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+weight?:number | [FontWeight](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontweight) | string
+
+}
+
+是
+
+设置Swiper组件数字导航点的字体样式：
+
+\- size：数字导航点指示器的字体大小，不支持设置百分比。
+
+默认值：14vp
+
+\- weight：数字导航点指示器的字重。
+
+默认值：FontWeight.Normal
+
+selectedDigitFont
+
+{
+
+size?:[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+weight?:number | [FontWeight](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontweight) | string
+
+}
+
+是
+
+设置选中Swiper组件数字导航点的字体样式：
+
+\- size：数字导航点选中指示器的字体大小，不支持设置百分比。
+
+默认值：14vp
+
+\- weight：数字导航点选中指示器的字重。
+
+默认值：FontWeight.Normal
+
+### constructor
+
+constructor()
+
+DigitIndicator的构造函数。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+ArrowStyle10+对象说明
+-----------------
+
+左右箭头属性。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+showBackground
+
+boolean
+
+否
+
+设置箭头底板是否显示。
+
+默认值：false
+
+isSidebarMiddle
+
+boolean
+
+否
+
+设置箭头显示位置。
+
+默认值：false
+
+默认显示在导航点指示器两侧。
+
+backgroundSize
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+否
+
+设置底板大小。
+
+在导航点两侧显示：
+
+默认值：24vp
+
+在组件两侧显示：
+
+默认值：32vp
+
+不支持设置百分比。
+
+backgroundColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+否
+
+设置底板颜色。
+
+在导航点两侧显示：
+
+默认值：'#00000000'
+
+在组件两侧显示：
+
+默认值：'#19182431'
+
+arrowSize
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+否
+
+设置箭头大小。
+
+在导航点两侧显示时：
+
+默认值：18vp
+
+在组件两侧显示时：
+
+默认值：24vp
+
+**说明：**
+
+showBackground为true时，arrowSize为backgroundSize的3/4。
+
+不支持设置百分比。
+
+arrowColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+否
+
+设置箭头颜色。
+
+默认值：'#182431'
+
+SwiperAutoFill10+对象说明
+---------------------
+
+自适应属性。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+minSize
+
+[VP](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#vp10)
+
+是
+
+设置元素显示最小宽度。
+
+默认值：0
+
+### onChange
+
+onChange(event: (index: number) =\> void)
+
+当前显示的子组件索引变化时触发该事件，返回值为当前显示的子组件的索引值。
+
+Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页面UI的刷新。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+index
+
+number
+
+是
+
+当前显示元素的索引。
+
+### onAnimationStart9+
+
+onAnimationStart(event: (index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) =\> void)
+
+切换动画开始时触发该回调。参数为动画开始前的index值（不是最终结束动画的index值），多列Swiper时，index为最左侧组件的索引。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+index
+
+number
+
+是
+
+当前显示元素的索引。
+
+targetIndex10+
+
+number
+
+是
+
+切换动画目标元素的索引。
+
+extraInfo10+
+
+[SwiperAnimationEvent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#swiperanimationevent10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+是
+
+动画相关信息，包括主轴方向上当前显示元素和目标元素相对Swiper起始位置的位移，以及离手速度。
+
+说明
+
+*   当翻页动画时长为0时，只有以下场景会触发该回调：滑动翻页、自动轮播、调用SwiperController.showNext()和SwiperController.showPrevious()接口以及手指点击导航点翻页。
+
+### onAnimationEnd9+
+
+onAnimationEnd(event: (index: number, extraInfo: SwiperAnimationEvent) =\> void)
+
+切换动画结束时触发该回调。
+
+当Swiper切换动效结束时触发，包括动画过程中手势中断，通过SwiperController调用finishAnimation。参数为动画结束后的index值，多列Swiper时，index为最左侧组件的索引。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+index
+
+number
+
+是
+
+当前显示元素的索引。
+
+extraInfo10+
+
+[SwiperAnimationEvent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#swiperanimationevent10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+是
+
+动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。
+
+说明
+
+*   当翻页动画时长为0时，只有以下场景会触发该回调：滑动翻页、自动轮播、调用SwiperController.showNext()和SwiperController.showPrevious()接口以及手指点击导航点翻页。
+
+### onGestureSwipe10+
+
+onGestureSwipe(event: (index: number, extraInfo: SwiperAnimationEvent) =\> void)
+
+在页面跟手滑动过程中，逐帧触发该回调。多列Swiper时，index为最左侧组件的索引。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+index
+
+number
+
+是
+
+当前显示元素的索引。
+
+extraInfo
+
+[SwiperAnimationEvent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#swiperanimationevent10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+是
+
+动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。
+
+### customContentTransition12+
+
+customContentTransition(transition: SwiperContentAnimatedTransition)
+
+自定义Swiper页面切换动画。在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发回调，开发者可以在回调中设置透明度、缩放比例、位移等属性来自定义切换动画。
+
+使用说明：
+
+1、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。
+
+2、在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#swipercontenttransitionproxy12%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。
+
+3、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调，若同组所有页面均不在视窗内时，则会一起下渲染树。
+
+4、在页面跟手滑动和离手后执行切换动画的过程中，默认动画（页面滑动）依然会发生，若希望页面不滑动，可以设置主轴方向上负的位移（translate属性）来抵消页面滑动。例如：当displayCount属性值为2，视窗内有下标为0、1的两个页面时，页面水平滑动过程中，可以逐帧设置第0页的translate属性在x轴上的值为-position \* mainAxisLength来抵消第0页的位移，设置第1页的translate属性在x轴上的值为-(position - 1) \* mainAxisLength来抵消第1页的位移。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### onContentDidScroll12+
+
+onContentDidScroll(handler: ContentDidScrollCallback)
+
+监听Swiper页面滑动事件。
+
+使用说明：
+
+1、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。
+
+2、在页面滑动过程中，会对视窗内所有页面逐帧触发[ContentDidScrollCallback](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#contentdidscrollcallback12)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。
+
+3、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+SwiperAnimationEvent10+对象说明
+---------------------------
+
+Swiper组件动画相关信息集合。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+只读
+
+可选
+
+说明
+
+currentOffset
+
+number
+
+否
+
+否
+
+Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。
+
+targetOffset
+
+number
+
+否
+
+否
+
+Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。
+
+velocity
+
+number
+
+否
+
+否
+
+Swiper离手动画开始时的离手速度。单位VP/S，默认值为0。
+
+SwiperContentAnimatedTransition12+对象说明
+--------------------------------------
+
+Swiper自定义切换动画相关信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+SwiperContentTransitionProxy12+对象说明
+-----------------------------------
+
+Swiper自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画视窗内的页面信息，同时，也可以通过调用该对象的finishTransition接口通知Swiper组件页面自定义动画已结束。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+名称
+
+类型
+
+只读
+
+可选
+
+说明
+
+selectedIndex
+
+number
+
+否
+
+否
+
+当前选中页面的索引。
+
+index
+
+number
+
+否
+
+否
+
+视窗内页面的索引。
+
+position
+
+number
+
+否
+
+否
+
+index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。
+
+mainAxisLength
+
+number
+
+否
+
+否
+
+index对应页面在主轴方向上的长度。
+
+说明
+
+*   例如，当前选中的子组件的索引为0，从第0页切换到第1页的动画过程中，每帧都会对视窗内所有页面触发回调，当视窗内有第0页和第1页两页时，每帧会触发两次回调。其中，第一次回调的selectedIndex为0、index为0、position为当前帧第0页相对于动画开始前第0页的移动比例，mainAxisLength为主轴方向上第0页的长度。第二次回调的selectedIndex仍为0、index为1、position为当前帧第1页相对于动画开始前第0页的移动比例，mainAxisLength为主轴方向上第1页的长度。
+    
+*   若动画曲线为弹簧插值曲线，从第0页切换到第1页的动画过程中，可能会因为离手时的位置和速度，先过滑到第2页，再回弹到第1页，该过程中每帧会对视窗内第1页和第2页触发回调。
+    
+
+### finishTransition12+
+
+finishTransition(): void
+
+通知Swiper组件，此页面的自定义动画已结束。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+ContentDidScrollCallback12+
+---------------------------
+
+type ContentDidScrollCallback = (selectedIndex: number, index: number, position: number, mainAxisLength: number) =\> void
+
+Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5#swipercontenttransitionproxy12%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)中的说明。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+参数名
+
+类型
+
+必填
+
+说明
+
+selectedIndex
+
+number
+
+是
+
+当前选中页面的索引。
+
+index
+
+number
+
+是
+
+视窗内页面的索引。
+
+position
+
+number
+
+是
+
+index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。
+
+mainAxisLength
+
+number
+
+是
+
+index对应页面在主轴方向上的长度。
+
+示例
+--
+
+### 示例1
+
+该示例实现了通过indicatorInteractive控制导航点交互功能。
+
+2.  class MyDataSource implements IDataSource {
+3.    private list: number\[\] = \[\]
+
+5.    constructor(list: number\[\]) {
+6.      this.list = list
+7.    }
+
+9.    totalCount(): number {
+10.      return this.list.length
+11.    }
+
+13.    getData(index: number): number {
+14.      return this.list\[index\]
+15.    }
+
+17.    registerDataChangeListener(listener: DataChangeListener): void {
+18.    }
+
+20.    unregisterDataChangeListener() {
+21.    }
+22.  }
+
+24.  @Entry
+25.  @Component
+26.  struct SwiperExample {
+27.    private swiperController: SwiperController = new SwiperController()
+28.    private data: MyDataSource = new MyDataSource(\[\])
+
+30.    aboutToAppear(): void {
+31.      let list: number\[\] = \[\]
+32.      for (let i = 1; i <\= 10; i++) {
+33.        list.push(i);
+34.      }
+35.      this.data = new MyDataSource(list)
+36.    }
+
+38.    build() {
+39.      Column({ space: 5 }) {
+40.        Swiper(this.swiperController) {
+41.          LazyForEach(this.data, (item: string) =\> {
+42.            Text(item.toString())
+43.              .width('90%')
+44.              .height(160)
+45.              .backgroundColor(0xAFEEEE)
+46.              .textAlign(TextAlign.Center)
+47.              .fontSize(30)
+48.          }, (item: string) =\> item)
+49.        }
+50.        .cachedCount(2)
+51.        .index(1)
+52.        .autoPlay(true)
+53.        .interval(4000)
+54.        .loop(true)
+55.        .indicatorInteractive(true)
+56.        .duration(1000)
+57.        .itemSpace(0)
+58.        .indicator( 
+59.          new DotIndicator()
+60.            .itemWidth(15)
+61.            .itemHeight(15)
+62.            .selectedItemWidth(15)
+63.            .selectedItemHeight(15)
+64.            .color(Color.Gray)
+65.            .selectedColor(Color.Blue))
+66.        .displayArrow({ 
+67.          showBackground: true,
+68.          isSidebarMiddle: true,
+69.          backgroundSize: 24,
+70.          backgroundColor: Color.White,
+71.          arrowSize: 18,
+72.          arrowColor: Color.Blue
+73.        }, false)
+74.        .curve(Curve.Linear)
+75.        .onChange((index: number) =\> {
+76.          console.info(index.toString())
+77.        })
+78.        .onGestureSwipe((index: number, extraInfo: SwiperAnimationEvent) =\> {
+79.          console.info("index: " + index)
+80.          console.info("current offset: " + extraInfo.currentOffset)
+81.        })
+82.        .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) =\> {
+83.          console.info("index: " + index)
+84.          console.info("targetIndex: " + targetIndex)
+85.          console.info("current offset: " + extraInfo.currentOffset)
+86.          console.info("target offset: " + extraInfo.targetOffset)
+87.          console.info("velocity: " + extraInfo.velocity)
+88.        })
+89.        .onAnimationEnd((index: number, extraInfo: SwiperAnimationEvent) =\> {
+90.          console.info("index: " + index)
+91.          console.info("current offset: " + extraInfo.currentOffset)
+92.        })
+
+94.        Row({ space: 12 }) {
+95.          Button('showNext')
+96.            .onClick(() =\> {
+97.              this.swiperController.showNext()
+98.            })
+99.          Button('showPrevious')
+100.            .onClick(() =\> {
+101.              this.swiperController.showPrevious()
+102.            })
+103.        }.margin(5)
+104.      }.width('100%')
+105.      .margin({ top: 5 })
+106.    }
+107.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114413.73284015675615189716269923074548:50001231000000:2800:CE81780519229996A0AA3EB26051083FEFE57616053C3788588BB7A414698D7B.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+该示例演示了使用数字指示器的效果和功能。
+
+2.  class MyDataSource implements IDataSource {
+3.    private list: number\[\] = \[\]
+
+5.    constructor(list: number\[\]) {
+6.      this.list = list
+7.    }
+
+9.    totalCount(): number {
+10.      return this.list.length
+11.    }
+
+13.    getData(index: number): number {
+14.      return this.list\[index\]
+15.    }
+
+17.    registerDataChangeListener(listener: DataChangeListener): void {
+18.    }
+
+20.    unregisterDataChangeListener() {
+21.    }
+22.  }
+
+24.  @Entry
+25.  @Component
+26.  struct SwiperExample {
+27.    private swiperController: SwiperController = new SwiperController()
+28.    private data: MyDataSource = new MyDataSource(\[\])
+
+30.    aboutToAppear(): void {
+31.      let list: number\[\] = \[\]
+32.      for (let i = 1; i <\= 10; i++) {
+33.        list.push(i);
+34.      }
+35.      this.data = new MyDataSource(list)
+36.    }
+
+38.    build() {
+39.      Column({ space: 5 }) {
+40.        Swiper(this.swiperController) {
+41.          LazyForEach(this.data, (item: string) =\> {
+42.            Text(item.toString())
+43.              .width('90%')
+44.              .height(160)
+45.              .backgroundColor(0xAFEEEE)
+46.              .textAlign(TextAlign.Center)
+47.              .fontSize(30)
+48.          }, (item: string) =\> item)
+49.        }
+50.        .cachedCount(2)
+51.        .index(1)
+52.        .autoPlay(true)
+53.        .interval(4000)
+54.        .indicator(Indicator.digit() 
+55.          .top(200)
+56.          .fontColor(Color.Gray)
+57.          .selectedFontColor(Color.Gray)
+58.          .digitFont({ size: 20, weight: FontWeight.Bold })
+59.          .selectedDigitFont({ size: 20, weight: FontWeight.Normal }))
+60.        .loop(true)
+61.        .duration(1000)
+62.        .itemSpace(0)
+63.        .displayArrow(true, false)
+
+65.        Row({ space: 12 }) {
+66.          Button('showNext')
+67.            .onClick(() =\> {
+68.              this.swiperController.showNext()
+69.            })
+70.          Button('showPrevious')
+71.            .onClick(() =\> {
+72.              this.swiperController.showPrevious()
+73.            })
+74.        }.margin(5)
+75.      }.width('100%')
+76.      .margin({ top: 5 })
+77.    }
+78.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114413.34776995669156717346288925530383:50001231000000:2800:5A9192F1DBC186A189A71332412199F7375FBB46624393992E2AB626E155DDC2.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例3
+
+该示例通过dislayCount属性实现了按组翻页的效果。
+
+2.  class MyDataSource implements IDataSource {
+3.    private list: number\[\] = \[\]
+
+5.    constructor(list: number\[\]) {
+6.      this.list = list
+7.    }
+
+9.    totalCount(): number {
+10.      return this.list.length
+11.    }
+
+13.    getData(index: number): number {
+14.      return this.list\[index\]
+15.    }
+
+17.    registerDataChangeListener(listener: DataChangeListener): void {
+18.    }
+
+20.    unregisterDataChangeListener() {
+21.    }
+22.  }
+
+24.  @Entry
+25.  @Component
+26.  struct SwiperExample {
+27.    private swiperController: SwiperController = new SwiperController()
+28.    private data: MyDataSource = new MyDataSource(\[\])
+
+30.    aboutToAppear(): void {
+31.      let list: number\[\] = \[\]
+32.      for (let i = 1; i <\= 10; i++) {
+33.        list.push(i);
+34.      }
+35.      this.data = new MyDataSource(list)
+36.    }
+
+38.    build() {
+39.      Column({ space: 5 }) {
+40.        Swiper(this.swiperController) {
+41.          LazyForEach(this.data, (item: string) =\> {
+42.            Text(item.toString())
+43.              .width('90%')
+44.              .height(160)
+45.              .backgroundColor(0xAFEEEE)
+46.              .textAlign(TextAlign.Center)
+47.              .fontSize(30)
+48.          }, (item: string) =\> item)
+49.        }
+50.        .displayCount(3, true)
+51.        .autoPlay(true)
+52.        .interval(4000)
+53.        .loop(true)
+54.        .duration(1000)
+55.        .itemSpace(10)
+56.        .indicator( 
+57.          new DotIndicator()
+58.            .itemWidth(15)
+59.            .itemHeight(15)
+60.            .selectedItemWidth(15)
+61.            .selectedItemHeight(15)
+62.            .color(Color.Gray)
+63.            .selectedColor(Color.Blue))
+
+65.        Row({ space: 12 }) {
+66.          Button('showNext')
+67.            .onClick(() =\> {
+68.              this.swiperController.showNext()
+69.            })
+70.          Button('showPrevious')
+71.            .onClick(() =\> {
+72.              this.swiperController.showPrevious()
+73.            })
+74.        }.margin(5)
+75.      }.width('100%')
+76.      .margin({ top: 5 })
+77.    }
+78.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114413.26391013787117136296382095883690:50001231000000:2800:FBAB1F38CCB3D2C0373F451533048E72D9244C2970D2233D3CB0D0887D275205.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例4
+
+本示例通过customContentTransition接口实现了自定义Swiper页面切换动画。
+
+2.  @Entry
+3.  @Component
+4.  struct SwiperCustomAnimationExample {
+5.    private DISPLAY\_COUNT: number = 2
+6.    private MIN\_SCALE: number = 0.75
+
+8.    @State backgroundColors: Color\[\] = \[Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange\]
+9.    @State opacityList: number\[\] = \[\]
+10.    @State scaleList: number\[\] = \[\]
+11.    @State translateList: number\[\] = \[\]
+12.    @State zIndexList: number\[\] = \[\]
+
+14.    aboutToAppear(): void {
+15.      for (let i = 0; i < this.backgroundColors.length; i++) {
+16.        this.opacityList.push(1.0)
+17.        this.scaleList.push(1.0)
+18.        this.translateList.push(0.0)
+19.        this.zIndexList.push(0)
+20.      }
+21.    }
+
+23.    build() {
+24.      Column() {
+25.        Swiper() {
+26.          ForEach(this.backgroundColors, (backgroundColor: Color, index: number) =\> {
+27.            Text(index.toString()).width('100%').height('100%').fontSize(50).textAlign(TextAlign.Center)
+28.              .backgroundColor(backgroundColor)
+
+30.              .opacity(this.opacityList\[index\])
+31.              .scale({ x: this.scaleList\[index\], y: this.scaleList\[index\] })
+32.              .translate({ x: this.translateList\[index\] })
+33.              .zIndex(this.zIndexList\[index\])
+34.          })
+35.        }
+36.        .height(300)
+37.        .indicator(false)
+38.        .displayCount(this.DISPLAY\_COUNT, true)
+39.        .customContentTransition({
+
+41.          timeout: 1000,
+
+43.          transition: (proxy: SwiperContentTransitionProxy) =\> {
+44.            if (proxy.position <\= proxy.index % this.DISPLAY\_COUNT || proxy.position \>\= this.DISPLAY\_COUNT + proxy.index % this.DISPLAY\_COUNT) {
+
+46.              this.opacityList\[proxy.index\] = 1.0
+47.              this.scaleList\[proxy.index\] = 1.0
+48.              this.translateList\[proxy.index\] = 0.0
+49.              this.zIndexList\[proxy.index\] = 0
+50.            } else {
+
+52.              if (proxy.index % this.DISPLAY\_COUNT === 0) {
+53.                this.opacityList\[proxy.index\] = 1 - proxy.position / this.DISPLAY\_COUNT
+54.                this.scaleList\[proxy.index\] = this.MIN\_SCALE + (1 - this.MIN\_SCALE) \* (1 - proxy.position / this.DISPLAY\_COUNT)
+55.                this.translateList\[proxy.index\] = - proxy.position \* proxy.mainAxisLength + (1 - this.scaleList\[proxy.index\]) \* proxy.mainAxisLength / 2.0
+56.              } else {
+57.                this.opacityList\[proxy.index\] = 1 - (proxy.position - 1) / this.DISPLAY\_COUNT
+58.                this.scaleList\[proxy.index\] = this.MIN\_SCALE + (1 - this.MIN\_SCALE) \* (1 - (proxy.position - 1) / this.DISPLAY\_COUNT)
+59.                this.translateList\[proxy.index\] = - (proxy.position - 1) \* proxy.mainAxisLength - (1 - this.scaleList\[proxy.index\]) \* proxy.mainAxisLength / 2.0
+60.              }
+61.              this.zIndexList\[proxy.index\] = -1
+62.            }
+63.          }
+64.        })
+65.        .onContentDidScroll((selectedIndex: number, index: number, position: number, mainAxisLength: number) =\> {
+
+67.          console.info("onContentDidScroll selectedIndex: " + selectedIndex + ", index: " + index + ", position: " + position + ", mainAxisLength: " + mainAxisLength)
+68.        })
+69.      }.width('100%')
+70.    }
+71.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114413.99793627709664692761511178867317:50001231000000:2800:8F44445AE66C073E60AB4F50B17BEDA75FA4595BF5A558239F63ABA919DE5E2E.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例5
+
+本示例通过DotIndicator接口的maxDisplayCount属性实现了圆点导航点超长显示动画效果。
+
+1.  class MyDataSource implements IDataSource {
+2.    private list: number\[\] = \[\]
+
+4.    constructor(list: number\[\]) {
+5.      this.list = list
+6.    }
+
+8.    totalCount(): number {
+9.      return this.list.length
+10.    }
+
+12.    getData(index: number): number {
+13.      return this.list\[index\]
+14.    }
+
+16.    registerDataChangeListener(listener: DataChangeListener): void {
+17.    }
+
+19.    unregisterDataChangeListener() {
+20.    }
+21.  }
+
+23.  @Entry
+24.  @Component
+25.  struct Index {
+26.    private swiperController: SwiperController = new SwiperController()
+27.    private data: MyDataSource = new MyDataSource(\[\])
+
+29.    aboutToAppear(): void {
+30.      let list: number\[\] = \[\]
+31.      for (let i = 1; i <\= 15; i++) {
+32.        list.push(i);
+33.      }
+34.      this.data = new MyDataSource(list)
+35.    }
+
+37.    build() {
+38.      Column({ space: 5 }) {
+39.        Swiper(this.swiperController) {
+40.          LazyForEach(this.data, (item: string) =\> {
+41.            Text(item.toString())
+42.              .width('90%')
+43.              .height(160)
+44.              .backgroundColor(0xAFEEEE)
+45.              .textAlign(TextAlign.Center)
+46.              .fontSize(30)
+47.          }, (item: string) =\> item)
+48.        }
+49.        .cachedCount(2)
+50.        .index(5)
+51.        .autoPlay(true)
+52.        .interval(4000)
+53.        .loop(true)
+54.        .duration(1000)
+55.        .itemSpace(0)
+56.        .indicator( 
+57.          new DotIndicator()
+58.            .itemWidth(8)
+59.            .itemHeight(8)
+60.            .selectedItemWidth(16)
+61.            .selectedItemHeight(8)
+62.            .color(Color.Gray)
+63.            .selectedColor(Color.Blue)
+64.            .maxDisplayCount(9))
+65.        .displayArrow({ 
+66.          showBackground: true,
+67.          isSidebarMiddle: true,
+68.          backgroundSize: 24,
+69.          backgroundColor: Color.White,
+70.          arrowSize: 18,
+71.          arrowColor: Color.Blue
+72.        }, false)
+73.        .curve(Curve.Linear)
+74.        Row({ space: 12 }) {
+75.          Button('showNext')
+76.            .onClick(() =\> {
+77.              this.swiperController.showNext()
+78.            })
+79.          Button('showPrevious')
+80.            .onClick(() =\> {
+81.              this.swiperController.showPrevious()
+82.            })
+83.        }.margin(5)
+84.      }.width('100%')
+85.      .margin({ top: 5 })
+86.    }
+87.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114413.23600636742691070645519060354428:50001231000000:2800:BA19E8F0CE2EDA28B77D5F6590F828398CA4BC29DB66D61A148B60F4DAEA1805.gif?needInitFileName=true?needInitFileName=true)

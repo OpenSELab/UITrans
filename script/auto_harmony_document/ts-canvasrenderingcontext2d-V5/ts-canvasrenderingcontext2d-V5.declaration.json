@@ -1,0 +1,248 @@
+{
+    "description": "使用RenderingContext在Canvas组件上进行绘制，绘制对象可以是矩形、文本、图片等。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "CanvasRenderingContext2D(settings?: RenderingContextSettings, unit?: LengthMetricsUnit)",
+            "params": {
+                "settings": {
+                    "type": "RenderingContextSettings",
+                    "required": false,
+                    "description": "用来配置CanvasRenderingContext2D对象的参数，见RenderingContextSettings。"
+                },
+                "unit": {
+                    "type": "LengthMetricsUnit",
+                    "required": false,
+                    "description": "用来配置CanvasRenderingContext2D对象的单位模式，配置后无法更改，见LengthMetricsUnit。",
+                    "default": "DEFAULT"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "fillStyle": {
+            "description": "填充颜色或样式。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "填充颜色或样式。"
+                }
+            }
+        },
+        "lineWidth": {
+            "description": "线条宽度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "线条宽度。"
+                }
+            }
+        },
+        "strokeStyle": {
+            "description": "描边颜色或样式。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "描边颜色或样式。"
+                }
+            }
+        },
+        "lineCap": {
+            "description": "线条端点样式。",
+            "params": {
+                "value": {
+                    "type": "CanvasLineCap",
+                    "required": true,
+                    "description": "线条端点样式。"
+                }
+            }
+        },
+        "lineJoin": {
+            "description": "线条连接样式。",
+            "params": {
+                "value": {
+                    "type": "CanvasLineJoin",
+                    "required": true,
+                    "description": "线条连接样式。"
+                }
+            }
+        },
+        "miterLimit": {
+            "description": "斜接面限制比例。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "斜接面限制比例。"
+                }
+            }
+        },
+        "font": {
+            "description": "字体样式。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "字体样式。"
+                }
+            }
+        },
+        "textAlign": {
+            "description": "文本对齐方式。",
+            "params": {
+                "value": {
+                    "type": "CanvasTextAlign",
+                    "required": true,
+                    "description": "文本对齐方式。"
+                }
+            }
+        },
+        "textBaseline": {
+            "description": "文本基线对齐方式。",
+            "params": {
+                "value": {
+                    "type": "CanvasTextBaseline",
+                    "required": true,
+                    "description": "文本基线对齐方式。"
+                }
+            }
+        },
+        "globalAlpha": {
+            "description": "全局透明度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "全局透明度。"
+                }
+            }
+        },
+        "lineDashOffset": {
+            "description": "虚线偏移量。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "虚线偏移量。"
+                }
+            }
+        },
+        "globalCompositeOperation": {
+            "description": "全局合成操作。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "全局合成操作。"
+                }
+            }
+        },
+        "shadowBlur": {
+            "description": "阴影模糊级别。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "阴影模糊级别。"
+                }
+            }
+        },
+        "shadowColor": {
+            "description": "阴影颜色。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "阴影颜色。"
+                }
+            }
+        },
+        "shadowOffsetX": {
+            "description": "阴影水平偏移。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "阴影水平偏移。"
+                }
+            }
+        },
+        "shadowOffsetY": {
+            "description": "阴影垂直偏移。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "阴影垂直偏移。"
+                }
+            }
+        },
+        "imageSmoothingEnabled": {
+            "description": "是否启用图像平滑。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否启用图像平滑。"
+                }
+            }
+        },
+        "height": {
+            "description": "画布高度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "画布高度。"
+                }
+            }
+        },
+        "width": {
+            "description": "画布宽度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "画布宽度。"
+                }
+            }
+        },
+        "imageSmoothingQuality": {
+            "description": "图像平滑质量。",
+            "params": {
+                "value": {
+                    "type": "ImageSmoothingQuality",
+                    "required": true,
+                    "description": "图像平滑质量。"
+                }
+            }
+        },
+        "direction": {
+            "description": "文本方向。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "文本方向。"
+                }
+            }
+        },
+        "filter": {
+            "description": "图像滤镜。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "图像滤镜。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [],
+    "is_common_attrs": true
+}

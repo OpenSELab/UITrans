@@ -1,0 +1,70 @@
+{
+    "description": "栅格子组件，必须作为栅格容器组件(GridRow)的子组件使用。可以包含单个子组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "GridCol(option?: GridColOptions)",
+            "params": {
+                "option": {
+                    "type": "GridColOptions",
+                    "required": false,
+                    "description": "栅格布局子组件参数。",
+                    "default": null
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "span": {
+            "description": "设置占用列数。span为0，意味着该元素不参与布局计算，即不会被渲染。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "GridColColumnOption"
+                    ],
+                    "required": true,
+                    "description": "占用列数。",
+                    "default": 1
+                }
+            }
+        },
+        "gridColOffset": {
+            "description": "设置相对于前一个栅格子组件偏移的列数。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "GridColColumnOption"
+                    ],
+                    "required": true,
+                    "description": "相对于前一个栅格子组件偏移的列数。",
+                    "default": 0
+                }
+            }
+        },
+        "order": {
+            "description": "设置元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "GridColColumnOption"
+                    ],
+                    "required": true,
+                    "description": "元素的序号。",
+                    "default": 0
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "is_common_attrs": true,
+    "examples": [
+        {
+            "description": "实现一个栅格布局容器，支持多列布局，每列宽度可自定义，支持子组件的自动排列和对齐。\n导入必要的模块",
+            "code": "import { GridRow, GridCol } from '@ohos/grid';\n\n@Entry\n@Component\nstruct GridRowExample {\n  build() {\n    Column({ space: 10 }) {\n      // 创建一个GridRow容器，设置列数为3，列间距为10\n      GridRow({ columns: 3, gutter: 10 }) {\n        // 创建一个GridCol子组件，设置跨度为1，背景颜色为蓝色\n        GridCol({ span: 1 }) {\n          Text('Column 1')\n            .fontSize(20)\n            .fontColor(Color.White)\n        }\n        .backgroundColor(Color.Blue)\n\n        // 创建一个GridCol子组件，设置跨度为2，背景颜色为绿色\n        GridCol({ span: 2 }) {\n          Text('Column 2')\n            .fontSize(20)\n            .fontColor(Color.White)\n        }\n        .backgroundColor(Color.Green)\n\n        // 创建一个GridCol子组件，设置跨度为3，背景颜色为红色\n        GridCol({ span: 3 }) {\n          Text('Column 3')\n            .fontSize(20)\n            .fontColor(Color.White)\n        }\n        .backgroundColor(Color.Red)\n      }\n      .width('100%')\n      .height(200)\n      .backgroundColor(Color.Gray)\n\n      // 创建另一个GridRow容器，设置列数为2，列间距为5\n      GridRow({ columns: 2, gutter: 5 }) {\n        // 创建一个GridCol子组件，设置跨度为1，背景颜色为黄色\n        GridCol({ span: 1 }) {\n          Text('Column 4')\n            .fontSize(20)\n            .fontColor(Color.Black)\n        }\n        .backgroundColor(Color.Yellow)\n\n        // 创建一个GridCol子组件，设置跨度为1，背景颜色为紫色\n        GridCol({ span: 1 }) {\n          Text('Column 5')\n            .fontSize(20)\n            .fontColor(Color.White)\n        }\n        .backgroundColor(Color.Purple)\n      }\n      .width('100%')\n      .height(150)\n      .backgroundColor(Color.LightGray)\n    }\n    .width('100%')\n    .height('100%')\n    .padding(10)\n  }\n}"
+        }
+    ]
+}

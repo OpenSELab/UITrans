@@ -1,0 +1,82 @@
+{
+    "description": "Repeat组件不开启virtualScroll开关时，Repeat基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。Repeat组件开启virtualScroll开关时，Repeat将从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当在滚动容器中使用了Repeat，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会缓存组件，并在下一次迭代中使用。",
+    "details": "本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。卡片能力：从API version 12开始，该接口支持在ArkTS卡片中使用。系统能力：SystemCapability.ArkUI.ArkUI.Full",
+    "interfaces": [
+        {
+            "description": "Repeat(arr: Array<T>)",
+            "params": {
+                "arr": {
+                    "type": "Array<T>",
+                    "required": true,
+                    "description": "数据源，为Array<T>类型的数组，由开发者决定数据类型。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "each": {
+            "description": "组件生成函数。template和templateId匹配不上的数据项走默认生成函数each。",
+            "params": {
+                "itemGenerator": {
+                    "type": "(repeatItem: RepeatItem<T>) => void",
+                    "required": true,
+                    "description": "组件生成函数。"
+                }
+            }
+        },
+        "key": {
+            "description": "键值生成函数。",
+            "params": {
+                "keyGenerator": {
+                    "type": "(item: T, index: number) => string",
+                    "required": true,
+                    "description": "键值生成函数。"
+                }
+            }
+        },
+        "virtualScroll": {
+            "description": "Repeat开启虚拟滚动。",
+            "params": {
+                "virtualScrollOptions": {
+                    "type": "VirtualScrollOptions",
+                    "required": false,
+                    "description": "虚拟滚动配置项。"
+                }
+            }
+        },
+        "template": {
+            "description": "复用模板。",
+            "params": {
+                "type": {
+                    "type": "string",
+                    "required": true,
+                    "description": "当前模板类型。"
+                },
+                "itemBuilder": {
+                    "type": "RepeatItemBuilder<T>",
+                    "required": true,
+                    "description": "组件生成函数。"
+                },
+                "templateOptions": {
+                    "type": "TemplateOptions",
+                    "required": false,
+                    "description": "当前模板配置项。"
+                }
+            }
+        },
+        "templateId": {
+            "description": "为当前数据项分配templateId。",
+            "params": {
+                "typedFunc": {
+                    "type": "TemplateTypedFunc<T>",
+                    "required": true,
+                    "description": "生成当前数据项对应的templateId。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

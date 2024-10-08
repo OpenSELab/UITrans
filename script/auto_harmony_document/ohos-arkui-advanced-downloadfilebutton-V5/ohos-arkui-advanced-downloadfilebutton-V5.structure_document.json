@@ -1,0 +1,106 @@
+{
+    "description": "下载文件按钮，通过点击该下载按钮，可以获取到当前应用在Download公共目录中所属的存储路径。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Downloadbutton(contentOptions?: DownloadContentOptions, styleOptions?: DownloadStyleOptions)",
+            "params": {
+                "contentOptions": {
+                    "type": "DownloadContentOptions",
+                    "required": false,
+                    "description": "创建包含指定元素内容的下载按钮。"
+                },
+                "styleOptions": {
+                    "type": "DownloadStyleOptions",
+                    "required": false,
+                    "description": "创建包含指定元素样式的下载按钮。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "contentOptions": {
+            "description": "下载文件按钮中显示的内容。",
+            "params": {
+                "icon": {
+                    "type": "DownloadIconStyle",
+                    "required": false,
+                    "description": "设置下载按钮的图标风格。"
+                },
+                "text": {
+                    "type": "DownloadDescription",
+                    "required": false,
+                    "description": "设置下载按钮的文本描述。"
+                }
+            }
+        },
+        "styleOptions": {
+            "description": "下载文件按钮中图标和文字的样式。",
+            "params": {
+                "iconSize": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "下载控件上图标的尺寸。",
+                    "default": "16vp"
+                },
+                "layoutDirection": {
+                    "type": "DownloadLayoutDirection",
+                    "required": false,
+                    "description": "下载控件上图标和文字分布的方向。",
+                    "default": "DownloadLayoutDirection.HORIZONTAL"
+                },
+                "fontSize": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "下载控件上文字的尺寸。",
+                    "default": "16fp"
+                },
+                "fontStyle": {
+                    "type": "FontStyle",
+                    "required": false,
+                    "description": "下载控件上文字的样式。",
+                    "default": "FontStyle.Normal"
+                },
+                "fontWeight": {
+                    "type": ["number", "FontWeight", "string"],
+                    "required": false,
+                    "description": "下载控件上文字粗细。",
+                    "default": "FontWeight.Medium"
+                },
+                "fontFamily": {
+                    "type": ["string", "Resource"],
+                    "required": false,
+                    "description": "下载控件上文字的字体。",
+                    "default": "HarmonyOS Sans"
+                },
+                "fontColor": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "下载控件上文字的颜色。",
+                    "default": "#ffffffff"
+                },
+                "iconColor": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "下载控件上图标的颜色。",
+                    "default": "#ffffffff"
+                },
+                "textIconSpace": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "下载控件中图标和文字的间距。",
+                    "default": "4vp"
+                }
+            }
+        }
+    },
+    "events": {
+        "onClick": {
+            "description": "点击事件。",
+            "params": {}
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

@@ -1,0 +1,105 @@
+{
+    "description": "日期选择器组件，用于根据指定日期范围创建日期滑动选择器。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "DatePicker(options?: DatePickerOptions)",
+            "params": {
+                "options": {
+                    "type": "DatePickerOptions",
+                    "required": false,
+                    "description": "配置日期选择器组件的参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "lunar": {
+            "description": "设置弹窗的日期是否显示农历。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "日期是否显示农历。",
+                    "default": false
+                }
+            }
+        },
+        "disappearTextStyle": {
+            "description": "设置所有选项中最上和最下两个选项的文本样式。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "required": true,
+                    "description": "所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。",
+                    "default": {
+                        "color": "#ff182431",
+                        "font": {
+                            "size": "14fp",
+                            "weight": "FontWeight.Regular"
+                        }
+                    }
+                }
+            }
+        },
+        "textStyle": {
+            "description": "设置所有选项中除了最上、最下及选中项以外的文本样式。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "required": true,
+                    "description": "所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。",
+                    "default": {
+                        "color": "#ff182431",
+                        "font": {
+                            "size": "16fp",
+                            "weight": "FontWeight.Regular"
+                        }
+                    }
+                }
+            }
+        },
+        "selectedTextStyle": {
+            "description": "设置选中项的文本样式。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "required": true,
+                    "description": "选中项的文本颜色、字号、字体粗细。",
+                    "default": {
+                        "color": "#ff007dff",
+                        "font": {
+                            "size": "20vp",
+                            "weight": "FontWeight.Medium"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "选择日期时触发该事件。",
+            "params": {
+                "value": {
+                    "type": "DatePickerResult",
+                    "required": true,
+                    "description": "返回选中的时间。"
+                }
+            }
+        },
+        "onDateChange": {
+            "description": "选择日期时触发该事件。",
+            "params": {
+                "value": {
+                    "type": "Date",
+                    "required": true,
+                    "description": "返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

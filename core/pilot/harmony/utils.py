@@ -9,7 +9,8 @@ from core.pilot.harmony.component import get_harmony_component
 logger = get_logger(name="Harmony Pilot Utils")
 
 
-def get_component_related_types(component_name: str | List[str], attributes_and_events: Optional[List[str]] = None) -> Dict[str, TypeModel]:
+def get_component_related_types(component_name: str | List[str], attributes_and_events: Optional[List[str]] = None) -> \
+        Dict[str, TypeModel]:
     """获得组件相关的所有类型"""
     remaining_types = set()
     components_name = component_name if isinstance(component_name, list) else [component_name]
@@ -115,8 +116,51 @@ def get_related_types(type_name: str | List[str]) -> Dict[str, TypeModel]:
     return related_types
 
 
-__all__ = ["get_component_related_types", "get_harmony_component"]
+def generate_component_interface_document(component_name: str) -> str:
+    component = get_harmony_component(component_name)
+    if component_name not in component:
+        return ""
+    component_schema = component[component_name]
+    interface_documents = []
+    for interface in component_schema.interfaces:
+        interface_documents.append(f"""接口描述：{interface.description}
+接口参数：{interface.params}
+""")
+    return "\n".join(interface_documents)
 
+
+def generate_type_document(type_name: str, type_schema: TypeModel) -> str:
+    if type_schema.type == "object":
+        document = f"""类型名：{type_name}
+类型描述：{type_schema.description}
+参数：{type_schema.properties}
+"""
+    elif type_schema.type == "enum":
+        # 枚举值介绍
+        all_enum_description = ""
+        for enum_value, enum_description in type_schema.enumDescriptions.items():
+            all_enum_description += f"* {enum_value}: {enum_description}\n"
+        document = f"""枚举类型名：{type_name}
+枚举类型描述：{type_schema.description}
+枚举值：{type_schema.enum}
+枚举值描述：
+{all_enum_description}
+"""
+    else:
+        # 普通类型
+        document = f"""类型名：{type_name}
+类型描述：{type_schema.description}
+类型：{type_schema.type}
+"""
+    if type_schema.examples:
+        for example in type_schema.examples:
+            document += f"""类型{type_name}示例：
+{example}
+"""
+    return document
+
+
+__all__ = ["get_component_related_types", "get_harmony_component", "generate_type_document", "generate_component_interface_document"]
 
 if __name__ == '__main__':
     print(get_component_related_types("Button"))

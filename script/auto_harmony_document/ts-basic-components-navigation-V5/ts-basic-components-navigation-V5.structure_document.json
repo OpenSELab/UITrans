@@ -1,0 +1,300 @@
+{
+    "description": "Navigation组件是路由导航的根视图容器，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区和工具栏，其中内容区默认首页显示导航内容（Navigation的子组件）或非首页显示（NavDestination的子组件），首页和非首页通过路由进行切换。",
+    "details": "该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。\n\n该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.KEYBOARD, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合expandSafeArea属性实现安全区避让。",
+    "interfaces": [
+        {
+            "description": "Navigation()",
+            "params": {}
+        },
+        {
+            "description": "Navigation(pathInfos: NavPathStack)",
+            "params": {
+                "pathInfos": {
+                    "type": "NavPathStack",
+                    "required": true,
+                    "description": "绑定路由栈到Navigation组件。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "title": {
+            "description": "设置页面标题。",
+            "params": {
+                "value": {
+                    "type": ["ResourceStr", "CustomBuilder", "NavigationCommonTitle", "NavigationCustomTitle"],
+                    "required": true,
+                    "description": "页面标题。"
+                },
+                "options": {
+                    "type": "NavigationTitleOptions",
+                    "required": false,
+                    "description": "标题栏的额外配置选项。"
+                }
+            }
+        },
+        "subTitle": {
+            "description": "设置页面副标题。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "页面副标题。"
+                }
+            }
+        },
+        "menus": {
+            "description": "设置页面右上角菜单。不设置时不显示菜单项。使用Array<NavigationMenuItem> 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。",
+            "params": {
+                "value": {
+                    "type": ["Array<NavigationMenuItem>", "CustomBuilder"],
+                    "required": true,
+                    "description": "页面右上角菜单。"
+                }
+            }
+        },
+        "titleMode": {
+            "description": "设置页面标题栏显示模式。",
+            "params": {
+                "value": {
+                    "type": "NavigationTitleMode",
+                    "required": true,
+                    "description": "页面标题栏显示模式。"
+                }
+            }
+        },
+        "toolBar": {
+            "description": "设置工具栏内容。不设置时不显示工具栏。items均分底部工具栏，在每个均分内容区布局文本和图标，文本超长时，逐级缩小，缩小之后换行，最后...截断。",
+            "params": {
+                "value": {
+                    "type": ["object", "CustomBuilder"],
+                    "required": true,
+                    "description": "工具栏内容。"
+                }
+            }
+        },
+        "toolbarConfiguration": {
+            "description": "设置工具栏内容。不设置时不显示工具栏。",
+            "params": {
+                "value": {
+                    "type": ["Array<ToolbarItem>", "CustomBuilder"],
+                    "required": true,
+                    "description": "工具栏内容。"
+                },
+                "options": {
+                    "type": "NavigationToolbarOptions",
+                    "required": false,
+                    "description": "工具栏的额外配置选项。"
+                }
+            }
+        },
+        "hideToolBar": {
+            "description": "设置是否隐藏工具栏。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否隐藏工具栏。",
+                    "default": false
+                }
+            }
+        },
+        "hideTitleBar": {
+            "description": "设置是否隐藏标题栏。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否隐藏标题栏。",
+                    "default": false
+                }
+            }
+        },
+        "hideBackButton": {
+            "description": "设置是否隐藏标题栏中的返回键。返回键仅针对titleMode为NavigationTitleMode.Mini时才生效。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否隐藏标题栏中的返回键。",
+                    "default": false
+                }
+            }
+        },
+        "navBarWidth": {
+            "description": "设置导航栏宽度。仅在Navigation组件分栏时生效。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "导航栏宽度。",
+                    "default": 240
+                }
+            }
+        },
+        "navBarPosition": {
+            "description": "设置导航栏位置。仅在Navigation组件分栏时生效。",
+            "params": {
+                "value": {
+                    "type": "NavBarPosition",
+                    "required": true,
+                    "description": "导航栏位置。"
+                }
+            }
+        },
+        "mode": {
+            "description": "设置导航栏的显示模式。支持Stack、Split与Auto模式。",
+            "params": {
+                "value": {
+                    "type": "NavigationMode",
+                    "required": true,
+                    "description": "导航栏的显示模式。",
+                    "default": "NavigationMode.Auto"
+                }
+            }
+        },
+        "backButtonIcon": {
+            "description": "设置标题栏中返回键图标。",
+            "params": {
+                "value": {
+                    "type": ["string", "PixelMap", "Resource", "SymbolGlyphModifier"],
+                    "required": true,
+                    "description": "返回键图标。"
+                }
+            }
+        },
+        "hideNavBar": {
+            "description": "设置是否隐藏导航栏。设置为true时，隐藏Navigation的导航栏，包括标题栏、内容区和工具栏。如果此时路由栈中存在NavDestination页面，则直接显示栈顶NavDestination页面，反之显示空白。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否隐藏导航栏。",
+                    "default": false
+                }
+            }
+        },
+        "navDestination": {
+            "description": "创建NavDestination组件。使用builder函数，基于name和param构造NavDestination组件。builder下只能有一个根节点。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。",
+            "params": {
+                "builder": {
+                    "type": "(name: string, param: unknown) => void",
+                    "required": true,
+                    "description": "创建NavDestination组件的函数。"
+                }
+            }
+        },
+        "navBarWidthRange": {
+            "description": "设置导航栏最小和最大宽度（双栏模式下生效）。",
+            "params": {
+                "value": {
+                    "type": ["Dimension", "Dimension"],
+                    "required": true,
+                    "description": "导航栏最小和最大宽度。",
+                    "default": [240, "组件宽度的40%"]
+                }
+            }
+        },
+        "minContentWidth": {
+            "description": "设置导航栏内容区最小宽度（双栏模式下生效）。",
+            "params": {
+                "value": {
+                    "type": "Dimension",
+                    "required": true,
+                    "description": "导航栏内容区最小宽度。",
+                    "default": 360
+                }
+            }
+        },
+        "ignoreLayoutSafeArea": {
+            "description": "控制组件的布局，使其扩展到非安全区域。",
+            "params": {
+                "types": {
+                    "type": ["Array<LayoutSafeAreaType>"],
+                    "required": false,
+                    "description": "配置扩展安全区域的类型。",
+                    "default": ["LayoutSafeAreaType.SYSTEM"]
+                },
+                "edges": {
+                    "type": ["Array<LayoutSafeAreaEdge>"],
+                    "required": false,
+                    "description": "配置扩展安全区域的方向。",
+                    "default": ["LayoutSafeAreaEdge.TOP", "LayoutSafeAreaEdge.BOTTOM"]
+                }
+            }
+        },
+        "systemBarStyle": {
+            "description": "当Navigation中显示Navigation首页时，设置对应系统状态栏的样式。",
+            "params": {
+                "style": {
+                    "type": "Optional<SystemBarStyle>",
+                    "required": false,
+                    "description": "系统状态栏的样式。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onTitleModeChange": {
+            "description": "当titleMode为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。",
+            "params": {
+                "titleMode": {
+                    "type": "NavigationTitleMode",
+                    "required": true,
+                    "description": "当前的标题栏模式。"
+                }
+            }
+        },
+        "onNavBarStateChange": {
+            "description": "导航栏显示状态切换时触发该回调。",
+            "params": {
+                "isVisible": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "导航栏是否可见。"
+                }
+            }
+        },
+        "onNavigationModeChange": {
+            "description": "当Navigation首次显示或者单双栏状态发生变化时触发该回调。",
+            "params": {
+                "mode": {
+                    "type": "NavigationMode",
+                    "required": true,
+                    "description": "当前的导航栏模式。"
+                }
+            }
+        },
+        "customNavContentTransition": {
+            "description": "自定义转场动画回调。",
+            "params": {
+                "delegate": {
+                    "type": "(from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => NavigationAnimatedTransition | undefined",
+                    "required": true,
+                    "description": "自定义转场动画的回调函数。"
+                }
+            }
+        }
+    },
+    "rules": [
+        "Navigation组件是路由导航的根视图容器，一般作为Page页面的根容器使用。",
+        "内容区默认首页显示导航内容（Navigation的子组件）或非首页显示（NavDestination的子组件），首页和非首页通过路由进行切换。",
+        "该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+        "该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.KEYBOARD, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合expandSafeArea属性实现安全区避让。"
+    ],
+    "examples": [
+        "该示例主要演示Navigation页面的布局。",
+        "该示例主要演示NavPathStack中方法的使用及路由拦截。",
+        "该示例主要演示设置每个NavDestination子页面的自定义转场动画及可交互转场动画。",
+        "该示例主要演示Navigation带参返回。",
+        "该示例主要演示设置Navigation主页的标题栏、工具栏和NavDestination页面的标题栏的背景颜色和背景模糊效果。",
+        "该示例主要演示在嵌套Navigation场景下，如何获取父NavPathStack。",
+        "该示例主要演示NavPathStack无需声明为状态变量，也可以实现页面栈操作功能。",
+        "该示例演示NavDestination的生命周期时序。",
+        "该示例演示Navigation标题栏STACK布局效果。",
+        "该示例主要演示如何定义NavPathStack的派生类和派生类在Navigation中的基本用法。",
+        "该示例主要演示Navigation和NavDestination如何使用Symbol组件。",
+        "该示例主要演示Navigation和NavDestination如何自定义设置标题栏边距。"
+    ],
+    "is_common_attrs": true
+}

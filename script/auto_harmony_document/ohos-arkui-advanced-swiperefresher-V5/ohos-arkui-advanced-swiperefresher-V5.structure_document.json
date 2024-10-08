@@ -1,0 +1,47 @@
+{
+    "description": "SwipeRefresher 组件用于在内容加载时显示加载状态，常用于衔接展示下拉加载的内容。",
+    "details": "该组件及其子组件从 API Version 10 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "SwipeRefresher({content?: string, isLoading: boolean})",
+            "params": {
+                "content": {
+                    "type": "string",
+                    "required": false,
+                    "description": "内容加载时显示的文本。"
+                },
+                "isLoading": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "当前是否正在加载。isLoading为true时，表示正在加载；isLoading为false时，表示未在加载。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "SwipeRefresher": {
+            "description": "SwipeRefresher 组件的属性。",
+            "params": {
+                "content": {
+                    "type": "string",
+                    "required": false,
+                    "description": "内容加载时显示的文本。"
+                },
+                "isLoading": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "当前是否正在加载。isLoading为true时，表示正在加载；isLoading为false时，表示未在加载。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onSwipe": {
+            "description": "当用户进行滑动操作时触发的事件。",
+            "params": {}
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

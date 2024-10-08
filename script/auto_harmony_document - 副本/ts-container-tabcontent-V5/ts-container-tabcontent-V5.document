@@ -1,0 +1,1529 @@
+Title: TabContent-容器组件-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabcontent-V5
+
+Markdown Content:
+仅在Tabs中使用，对应一个切换页签的内容视图。
+
+说明
+
+该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+接口
+--
+
+TabContent()
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### tabBar
+
+tabBar(value: string | Resource | CustomBuilder | { icon?: string | Resource; text?: string | Resource })
+
+设置TabBar上显示内容。
+
+如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。
+
+设置的内容超出tabbar页签时进行裁切。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### tabBar9+
+
+tabBar(value: SubTabBarStyle | BottomTabBarStyle)
+
+设置TabBar上显示内容。底部样式没有下划线效果。icon异常时显示灰色图块。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+说明
+
+*   TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
+*   TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
+*   vertical属性为false值，交换上述2个限制。
+*   TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
+
+SubTabBarStyle9+对象说明
+--------------------
+
+子页签样式。打开后在切换页签时会播放跳转动画。
+
+### constructor
+
+constructor(content: ResourceStr)
+
+SubTabBarStyle的构造函数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### constructor12+
+
+constructor(content: ResourceStr | ComponentContent)
+
+SubTabBarStyle的构造函数。支持ComponentContent设置自定义内容。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| content | [ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr) | [ComponentContent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-componentcontent-V5) | 是 | 页签内的内容。
+**说明：**
+
+1.自定义内容不支持labelStyle属性。
+
+2.自定义内容超出页签范围，则不显示超出部分。
+
+3.自定义内容小于页签范围，则会居中对齐。
+
+4.自定义内容异常或无可用显示组件，则显示空白。
+
+ |
+
+### of10+
+
+static of(content: ResourceStr): SubTabBarStyle
+
+SubTabBarStyle的静态构造函数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+**返回值：**
+
+### of12+
+
+static of(content: ResourceStr | ComponentContent): SubTabBarStyle
+
+SubTabBarStyle的静态构造函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| content | [ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr) | [ComponentContent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-componentcontent-V5) | 是 | 页签内的内容。支持ComponentContent设置自定义内容。
+**说明：**
+
+1.自定义内容不支持labelStyle属性。
+
+2.自定义内容超出页签范围，则不显示超出部分。
+
+3.自定义内容小于页签范围，则会居中对齐。
+
+4.自定义内容异常或无可用显示组件，则显示空白。
+
+ |
+
+**返回值：**
+
+### 属性
+
+支持以下属性：
+
+| 名称 | 参数类型 | 描述 |
+| --- | --- | --- |
+| indicator10+ | [IndicatorStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabcontent-V5#indicatorstyle10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | 设置选中子页签的下划线风格。子页签的下划线风格仅在水平模式下有效。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| selectedMode10+ | [SelectedMode](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabcontent-V5#selectedmode10%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 设置选中子页签的显示方式。子页签的显示方式仅在水平模式下有效。
+
+默认值：SelectedMode.INDICATOR
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| board10+ | [BoardStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabcontent-V5#boardstyle10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | 设置选中子页签的背板风格。子页签的背板风格仅在水平模式下有效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| labelStyle10+ | [LabelStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabcontent-V5#labelstyle10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | 设置子页签的label文本和字体的样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| padding10+ | [Padding](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#padding) | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10) | 设置子页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。
+
+默认值：{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp}
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| padding12+ | [LocalizedPadding](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#localizedpadding12) | 设置子页签的内边距属性，支持镜像能力（不支持百分比设置）。
+
+默认值：{start:LengthMetircs.vp(8),end:LengthMetircs.vp(8),
+
+top:LengthMetircs.vp(17),bottom:LengthMetircs.vp(18)}
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| id11+ | string | 设置子页签的[id](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-component-id-V5#%E5%B1%9E%E6%80%A7)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+
+IndicatorStyle10+对象说明
+---------------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| color | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 下划线的颜色和背板颜色。
+默认值:#FF007DFF
+
+ |
+| height | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 下划线的高度（不支持百分比设置）。
+
+默认值:2.0
+
+单位：vp
+
+ |
+| width | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 下划线的宽度（不支持百分比设置）。
+
+默认值：0.0
+
+单位：vp
+
+**说明：**
+
+宽度设置为0时，按页签文本宽度显示。
+
+ |
+| borderRadius | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 下划线的圆角半径（不支持百分比设置）。
+
+默认值：0.0
+
+单位：vp
+
+ |
+| marginTop | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 下划线与文字的间距（不支持百分比设置）。
+
+默认值：8.0
+
+单位：vp
+
+ |
+
+SelectedMode10+枚举说明
+-------------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 描述 |
+| --- | --- |
+| INDICATOR | 使用下划线模式。 |
+| BOARD | 使用背板模式。 |
+
+BoardStyle10+对象说明
+-----------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| borderRadius | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 背板的圆角半径（不支持百分比设置）。
+默认值：8.0
+
+单位：vp
+
+ |
+
+LabelStyle10+对象说明
+-----------------
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| overflow | [TextOverflow](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#textoverflow) | 否 | 设置Label文本超长时的显示方式。默认值是省略号截断。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| maxLines | number | 否 | 设置Label文本的最大行数。如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过textOverflow来指定截断方式。默认值是1。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| minFontSize | number | [ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr) | 否 | 设置Label文本最小显示字号（不支持百分比设置）。需配合maxFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| maxFontSize | number | [ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr) | 否 | 设置Label文本最大显示字号（不支持百分比设置）。需配合minFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| heightAdaptivePolicy | [TextHeightAdaptivePolicy](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#textheightadaptivepolicy10) | 否 | 设置Label文本自适应高度的方式。默认值是最大行数优先。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| font | [Font](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#font) | 否 | 设置Label文本字体样式。
+
+当页签为子页签时，默认值是字体大小16.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重正常。
+
+当页签为底部页签时，默认值是字体大小10.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重中等。
+
+从API version 12开始，底部页签页签内容左右排布时默认字体大小为12.0fp。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| unselectedColor12+ | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 设置Label文本字体未选中时的颜色。
+
+默认值:#99182431
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| selectedColor12+ | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 设置Label文本字体选中时的颜色。
+
+默认值:#FF007DFF
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+
+BottomTabBarStyle9+对象说明
+-----------------------
+
+底部页签和侧边页签样式。
+
+### constructor
+
+constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr)
+
+BottomTabBarStyle的构造函数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### of10+
+
+static of(icon: ResourceStr | TabBarSymbol, text: ResourceStr): BottomTabBarStyle
+
+BottomTabBarStyle的静态构造函数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+**返回值：**
+
+### 属性
+
+支持以下属性：
+
+| 名称 | 参数类型 | 描述 |
+| --- | --- | --- |
+| padding10+ | [Padding](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#padding) | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10) | [LocalizedPadding12+](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#localizedpadding12) | 设置底部页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。
+默认值：{left:4.0vp,right:4.0vp,top:0.0vp,bottom:0.0vp}
+
+使用LocalizedPadding时，支持镜像能力。
+
+默认值：{start:LengthMetircs.vp(4),end:LengthMetircs.vp(4),
+
+top:LengthMetircs.vp(0),bottom:LengthMetircs.vp(0)}
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| verticalAlign10+ | [VerticalAlign](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#verticalalign) | 设置底部页签的图片、文字在垂直方向上的对齐格式。
+
+默认值：VerticalAlign.Center
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| layoutMode10+ | [LayoutMode](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabcontent-V5#layoutmode10%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 设置底部页签的图片、文字排布的方式，具体参照LayoutMode枚举。
+
+默认值：LayoutMode.VERTICAL
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| symmetricExtensible10+ | boolean | 设置底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。
+
+默认值：false
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| labelStyle10+ | [LabelStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabcontent-V5#labelstyle10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | 设置底部页签的label文本和字体的样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| id11+ | string | 设置底部页签的[id](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-component-id-V5#%E5%B1%9E%E6%80%A7)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| iconStyle12+ | [TabBarIconStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabcontent-V5#tabbariconstyle12%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | 设置底部页签的label图标的样式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+
+TabBarSymbol12+对象说明
+-------------------
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| normal | [SymbolGlyphModifier](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-attribute-modifier-V5) | 是 | 页签内symbol图标普通态样式。
+默认值：fontColor：#66182431，renderingStrategy：SymbolRenderingStrategy.MULTIPLE\_OPACITY，fontSize：24vp
+
+ |
+| selected | [SymbolGlyphModifier](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-attribute-modifier-V5) | 否 | 页签内symbol图标选中态样式。
+
+默认值：fontColor：#ff007dff，renderingStrategy：SymbolRenderingStrategy.MULTIPLE\_OPACITY，fontSize：24vp
+
+ |
+
+LayoutMode10+枚举说明
+-----------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 描述 |
+| --- | --- |
+| AUTO | 若页签宽度大于104vp，页签内容为左右排布，否则页签内容为上下排布。仅TabBar为垂直模式或Fixed水平模式时有效。 |
+| VERTICAL | 页签内容上下排布。 |
+| HORIZONTAL | 页签内容左右排布。 |
+
+TabBarIconStyle12+对象说明
+----------------------
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| unselectedColor | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 设置Label图标未选中时的颜色。
+默认值:#33182431
+
+**说明：**
+
+仅对svg图源生效，设置后会替换svg图片的填充颜色。
+
+ |
+| selectedColor | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 设置Label图标选中时的颜色。
+
+默认值:#FF007DFF
+
+**说明：**
+
+仅对svg图源生效，设置后会替换svg图片的填充颜色。
+
+ |
+
+### onWillShow12+
+
+onWillShow(event: VoidCallback)
+
+逻辑回调，TabContent将要显示的时候触发该回调。场景包括TabContent首次显示，TabContent切换，页面切换，窗口前后台切换。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### onWillHide12+
+
+onWillHide(event: VoidCallback)
+
+逻辑回调，TabContent将要隐藏的时候触发该回调。场景包括TabContent切换，页面切换，窗口前后台切换。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+示例
+--
+
+### 示例1
+
+2.  @Entry
+3.  @Component
+4.  struct TabContentExample {
+5.    @State fontColor: string = '#182431'
+6.    @State selectedFontColor: string = '#007DFF'
+7.    @State currentIndex: number = 0
+8.    private controller: TabsController = new TabsController()
+
+10.    @Builder tabBuilder(index: number) {
+11.      Column() {
+12.        Image(this.currentIndex === index ? '/common/public\_icon\_on.svg' : '/common/public\_icon\_off.svg')
+13.          .width(24)
+14.          .height(24)
+15.          .margin({ bottom: 4 })
+16.          .objectFit(ImageFit.Contain)
+17.        Text(\`Tab${index + 1}\`)
+18.          .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+19.          .fontSize(10)
+20.          .fontWeight(500)
+21.          .lineHeight(14)
+22.      }.width('100%')
+23.    }
+
+25.    build() {
+26.      Column() {
+27.        Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
+28.          TabContent() {
+29.            Column() {
+30.              Text('Tab1')
+31.                .fontSize(36)
+32.                .fontColor('#182431')
+33.                .fontWeight(500)
+34.                .opacity(0.4)
+35.                .margin({ top: 30, bottom: 56.5 })
+36.              Divider()
+37.                .strokeWidth(0.5)
+38.                .color('#182431')
+39.                .opacity(0.05)
+40.            }.width('100%')
+41.          }.tabBar(this.tabBuilder(0))
+
+43.          TabContent() {
+44.            Column() {
+45.              Text('Tab2')
+46.                .fontSize(36)
+47.                .fontColor('#182431')
+48.                .fontWeight(500)
+49.                .opacity(0.4)
+50.                .margin({ top: 30, bottom: 56.5 })
+51.              Divider()
+52.                .strokeWidth(0.5)
+53.                .color('#182431')
+54.                .opacity(0.05)
+55.            }.width('100%')
+56.          }.tabBar(this.tabBuilder(1))
+
+58.          TabContent() {
+59.            Column() {
+60.              Text('Tab3')
+61.                .fontSize(36)
+62.                .fontColor('#182431')
+63.                .fontWeight(500)
+64.                .opacity(0.4)
+65.                .margin({ top: 30, bottom: 56.5 })
+66.              Divider()
+67.                .strokeWidth(0.5)
+68.                .color('#182431')
+69.                .opacity(0.05)
+70.            }.width('100%')
+71.          }.tabBar(this.tabBuilder(2))
+
+73.          TabContent() {
+74.            Column() {
+75.              Text('Tab4')
+76.                .fontSize(36)
+77.                .fontColor('#182431')
+78.                .fontWeight(500)
+79.                .opacity(0.4)
+80.                .margin({ top: 30, bottom: 56.5 })
+81.              Divider()
+82.                .strokeWidth(0.5)
+83.                .color('#182431')
+84.                .opacity(0.05)
+85.            }.width('100%')
+86.          }.tabBar(this.tabBuilder(3))
+87.        }
+88.        .vertical(false)
+89.        .barHeight(56)
+90.        .onChange((index: number) => {
+91.          this.currentIndex = index
+92.        })
+93.        .width(360)
+94.        .height(190)
+95.        .backgroundColor('#F1F3F5')
+96.        .margin({ top: 38 })
+97.      }.width('100%')
+98.    }
+99.  }
+
+![Image 1](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151306.51386421105461508939831661083282:50001231000000:2800:8CA3AB3D59FDE9681932DAF5CBF5E9E13EDE192583964AE4A2FB0FAD8370D7A3.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+2.  @Entry
+3.  @Component
+4.  struct TabContentExample {
+5.    @State fontColor: string = '#182431'
+6.    @State selectedFontColor: string = '#007DFF'
+7.    @State currentIndex: number = 0
+8.    private controller: TabsController = new TabsController()
+
+10.    @Builder tabBuilder(index: number) {
+11.      Column() {
+12.        Image(this.currentIndex === index ? '/common/public\_icon\_on.svg' : '/common/public\_icon\_off.svg')
+13.          .width(24)
+14.          .height(24)
+15.          .margin({ bottom: 4 })
+16.          .objectFit(ImageFit.Contain)
+17.        Text('Tab')
+18.          .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+19.          .fontSize(10)
+20.          .fontWeight(500)
+21.          .lineHeight(14)
+22.      }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+23.    }
+
+25.    build() {
+26.      Column() {
+27.        Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
+28.          TabContent()
+29.            .tabBar(this.tabBuilder(0))
+30.          TabContent()
+31.            .tabBar(this.tabBuilder(1))
+32.          TabContent()
+33.            .tabBar(this.tabBuilder(2))
+34.          TabContent()
+35.            .tabBar(this.tabBuilder(3))
+36.        }
+37.        .vertical(true)
+38.        .barWidth(96)
+39.        .barHeight(414)
+40.        .onChange((index: number) => {
+41.          this.currentIndex = index
+42.        })
+43.        .width(96)
+44.        .height(414)
+45.        .backgroundColor('#F1F3F5')
+46.        .margin({ top: 52 })
+47.      }.width('100%')
+48.    }
+49.  }
+
+![Image 2](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151306.94218881163009196284606897745939:50001231000000:2800:386BBAF1A072C2FDCF8A8D8AC8B1F213AF24614593A40695944731838A8D6F29.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例3
+
+2.  @Entry
+3.  @Component
+4.  struct TabBarStyleExample {
+5.    build() {
+6.      Column({ space: 5 }) {
+7.        Text("子页签样式")
+8.        Column() {
+9.          Tabs({ barPosition: BarPosition.Start }) {
+10.            TabContent() {
+11.              Column().width('100%').height('100%').backgroundColor(Color.Pink)
+12.            }.tabBar(new SubTabBarStyle('Pink'))
+13.            .onWillShow(() => {
+14.              console.info("Pink will show")
+15.            })
+16.            .onWillHide(() => {
+17.              console.info("Pink will hide")
+18.            })
+
+20.            TabContent() {
+21.              Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+22.            }.tabBar(new SubTabBarStyle('Yellow'))
+23.            .onWillShow(() => {
+24.              console.info("Yellow will show")
+25.            })
+26.            .onWillHide(() => {
+27.              console.info("Yellow will hide")
+28.            })
+
+30.            TabContent() {
+31.              Column().width('100%').height('100%').backgroundColor(Color.Blue)
+32.            }.tabBar(new SubTabBarStyle('Blue'))
+33.            .onWillShow(() => {
+34.              console.info("Blue will show")
+35.            })
+36.            .onWillHide(() => {
+37.              console.info("Blue will hide")
+38.            })
+
+40.            TabContent() {
+41.              Column().width('100%').height('100%').backgroundColor(Color.Green)
+42.            }.tabBar(new SubTabBarStyle('Green'))
+43.            .onWillShow(() => {
+44.              console.info("Green will show")
+45.            })
+46.            .onWillHide(() => {
+47.              console.info("Green will hide")
+48.            })
+49.          }
+50.          .vertical(false)
+51.          .scrollable(true)
+52.          .barMode(BarMode.Fixed)
+53.          .onChange((index: number) => {
+54.            console.info(index.toString())
+55.          })
+56.          .width('100%')
+57.          .backgroundColor(0xF1F3F5)
+58.        }.width('100%').height(200)
+59.        Text("底部页签样式")
+60.        Column() {
+61.          Tabs({ barPosition: BarPosition.End }) {
+62.            TabContent() {
+63.              Column().width('100%').height('100%').backgroundColor(Color.Pink)
+64.            }.tabBar(new BottomTabBarStyle($r('sys.media.ohos\_app\_icon'), 'Pink'))
+65.            .onWillShow(() => {
+66.              console.info("Pink will show")
+67.            })
+68.            .onWillHide(() => {
+69.              console.info("Pink will hide")
+70.            })
+
+72.            TabContent() {
+73.              Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+74.            }.tabBar(new BottomTabBarStyle($r('sys.media.ohos\_app\_icon'), 'Yellow'))
+75.            .onWillShow(() => {
+76.              console.info("Yellow will show")
+77.            })
+78.            .onWillHide(() => {
+79.              console.info("Yellow will hide")
+80.            })
+
+82.            TabContent() {
+83.              Column().width('100%').height('100%').backgroundColor(Color.Blue)
+84.            }.tabBar(new BottomTabBarStyle($r('sys.media.ohos\_app\_icon'), 'Blue'))
+85.            .onWillShow(() => {
+86.              console.info("Blue will show")
+87.            })
+88.            .onWillHide(() => {
+89.              console.info("Blue will hide")
+90.            })
+
+92.            TabContent() {
+93.              Column().width('100%').height('100%').backgroundColor(Color.Green)
+94.            }.tabBar(new BottomTabBarStyle($r('sys.media.ohos\_app\_icon'), 'Green'))
+95.            .onWillShow(() => {
+96.              console.info("Green will show")
+97.            })
+98.            .onWillHide(() => {
+99.              console.info("Green will hide")
+100.            })
+101.          }
+102.          .vertical(false)
+103.          .scrollable(true)
+104.          .barMode(BarMode.Fixed)
+105.          .onChange((index: number) => {
+106.            console.info(index.toString())
+107.          })
+108.          .width('100%')
+109.          .backgroundColor(0xF1F3F5)
+110.        }.width('100%').height(200)
+111.        Text("侧边页签样式")
+112.        Column() {
+113.          Tabs({ barPosition: BarPosition.Start }) {
+114.            TabContent() {
+115.              Column().width('100%').height('100%').backgroundColor(Color.Pink)
+116.            }.tabBar(new BottomTabBarStyle($r('sys.media.ohos\_app\_icon'), 'Pink'))
+117.            .onWillShow(() => {
+118.              console.info("Pink will show")
+119.            })
+120.            .onWillHide(() => {
+121.              console.info("Pink will hide")
+122.            })
+
+124.            TabContent() {
+125.              Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+126.            }.tabBar(new BottomTabBarStyle($r('sys.media.ohos\_app\_icon'), 'Yellow'))
+127.            .onWillShow(() => {
+128.              console.info("Yellow will show")
+129.            })
+130.            .onWillHide(() => {
+131.              console.info("Yellow will hide")
+132.            })
+
+134.            TabContent() {
+135.              Column().width('100%').height('100%').backgroundColor(Color.Blue)
+136.            }.tabBar(new BottomTabBarStyle($r('sys.media.ohos\_app\_icon'), 'Blue'))
+137.            .onWillShow(() => {
+138.              console.info("Blue will show")
+139.            })
+140.            .onWillHide(() => {
+141.              console.info("Blue will hide")
+142.            })
+
+144.            TabContent() {
+145.              Column().width('100%').height('100%').backgroundColor(Color.Green)
+146.            }.tabBar(new BottomTabBarStyle($r('sys.media.ohos\_app\_icon'), 'Green'))
+147.            .onWillShow(() => {
+148.              console.info("Green will show")
+149.            })
+150.            .onWillHide(() => {
+151.              console.info("Green will hide")
+152.            })
+153.          }
+154.          .vertical(true).scrollable(true).barMode(BarMode.Fixed)
+155.          .onChange((index: number) => {
+156.            console.info(index.toString())
+157.          })
+158.          .width('100%')
+159.          .backgroundColor(0xF1F3F5)
+160.        }.width('100%').height(400)
+161.      }
+162.    }
+163.  }
+
+![Image 3](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151306.01707962357884714923848031916783:50001231000000:2800:95304091A5E3EF473C192EED5A8EE5EDA21F366FCD8BDE8BFD46343F553844FF.jpeg?needInitFileName=true?needInitFileName=true)
+
+### 示例4
+
+2.  @Entry
+3.  @Component
+4.  struct TabsAttr {
+5.    private controller: TabsController = new TabsController()
+6.    @State indicatorColor: Color = Color.Blue;
+7.    @State indicatorWidth: number = 40;
+8.    @State indicatorHeight: number = 10;
+9.    @State indicatorBorderRadius: number = 5;
+10.    @State indicatorSpace: number = 10;
+11.    @State subTabBorderRadius: number = 20;
+12.    @State selectedMode: SelectedMode = SelectedMode.INDICATOR;
+13.    private colorFlag: boolean = true;
+14.    private widthFlag: boolean = true;
+15.    private heightFlag: boolean = true;
+16.    private borderFlag: boolean = true;
+17.    private spaceFlag: boolean = true;
+
+19.    build() {
+20.      Column() {
+21.        Button("下划线颜色变化").width('100%').margin({ bottom: '12vp' })
+22.          .onClick((event?: ClickEvent) => {
+
+24.            if (this.colorFlag) {
+25.              animateTo({
+26.                duration: 1000, 
+27.                curve: Curve.Linear, 
+28.                delay: 200, 
+29.                iterations: 1, 
+30.                playMode: PlayMode.Normal, 
+31.                onFinish: () => {
+32.                  console.info('play end')
+33.                }
+34.              }, () => {
+35.                this.indicatorColor = Color.Red
+36.              })
+37.            } else {
+38.              animateTo({
+39.                duration: 1000, 
+40.                curve: Curve.Linear, 
+41.                delay: 200, 
+42.                iterations: 1, 
+43.                playMode: PlayMode.Normal, 
+44.                onFinish: () => {
+45.                  console.info('play end')
+46.                }
+47.              }, () => {
+48.                this.indicatorColor = Color.Yellow
+49.              })
+50.            }
+51.            this.colorFlag = !this.colorFlag
+52.          })
+53.        Button("下划线高度变化").width('100%').margin({ bottom: '12vp' })
+54.          .onClick((event?: ClickEvent) => {
+
+56.            if (this.heightFlag) {
+57.              animateTo({
+58.                duration: 1000, 
+59.                curve: Curve.Linear, 
+60.                delay: 200, 
+61.                iterations: 1, 
+62.                playMode: PlayMode.Normal, 
+63.                onFinish: () => {
+64.                  console.info('play end')
+65.                }
+66.              }, () => {
+67.                this.indicatorHeight = 20
+68.              })
+69.            } else {
+70.              animateTo({
+71.                duration: 1000, 
+72.                curve: Curve.Linear, 
+73.                delay: 200, 
+74.                iterations: 1, 
+75.                playMode: PlayMode.Normal, 
+76.                onFinish: () => {
+77.                  console.info('play end')
+78.                }
+79.              }, () => {
+80.                this.indicatorHeight = 10
+81.              })
+82.            }
+83.            this.heightFlag = !this.heightFlag
+84.          })
+85.        Button("下划线宽度变化").width('100%').margin({ bottom: '12vp' })
+86.          .onClick((event?: ClickEvent) => {
+
+88.            if (this.widthFlag) {
+89.              animateTo({
+90.                duration: 1000, 
+91.                curve: Curve.Linear, 
+92.                delay: 200, 
+93.                iterations: 1, 
+94.                playMode: PlayMode.Normal, 
+95.                onFinish: () => {
+96.                  console.info('play end')
+97.                }
+98.              }, () => {
+99.                this.indicatorWidth = 30
+100.              })
+101.            } else {
+102.              animateTo({
+103.                duration: 1000, 
+104.                curve: Curve.Linear, 
+105.                delay: 200, 
+106.                iterations: 1, 
+107.                playMode: PlayMode.Normal, 
+108.                onFinish: () => {
+109.                  console.info('play end')
+110.                }
+111.              }, () => {
+112.                this.indicatorWidth = 50
+113.              })
+114.            }
+115.            this.widthFlag = !this.widthFlag
+116.          })
+117.        Button("下划线圆角半径变化").width('100%').margin({ bottom: '12vp' })
+118.          .onClick((event?: ClickEvent) => {
+
+120.            if (this.borderFlag) {
+121.              animateTo({
+122.                duration: 1000, 
+123.                curve: Curve.Linear, 
+124.                delay: 200, 
+125.                iterations: 1, 
+126.                playMode: PlayMode.Normal, 
+127.                onFinish: () => {
+128.                  console.info('play end')
+129.                }
+130.              }, () => {
+131.                this.indicatorBorderRadius = 0
+132.              })
+133.            } else {
+134.              animateTo({
+135.                duration: 1000, 
+136.                curve: Curve.Linear, 
+137.                delay: 200, 
+138.                iterations: 1, 
+139.                playMode: PlayMode.Normal, 
+140.                onFinish: () => {
+141.                  console.info('play end')
+142.                }
+143.              }, () => {
+144.                this.indicatorBorderRadius = 5
+145.              })
+146.            }
+147.            this.borderFlag = !this.borderFlag
+148.          })
+149.        Button("下划线间距变化").width('100%').margin({ bottom: '12vp' })
+150.          .onClick((event?: ClickEvent) => {
+
+152.            if (this.spaceFlag) {
+153.              animateTo({
+154.                duration: 1000, 
+155.                curve: Curve.Linear, 
+156.                delay: 200, 
+157.                iterations: 1, 
+158.                playMode: PlayMode.Normal, 
+159.                onFinish: () => {
+160.                  console.info('play end')
+161.                }
+162.              }, () => {
+163.                this.indicatorSpace = 20
+164.              })
+165.            } else {
+166.              animateTo({
+167.                duration: 1000, 
+168.                curve: Curve.Linear, 
+169.                delay: 200, 
+170.                iterations: 1, 
+171.                playMode: PlayMode.Normal, 
+172.                onFinish: () => {
+173.                  console.info('play end')
+174.                }
+175.              }, () => {
+176.                this.indicatorSpace = 10
+177.              })
+178.            }
+179.            this.spaceFlag = !this.spaceFlag
+180.          })
+181.        Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
+182.          TabContent() {
+183.            Column().width('100%').height('100%').backgroundColor(Color.Pink).borderRadius('12vp')
+184.          }.tabBar(SubTabBarStyle.of('pink')
+185.            .indicator({
+186.              color: this.indicatorColor, 
+187.              height: this.indicatorHeight, 
+188.              width: this.indicatorWidth, 
+189.              borderRadius: this.indicatorBorderRadius, 
+190.              marginTop: this.indicatorSpace 
+191.            })
+192.            .selectedMode(this.selectedMode)
+193.            .board({ borderRadius: this.subTabBorderRadius })
+194.            .labelStyle({})
+195.          )
+
+197.          TabContent() {
+198.            Column().width('100%').height('100%').backgroundColor(Color.Yellow).borderRadius('12vp')
+199.          }.tabBar('yellow')
+
+201.          TabContent() {
+202.            Column().width('100%').height('100%').backgroundColor(Color.Blue).borderRadius('12vp')
+203.          }.tabBar('blue')
+
+205.          TabContent() {
+206.            Column().width('100%').height('100%').backgroundColor(Color.Green).borderRadius('12vp')
+207.          }.tabBar('green')
+
+209.          TabContent() {
+210.            Column().width('100%').height('100%').backgroundColor(Color.Gray).borderRadius('12vp')
+211.          }.tabBar('gray')
+
+213.          TabContent() {
+214.            Column().width('100%').height('100%').backgroundColor(Color.Orange).borderRadius('12vp')
+215.          }.tabBar('orange')
+216.        }
+217.        .vertical(false)
+218.        .scrollable(true)
+219.        .barMode(BarMode.Scrollable)
+220.        .barHeight(140)
+221.        .animationDuration(400)
+222.        .onChange((index: number) => {
+223.          console.info(index.toString())
+224.        })
+225.        .backgroundColor(0xF5F5F5)
+226.        .height(320)
+227.      }.width('100%').height(250).padding({ top: '24vp', left: '24vp', right: '24vp' })
+228.    }
+229.  }
+
+![Image 4](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151306.22809062889538143768492676688327:50001231000000:2800:F6F62331281BF2661A62CA53AB2745BC14F335904C8E053AB7C9CACA767BC57B.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例5
+
+2.  @Entry
+3.  @Component
+4.  struct TabsTextOverflow {
+5.    @State message: string = 'Hello World'
+6.    private controller: TabsController = new TabsController()
+7.    @State subTabOverflowOpaque: boolean = true;
+
+9.    build() {
+10.      Column() {
+11.        Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
+12.          TabContent() {
+13.            Column() {
+14.              Text('单行省略号截断').fontSize(30).fontColor(0xFF000000)
+15.            }.width('100%').height('100%').backgroundColor(Color.Pink)
+16.          }
+17.          .tabBar(SubTabBarStyle.of('开始【单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断】结束')
+18.            .labelStyle({
+19.              overflow: TextOverflow.Ellipsis,
+20.              maxLines: 1,
+21.              minFontSize: 10,
+22.              heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX\_LINES\_FIRST,
+23.              font: { size: 20 }
+24.            }))
+
+26.          TabContent() {
+27.            Column() {
+28.              Text('先缩小再截断').fontSize(30).fontColor(0xFF000000)
+29.            }.width('100%').height('100%').backgroundColor(Color.Pink)
+30.          }
+31.          .tabBar(SubTabBarStyle.of('开始【先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断】结束')
+32.            .labelStyle({
+33.              overflow: TextOverflow.Clip,
+34.              maxLines: 1,
+35.              minFontSize: 15,
+36.              maxFontSize: 15,
+37.              heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN\_FONT\_SIZE\_FIRST,
+38.              font: { size: 20 }
+39.            }))
+
+41.          TabContent() {
+42.            Column() {
+43.              Text('先缩小再换行再截断').fontSize(30).fontColor(0xFF000000)
+44.            }.width('100%').height('100%').backgroundColor(Color.Pink)
+45.          }
+46.          .tabBar(SubTabBarStyle.of('开始【先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断】结束')
+47.            .labelStyle({
+48.              overflow: TextOverflow.Clip,
+49.              maxLines: 2,
+50.              minFontSize: 15,
+51.              maxFontSize: 15,
+52.              heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN\_FONT\_SIZE\_FIRST,
+53.              font: { size: 20 }
+54.            }))
+
+56.          TabContent() {
+57.            Column() {
+58.              Text('换行').fontSize(30).fontColor(0xFF000000)
+59.            }
+60.            .width('100%').height('100%').backgroundColor(Color.Pink)
+61.          }.tabBar(SubTabBarStyle.of('开始【换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行】结束')
+62.            .labelStyle({
+63.              overflow: TextOverflow.Clip,
+64.              maxLines: 10,
+65.              minFontSize: 10,
+66.              heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX\_LINES\_FIRST,
+67.              font: { size: 20 }
+68.            }))
+69.        }
+70.        .vertical(true).scrollable(true)
+71.        .barMode(BarMode.Fixed)
+72.        .barHeight(720)
+73.        .barWidth(200).animationDuration(400)
+74.        .onChange((index: number) => {
+75.          console.info(index.toString())
+76.        })
+77.        .height('100%').width('100%')
+78.      }
+79.      .height('100%')
+80.    }
+81.  }
+
+![Image 5](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151306.81953153727829442720156521932272:50001231000000:2800:CCBA7D57CB1E4CC709DDB101B8FC6A4CCD3CE9A237641229C717FCC5C38BD7D7.png?needInitFileName=true?needInitFileName=true)
+
+### 示例6
+
+2.  @Entry
+3.  @Component
+4.  struct TabContentExample6 {
+5.    private controller: TabsController = new TabsController()
+6.    @State text: string = "2"
+7.    @State tabPadding: number = 0;
+8.    @State symmetricExtensible: boolean = false;
+9.    @State layoutMode: LayoutMode = LayoutMode.VERTICAL;
+10.    @State verticalAlign: VerticalAlign = VerticalAlign.Center;
+
+12.    build() {
+13.      Column() {
+14.        Row() {
+15.          Button("padding+10 " + this.tabPadding)
+16.            .width('47%')
+17.            .height(50)
+18.            .margin({ top: 5 })
+19.            .onClick((event?: ClickEvent) => {
+20.              this.tabPadding += 10
+21.            })
+22.            .margin({ right: '6%', bottom: '12vp' })
+23.          Button("padding-10 " + this.tabPadding)
+24.            .width('47%')
+25.            .height(50)
+26.            .margin({ top: 5 })
+27.            .onClick((event?: ClickEvent) => {
+28.              this.tabPadding -= 10
+29.            })
+30.            .margin({ bottom: '12vp' })
+31.        }
+
+33.        Row() {
+34.          Button("文本增加 ")
+35.            .width('47%')
+36.            .height(50)
+37.            .margin({ top: 5 })
+38.            .onClick((event?: ClickEvent) => {
+39.              this.text += '文本增加'
+40.            })
+41.            .margin({ right: '6%', bottom: '12vp' })
+42.          Button("文本重置")
+43.            .width('47%')
+44.            .height(50)
+45.            .margin({ top: 5 })
+46.            .onClick((event?: ClickEvent) => {
+47.              this.text = "2"
+48.            })
+49.            .margin({ bottom: '12vp' })
+50.        }
+
+52.        Row() {
+53.          Button("symmetricExtensible改变 " + this.symmetricExtensible)
+54.            .width('100%')
+55.            .height(50)
+56.            .margin({ top: 5 })
+57.            .onClick((event?: ClickEvent) => {
+58.              this.symmetricExtensible = !this.symmetricExtensible
+59.            })
+60.            .margin({ bottom: '12vp' })
+61.        }
+
+63.        Row() {
+64.          Button("layoutMode垂直 ")
+65.            .width('47%')
+66.            .height(50)
+67.            .margin({ top: 5 })
+68.            .onClick((event?: ClickEvent) => {
+69.              this.layoutMode = LayoutMode.VERTICAL;
+70.            })
+71.            .margin({ right: '6%', bottom: '12vp' })
+72.          Button("layoutMode水平 ")
+73.            .width('47%')
+74.            .height(50)
+75.            .margin({ top: 5 })
+76.            .onClick((event?: ClickEvent) => {
+77.              this.layoutMode = LayoutMode.HORIZONTAL;
+78.            })
+79.            .margin({ bottom: '12vp' })
+80.        }
+
+82.        Row() {
+83.          Button("verticalAlign朝上")
+84.            .width('100%')
+85.            .height(50)
+86.            .margin({ top: 5 })
+87.            .onClick((event?: ClickEvent) => {
+88.              this.verticalAlign = VerticalAlign.Top;
+89.            })
+90.            .margin({ bottom: '12vp' })
+91.        }
+
+93.        Row() {
+94.          Button("verticalAlign居中")
+95.            .width('100%')
+96.            .height(50)
+97.            .margin({ top: 5 })
+98.            .onClick((event?: ClickEvent) => {
+99.              this.verticalAlign = VerticalAlign.Center;
+100.            })
+101.            .margin({ bottom: '12vp' })
+102.        }
+
+104.        Row() {
+105.          Button("verticalAlign朝下")
+106.            .width('100%')
+107.            .height(50)
+108.            .margin({ top: 5 })
+109.            .onClick((event?: ClickEvent) => {
+110.              this.verticalAlign = VerticalAlign.Bottom;
+111.            })
+112.            .margin({ bottom: '12vp' })
+113.        }
+
+116.        Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
+117.          TabContent() {
+118.            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+119.          }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos\_app\_icon"), "1"))
+
+121.          TabContent() {
+122.            Column().width('100%').height('100%').backgroundColor(Color.Green)
+123.          }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos\_app\_icon"), this.text)
+124.            .padding(this.tabPadding)
+125.            .verticalAlign(this.verticalAlign)
+126.            .layoutMode(this.layoutMode)
+127.            .symmetricExtensible(this.symmetricExtensible))
+
+129.          TabContent() {
+130.            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+131.          }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos\_app\_icon"), "3"))
+132.        }
+133.        .animationDuration(300)
+134.        .height('60%')
+135.        .backgroundColor(0xf1f3f5)
+136.        .barMode(BarMode.Fixed)
+137.      }
+138.      .width('100%')
+139.      .height(500)
+140.      .margin({ top: 5 })
+141.      .padding('24vp')
+142.    }
+143.  }
+
+![Image 6](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151306.98204448903439143251068691981997:50001231000000:2800:5E75CF0B027666D683B4AE8A9E3C53EB9E77809AD8BA109AAD49482C2DE4CBD2.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例7
+
+本示例通过labelStyle中的unselectedColor和selectedColor改变底部页签以及子页签的文本颜色。
+
+通过iconStyle中的unselectedColor和selectedColor改变底部页签的图标颜色。
+
+2.  @Entry
+3.  @Component
+4.  struct TabBarStyleExample {
+5.    build() {
+6.      Column({ space: 5 }) {
+7.        Text("子页签样式")
+8.        Column() {
+9.          Tabs({ barPosition: BarPosition.Start }) {
+10.            TabContent() {
+11.              Column().width('100%').height('100%').backgroundColor(Color.Pink)
+12.            }.tabBar(new SubTabBarStyle('Pink')
+13.              .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green }))
+
+15.            TabContent() {
+16.              Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+17.            }.tabBar(new SubTabBarStyle('Yellow')
+18.              .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green }))
+
+20.            TabContent() {
+21.              Column().width('100%').height('100%').backgroundColor(Color.Blue)
+22.            }.tabBar(new SubTabBarStyle('Blue')
+23.              .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green }))
+
+25.            TabContent() {
+26.              Column().width('100%').height('100%').backgroundColor(Color.Green)
+27.            }.tabBar(new SubTabBarStyle('Green')
+28.              .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+29.            )
+30.          }
+31.          .vertical(false)
+32.          .scrollable(true)
+33.          .barMode(BarMode.Fixed)
+34.          .onChange((index: number) => {
+35.            console.info(index.toString())
+36.          })
+37.          .width('100%')
+38.          .backgroundColor(0xF1F3F5)
+39.        }.width('100%').height(200)
+
+41.        Text("底部页签样式")
+42.        Column() {
+43.          Tabs({ barPosition: BarPosition.End }) {
+44.            TabContent() {
+45.              Column().width('100%').height('100%').backgroundColor(Color.Pink)
+46.            }
+47.            .tabBar(new BottomTabBarStyle('/common/public\_icon\_off.svg', 'pink')
+48.              .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+49.              .iconStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+50.            )
+
+52.            TabContent() {
+53.              Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+54.            }.tabBar(new BottomTabBarStyle('/common/public\_icon\_off.svg', 'Yellow')
+55.              .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+56.              .iconStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+57.            )
+
+59.            TabContent() {
+60.              Column().width('100%').height('100%').backgroundColor(Color.Blue)
+61.            }.tabBar(new BottomTabBarStyle('/common/public\_icon\_off.svg', 'Blue')
+62.              .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+63.              .iconStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+64.            )
+
+66.            TabContent() {
+67.              Column().width('100%').height('100%').backgroundColor(Color.Green)
+68.            }.tabBar(new BottomTabBarStyle('/common/public\_icon\_off.svg', 'Green')
+69.              .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+70.              .iconStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+71.            )
+72.          }
+73.          .vertical(false)
+74.          .scrollable(true)
+75.          .barMode(BarMode.Fixed)
+76.          .onChange((index: number) => {
+77.            console.info(index.toString())
+78.          })
+79.          .width('100%')
+80.          .backgroundColor(0xF1F3F5)
+81.        }.width('100%').height(200)
+82.      }
+83.    }
+84.  }
+
+![Image 7](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151307.90396010160327714424909737940266:50001231000000:2800:F724C30800853AAA0E85D96E712062AEBB8A6B0845CB061458CB6A7E19B496A7.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例8
+
+该示例实现了通过ComponentContent设置SubTabBarStyle。
+
+2.  import { ComponentContent, UIContext } from "@kit.ArkUI"
+
+4.  class Params {
+5.    text: string = ""
+
+7.    constructor(text: string) {
+8.      this.text = text;
+9.    }
+10.  }
+
+12.  @Builder
+13.  function buildText(params: Params) {
+14.    Column() {
+15.      Text(params.text)
+16.        .fontSize(20)
+17.        .fontWeight(FontWeight.Bold)
+18.        .margin(20)
+19.    }
+20.  }
+
+22.  @Entry
+23.  @Component
+24.  struct Index {
+25.    @State message1: string = "tabBar1"
+26.    @State message2: string = "tabBar2"
+27.    context: UIContext = this.getUIContext()
+28.    private count1 = 0;
+29.    private count2 = 0;
+30.    private controller: TabsController = new TabsController();
+31.    tabBar1: ComponentContent<Params\> = new ComponentContent<Params\>(this.context, wrapBuilder<\[Params\]>(buildText), new Params(this.message1));
+32.    tabBar2: ComponentContent<Params\> = new ComponentContent<Params\>(this.context, wrapBuilder<\[Params\]>(buildText), new Params(this.message2));
+
+34.    build() {
+35.      Row() {
+36.        Column() {
+37.          Button("更新tabBar1").width('90%').margin(20)
+38.            .onClick((event?: ClickEvent) => {
+39.              this.count1 += 1;
+40.              const message1 = "Update 1\_" + this.count1.toString();
+41.              this.tabBar1.update(new Params(message1));
+42.            })
+43.          Button("更新tabBar2").width('90%').margin(20)
+44.            .onClick((event?: ClickEvent) => {
+45.              this.count2 += 1;
+46.              const message2 = "Update 2\_" + this.count2.toString();
+47.              this.tabBar2.update(new Params(message2));
+48.            })
+49.          Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
+50.            TabContent() {
+51.              Column().width('100%').height('100%').backgroundColor(Color.Pink).borderRadius('12vp')
+52.            }.tabBar(new SubTabBarStyle(this.tabBar1))
+53.            TabContent() {
+54.              Column().width('100%').height('100%').backgroundColor(Color.Blue).borderRadius('12vp')
+55.            }.tabBar(SubTabBarStyle.of(this.tabBar2))
+56.          }
+57.          .vertical(false)
+58.          .barWidth(414)
+59.          .barHeight(96)
+60.          .width(414)
+61.          .height(414)
+62.          .backgroundColor('#F1F3F5')
+63.          .margin({ top: 20 })
+64.        }
+65.        .width('100%')
+66.        .height('100%')
+67.      }
+68.      .height('100%')
+69.    }
+70.  }
+
+![Image 8](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151307.17308778756886877789338924305410:50001231000000:2800:51DB52AC73E7A5170287DB2F0015737D402A27CEDA803AE6F30703038E2EB900.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例9
+
+该示例实现了BottomTabBarStyle图片传入Symbol。
+
+2.  import { SymbolGlyphModifier } from '@kit.ArkUI'
+
+4.  @Entry
+5.  @Component
+6.  struct Index {
+7.    @State symbolModifier1: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos\_wifi'));
+8.    @State symbolModifier2: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ellipsis\_bubble'));
+9.    @State symbolModifier3: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.dot\_video'));
+10.    @State symbolModifier4: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure'));
+11.    build() {
+12.      Column({space: 5}) {
+13.        Text("底部页签样式")
+14.        Column(){
+15.          Tabs({barPosition: BarPosition.End}) {
+16.            TabContent() {
+17.              Column().width('100%').height('100%').backgroundColor(Color.Pink)
+18.            }.tabBar(new BottomTabBarStyle({
+19.              normal: this.symbolModifier1,
+20.            }, 'Pink'))
+21.            .onWillShow(() => {
+22.              console.info("Pink will show")
+23.            })
+24.            .onWillHide(() => {
+25.              console.info("Pink will hide")
+26.            })
+
+28.            TabContent() {
+29.              Column().width('100%').height('100%').backgroundColor(Color.Orange)
+30.            }.tabBar(new BottomTabBarStyle({
+31.              normal: this.symbolModifier2,
+32.            }, 'Orange'))
+33.            .onWillShow(() => {
+34.              console.info("Orange will show")
+35.            })
+36.            .onWillHide(() => {
+37.              console.info("Orange will hide")
+38.            })
+
+40.            TabContent() {
+41.              Column().width('100%').height('100%').backgroundColor(Color.Blue)
+42.            }.tabBar(new BottomTabBarStyle({
+43.              normal: this.symbolModifier3,
+44.            }, 'Blue'))
+45.            .onWillShow(() => {
+46.              console.info("Blue will show")
+47.            })
+48.            .onWillHide(() => {
+49.              console.info("Blue will hide")
+50.            })
+
+52.            TabContent() {
+53.              Column().width('100%').height('100%').backgroundColor(Color.Green)
+54.            }.tabBar(new BottomTabBarStyle({
+55.              normal: this.symbolModifier4,
+56.            }, 'Green'))
+57.            .onWillShow(() => {
+58.              console.info("Green will show")
+59.            })
+60.            .onWillHide(() => {
+61.              console.info("Green will hide")
+62.            })
+63.          }
+64.          .vertical(false)
+65.          .scrollable(true)
+66.          .barMode(BarMode.Fixed)
+67.          .onChange((index:number)=>{
+68.            console.info(index.toString())
+69.          })
+70.          .width('100%')
+71.          .backgroundColor(0xF1F3F5)
+72.        }.width('100%').height(200)
+73.      }
+74.    }
+75.  }
+
+![Image 9](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151307.07042009502433465460989252049008:50001231000000:2800:A5BD7C32E430320BCF4D13AC57A8EAE27EF7BA0BF43DB8ED14ACDF40CC4B76A1.gif?needInitFileName=true?needInitFileName=true)

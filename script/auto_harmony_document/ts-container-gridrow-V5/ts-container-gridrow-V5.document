@@ -1,0 +1,646 @@
+Title: GridRow-容器组件-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5
+
+Markdown Content:
+GridRow-容器组件-ArkTS组件-ArkUI（方舟UI框架）-应用框架 - 华为HarmonyOS开发者
+===============
+
+简体中文
+
+*   简体中文
+*   Русский
+*   English
+*   Español (América Latina)
+*   Português (Brasil)
+*   Français (Europe)
+*   Deutsch
+*   日本語
+*   한국어
+
+[App](https://developer.huawei.com/consumer/cn/huawei-app/)
+
+[](https://developer.huawei.com/consumer/cn/)
+
+*   探索
+*   设计
+*   开发
+*   分发
+*   推广与变现
+*   生态合作
+*   支持
+
+*   更多
+
+*   [探索](https://developer.huawei.com/consumer/cn/discover/)
+    
+*   [设计](https://developer.huawei.com/consumer/cn/design/)
+    
+*   [开发](https://developer.huawei.com/consumer/cn/develop/)
+    
+*   [分发](https://developer.huawei.com/consumer/cn/distribute/)
+    
+*   更多
+    *   [推广与变现](https://developer.huawei.com/consumer/cn/promote/)
+        
+    *   [生态合作](https://developer.huawei.com/consumer/cn/cooperate/)
+        
+    *   [支持](https://developer.huawei.com/consumer/cn/support/)
+        
+
+搜索
+
+热门搜索 _换一换_
+
+*   HarmonyOS NEXT
+*   HarmonyOS应用开发
+*   仓颉
+*   DevEco Studio
+*   开发者能力认证
+*   模拟器
+*   Navigation
+*   List
+*   Web
+*   TextInput
+*   Image
+*   AppGallery Connect
+
+[文档](https://developer.huawei.com/consumer/cn/doc/)[管理中心](https://developer.huawei.com/consumer/cn/console)
+
+HarmonyOS NEXT
+
+Developer Beta3
+
+API参考
+
+*   [版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/releasenotes-baseline-V5?istab=1&catalogVersion=V5)
+*   [指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/application-dev-guide-V5?istab=1&catalogVersion=V5)
+*   [API参考](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/development-intro-api-V5?istab=1&catalogVersion=V5)
+*   [最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-develop-once-deploy-everywhere-V5?istab=1&catalogVersion=V5)
+*   [FAQ](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-development-V5?istab=1&catalogVersion=V5)
+*   [变更预告](https://developer.huawei.com/consumer/cn/doc/harmonyos-roadmap-V5/changelogs-in-31-V5?istab=1&catalogVersion=V5)
+*   更多
+
+筛选元服务API集
+
+API参考概述
+
+应用框架
+
+[Ability Kit（程序框架服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ability-api-V5)
+
+[Accessibility Kit（无障碍开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/accessibility-api-V5)
+
+[ArkData（方舟数据管理）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkdata-api-V5)
+
+[ArkTS（方舟编程语言）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkts-api-V5)
+
+[ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5)
+
+[ArkTS API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-V5)
+
+[ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5)
+
+[组件导读](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-components-summary-V5)
+
+[组件通用信息](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_2_u7ec4_u4ef6_u901a_u7528_u4fe1_u606f-V5)
+
+[基础组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_3_u57fa_u7840_u7ec4_u4ef6-V5)
+
+[容器组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_4_u5bb9_u5668_u7ec4_u4ef6-V5)
+
+[Badge](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-badge-V5)
+
+[Column](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-column-V5)
+
+[ColumnSplit](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-columnsplit-V5)
+
+[Counter](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-counter-V5)
+
+[EmbeddedComponent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-embedded-component-V5)
+
+[Flex](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-flex-V5)
+
+[FlowItem](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-flowitem-V5)
+
+[FolderStack](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-folderstack-V5)
+
+[FormLink](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-formlink-V5)
+
+[GridCol](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridcol-V5)
+
+[GridRow](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5)
+
+[Grid](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-grid-V5)
+
+[GridItem](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-griditem-V5)
+
+[Hyperlink](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-hyperlink-V5)
+
+[List](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-list-V5)
+
+[ListItem](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-listitem-V5)
+
+[ListItemGroup](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-listitemgroup-V5)
+
+[Navigator](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-navigator-V5)
+
+[Refresh](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-refresh-V5)
+
+[RelativeContainer](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-relativecontainer-V5)
+
+[Row](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-row-V5)
+
+[RowSplit](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-rowsplit-V5)
+
+[Scroll](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-scroll-V5)
+
+[SideBarContainer](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-sidebarcontainer-V5)
+
+[Stack](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-stack-V5)
+
+[Swiper](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-swiper-V5)
+
+[Tabs](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabs-V5)
+
+[TabContent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabcontent-V5)
+
+[WaterFlow](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-waterflow-V5)
+
+[WithTheme](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-with-theme-V5)
+
+[媒体组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_5_u5a92_u4f53_u7ec4_u4ef6-V5)
+
+[绘制组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_6_u7ed8_u5236_u7ec4_u4ef6-V5)
+
+[画布组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_7_u753b_u5e03_u7ec4_u4ef6-V5)
+
+[渲染组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_8_u6e32_u67d3_u7ec4_u4ef6-V5)
+
+[高级组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_9_u9ad8_u7ea7_u7ec4_u4ef6-V5)
+
+[安全控件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_10_u5b89_u5168_u63a7_u4ef6-V5)
+
+[动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_11_u52a8_u753b-V5)
+
+[全局UI方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_12_u5168_u5c40ui_u65b9_u6cd5-V5)
+
+[自定义组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_13_u81ea_u5b9a_u4e49_u7ec4_u4ef6-V5)
+
+[类型定义](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_14_u7c7b_u578b_u5b9a_u4e49-V5)
+
+[应用级变量的状态管理](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-state-management-V5)
+
+[渲染控制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_16_u6e32_u67d3_u63a7_u5236-V5)
+
+[像素单位](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-pixel-units-V5)
+
+[枚举说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5)
+
+[设置事件回调](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-uicommonevent-V5)
+
+[属性字符串](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-styled-string-V5)
+
+[已停止维护的组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/21_u5df2_u505c_u6b62_u7ef4_u62a4_u7684_u7ec4_u4ef6-V5)
+
+[已停止维护的接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/22_u5df2_u505c_u6b62_u7ef4_u62a4_u7684_u63a5_u53e3-V5)
+
+[JS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-js-comp-V5)
+
+[C API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-c-V5)
+
+[错误码](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-errcode-V5)
+
+[ArkWeb（方舟Web）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkweb-api-V5)
+
+[Background Tasks Kit（后台任务开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/background-tasks-api-V5)
+
+[Core File Kit（文件基础服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/core-file-api-V5)
+
+[Form Kit（卡片开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/form-api-V5)
+
+[IME Kit（输入法开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ime-api-V5)
+
+[IPC Kit（进程间通信服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ipc-api-V5)
+
+[Localization Kit（本地化开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/localization-api-V5)
+
+[UI Design Kit（UI设计套件）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ui-design-api-V5)
+
+系统
+
+媒体
+
+图形
+
+应用服务
+
+AI
+
+公共基础能力
+
+标准库
+
+您当前正在浏览HarmonyOS NEXT Developer Beta3版本的配套文档，该版本API能力级别为API 12 Beta3，详细版本配套关系请参考[版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/overview-db3-V5)。
+
+API参考 应用框架 [ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5) [ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5) [容器组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_4_u5bb9_u5668_u7ec4_u4ef6-V5) GridRow
+
+GridRow
+=======
+
+更新时间: 2024-08-16 07:52
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+本文导读
+
+[子组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#%E5%AD%90%E7%BB%84%E4%BB%B6)
+
+[接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#%E6%8E%A5%E5%8F%A3)
+
+[GridRowOptions对象说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#gridrowoptions%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+[GutterOption](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#gutteroption)
+
+[GridRowColumnOption](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#gridrowcolumnoption)
+
+[GridRowSizeOption](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#gridrowsizeoption)
+
+[BreakPoints](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#breakpoints)
+
+[BreakpointsReference枚举说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#breakpointsreference%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E)
+
+[GridRowDirection枚举说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#gridrowdirection%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E)
+
+[属性](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#%E5%B1%9E%E6%80%A7)
+
+[alignItems10+](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#alignitems10)
+
+[事件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#%E4%BA%8B%E4%BB%B6)
+
+[onBreakpointChange](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#onbreakpointchange)
+
+[示例](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#%E7%A4%BA%E4%BE%8B)
+
+展开章节
+
+栅格布局可以为布局提供规律性的结构，解决多尺寸多设备的动态布局问题，保证不同设备上各个模块的布局一致性。
+
+栅格容器组件，仅可以和栅格子组件([GridCol](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridcol-V5))在栅格布局场景中使用。
+
+说明
+
+该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+子组件
+---
+
+可以包含GridCol子组件。
+
+接口
+--
+
+GridRow(option?: GridRowOptions)
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| :-- | :-- | :-- | :-- |
+| option | [GridRowOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#gridrowoptions%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | 否 | 栅格布局子组件参数。 |
+
+GridRowOptions对象说明
+------------------
+
+| 参数名 | 类型 | 必填 | 说明 |
+| :-- | :-- | :-- | :-- |
+| columns | number | [GridRowColumnOption](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#gridrowcolumnoption) | 否 | 设置布局列数。
+默认值：12
+
+ |
+| gutter | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | [GutterOption](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#gutteroption) | 否 | 栅格布局间距。
+
+默认值：0
+
+ |
+| breakpoints | [BreakPoints](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#breakpoints) | 否 | 设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。
+
+默认值：
+
+{
+
+value: \["320vp", "600vp", "840vp"\],
+
+reference: BreakpointsReference.WindowSize
+
+}
+
+ |
+| direction | [GridRowDirection](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#gridrowdirection%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 栅格布局排列方向。
+
+默认值：GridRowDirection.Row
+
+ |
+
+GutterOption
+------------
+
+栅格布局间距类型，用于描述栅格子组件不同方向的间距。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| :-- | :-- | :-- | :-- |
+| x | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | [GridRowSizeOption](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#gridrowsizeoption) | 否 | 栅格子组件水平方向间距。 |
+| y | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | [GridRowSizeOption](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#gridrowsizeoption) | 否 | 栅格子组件竖直方向间距。 |
+
+GridRowColumnOption
+-------------------
+
+栅格在不同宽度设备类型下，栅格列数。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| :-- | :-- | :-- | :-- |
+| xs | number | 否 | 在栅格大小为xs的设备上，栅格容器组件的栅格列数。 |
+| sm | number | 否 | 在栅格大小为sm的设备上，栅格容器组件的栅格列数。 |
+| md | number | 否 | 在栅格大小为md的设备上，栅格容器组件的栅格列数。 |
+| lg | number | 否 | 在栅格大小为lg的设备上，栅格容器组件的栅格列数。 |
+| xl | number | 否 | 在栅格大小为xl的设备上，栅格容器组件的栅格列数。 |
+| xxl | number | 否 | 在栅格大小为xxl的设备上，栅格容器组件的栅格列数。 |
+
+**说明：**
+
+在GridRow栅格组件中，允许开发者使用breakpoints自定义修改[断点](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-layout-development-grid-layout-V5#%E6%A0%85%E6%A0%BC%E7%B3%BB%E7%BB%9F%E6%96%AD%E7%82%B9)的取值范围，最多支持xs、sm、md、lg、xl、xxl六个断点，且名称不可修改。假设传入的数组是\[n0, n1, n2, n3, n4\]，各个断点取值如下：
+
+| 断点 | 取值范围 |
+| :-- | :-- |
+| xs | \[0, n0) |
+| sm | \[n0, n1) |
+| md | \[n1, n2) |
+| lg | \[n2, n3) |
+| xl | \[n3, n4) |
+| xxl | \[n4, INF) |
+
+GridRowSizeOption
+-----------------
+
+栅格在不同宽度设备类型下，gutter的大小。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| :-- | :-- | :-- | :-- |
+| xs | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 在最小宽度类型设备上，栅格子组件的间距。 |
+| sm | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 在小宽度类型设备上，栅格子组件的间距。 |
+| md | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 在中等宽度类型设备上，栅格子组件的间距。 |
+| lg | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 在大宽度类型设备上，栅格子组件的间距。 |
+| xl | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 在特大宽度类型设备上，栅格子组件的间距。 |
+| xxl | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 在超大宽度类型设备上，栅格子组件的间距。 |
+
+BreakPoints
+-----------
+
+设置栅格容器组件的断点。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| :-- | :-- | :-- | :-- |
+| value | Array<string> | 否 | 设置断点位置的单调递增数组。
+默认值：\["320vp", "600vp", "840vp"\]
+
+ |
+| reference | [BreakpointsReference](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5#breakpointsreference%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 断点切换参照物。
+
+默认值：BreakpointsReference.WindowSize
+
+ |
+
+已复制
+
+1.    // 启用xs、sm、md共3个断点
+2.    breakpoints: {value: \["100vp", "200vp"\]}
+3.    // 启用xs、sm、md、lg共4个断点，断点范围值必须单调递增
+4.    breakpoints: {value: \["320vp", "600vp", "840vp"\]}
+5.    // 启用xs、sm、md、lg、xl共5个断点，断点范围数量不可超过断点可取值数量-1
+6.    breakpoints: {value: \["320vp", "600vp", "840vp", "1080vp"\]}
+
+BreakpointsReference枚举说明
+------------------------
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 描述 |
+| :-- | :-- |
+| WindowSize | 以窗口为参照。 |
+| ComponentSize | 以容器为参照。 |
+
+GridRowDirection枚举说明
+--------------------
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 描述 |
+| :-- | :-- |
+| Row | 栅格元素按照行方向排列。 |
+| RowReverse | 栅格元素按照逆序行方向排列。 |
+
+**说明：**
+
+*   栅格元素仅支持Row/RowReverse排列，不支持column/ColumnReverse方向排列。
+*   栅格子组件仅能通过span、offset计算子组件位置与大小。多个子组件span超过规定列数时自动换行。
+*   单个元素span大小超过最大列数时后台默认span为最大column数。
+*   新一行的Offset加上子组件的span超过总列数时，将下一个子组件在新的一行放置。
+*   例：Item1: GridCol({ span: 6})， Item2: GridCol({ span: 8, offset:11})
+
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
+| :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+| $\\circ$ | $\\circ$ | $\\circ$ | $\\circ$ | $\\circ$ | $\\circ$ | \- | \- | \- | \- | \- | \- |
+| \- | \- | \- | \- | \- |  |  |  |  |  |  |  |
+| $\\circ$ | $\\circ$ | $\\circ$ | $\\circ$ | $\\circ$ | $\\circ$ | $\\circ$ | $\\circ$ |  |  |  |  |
+
+属性
+--
+
+除支持[通用属性](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-size-V5)外，还支持以下属性：
+
+### alignItems10+
+
+alignItems(value: ItemAlign)
+
+设置GridRow中的GridCol垂直主轴方向对齐方式。GridCol本身也可通过alignSelf([ItemAlign](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#itemalign))设置自身对齐方式。当上述两种对齐方式都设置时，以GridCol自身设置为准。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| :-- | :-- | :-- | :-- |
+| value | [ItemAlign](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#itemalign) | 是 | GridRow中的GridCol垂直主轴方向对齐方式。
+默认值：ItemAlign.Start
+
+**说明**：
+
+ItemAlign支持的枚举：ItemAlign.Start、ItemAlign.Center、ItemAlign.End、ItemAlign.Stretch。
+
+ |
+
+事件
+--
+
+### onBreakpointChange
+
+onBreakpointChange(callback: (breakpoints: string) => void)
+
+断点发生变化时触发回调。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+| :-- | :-- | :-- | :-- |
+| breakpoints | string | 否 | 取值为"xs"、"sm"、"md"、"lg"、"xl"、"xxl"。 |
+
+示例
+--
+
+已复制
+
+1.  // xxx.ets
+2.  @Entry
+3.  @Component
+4.  struct GridRowExample {
+5.    @State bgColors: Color\[\] = \[Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown\]
+6.    @State currentBp: string = 'unknown'
+
+8.    build() {
+9.      Column() {
+10.        GridRow({
+11.          columns: 5,
+12.          gutter: { x: 5, y: 10 },
+13.          breakpoints: { value: \["400vp", "600vp", "800vp"\],
+14.            reference: BreakpointsReference.WindowSize },
+15.          direction: GridRowDirection.Row
+16.        }) {
+17.          ForEach(this.bgColors, (color: Color) => {
+18.            GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 }, offset: 0, order: 0 }) {
+19.              Row().width("100%").height("20vp")
+20.            }.borderColor(color).borderWidth(2)
+21.          })
+22.        }.width("100%").height("100%")
+23.        .onBreakpointChange((breakpoint) => {
+24.          this.currentBp = breakpoint
+25.        })
+26.      }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
+27.      .border({ color: '#880606', width: 2 })
+28.    }
+29.  }
+
+![Image 1](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151254.64194753404382923109299724894839:50001231000000:2800:C7F05E369E8864BFC1C2DCC8C21294C3FD12530DE4EBA441632E4CCC8D827521.png?needInitFileName=true?needInitFileName=true)
+
+[GridCol](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridcol-V5 "GridCol")
+
+[Grid](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-grid-V5 "Grid")
+
+**以上内容对您是否有帮助？**
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+意见反馈
+
+更多帮助请到“[社区论坛](https://developer.huawei.com/consumer/cn/forum/)”，如需要其他帮助，请通过“[智能客服](https://developer.huawei.com/consumer/cn/customerService/#/bot-dev-top/faq-top/faq-talk-top)”提问。
+
+简体中文
+
+*   ![Image 2](https://developer.huawei.com/images/foot/icon-xinlang-normal.png)
+*   ![Image 3](https://developer.huawei.com/images/home/Bi-hover.png)
+*   ![Image 4](https://developer.huawei.com/images/foot/icon-weixin-normal.png)
+    
+    ![Image 5](https://developer.huawei.com/consumer/cn/doc/assets/images/head/hua_wei_kai_fa_zhe_lian_meng_fu_wu_wei_xin_er_wei_ma_fu_ben_0.jpg)
+    
+    微信公众号
+    
+*   ![Image 6](https://developer.huawei.com/images/foot/icon-app-normal.png)
+    
+    ![Image 7](https://developer.huawei.com/consumer/cn/doc/assets/images/head/APPerweima.png)
+    
+    下载APP
+    
+*   ![Image 8](https://developer.huawei.com/images/foot/icon-xinxi-normal.png)
+*   ![Image 9](https://developer.huawei.com/images/foot/ic_blog_hover.svg)
+
+华为开发者联盟 版权所有 ©2023-2024
+
+[使用条款](https://developer.huawei.com/consumer/cn/devservice/use)
+
+[关于华为开发者联盟与隐私的声明](https://developer.huawei.com/consumer/cn/devservice/term)
+
+[隐私政策](https://consumer.huawei.com/cn/legal/privacy-policy/)
+
+[cookies](https://consumer.huawei.com/cn/legal/cookie-policy/)
+
+[开源软件声明](https://developer.huawei.com/consumer/cn/opensource/)
+
+在 API参考 中进行搜索
+
+只在 应用框架 中搜索只搜索章节标题
+
+请输入您想要搜索的关键词
+
+*   智能客服
+    
+    您的每一次的提问，都能匹配最合适的答案
+    
+
+*   合作咨询
+    
+    我们的专家服务团队将竭诚为您提供专业的合作咨询服务
+    
+
+*   解决方案
+    
+    精准高效的一站式服务支持，助力开发者商业成功
+    
+
+*   快速入门
+    
+    面向开发者提供快速入门指南，轻松找到你想要的各类资源
+    
+
+文档内容搜索功能移到这里了
+
+好的，知道了

@@ -1,0 +1,88 @@
+{
+    "description": "矩形绘制组件。",
+    "interfaces": [
+        {
+            "description": "Rect(value?: {width?: string | number, height?: string | number, radius?: string | number | Array<string | number>} | {width?: string | number, height?: string | number, radiusWidth?: string | number, radiusHeight?: string | number})",
+            "params": {
+                "width": {
+                    "type": ["string", "number"],
+                    "description": "宽度，异常值按照默认值处理。",
+                    "default": "0"
+                },
+                "height": {
+                    "type": ["string", "number"],
+                    "description": "高度，异常值按照默认值处理。",
+                    "default": "0"
+                },
+                "radius": {
+                    "type": ["string", "number", "Array<string | number>"],
+                    "description": "圆角半径，支持分别设置四个角的圆角度数，异常值按照默认值处理。",
+                    "default": "0"
+                },
+                "radiusWidth": {
+                    "type": ["string", "number"],
+                    "description": "圆角宽度，异常值按照默认值处理。",
+                    "default": "0"
+                },
+                "radiusHeight": {
+                    "type": ["string", "number"],
+                    "description": "圆角高度，异常值按照默认值处理。",
+                    "default": "0"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "width": {
+            "description": "宽度。",
+            "params": {
+                "value": {
+                    "type": ["string", "number"],
+                    "description": "宽度值。",
+                    "default": "0"
+                }
+            }
+        },
+        "height": {
+            "description": "高度。",
+            "params": {
+                "value": {
+                    "type": ["string", "number"],
+                    "description": "高度值。",
+                    "default": "0"
+                }
+            }
+        },
+        "radius": {
+            "description": "圆角半径，支持分别设置四个角的圆角度数。",
+            "params": {
+                "value": {
+                    "type": ["string", "number", "Array<string | number>"],
+                    "description": "圆角半径值。",
+                    "default": "0"
+                }
+            }
+        },
+        "radiusWidth": {
+            "description": "圆角宽度。",
+            "params": {
+                "value": {
+                    "type": ["string", "number"],
+                    "description": "圆角宽度值。",
+                    "default": "0"
+                }
+            }
+        },
+        "radiusHeight": {
+            "description": "圆角高度。",
+            "params": {
+                "value": {
+                    "type": ["string", "number"],
+                    "description": "圆角高度值。",
+                    "default": "0"
+                }
+            }
+        }
+    },
+    "events": {}
+}

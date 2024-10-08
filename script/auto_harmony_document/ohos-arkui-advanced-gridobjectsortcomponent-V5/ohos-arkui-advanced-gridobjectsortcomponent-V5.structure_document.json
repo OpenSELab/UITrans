@@ -1,0 +1,128 @@
+{
+    "description": "网格对象的编辑排序组件，用于网格对象的编辑、拖动排序、新增和删除。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Array<GridObjectSortComponentItem>, onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => void, onCancel: () => void })",
+            "params": {
+                "options": {
+                    "type": "GridObjectSortComponentOptions",
+                    "required": true,
+                    "description": "组件配置信息。"
+                },
+                "dataList": {
+                    "type": "Array<GridObjectSortComponentItem>",
+                    "required": true,
+                    "description": "传入的数据，最大长度为50，数据长度超过50，只会取前50的数据。"
+                },
+                "onSave": {
+                    "type": "(select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => void",
+                    "required": true,
+                    "description": "保存编辑排序的回调函数，返回编辑后的数据。"
+                },
+                "onCancel": {
+                    "type": "() => void",
+                    "required": true,
+                    "description": "取消保存数据的回调。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "options": {
+            "description": "组件配置信息。",
+            "params": {
+                "type": {
+                    "type": "GridObjectSortComponentType",
+                    "required": false,
+                    "description": "组件展示形态：文字|图片+文字。",
+                    "default": "GridObjectSortComponentType.text"
+                },
+                "imageSize": {
+                    "type": ["number", "Resource"],
+                    "required": false,
+                    "description": "图片的尺寸。",
+                    "default": 56
+                },
+                "normalTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "未编辑状态下显示的标题。",
+                    "default": "频道"
+                },
+                "showAreaTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "展示区域标题，第一个子标题。",
+                    "default": "长按拖动排序"
+                },
+                "addAreaTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "添加区域标题，第二个子标题。",
+                    "default": "点击添加"
+                },
+                "editTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "编辑状态下头部标题显示。",
+                    "default": "编辑"
+                }
+            }
+        },
+        "dataList": {
+            "description": "传入的数据，最大长度为50，数据长度超过50，只会取前50的数据。",
+            "params": {
+                "id": {
+                    "type": ["string", "number"],
+                    "required": true,
+                    "description": "数据id序号，不可重复。"
+                },
+                "text": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "显示文本信息。"
+                },
+                "selected": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否已经被添加，添加：true，未添加：false。"
+                },
+                "url": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址。"
+                },
+                "order": {
+                    "type": "number",
+                    "required": true,
+                    "description": "顺序序号。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onSave": {
+            "description": "保存编辑排序的回调函数，返回编辑后的数据。",
+            "params": {
+                "select": {
+                    "type": "Array<GridObjectSortComponentItem>",
+                    "required": true,
+                    "description": "编辑后的已选择数据。"
+                },
+                "unselect": {
+                    "type": "Array<GridObjectSortComponentItem>",
+                    "required": true,
+                    "description": "编辑后的未选择数据。"
+                }
+            }
+        },
+        "onCancel": {
+            "description": "取消保存数据的回调。",
+            "params": {}
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

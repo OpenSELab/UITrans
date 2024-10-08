@@ -1,0 +1,75 @@
+{
+    "description": "矩阵对象，可以对矩阵进行缩放、旋转、平移等变换。",
+    "details": "从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Matrix2D(unit?: LengthMetricsUnit)",
+            "params": {
+                "unit": {
+                    "type": "LengthMetricsUnit",
+                    "description": "矩阵的度量单位。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "scaleX": {
+            "description": "水平缩放比例系数。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "水平缩放比例系数。"
+                }
+            }
+        },
+        "scaleY": {
+            "description": "垂直缩放比例系数。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "垂直缩放比例系数。"
+                }
+            }
+        },
+        "rotateX": {
+            "description": "水平旋转角度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "水平旋转角度。"
+                }
+            }
+        },
+        "rotateY": {
+            "description": "垂直旋转角度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "垂直旋转角度。"
+                }
+            }
+        },
+        "translateX": {
+            "description": "水平平移距离。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "水平平移距离。"
+                }
+            }
+        },
+        "translateY": {
+            "description": "垂直平移距离。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "垂直平移距离。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [],
+    "is_common_attrs": true
+}

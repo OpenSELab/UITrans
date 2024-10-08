@@ -1,0 +1,89 @@
+{
+    "description": "显示图标小符号的组件。",
+    "details": "该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "SymbolGlyph(value?: Resource)",
+            "params": {
+                "value": {
+                    "type": "Resource",
+                    "required": false,
+                    "description": "SymbolGlyph组件的资源名,如 $r('sys.symbol.ohos_wifi')。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "fontColor": {
+            "description": "设置SymbolGlyph组件颜色。",
+            "params": {
+                "value": {
+                    "type": "Array<ResourceColor>",
+                    "required": true,
+                    "description": "SymbolGlyph组件颜色。"
+                }
+            }
+        },
+        "fontSize": {
+            "description": "设置SymbolGlyph组件大小。",
+            "params": {
+                "value": {
+                    "type": ["number", "string", "Resource"],
+                    "required": true,
+                    "description": "SymbolGlyph组件大小。"
+                }
+            }
+        },
+        "fontWeight": {
+            "description": "设置SymbolGlyph组件粗细。",
+            "params": {
+                "value": {
+                    "type": ["number", "string", "FontWeight"],
+                    "required": true,
+                    "description": "SymbolGlyph组件粗细。",
+                    "default": "FontWeight.Normal"
+                }
+            }
+        },
+        "renderingStrategy": {
+            "description": "设置SymbolGlyph组件渲染策略。",
+            "params": {
+                "value": {
+                    "type": "SymbolRenderingStrategy",
+                    "required": true,
+                    "description": "SymbolGlyph组件渲染策略。"
+                }
+            }
+        },
+        "effectStrategy": {
+            "description": "设置SymbolGlyph组件动效策略。",
+            "params": {
+                "value": {
+                    "type": "SymbolEffectStrategy",
+                    "required": true,
+                    "description": "SymbolGlyph组件动效策略。"
+                }
+            }
+        },
+        "symbolEffect": {
+            "description": "设置SymbolGlyph组件动效策略及播放状态。",
+            "params": {
+                "symbolEffect": {
+                    "type": "SymbolEffect",
+                    "required": true,
+                    "description": "SymbolGlyph组件动效策略。"
+                },
+                "isActive": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "SymbolGlyph组件动效播放状态。",
+                    "default": false
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

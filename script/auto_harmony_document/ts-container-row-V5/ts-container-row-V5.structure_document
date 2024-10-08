@@ -1,0 +1,44 @@
+{
+    "description": "沿水平方向布局容器。",
+    "interfaces": [
+        {
+            "description": "Row(value?:{space?: number | string })",
+            "params": {
+                "space": {
+                    "type": ["number", "string"],
+                    "description": "横向布局元素间距。",
+                    "default": 0
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "alignItems": {
+            "description": "设置子组件在垂直方向上的对齐格式。",
+            "params": {
+                "value": {
+                    "type": "VerticalAlign",
+                    "required": true,
+                    "description": "子组件在垂直方向上的对齐格式。",
+                    "default": "VerticalAlign.Center"
+                }
+            }
+        },
+        "justifyContent8+": {
+            "description": "设置子组件在水平方向上的对齐格式。",
+            "params": {
+                "value": {
+                    "type": "FlexAlign",
+                    "required": true,
+                    "description": "子组件在水平方向上的对齐格式。",
+                    "default": "FlexAlign.Start"
+                }
+            }
+        }
+    },
+    "events": {
+        "通用事件": {
+            "description": "支持通用事件。"
+        }
+    }
+}

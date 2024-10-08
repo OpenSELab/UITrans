@@ -1,0 +1,567 @@
+Title: Checkbox-按钮与选择-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-checkbox-V5
+
+Markdown Content:
+提供多选框组件，通常用于某选项的打开或关闭。
+
+说明
+
+API version 11开始，Checkbox默认样式由圆角方形变为圆形。
+
+该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+接口
+--
+
+Checkbox(options?: CheckboxOptions)
+
+多选框组件。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+CheckboxOptions对象说明
+-------------------
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+name
+
+string
+
+否
+
+用于指定多选框名称。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+group
+
+string
+
+否
+
+用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。
+
+**说明：**
+
+未配合使用[CheckboxGroup](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-checkboxgroup-V5)组件时，此值无用。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+indicatorBuilder12+
+
+[CustomBuilder](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#custombuilder8)
+
+否
+
+配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。indicatorBuilder设置为undefined/null时，默认为indicatorBuilder未设置状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+### select
+
+select(value: boolean)
+
+设置多选框是否选中。
+
+从API version 10开始，该属性支持[$$](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-two-way-sync-V5)双向绑定变量。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+多选框是否选中。
+
+默认值：false
+
+### selectedColor
+
+selectedColor(value: ResourceColor)
+
+设置多选框选中状态颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+是
+
+多选框选中状态颜色。
+
+默认值：$r('sys.color.ohos\_id\_color\_text\_primary\_activated')。
+
+异常值按照默认值处理。
+
+### unselectedColor10+
+
+unselectedColor(value: ResourceColor)
+
+设置多选框非选中状态边框颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+是
+
+多选框非选中状态边框颜色。
+
+默认值：$r('sys.color.ohos\_id\_color\_switch\_outline\_off')。
+
+### mark10+
+
+mark(value: MarkStyle)
+
+设置多选框内部图标样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[MarkStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#markstyle10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+是
+
+多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。
+
+默认值：{
+
+strokeColor : $r('sys.color.ohos\_id\_color\_foreground\_contrary'),
+
+strokeWidth: $r('sys.float.ohos\_id\_checkbox\_stroke\_width'),
+
+size: '20vp'
+
+}
+
+### shape11+
+
+shape(value: CheckBoxShape)
+
+设置CheckBox组件形状, 包括圆形和圆角方形。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[CheckBoxShape](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-checkbox-V5#checkboxshape11%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E)
+
+是
+
+CheckBox组件形状, 包括圆形和圆角方形。
+
+默认值：CheckBoxShape.CIRCLE
+
+### contentModifier12+
+
+contentModifier(modifier: ContentModifier<CheckBoxConfiguration\>)
+
+定制CheckBox内容区的方法。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### onChange
+
+onChange(callback: (value: boolean) =\> void)
+
+当选中状态发生变化时，触发该回调。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+返回true时，表示已选中。返回false时，表示未选中。
+
+CheckBoxShape11+枚举类型说明
+----------------------
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+值
+
+说明
+
+CIRCLE
+
+0
+
+圆形
+
+ROUNDED\_SQUARE
+
+1
+
+圆角方形
+
+CheckBoxConfiguration12+对象说明
+----------------------------
+
+开发者需要自定义class实现ContentModifier接口。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+只读
+
+可选
+
+说明
+
+name
+
+string
+
+否
+
+否
+
+当前多选框名称。
+
+selected
+
+boolean
+
+否
+
+否
+
+指示多选框是否被选中。
+
+如果select属性没有设置默认值是false。
+
+如果设置select属性，此值与设置select属性的值相同。
+
+triggerChange
+
+Callback<boolean\>
+
+否
+
+否
+
+触发多选框选中状态变化。
+
+示例
+--
+
+### 示例1
+
+2.  @Entry
+3.  @Component
+4.  struct CheckboxExample {
+5.    build() {
+6.      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+7.        Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
+8.          .select(true)
+9.          .selectedColor(0xed6f21)
+10.          .shape(CheckBoxShape.CIRCLE)
+11.          .onChange((value: boolean) =\> {
+12.            console.info('Checkbox1 change is' + value)
+13.          })
+14.        Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
+15.          .select(false)
+16.          .selectedColor(0x39a2db)
+17.          .shape(CheckBoxShape.ROUNDED\_SQUARE)
+18.          .onChange((value: boolean) =\> {
+19.            console.info('Checkbox2 change is' + value)
+20.          })
+21.      }
+22.    }
+23.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114425.48739691093045897117909609912383:50001231000000:2800:3A5A1798E87E38C9B32D2B087446A09028B80D8DFCB21F1611519DFEAD249515.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+2.  @Entry
+3.  @Component
+4.  struct Index {
+
+6.    build() {
+7.      Row() {
+8.        Column() {
+9.          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+10.            Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
+11.              .selectedColor(0x39a2db)
+12.              .shape(CheckBoxShape.ROUNDED\_SQUARE)
+13.              .onChange((value: boolean) =\> {
+14.                console.info('Checkbox1 change is'\+ value)
+15.              })
+16.              .mark({
+17.                strokeColor:Color.Black,
+18.                size: 50,
+19.                strokeWidth: 5
+20.              })
+21.              .unselectedColor(Color.Red)
+22.              .width(30)
+23.              .height(30)
+24.            Text('Checkbox1').fontSize(20)
+25.          }
+26.          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+27.            Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
+28.              .selectedColor(0x39a2db)
+29.              .shape(CheckBoxShape.ROUNDED\_SQUARE)
+30.              .onChange((value: boolean) =\> {
+31.                console.info('Checkbox2 change is' + value)
+32.              })
+33.              .width(30)
+34.              .height(30)
+35.            Text('Checkbox2').fontSize(20)
+36.          }
+37.        }
+38.        .width('100%')
+39.      }
+40.      .height('100%')
+41.    }
+42.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114425.34055857098708309140500272068072:50001231000000:2800:07EB960C336B7C5E095D808B23ABD510226E0529DE721007D16EEB43AB782EA4.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例3
+
+该示例实现了自定义复选框样式的功能，自定义样式实现了一个五边形复选框，如果选中，内部会出现红色三角图案，标题会显示选中字样，如果取消选中，红色三角图案消失，标题会显示非选中字样。
+
+2.  class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration\> {
+3.    selectedColor: Color = Color.White
+4.    constructor(selectedColor: Color) {
+5.      this.selectedColor = selectedColor;
+6.    }
+7.    applyContent() : WrappedBuilder<\[CheckBoxConfiguration\]\>
+8.    {
+9.      return wrapBuilder(buildCheckbox)
+10.    }
+11.  }
+
+13.  @Builder function buildCheckbox(config: CheckBoxConfiguration) {
+14.    Column({space:10}) {
+15.        Text(config.name  + (config.selected ? "（ 选中 ）" : "（ 非选中 ）")).margin({right : 70, top : 50})
+16.        Text(config.enabled ? "enabled true" : "enabled false").margin({right : 110})
+17.        Shape() {
+18.          Path().width(100).height(100).commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z').fillOpacity(0).strokeWidth(3).onClick(()=\>{
+19.            if (config.selected) {
+20.              config.triggerChange(false)
+21.            } else {
+22.              config.triggerChange(true)
+23.            }
+24.          }).opacity(config.enabled ? 1 : 0.1)
+25.          Path().width(10).height(10).commands('M50 0 L100 100 L0 100 Z')
+26.            .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
+27.            .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
+28.            .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
+29.            .margin({left:10,top:10})
+30.            .opacity(config.enabled ? 1 : 0.1)
+31.        }
+32.        .width(300)
+33.        .height(200)
+34.        .viewPort({ x: 0, y: 0, width: 310, height: 310 })
+35.        .strokeLineJoin(LineJoinStyle.Miter)
+36.        .strokeMiterLimit(5)
+37.        .margin({left:50})
+38.    }
+39.  }
+
+41.  @Entry
+42.  @Component
+43.  struct Index {
+44.    @State checkboxEnabled: boolean = true;
+45.    build() {
+46.      Column({ space: 100 }) {
+47.          Checkbox({ name: '复选框状态', group: 'checkboxGroup' })
+48.          .contentModifier(new MyCheckboxStyle(Color.Red))
+49.          .onChange((value: boolean) =\> {
+50.            console.info('Checkbox change is' + value)
+51.          }).enabled(this.checkboxEnabled)
+
+53.        Row() {
+54.          Toggle({ type: ToggleType.Switch, isOn: true }).onChange((value: boolean) =\> {
+55.            if (value) {
+56.              this.checkboxEnabled = true
+57.            } else {
+58.              this.checkboxEnabled = false
+59.            }
+60.          })
+61.        }.position({ x: 50, y: 130 })
+62.      }.margin({top : 30})
+63.    }
+64.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114425.72741422724177432423427211512060:50001231000000:2800:BDA428083A0B3A4127DC52BB9D6A098388BF56B36DA4B18F603548C385920C2D.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例4
+
+该示例设置选中样式为Text。
+
+2.  @Entry
+3.  @Component
+4.  struct CheckboxExample {
+5.    @Builder
+6.    indicatorBuilder(value: number) {
+7.      Column(){
+8.        Text(value \> 99 ? '99+': value.toString())
+9.          .textAlign(TextAlign.Center)
+10.          .fontSize(value \> 99 ?  '16vp': '20vp')
+11.          .fontWeight(FontWeight.Medium)
+12.          .fontColor('#ffffffff')
+13.      }
+14.    }
+15.    build() {
+16.      Row() {
+17.        Column() {
+18.          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center}) {
+19.            Checkbox({ name: 'checkbox1', group: 'checkboxGroup', indicatorBuilder:()=\>{this.indicatorBuilder(9)}})
+20.              .shape(CheckBoxShape.CIRCLE)
+21.              .onChange((value: boolean) =\> {
+22.                console.info('Checkbox1 change is'\+ value)
+23.              })
+24.              .mark({
+25.                strokeColor:Color.Black,
+26.                size: 50,
+27.                strokeWidth: 5
+28.              })
+29.              .width(30)
+30.              .height(30)
+31.            Text('Checkbox1').fontSize(20)
+32.          }.padding(15)
+33.          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+34.            Checkbox({ name: 'checkbox2', group: 'checkboxGroup', indicatorBuilder:()=\>{this.indicatorBuilder(100)}})
+35.              .shape(CheckBoxShape.ROUNDED\_SQUARE)
+36.              .onChange((value: boolean) =\> {
+37.                console.info('Checkbox2 change is' + value)
+38.              })
+39.              .width(30)
+40.              .height(30)
+41.            Text('Checkbox2').fontSize(20)
+42.          }
+43.        }
+44.        .width('100%')
+45.      }
+46.      .height('100%')
+47.    }
+48.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114425.37923987706734946667337802458739:50001231000000:2800:B8BC1D23766F3BA963258D96589A90F690EC2FC9CDC82CC4DBA2DBE2A8E42C25.gif?needInitFileName=true?needInitFileName=true)
+

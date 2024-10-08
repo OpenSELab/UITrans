@@ -1,0 +1,567 @@
+{
+    "description": "显示一段文本的组件。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Text(content?: string | Resource, value?: TextOptions)",
+            "params": {
+                "content": {
+                    "type": [
+                        "string",
+                        "Resource"
+                    ],
+                    "description": "文本内容。包含子组件Span且未设置属性字符串时不生效，显示Span内容，并且此时text组件的样式不生效。"
+                },
+                "value": {
+                    "type": "TextOptions",
+                    "description": "文本组件初始化选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "textAlign": {
+            "description": "设置文本段落在水平方向的对齐方式。",
+            "params": {
+                "value": {
+                    "type": "TextAlign",
+                    "required": true,
+                    "description": "文本段落在水平方向的对齐方式。",
+                    "default": "TextAlign.Start"
+                }
+            }
+        },
+        "textOverflow": {
+            "description": "设置文本超长时的显示方式。",
+            "params": {
+                "value": {
+                    "type": {
+                        "overflow": "TextOverflow"
+                    },
+                    "required": true,
+                    "description": "文本超长时的显示方式。",
+                    "default": {
+                        "overflow": "TextOverflow.Clip"
+                    }
+                }
+            }
+        },
+        "maxLines": {
+            "description": "设置文本的最大行数。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "文本的最大行数。"
+                }
+            }
+        },
+        "lineHeight": {
+            "description": "设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "文本的文本行高。"
+                }
+            }
+        },
+        "decoration": {
+            "description": "设置文本装饰线样式及其颜色。",
+            "params": {
+                "value": {
+                    "type": "DecorationStyleInterface",
+                    "required": true,
+                    "description": "文本装饰线样式对象。",
+                    "default": {
+                        "type": "TextDecorationType.None",
+                        "color": "Color.Black",
+                        "style": "TextDecorationStyle.SOLID"
+                    }
+                }
+            }
+        },
+        "baselineOffset": {
+            "description": "设置文本基线的偏移量，设置该值为百分比时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "文本基线的偏移量。",
+                    "default": 0
+                }
+            }
+        },
+        "letterSpacing": {
+            "description": "设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "文本字符间距。"
+                }
+            }
+        },
+        "minFontSize": {
+            "description": "设置文本最小显示字号。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "文本最小显示字号。"
+                }
+            }
+        },
+        "maxFontSize": {
+            "description": "设置文本最大显示字号。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "文本最大显示字号。"
+                }
+            }
+        },
+        "textCase": {
+            "description": "设置文本大小写。",
+            "params": {
+                "value": {
+                    "type": "TextCase",
+                    "required": true,
+                    "description": "文本大小写。",
+                    "default": "TextCase.Normal"
+                }
+            }
+        },
+        "fontColor": {
+            "description": "设置字体颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "字体颜色。"
+                }
+            }
+        },
+        "fontSize": {
+            "description": "设置字体大小。",
+            "params": {
+                "value": {
+                    "type": [
+                        "Resource",
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。"
+                }
+            }
+        },
+        "fontStyle": {
+            "description": "设置字体样式。",
+            "params": {
+                "value": {
+                    "type": "FontStyle",
+                    "required": true,
+                    "description": "字体样式。",
+                    "default": "FontStyle.Normal"
+                }
+            }
+        },
+        "fontWeight": {
+            "description": "设置文本字重，支持设置字体配置项。",
+            "params": {
+                "weight": {
+                    "type": [
+                        "FontWeight",
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "文本的字体粗细。",
+                    "default": "FontWeight.Normal"
+                },
+                "options": {
+                    "type": "FontSettingOptions",
+                    "description": "字体配置项。"
+                }
+            }
+        },
+        "fontFamily": {
+            "description": "设置字体列表。",
+            "params": {
+                "value": {
+                    "type": [
+                        "Resource",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "字体列表。默认字体'HarmonyOS Sans'。",
+                    "default": "HarmonyOS Sans"
+                }
+            }
+        },
+        "copyOption": {
+            "description": "设置组件是否支持文本可复制粘贴。设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作。",
+            "params": {
+                "value": {
+                    "type": "CopyOptions",
+                    "required": true,
+                    "description": "组件是否支持文本可复制粘贴。",
+                    "default": "CopyOptions.None"
+                }
+            }
+        },
+        "draggable": {
+            "description": "设置选中文本拖拽效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "选中文本拖拽效果。",
+                    "default": false
+                }
+            }
+        },
+        "fontFeature": {
+            "description": "设置文字特性效果，比如数字等宽的特性。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "文字特性效果。"
+                }
+            }
+        },
+        "textShadow": {
+            "description": "设置文字阴影效果。",
+            "params": {
+                "value": {
+                    "type": [
+                        "ShadowOptions",
+                        [
+                            "ShadowOptions"
+                        ]
+                    ],
+                    "required": true,
+                    "description": "文字阴影效果。"
+                }
+            }
+        },
+        "heightAdaptivePolicy": {
+            "description": "设置文本自适应高度的方式。",
+            "params": {
+                "value": {
+                    "type": "TextHeightAdaptivePolicy",
+                    "required": true,
+                    "description": "文本自适应高度的方式。"
+                }
+            }
+        },
+        "textIndent": {
+            "description": "设置首行文本缩进。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "首行文本缩进。",
+                    "default": 0
+                }
+            }
+        },
+        "wordBreak": {
+            "description": "设置断行规则。",
+            "params": {
+                "value": {
+                    "type": "WordBreak",
+                    "required": true,
+                    "description": "断行规则。",
+                    "default": "WordBreak.BREAK_WORD"
+                }
+            }
+        },
+        "selection": {
+            "description": "设置选中区域。选中区域高亮且显示手柄和文本选择菜单。",
+            "params": {
+                "selectionStart": {
+                    "type": "number",
+                    "required": true,
+                    "description": "所选文本的起始位置。",
+                    "default": -1
+                },
+                "selectionEnd": {
+                    "type": "number",
+                    "required": true,
+                    "description": "所选文本的结束位置。",
+                    "default": -1
+                }
+            }
+        },
+        "ellipsisMode": {
+            "description": "设置省略位置。",
+            "params": {
+                "value": {
+                    "type": "EllipsisMode",
+                    "required": true,
+                    "description": "省略位置。",
+                    "default": "EllipsisMode.END"
+                }
+            }
+        },
+        "enableDataDetector": {
+            "description": "设置是否进行文本特殊实体识别。",
+            "params": {
+                "enable": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "使能文本识别。",
+                    "default": false
+                }
+            }
+        },
+        "dataDetectorConfig": {
+            "description": "设置文本识别配置。",
+            "params": {
+                "config": {
+                    "type": "TextDataDetectorConfig",
+                    "required": true,
+                    "description": "文本识别配置。"
+                }
+            }
+        },
+        "bindSelectionMenu": {
+            "description": "设置自定义选择菜单。",
+            "params": {
+                "spanType": {
+                    "type": "TextSpanType",
+                    "required": true,
+                    "description": "Span类型信息。"
+                },
+                "content": {
+                    "type": "CustomBuilder",
+                    "required": true,
+                    "description": "自定义菜单内容。"
+                },
+                "responseType": {
+                    "type": "TextResponseType",
+                    "required": true,
+                    "description": "触发菜单弹出的方式。"
+                },
+                "options": {
+                    "type": "SelectionMenuOptions",
+                    "description": "菜单选项。"
+                }
+            }
+        },
+        "lineSpacing": {
+            "description": "设置文本的行间距，设置值不大于0时，取默认值0。",
+            "params": {
+                "value": {
+                    "type": "LengthMetrics",
+                    "required": true,
+                    "description": "文本的行间距。"
+                }
+            }
+        },
+        "privacySensitive": {
+            "description": "设置是否支持卡片敏感隐私信息。",
+            "params": {
+                "supported": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否支持卡片敏感隐私信息。",
+                    "default": false
+                }
+            }
+        },
+        "lineBreakStrategy": {
+            "description": "设置折行规则。",
+            "params": {
+                "strategy": {
+                    "type": "LineBreakStrategy",
+                    "required": true,
+                    "description": "折行规则。"
+                }
+            }
+        },
+        "textSelectable": {
+            "description": "设置是否支持文本可选择、可获焦以及Touch后能否获取焦点。",
+            "params": {
+                "mode": {
+                    "type": "TextSelectableMode",
+                    "required": true,
+                    "description": "文本是否支持可选择、可获焦。",
+                    "default": "TextSelectableMode.SELECTABLE_UNFOCUSABLE"
+                }
+            }
+        },
+        "editMenuOptions": {
+            "description": "设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。",
+            "params": {
+                "editMenu": {
+                    "type": "EditMenuOptions",
+                    "required": true,
+                    "description": "自定义菜单扩展项。"
+                }
+            }
+        },
+        "minFontScale": {
+            "description": "设置文本最小的字体缩放倍数。",
+            "params": {
+                "scale": {
+                    "type": [
+                        "number",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "文本最小的字体缩放倍数。",
+                    "default": 0
+                }
+            }
+        },
+        "maxFontScale": {
+            "description": "设置文本最大的字体缩放倍数。",
+            "params": {
+                "scale": {
+                    "type": [
+                        "number",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "文本最大的字体缩放倍数。",
+                    "default": 1
+                }
+            }
+        },
+        "halfLeading": {
+            "description": "设置文本是否将行间距平分至行的顶部与底部。",
+            "params": {
+                "halfLeading": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "文本是否将行间距平分至行的顶部与底部。",
+                    "default": false
+                }
+            }
+        },
+        "font": {
+            "description": "设置文本样式，支持设置字体配置项。",
+            "params": {
+                "fontValue": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "文本样式。"
+                },
+                "options": {
+                    "type": "FontSettingOptions",
+                    "description": "字体配置项。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onCopy": {
+            "description": "长按文本内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。目前文本复制仅支持文本。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "复制的文本内容。"
+                }
+            }
+        },
+        "onTextSelectionChange": {
+            "description": "文本选择的位置发生变化时，触发该回调。",
+            "params": {
+                "selectionStart": {
+                    "type": "number",
+                    "required": true,
+                    "description": "所选文本的起始位置。"
+                },
+                "selectionEnd": {
+                    "type": "number",
+                    "required": true,
+                    "description": "所选文本的结束位置。"
+                }
+            }
+        }
+    },
+    "rules": [
+        "不支持Text内同时存在文本内容和Span或ImageSpan子组件。如果同时存在，只显示Span或ImageSpan内的内容。",
+        "字体排版引擎会对开发者传入的宽度[width]进行向下取整，保证是整型像素后进行排版。如果字体排版引擎向上取整，可能会出现文字右侧被截断。",
+        "当多个Text组件在[Row]容器内布局且没有设置具体的布局分配信息时，Text会以Row的最大尺寸进行布局。如果需要子组件主轴累加的尺寸不超过Row容器主轴的尺寸，可以设置[layoutWeight]或者是以[Flex]布局来约束子组件的主轴尺寸。"
+    ],
+    "examples": [
+        {
+            "description": "该组件展示了如何配置隐私敏感信息的隐藏功能。组件通过 Column 布局实现了一个简单的界面，其中包含一个 Text 组件，用于显示隐私敏感信息。布局宽度占据整个屏幕，高度由内容自动调整。组件的垂直方向上仅包含一个 Text 组件，对齐方式为居中对齐。\n\nText 组件的样式包括字体、颜色等属性，支持隐私敏感信息的显示和隐藏。通过设置 `privacySensitive(true)`，Text 组件的内容在需要时会被隐藏，以保护用户隐私。组件的功能主要是展示隐私敏感信息的隐藏效果，用户无法直接看到被隐藏的内容。\n\n整个布局通过 Column 布局保证 Text 组件在垂直方向上居中显示，确保界面简洁明了。",
+            "code": "@Entry\n@Component\nstruct ImageExample {\n  build() {\n    Column({ space: 10 }) { // 创建一个垂直布局的 Column 组件，子组件之间的间距为 10vp\n      Text(\"privacySensitive\") // 创建一个 Text 组件，显示文本 \"privacySensitive\"\n        .privacySensitive(true) // 设置 Text 组件为隐私敏感，内容在需要时会被隐藏\n        .margin({top :30}) // 设置 Text 组件的上边距为 30vp\n    }\n    .alignItems(HorizontalAlign.Center) // 设置 Column 组件的子组件在水平方向上居中对齐\n    .width(\"100%\") // 设置 Column 组件的宽度为 100%，占据整个屏幕宽度\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个展示可选择文本的界面。布局宽度占据整个屏幕，高度根据内容自适应，顶部外边距为 100vp。组件的垂直方向上包含一个 Text 组件，用于展示一段文本。\n\nText 组件的样式包括宽度为 300vp，高度为 100vp，最大显示行数为 5 行，字体颜色为黑色。文本内容为一段较长的字符串，支持在应用内复制（通过 copyOption 属性设置）。文本的选中范围通过 selection 属性设置为从第 3 个字符到第 8 个字符。\n\n组件的功能包括文本的可选择性，通过 textSelectable 属性设置为 TextSelectableMode.SELECTABLE_FOCUSABLE，使得文本在获得焦点时可以触发键盘框选文本功能。\n\n整个布局通过 Column 布局保证 Text 组件在垂直方向上居中显示，确保界面简洁明了。",
+            "code": "@Entry\n@Component\nstruct TextExample10 {\n  @State message: string = 'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText';\n\n  build() {\n    Column() {\n      Text(this.message)\n        .width(300) // 设置 Text 组件的宽度为 300vp\n        .height(100) // 设置 Text 组件的高度为 100vp\n        .maxLines(5) // 设置 Text 组件的最大显示行数为 5 行\n        .fontColor(Color.Black) // 设置 Text 组件的字体颜色为黑色\n        .copyOption(CopyOptions.InApp) // 设置 Text 组件的复制选项为仅在应用内复制\n        .selection(3, 8) // 设置 Text 组件的选中范围为从第 3 个字符到第 8 个字符\n        .textSelectable(TextSelectableMode.SELECTABLE_FOCUSABLE) // 设置 Text 组件的可选择模式为 SELECTABLE_FOCUSABLE，使得文本在获得焦点时可以触发键盘框选文本功能\n    }.width('100%') // 设置 Column 组件的宽度为 100%\n    .margin({ top: 100 }) // 设置 Column 组件的顶部外边距为 100vp\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个展示文本样式的界面。布局宽度占据整个屏幕，内边距为 10vp。组件的垂直方向上被分为三个部分，每个部分包含一个 Text 组件。\n\n第一个 Text 组件用于显示标题 \"halfLeading\"，字体大小为 9vp，颜色为灰色（0xCCCCCC），外边距为 15vp，宽度占据父容器的 90%。\n\n第二个 Text 组件显示文本 \"This is the text with the halfLeading set.\"，行高为 60vp，启用了 halfLeading 属性，边框宽度为 1vp，宽度占据父容器的 80%。halfLeading 属性用于控制文本的行间距，当设置为 true 时，行间距会减半。\n\n第三个 Text 组件显示文本 \"This is the text without the halfLeading set.\"，行高为 60vp，禁用了 halfLeading 属性，边框宽度为 1vp，宽度占据父容器的 80%。当 halfLeading 属性设置为 false 时，行间距保持默认值。\n\n整个布局通过 Column 布局保证文本在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TextExample12 {\n  build() {\n    Column({ space: 10 }) { // 创建一个垂直布局，子组件之间的间距为 10vp\n\n      Text('halfLeading') // 创建一个 Text 组件，显示标题 \"halfLeading\"\n        .fontSize(9) // 设置字体大小为 9vp\n        .fontColor(0xCCCCCC) // 设置字体颜色为灰色（0xCCCCCC）\n        .margin(15) // 设置外边距为 15vp\n        .width('90%') // 设置宽度为父容器的 90%\n\n      Text(\"This is the text with the halfLeading set.\") // 创建一个 Text 组件，显示文本 \"This is the text with the halfLeading set.\"\n        .lineHeight(60) // 设置行高为 60vp\n        .halfLeading(true) // 启用 halfLeading 属性，行间距减半\n        .borderWidth(1) // 设置边框宽度为 1vp\n        .width('80%') // 设置宽度为父容器的 80%\n\n      Text(\"This is the text without the halfLeading set.\") // 创建一个 Text 组件，显示文本 \"This is the text without the halfLeading set.\"\n        .lineHeight(60) // 设置行高为 60vp\n        .halfLeading(false) // 禁用 halfLeading 属性，行间距保持默认值\n        .borderWidth(1) // 设置边框宽度为 1vp\n        .width('80%') // 设置宽度为父容器的 80%\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过Row和Column布局实现了一个展示多种类型文本数据的界面。布局宽度占据整个屏幕，高度设为100%，内边距为10vp。组件的垂直方向上被分为一个部分，包含一个Text组件，用于展示电话号码、链接、邮箱、地址和时间信息。\nText组件的样式包括字体大小为16vp，文本对齐方式为居中对齐，边框宽度为1vp，宽度占据父容器的100%。Text组件的功能包括启用数据检测器（enableDataDetector），并配置数据检测器类型（dataDetectorConfig），以便在文本中检测并高亮显示电话号码、链接、邮箱、地址和时间信息。\n整个布局通过Row和Column布局保证文本在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TextExample6 {\n  @State phoneNumber: string = '(86) (755) ********'; // 电话号码状态变量\n  @State url: string = 'www.*******.com'; // 链接状态变量\n  @State email: string = '***@example.com'; // 邮箱状态变量\n  @State address: string = 'XX省XX市XX区XXXX'; // 地址状态变量\n  @State datetime: string = 'XX年XX月XX日XXXX'; // 时间状态变量\n  @State enableDataDetector: boolean = true; // 是否启用数据检测器的状态变量\n  @State types: TextDataDetectorType[] = []; // 数据检测器类型的状态变量\n\n  build() {\n    Row() {\n      Column() {\n        Text(\n          '电话号码：' + this.phoneNumber + '\\n' +\n          '链接：' + this.url + '\\n' +\n          '邮箱：' + this.email + '\\n' +\n          '地址：' + this.address + '\\n' +\n          '时间：' + this.datetime\n        )\n          .fontSize(16) // 设置字体大小为16vp\n          .copyOption(CopyOptions.InApp) // 设置复制选项为仅在应用内复制\n          .enableDataDetector(this.enableDataDetector) // 启用数据检测器\n          .dataDetectorConfig({types : this.types, onDetectResultUpdate: (result: string)=>{}}) // 配置数据检测器类型\n          .textAlign(TextAlign.Center) // 设置文本对齐方式为居中对齐\n          .borderWidth(1) // 设置边框宽度为1vp\n          .padding(10) // 设置内边距为10vp\n          .width('100%') // 设置宽度占据父容器的100%\n      }\n      .width('100%') // 设置宽度占据父容器的100%\n    }\n    .height('100%') // 设置高度占据父容器的100%\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Flex 布局实现了一个展示文本选择和复制功能的界面。布局宽度为 335vp，高度为 600vp，内边距为左右 35vp、顶部 35vp。组件的垂直方向上被分为多个部分，包括一个文本展示区域、一个按钮和一个显示复制内容的文本区域。\n\n文本展示区域的文本内容为 \"This is set selection to Selection text content This is set selection to Selection text content.\"，字体大小为 12vp，行高为 20vp，边框宽度为 1vp，外边距为 30vp。文本内容支持在应用内复制（CopyOptions.InApp），并且可以通过设置起始和结束位置来选择文本。\n\n按钮的文本为 \"Set text selection\"，外边距为左 20vp。按钮的功能是点击后设置文本选择的起始位置为 10，结束位置为 30。\n\n显示复制内容的文本区域的文本内容为复制的内容，字体大小为 12vp，外边距为 10vp。\n\n整个布局通过 Flex 布局保证文本、按钮和显示复制内容的文本区域在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TextExample5 {\n  @State onCopy: string = '' // 存储复制的文本内容\n  @State text: string = 'This is set selection to Selection text content This is set selection to Selection text content.' // 文本内容\n  @State start: number = 0 // 文本选择的起始位置\n  @State end: number = 20 // 文本选择的结束位置\n\n  build() {\n    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {\n      Text(this.text)\n        .fontSize(12) // 设置字体大小为 12vp\n        .border({ width: 1 }) // 设置边框宽度为 1vp\n        .lineHeight(20) // 设置行高为 20vp\n        .margin(30) // 设置外边距为 30vp\n        .copyOption(CopyOptions.InApp) // 设置复制选项为仅在应用内复制\n        .selection(this.start, this.end) // 设置文本选择的起始和结束位置\n        .onCopy((value: string) => { // 当文本被复制时触发的事件\n          this.onCopy = value // 将复制的文本内容存储到 onCopy 变量中\n        })\n      Button('Set text selection')\n        .margin({left:20}) // 设置按钮的外边距为左 20vp\n        .onClick(() => { // 按钮点击事件\n          this.start = 10 // 设置文本选择的起始位置为 10\n          this.end = 30 // 设置文本选择的结束位置为 30\n        })\n      Text(this.onCopy).fontSize(12).margin(10).key('copy') // 显示复制的文本内容，字体大小为 12vp，外边距为 10vp\n    }.height(600).width(335).padding({ left: 35, right: 35, top: 35 }) // 设置布局的高度为 600vp，宽度为 335vp，内边距为左右 35vp、顶部 35vp\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Flex 布局实现了一个展示文本对齐方式、文本溢出处理和行高的界面。布局宽度为 340vp，高度为 600vp，内边距为左右 35vp、顶部 35vp。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组文本。每个文本组的文本以不同的对齐方式排列，且对齐方式为居中对齐。\n文本的样式包括字体大小、边框、内边距、宽度和高度等属性，支持不同的样式展示。文本组之间通过 Flex 组件进行分隔。文本的功能包括文本对齐、文本溢出处理和行高设置，用户可以通过设置不同的属性来控制文本的展示效果。\n整个布局通过 Flex 布局保证文本在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Extend(Text)\nfunction style(TextAlign: TextAlign) {\n  .textAlign(TextAlign) // 设置文本对齐方式\n  .fontSize(12) // 设置字体大小为 12\n  .border({ width: 1 }) // 设置边框宽度为 1\n  .padding(10) // 设置内边距为 10\n  .width('100%') // 设置宽度为 100%\n}\n\n@Entry\n@Component\nstruct TextExample1 {\n  build() {\n    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {\n\n      Text('textAlign').fontSize(9).fontColor(0xCCCCCC) // 设置标题文本，字体大小为 9，颜色为 0xCCCCCC\n      Text('TextAlign set to Center.')\n        .style(TextAlign.Center) // 设置文本对齐方式为居中\n      Text('TextAlign set to Start.')\n        .style(TextAlign.Start) // 设置文本对齐方式为开始\n      Text('TextAlign set to End.')\n        .style(TextAlign.End) // 设置文本对齐方式为结束\n\n      Text('This is the text content with textAlign set to Center.')\n        .style(TextAlign.Center) // 设置文本对齐方式为居中\n      Text('This is the text content with textAlign set to Start.')\n        .style(TextAlign.Start) // 设置文本对齐方式为开始\n      Text('This is the text content with textAlign set to End.')\n        .style(TextAlign.End) // 设置文本对齐方式为结束\n\n      Text('TextOverflow+maxLines').fontSize(9).fontColor(0xCCCCCC) // 设置标题文本，字体大小为 9，颜色为 0xCCCCCC\n\n      Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')\n        .textOverflow({ overflow: TextOverflow.Clip }) // 设置文本溢出处理方式为剪切\n        .maxLines(1) // 设置最大行数为 1\n        .style(TextAlign.Start) // 设置文本对齐方式为开始\n\n      Text('This is set textOverflow to Ellipsis text content This is set textOverflow to Ellipsis text content.')\n        .textOverflow({ overflow: TextOverflow.Ellipsis }) // 设置文本溢出处理方式为省略号\n        .maxLines(1) // 设置最大行数为 1\n        .style(TextAlign.Start) // 设置文本对齐方式为开始\n\n      Text('lineHeight').fontSize(9).fontColor(0xCCCCCC) // 设置标题文本，字体大小为 9，颜色为 0xCCCCCC\n      Text('This is the text with the line height set. This is the text with the line height set.')\n        .style(TextAlign.Start) // 设置文本对齐方式为开始\n      Text('This is the text with the line height set. This is the text with the line height set.')\n        .style(TextAlign.Start) // 设置文本对齐方式为开始\n        .lineHeight(20) // 设置行高为 20\n    }.height(600).width(340).padding({ left: 35, right: 35, top: 35 }) // 设置布局高度为 600vp，宽度为 340vp，内边距为左右 35vp、顶部 35vp\n  }\n}"
+        },
+        {
+            "description": "该组件展示了一个带有自定义编辑菜单的文本组件。布局宽度占据屏幕的90%，高度由内容决定，内边距为左右5%。组件的垂直方向上包含一个文本组件，文本组件的顶部边距为100vp。\n文本组件的样式包括字体大小为20vp，支持本地设备的复制操作。文本组件的功能包括自定义编辑菜单，用户可以通过长按文本触发编辑菜单，菜单项包括自定义的文本内容、图标和回调方法。\n菜单项的排列和嵌套关系如下：首先遍历默认的菜单项，设置其图标和文本内容；然后添加两个自定义菜单项，分别插入到菜单项数组的末尾和开头。\n菜单项的功能包括点击事件，用户点击菜单项时会触发相应的回调方法，回调方法中根据菜单项的ID进行不同的处理，包括拦截或不拦截某些操作。\n整个布局通过Column布局保证文本组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TextExample11 {\n  @State text: string = 'Text editMenuOptions' // 定义文本内容的状态变量\n\n  // 创建自定义菜单项的方法\n  onCreateMenu(menuItems: Array<TextMenuItem>) {\n    menuItems.forEach((value, index) => {\n      value.icon = $r('app.media.startIcon') // 设置菜单项的图标\n      if (value.id.equals(TextMenuItemId.COPY)) {\n        value.content = \"复制change\" // 修改复制菜单项的文本内容\n      }\n      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {\n        value.content = \"全选change\" // 修改全选菜单项的文本内容\n      }\n    })\n    let item1: TextMenuItem = {\n      content: 'custom1', // 自定义菜单项1的文本内容\n      icon: $r('app.media.startIcon'), // 自定义菜单项1的图标\n      id: TextMenuItemId.of('custom1'), // 自定义菜单项1的ID\n    }\n    let item2: TextMenuItem = {\n      content: 'custom2', // 自定义菜单项2的文本内容\n      id: TextMenuItemId.of('custom2'), // 自定义菜单项2的ID\n      icon: $r('app.media.startIcon'), // 自定义菜单项2的图标\n    }\n    menuItems.push(item1) // 将自定义菜单项1添加到菜单项数组的末尾\n    menuItems.unshift(item2) // 将自定义菜单项2添加到菜单项数组的开头\n    return menuItems // 返回修改后的菜单项数组\n  }\n\n  build() {\n    Column() {\n      Text(this.text) // 显示文本内容\n        .fontSize(20) // 设置字体大小为20vp\n        .copyOption(CopyOptions.LocalDevice) // 设置支持本地设备的复制操作\n        .editMenuOptions({\n          onCreateMenu: this.onCreateMenu, // 设置创建自定义菜单项的方法\n          onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => { // 设置菜单项点击的回调方法\n            if (menuItem.id.equals(TextMenuItemId.of(\"custom2\"))) {\n              console.log(\"拦截 id: custom2 start:\" + textRange.start + \"; end:\" + textRange.end) // 拦截自定义菜单项2的点击事件\n              return true;\n            }\n            if (menuItem.id.equals(TextMenuItemId.COPY)) {\n              console.log(\"拦截 COPY start:\" + textRange.start + \"; end:\" + textRange.end) // 拦截复制菜单项的点击事件\n              return true;\n            }\n            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {\n              console.log(\"不拦截 SELECT_ALL start:\" + textRange.start + \"; end:\" + textRange.end) // 不拦截全选菜单项的点击事件\n              return false;\n            }\n            return false;\n          }\n        })\n        .margin({ top: 100 }) // 设置文本组件的顶部边距为100vp\n    }\n    .width(\"90%\") // 设置布局宽度为屏幕的90%\n    .margin(\"5%\") // 设置布局的内边距为左右5%\n  }\n}"
+        },
+        {
+            "description": "该组件展示了一个文本组件（Text）及其相关信息的界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组文本或按钮。每个部分的文本以垂直布局方式排列，文本之间的间距均匀分布，且对齐方式为居中对齐。\n\n文本组件的样式包括字体大小、颜色、边框宽度等属性，支持不同的样式展示。按钮的功能包括点击事件和状态效果，用户可以通过点击按钮触发相应操作，按钮也可以在启用或禁用状态下进行展示。\n\n整个布局通过 Column 布局保证文本和按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TextExample9 {\n  // 定义状态变量，用于存储文本组件的行数、字形位置信息和行度量信息\n  @State lineCount: string = \"\"\n  @State glyphPositionAtCoordinate: string = \"\"\n  @State lineMetrics: string = \"\"\n\n  // 创建一个 TextController 实例，用于控制文本组件\n  controller: TextController = new TextController()\n\n  // 定义文本内容\n  @State textStr: string = 'Hello World! 您好，世界！'\n\n  build() {\n    Scroll() {\n      Column() {\n        // 显示标题文本，字体大小为9，颜色为浅灰色，宽度为90%，内边距为10\n        Text('Text组件getLayoutManager接口获取段落相对组件的信息')\n          .fontSize(9)\n          .fontColor(0xCCCCCC)\n          .width('90%')\n          .padding(10)\n\n        // 显示文本内容，字体大小为25，边框宽度为1，当文本区域发生变化时获取行数\n        Text(this.textStr, { controller: this.controller })\n          .fontSize(25)\n          .borderWidth(1)\n          .onAreaChange(() => {\n            let layoutManager: LayoutManager = this.controller.getLayoutManager()\n            this.lineCount = \"LineCount: \" + layoutManager.getLineCount()\n          })\n\n        // 显示行数标题，字体大小为9，颜色为浅灰色，宽度为90%，内边距为10\n        Text('LineCount').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)\n\n        // 显示行数信息\n        Text(this.lineCount)\n\n        // 显示字形位置标题，字体大小为9，颜色为浅灰色，宽度为90%，内边距为10\n        Text('GlyphPositionAtCoordinate').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)\n\n        // 显示按钮，点击按钮时获取相对组件坐标[150,50]的字形信息\n        Button(\"相对组件坐标[150,50]字形信息\")\n          .onClick(() => {\n            let layoutManager: LayoutManager = this.controller.getLayoutManager()\n            let position: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50)\n            this.glyphPositionAtCoordinate =\n              \"相对组件坐标[150,50] glyphPositionAtCoordinate position: \" + position.position + \" affinity: \" +\n              position.affinity\n          })\n          .margin({ bottom: 20, top: 10 })\n\n        // 显示字形位置信息\n        Text(this.glyphPositionAtCoordinate)\n\n        // 显示行度量标题，字体大小为9，颜色为浅灰色，宽度为90%，内边距为10\n        Text('LineMetrics').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)\n\n        // 显示按钮，点击按钮时获取首行行信息、文本样式信息、以及字体属性信息\n        Button(\"首行行信息、文本样式信息、以及字体属性信息\")\n          .onClick(() => {\n            let layoutManager: LayoutManager = this.controller.getLayoutManager()\n            let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0)\n            this.lineMetrics = \"lineMetrics is \" + JSON.stringify(lineMetrics) + '\\\\n\\\\n'\n            let runMetrics = lineMetrics.runMetrics\n            runMetrics.forEach((value, key) => {\n              this.lineMetrics += \"runMetrics key is \" + key + \" \" + JSON.stringify(value) + \"\\\\n\\\\n\"\n            });\n          })\n          .margin({ bottom: 20, top: 10 })\n\n        // 显示行度量信息\n        Text(this.lineMetrics)\n      }\n      .margin({ top: 100, left: 8, right: 8 })\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过Column布局实现了一个展示文本处理效果的界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上被分为多个部分，每个部分包含一个文本展示区域和一组按钮。每个文本展示区域的文本以不同的省略号模式和断词模式进行展示，按钮用于切换这些模式。\n\n文本展示区域的样式包括字体大小、边框、行高、最大行数、宽度等属性，支持不同的样式展示。按钮的样式包括背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。按钮组之间通过Row组件进行分隔。\n\n按钮的功能包括点击事件和状态效果，用户可以通过点击按钮触发相应操作，按钮也可以在启用或禁用状态下进行展示。整个布局通过Column布局保证文本展示区域和按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TextExample4 {\n  @State text: string =\n    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.'\n  @State ellipsisModeIndex: number = 0;\n  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END]\n  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END']\n  @State wordBreakIndex: number = 0;\n  @State wordBreak: WordBreak[] = [WordBreak.NORMAL, WordBreak.BREAK_ALL, WordBreak.BREAK_WORD]\n  @State wordBreakStr: string[] = ['NORMAL', 'BREAK_ALL', 'BREAK_WORD']\n  @State textClip: boolean = false\n\n  build() {\n    Column({ space: 10 }) {\n      // 第一个文本展示区域，展示省略号模式的效果\n      Text(this.text)\n        .fontSize(16) // 设置字体大小为16\n        .border({ width: 1 }) // 设置边框宽度为1\n        .lineHeight(20) // 设置行高为20\n        .maxLines(1) // 设置最大行数为1\n        .textOverflow({ overflow: TextOverflow.Ellipsis }) // 设置文本溢出时显示省略号\n        .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex]) // 设置省略号模式\n        .width(300) // 设置宽度为300\n        .margin({ left: 20, top: 20 }) // 设置左边距和上边距为20\n\n      // 按钮区域，用于切换省略号模式\n      Row() {\n        Button('更改省略号位置：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {\n          this.ellipsisModeIndex++\n          if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {\n            this.ellipsisModeIndex = 0\n          }\n        })\n      }\n\n      // 第二个文本展示区域，展示断词模式的效果\n      Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')\n        .fontSize(12) // 设置字体大小为12\n        .border({ width: 1 }) // 设置边框宽度为1\n        .wordBreak(WordBreak.NORMAL) // 设置断词模式为NORMAL\n        .lineHeight(20) // 设置行高为20\n        .maxLines(2) // 设置最大行数为2\n        .clip(this.textClip) // 设置是否裁剪文本\n        .width(260) // 设置宽度为260\n\n      // 按钮区域，用于切换裁剪模式\n      Row() {\n        Button('切换clip：' + this.textClip).onClick(() => {\n          this.textClip = !this.textClip\n        })\n      }\n\n      // 第三个文本展示区域，展示断词模式的效果\n      Text(this.text)\n        .fontSize(12) // 设置字体大小为12\n        .border({ width: 1 }) // 设置边框宽度为1\n        .maxLines(2) // 设置最大行数为2\n        .textOverflow({ overflow: TextOverflow.Ellipsis }) // 设置文本溢出时显示省略号\n        .wordBreak(this.wordBreak[this.wordBreakIndex]) // 设置断词模式\n        .lineHeight(20) // 设置行高为20\n        .width(260) // 设置宽度为260\n\n      // 按钮区域，用于切换断词模式\n      Row() {\n        Button('更改wordBreak模式：' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {\n          this.wordBreakIndex++\n          if (this.wordBreakIndex > (this.wordBreakStr.length - 1)) {\n            this.wordBreakIndex = 0\n          }\n        })\n      }\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Flex 布局实现了一个展示文本样式和换行策略的界面。布局宽度为 350vp，高度为 600vp，内边距为左右 35vp、顶部 35vp。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组文本。文本的排列方式为垂直布局，对齐方式为左对齐，且在垂直方向上均匀分布。\n\n文本的样式包括字体大小、颜色、行间距、换行策略等属性，支持不同的样式展示。文本组之间通过 Flex 组件进行分隔。文本的功能包括展示不同的行间距和换行策略，用户可以通过点击按钮切换不同的换行策略，文本也可以在不同的行间距设置下进行展示。\n\n整个布局通过 Flex 布局保证文本在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "import { LengthMetrics } from '@kit.ArkUI'\n\n// 自定义 Text 组件的行间距样式\n@Extend(Text) function lineSpacingValue(LineSpacing: LengthMetrics|undefined) {\n  .lineSpacing(LineSpacing) // 设置行间距\n  .fontSize(12) // 设置字体大小为 12\n  .border({ width: 1 }) // 设置文本边框宽度为 1\n}\n\n@Entry\n@Component\nstruct TextExample8 {\n  @State message1: string = \"They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers\" +\n    \"The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode,\" +\n    \"page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.\";\n  @State lineBreakStrategyIndex: number = 0; // 当前换行策略索引\n  @State lineBreakStrategy: LineBreakStrategy[] = [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED] // 换行策略数组\n  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED'] // 换行策略字符串数组\n\n  build() {\n    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {\n      Text('lineSpacing').fontSize(9).fontColor(0xCCCCCC) // 标题：行间距\n      Text('This is a context with no lineSpacing set.')\n        .lineSpacingValue(undefined) // 未设置行间距的文本\n      Text( 'This is a context with lineSpacing set to 20_px.')\n        .lineSpacingValue(LengthMetrics.px(20)) // 行间距设置为 20px 的文本\n      Text('This is the context with lineSpacing set to 20_vp.')\n        .lineSpacingValue(LengthMetrics.vp(20)) // 行间距设置为 20vp 的文本\n      Text('This is the context with lineSpacing set to 20_fp.')\n        .lineSpacingValue(LengthMetrics.fp(20)) // 行间距设置为 20fp 的文本\n      Text('This is the context with lineSpacing set to 20_lpx.')\n        .lineSpacingValue(LengthMetrics.lpx(20)) // 行间距设置为 20lpx 的文本\n      Text('This is the context with lineSpacing set to 100%.')\n        .lineSpacingValue(LengthMetrics.percent(1)) // 行间距设置为 100% 的文本\n      Text('fontFeature').fontSize(9).fontColor(0xCCCCCC) // 标题：字体特性\n      Text('This is ss01 on : 0123456789')\n        .fontSize(20)\n        .fontFeature(\"\\\"ss01\\\" on\") // 启用 ss01 字体特性的文本\n      Text('This is ss01 off: 0123456789')\n        .fontSize(20)\n        .fontFeature(\"\\\"ss01\\\" off\") // 禁用 ss01 字体特性的文本\n      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC) // 标题：换行策略\n      Text(this.message1)\n        .fontSize(12)\n        .border({ width: 1 })\n        .padding(10)\n        .width('100%')\n        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex]) // 根据当前换行策略索引设置换行策略的文本\n      Row() {\n        Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {\n          this.lineBreakStrategyIndex++ // 切换到下一个换行策略\n          if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {\n            this.lineBreakStrategyIndex = 0 // 如果超出数组范围，重置为第一个换行策略\n          }\n        })\n      }\n    }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Flex 布局实现了一个展示多种文本样式和效果的界面。布局宽度为 350vp，高度为 700vp，内边距为左右 35vp、顶部 35vp。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组文本内容。每个文本内容的样式通过不同的属性进行设置，包括文本装饰（如删除线、上划线、下划线）、基线偏移、字母间距和文本大小写转换。\n文本内容的排列方式为垂直布局，对齐方式为左对齐，且在垂直方向上均匀分布。每个文本内容的样式通过 @Extend 装饰器定义的 style 函数进行统一设置，包括字体大小、边框、内边距和宽度。文本装饰的样式包括颜色和线条样式（如实线、虚线、波浪线），基线偏移通过设置具体的数值来调整文本的垂直位置，字母间距通过设置具体的数值来调整字符之间的间距，文本大小写转换通过设置不同的枚举值来实现。\n整个布局通过 Flex 布局保证文本内容在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Extend(Text)\nfunction style() {\n  .fontSize(12) // 设置字体大小为 12\n  .border({ width: 1 }) // 设置边框宽度为 1\n  .padding(10) // 设置内边距为 10\n  .width('100%') // 设置宽度为 100%\n}\n\n@Entry\n@Component\nstruct TextExample2 {\n  build() {\n    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {\n      Text('decoration').fontSize(9).fontColor(0xCCCCCC) // 设置标题文本，字体大小为 9，颜色为灰色\n      Text('This is the text content with the decoration set to LineThrough and the color set to Red.')\n        .decoration({\n          type: TextDecorationType.LineThrough, // 设置文本装饰类型为删除线\n          color: Color.Red // 设置文本装饰颜色为红色\n        })\n        .style() // 应用统一的样式\n\n      Text('This is the text content with the decoration set to Overline and the color set to Red.')\n        .decoration({\n          type: TextDecorationType.Overline, // 设置文本装饰类型为上划线\n          color: Color.Red, // 设置文本装饰颜色为红色\n          style: TextDecorationStyle.DOTTED // 设置文本装饰样式为虚线\n        })\n        .style() // 应用统一的样式\n\n      Text('This is the text content with the decoration set to Underline and the color set to Red.')\n        .decoration({\n          type: TextDecorationType.Underline, // 设置文本装饰类型为下划线\n          color: Color.Red, // 设置文本装饰颜色为红色\n          style: TextDecorationStyle.WAVY // 设置文本装饰样式为波浪线\n        })\n        .style() // 应用统一的样式\n\n      Text('baselineOffset').fontSize(9).fontColor(0xCCCCCC) // 设置标题文本，字体大小为 9，颜色为灰色\n      Text('This is the text content with baselineOffset 0.')\n        .baselineOffset(0) // 设置基线偏移为 0\n        .style() // 应用统一的样式\n      Text('This is the text content with baselineOffset 30.')\n        .baselineOffset(30) // 设置基线偏移为 30\n        .style() // 应用统一的样式\n      Text('This is the text content with baselineOffset -20.')\n        .baselineOffset(-20) // 设置基线偏移为 -20\n        .style() // 应用统一的样式\n\n      Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC) // 设置标题文本，字体大小为 9，颜色为灰色\n      Text('This is the text content with letterSpacing 0.')\n        .letterSpacing(0) // 设置字母间距为 0\n        .style() // 应用统一的样式\n      Text('This is the text content with letterSpacing 3.')\n        .letterSpacing(3) // 设置字母间距为 3\n        .style() // 应用统一的样式\n      Text('This is the text content with letterSpacing -1.')\n        .letterSpacing(-1) // 设置字母间距为 -1\n        .style() // 应用统一的样式\n\n      Text('textCase').fontSize(9).fontColor(0xCCCCCC) // 设置标题文本，字体大小为 9，颜色为灰色\n      Text('This is the text content with textCase set to Normal.')\n        .textCase(TextCase.Normal) // 设置文本大小写为正常\n        .style() // 应用统一的样式\n      Text('This is the text content with textCase set to LowerCase.')\n        .textCase(TextCase.LowerCase) // 设置文本大小写为小写\n        .style() // 应用统一的样式\n      Text('This is the text content with textCase set to UpperCase.')\n        .textCase(TextCase.UpperCase) // 设置文本大小写为大写\n        .style() // 应用统一的样式\n\n    }.height(700).width(350).padding({ left: 35, right: 35, top: 35 }) // 设置布局高度为 700vp，宽度为 350vp，内边距为左右 35vp、顶部 35vp\n  }\n}"
+        },
+        {
+            "description": "该示例展示了如何在鸿蒙ArkUI中使用Text组件的各种属性，包括textShadow、heightAdaptivePolicy和TextOverflow.MARQUEE。布局上，整个界面由一个Column组件包裹，内部包含多个Text组件，每个Text组件展示了不同的属性和效果。样式上，Text组件的宽度、高度、字体大小、颜色、边框等属性被设置，以展示不同的视觉效果。功能上，Text组件展示了文本阴影、高度自适应策略和文本溢出时的跑马灯效果。\n\n布局属性：\n- 整个布局由一个Column组件包裹，Column组件的子组件垂直排列。\n- 每个Text组件的宽度、高度、边距等属性被设置，以控制其在界面中的位置和大小。\n\n组件的样式和外观：\n- Text组件的字体大小、颜色、边框宽度、文本对齐方式等属性被设置，以展示不同的视觉效果。\n- textShadow属性用于设置文本阴影，包括阴影的半径、颜色和偏移量。\n- heightAdaptivePolicy属性用于设置文本高度自适应策略，包括最大行数优先、最小字体大小优先和布局约束优先。\n- textOverflow属性用于设置文本溢出时的处理方式，包括省略号和跑马灯效果。\n\n组件的排列和嵌套关系：\n- 所有Text组件都嵌套在一个Column组件中，Column组件的子组件垂直排列。\n- 每个Text组件的排列方式由其自身的属性决定，如宽度、高度、边距等。\n\n组件的功能和交互：\n- textShadow属性用于为文本添加阴影效果，增强文本的可读性和视觉效果。\n- heightAdaptivePolicy属性用于控制文本在高度受限时的自适应策略，确保文本在不同情况下都能正常显示。\n- textOverflow属性用于处理文本溢出时的显示方式，包括省略号和跑马灯效果，增强用户体验。",
+            "code": "@Extend(Text)\nfunction style(HeightAdaptivePolicy: TextHeightAdaptivePolicy) {\n  .width('80%') // 设置Text组件的宽度为父容器的80%\n  .height(90) // 设置Text组件的高度为90vp\n  .borderWidth(1) // 设置Text组件的边框宽度为1vp\n  .minFontSize(10) // 设置Text组件的最小字体大小为10vp\n  .maxFontSize(30) // 设置Text组件的最大字体大小为30vp\n  .maxLines(2) // 设置Text组件的最大行数为2行\n  .textOverflow({ overflow: TextOverflow.Ellipsis }) // 设置文本溢出时的处理方式为省略号\n  .heightAdaptivePolicy(HeightAdaptivePolicy) // 设置文本高度自适应策略\n}\n\n@Entry\n@Component\nstruct TextExample3 {\n  build() {\n    Column() {\n      Text('textShadow').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%') // 显示标题“textShadow”，字体大小为9vp，颜色为灰色，边距为15vp，宽度为父容器的90%\n\n      Text('textShadow')\n        .width('80%') // 设置Text组件的宽度为父容器的80%\n        .height(55) // 设置Text组件的高度为55vp\n        .fontSize(40) // 设置Text组件的字体大小为40vp\n        .lineHeight(55) // 设置Text组件的行高为55vp\n        .textAlign(TextAlign.Center) // 设置文本对齐方式为居中对齐\n        .textShadow({\n          radius: 10, // 设置文本阴影的半径为10vp\n          color: Color.Black, // 设置文本阴影的颜色为黑色\n          offsetX: 0, // 设置文本阴影的水平偏移量为0\n          offsetY: 0 // 设置文本阴影的垂直偏移量为0\n        })\n        .borderWidth(1) // 设置Text组件的边框宽度为1vp\n      Divider() // 添加分隔线\n\n      Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%') // 显示标题“heightAdaptivePolicy”，字体大小为9vp，颜色为灰色，边距为15vp，宽度为父容器的90%\n      Text('This is the text with the height adaptive policy set')\n        .style(TextHeightAdaptivePolicy.MAX_LINES_FIRST) // 设置文本高度自适应策略为最大行数优先\n      Text('This is the text with the height adaptive policy set')\n        .style(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST) // 设置文本高度自适应策略为最小字体大小优先\n      Text('This is the text with the height adaptive policy set')\n        .style(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST) // 设置文本高度自适应策略为布局约束优先\n      Divider() // 添加分隔线\n      Text('marquee').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%') // 显示标题“marquee”，字体大小为9vp，颜色为灰色，边距为15vp，宽度为父容器的90%\n\n      Text('This is the text with the text overflow set marquee')\n        .width(300) // 设置Text组件的宽度为300vp\n        .borderWidth(1) // 设置Text组件的边框宽度为1vp\n        .textOverflow({ overflow: TextOverflow.MARQUEE }) // 设置文本溢出时的处理方式为跑马灯效果\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过Column布局实现了一个包含文本和图像的展示界面。布局宽度占据整个屏幕，高度设为100%，内边距为25vp。组件的垂直方向上被分为两个部分，第一个部分包含一个带有边框的文本和图像区域，第二个部分包含一个自定义的菜单区域。\n文本和图像区域通过Column布局实现，宽度为200vp，高度为100vp，边框宽度为1vp，颜色为红色。文本和图像区域内的文本和图像通过Span和ImageSpan组件进行展示，文本内容为\"Hello World\"，图像内容为应用内的图标资源。文本和图像区域支持长按、右键点击和选择操作，分别触发不同的自定义菜单。\n自定义菜单区域通过Builder装饰器定义了三个不同的菜单，分别对应长按图像、右键点击文本和选择混合内容的操作。每个菜单包含一个Column布局，内部嵌套一个Menu组件，Menu组件内包含一个MenuItemGroup组件，MenuItemGroup组件内包含三个MenuItem组件。每个MenuItem组件包含一个图标、内容和点击事件，点击事件触发时关闭当前菜单。\n整个布局通过Column布局保证文本和图像区域在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TextExample7 {\n  // 创建一个TextController实例，用于控制文本的选择和菜单的显示\n  controller: TextController = new TextController();\n  // 创建一个TextOptions实例，用于配置文本的控制器\n  options: TextOptions = { controller: this.controller };\n\n  build() {\n    Column() {\n      Column() {\n        // 创建一个Text组件，内容为undefined，使用options配置\n        Text(undefined, this.options) {\n          // 创建一个Span组件，内容为\"Hello World\"\n          Span('Hello World')\n          // 创建一个ImageSpan组件，内容为应用内的图标资源\n          ImageSpan($r('app.media.icon'))\n            .width('100px') // 设置图像宽度为100px\n            .height('100px') // 设置图像高度为100px\n            .objectFit(ImageFit.Fill) // 设置图像填充方式为完全填充\n            .verticalAlign(ImageSpanAlignment.CENTER) // 设置图像垂直对齐方式为居中\n        }\n        .copyOption(CopyOptions.InApp) // 设置文本的复制选项为仅在应用内复制\n        .bindSelectionMenu(TextSpanType.IMAGE, this.LongPressImageCustomMenu, TextResponseType.LONG_PRESS, {\n          onDisappear: () => {\n            console.info(`自定义选择菜单关闭时回调`); // 自定义选择菜单关闭时的回调函数\n          },\n          onAppear: () => {\n            console.info(`自定义选择菜单弹出时回调`); // 自定义选择菜单弹出时的回调函数\n          }\n        })\n        .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK) // 绑定文本的右键点击菜单\n        .bindSelectionMenu(TextSpanType.MIXED, this.SelectMixCustomMenu, TextResponseType.SELECT) // 绑定混合内容的选中菜单\n        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {\n          console.info(`文本选中区域变化回调, selectionStart: ${selectionStart}, selectionEnd: ${selectionEnd}`); // 文本选中区域变化时的回调函数\n        })\n        .borderWidth(1) // 设置边框宽度为1vp\n        .borderColor(Color.Red) // 设置边框颜色为红色\n        .width(200) // 设置宽度为200vp\n        .height(100) // 设置高度为100vp\n      }\n      .width('100%') // 设置宽度为100%\n      .backgroundColor(Color.White) // 设置背景颜色为白色\n      .alignItems(HorizontalAlign.Start) // 设置对齐方式为左对齐\n      .padding(25) // 设置内边距为25vp\n    }\n    .height('100%') // 设置高度为100%\n  }\n\n  // 定义右键点击文本时的自定义菜单\n  @Builder\n  RightClickTextCustomMenu() {\n    Column() {\n      Menu() {\n        MenuItemGroup() {\n          MenuItem({ startIcon: $r('app.media.app_icon'), content: \"Right Click Menu 1\", labelInfo: \"\" })\n            .onClick((event) => {\n              this.controller.closeSelectionMenu(); // 点击菜单项时关闭菜单\n            })\n          MenuItem({ startIcon: $r('app.media.app_icon'), content: \"Right Click Menu 2\", labelInfo: \"\" })\n          MenuItem({ startIcon: $r('app.media.app_icon'), content: \"Right Click Menu 3\", labelInfo: \"\" })\n        }\n      }\n      .MenuStyles() // 应用菜单样式\n    }\n  }\n\n  // 定义长按图像时的自定义菜单\n  @Builder\n  LongPressImageCustomMenu() {\n    Column() {\n      Menu() {\n        MenuItemGroup() {\n          MenuItem({ startIcon: $r('app.media.app_icon'), content: \"Long Press Image Menu 1\", labelInfo: \"\" })\n            .onClick((event) => {\n              this.controller.closeSelectionMenu(); // 点击菜单项时关闭菜单\n            })\n          MenuItem({ startIcon: $r('app.media.app_icon'), content: \"Long Press Image Menu 2\", labelInfo: \"\" })\n          MenuItem({ startIcon: $r('app.media.app_icon'), content: \"Long Press Image Menu 3\", labelInfo: \"\" })\n        }\n      }\n      .MenuStyles() // 应用菜单样式\n    }\n  }\n\n  // 定义选择混合内容时的自定义菜单\n  @Builder\n  SelectMixCustomMenu() {\n    Column() {\n      Menu() {\n        MenuItemGroup() {\n          MenuItem({ startIcon: $r('app.media.app_icon'), content: \"Select Mixed Menu 1\", labelInfo: \"\" })\n            .onClick((event) => {\n              this.controller.closeSelectionMenu(); // 点击菜单项时关闭菜单\n            })\n          MenuItem({ startIcon: $r('app.media.app_icon'), content: \"Select Mixed Menu 2\", labelInfo: \"\" })\n          MenuItem({ startIcon: $r('app.media.app_icon'), content: \"Select Mixed Menu 3\", labelInfo: \"\" })\n        }\n      }\n      .MenuStyles() // 应用菜单样式\n    }\n  }\n}\n\n// 定义菜单的样式\n@Extend(Menu)\nfunction MenuStyles() {\n  .radius($r('sys.float.ohos_id_corner_radius_card')) // 设置菜单的圆角半径\n  .clip(true) // 设置菜单的裁剪方式为裁剪\n  .backgroundColor('#F0F0F0') // 设置菜单的背景颜色为浅灰色\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

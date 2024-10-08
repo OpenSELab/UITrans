@@ -1,0 +1,83 @@
+{
+    "description": "步骤导航器组件，适用于引导用户按照步骤完成任务的导航场景。可以包含单个子组件StepperItem。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Stepper(value?: { index?: number })",
+            "params": {
+                "value": {
+                    "type": {
+                        "index": "number"
+                    },
+                    "required": false,
+                    "description": "设置步骤导航器当前显示StepperItem的索引值。",
+                    "default": 0
+                }
+            }
+        }
+    ],
+    "attributes": {},
+    "events": {
+        "onFinish": {
+            "description": "步骤导航器最后一个StepperItem的nextLabel被点击时，并且ItemState属性为Normal时，触发该回调。",
+            "params": {}
+        },
+        "onSkip": {
+            "description": "当前显示的StepperItem状态为ItemState.Skip时，nextLabel被点击时触发该回调。",
+            "params": {}
+        },
+        "onChange": {
+            "description": "点击当前StepperItem的prevLabel进行步骤切换时触发该回调；或点击当前StepperItem的nextLabel，当前页面不为步骤导航器最后一个StepperItem且ItemState属性为Normal时，触发该回调。",
+            "params": {
+                "prevIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "切换前的步骤页索引值。"
+                },
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "切换后的步骤页（前一页或者下一页）索引值。"
+                }
+            }
+        },
+        "onNext": {
+            "description": "点击StepperItem的nextLabel切换下一步骤时，当前页面不为步骤导航器最后一个StepperItem且ItemState属性为Normal时，触发该回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前步骤页索引值。"
+                },
+                "pendingIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "下一步骤页索引值。"
+                }
+            }
+        },
+        "onPrevious": {
+            "description": "点击StepperItem的prevLabel切换上一步骤时触发该回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前步骤页索引值。"
+                },
+                "pendingIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "上一步骤页索引值。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过Stepper组件实现了一个多步骤的页面导航界面。布局宽度为336vp，高度为621vp，内边距为顶部48vp、左侧12vp。组件的垂直方向上被分为四个步骤页，每个步骤页包含一个标题和一组按钮。每个步骤页的按钮以垂直布局方式排列，按钮之间的间距均匀分布，且对齐方式为居中对齐。\n\n步骤页的样式包括背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。步骤页之间通过Stepper组件进行分隔。步骤页的功能包括点击事件和状态效果，用户可以通过点击按钮触发相应操作，步骤页也可以在不同状态下进行展示，如正常、跳过、禁用和等待状态。\n\n整个布局通过Stepper组件保证步骤页在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "// xxx.ets\n\n// 定义一个样式函数，用于设置步骤页的样式\n@Styles function itemStyle () {\n  .width(336) // 设置宽度为336vp\n  .height(621) // 设置高度为621vp\n  .margin({ top: 48, left: 12 }) // 设置顶部和左侧的边距\n  .borderRadius(24) // 设置边框圆角为24vp\n  .backgroundColor('#FFFFFF') // 设置背景颜色为白色\n}\n\n// 定义一个扩展样式函数，用于设置文本的样式\n@Extend(Text) function itemTextStyle () {\n  .fontColor('#182431') // 设置字体颜色为深灰色\n  .fontSize(36) // 设置字体大小为36vp\n  .fontWeight(500) // 设置字体粗细为500\n  .opacity(0.4) // 设置文本透明度为0.4\n  .margin({ top: 82, bottom: 40 }) // 设置顶部和底部的边距\n}\n\n// 定义一个入口组件，用于展示多步骤页面\n@Entry\n@Component\nstruct StepperExample {\n  @State currentIndex: number = 0 // 当前步骤页的索引，初始值为0\n  @State firstState: ItemState = ItemState.Normal // 第一个步骤页的状态，初始值为正常状态\n  @State secondState: ItemState = ItemState.Normal // 第二个步骤页的状态，初始值为正常状态\n  @State thirdState: ItemState = ItemState.Normal // 第三个步骤页的状态，初始值为正常状态\n\n  build() {\n    Stepper({\n      index: this.currentIndex // 设置当前步骤页的索引\n    }) {\n      // 第一个步骤页\n      StepperItem() {\n        Column() {\n          Text('Page One') // 显示文本“Page One”\n            .itemTextStyle() // 应用文本样式\n          Button('change status:' + this.firstState) // 显示按钮，文本为“change status:”加上当前状态\n            .backgroundColor('#007dFF') // 设置按钮背景颜色为蓝色\n            .onClick(() => {\n              this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip // 点击按钮时切换状态\n            })\n        }.itemStyle() // 应用步骤页样式\n      }\n      .nextLabel('Next') // 设置下一步按钮的标签为“Next”\n      .status(this.firstState) // 设置步骤页的状态\n\n      // 第二个步骤页\n      StepperItem() {\n        Column() {\n          Text('Page Two') // 显示文本“Page Two”\n            .itemTextStyle() // 应用文本样式\n          Button('change status:' + this.secondState) // 显示按钮，文本为“change status:”加上当前状态\n            .backgroundColor('#007dFF') // 设置按钮背景颜色为蓝色\n            .onClick(() => {\n              this.secondState = this.secondState === ItemState.Disabled ? ItemState.Normal : ItemState.Disabled // 点击按钮时切换状态\n            })\n        }.itemStyle() // 应用步骤页样式\n      }\n      .nextLabel('Next') // 设置下一步按钮的标签为“Next”\n      .prevLabel('Previous') // 设置上一步按钮的标签为“Previous”\n      .status(this.secondState) // 设置步骤页的状态\n\n      // 第三个步骤页\n      StepperItem() {\n        Column() {\n          Text('Page Three') // 显示文本“Page Three”\n            .itemTextStyle() // 应用文本样式\n          Button('change status:' + this.thirdState) // 显示按钮，文本为“change status:”加上当前状态\n            .backgroundColor('#007dFF') // 设置按钮背景颜色为蓝色\n            .onClick(() => {\n              this.thirdState = this.thirdState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting // 点击按钮时切换状态\n            })\n        }.itemStyle() // 应用步骤页样式\n      }\n      .status(this.thirdState) // 设置步骤页的状态\n\n      // 第四个步骤页\n      StepperItem() {\n        Column() {\n          Text('Page Four') // 显示文本“Page Four”\n            .itemTextStyle() // 应用文本样式\n        }.itemStyle() // 应用步骤页样式\n      }\n    }\n    .backgroundColor('#F1F3F5') // 设置背景颜色为浅灰色\n    .onFinish(() => {\n      // 此处可处理点击最后一页的Finish时的逻辑，例如路由跳转等\n      console.info('onFinish') // 打印日志\n    })\n    .onSkip(() => {\n      // 此处可处理点击跳过时的逻辑，例如动态修改Stepper的index值使其跳转到某一步骤页等\n      console.info('onSkip') // 打印日志\n    })\n    .onChange((prevIndex?: number, index?: number) => {\n      if(index){\n        this.currentIndex = index // 更新当前步骤页的索引\n      }\n    })\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

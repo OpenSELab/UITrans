@@ -1,0 +1,189 @@
+Title: WithTheme-容器组件-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-with-theme-V5
+
+Markdown Content:
+WithTheme组件用于设置应用局部页面自定义主题风格，可设置子组件深浅色模式和自定义配色。
+
+说明
+
+该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+接口
+--
+
+WithTheme(options: WithThemeOptions)
+
+**参数：**
+
+WithThemeOptions
+----------------
+
+设置WithTheme作用域内组件缺省样式及深浅色模式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| theme | [CustomTheme](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-theme-V5#customtheme) | 否 | 用于自定义WithTheme作用域内组件缺省配色。
+默认值：undefined，缺省样式跟随系统token默认样式。
+
+ |
+| colorMode | [ThemeColorMode](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#themecolormode10) | 否 | 用于指定WithTheme作用域内组件深浅色模式。
+
+默认值：ThemeColorMode.System。
+
+ |
+
+示例
+--
+
+设置局部深浅色时，需要添加dark.json资源文件，深浅色模式才会生效。
+
+![Image 1](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151308.04700667160084452702058403432646:50001231000000:2800:FB74C219CC3E08821F8D94BAA56B4A9457CDFFF2E7C2F65645466EFBE7D2734C.png?needInitFileName=true?needInitFileName=true)
+
+dark.json数据示例：
+
+1.    {
+2.      "color": \[
+3.        {
+4.          "name": "start\_window\_background",
+5.          "value": "#FFFFFF"
+6.        }
+7.      \]
+8.    }
+
+2.  @Entry
+3.  @Component
+4.  struct Index {
+5.    build() {
+6.      Column() {
+
+8.        Column() {
+9.          Text('无WithTheme')
+10.            .fontSize(40)
+11.            .fontWeight(FontWeight.Bold)
+12.        }
+13.        .justifyContent(FlexAlign.Center)
+14.        .width('100%')
+15.        .height('33%')
+16.        .backgroundColor($r('sys.color.background\_primary'))
+
+18.        WithTheme({ colorMode: ThemeColorMode.DARK }) {
+19.          Column() {
+20.            Text('WithTheme')
+21.              .fontSize(40)
+22.              .fontWeight(FontWeight.Bold)
+23.            Text('DARK')
+24.              .fontSize(40)
+25.              .fontWeight(FontWeight.Bold)
+26.          }
+27.          .justifyContent(FlexAlign.Center)
+28.          .width('100%')
+29.          .height('33%')
+30.          .backgroundColor($r('sys.color.background\_primary'))
+31.        }
+
+33.        WithTheme({ colorMode: ThemeColorMode.LIGHT }) {
+34.          Column() {
+35.            Text('WithTheme')
+36.              .fontSize(40)
+37.              .fontWeight(FontWeight.Bold)
+38.            Text('LIGHT')
+39.              .fontSize(40)
+40.              .fontWeight(FontWeight.Bold)
+41.          }
+42.          .justifyContent(FlexAlign.Center)
+43.          .width('100%')
+44.          .height('33%')
+45.          .backgroundColor($r('sys.color.background\_primary'))
+46.        }
+47.      }
+48.      .height('100%')
+49.      .expandSafeArea(\[SafeAreaType.SYSTEM\], \[SafeAreaEdge.TOP, SafeAreaEdge.END, SafeAreaEdge.BOTTOM, SafeAreaEdge.START\])
+50.    }
+51.  }
+
+![Image 2](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151308.56092466615621471929740893496897:50001231000000:2800:136C7316B242E5C777AA2F647EEF11C65AF860F6118FDC8452877DB11FA356DA.png?needInitFileName=true?needInitFileName=true)
+
+2.  import { CustomTheme, CustomColors } from '@kit.ArkUI';
+
+4.  class GreenColors implements CustomColors {
+5.    fontPrimary = '#ff049404';
+6.    fontEmphasize = '#FF00541F';
+7.    fontOnPrimary = '#FFFFFFFF';
+8.    compBackgroundTertiary = '#1111FF11';
+9.    backgroundEmphasize = '#FF00541F';
+10.    compEmphasizeSecondary = '#3322FF22';
+11.  }
+
+13.  class RedColors implements CustomColors {
+14.    fontPrimary = '#fff32b3c';
+15.    fontEmphasize = '#FFD53032';
+16.    fontOnPrimary = '#FFFFFFFF';
+17.    compBackgroundTertiary = '#44FF2222';
+18.    backgroundEmphasize = '#FFD00000';
+19.    compEmphasizeSecondary = '#33FF1111';
+20.  }
+
+22.  class PageCustomTheme implements CustomTheme {
+23.    colors?: CustomColors
+
+25.    constructor(colors: CustomColors) {
+26.      this.colors = colors
+27.    }
+28.  }
+
+30.  @Entry
+31.  @Component
+32.  struct IndexPage {
+33.    static readonly themeCount = 3;
+34.    themeNames: string\[\] = \['System', 'Custom (green)', 'Custom (red)'\];
+35.    themeArray: (CustomTheme | undefined)\[\] = \[
+36.      undefined, 
+37.      new PageCustomTheme(new GreenColors()),
+38.      new PageCustomTheme(new RedColors())
+39.    \]
+40.    @State themeIndex: number = 0;
+
+42.    build() {
+43.      Column() {
+44.        Column({ space: '8vp' }) {
+45.          Text(\`未使用WithTheme\`)
+
+47.          Button(\`切换theme配色：${this.themeNames\[this.themeIndex\]}\`)
+48.            .onClick(() => {
+49.              this.themeIndex = (this.themeIndex + 1) % IndexPage.themeCount;
+50.            })
+
+53.          Button('Button.style(NORMAL) with System Theme')
+54.            .buttonStyle(ButtonStyleMode.NORMAL)
+55.          Button('Button.style(EMP..ED) with System Theme')
+56.            .buttonStyle(ButtonStyleMode.EMPHASIZED)
+57.          Button('Button.style(TEXTUAL) with System Theme')
+58.            .buttonStyle(ButtonStyleMode.TEXTUAL)
+59.        }
+60.        .margin({
+61.          top: '50vp'
+62.        })
+
+64.        WithTheme({ theme: this.themeArray\[this.themeIndex\] }) {
+
+66.          Column({ space: '8vp' }) {
+67.            Text(\`使用WithTheme\`)
+68.            Button('Button.style(NORMAL) with Custom Theme')
+69.              .buttonStyle(ButtonStyleMode.NORMAL)
+70.            Button('Button.style(EMP..ED) with Custom Theme')
+71.              .buttonStyle(ButtonStyleMode.EMPHASIZED)
+72.            Button('Button.style(TEXTUAL) with Custom Theme')
+73.              .buttonStyle(ButtonStyleMode.TEXTUAL)
+74.          }
+75.          .width('100%')
+76.        }
+77.      }
+78.    }
+79.  }
+
+![Image 3](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240816151308.13308820961063334469240869784370:50001231000000:2800:185F07DB802783AF90B644D8D82AD95C5C052C1AA0C110CAF29FB2450C043348.gif?needInitFileName=true?needInitFileName=true)

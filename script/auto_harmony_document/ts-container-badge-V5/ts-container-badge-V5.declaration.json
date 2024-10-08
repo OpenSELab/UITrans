@@ -1,0 +1,112 @@
+{
+    "description": "可以附加在单个组件上用于信息标记的容器组件。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Badge(value: BadgeParamWithNumber)",
+            "params": {
+                "value": {
+                    "type": "BadgeParamWithNumber",
+                    "required": true,
+                    "description": "创建数字标记组件。"
+                }
+            }
+        },
+        {
+            "description": "Badge(value: BadgeParamWithString)",
+            "params": {
+                "value": {
+                    "type": "BadgeParamWithString",
+                    "required": true,
+                    "description": "根据字符串创建标记组件。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "position": {
+            "description": "设置提示点显示位置。",
+            "params": {
+                "value": {
+                    "type": [
+                        "BadgePosition",
+                        "Position10+"
+                    ],
+                    "required": false,
+                    "description": "提示点显示位置。",
+                    "default": "BadgePosition.RightTop"
+                }
+            }
+        },
+        "style": {
+            "description": "Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。",
+            "params": {
+                "color": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "文本颜色。",
+                    "default": "Color.White"
+                },
+                "fontSize": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": false,
+                    "description": "文本大小。",
+                    "default": "10"
+                },
+                "badgeSize": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": false,
+                    "description": "Badge的大小。",
+                    "default": "16"
+                },
+                "badgeColor": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "Badge的颜色。",
+                    "default": "Color.Red"
+                },
+                "fontWeight10+": {
+                    "type": [
+                        "number",
+                        "FontWeight",
+                        "string"
+                    ],
+                    "required": false,
+                    "description": "设置文本的字体粗细。",
+                    "default": "FontWeight.Normal"
+                },
+                "borderColor10+": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "底板描边颜色。",
+                    "default": "Color.Red"
+                },
+                "borderWidth10+": {
+                    "type": "Length",
+                    "required": false,
+                    "description": "底板描边粗细。",
+                    "default": "1"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过 Column 布局实现了一个展示带有徽章（Badge）的图标以及两个按钮的界面。布局宽度占据整个屏幕，高度根据内容自适应，顶部外边距为 20vp。组件的垂直方向上被分为三个部分：一个带有徽章的图标和两个按钮。图标和按钮之间的间距为 40vp，且对齐方式为居中对齐。\n\n图标的样式包括宽度为 50vp，高度为 50vp，徽章的位置为右上角。按钮的样式包括默认的背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。按钮的功能包括点击事件，用户可以通过点击按钮改变徽章的计数值。\n\n整个布局通过 Column 布局保证图标和按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct Index {\n  @State badgeCount: number = 1 // 徽章的计数值，初始值为1\n\n  build() {\n    Column({ space: 40 }) { // 创建一个垂直布局，组件之间的间距为40vp\n      Badge({\n        count: this.badgeCount, // 徽章的计数值，绑定到状态变量badgeCount\n        style: {}, // 徽章的样式，此处为空对象，表示使用默认样式\n        position: BadgePosition.RightTop, // 徽章的位置，设置为右上角\n      }) {\n        Image($r(\"app.media.icon\")) // 加载应用资源中的图标\n          .width(50) // 图标的宽度为50vp\n          .height(50) // 图标的高度为50vp\n      }\n      .width(55) // 徽章组件的总宽度为55vp\n\n      Button('count 0').onClick(() => { // 创建一个按钮，文本为'count 0'，点击事件处理函数\n        this.badgeCount = 0 // 点击按钮后，将徽章的计数值设置为0\n      })\n\n      Button('count 1').onClick(() => { // 创建一个按钮，文本为'count 1'，点击事件处理函数\n        this.badgeCount = 1 // 点击按钮后，将徽章的计数值设置为1\n      })\n    }\n    .margin({top: 20}) // 设置Column组件的顶部外边距为20vp\n  }\n}"
+        },
+        {
+            "description": "该示例展示了如何在鸿蒙ArkUI中使用Badge组件来实现不同类型的徽章（如点状徽章、字符串徽章、数字徽章）。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组徽章示例。每个徽章示例以水平布局方式排列，徽章之间的间距均匀分布，且对齐方式为居中对齐。\n徽章的样式包括背景颜色、大小、位置等属性，支持不同的样式展示。徽章的功能包括显示不同的内容（如空字符串、字符串、数字），用户可以通过徽章的样式和内容来识别不同的状态或通知。\n整个布局通过Flex布局保证徽章在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct BadgeExample {\n  // 定义一个Builder方法，用于生成Tab的UI\n  @Builder tabBuilder(index: number) {\n    Column() {\n      // 当index为2时，显示带有点状徽章的图标\n      if (index === 2) {\n        Badge({\n          value: '', // 徽章内容为空字符串，表示点状徽章\n          style: { badgeSize: 6, badgeColor: '#FA2A2D' } // 徽章大小为6，颜色为红色\n        }) {\n          Image('/common/public_icon_off.svg') // 显示图标\n            .width(24)\n            .height(24)\n        }\n        .width(24)\n        .height(24)\n        .margin({ bottom: 4 }) // 底部外边距为4\n      } else {\n        // 其他情况下，仅显示图标\n        Image('/common/public_icon_off.svg')\n          .width(24)\n          .height(24)\n          .margin({ bottom: 4 }) // 底部外边距为4\n      }\n      Text('Tab') // 显示Tab文本\n        .fontColor('#182431') // 文本颜色为深灰色\n        .fontSize(10) // 字体大小为10\n        .fontWeight(500) // 字体粗细为500\n        .lineHeight(14) // 行高为14\n    }.width('100%').height('100%').justifyContent(FlexAlign.Center) // 宽度、高度均为100%，内容居中对齐\n  }\n\n  // 定义一个Builder方法，用于生成列表项的UI\n  @Builder itemBuilder(value: string) {\n    Row() {\n      Image('common/public_icon.svg') // 显示图标\n        .width(32)\n        .height(32)\n        .opacity(0.6) // 图标透明度为0.6\n      Text(value) // 显示文本\n        .width(177)\n        .height(21)\n        .margin({ left: 15, right: 76 }) // 左右外边距分别为15和76\n        .textAlign(TextAlign.Start) // 文本左对齐\n        .fontColor('#182431') // 文本颜色为深灰色\n        .fontWeight(500) // 字体粗细为500\n        .fontSize(16) // 字体大小为16\n        .opacity(0.9) // 文本透明度为0.9\n      Image('common/public_icon_arrow_right.svg') // 显示右箭头图标\n        .width(12)\n        .height(24)\n        .opacity(0.6) // 图标透明度为0.6\n    }.width('100%').padding({ left: 12, right: 12 }).height(56) // 宽度为100%，左右内边距为12，高度为56\n  }\n\n  // 构建主界面的UI\n  build() {\n    Column() {\n      Text('dotsBadge') // 显示标题\n        .fontSize(18) // 字体大小为18\n        .fontColor('#182431') // 文本颜色为深灰色\n        .fontWeight(500) // 字体粗细为500\n        .margin(24) // 外边距为24\n      Tabs() {\n        TabContent()\n          .tabBar(this.tabBuilder(0)) // 使用tabBuilder生成Tab的UI\n        TabContent()\n          .tabBar(this.tabBuilder(1))\n        TabContent()\n          .tabBar(this.tabBuilder(2))\n        TabContent()\n          .tabBar(this.tabBuilder(3))\n      }\n      .width(360) // 宽度为360\n      .height(56) // 高度为56\n      .backgroundColor('#F1F3F5') // 背景颜色为浅灰色\n\n      Column() {\n        Text('stringBadge') // 显示标题\n          .fontSize(18)\n          .fontColor('#182431')\n          .fontWeight(500)\n          .margin(24)\n        List({ space: 12 }) {\n          ListItem() {\n            Text('list1') // 显示文本\n              .fontSize(14)\n              .fontColor('#182431')\n              .margin({ left: 12 }) // 左外边距为12\n          }\n          .width('100%')\n          .height(56)\n          .backgroundColor('#FFFFFF') // 背景颜色为白色\n          .borderRadius(24) // 边框圆角为24\n          .align(Alignment.Start) // 内容左对齐\n\n          ListItem() {\n            Badge({\n              value: 'New', // 徽章内容为\"New\"\n              position: BadgePosition.Right, // 徽章位置在右侧\n              style: { badgeSize: 16, badgeColor: '#FA2A2D' } // 徽章大小为16，颜色为红色\n            }) {\n              Text('list2') // 显示文本\n                .width(27)\n                .height(19)\n                .fontSize(14)\n                .fontColor('#182431')\n            }.width(49.5).height(19)\n            .margin({ left: 12 }) // 左外边距为12\n          }\n          .width('100%')\n          .height(56)\n          .backgroundColor('#FFFFFF')\n          .borderRadius(24)\n          .align(Alignment.Start)\n        }.width(336)\n\n        Text('numberBadge') // 显示标题\n          .fontSize(18)\n          .fontColor('#182431')\n          .fontWeight(500)\n          .margin(24)\n        List() {\n          ListItem() {\n            this.itemBuilder('list1') // 使用itemBuilder生成列表项的UI\n          }\n\n          ListItem() {\n            Row() {\n              Image('common/public_icon.svg') // 显示图标\n                .width(32)\n                .height(32)\n                .opacity(0.6)\n              Badge({\n                count: 1, // 徽章内容为数字1\n                position: BadgePosition.Right, // 徽章位置在右侧\n                style: { badgeSize: 16, badgeColor: '#FA2A2D' } // 徽章大小为16，颜色为红色\n              }) {\n                Text('list2') // 显示文本\n                  .width(177)\n                  .height(21)\n                  .textAlign(TextAlign.Start)\n                  .fontColor('#182431')\n                  .fontWeight(500)\n                  .fontSize(16)\n                  .opacity(0.9)\n              }.width(240).height(21).margin({ left: 15, right: 11 }) // 左右外边距分别为15和11\n\n              Image('common/public_icon_arrow_right.svg') // 显示右箭头图标\n                .width(12)\n                .height(24)\n                .opacity(0.6)\n            }.width('100%').padding({ left: 12, right: 12 }).height(56) // 宽度为100%，左右内边距为12，高度为56\n          }\n\n          ListItem() {\n            this.itemBuilder('list3') // 使用itemBuilder生成列表项的UI\n          }\n\n          ListItem() {\n            this.itemBuilder('list4') // 使用itemBuilder生成列表项的UI\n          }\n        }\n        .width(336)\n        .height(232)\n        .backgroundColor('#FFFFFF')\n        .borderRadius(24)\n        .padding({ top: 4, bottom: 4 }) // 上下内边距为4\n        .divider({ strokeWidth: 0.5, color: 'rgba(0,0,0,0.1)', startMargin: 60, endMargin: 12 }) // 分割线样式\n      }.width('100%').backgroundColor('#F1F3F5').padding({ bottom: 12 }) // 宽度为100%，背景颜色为浅灰色，底部内边距为12\n    }.width('100%')\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

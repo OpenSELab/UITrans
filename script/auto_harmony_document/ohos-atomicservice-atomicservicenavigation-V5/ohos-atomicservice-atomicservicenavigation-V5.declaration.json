@@ -1,0 +1,213 @@
+{
+    "description": "作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（NavDestination的子组件），首页和非首页通过路由进行切换。",
+    "details": "可以包含单个子组件。",
+    "interfaces": [
+        {
+            "description": "AtomicServiceNavigation({ navPathStack, navigationContent, title, titleBackgroundColor, hideTitleBar, navBarWidth, mode, navDestinationBuilder, navBarWidthRange, minContentWidth, stateChangeCallback, modeChangeCallback })",
+            "params": {
+                "navPathStack": {
+                    "type": "NavPathStack",
+                    "required": false,
+                    "description": "路由栈信息。"
+                },
+                "navigationContent": {
+                    "type": "Callback<void>",
+                    "required": false,
+                    "description": "Navigation容器内容。"
+                },
+                "title": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "设置页面标题。"
+                },
+                "titleBackgroundColor": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "设置标题栏背景颜色。"
+                },
+                "hideTitleBar": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "设置是否隐藏标题栏。"
+                },
+                "navBarWidth": {
+                    "type": "Length",
+                    "required": false,
+                    "description": "设置导航栏宽度。仅在Navigation组件分栏时生效。"
+                },
+                "mode": {
+                    "type": [
+                        "NavigationMode"
+                    ],
+                    "required": false,
+                    "description": "设置导航栏的显示模式。支持Stack、Split与Auto模式。"
+                },
+                "navDestinationBuilder": {
+                    "type": "NavDestinationBuilder",
+                    "required": false,
+                    "description": "创建NavDestination组件所需要的Builder数据。"
+                },
+                "navBarWidthRange": {
+                    "type": [
+                        "Dimension",
+                        "Dimension"
+                    ],
+                    "required": false,
+                    "description": "设置导航栏最小和最大宽度（双栏模式下生效）。"
+                },
+                "minContentWidth": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "设置导航栏内容区最小宽度（双栏模式下生效）。"
+                },
+                "stateChangeCallback": {
+                    "type": "Callback<boolean>",
+                    "required": false,
+                    "description": "导航栏显示状态切换时触发该回调。"
+                },
+                "modeChangeCallback": {
+                    "type": "Callback<NavigationMode>",
+                    "required": false,
+                    "description": "当Navigation首次显示或者单双栏状态发生变化时触发该回调。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "navPathStack": {
+            "description": "路由栈信息。",
+            "params": {
+                "value": {
+                    "type": "NavPathStack",
+                    "required": false,
+                    "description": "路由栈信息。"
+                }
+            }
+        },
+        "navigationContent": {
+            "description": "Navigation容器内容。",
+            "params": {
+                "value": {
+                    "type": "Callback<void>",
+                    "required": false,
+                    "description": "Navigation容器内容。"
+                }
+            }
+        },
+        "title": {
+            "description": "设置页面标题。",
+            "params": {
+                "value": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "设置页面标题。"
+                }
+            }
+        },
+        "titleOptions": {
+            "description": "标题栏选项。",
+            "params": {
+                "value": {
+                    "type": "TitleOptions",
+                    "required": false,
+                    "description": "标题栏选项。"
+                }
+            }
+        },
+        "hideTitleBar": {
+            "description": "设置是否隐藏标题栏。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "设置是否隐藏标题栏。"
+                }
+            }
+        },
+        "navBarWidth": {
+            "description": "设置导航栏宽度。仅在Navigation组件分栏时生效。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": false,
+                    "description": "设置导航栏宽度。"
+                }
+            }
+        },
+        "mode": {
+            "description": "设置导航栏的显示模式。支持Stack、Split与Auto模式。",
+            "params": {
+                "value": {
+                    "type": [
+                        "NavigationMode"
+                    ],
+                    "required": false,
+                    "description": "设置导航栏的显示模式。"
+                }
+            }
+        },
+        "navDestinationBuilder": {
+            "description": "创建NavDestination组件所需要的Builder数据。",
+            "params": {
+                "value": {
+                    "type": "NavDestinationBuilder",
+                    "required": false,
+                    "description": "创建NavDestination组件所需要的Builder数据。"
+                }
+            }
+        },
+        "navBarWidthRange": {
+            "description": "设置导航栏最小和最大宽度（双栏模式下生效）。",
+            "params": {
+                "value": {
+                    "type": [
+                        "Dimension",
+                        "Dimension"
+                    ],
+                    "required": false,
+                    "description": "设置导航栏最小和最大宽度。"
+                }
+            }
+        },
+        "minContentWidth": {
+            "description": "设置导航栏内容区最小宽度（双栏模式下生效）。",
+            "params": {
+                "value": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "设置导航栏内容区最小宽度。"
+                }
+            }
+        }
+    },
+    "events": {
+        "stateChangeCallback": {
+            "description": "导航栏显示状态切换时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "Callback<boolean>",
+                    "required": false,
+                    "description": "导航栏显示状态切换时触发该回调。"
+                }
+            }
+        },
+        "modeChangeCallback": {
+            "description": "当Navigation首次显示或者单双栏状态发生变化时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "Callback<NavigationMode>",
+                    "required": false,
+                    "description": "当Navigation首次显示或者单双栏状态发生变化时触发该回调。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该示例展示了如何在鸿蒙ArkUI中使用AtomicServiceNavigation和AtomicServiceTabs组件来创建一个带有导航和标签页的应用界面。布局宽度占据整个屏幕，高度设为100%。组件的垂直方向上被分为两个主要部分：顶部是一个导航栏，底部是一个标签栏。导航栏包含一个标题和导航内容，标签栏包含三个标签页，每个标签页对应一个不同的内容区域。\n\n导航栏的标题是动态更新的，根据用户点击的标签页来显示不同的标题。导航栏的背景颜色为'rgb(61, 157, 180)'，并且不启用模糊效果。导航栏的导航内容是一个标签页组件，包含三个标签页，每个标签页对应一个不同的内容区域。标签页的标签栏位于底部，背景颜色为系统资源'sys.color.ohos_id_color_bottom_tab_bg'。标签栏的标签项包含图标和文本，图标和文本的颜色可以根据标签项的状态进行动态调整。\n\n标签页的内容区域包含三个不同的内容构建器，分别对应三个标签页。每个内容构建器返回一个Text组件，点击第一个标签页的Text组件会触发导航栈的push操作，将新的页面推入导航栈。导航栈的模式为Stack模式，支持页面之间的导航和返回操作。\n\n页面PageOne和PageTwo分别展示了如何在导航栈中进行页面跳转。PageOne包含一个按钮，点击按钮会将PageTwo推入导航栈。PageTwo包含一个按钮，点击按钮会结束当前页面的展示。",
+            "code": "import { AtomicServiceNavigation, NavDestinationBuilder, AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';\n\n@Entry\n@Component\nstruct Index {\n  @State message: string = '主题'; // 导航栏的标题，初始值为'主题'\n  childNavStack: NavPathStack = new NavPathStack(); // 导航栈，用于管理页面的导航路径\n\n  @Builder\n  tabContent1() {\n    Text('first page')\n      .onClick(() => {\n        this.childNavStack.pushPath({ name: 'page one' }) // 点击Text组件时，将'page one'推入导航栈\n      })\n  }\n\n  @Builder\n  tabContent2() {\n    Text('second page') // 第二个标签页的内容\n  }\n\n  @Builder\n  tabContent3() {\n    Text('third page') // 第三个标签页的内容\n  }\n\n  @Builder\n  navigationContent() {\n    AtomicServiceTabs({\n      tabContents: [\n        () => {\n          this.tabContent1() // 第一个标签页的内容\n        },\n        () => {\n          this.tabContent2() // 第二个标签页的内容\n        },\n        () => {\n          this.tabContent3() // 第三个标签页的内容\n        }\n      ],\n      tabBarOptionsArray: [\n        new TabBarOptions($r('sys.media.ohos_ic_public_phone'), '功能1'), // 第一个标签页的图标和文本\n        new TabBarOptions($r('sys.media.ohos_ic_public_location'), '功能2', Color.Green, Color.Red), // 第二个标签页的图标和文本，以及激活和未激活时的颜色\n        new TabBarOptions($r('sys.media.ohos_ic_public_more'), '功能3') // 第三个标签页的图标和文本\n      ],\n      tabBarPosition: TabBarPosition.BOTTOM, // 标签栏位于底部\n      barBackgroundColor: $r('sys.color.ohos_id_color_bottom_tab_bg'), // 标签栏的背景颜色\n      onTabBarClick: (index: Number) => {\n        if (index == 0) {\n          this.message = '功能1'; // 点击第一个标签页时，更新导航栏的标题为'功能1'\n        } else if (index == 1) {\n          this.message = '功能2'; // 点击第二个标签页时，更新导航栏的标题为'功能2'\n        } else {\n          this.message = '功能3'; // 点击第三个标签页时，更新导航栏的标题为'功能3'\n        }\n      }\n    })\n  }\n\n  @Builder\n  pageMap(name: string) {\n    if (name === 'page one') {\n      PageOne() // 如果导航栈中的页面名称为'page one'，则显示PageOne组件\n    } else if (name === 'page two') {\n      PageTwo() // 如果导航栈中的页面名称为'page two'，则显示PageTwo组件\n    }\n  }\n\n  build() {\n    Row() {\n      Column() {\n        AtomicServiceNavigation({\n          navigationContent: () => {\n            this.navigationContent() // 导航栏的内容\n          },\n          title: this.message, // 导航栏的标题\n          titleOptions: {\n            backgroundColor: 'rgb(61, 157, 180)', // 导航栏的背景颜色\n            isBlurEnabled: false // 不启用模糊效果\n          },\n          navDestinationBuilder: this.pageMap, // 导航目的地的构建器\n          navPathStack: this.childNavStack, // 导航栈\n          mode: NavigationMode.Stack // 导航模式为Stack模式\n        })\n      }\n      .width('100%') // 宽度占据整个屏幕\n    }\n    .height('100%') // 高度占据整个屏幕\n  }\n}\n\n@Component\nexport struct PageOne {\n  pageInfo: NavPathStack = new NavPathStack(); // 页面信息，用于管理页面的导航路径\n\n  build() {\n    NavDestination() {\n      Button('Next')\n        .onClick(() => {\n          this.pageInfo.pushPath({ name: 'page two'}) // 点击按钮时，将'page two'推入导航栈\n        })\n    }\n    .title('PageOne') // 页面的标题\n    .onReady((context: NavDestinationContext) => {\n      this.pageInfo = context.pathStack; // 页面准备就绪时，获取导航栈信息\n    })\n  }\n}\n\n@Component\nexport struct PageTwo {\n  pageInfo: NavPathStack = new NavPathStack(); // 页面信息，用于管理页面的导航路径\n\n  build() {\n    NavDestination() {\n      Button('End') // 页面包含一个按钮，点击按钮会结束当前页面的展示\n    }\n    .title('PageTwo') // 页面的标题\n    .onReady((context: NavDestinationContext) => {\n      this.pageInfo = context.pathStack; // 页面准备就绪时，获取导航栈信息\n    })\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

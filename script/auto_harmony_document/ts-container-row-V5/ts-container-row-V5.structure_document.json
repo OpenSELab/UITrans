@@ -1,0 +1,49 @@
+{
+    "description": "沿水平方向布局容器，可以包含子组件。",
+    "interfaces": [
+        {
+            "description": "Row(value?:{space?: number | string })",
+            "params": {
+                "value": {
+                    "type": "object",
+                    "required": false,
+                    "description": "包含space参数的对象。",
+                    "properties": {
+                        "space": {
+                            "type": [
+                                "number",
+                                "string"
+                            ],
+                            "required": false,
+                            "description": "横向布局元素间距。默认值：0，单位vp。可选值为大于等于0的数字，或者可以转换为数字的字符串。"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "alignItems": {
+            "description": "设置子组件在垂直方向上的对齐格式。",
+            "params": {
+                "value": {
+                    "type": "VerticalAlign",
+                    "required": true,
+                    "description": "子组件在垂直方向上的对齐格式。默认值：VerticalAlign.Center"
+                }
+            }
+        },
+        "justifyContent": {
+            "description": "设置子组件在水平方向上的对齐格式。",
+            "params": {
+                "value": {
+                    "type": "FlexAlign",
+                    "required": true,
+                    "description": "子组件在水平方向上的对齐格式。默认值：FlexAlign.Start"
+                }
+            }
+        }
+    },
+    "events": {},
+    "is_common_attrs": true
+}

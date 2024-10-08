@@ -1,0 +1,117 @@
+{
+    "description": "列表包含一系列相同宽度的列表项。内容包括适合连续、多行呈现同类数据的组合，例如图片和文本。",
+    "details": "该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})",
+            "params": {
+                "contentItem": {
+                    "type": "ContentItem",
+                    "required": false,
+                    "description": "定义左侧以及中间元素。"
+                },
+                "operateItem": {
+                    "type": "OperateItem",
+                    "required": false,
+                    "description": "定义右侧元素。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "contentItem": {
+            "description": "定义左侧以及中间元素。",
+            "params": {
+                "iconStyle": {
+                    "type": "IconType",
+                    "required": false,
+                    "description": "左侧元素的图标样式。"
+                },
+                "icon": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "左侧元素的图标资源。"
+                },
+                "primaryText": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "中间元素的标题内容。文字处理规则：只显示一行文字，超出内容以“...”显示。"
+                },
+                "secondaryText": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "中间元素的副标题内容。文字处理规则：只显示一行文字，超出内容以“...”显示。"
+                },
+                "description": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "中间元素的描述内容。文字处理规则：只显示一行文字，超出内容以“...”显示。"
+                }
+            }
+        },
+        "operateItem": {
+            "description": "定义右侧元素。",
+            "params": {
+                "arrow": {
+                    "type": "OperateIcon",
+                    "required": false,
+                    "description": "右侧元素为箭头，大小为12*24dp。"
+                },
+                "icon": {
+                    "type": "OperateIcon",
+                    "required": false,
+                    "description": "右侧元素的第一个图标，大小为24*24dp。"
+                },
+                "subIcon": {
+                    "type": "OperateIcon",
+                    "required": false,
+                    "description": "右侧元素的第二个图标，大小为24*24dp。"
+                },
+                "button": {
+                    "type": "OperateButton",
+                    "required": false,
+                    "description": "右侧元素为按钮。"
+                },
+                "switch": {
+                    "type": "OperateCheck",
+                    "required": false,
+                    "description": "右侧元素为开关。"
+                },
+                "checkbox": {
+                    "type": "OperateCheck",
+                    "required": false,
+                    "description": "右侧元素为多选框，大小为24*24dp。"
+                },
+                "radio": {
+                    "type": "OperateCheck",
+                    "required": false,
+                    "description": "右侧元素为单选，大小为24*24dp。"
+                },
+                "image": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "右侧元素为图片，大小为48*48dp。"
+                },
+                "text": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "右侧元素为文字。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onClick": {
+            "description": "点击事件。",
+            "params": {}
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该示例通过使用 `ComposeListItem` 组件展示了一个包含左侧和右侧元素的列表项。布局上，该组件采用垂直布局，包含一个 `List` 组件，其中嵌套了一个 `ListItem` 组件。`ComposeListItem` 组件内部包含了两个主要部分：`contentItem` 和 `operateItem`。\n\n`contentItem` 部分位于列表项的左侧，包含一个图标、主文本、辅助文本和描述内容。图标使用系统资源 `sys.media.ohos_app_icon`，主文本为“双行列表”，辅助文本为“辅助文字”，描述内容为“描述内容文字”。图标的样式为 `IconType.NORMAL_ICON`，表示这是一个普通图标。\n\n`operateItem` 部分位于列表项的右侧，包含一个图标和一个文本。图标同样使用系统资源 `sys.media.ohos_app_icon`，并且设置了点击事件，点击后会弹出一个提示框显示“icon”。右侧文本为“右侧文本”。\n\n整个布局通过 `Column` 组件实现垂直排列，确保列表项在垂直方向上有序排列。组件的样式和外观通过 `ComposeListItem` 的属性进行配置，图标和文本的排列和嵌套关系通过 `ComposeListItem` 的内部结构实现。组件的功能包括点击事件，用户可以通过点击图标触发相应操作。",
+            "code": "// 导入所需的模块和组件\nimport { IconType, ComposeListItem, promptAction } from '@kit.ArkUI';\n\n// 定义一个名为 `ComposeListItemExample` 的组件，并将其标记为入口组件\n@Entry\n@Component\nstruct ComposeListItemExample {\n  // 构建组件的 UI 结构\n  build() {\n    // 使用 `Column` 组件实现垂直布局\n    Column() {\n      // 使用 `List` 组件创建一个列表\n      List() {\n        // 使用 `ListItem` 组件创建一个列表项\n        ListItem() {\n          // 使用 `ComposeListItem` 组件创建一个包含左侧和右侧元素的列表项\n          ComposeListItem({\n            // 定义左侧的内容部分\n            contentItem: ({\n              // 设置图标的样式为普通图标\n              iconStyle: IconType.NORMAL_ICON,\n              // 设置图标为系统资源 `sys.media.ohos_app_icon`\n              icon: $r('sys.media.ohos_app_icon'),\n              // 设置主文本为“双行列表”\n              primaryText: '双行列表',\n              // 设置辅助文本为“辅助文字”\n              secondaryText: '辅助文字',\n              // 设置描述内容为“描述内容文字”\n              description: '描述内容文字'\n            }),\n            // 定义右侧的操作部分\n            operateItem: ({\n              // 设置右侧图标为系统资源 `sys.media.ohos_app_icon`\n              icon: {\n                value: $r('sys.media.ohos_app_icon'),\n                // 设置图标的点击事件，点击后弹出提示框显示“icon”\n                action: () => {\n                  promptAction.showToast({ message: 'icon' });\n                }\n              },\n              // 设置右侧文本为“右侧文本”\n              text: '右侧文本'\n            })\n          })\n        }\n      }\n    }\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

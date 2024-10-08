@@ -1,0 +1,875 @@
+Title: 列表选择弹窗 (ActionSheet)-全局UI方法-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-action-sheet-V5
+
+Markdown Content:
+列表选择弹窗 (ActionSheet)-全局UI方法-ArkTS组件-ArkUI（方舟UI框架）-应用框架 - 华为HarmonyOS开发者
+===============
+
+简体中文
+
+*   简体中文
+*   Русский
+*   English
+*   Español (América Latina)
+*   Português (Brasil)
+*   Français (Europe)
+*   Deutsch
+*   日本語
+*   한국어
+
+[App](https://developer.huawei.com/consumer/cn/huawei-app/)
+
+[](https://developer.huawei.com/consumer/cn/)
+
+*   探索
+*   设计
+*   开发
+*   分发
+*   推广与变现
+*   生态合作
+*   支持
+
+*   更多
+
+*   [探索](https://developer.huawei.com/consumer/cn/discover/)
+    
+*   [设计](https://developer.huawei.com/consumer/cn/design/)
+    
+*   [开发](https://developer.huawei.com/consumer/cn/develop/)
+    
+*   [分发](https://developer.huawei.com/consumer/cn/distribute/)
+    
+*   更多
+    *   [推广与变现](https://developer.huawei.com/consumer/cn/promote/)
+        
+    *   [生态合作](https://developer.huawei.com/consumer/cn/cooperate/)
+        
+    *   [支持](https://developer.huawei.com/consumer/cn/support/)
+        
+
+搜索
+
+热门搜索 _换一换_
+
+*   HarmonyOS NEXT
+*   HarmonyOS应用开发
+*   仓颉
+*   DevEco Studio
+*   开发者能力认证
+*   模拟器
+*   Navigation
+*   List
+*   Web
+*   TextInput
+*   Image
+*   AppGallery Connect
+
+[文档](https://developer.huawei.com/consumer/cn/doc/)[管理中心](https://developer.huawei.com/consumer/cn/console)
+
+HarmonyOS NEXT
+
+Developer Beta3
+
+API参考
+
+*   [版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/releasenotes-baseline-V5?istab=1&catalogVersion=V5)
+*   [指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/application-dev-guide-V5?istab=1&catalogVersion=V5)
+*   [API参考](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/development-intro-api-V5?istab=1&catalogVersion=V5)
+*   [最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-develop-once-deploy-everywhere-V5?istab=1&catalogVersion=V5)
+*   [FAQ](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-development-V5?istab=1&catalogVersion=V5)
+*   [变更预告](https://developer.huawei.com/consumer/cn/doc/harmonyos-roadmap-V5/changelogs-in-31-V5?istab=1&catalogVersion=V5)
+*   更多
+
+筛选元服务API集
+
+API参考概述
+
+应用框架
+
+[Ability Kit（程序框架服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ability-api-V5)
+
+[Accessibility Kit（无障碍开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/accessibility-api-V5)
+
+[ArkData（方舟数据管理）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkdata-api-V5)
+
+[ArkTS（方舟编程语言）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkts-api-V5)
+
+[ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5)
+
+[ArkTS API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-V5)
+
+[ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5)
+
+[组件导读](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-components-summary-V5)
+
+[组件通用信息](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_2_u7ec4_u4ef6_u901a_u7528_u4fe1_u606f-V5)
+
+[基础组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_3_u57fa_u7840_u7ec4_u4ef6-V5)
+
+[容器组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_4_u5bb9_u5668_u7ec4_u4ef6-V5)
+
+[媒体组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_5_u5a92_u4f53_u7ec4_u4ef6-V5)
+
+[绘制组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_6_u7ed8_u5236_u7ec4_u4ef6-V5)
+
+[画布组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_7_u753b_u5e03_u7ec4_u4ef6-V5)
+
+[渲染组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_8_u6e32_u67d3_u7ec4_u4ef6-V5)
+
+[高级组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_9_u9ad8_u7ea7_u7ec4_u4ef6-V5)
+
+[安全控件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_10_u5b89_u5168_u63a7_u4ef6-V5)
+
+[动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_11_u52a8_u753b-V5)
+
+[全局UI方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_12_u5168_u5c40ui_u65b9_u6cd5-V5)
+
+[警告弹窗 (AlertDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5)
+
+[列表选择弹窗 (ActionSheet)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-action-sheet-V5)
+
+[自定义弹窗 (CustomDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-custom-dialog-box-V5)
+
+[日历选择器弹窗 (CalendarPickerDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-calendarpicker-dialog-V5)
+
+[日期滑动选择器弹窗 (DatePickerDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-datepicker-dialog-V5)
+
+[时间滑动选择器弹窗 (TimePickerDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-timepicker-dialog-V5)
+
+[文本滑动选择器弹窗 (TextPickerDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-textpicker-dialog-V5)
+
+[菜单](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-menu-V5)
+
+[自定义组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_13_u81ea_u5b9a_u4e49_u7ec4_u4ef6-V5)
+
+[类型定义](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_14_u7c7b_u578b_u5b9a_u4e49-V5)
+
+[应用级变量的状态管理](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-state-management-V5)
+
+[渲染控制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_16_u6e32_u67d3_u63a7_u5236-V5)
+
+[像素单位](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-pixel-units-V5)
+
+[枚举说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5)
+
+[设置事件回调](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-uicommonevent-V5)
+
+[属性字符串](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-styled-string-V5)
+
+[已停止维护的组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/21_u5df2_u505c_u6b62_u7ef4_u62a4_u7684_u7ec4_u4ef6-V5)
+
+[已停止维护的接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/22_u5df2_u505c_u6b62_u7ef4_u62a4_u7684_u63a5_u53e3-V5)
+
+[JS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-js-comp-V5)
+
+[C API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-c-V5)
+
+[错误码](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-errcode-V5)
+
+[ArkWeb（方舟Web）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkweb-api-V5)
+
+[Background Tasks Kit（后台任务开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/background-tasks-api-V5)
+
+[Core File Kit（文件基础服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/core-file-api-V5)
+
+[Form Kit（卡片开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/form-api-V5)
+
+[IME Kit（输入法开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ime-api-V5)
+
+[IPC Kit（进程间通信服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ipc-api-V5)
+
+[Localization Kit（本地化开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/localization-api-V5)
+
+[UI Design Kit（UI设计套件）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ui-design-api-V5)
+
+系统
+
+媒体
+
+图形
+
+应用服务
+
+AI
+
+公共基础能力
+
+标准库
+
+您当前正在浏览HarmonyOS NEXT Developer Beta3版本的配套文档，该版本API能力级别为API 12 Beta3，详细版本配套关系请参考[版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/overview-db3-V5)。
+
+API参考 应用框架 [ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5) [ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5) [全局UI方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_12_u5168_u5c40ui_u65b9_u6cd5-V5) 列表选择弹窗 (ActionSheet)
+
+列表选择弹窗 (ActionSheet)
+====================
+
+更新时间: 2024-08-21 06:17
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+本文导读
+
+[ActionSheet.show](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-action-sheet-V5#actionsheetshow)
+
+[ActionSheetOptions对象说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-action-sheet-V5#actionsheetoptions%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+[SheetInfo接口说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-action-sheet-V5#sheetinfo%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E)
+
+[示例](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-action-sheet-V5#%E7%A4%BA%E4%BE%8B)
+
+[示例1](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-action-sheet-V5#%E7%A4%BA%E4%BE%8B1)
+
+[示例2](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-action-sheet-V5#%E7%A4%BA%E4%BE%8B2)
+
+[示例3](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-action-sheet-V5#%E7%A4%BA%E4%BE%8B3)
+
+[示例4](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-action-sheet-V5#%E7%A4%BA%E4%BE%8B4)
+
+展开章节
+
+列表弹窗。
+
+说明
+
+从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-uicontext-V5#uicontext)说明。
+
+从API version 10开始，可以通过使用[UIContext](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-uicontext-V5#uicontext)中的[showActionSheet](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-uicontext-V5#showactionsheet)来明确UI的执行上下文。
+
+ActionSheet.show
+----------------
+
+static show(value: ActionSheetOptions)
+
+定义列表弹窗并弹出。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 描述 |
+| :-- | :-- | :-- | :-- |
+| value | [ActionSheetOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-action-sheet-V5#actionsheetoptions%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | 是 | 配置列表选择弹窗的参数。 |
+
+ActionSheetOptions对象说明
+----------------------
+
+| 名称 | 类型 | 必填 | 说明 |
+| :-- | :-- | :-- | :-- |
+| title | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | string | 是 | 弹窗标题。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| subtitle10+ | [ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr) | 否 | 弹窗副标题。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| message | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | string | 是 | 弹窗内容。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| autoCancel | boolean | 否 | 点击遮障层时，是否关闭弹窗。
+
+默认值：true
+
+值为true时，点击遮障层关闭弹窗，值为false时，点击遮障层不关闭弹窗。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| confirm | {
+
+enabled10+?: boolean,
+
+defaultFocus10+?: boolean,
+
+style10+?: [DialogButtonStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#dialogbuttonstyle10%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E),
+
+value: [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | string,
+
+action: () => void
+
+}
+
+ | 否 | 确认Button的使能状态、默认焦点、按钮风格、文本内容和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。
+
+enabled：点击Button是否响应，true表示Button可以响应，false表示Button不可以响应。
+
+默认值：true
+
+defaultFocus：设置Button是否是默认焦点，true表示Button是默认焦点，false表示Button不是默认焦点。
+
+默认值：false
+
+style：设置Button的风格样式。
+
+默认值：DialogButtonStyle.DEFAULT
+
+value：Button文本内容。
+
+action: Button选中时的回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| cancel | () => void | 否 | 点击遮障层关闭dialog时的回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| alignment | [DialogAlignment](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#dialogalignment%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 弹窗在竖直方向上的对齐方式。
+
+默认值：DialogAlignment.Bottom
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**说明**：
+
+若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。
+
+ |
+| offset | {
+
+dx: number | string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource),
+
+dy: number | string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+}
+
+ | 否 | 弹窗相对alignment所在位置的偏移量。
+
+默认值：
+
+1.alignment设置为Top、TopStart、TopEnd时默认值为{dx: 0,dy: "40vp"}
+
+2.alignment设置为其他时默认值为{dx: 0,dy: "-40vp"}
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| sheets | Array<[SheetInfo](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-action-sheet-V5#sheetinfo%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E)\> | 是 | 设置选项内容，每个选择项支持设置图片、文本和选中的回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| maskRect10+ | [Rectangle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#rectangle8%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E) | 否 | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。
+
+默认值：{ x: 0, y: 0, width: '100%', height: '100%' }
+
+**说明：**
+
+showInSubWindow为true时，maskRect不生效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| showInSubWindow11+ | boolean | 否 | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。
+
+默认值：false，弹窗显示在应用内，而非独立子窗口。
+
+**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| isModal11+ | boolean | 否 | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。
+
+默认值：true，此时弹窗有蒙层。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| backgroundColor11+ | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 弹窗背板颜色。
+
+默认值：Color.Transparent
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| backgroundBlurStyle11+ | [BlurStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-background-V5#blurstyle9) | 否 | 弹窗背板模糊材质。
+
+默认值：BlurStyle.COMPONENT\_ULTRA\_THICK
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| onWillDismiss12+ | Callback<[DismissDialogAction](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#dismissdialogaction12%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E)\> | 否 | 交互式关闭回调函数。
+
+**说明：**
+
+1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE\_BUTTON的枚举值。
+
+2.在onWillDismiss回调中，不能再做onWillDismiss拦截。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| cornerRadius12+ | [BorderRadiuses](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#borderradiuses9) | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10) | [LocalizedBorderRadiuses](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#LocalizedBorderRadiuses12) | 否 | 设置背板的圆角半径。
+
+可分别设置4个圆角的半径。
+
+默认值：{ topLeft: '32vp', topRight: '32vp', bottomLeft: '32vp', bottomRight: '32vp' }
+
+圆角大小受组件尺寸限制，最大值为组件宽或高的一半，若值为负，则按照默认值处理。
+
+百分比参数方式：以父元素弹窗宽和高的百分比来设置弹窗的圆角。
+
+**说明：**
+
+当cornerRadius属性类型为LocalizedBorderRadiuses时，支持随语言习惯改变布局顺序。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| borderWidth12+ | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10) | [EdgeWidths](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#edgewidths9) | [LocalizedEdgeWidths](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#LocalizedEdgeWidths12) | 否 | 设置弹窗背板的边框宽度。
+
+可分别设置4个边框宽度。
+
+默认值：0
+
+百分比参数方式：以父元素弹窗宽的百分比来设置弹窗的边框宽度。
+
+当弹窗左边框和右边框大于弹窗宽度，弹窗上边框和下边框大于弹窗高度，显示可能不符合预期。
+
+**说明：**
+
+当borderWidth属性类型为LocalizedEdgeWidths时，支持随语言习惯改变布局顺序。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| borderColor12+ | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | [EdgeColors](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#edgecolors9) | [LocalizedEdgeColors](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#LocalizedEdgeColors12) | 否 | 设置弹窗背板的边框颜色。
+
+默认值：Color.Black
+
+如果使用borderColor属性，需要和borderWidth属性一起使用。
+
+**说明：**
+
+当borderColor属性类型为LocalizedEdgeColors时，支持随语言习惯改变布局顺序。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| borderStyle12+ | [BorderStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#borderstyle) | [EdgeStyles](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#edgestyles9) | 否 | 设置弹窗背板的边框样式。
+
+默认值：BorderStyle.Solid。
+
+如果使用borderStyle属性，需要和borderWidth属性一起使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| width12+ | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10) | 否 | 设置弹窗背板的宽度。
+
+**说明：**
+
+\- 弹窗宽度默认最大值：400vp。
+
+\- 百分比参数方式：弹窗参考宽度为所在窗口的宽度，在此基础上调小或调大。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| height12+ | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10) | 否 | 设置弹窗背板的高度。
+
+**说明：**
+
+\- 弹窗高度默认最大值：0.9 \*（窗口高度 - 安全区域）。
+
+\- 百分比参数方式：弹窗参考高度为（窗口高度 - 安全区域），在此基础上调小或调大。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| shadow12+ | [ShadowOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-image-effect-V5#shadowoptions%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | [ShadowStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-image-effect-V5#shadowstyle10%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 设置弹窗背板的阴影。
+
+当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER\_FLOATING\_MD，失焦为ShadowStyle.OUTER\_FLOATING\_SM
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| transition12+ | [TransitionEffect](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-transition-animation-component-V5#transitioneffect10) | 否 | 设置弹窗显示和退出的过渡效果。
+
+**说明：**
+
+1.如果不设置，则使用默认的显示/退出动效。
+
+2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。
+
+3.退出动效中按back键，不会打断退出动效，退出动效继续执行，继续按back键退出应用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+
+SheetInfo接口说明
+-------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| :-- | :-- | :-- | :-- |
+| title | string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | 是 | 选项的文本内容。 |
+| icon | string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | 否 | 选项的图标，默认无图标显示。 |
+| action | ()=>void | 是 | 选项选中的回调。 |
+
+示例
+--
+
+### 示例1
+
+已复制
+
+1.  @Entry
+2.  @Component
+3.  struct ActionSheetExample {
+4.    build() {
+5.      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+6.        Button('Click to Show ActionSheet')
+7.          .onClick(() => {
+8.            ActionSheet.show({
+9.              title: 'ActionSheet title',
+10.              subtitle: 'ActionSheet subtitle',
+11.              message: 'message',
+12.              autoCancel: true,
+13.              confirm: {
+14.                defaultFocus: true,
+15.                value: 'Confirm button',
+16.                action: () => {
+17.                  console.log('Get Alert Dialog handled')
+18.                }
+19.              },
+20.              cancel: () => {
+21.                console.log('actionSheet canceled')
+22.              },
+23.                onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+24.                  console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+25.                  console.log("dialog onWillDismiss")
+26.                  if (dismissDialogAction.reason == DismissReason.PRESS\_BACK) {
+27.                    dismissDialogAction.dismiss()
+28.                  }
+29.                  if (dismissDialogAction.reason == DismissReason.TOUCH\_OUTSIDE) {
+30.                    dismissDialogAction.dismiss()
+31.                  }
+32.                },
+33.              alignment: DialogAlignment.Bottom,
+34.              offset: { dx: 0, dy: -10 },
+35.              sheets: \[
+36.                {
+37.                  title: 'apples',
+38.                  action: () => {
+39.                    console.log('apples')
+40.                  }
+41.                },
+42.                {
+43.                  title: 'bananas',
+44.                  action: () => {
+45.                    console.log('bananas')
+46.                  }
+47.                },
+48.                {
+49.                  title: 'pears',
+50.                  action: () => {
+51.                    console.log('pears')
+52.                  }
+53.                }
+54.              \]
+55.            })
+56.          })
+57.      }.width('100%')
+58.      .height('100%')
+59.    }
+60.  }
+
+![Image 1](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122312.27312165311698461100562553197111:50001231000000:2800:05F8BDDEC4687E2B71A8876D6840A75537E0A39F636C05E8DDE0DEDFC975B23E.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+已复制
+
+1.  @Entry
+2.  @Component
+3.  struct ActionSheetExample {
+4.    build() {
+5.      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+6.        Button('Click to Show ActionSheet')
+7.          .onClick(() => {
+8.            ActionSheet.show({
+9.              title: 'ActionSheet title',
+10.              subtitle: 'ActionSheet subtitle',
+11.              message: 'message',
+12.              autoCancel: true,
+13.              showInSubWindow: true,
+14.              isModal: true,
+15.              confirm: {
+16.                defaultFocus: true,
+17.                value: 'Confirm button',
+18.                action: () => {
+19.                  console.log('Get Alert Dialog handled')
+20.                }
+21.              },
+22.              cancel: () => {
+23.                console.log('actionSheet canceled')
+24.              },
+25.                onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+26.                  console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+27.                  console.log("dialog onWillDismiss")
+28.                  if (dismissDialogAction.reason == DismissReason.PRESS\_BACK) {
+29.                    dismissDialogAction.dismiss()
+30.                  }
+31.                  if (dismissDialogAction.reason == DismissReason.TOUCH\_OUTSIDE) {
+32.                    dismissDialogAction.dismiss()
+33.                  }
+34.                },
+35.              alignment: DialogAlignment.Center,
+36.              offset: { dx: 0, dy: -10 },
+37.              sheets: \[
+38.                {
+39.                  title: 'apples',
+40.                  action: () => {
+41.                    console.log('apples')
+42.                  }
+43.                },
+44.                {
+45.                  title: 'bananas',
+46.                  action: () => {
+47.                    console.log('bananas')
+48.                  }
+49.                },
+50.                {
+51.                  title: 'pears',
+52.                  action: () => {
+53.                    console.log('pears')
+54.                  }
+55.                }
+56.              \]
+57.            })
+58.          })
+59.      }.width('100%')
+60.      .height('100%')
+61.    }
+62.  }
+
+![Image 2](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122312.54766596644717210585661256780965:50001231000000:2800:2D5F2882E6B5FCF34E2844730A8327DE7777D491C6386BDE0EDB2BC6040BEE70.jpg?needInitFileName=true?needInitFileName=true)
+
+### 示例3
+
+ActionSheet显示动画持续3秒，退出动画持续100毫秒
+
+已复制
+
+1.  import { router } from '@kit.ArkUI'
+
+3.  @Entry
+4.  @Component
+5.  struct ActionSheetExample {
+6.    build() {
+7.      Column({ space: 5 }) {
+8.        Button('ActionSheet Set Duration')
+9.          .onClick(() => {
+10.              ActionSheet.show({
+11.                title: 'ActionSheet 1',
+12.                message: 'Set Animation Duration open 3 second, close 100 ms',
+13.                autoCancel: true,
+14.                alignment: DialogAlignment.Top,
+15.                transition:TransitionEffect.asymmetric(TransitionEffect.OPACITY
+16.                  .animation({ duration: 3000, curve: Curve.Sharp }).combine(TransitionEffect.scale({x: 1.5, y: 1.5}).animation({duration: 3000, curve: Curve.Sharp})),
+17.                  TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
+18.                    .combine(TransitionEffect.scale({x: 0.5, y: 0.5}).animation({duration: 100, curve: Curve.Smooth}))),
+19.                offset: { dx: 0, dy: -20 },
+20.                confirm: {
+21.                  value: 'button',
+22.                  action: () => {
+23.                    console.info('Button-clicking callback')
+24.                  }
+25.                },
+26.                cancel: () => {
+27.                  console.info('Closed callbacks')
+28.                },
+29.                sheets: \[
+30.                  {
+31.                    title: 'apples',
+32.                    action: () => {
+33.                      console.log('apples')
+34.                    }
+35.                  },
+36.                  {
+37.                    title: 'bananas',
+38.                    action: () => {
+39.                      console.log('bananas')
+40.                    }
+41.                  },
+42.                  {
+43.                    title: 'pears',
+44.                    action: () => {
+45.                      console.log('pears')
+46.                    }
+47.                  }
+48.                \]
+49.              })
+50.          }).backgroundColor(0x317aff).height("88px")
+51.      }.width('100%').margin({ top: 5 })
+52.    }
+53.  }
+
+![Image 3](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122312.43622626973549436885775397337919:50001231000000:2800:21D1BBB22C879597540E293EBDB0C497FD705E957E4365407168B49FA00656A1.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例4
+
+该示例定义了ActionSheet的样式，如宽度、高度、背景色、阴影等等
+
+已复制
+
+1.  @Entry
+2.  @Component
+3.  struct ActionSheetExample {
+4.    build() {
+5.      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+6.        Button('Click to Show ActionSheet')
+7.          .onClick(() => {
+8.            ActionSheet.show({
+9.              title: 'ActionSheet title',
+10.              subtitle: 'ActionSheet subtitle',
+11.              message: 'message',
+12.              autoCancel: true,
+13.              width: 300,
+14.              height: 350,
+15.              cornerRadius: 20,
+16.              borderWidth: 1,
+17.              borderStyle: BorderStyle.Solid,//使用borderStyle属性，需要和borderWidth属性一起使用
+18.              borderColor: Color.Blue,//使用borderColor属性，需要和borderWidth属性一起使用
+19.              backgroundColor: Color.White,
+20.              shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+21.              confirm: {
+22.                defaultFocus: true,
+23.                value: 'Confirm button',
+24.                action: () => {
+25.                  console.log('Get Alert Dialog handled')
+26.                }
+27.              },
+28.              cancel: () => {
+29.                console.log('actionSheet canceled')
+30.              },
+31.              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+32.                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+33.                console.log("dialog onWillDismiss")
+34.                if (dismissDialogAction.reason == DismissReason.PRESS\_BACK) {
+35.                  dismissDialogAction.dismiss()
+36.                }
+37.                if (dismissDialogAction.reason == DismissReason.TOUCH\_OUTSIDE) {
+38.                  dismissDialogAction.dismiss()
+39.                }
+40.              },
+41.              alignment: DialogAlignment.Bottom,
+42.              offset: { dx: 0, dy: -10 },
+43.              sheets: \[
+44.                {
+45.                  title: 'apples',
+46.                  action: () => {
+47.                    console.log('apples')
+48.                  }
+49.                },
+50.                {
+51.                  title: 'bananas',
+52.                  action: () => {
+53.                    console.log('bananas')
+54.                  }
+55.                },
+56.                {
+57.                  title: 'pears',
+58.                  action: () => {
+59.                    console.log('pears')
+60.                  }
+61.                }
+62.              \]
+63.            })
+64.          })
+65.      }.width('100%')
+66.      .height('100%')
+67.    }
+68.  }
+
+![Image 4](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122312.50023589391416857832972967375177:50001231000000:2800:BAF28A4793071D143065D0D89A1BD10D54E5E5458FB70E77BF305B48205EC890.gif?needInitFileName=true?needInitFileName=true)
+
+[警告弹窗 (AlertDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5 "警告弹窗 (AlertDialog)")
+
+[自定义弹窗 (CustomDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-custom-dialog-box-V5 "自定义弹窗 (CustomDialog)")
+
+**以上内容对您是否有帮助？**
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+意见反馈
+
+更多帮助请到“[社区论坛](https://developer.huawei.com/consumer/cn/forum/)”，如需要其他帮助，请通过“[智能客服](https://developer.huawei.com/consumer/cn/customerService/#/bot-dev-top/faq-top/faq-talk-top)”提问。
+
+简体中文
+
+*   ![Image 5](https://developer.huawei.com/images/foot/icon-xinlang-normal.png)
+*   ![Image 6](https://developer.huawei.com/images/home/Bi-hover.png)
+*   ![Image 7](https://developer.huawei.com/images/foot/icon-weixin-normal.png)
+    
+    ![Image 8](https://developer.huawei.com/consumer/cn/doc/assets/images/head/hua_wei_kai_fa_zhe_lian_meng_fu_wu_wei_xin_er_wei_ma_fu_ben_0.jpg)
+    
+    微信公众号
+    
+*   ![Image 9](https://developer.huawei.com/images/foot/icon-app-normal.png)
+    
+    ![Image 10](https://developer.huawei.com/consumer/cn/doc/assets/images/head/APPerweima.png)
+    
+    下载APP
+    
+*   ![Image 11](https://developer.huawei.com/images/foot/icon-xinxi-normal.png)
+*   ![Image 12](https://developer.huawei.com/images/foot/ic_blog_hover.svg)
+
+华为开发者联盟 版权所有 ©2023-2024
+
+[使用条款](https://developer.huawei.com/consumer/cn/devservice/use)
+
+[关于华为开发者联盟与隐私的声明](https://developer.huawei.com/consumer/cn/devservice/term)
+
+[隐私政策](https://consumer.huawei.com/cn/legal/privacy-policy/)
+
+[cookies](https://consumer.huawei.com/cn/legal/cookie-policy/)
+
+[开源软件声明](https://developer.huawei.com/consumer/cn/opensource/)
+
+在 API参考 中进行搜索
+
+只在 应用框架 中搜索只搜索章节标题
+
+请输入您想要搜索的关键词
+
+*   智能客服
+    
+    您的每一次的提问，都能匹配最合适的答案
+    
+
+*   合作咨询
+    
+    我们的专家服务团队将竭诚为您提供专业的合作咨询服务
+    
+
+*   解决方案
+    
+    精准高效的一站式服务支持，助力开发者商业成功
+    
+
+*   快速入门
+    
+    面向开发者提供快速入门指南，轻松找到你想要的各类资源

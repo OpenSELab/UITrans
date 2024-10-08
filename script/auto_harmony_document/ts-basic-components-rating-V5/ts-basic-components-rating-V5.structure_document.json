@@ -1,0 +1,86 @@
+{
+    "description": "提供在给定范围内选择评分的组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Rating(options?: { rating: number, indicator?: boolean })",
+            "params": {
+                "options": {
+                    "type": {
+                        "rating": "number",
+                        "indicator": "boolean"
+                    },
+                    "required": false,
+                    "description": "评分组件的配置选项。",
+                    "default": {
+                        "rating": 0,
+                        "indicator": false
+                    }
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "stars": {
+            "description": "设置评分总数。设置为小于等于0的值时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "评分总数。",
+                    "default": 5
+                }
+            }
+        },
+        "stepSize": {
+            "description": "设置操作评级的步长。设置为小于0.1的值时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "操作评级的步长。",
+                    "default": 0.5
+                }
+            }
+        },
+        "starStyle": {
+            "description": "设置评分的样式。该属性所支持的图片类型能力参考Image组件。",
+            "params": {
+                "value": {
+                    "type": {
+                        "backgroundUri": "string",
+                        "foregroundUri": "string",
+                        "secondaryUri": "string"
+                    },
+                    "required": true,
+                    "description": "评分的样式配置。"
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制Rating内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<RatingConfiguration>",
+                    "required": true,
+                    "description": "定制内容区的修饰器。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "操作评分条的评星发生改变时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "评分条的评分。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

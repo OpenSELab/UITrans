@@ -1,0 +1,168 @@
+{
+    "description": "通过CustomDialogController类显示自定义弹窗。使用弹窗组件时，可优先考虑自定义弹窗，便于自定义弹窗的样式与内容。",
+    "details": "自定义弹窗的所有参数，不支持动态刷新。",
+    "interfaces": [
+        {
+            "description": "constructor(value: CustomDialogControllerOptions)",
+            "params": {
+                "value": {
+                    "type": "CustomDialogControllerOptions",
+                    "required": true,
+                    "description": "配置自定义弹窗的参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "CustomDialogControllerOptions": {
+            "description": "配置自定义弹窗的参数对象。",
+            "params": {
+                "builder": {
+                    "type": "CustomDialog",
+                    "required": true,
+                    "description": "自定义弹窗内容构造器。"
+                },
+                "cancel": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "返回、ESC键和点击遮障层弹窗退出时的回调。"
+                },
+                "autoCancel": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否允许点击遮障层退出，true表示关闭弹窗。false表示不关闭弹窗。",
+                    "default": true
+                },
+                "alignment": {
+                    "type": "DialogAlignment",
+                    "required": false,
+                    "description": "弹窗在竖直方向上的对齐方式。",
+                    "default": "DialogAlignment.Default"
+                },
+                "offset": {
+                    "type": "Offset",
+                    "required": false,
+                    "description": "弹窗相对alignment所在位置的偏移量。",
+                    "default": { "dx": 0, "dy": 0 }
+                },
+                "customStyle": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "弹窗容器样式是否自定义。",
+                    "default": false
+                },
+                "gridCount": {
+                    "type": "number",
+                    "required": false,
+                    "description": "弹窗宽度占栅格宽度的个数。",
+                    "default": "自适应"
+                },
+                "maskColor": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "自定义蒙层颜色。",
+                    "default": "0x33000000"
+                },
+                "maskRect": {
+                    "type": "Rectangle",
+                    "required": false,
+                    "description": "弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。",
+                    "default": { "x": 0, "y": 0, "width": "100%", "height": "100%" }
+                },
+                "openAnimation": {
+                    "type": "AnimateParam",
+                    "required": false,
+                    "description": "自定义设置弹窗弹出的动画效果相关参数。"
+                },
+                "closeAnimation": {
+                    "type": "AnimateParam",
+                    "required": false,
+                    "description": "自定义设置弹窗关闭的动画效果相关参数。"
+                },
+                "showInSubWindow": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。",
+                    "default": false
+                },
+                "backgroundColor": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "设置弹窗背板填充。",
+                    "default": "Color.Transparent"
+                },
+                "cornerRadius": {
+                    "type": "BorderRadiuses",
+                    "required": false,
+                    "description": "设置背板的圆角半径。",
+                    "default": { "topLeft": "32vp", "topRight": "32vp", "bottomLeft": "32vp", "bottomRight": "32vp" }
+                },
+                "isModal": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。",
+                    "default": true
+                },
+                "onWillDismiss": {
+                    "type": "Callback<DismissDialogAction>",
+                    "required": false,
+                    "description": "交互式关闭回调函数。"
+                },
+                "borderWidth": {
+                    "type": ["Dimension", "EdgeWidths"],
+                    "required": false,
+                    "description": "设置弹窗背板的边框宽度。",
+                    "default": 0
+                },
+                "borderColor": {
+                    "type": ["ResourceColor", "EdgeColors"],
+                    "required": false,
+                    "description": "设置弹窗背板的边框颜色。",
+                    "default": "Color.Black"
+                },
+                "borderStyle": {
+                    "type": ["BorderStyle", "EdgeStyles"],
+                    "required": false,
+                    "description": "设置弹窗背板的边框样式。",
+                    "default": "BorderStyle.Solid"
+                },
+                "width": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "设置弹窗背板的宽度。",
+                    "default": "400vp"
+                },
+                "height": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "设置弹窗背板的高度。",
+                    "default": "0.9 * (窗口高度 - 安全区域)"
+                },
+                "shadow": {
+                    "type": ["ShadowOptions", "ShadowStyle"],
+                    "required": false,
+                    "description": "设置弹窗背板的阴影。"
+                },
+                "backgroundBlurStyle": {
+                    "type": "BlurStyle",
+                    "required": false,
+                    "description": "弹窗背板模糊材质。",
+                    "default": "BlurStyle.COMPONENT_ULTRA_THICK"
+                }
+            }
+        }
+    },
+    "events": {
+        "open": {
+            "description": "open(): void",
+            "params": {}
+        },
+        "close": {
+            "description": "close(): void",
+            "params": {}
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

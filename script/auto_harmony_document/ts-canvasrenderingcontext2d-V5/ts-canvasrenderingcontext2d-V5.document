@@ -1,0 +1,292 @@
+Title: CanvasRenderingContext2D-画布绘制-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-canvasrenderingcontext2d-V5
+
+Markdown Content:
+简体中文
+App
+探索
+设计
+开发
+分发
+推广与变现
+生态合作
+支持
+更多
+探索
+设计
+开发
+分发
+更多
+文档
+管理中心
+
+HarmonyOS NEXT
+
+Developer Beta6
+版本说明
+指南
+API参考
+最佳实践
+FAQ
+变更预告
+更多
+筛选元服务API集
+API参考概述
+应用框架
+Ability Kit（程序框架服务）
+Accessibility Kit（无障碍服务）
+ArkData（方舟数据管理）
+ArkTS（方舟编程语言）
+ArkUI（方舟UI框架）
+ArkTS API
+ArkTS组件
+组件通用信息
+行列与堆叠
+栅格与分栏
+滚动与滑动
+导航与切换
+按钮与选择
+文本与输入
+图片与视频
+信息展示
+空白与分隔
+画布绘制
+Canvas
+CanvasGradient
+CanvasPattern
+CanvasRenderingContext2D
+DrawingRenderingContext
+ImageBitmap
+ImageData
+Matrix2D
+OffscreenCanvas
+OffscreenCanvasRenderingContext2D
+Path2D
+图形绘制
+渲染绘制
+标题栏与工具栏
+菜单
+动画
+弹窗
+卡片
+安全
+主题
+原子化服务
+自定义占位组件
+自定义组件
+状态管理与渲染控制
+公共定义
+已停止维护的组件与接口
+JS组件
+C API
+错误码
+ArkWeb（方舟Web）
+Background Tasks Kit（后台任务开发服务）
+Core File Kit（文件基础服务）
+Form Kit（卡片开发服务）
+IME Kit（输入法开发服务）
+IPC Kit（进程间通信服务）
+Localization Kit（本地化开发服务）
+UI Design Kit（UI设计套件）
+系统
+媒体
+图形
+应用服务
+AI
+公共基础能力
+标准库
+您当前正在浏览HarmonyOS NEXT Developer Beta6版本的配套文档，该版本API能力级别为API 12 Beta6，详细版本配套关系请参考版本说明。
+API参考应用框架ArkUI（方舟UI框架）ArkTS组件画布绘制CanvasRenderingContext2D
+CanvasRenderingContext2D
+更新时间: 2024-08-30 02:33
+本文导读
+接口
+RenderingContextSettings
+LengthMetricsUnit12+
+属性
+fillStyle
+lineWidth
+strokeStyle
+lineCap
+lineJoin
+miterLimit
+font
+textAlign
+textBaseline
+globalAlpha
+lineDashOffset
+globalCompositeOperation
+shadowBlur
+shadowColor
+shadowOffsetX
+shadowOffsetY
+imageSmoothingEnabled
+height
+width
+imageSmoothingQuality
+direction
+filter
+方法
+fillRect
+strokeRect
+clearRect
+fillText
+strokeText
+measureText
+stroke
+beginPath
+moveTo
+lineTo
+closePath
+createPattern
+bezierCurveTo
+quadraticCurveTo
+arc
+arcTo
+ellipse
+rect
+fill
+clip
+reset12+
+saveLayer12+
+restoreLayer12+
+resetTransform
+rotate
+scale
+transform
+setTransform
+setTransform
+getTransform
+translate
+drawImage
+createImageData
+getPixelMap
+getImageData
+putImageData
+setLineDash
+getLineDash
+transferFromImageBitmap
+toDataURL
+restore
+save
+createLinearGradient
+createRadialGradient
+createConicGradient10+
+startImageAnalyzer12+
+stopImageAnalyzer12+
+CanvasDirection
+CanvasFillRule
+CanvasLineCap
+CanvasLineJoin
+CanvasTextAlign
+CanvasTextBaseline
+ImageSmoothingQuality
+TextMetrics
+展开章节
+
+使用RenderingContext在Canvas组件上进行绘制，绘制对象可以是矩形、文本、图片等。
+
+说明
+
+从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+接口
+
+CanvasRenderingContext2D(settings?: RenderingContextSettings, unit?: LengthMetricsUnit)
+
+卡片能力： 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+元服务API： 在API version 11中，该接口支持在元服务中使用。
+
+系统能力： SystemCapability.ArkUI.ArkUI.Full
+
+参数：
+
+参数名	类型	必填	说明
+settings	RenderingContextSettings	否	用来配置CanvasRenderingContext2D对象的参数，见RenderingContextSettings。
+unit12+	LengthMetricsUnit	否	
+
+用来配置CanvasRenderingContext2D对象的单位模式，配置后无法更改，见LengthMetricsUnit。
+
+默认值：DEFAULT。
+
+RenderingContextSettings
+
+RenderingContextSettings(antialias?: boolean)
+
+用来配置CanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。
+
+卡片能力： 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+元服务API： 从API version 11开始，该接口支持在元服务中使用。
+
+系统能力： SystemCapability.ArkUI.ArkUI.Full
+
+参数：
+
+参数名	类型	必填	说明
+antialias	boolean	否	
+
+表明canvas是否开启抗锯齿。
+
+默认值：false。
+
+LengthMetricsUnit12+
+
+用来配置CanvasRenderingContext2D对象的单位模式，配置后无法动态更改，详细说明见LengthMetricsUnit。
+
+示例：
+
+// xxx.ets
+import { LengthMetricsUnit } from '@kit.ArkUI'
+
+
+@Entry
+@Component
+struct LengthMetricsUnitDemo {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private contextPX: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings, LengthMetricsUnit.PX);
+  private contextVP: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.contextPX)
+        .width('100%')
+        .height(150)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          this.contextPX.fillRect(10,10,100,100)
+          this.contextPX.clearRect(10,10,50,50)
+        })
+
+
+      Canvas(this.contextVP)
+        .width('100%')
+        .height(150)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          this.contextVP.fillRect(10,10,100,100)
+          this.contextVP.clearRect(10,10,50,50)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+CanvasPattern
+DrawingRenderingContext
+以上内容对您是否有帮助？
+意见反馈
+更多帮助请到“社区论坛”，如需要其他帮助，请通过“智能客服”提问。
+简体中文
+华为开发者联盟 版权所有 ©2023-2024
+使用条款
+关于华为开发者联盟与隐私的声明
+隐私政策
+cookies
+开源软件声明
+文档内容搜索功能移到这里了
+好的，知道了

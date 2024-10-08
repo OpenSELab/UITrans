@@ -1,0 +1,203 @@
+{
+    "description": "用于显示行内文本的组件，作为Text、ContainerSpan组件的子组件。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。该组件从API Version 10开始支持继承父组件Text的属性，即如果子组件未设置属性且父组件设置属性，则继承父组件设置的属性。支持继承的属性仅包括：fontColor、fontSize、fontStyle、fontWeight、decoration、letterSpacing、textCase、fontfamily、textShadow。",
+    "interfaces": [
+        {
+            "description": "Span(value: string | Resource)",
+            "params": {
+                "value": {
+                    "type": [
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "文本内容。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "decoration": {
+            "description": "设置文本装饰线样式及其颜色。",
+            "params": {
+                "value": {
+                    "type": "DecorationStyleInterface12+",
+                    "required": true,
+                    "description": "文本装饰线样式对象。",
+                    "default": {
+                        "type": "TextDecorationType.None",
+                        "color": "Color.Black",
+                        "style": "TextDecorationStyle.SOLID"
+                    }
+                }
+            }
+        },
+        "letterSpacing": {
+            "description": "设置文本字符间距。取值小于0，字符聚集重叠，取值大于0且随着数值变大，字符间距越来越大，稀疏分布。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "文本字符间距。"
+                }
+            }
+        },
+        "textCase": {
+            "description": "设置文本大小写。",
+            "params": {
+                "value": {
+                    "type": "TextCase",
+                    "required": true,
+                    "description": "文本大小写。",
+                    "default": "TextCase.Normal"
+                }
+            }
+        },
+        "fontColor": {
+            "description": "设置字体颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "字体颜色。"
+                }
+            }
+        },
+        "fontSize": {
+            "description": "设置字体大小。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。"
+                }
+            }
+        },
+        "fontStyle": {
+            "description": "设置字体样式。",
+            "params": {
+                "value": {
+                    "type": "FontStyle",
+                    "required": true,
+                    "description": "字体样式。",
+                    "default": "FontStyle.Normal"
+                }
+            }
+        },
+        "fontWeight": {
+            "description": "设置文本的字体粗细，设置过大可能会在不同字体下有截断。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "FontWeight",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如\"400\"，以及\"bold\"、\"bolder\"、\"lighter\"、\"regular\"、\"medium\"，分别对应FontWeight中相应的枚举值。",
+                    "default": "FontWeight.Normal"
+                }
+            }
+        },
+        "fontFamily": {
+            "description": "设置字体列表。",
+            "params": {
+                "value": {
+                    "type": [
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "字体列表。默认字体'HarmonyOS Sans'。"
+                }
+            }
+        },
+        "lineHeight10+": {
+            "description": "设置文本行高。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "文本行高。"
+                }
+            }
+        },
+        "font10+": {
+            "description": "设置文本样式。包括字体大小、字体粗细、字体族和字体风格。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "文本样式。"
+                }
+            }
+        },
+        "textShadow11+": {
+            "description": "设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。不支持fill字段, 不支持智能取色模式。",
+            "params": {
+                "value": {
+                    "type": [
+                        "ShadowOptions",
+                        [
+                            "ShadowOptions"
+                        ]
+                    ],
+                    "required": true,
+                    "description": "文字阴影效果。"
+                }
+            }
+        },
+        "textBackgroundStyle11+": {
+            "description": "设置背景样式。作为ContainerSpan的子组件时可以继承它的此属性值，优先使用其自身的此属性。",
+            "params": {
+                "style": {
+                    "type": "TextBackgroundStyle",
+                    "required": true,
+                    "description": "背景样式。"
+                }
+            }
+        },
+        "baselineOffset12+": {
+            "description": "设置Span基线的偏移量。此属性与父组件的baselineOffset是共存的。",
+            "params": {
+                "value": {
+                    "type": "LengthMetrics",
+                    "required": true,
+                    "description": "设置Span基线的偏移量，设置该值为百分比时，按默认值显示。正数内容向上偏移，负数向下偏移。默认值：0。在ImageSpan中，设置为非0时会导致设置verticalAlign失效。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onClick": {
+            "description": "通用事件仅支持点击事件。由于Span组件无尺寸信息，因此点击事件返回的ClickEvent对象的target属性无效。"
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过 Column 布局实现了一个简单的文本展示界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上包含一个 Text 组件，用于展示一段带有背景颜色的文本。文本内容为 \"Hello World !\"，字体大小为 20fp，字体颜色为白色，背景颜色为紫色，背景圆角半径为 5vp。文本组件居中对齐，下方留有 5vp 的边距。",
+            "code": "@Component // 标记该结构体为一个组件\n@Entry // 标记该组件为入口组件，即应用启动时显示的第一个页面\nstruct Index {\n  build() {\n    Column() { // 创建一个垂直布局的容器\n      Text() { // 创建一个文本组件\n        Span('   Hello World !   ') // 设置文本内容，包含空格以增加间距\n          .fontSize('20fp') // 设置字体大小为 20fp\n          .textBackgroundStyle({color: \"#7F007DFF\", radius: \"5vp\"}) // 设置文本背景样式，颜色为紫色，圆角半径为 5vp\n          .fontColor(Color.White) // 设置字体颜色为白色\n      }\n    }.width('100%') // 设置容器的宽度为 100%，占据整个屏幕宽度\n     .margin({bottom: '5vp'}) // 设置容器的底部边距为 5vp\n     .alignItems(HorizontalAlign.Center) // 设置容器内的子组件水平居中对齐\n  }\n}"
+        },
+        {
+            "description": "该组件通过Row和Column布局实现了一个包含文本和图像的复合文本展示界面。布局宽度占据整个屏幕，高度设为100%。组件的垂直方向上被分为一个Column，其中包含一个Text组件，Text组件内部嵌套了多个Span组件和ImageSpan组件。每个Span组件和ImageSpan组件通过baselineOffset属性设置基线的偏移量，从而实现文本和图像在垂直方向上的对齐调整。\n\nText组件的背景颜色设置为灰色，用于突出显示文本和图像的布局效果。Span组件和ImageSpan组件的排列方式为水平布局，通过baselineOffset属性调整基线偏移量，使得文本和图像在垂直方向上对齐。\n\n组件的功能主要是展示文本和图像的基线对齐效果，通过设置不同的基线偏移量，可以实现文本和图像在垂直方向上的对齐调整。用户可以通过调整baselineOffset属性的值来改变文本和图像的垂直位置，从而实现不同的布局效果。",
+            "code": "@Entry\n@Component\nstruct Index {\n  build() {\n    Row() {\n      Column() {\n        Text() {\n          Span('word1')\n            .baselineOffset(new LengthMetrics(20, LengthUnit.VP)) // 设置'word1'的基线偏移量为20vp，使其相对于默认基线上移\n          Span('word2')\n            .baselineOffset(new LengthMetrics(0, LengthUnit.VP)) // 设置'word2'的基线偏移量为0vp，使其保持在默认基线上\n          ImageSpan($r(\"app.media.icon\"))\n            .width('45px')\n            .baselineOffset(new LengthMetrics(-20, LengthUnit.VP)) // 设置图像的基线偏移量为-20vp，使其相对于默认基线下移\n        }\n        .backgroundColor(Color.Gray) // 设置Text组件的背景颜色为灰色\n      }\n      .width('100%') // 设置Column的宽度为100%，占据整个父容器的宽度\n    }\n    .height('100%') // 设置Row的高度为100%，占据整个父容器的高度\n  }\n}"
+        },
+        {
+            "description": "该组件通过Column布局实现了一个展示带有多个阴影效果的文本的界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上被分为两个部分，每个部分包含一个Text组件，用于展示文本内容。每个Text组件内部嵌套了一个Span组件，用于定义文本的具体内容和样式。\n\n组件的样式包括字体大小、文本阴影等属性。字体大小设置为50vp，文本阴影通过textShadows数组定义，包含多个阴影效果，每个阴影效果包括半径、颜色、水平偏移和垂直偏移等属性。阴影效果的颜色分别为红色、黑色、棕色、绿色和黄色，水平偏移逐渐增加，垂直偏移为0。\n\n组件的功能主要是展示带有多个阴影效果的文本，用户可以通过观察文本的阴影效果来了解不同颜色和偏移量的组合效果。整个布局通过Column布局保证文本在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry // 标记该组件为应用的入口组件\n@Component // 标记该结构体为一个自定义组件\nstruct TextSpanExample {\n  @State textShadows : ShadowOptions | Array<ShadowOptions> = [ // 定义一个状态变量textShadows，用于存储文本阴影的配置\n    { radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 }, // 第一个阴影效果：半径10，红色，水平偏移10，垂直偏移0\n    { radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 }, // 第二个阴影效果：半径10，黑色，水平偏移20，垂直偏移0\n    { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 }, // 第三个阴影效果：半径10，棕色，水平偏移30，垂直偏移0\n    { radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 }, // 第四个阴影效果：半径10，绿色，水平偏移40，垂直偏移0\n    { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 } // 第五个阴影效果：半径10，黄色，水平偏移100，垂直偏移0\n  ]\n\n  build() {\n    Column({ space: 8 }) { // 创建一个垂直布局的Column组件，子组件之间的间距为8vp\n      Text() { // 创建一个Text组件，用于展示文本内容\n        Span('123456789').fontSize(50).textShadow(this.textShadows) // 创建一个Span组件，内容为'123456789'，字体大小为50vp，应用textShadows定义的阴影效果\n      }\n      Text() { // 创建另一个Text组件，用于展示文本内容\n        Span('123456789') // 创建一个Span组件，内容为'123456789'\n      }.fontSize(50).textShadow(this.textShadows) // 设置Text组件的字体大小为50vp，应用textShadows定义的阴影效果\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Flex 布局实现了一个展示多种文本样式和效果的界面。布局宽度占据整个屏幕，高度设为 250vp，内边距为左右 35vp、顶部 35vp。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组文本。每个文本组的文本以水平布局方式排列，文本之间的间距均匀分布，且对齐方式为居中对齐。\n文本的样式包括字体大小、颜色、装饰线（如下划线、删除线、上划线）、字母间距、文本大小写等属性，支持不同的样式展示。文本组之间通过 Flex 组件进行分隔。文本的功能包括展示不同的样式效果，用户可以通过视觉观察到不同的文本样式。\n整个布局通过 Flex 布局保证文本在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct SpanExample {\n  build() {\n    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {\n      // 标题：基本用法\n      Text('Basic Usage').fontSize(9).fontColor(0xCCCCCC)\n      // 使用 Span 组件展示基本文本\n      Text() {\n        Span('In Line')\n        Span(' Component')\n        Span(' !')\n      }\n\n      // 标题：文本装饰\n      Text('Text Decoration').fontSize(9).fontColor(0xCCCCCC)\n      // 使用 Span 组件展示带有下划线波浪线的文本\n      Text() {\n        Span('I am Underline-WAVY-span').decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY }).fontSize(12)\n      }\n      // 使用 Span 组件展示带有删除线点线的文本\n      Text() {\n        Span('I am LineThrough-DOTTED-span')\n          .decoration({ type: TextDecorationType.LineThrough, color: Color.Red, style: TextDecorationStyle.DOTTED })\n          .fontSize(12)\n      }\n      // 使用 Span 组件展示带有上划线虚线的文本\n      Text() {\n        Span('I am Overline-DASHED-span').decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED }).fontSize(12)\n      }\n\n      // 标题：字母间距\n      Text('LetterSpacing').fontSize(9).fontColor(0xCCCCCC)\n      // 使用 Span 组件展示字母间距为0的文本\n      Text() {\n        Span('span letter spacing')\n          .letterSpacing(0)\n          .fontSize(12)\n      }\n      // 使用 Span 组件展示字母间距为-2的文本\n      Text() {\n        Span('span letter spacing')\n          .letterSpacing(-2)\n          .fontSize(12)\n      }\n      // 使用 Span 组件展示字母间距为3的文本\n      Text() {\n        Span('span letter spacing')\n          .letterSpacing(3)\n          .fontSize(12)\n      }\n\n      // 标题：文本大小写\n      Text('Text Case').fontSize(9).fontColor(0xCCCCCC)\n      // 使用 Span 组件展示小写文本\n      Text() {\n        Span('I am Lower-span').fontSize(12)\n          .textCase(TextCase.LowerCase)\n          .decoration({ type: TextDecorationType.None })\n      }\n      // 使用 Span 组件展示大写文本\n      Text() {\n        Span('I am Upper-span').fontSize(12)\n          .textCase(TextCase.UpperCase)\n          .decoration({ type: TextDecorationType.None })\n      }\n    }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

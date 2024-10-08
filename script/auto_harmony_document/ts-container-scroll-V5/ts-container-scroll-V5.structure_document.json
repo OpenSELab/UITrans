@@ -1,0 +1,245 @@
+{
+    "description": "可滚动的容器组件，当子组件的布局尺寸超过父组件的尺寸时，内容可以滚动，支持单个子组件。",
+    "interfaces": [
+        {
+            "description": "Scroll(scroller?: Scroller)",
+            "params": {
+                "scroller": {
+                    "type": "Scroller",
+                    "description": "可滚动组件的控制器。用于与可滚动组件进行绑定。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "scrollable": {
+            "description": "设置滚动方向。",
+            "params": {
+                "value": {
+                    "type": "ScrollDirection",
+                    "required": true,
+                    "description": "滚动方向。",
+                    "default": "ScrollDirection.Vertical"
+                }
+            }
+        },
+        "scrollBar": {
+            "description": "设置滚动条状态。如果容器组件无法滚动，则滚动条不显示。如果容器组件的子组件大小为无穷大，则滚动条不支持拖动和伴随滚动。",
+            "params": {
+                "barState": {
+                    "type": "BarState",
+                    "required": true,
+                    "description": "滚动条状态。",
+                    "default": "BarState.Auto"
+                }
+            }
+        },
+        "scrollBarColor": {
+            "description": "设置滚动条的颜色。",
+            "params": {
+                "color": {
+                    "type": ["Color", "number", "string"],
+                    "required": true,
+                    "description": "滚动条的颜色。",
+                    "default": "'#182431'（40%不透明度）"
+                }
+            }
+        },
+        "scrollBarWidth": {
+            "description": "设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过Scroll组件主轴方向的高度，则滚动条的宽度会变为默认值。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "滚动条的宽度。",
+                    "default": "4",
+                    "unit": "vp"
+                }
+            }
+        },
+        "scrollSnap": {
+            "description": "设置Scroll组件的限位滚动模式。",
+            "params": {
+                "value": {
+                    "type": "ScrollSnapOptions",
+                    "required": true,
+                    "description": "限位滚动选项。"
+                }
+            }
+        },
+        "edgeEffect": {
+            "description": "设置边缘滑动效果。",
+            "params": {
+                "edgeEffect": {
+                    "type": "EdgeEffect",
+                    "required": true,
+                    "description": "Scroll组件的边缘滑动效果，支持弹簧效果和阴影效果。",
+                    "default": "EdgeEffect.None"
+                },
+                "options": {
+                    "type": "EdgeEffectOptions",
+                    "description": "组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。",
+                    "default": "{ alwaysEnabled: true }"
+                }
+            }
+        },
+        "enableScrollInteraction": {
+            "description": "设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否支持滚动手势。",
+                    "default": "true"
+                }
+            }
+        },
+        "nestedScroll": {
+            "description": "设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。",
+            "params": {
+                "value": {
+                    "type": "NestedScrollOptions",
+                    "required": true,
+                    "description": "嵌套滚动选项。",
+                    "default": "{ scrollForward: NestedScrollMode.SELF_ONLY, scrollBackward: NestedScrollMode.SELF_ONLY }"
+                }
+            }
+        },
+        "friction": {
+            "description": "设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。",
+            "params": {
+                "value": {
+                    "type": ["number", "Resource"],
+                    "required": true,
+                    "description": "摩擦系数。",
+                    "default": "非可穿戴设备为0.6，可穿戴设备为0.9。从API version 11开始，非可穿戴设备默认值为0.7。从API version 12开始，非可穿戴设备默认值为0.75。"
+                }
+            }
+        },
+        "enablePaging": {
+            "description": "设置是否支持划动翻页。如果同时设置了划动翻页enablePaging和限位滚动scrollSnap，则scrollSnap优先生效，enablePaging不生效。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否支持划动翻页。设置为true支持滑动翻页，false不支持。",
+                    "default": "false"
+                }
+            }
+        },
+        "initialOffset": {
+            "description": "设置初始滚动偏移量。只在首次布局时生效，后续动态修改该属性值不生效。",
+            "params": {
+                "value": {
+                    "type": "OffsetOptions",
+                    "required": true,
+                    "description": "当输入的大小为百分比时，初始滚动偏移量为Scroll组件主轴方向大小与百分比数值之积。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onScrollFrameBegin": {
+            "description": "每帧开始滚动时触发，事件参数传入即将发生的滚动量，事件处理函数中可根据应用场景计算实际需要的滚动量并作为事件处理函数的返回值返回，Scroll将按照返回值的实际滚动量进行滚动。支持offsetRemain为负值。若通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None。触发该事件的条件：1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。2、调用控制器接口时不触发。3、越界回弹不触发。4、拖动滚动条不触发。",
+            "params": {
+                "offset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "即将发生的滑动量，单位vp。"
+                },
+                "state": {
+                    "type": "ScrollState",
+                    "required": true,
+                    "description": "当前滑动状态。"
+                }
+            },
+            "returns": {
+                "type": "{ offsetRemain: number }",
+                "description": "实际滑动量，单位vp。"
+            }
+        },
+        "onScroll": {
+            "description": "滚动事件回调，返回滚动时水平、竖直方向偏移量，单位vp。触发该事件的条件：1、滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。2、通过滚动控制器API接口调用。3、越界回弹。",
+            "params": {
+                "xOffset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "每帧滚动时水平方向的偏移量，Scroll的内容向左滚动时偏移量为正，向右滚动时偏移量为负。单位vp。"
+                },
+                "yOffset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "每帧滚动时竖直方向的偏移量，Scroll的内容向上滚动时偏移量为正，向下滚动时偏移量为负。单位vp。"
+                }
+            }
+        },
+        "onWillScroll": {
+            "description": "滚动事件回调，Scroll滚动前触发。回调当前帧将要滚动的偏移量和当前滚动状态和滚动操作来源，其中回调的偏移量为计算得到的将要滚动的偏移量值，并非最终实际滚动偏移。可以通过该回调返回值指定Scroll将要滚动的偏移。触发该事件的条件：1、滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。2、通过滚动控制器API接口调用。3、越界回弹。",
+            "params": {
+                "xOffset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。单位vp。"
+                },
+                "yOffset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。单位vp。"
+                },
+                "scrollState": {
+                    "type": "ScrollState",
+                    "required": true,
+                    "description": "当前滚动状态。"
+                },
+                "scrollSource": {
+                    "type": "ScrollSource",
+                    "required": true,
+                    "description": "当前滚动操作的来源。"
+                }
+            },
+            "returns": {
+                "type": "void | OffsetResult",
+                "description": "返回OffsetResult时按照开发者指定的偏移量滚动；不返回时按回调参数(xOffset，yOffset)滚动。"
+            }
+        },
+        "onDidScroll": {
+            "description": "滚动事件回调，Scroll滚动时触发。返回当前帧滚动的偏移量和当前滚动状态。触发该事件的条件：1、滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。2、通过滚动控制器API接口调用。3、越界回弹。",
+            "params": {
+                "xOffset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。单位vp。"
+                },
+                "yOffset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。单位vp。"
+                },
+                "scrollState": {
+                    "type": "ScrollState",
+                    "required": true,
+                    "description": "当前滚动状态。"
+                }
+            }
+        },
+        "onScrollEdge": {
+            "description": "滚动到边缘事件回调。触发该事件的条件：1、滚动组件滚动到边缘时触发，支持键鼠操作等其他触发滚动的输入设置。2、通过滚动控制器API接口调用。3、越界回弹。",
+            "params": {
+                "side": {
+                    "type": "Edge",
+                    "required": true,
+                    "description": "滚动到的边缘位置。"
+                }
+            }
+        },
+        "onScrollEnd": {
+            "description": "滚动停止事件回调。触发该事件的条件：1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。2、通过滚动控制器API接口调用后停止，带过渡动效。"
+        },
+        "onScrollStart": {
+            "description": "滚动开始时触发。手指拖动Scroll或拖动Scroll的滚动条触发的滚动开始时，会触发该事件。使用Scroller滚动控制器触发的带动画的滚动，动画开始时会触发该事件。触发该事件的条件：1、滚动组件开始滚动时触发，支持键鼠操作等其他触发滚动的输入设置。2、通过滚动控制器API接口调用后开始，带过渡动效。"
+        },
+        "onScrollStop": {
+            "description": "滚动停止时触发。手拖动Scroll或拖动Scroll的滚动条触发的滚动，手离开屏幕并且滚动停止时会触发该事件。使用Scroller滚动控制器触发的带动画的滚动，动画停止时会触发该事件。触发该事件的条件：1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。2、通过滚动控制器API接口调用后开始，带过渡动效。"
+        }
+    }
+}

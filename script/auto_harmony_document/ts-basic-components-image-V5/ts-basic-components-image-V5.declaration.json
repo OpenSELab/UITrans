@@ -1,0 +1,387 @@
+{
+    "description": "图片组件，常用于在应用中显示图片。支持加载PixelMap、ResourceStr和DrawableDescriptor类型的数据源，支持png、jpg、jpeg、bmp、svg、webp、gif和heif类型的图片格式。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Image(src: PixelMap | ResourceStr | DrawableDescriptor)",
+            "params": {
+                "src": {
+                    "type": [
+                        "PixelMap",
+                        "ResourceStr",
+                        "DrawableDescriptor"
+                    ],
+                    "required": true,
+                    "description": "图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-graphics-display-V5#%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90)。"
+                }
+            }
+        },
+        {
+            "description": "Image(src: PixelMap | ResourceStr | DrawableDescriptor | ImageContent)",
+            "params": {
+                "src": {
+                    "type": [
+                        "PixelMap",
+                        "ResourceStr",
+                        "DrawableDescriptor",
+                        "ImageContent"
+                    ],
+                    "required": true,
+                    "description": "图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-graphics-display-V5#%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90)。"
+                }
+            }
+        },
+        {
+            "description": "Image(src: PixelMap | ResourceStr | DrawableDescriptor, imageAIOptions: ImageAIOptions)",
+            "params": {
+                "src": {
+                    "type": [
+                        "PixelMap",
+                        "ResourceStr",
+                        "DrawableDescriptor"
+                    ],
+                    "required": true,
+                    "description": "图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-graphics-display-V5#%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90)。"
+                },
+                "imageAIOptions": {
+                    "type": "ImageAIOptions",
+                    "required": true,
+                    "description": "给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "alt": {
+            "description": "设置图片加载时显示的占位图。",
+            "params": {
+                "value": {
+                    "type": [
+                        "string",
+                        "Resource",
+                        "PixelMap"
+                    ],
+                    "required": true,
+                    "description": "加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型）,支持PixelMap类型图片，不支持网络图片。"
+                }
+            }
+        },
+        "objectFit": {
+            "description": "设置图片的填充效果。",
+            "params": {
+                "value": {
+                    "type": "ImageFit",
+                    "required": true,
+                    "description": "图片的填充效果。",
+                    "default": "ImageFit.Cover"
+                }
+            }
+        },
+        "objectRepeat": {
+            "description": "设置图片的重复样式，从中心点向两边重复，剩余空间不足放下一张图片时会截断。svg类型图源不支持该属性。",
+            "params": {
+                "value": {
+                    "type": "ImageRepeat",
+                    "required": true,
+                    "description": "图片的重复样式。",
+                    "default": "ImageRepeat.NoRepeat"
+                }
+            }
+        },
+        "interpolation": {
+            "description": "设置图片的插值效果，即缓解图片在缩放时的锯齿问题。svg类型图源不支持该属性。",
+            "params": {
+                "value": {
+                    "type": "ImageInterpolation",
+                    "required": true,
+                    "description": "图片的插值效果。"
+                }
+            }
+        },
+        "renderMode": {
+            "description": "设置图片的渲染模式。svg类型图源不支持该属性。",
+            "params": {
+                "value": {
+                    "type": "ImageRenderMode",
+                    "required": true,
+                    "description": "图片的渲染模式为原色或黑白。",
+                    "default": "ImageRenderMode.Original"
+                }
+            }
+        },
+        "sourceSize": {
+            "description": "设置图片解码尺寸。仅在目标尺寸小于图源尺寸时生效。svg类型图源和PixelMap资源不支持该属性。",
+            "params": {
+                "value": {
+                    "type": {
+                        "width": "number",
+                        "height": "number"
+                    },
+                    "required": true,
+                    "description": "图片解码尺寸，降低图片的分辨率，常用于需要让图片显示尺寸比组件尺寸更小的场景。"
+                }
+            }
+        },
+        "matchTextDirection": {
+            "description": "设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "图片是否跟随系统语言方向。",
+                    "default": false
+                }
+            }
+        },
+        "fitOriginalSize": {
+            "description": "设置图片的显示尺寸是否跟随图源尺寸。图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "图片的显示尺寸是否跟随图源尺寸",
+                    "default": false
+                }
+            }
+        },
+        "fillColor": {
+            "description": "设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片的填充颜色。如需对png图片进行修改颜色，可以使用colorFilter。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "填充颜色。"
+                }
+            }
+        },
+        "autoResize": {
+            "description": "设置图片解码过程中是否对图源自动缩放。降采样解码时图片的部分信息丢失，因此可能会导致图片质量的下降（如：出现锯齿），这时可以选择把autoResize设为false，按原图尺寸解码，提升显示效果，但会增加内存占用。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "图片解码过程中是否对图源自动缩放。设置为true时，组件会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。",
+                    "default": false
+                }
+            }
+        },
+        "syncLoad": {
+            "description": "设置是否同步加载图片。建议加载尺寸较小的本地图片时将syncLoad设为true，因为耗时较短，在主线程上执行即可。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。",
+                    "default": false
+                }
+            }
+        },
+        "copyOption": {
+            "description": "设置图片是否可复制。当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。svg图片不支持复制。",
+            "params": {
+                "value": {
+                    "type": "CopyOptions",
+                    "required": true,
+                    "description": "图片是否可复制。",
+                    "default": "CopyOptions.None"
+                }
+            }
+        },
+        "colorFilter": {
+            "description": "为图像设置颜色滤镜效果。",
+            "params": {
+                "value": {
+                    "type": [
+                        "ColorFilter",
+                        "DrawingColorFilter"
+                    ],
+                    "required": true,
+                    "description": "给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。"
+                }
+            }
+        },
+        "draggable": {
+            "description": "设置组件默认拖拽效果。不能和onDragStart事件同时使用。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "组件默认拖拽效果，设置为true时，组件可拖拽，绑定的长按手势不生效。",
+                    "default": true
+                }
+            }
+        },
+        "enableAnalyzer": {
+            "description": "设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。具体使用指导请参考[AI识图](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/vision-imageanalyzer-V5)",
+            "params": {
+                "enable": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "组件支持AI分析，设置为true时，组件可进行AI分析。",
+                    "default": false
+                }
+            }
+        },
+        "resizable": {
+            "description": "设置图像拉伸时可调整大小的图像选项。拉伸对拖拽缩略图以及占位图有效。",
+            "params": {
+                "value": {
+                    "type": "ResizableOptions",
+                    "required": true,
+                    "description": "图像拉伸时可调整大小的图像选项。"
+                }
+            }
+        },
+        "privacySensitive": {
+            "description": "设置是否支持卡片敏感隐私信息。",
+            "params": {
+                "supported": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否支持卡片敏感隐私信息。",
+                    "default": false
+                }
+            }
+        },
+        "dynamicRangeMode": {
+            "description": "设置期望展示的图像动态范围。",
+            "params": {
+                "value": {
+                    "type": "DynamicRangeMode",
+                    "required": true,
+                    "description": "期望展示的图像动态范围。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onComplete": {
+            "description": "图片数据加载成功和解码成功时均触发该回调，返回成功加载的图片尺寸。",
+            "params": {
+                "width": {
+                    "type": "number",
+                    "required": true,
+                    "description": "图片的宽。"
+                },
+                "height": {
+                    "type": "number",
+                    "required": true,
+                    "description": "图片的高。"
+                },
+                "componentWidth": {
+                    "type": "number",
+                    "required": true,
+                    "description": "组件的宽。"
+                },
+                "componentHeight": {
+                    "type": "number",
+                    "required": true,
+                    "description": "组件的高。"
+                },
+                "loadingStatus": {
+                    "type": "number",
+                    "required": true,
+                    "description": "图片加载成功的状态值。返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。"
+                },
+                "contentWidth": {
+                    "type": "number",
+                    "required": true,
+                    "description": "图片实际绘制的宽度。仅在loadingStatus返回1时有效。"
+                },
+                "contentHeight": {
+                    "type": "number",
+                    "required": true,
+                    "description": "图片实际绘制的高度。仅在loadingStatus返回1时有效。"
+                },
+                "contentOffsetX": {
+                    "type": "number",
+                    "required": true,
+                    "description": "实际绘制内容相对于组件自身的x轴偏移。仅在loadingStatus返回1时有效。"
+                },
+                "contentOffsetY": {
+                    "type": "number",
+                    "required": true,
+                    "description": "实际绘制内容相对于组件自身的y轴偏移。仅在loadingStatus返回1时有效。"
+                }
+            }
+        },
+        "onError": {
+            "description": "图片加载异常时触发该回调。",
+            "params": {
+                "componentWidth": {
+                    "type": "number",
+                    "required": true,
+                    "description": "组件的宽。"
+                },
+                "componentHeight": {
+                    "type": "number",
+                    "required": true,
+                    "description": "组件的高。"
+                },
+                "message": {
+                    "type": "string",
+                    "required": true,
+                    "description": "报错信息。"
+                }
+            }
+        },
+        "onFinish": {
+            "description": "当加载的源文件为带动效的svg格式图片时，svg动效播放完成时会触发这个回调。如果动效为无限循环动效，则不会触发这个回调。",
+            "params": {}
+        }
+    },
+    "rules": [
+        "使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[声明权限](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/declare-permissions-V5)。",
+        "如果下载的网络图片大于10MB或一次下载的网络图片数量较多，建议使用[HTTP](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/http-request-V5)工具提前预下载，提高图片加载性能，方便应用侧管理数据。",
+        "如果SVG图片没有原生大小，需要给Image组件设置宽高，否则不显示。",
+        "如果SVG图片通过image标签引用本地其他图片，被引用的图片不支持svg格式和gif格式。",
+        "src由有效切换为无效时，图片保持不动。"
+    ],
+    "examples": [
+        {
+            "description": "该组件展示了一个带有隐私隐藏配置的图像组件。布局宽度占据整个屏幕，图像组件的宽度为50vp，高度为50vp，顶部边距为30vp。图像组件的排列方式为垂直布局，对齐方式为水平居中对齐。\n图像组件的样式包括宽度、高度、边距等属性，支持隐私敏感配置。图像组件的功能包括隐私敏感配置，当配置为true时，图像内容在某些场景下会被模糊处理或隐藏，以保护用户隐私。\n整个布局通过Column组件实现，确保图像组件在垂直方向上居中对齐，界面简洁明了。",
+            "code": "@Entry\n@Component\nstruct ImageExample {\n  build() {\n    Column({ space: 10 }) { // 创建一个垂直布局的Column组件，子组件之间的间距为10vp\n      Image($r(\"app.media.startIcon\")) // 创建一个图像组件，资源路径为app.media.startIcon\n        .width(50) // 设置图像组件的宽度为50vp\n        .height(50) // 设置图像组件的高度为50vp\n        .margin({top :30}) // 设置图像组件的顶部边距为30vp\n        .privacySensitive(true) // 设置图像组件为隐私敏感，当配置为true时，图像内容在某些场景下会被模糊处理或隐藏\n    }\n    .alignItems(HorizontalAlign.Center) // 设置Column组件的子组件在水平方向上居中对齐\n    .width(\"100%\") // 设置Column组件的宽度占据整个屏幕\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个展示两张图片的界面。布局宽度占据整个屏幕，高度设为 100%。组件的垂直方向上被分为两个部分，每个部分包含一张图片。每张图片的宽度为 100vp，高度为 100vp。\n图片的样式包括宽度、高度等属性，支持不同的样式展示。图片的功能包括点击事件和动画结束事件，用户可以通过点击图片触发相应操作，图片也可以在动画结束后进行状态切换。\n整个布局通过 Column 布局保证图片在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ImageExample3 {\n  // 定义三张图片资源\n  private imageOne: Resource = $r('app.media.earth');\n  private imageTwo: Resource = $r('app.media.star');\n  private imageThree: Resource = $r('app.media.moveStar');\n\n  // 定义两个状态变量，用于控制图片的显示\n  @State src: Resource = this.imageOne;\n  @State src2: Resource = this.imageThree;\n\n  build() {\n    Column() {\n      // 第一张图片，点击后切换为第二张图片\n      Image(this.src)\n        .width(100) // 设置图片宽度为 100vp\n        .height(100) // 设置图片高度为 100vp\n        .onClick(() => {\n          // 点击事件，切换图片为第二张图片\n          this.src = this.imageTwo;\n        })\n\n      // 第二张图片，动画结束后切换为第一张图片\n      Image(this.src2)\n        .width(100) // 设置图片宽度为 100vp\n        .height(100) // 设置图片高度为 100vp\n        .onFinish(() => {\n          // 动画结束事件，切换图片为第一张图片\n          this.src2 = this.imageOne;\n        })\n    }\n    .width('100%') // 设置布局宽度为 100%\n    .height('100%') // 设置布局高度为 100%\n  }\n}"
+        },
+        {
+            "description": "该组件展示了一个通过点击按钮切换图片源的功能。布局宽度占据整个屏幕，内边距为20vp。组件的垂直方向上包含一个图片和一个按钮。图片的宽度为100vp，高度为100vp，按钮的宽度为100%，内边距为20vp。按钮的文本为“点击切换Image的src”，点击按钮时会切换图片的源。\n图片的源可以是ResourceStr类型或ImageContent类型，通过@State变量imageSrcIndex来控制当前显示的图片源。当点击按钮时，imageSrcIndex会递增并取模于imageSrcList的长度，从而实现图片源的切换。",
+            "code": "@Entry\n@Component\nstruct ImageContentExample {\n  // 定义一个状态变量imageSrcIndex，用于控制当前显示的图片源索引，初始值为0\n  @State imageSrcIndex: number = 0;\n  \n  // 定义一个状态变量imageSrcList，用于存储图片源列表，包含一个ResourceStr类型和一个ImageContent类型\n  @State imageSrcList: (ResourceStr | ImageContent)[] = [$r('app.media.app_icon'), ImageContent.EMPTY];\n\n  build() {\n    Column({ space: 10 }) {\n      // 创建一个Image组件，显示当前索引对应的图片源，宽度为100vp，高度为100vp\n      Image(this.imageSrcList[this.imageSrcIndex])\n        .width(100)\n        .height(100)\n      \n      // 创建一个Button组件，文本为“点击切换Image的src”，内边距为20vp，点击时触发onClick事件\n      Button('点击切换Image的src')\n        .padding(20)\n        .onClick(() => {\n          // 点击按钮时，imageSrcIndex递增并取模于imageSrcList的长度，实现图片源的切换\n          this.imageSrcIndex = (this.imageSrcIndex + 1) % this.imageSrcList.length;\n        })\n    }\n    // 设置Column组件的宽度为100%，内边距为20vp\n    .width('100%')\n    .padding(20)\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Flex 布局实现了一个展示多种类型图片（如 PNG、GIF、SVG、JPG）的界面。布局宽度为 360vp，高度为 320vp，内边距为右 10vp、顶部 10vp。组件的垂直方向上被分为两个部分，每个部分包含两张图片。每张图片以水平布局方式排列，图片之间的间距均匀分布，且对齐方式为居中对齐。\n图片的样式包括宽度、高度、边距等属性，每张图片的宽度为 110vp，高度为 110vp，边距为 15vp。图片的功能包括加载不同类型的图片资源，并通过 overlay 方法在图片底部添加文本标签，标签内容为图片的文件类型（如 PNG、GIF、SVG、JPG），标签的对齐方式为底部对齐，偏移量为 y 轴方向 20vp。\n整个布局通过 Flex 布局保证图片在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ImageExample1 {\n  build() {\n    Column() {\n      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {\n        Row() {\n          // 加载 PNG 图片，设置图片的宽度、高度和边距，并在图片底部添加文本标签 \"png\"\n          Image($r('app.media.ic_camera_master_ai_leaf'))\n            .width(110).height(110).margin(15)\n            .overlay('png', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })\n\n          // 加载 GIF 图片，设置图片的宽度、高度和边距，并在图片底部添加文本标签 \"gif\"\n          Image($r('app.media.loading'))\n            .width(110).height(110).margin(15)\n            .overlay('gif', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })\n        }\n        Row() {\n          // 加载 SVG 图片，设置图片的宽度、高度和边距，并在图片底部添加文本标签 \"svg\"\n          Image($r('app.media.ic_camera_master_ai_clouded'))\n            .width(110).height(110).margin(15)\n            .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })\n\n          // 加载 JPG 图片，设置图片的宽度、高度和边距，并在图片底部添加文本标签 \"jpg\"\n          Image($r('app.media.ic_public_favor_filled'))\n            .width(110).height(110).margin(15)\n            .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })\n        }\n      }\n    }.height(320).width(360).padding({ right: 10, top: 10 })\n  }\n}"
+        },
+        {
+            "description": "该组件通过Column布局实现了一个加载网络图片的界面。布局宽度占据整个屏幕，高度设为100%，内边距为0。组件的垂直方向上包含一个Image组件，用于展示加载的网络图片。\nImage组件的宽度为100%，高度为100%，图片的适应模式为None，即图片保持原始尺寸显示。当网络图片加载失败或加载过程中，Image组件会显示一个占位图，占位图的资源名为$r('app.media.img')。\n组件的功能包括从指定的URL加载图片，并将图片数据解码为PixelMap格式，最终显示在Image组件中。如果加载失败，会在控制台输出错误信息。",
+            "code": "import { http } from '@kit.NetworkKit'; // 导入网络请求工具包\nimport { BusinessError } from '@kit.BasicServicesKit'; // 导入业务错误处理工具包\nimport { image } from '@kit.ImageKit'; // 导入图片处理工具包\n\n@Entry\n@Component\nstruct ImageExample2 {\n  @State pixelMapImg: PixelMap | undefined = undefined; // 定义一个状态变量，用于存储图片的PixelMap数据\n\n  aboutToAppear() {\n    this.requestImageUrl('https://www.example.com/xxx.png'); // 组件即将显示时，调用请求图片URL的方法\n  }\n\n  requestImageUrl(url: string) {\n    http.createHttp().request(url, (error: BusinessError, data: http.HttpResponse) => { // 发送网络请求，获取图片数据\n      if (error) {\n        console.error(`request image failed: url: ${url}, code: ${error.code}, message: ${error.message}`); // 如果请求失败，输出错误信息\n      } else {\n        let imgData: ArrayBuffer = data.result as ArrayBuffer; // 将返回的数据转换为ArrayBuffer格式\n        console.info(`request image success, size: ${imgData.byteLength}`); // 输出图片数据的大小\n        let imgSource: image.ImageSource = image.createImageSource(imgData); // 创建ImageSource对象\n        class sizeTmp {\n          height: number = 100\n          width: number = 100\n        }\n        let options: Record<string, number | boolean | sizeTmp> = { // 定义图片解码选项\n          'alphaType': 0, // 透明度类型\n          'editable': false, // 是否可编辑\n          'pixelFormat': 3, // 像素格式\n          'scaleMode': 1, // 缩放模式\n          'size': { height: 100, width: 100 } // 图片尺寸\n        }\n        imgSource.createPixelMap(options).then((pixelMap: PixelMap) => { // 将ImageSource解码为PixelMap\n          console.error('image createPixelMap success'); // 输出解码成功信息\n          this.pixelMapImg = pixelMap; // 将解码后的PixelMap赋值给状态变量\n        })\n      }\n    })\n  }\n\n  build() {\n    Column() { // 使用Column布局\n      Image(this.pixelMapImg) // 创建Image组件，显示加载的图片\n        .alt($r('app.media.img')) // 设置占位图，当图片加载失败或加载过程中显示\n        .objectFit(ImageFit.None) // 设置图片适应模式为None，保持原始尺寸\n        .width('100%') // 设置图片宽度为100%\n        .height('100%') // 设置图片高度为100%\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Flex 布局实现了一个展示图片及其调整拉伸效果的界面。布局宽度占据整个屏幕，高度设为 100%，内边距为 0。组件的垂直方向上被分为多个部分，每个部分包含一个图片和一组按钮。每个图片组的图片以固定宽度和高度（200vp）展示，图片之间的间距为 5vp，且对齐方式为居中对齐。\n图片的样式包括边框颜色和宽度（粉色，2vp），支持不同的图片适应方式（如包含、覆盖等）。图片组之间通过 Flex 组件进行分隔。按钮的功能包括点击事件和状态效果，用户可以通过点击按钮触发相应操作，按钮也可以在启用或禁用状态下进行展示。\n整个布局通过 Flex 布局保证图片在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct Index {\n  @State top: number = 40 // 定义图片顶部拉伸区域的初始值\n  @State bottom: number = 5 // 定义图片底部拉伸区域的初始值\n  @State left: number = 40 // 定义图片左侧拉伸区域的初始值\n  @State right: number = 10 // 定义图片右侧拉伸区域的初始值\n\n  build() {\n    Column({ space: 5 }) { // 创建一个垂直布局，组件之间的间距为 5vp\n\n      Image($r(\"app.media.sky\")) // 加载名为 \"sky\" 的图片资源\n        .width(200).height(200) // 设置图片的宽度和高度为 200vp\n        .border({ width: 2, color: Color.Pink }) // 设置图片的边框宽度和颜色（粉色，2vp）\n        .objectFit(ImageFit.Contain) // 设置图片的适应方式为包含（保持图片比例，尽可能填充区域）\n\n      Image($r(\"app.media.sky\")) // 加载名为 \"sky\" 的图片资源\n        .resizable({ // 设置图片的可调整拉伸区域\n          slice: {\n            left: this.left, // 设置图片左侧拉伸区域的宽度\n            right: this.right, // 设置图片右侧拉伸区域的宽度\n            top: this.top, // 设置图片顶部拉伸区域的高度\n            bottom: this.bottom // 设置图片底部拉伸区域的高度\n          }\n        })\n        .width(200) // 设置图片的宽度为 200vp\n        .height(200) // 设置图片的高度为 200vp\n        .border({ width: 2, color: Color.Pink }) // 设置图片的边框宽度和颜色（粉色，2vp）\n        .objectFit(ImageFit.Contain) // 设置图片的适应方式为包含（保持图片比例，尽可能填充区域）\n\n      Row() { // 创建一个水平布局\n        Button(\"add top to \" + this.top).fontSize(10) // 创建一个按钮，点击后增加顶部拉伸区域的高度\n          .onClick(() => {\n            this.top += 2 // 每次点击增加 2vp\n          })\n        Button(\"add bottom to \" + this.bottom).fontSize(10) // 创建一个按钮，点击后增加底部拉伸区域的高度\n          .onClick(() => {\n            this.bottom += 2 // 每次点击增加 2vp\n          })\n      }\n\n      Row() { // 创建一个水平布局\n        Button(\"add left to \" + this.left).fontSize(10) // 创建一个按钮，点击后增加左侧拉伸区域的宽度\n          .onClick(() => {\n            this.left += 2 // 每次点击增加 2vp\n          })\n        Button(\"add right to \" + this.right).fontSize(10) // 创建一个按钮，点击后增加右侧拉伸区域的宽度\n          .onClick(() => {\n            this.right += 2 // 每次点击增加 2vp\n          })\n      }\n\n    }\n    .justifyContent(FlexAlign.Start).width('100%').height('100%') // 设置布局的对齐方式为开始对齐，宽度为 100%，高度为 100%\n  }\n}"
+        },
+        {
+            "description": "该组件展示了一个图像分析示例，通过使用鸿蒙ArkUI的Image组件和AI分析功能，实现了对图像的加载、显示以及AI分析。布局上，组件采用垂直布局（Column），包含一个Image组件和一个Button组件。Image组件用于显示加载的图像，并支持AI分析功能，Button组件用于触发获取支持的AI分析类型。\n\n布局属性方面，Image组件的宽度设置为200vp，高度设置为300vp，左侧边距为10vp。Button组件的文本为“getTypes”，点击后会触发获取支持的AI分析类型。\n\n组件的样式和外观方面，Image组件的图像适应方式为“Contain”，即保持图像的宽高比，尽可能完整地显示图像。Button组件的文本颜色和背景颜色未明确设置，使用默认样式。\n\n组件的排列和嵌套关系方面，Image组件和Button组件在垂直方向上依次排列，Image组件在上，Button组件在下。\n\n组件的功能和交互方面，Image组件支持AI分析功能，可以通过enableAnalyzer属性开启。Button组件的点击事件会调用aiController的getImageAnalyzerSupportTypes方法，获取当前支持的AI分析类型。",
+            "code": "import { image } from '@kit.ImageKit' // 导入ImageKit模块中的image组件\n\n@Entry\n@Component\nstruct ImageExample4 {\n  @State imagePixelMap: image.PixelMap | undefined = undefined // 定义一个状态变量imagePixelMap，用于存储图像的PixelMap数据\n  private aiController: ImageAnalyzerController = new ImageAnalyzerController() // 创建一个ImageAnalyzerController实例，用于控制图像分析\n  private options: ImageAIOptions = { // 定义图像分析的选项\n    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT], // 设置分析类型为图像主体和文本\n    aiController: this.aiController // 绑定AI分析控制器\n  }\n\n  async aboutToAppear() { // 组件生命周期方法，在组件即将显示时执行\n    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.img')) // 异步加载图像的PixelMap数据\n  }\n\n  build() {\n    Column() { // 创建一个垂直布局\n      Image(this.imagePixelMap, this.options) // 创建一个Image组件，显示加载的图像并启用AI分析\n        .enableAnalyzer(true) // 开启AI分析功能\n        .objectFit(ImageFit.Contain) // 设置图像适应方式为“Contain”\n        .width(200) // 设置图像宽度为200vp\n        .height(300) // 设置图像高度为300vp\n        .margin({left: 10}) // 设置图像左侧边距为10vp\n      Button('getTypes') // 创建一个Button组件，文本为“getTypes”\n        .onClick(() => { // 设置Button的点击事件\n          this.aiController.getImageAnalyzerSupportTypes() // 点击后调用aiController的getImageAnalyzerSupportTypes方法，获取支持的AI分析类型\n        })\n    }\n  }\n\n  private async getPixmapFromMedia(resource: Resource) { // 异步方法，用于从资源中获取图像的PixelMap数据\n    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({ // 异步获取资源的二进制数据\n      bundleName: resource.bundleName, // 资源所在的bundle名称\n      moduleName: resource.moduleName, // 资源所在的模块名称\n      id: resource.id // 资源的ID\n    })\n    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength)) // 创建ImageSource对象\n    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({ // 异步创建PixelMap对象\n      desiredPixelFormat: image.PixelMapFormat.RGBA_8888 // 设置期望的像素格式为RGBA_8888\n    })\n    await imageSource.release() // 释放ImageSource对象\n    return createPixelMap // 返回创建的PixelMap对象\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Flex 布局实现了一个展示多种图像及其 objectFit 效果的界面。布局宽度为 360vp，高度为 320vp，内边距为右侧 10vp、顶部 10vp。组件的垂直方向上被分为两个部分，每个部分包含两张图像。每张图像的宽度为 110vp，高度为 110vp，外边距为 15vp。图像的边框宽度为 2vp，颜色为粉色。图像的 objectFit 属性分别设置为不同的值，以展示不同的图像适应效果。\n图像的排列方式为水平布局，每行包含两张图像，图像之间的间距均匀分布，且对齐方式为居中对齐。图像的样式包括边框颜色、宽度和高度等属性，支持不同的样式展示。图像的功能包括 objectFit 效果，用户可以通过设置不同的 objectFit 属性来调整图像的显示效果。\n整个布局通过 Flex 布局保证图像在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ImageExample {\n  build() {\n    Column() {\n      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {\n        Row() {\n          // 第一张图像，资源名为 app.media.sky，宽度为 110vp，高度为 110vp，外边距为 15vp，边框宽度为 2vp，颜色为粉色，objectFit 属性设置为 ImageFit.TOP_START\n          Image($r('app.media.sky'))\n            .width(110).height(110).margin(15)\n            .overlay('png', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })\n            .border({ width: 2, color: Color.Pink })\n            .objectFit(ImageFit.TOP_START)\n\n          // 第二张图像，资源名为 app.media.loading，宽度为 110vp，高度为 110vp，外边距为 15vp，边框宽度为 2vp，颜色为粉色，objectFit 属性设置为 ImageFit.BOTTOM_START\n          Image($r('app.media.loading'))\n            .width(110).height(110).margin(15)\n            .overlay('gif', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })\n            .border({ width: 2, color: Color.Pink })\n            .objectFit(ImageFit.BOTTOM_START)\n        }\n        Row() {\n          // 第三张图像，资源名为 app.media.svg，宽度为 110vp，高度为 110vp，外边距为 15vp，边框宽度为 2vp，颜色为粉色，objectFit 属性设置为 ImageFit.TOP_END\n          Image($r('app.media.svg'))\n            .width(110).height(110).margin(15)\n            .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })\n            .border({ width: 2, color: Color.Pink })\n            .objectFit(ImageFit.TOP_END)\n\n          // 第四张图像，资源名为 app.media.jpg，宽度为 110vp，高度为 110vp，外边距为 15vp，边框宽度为 2vp，颜色为粉色，objectFit 属性设置为 ImageFit.CENTER\n          Image($r('app.media.jpg'))\n            .width(110).height(110).margin(15)\n            .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })\n            .border({ width: 2, color: Color.Pink })\n            .objectFit(ImageFit.CENTER)\n        }\n      }\n    }.height(320).width(360).padding({ right: 10, top: 10 })\n  }\n}"
+        },
+        {
+            "description": "该组件通过Column布局实现了一个展示图像并为其设置颜色滤镜效果的界面。布局宽度为100vp，高度为100vp，内边距为15vp。组件的垂直方向上被分为三个部分，每个部分包含一个图像。每个图像的宽度为100vp，高度为100vp，且通过点击事件触发颜色滤镜效果的设置。\n图像的样式包括宽度、高度、边距等属性，支持不同的颜色滤镜效果展示。图像组之间通过Column组件进行分隔。图像的功能包括点击事件和颜色滤镜效果，用户可以通过点击图像触发相应颜色滤镜的设置，图像也可以在不同的颜色滤镜效果下进行展示。\n整个布局通过Column布局保证图像在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "import { drawing, common2D } from '@kit.ArkGraphics2D'; // 导入ArkGraphics2D库中的drawing和common2D模块\n\n@Entry\n@Component\nstruct ImageExample3 {\n  private imageOne: Resource = $r('app.media.1'); // 定义私有变量imageOne，用于存储资源名为'1'的图像资源\n  private imageTwo: Resource = $r('app.media.2'); // 定义私有变量imageTwo，用于存储资源名为'2'的图像资源\n  @State src: Resource = this.imageOne // 定义状态变量src，初始值为imageOne\n  @State src2: Resource = this.imageTwo // 定义状态变量src2，初始值为imageTwo\n  private ColorFilterMatrix: number[] = [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0]; // 定义私有变量ColorFilterMatrix，用于存储颜色滤镜矩阵\n  private color: common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 }; // 定义私有变量color，用于存储颜色值，alpha为255，红色为255，绿色为0，蓝色为0\n  @State DrawingColorFilterFirst: ColorFilter | undefined = undefined // 定义状态变量DrawingColorFilterFirst，初始值为undefined\n  @State DrawingColorFilterSecond: ColorFilter | undefined = undefined // 定义状态变量DrawingColorFilterSecond，初始值为undefined\n  @State DrawingColorFilterThird: ColorFilter | undefined = undefined // 定义状态变量DrawingColorFilterThird，初始值为undefined\n\n  build() {\n    Column() {\n      Image(this.src) // 创建一个Image组件，显示src变量对应的图像\n        .width(100) // 设置图像宽度为100vp\n        .height(100) // 设置图像高度为100vp\n        .colorFilter(this.DrawingColorFilterFirst) // 设置图像的颜色滤镜为DrawingColorFilterFirst\n        .onClick(() => { // 设置图像的点击事件\n          this.DrawingColorFilterFirst = drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN); // 点击后设置DrawingColorFilterFirst为通过createBlendModeColorFilter方法创建的颜色滤镜\n        })\n\n      Image(this.src2) // 创建一个Image组件，显示src2变量对应的图像\n        .width(100) // 设置图像宽度为100vp\n        .height(100) // 设置图像高度为100vp\n        .colorFilter(this.DrawingColorFilterSecond) // 设置图像的颜色滤镜为DrawingColorFilterSecond\n        .onClick(() => { // 设置图像的点击事件\n          this.DrawingColorFilterSecond = new ColorFilter(this.ColorFilterMatrix); // 点击后设置DrawingColorFilterSecond为通过ColorFilterMatrix创建的颜色滤镜\n        })\n\n      Image($r('app.media.test_self')) // 创建一个Image组件，显示资源名为'test_self'的图像\n        .width(110).height(110).margin(15) // 设置图像宽度为110vp，高度为110vp，边距为15vp\n        .colorFilter(this.DrawingColorFilterThird) // 设置图像的颜色滤镜为DrawingColorFilterThird\n        .onClick(() => { // 设置图像的点击事件\n          this.DrawingColorFilterThird = drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN); // 点击后设置DrawingColorFilterThird为通过createBlendModeColorFilter方法创建的颜色滤镜\n        })\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过Column和Row布局实现了一个展示PixelMap数组动画的界面。布局宽度占据整个屏幕的50%，高度设为屏幕的50%。组件的垂直方向上被分为两个部分：第一部分是一个展示动画的Image组件，第二部分是两个按钮，分别用于控制动画的播放次数。\n\nImage组件的宽度为500px，高度为500px，展示一个PixelMap数组动画。动画播放完成后会触发onFinish事件，输出\"finish\"到控制台。\n\n按钮组的按钮以水平布局方式排列，按钮之间的间距均匀分布，且对齐方式为居中对齐。按钮的样式包括宽度为100px，内边距为5px，外边距为5px。按钮的功能包括点击事件，用户可以通过点击按钮触发相应操作，改变动画的播放次数。\n\n整个布局通过Column和Row布局保证组件在垂直和水平方向上有序排列，确保界面整洁美观。",
+            "code": "import {AnimationOptions, AnimatedDrawableDescriptor} from '@kit.ArkUI' // 导入动画相关的接口和类\nimport { image } from '@kit.ImageKit' // 导入图像处理相关的接口和类\n\n@Entry\n@Component\nstruct ImageExample {\n  pixelmaps: Array<PixelMap\\>  = \\[\\]; // 定义一个PixelMap数组，用于存储动画帧\n  options: AnimationOptions = {duration:2000, iterations:1}; // 定义动画选项，设置动画持续时间和播放次数\n  @State animated: AnimatedDrawableDescriptor | undefined = undefined; // 定义一个状态变量，用于存储动画描述符\n\n  async aboutToAppear() {\n    this.pixelmaps = await this.getPixelMaps(); // 异步获取PixelMap数组\n    this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options); // 创建动画描述符\n  }\n\n  build() {\n    Column() {\n      Row() {\n        Image(this.animated) // 创建一个Image组件，展示动画\n          .width('500px').height('500px') // 设置Image组件的宽度和高度\n          .onFinish(() =\\> { // 设置动画播放完成后的回调函数\n            console.info(\"finish\") // 输出\"finish\"到控制台\n          })\n      }.height('50%') // 设置Row组件的高度为屏幕的50%\n      Row() {\n        Button('once').width(100).padding(5).onClick(() =\\> { // 创建一个按钮，设置宽度、内边距和点击事件\n          this.options = {duration:2000, iterations:1}; // 设置动画选项，播放一次\n          this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options); // 更新动画描述符\n        }).margin(5) // 设置按钮的外边距\n        Button('infinite').width(100).padding(5).onClick(() =\\> { // 创建另一个按钮，设置宽度、内边距和点击事件\n          this.options = {duration:2000, iterations:-1}; // 设置动画选项，无限循环播放\n          this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options); // 更新动画描述符\n        }).margin(5) // 设置按钮的外边距\n      }\n    }.width('50%') // 设置Column组件的宽度为屏幕的50%\n  }\n\n  private async getPixmapListFromMedia(resource: Resource) {\n    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({ // 异步获取媒体内容\n      bundleName: resource.bundleName,\n      moduleName: resource.moduleName,\n      id: resource.id\n    })\n    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength)) // 创建图像源\n    let createPixelMap: Array<image.PixelMap\\> = await imageSource.createPixelMapList({ // 异步创建PixelMap数组\n      desiredPixelFormat: image.PixelMapFormat.RGBA\\_8888\n    })\n    await imageSource.release() // 释放图像源\n    return createPixelMap // 返回PixelMap数组\n  }\n\n  private async getPixmapFromMedia(resource: Resource) {\n    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({ // 异步获取媒体内容\n      bundleName: resource.bundleName,\n      moduleName: resource.moduleName,\n      id: resource.id\n    })\n    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength)) // 创建图像源\n    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({ // 异步创建PixelMap\n      desiredPixelFormat: image.PixelMapFormat.RGBA\\_8888\n    })\n    await imageSource.release() // 释放图像源\n    return createPixelMap // 返回PixelMap\n  }\n\n  private async getPixelMaps() {\n    let Mypixelmaps:Array<PixelMap\\> = await this.getPixmapListFromMedia($r('app.media.view')) // 异步获取PixelMap数组\n    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon'))) // 异步获取PixelMap并添加到数组中\n    return Mypixelmaps; // 返回PixelMap数组\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个带有扫光效果的图片展示界面。布局宽度为 450vp，高度为 200vp，内边距为顶部 20vp、左右 20vp。组件的垂直方向上包含一个 Column 布局，内部嵌套一个 Row 布局，Row 布局中包含一个 Stack 布局。Stack 布局中包含一个 Image 组件和一个 Row 组件，用于实现扫光效果。\n\nImage 组件用于展示图片，宽度为 450vp，高度为 200vp，图片的显示方式为包含（ImageFit.Contain），初始状态下图片不可见（Visibility.Hidden）。当图片加载完成或加载失败时，图片会变为可见状态（Visibility.Visible）。\n\nRow 组件用于实现扫光效果，宽度为 450vp，高度为 200vp，初始状态下不可见（Visibility.Hidden）。Row 组件的背景为一个线性渐变，方向为从左到右（GradientDirection.Right），渐变颜色从 #E1E4E9 到 #FFFFFF 再到 #E1E4E9，透明度为 0.5。扫光效果通过动画控制 Row 组件的位置（position）来实现，动画持续时间为 1500 毫秒，使用三次贝塞尔曲线（cubicBezier）进行平滑过渡，动画无限循环（iterationsTimes = -1）。\n\n整个布局通过 Stack 布局将图片和扫光效果叠加在一起，确保扫光效果在图片上显示。组件的背景颜色为 #E1E4E9，边框圆角为 20vp，内容被裁剪以适应圆角边框。组件在初始化时会自动触发扫光动画。",
+            "code": "import { curves } from '@kit.ArkUI';\n\n@Entry\n@Component\nstruct ImageExample11 {\n  private curve = curves.cubicBezier(0.33, 0, 0.67, 1); // 定义三次贝塞尔曲线，用于动画的平滑过渡\n  @State moveImg: string[] = ['imageScanEffect']; // 用于存储扫光效果的标识符\n  @State moveImgVisible: Visibility = Visibility.Visible; // 控制扫光效果的可见性\n  @State durationTime: number = 1500; // 动画持续时间，单位为毫秒\n  @State iterationsTimes: number = -1; // 动画循环次数，-1 表示无限循环\n  @State private opacityValue: number = 0.5; // 扫光效果的透明度\n  @State imageWidth: number = 450; // 图片的宽度\n  @State visible: Visibility = Visibility.Hidden; // 控制图片的可见性\n  @State stackBackgroundColor: string = '#E1E4E9'; // Stack 布局的背景颜色\n  @State linePositionX: number = 0 - this.imageWidth; // 扫光效果的初始位置，X 轴坐标\n  @State linePositionY: number = 0; // 扫光效果的初始位置，Y 轴坐标\n  @State imgResource: Resource | undefined = undefined; // 图片资源\n\n  startupAnimate() {\n    this.moveImg.pop(); // 移除扫光效果的标识符\n    this.moveImg.push('imageScanEffect'); // 重新添加扫光效果的标识符\n    setTimeout(() => {\n      this.imgResource = $r('app.media.img'); // 延迟 3000 毫秒后加载图片资源\n    }, 3000);\n    animateTo({\n      duration: this.durationTime, // 动画持续时间\n      curve: this.curve, // 动画曲线\n      tempo: 1, // 动画速度\n      iterations: this.iterationsTimes, // 动画循环次数\n      delay: 0 // 动画延迟时间\n    }, () => {\n      this.linePositionX = this.imageWidth; // 动画结束时，扫光效果的位置移动到图片的右侧\n    })\n  }\n\n  build() {\n    Column() {\n      Row() {\n        Stack() {\n          Image(this.imgResource)\n            .width(this.imageWidth) // 图片宽度\n            .height(200) // 图片高度\n            .objectFit(ImageFit.Contain) // 图片显示方式\n            .visibility(this.visible) // 图片可见性\n            .onComplete(() => {\n              this.visible = Visibility.Visible; // 图片加载完成时，设置图片可见\n              this.moveImg.pop(); // 移除扫光效果的标识符\n            })\n            .onError(() => {\n              setTimeout(() => {\n                this.visible = Visibility.Visible; // 图片加载失败时，延迟 2600 毫秒后设置图片可见\n                this.moveImg.pop(); // 移除扫光效果的标识符\n              }, 2600)\n            })\n          ForEach(this.moveImg, (item: string) => {\n            Row()\n              .width(this.imageWidth) // 扫光效果的宽度\n              .height(200) // 扫光效果的高度\n              .visibility(this.moveImgVisible) // 扫光效果的可见性\n              .position({ x: this.linePositionX, y: this.linePositionY }) // 扫光效果的位置\n              .linearGradient({\n                direction: GradientDirection.Right, // 渐变方向\n                repeating: false, // 是否重复渐变\n                colors: [[0xE1E4E9, 0], [0xFFFFFF, 0.75], [0xE1E4E9, 1]] // 渐变颜色\n              })\n              .opacity(this.opacityValue) // 扫光效果的透明度\n          })\n        }\n        .backgroundColor(this.visible ? this.stackBackgroundColor : undefined) // Stack 布局的背景颜色\n        .margin({top: 20, left: 20, right: 20}) // Stack 布局的外边距\n        .borderRadius(20) // Stack 布局的边框圆角\n        .clip(true) // 裁剪内容以适应边框圆角\n        .onAppear(() => {\n          this.startupAnimate(); // 组件初始化时触发扫光动画\n        })\n      }\n    }\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

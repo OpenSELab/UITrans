@@ -1,0 +1,139 @@
+{
+    "description": "网格对象的编辑排序组件，用于网格对象的编辑、拖动排序、新增和删除。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Array<GridObjectSortComponentItem>, onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => void, onCancel: () => void })",
+            "params": {
+                "options": {
+                    "type": "GridObjectSortComponentOptions",
+                    "required": true,
+                    "description": "组件配置信息。"
+                },
+                "dataList": {
+                    "type": "Array<GridObjectSortComponentItem>",
+                    "required": true,
+                    "description": "传入的数据，最大长度为50，数据长度超过50，只会取前50的数据。"
+                },
+                "onSave": {
+                    "type": "(select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => void",
+                    "required": true,
+                    "description": "保存编辑排序的回调函数，返回编辑后的数据。"
+                },
+                "onCancel": {
+                    "type": "() => void",
+                    "required": true,
+                    "description": "取消保存数据的回调。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "options": {
+            "description": "组件配置信息。",
+            "params": {
+                "type": {
+                    "type": "GridObjectSortComponentType",
+                    "required": false,
+                    "description": "组件展示形态：文字|图片+文字。",
+                    "default": "GridObjectSortComponentType.text"
+                },
+                "imageSize": {
+                    "type": [
+                        "number",
+                        "Resource"
+                    ],
+                    "required": false,
+                    "description": "图片的尺寸。",
+                    "default": 56
+                },
+                "normalTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "未编辑状态下显示的标题。",
+                    "default": "频道"
+                },
+                "showAreaTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "展示区域标题，第一个子标题。",
+                    "default": "长按拖动排序"
+                },
+                "addAreaTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "添加区域标题，第二个子标题。",
+                    "default": "点击添加"
+                },
+                "editTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "编辑状态下头部标题显示。",
+                    "default": "编辑"
+                }
+            }
+        },
+        "dataList": {
+            "description": "传入的数据，最大长度为50，数据长度超过50，只会取前50的数据。",
+            "params": {
+                "id": {
+                    "type": [
+                        "string",
+                        "number"
+                    ],
+                    "required": true,
+                    "description": "数据id序号，不可重复。"
+                },
+                "text": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "显示文本信息。"
+                },
+                "selected": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否已经被添加，添加：true，未添加：false。"
+                },
+                "url": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址。"
+                },
+                "order": {
+                    "type": "number",
+                    "required": true,
+                    "description": "顺序序号。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onSave": {
+            "description": "保存编辑排序的回调函数，返回编辑后的数据。",
+            "params": {
+                "select": {
+                    "type": "Array<GridObjectSortComponentItem>",
+                    "required": true,
+                    "description": "编辑后的已选择数据。"
+                },
+                "unselect": {
+                    "type": "Array<GridObjectSortComponentItem>",
+                    "required": true,
+                    "description": "编辑后的未选择数据。"
+                }
+            }
+        },
+        "onCancel": {
+            "description": "取消保存数据的回调。",
+            "params": {}
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过GridObjectSortComponent实现了一个可排序的网格布局，用于展示和管理一组带有图标和文本的选项。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上包含一个GridObjectSortComponent组件，该组件内部通过网格布局方式排列多个GridObjectSortComponentItem项。每个项包含一个图标和一个文本标签，图标和文本标签的排列方式为水平布局，对齐方式为居中对齐。\n\n组件的样式包括图标的大小、文本的字体大小和颜色等属性。图标的大小通过imageSize属性设置为45vp，文本的字体大小和颜色未明确指定，但可以通过GridObjectSortComponentOptions进行自定义。组件的排列和嵌套关系通过GridObjectSortComponent组件的options和dataList属性进行配置，options属性用于设置组件的显示模式和标题文本，dataList属性用于设置组件的数据源。\n\n组件的功能包括长按拖动排序、点击添加和编辑模式切换。用户可以通过长按某个项并拖动来改变其顺序，点击某个项可以将其添加到选中区域或从选中区域移除。组件还支持编辑模式的切换，用户可以在编辑模式下对项进行排序和选择。组件的事件包括onSave和onCancel，分别在保存和取消编辑时触发。",
+            "code": "import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@kit.ArkUI'\n\n@Entry\n@Component\nstruct Index {\n  // 定义一个状态变量dataList，用于存储网格布局的数据源\n  @State dataList: GridObjectSortComponentItem[] = [\n    {\n      id: 0,\n      url: $r('app.media.ic_controlcenter_location_filled'), // 图标资源路径\n      text: '位置信息', // 文本标签\n      selected: true, // 是否选中\n      order: 3 // 排序顺序\n    },\n    {\n      id: 1,\n      url: $r('app.media.ic_controlcenter_mobiledata_filled'),\n      text: '移动数据',\n      selected: true,\n      order: 9\n    },\n    {\n      id: 2,\n      url: $r('app.media.ic_controlcenter_nfc_filled'),\n      text: 'NFC',\n      selected: false,\n      order: 1\n    },\n    {\n      id: 3,\n      url: $r('app.media.ic_controlcenter_ring_off_filled'),\n      text: '响铃关闭',\n      selected: true,\n      order: 4\n    },\n    {\n      id: 4,\n      url: $r('app.media.ic_controlcenter_ring_on_filled'),\n      text: '响铃',\n      selected: false,\n      order: 5\n    },\n    {\n      id: 5,\n      url: $r('app.media.ic_controlcenter_ultra_power_saver_filled'),\n      text: '低电量模式',\n      selected: true,\n      order: 6\n    },\n    {\n      id: 6,\n      url: $r('app.media.ic_controlcenter_screenshot_filled'),\n      text: '截屏',\n      selected: true,\n      order: 7\n    },\n    {\n      id: 7,\n      url: $r('app.media.ic_controlcenter_screen_recording_filled'),\n      text: '屏幕录制',\n      selected: true,\n      order: 8\n    },\n    {\n      id: 8,\n      url: $r('app.media.ic_controlcenter_super_power_saver_filled'),\n      text: '超级省电',\n      selected: false,\n      order: 9\n    },\n  ]\n\n  // 定义一个状态变量option，用于存储网格布局的配置选项\n  @State option: GridObjectSortComponentOptions = {\n    type: GridObjectSortComponentType.IMAGE_TEXT, // 组件类型，此处为图标+文本\n    imageSize: 45, // 图标大小，单位为vp\n    normalTitle: '菜单', // 正常模式下的标题\n    editTitle: '编辑', // 编辑模式下的标题\n    showAreaTitle: '长按拖动排序', // 显示区域的标题\n    addAreaTitle: '点击添加' // 添加区域的标题\n  }\n\n  build() {\n    Column() {\n      // 创建GridObjectSortComponent组件，传入配置选项和数据源\n      GridObjectSortComponent({\n        options: this.option, // 配置选项\n        dataList: this.dataList, // 数据源\n        onSave: (\n          select: Array<GridObjectSortComponentItem>, // 选中项数组\n          unselect: Array<GridObjectSortComponentItem> // 未选中项数组\n        ) => {\n          // 保存操作的回调函数\n          // save ToDo\n        },\n        onCancel: () => {\n          // 取消操作的回调函数\n          // cancel ToDo\n        }\n      })\n    }\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

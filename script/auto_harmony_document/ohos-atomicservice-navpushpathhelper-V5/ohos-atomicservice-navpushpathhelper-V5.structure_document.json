@@ -1,0 +1,284 @@
+{
+    "description": "NavPushPathHelper组件用于在跳转目标NavDestination在不同的hsp分包且未被主包依赖时，先下载安装相应hsp分包，再将指定的NavDestination页面信息入栈。使Navigation支持动态加载hsp分包后再跳转。",
+    "details": "该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "constructor(navPathStack: NavPathStack): void",
+            "params": {
+                "navPathStack": {
+                    "type": "NavPathStack",
+                    "required": true,
+                    "description": "NavPushPathHelper的构造函数参数，用于初始化NavPathStack对象。"
+                }
+            }
+        },
+        {
+            "description": "pushPath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "info": {
+                    "type": "NavPathInfo",
+                    "required": true,
+                    "description": "新栈顶页面参数信息。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "pushPath(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "info": {
+                    "type": "NavPathInfo",
+                    "required": true,
+                    "description": "新栈顶页面参数信息。"
+                },
+                "options": {
+                    "type": "NavigationOptions",
+                    "required": false,
+                    "description": "导航选项，具体根据options中指定不同的LaunchMode，有不同的行为。"
+                }
+            }
+        },
+        {
+            "description": "pushPathByName(moduleName: string, name: string, param: Object, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination的名称。"
+                },
+                "param": {
+                    "type": "Object",
+                    "required": true,
+                    "description": "传递的数据。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "pushPathByName(moduleName: string, name: string, param: Object, onPop: Callback<PopInfo>, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination的名称。"
+                },
+                "param": {
+                    "type": "Object",
+                    "required": true,
+                    "description": "传递的数据。"
+                },
+                "onPop": {
+                    "type": "Callback<PopInfo>",
+                    "required": true,
+                    "description": "页面出栈时处理返回结果的回调。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "pushDestination(moduleName: string, info: NavPathInfo, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "info": {
+                    "type": "NavPathInfo",
+                    "required": true,
+                    "description": "新栈顶页面参数信息。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "pushDestination(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "info": {
+                    "type": "NavPathInfo",
+                    "required": true,
+                    "description": "新栈顶页面参数信息。"
+                },
+                "options": {
+                    "type": "NavigationOptions",
+                    "required": false,
+                    "description": "导航选项，具体根据options中指定不同的LaunchMode，有不同的行为。"
+                }
+            }
+        },
+        {
+            "description": "pushDestinationByName(moduleName: string, name: string, param: Object, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination的名称。"
+                },
+                "param": {
+                    "type": "Object",
+                    "required": true,
+                    "description": "传递的数据。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "pushDestinationByName(moduleName: string, name: string, param: Object, onPop: Callback<PopInfo>, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination的名称。"
+                },
+                "param": {
+                    "type": "Object",
+                    "required": true,
+                    "description": "传递的数据。"
+                },
+                "onPop": {
+                    "type": "Callback<PopInfo>",
+                    "required": true,
+                    "description": "页面出栈时处理返回结果的回调。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "replacePath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "info": {
+                    "type": "NavPathInfo",
+                    "required": true,
+                    "description": "新栈顶页面参数信息。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "replacePath(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "info": {
+                    "type": "NavPathInfo",
+                    "required": true,
+                    "description": "新栈顶页面参数信息。"
+                },
+                "options": {
+                    "type": "NavigationOptions",
+                    "required": false,
+                    "description": "导航选项，具体根据options中指定不同的LaunchMode，有不同的行为。"
+                }
+            }
+        },
+        {
+            "description": "replacePathByName(moduleName: string, name: string, param: Object, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination的名称。"
+                },
+                "param": {
+                    "type": "Object",
+                    "required": true,
+                    "description": "传递的数据。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        }
+    ],
+    "attributes": {},
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": false
+}

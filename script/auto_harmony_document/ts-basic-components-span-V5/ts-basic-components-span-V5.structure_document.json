@@ -1,0 +1,164 @@
+{
+    "description": "用于显示行内文本的组件，作为Text、ContainerSpan组件的子组件。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。该组件从API Version 10开始支持继承父组件Text的属性，即如果子组件未设置属性且父组件设置属性，则继承父组件设置的属性。支持继承的属性仅包括：fontColor、fontSize、fontStyle、fontWeight、decoration、letterSpacing、textCase、fontfamily、textShadow。",
+    "interfaces": [
+        {
+            "description": "Span(value: string | Resource)",
+            "params": {
+                "value": {
+                    "type": ["string", "Resource"],
+                    "required": true,
+                    "description": "文本内容。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "decoration": {
+            "description": "设置文本装饰线样式及其颜色。",
+            "params": {
+                "value": {
+                    "type": "DecorationStyleInterface12+",
+                    "required": true,
+                    "description": "文本装饰线样式对象。",
+                    "default": {
+                        "type": "TextDecorationType.None",
+                        "color": "Color.Black",
+                        "style": "TextDecorationStyle.SOLID"
+                    }
+                }
+            }
+        },
+        "letterSpacing": {
+            "description": "设置文本字符间距。取值小于0，字符聚集重叠，取值大于0且随着数值变大，字符间距越来越大，稀疏分布。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "文本字符间距。"
+                }
+            }
+        },
+        "textCase": {
+            "description": "设置文本大小写。",
+            "params": {
+                "value": {
+                    "type": "TextCase",
+                    "required": true,
+                    "description": "文本大小写。",
+                    "default": "TextCase.Normal"
+                }
+            }
+        },
+        "fontColor": {
+            "description": "设置字体颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "字体颜色。"
+                }
+            }
+        },
+        "fontSize": {
+            "description": "设置字体大小。",
+            "params": {
+                "value": {
+                    "type": ["number", "string", "Resource"],
+                    "required": true,
+                    "description": "字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。"
+                }
+            }
+        },
+        "fontStyle": {
+            "description": "设置字体样式。",
+            "params": {
+                "value": {
+                    "type": "FontStyle",
+                    "required": true,
+                    "description": "字体样式。",
+                    "default": "FontStyle.Normal"
+                }
+            }
+        },
+        "fontWeight": {
+            "description": "设置文本的字体粗细，设置过大可能会在不同字体下有截断。",
+            "params": {
+                "value": {
+                    "type": ["number", "FontWeight", "string"],
+                    "required": true,
+                    "description": "文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如\"400\"，以及\"bold\"、\"bolder\"、\"lighter\"、\"regular\"、\"medium\"，分别对应FontWeight中相应的枚举值。",
+                    "default": "FontWeight.Normal"
+                }
+            }
+        },
+        "fontFamily": {
+            "description": "设置字体列表。",
+            "params": {
+                "value": {
+                    "type": ["string", "Resource"],
+                    "required": true,
+                    "description": "字体列表。默认字体'HarmonyOS Sans'。"
+                }
+            }
+        },
+        "lineHeight10+": {
+            "description": "设置文本行高。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "文本行高。"
+                }
+            }
+        },
+        "font10+": {
+            "description": "设置文本样式。包括字体大小、字体粗细、字体族和字体风格。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "文本样式。"
+                }
+            }
+        },
+        "textShadow11+": {
+            "description": "设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。不支持fill字段, 不支持智能取色模式。",
+            "params": {
+                "value": {
+                    "type": ["ShadowOptions", ["ShadowOptions"]],
+                    "required": true,
+                    "description": "文字阴影效果。"
+                }
+            }
+        },
+        "textBackgroundStyle11+": {
+            "description": "设置背景样式。作为ContainerSpan的子组件时可以继承它的此属性值，优先使用其自身的此属性。",
+            "params": {
+                "style": {
+                    "type": "TextBackgroundStyle",
+                    "required": true,
+                    "description": "背景样式。"
+                }
+            }
+        },
+        "baselineOffset12+": {
+            "description": "设置Span基线的偏移量。此属性与父组件的baselineOffset是共存的。",
+            "params": {
+                "value": {
+                    "type": "LengthMetrics",
+                    "required": true,
+                    "description": "设置Span基线的偏移量，设置该值为百分比时，按默认值显示。正数内容向上偏移，负数向下偏移。默认值：0。在ImageSpan中，设置为非0时会导致设置verticalAlign失效。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onClick": {
+            "description": "通用事件仅支持点击事件。由于Span组件无尺寸信息，因此点击事件返回的ClickEvent对象的target属性无效。"
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

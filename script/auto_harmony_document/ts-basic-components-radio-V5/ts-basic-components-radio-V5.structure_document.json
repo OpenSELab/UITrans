@@ -1,0 +1,64 @@
+{
+    "description": "单选框，提供相应的用户交互选择项。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Radio(options: RadioOptions)",
+            "params": {
+                "options": {
+                    "type": "RadioOptions",
+                    "required": true,
+                    "description": "单选框的配置选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "checked": {
+            "description": "设置单选框的选中状态。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "单选框的选中状态。",
+                    "default": false
+                }
+            }
+        },
+        "radioStyle": {
+            "description": "设置单选框选中状态和非选中状态的样式。",
+            "params": {
+                "value": {
+                    "type": "RadioStyle",
+                    "required": false,
+                    "description": "单选框的样式配置。"
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制Radio内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<RadioConfiguration>",
+                    "required": true,
+                    "description": "定制Radio内容区的配置。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "单选框选中状态改变时触发回调。",
+            "params": {
+                "isChecked": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "单选框的状态。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

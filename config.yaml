@@ -31,9 +31,9 @@ rag:
     code:
       model: models/embedding/jina-embeddings-v2-base-code
     text:
-      model: models/embedding/gte-large-zh
+      model: models/embedding/bge-m3
     rerank:
-      model: models/embedding/jina-reranker-v2-base-multilingual
+      model: models/embedding/bge-reranker-v2-m3
 
 # database配置
 db:

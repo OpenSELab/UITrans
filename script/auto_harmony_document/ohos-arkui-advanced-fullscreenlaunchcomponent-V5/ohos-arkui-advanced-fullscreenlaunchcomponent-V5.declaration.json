@@ -1,0 +1,70 @@
+{
+    "description": "显示错误信息的组件，包含错误代码和详细信息。可以包含单个子组件。",
+    "interfaces": [
+        {
+            "description": "Error(code: string, message: string)",
+            "params": {
+                "code": {
+                    "type": "string",
+                    "required": true,
+                    "description": "错误代码。"
+                },
+                "message": {
+                    "type": "string",
+                    "required": true,
+                    "description": "错误信息。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "errorCode": {
+            "description": "错误代码。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "错误代码。"
+                }
+            }
+        },
+        "errorMessage": {
+            "description": "错误信息。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "错误信息。"
+                }
+            }
+        },
+        "errorDetails": {
+            "description": "错误的详细信息。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": false,
+                    "description": "错误的详细信息。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onError": {
+            "description": "onError(event: (code: string, message: string) => void)",
+            "params": {
+                "code": {
+                    "type": "string",
+                    "required": true,
+                    "description": "错误代码。"
+                },
+                "message": {
+                    "type": "string",
+                    "required": true,
+                    "description": "错误信息。"
+                }
+            }
+        }
+    },
+    "examples": []
+}

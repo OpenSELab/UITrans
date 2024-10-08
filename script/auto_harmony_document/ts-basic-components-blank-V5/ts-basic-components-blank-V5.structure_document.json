@@ -1,0 +1,45 @@
+{
+    "description": "空白填充组件，在容器主轴方向上，空白填充组件具有自动填充容器空余部分的能力。仅当父组件为Row、Column、Flex时生效。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Blank(min?: number | string)",
+            "params": {
+                "min": {
+                    "type": ["number", "string"],
+                    "required": false,
+                    "description": "空白填充组件在容器主轴上的最小大小。",
+                    "default": 0
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "color": {
+            "description": "设置空白填充的填充颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "空白填充的填充颜色。",
+                    "default": "Color.Transparent"
+                }
+            }
+        }
+    },
+    "events": {
+        "通用事件": {
+            "description": "支持通用事件。"
+        }
+    },
+    "rules": [
+        "不支持设置百分比。",
+        "负值使用默认值。",
+        "当最小值大于容器可用空间时，使用最小值作为自身大小并超出容器。"
+    ],
+    "examples": [
+        "Blank组件在横竖屏占满空余空间效果。",
+        "Blank组件的父组件未设置宽度时，min参数的使用效果。"
+    ],
+    "is_common_attrs": true
+}

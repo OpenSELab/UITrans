@@ -1,0 +1,255 @@
+Title: SelectTitleBar-标题栏与工具栏-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-selecttitlebar-V5
+
+Markdown Content:
+下拉菜单标题栏包含一个下拉菜单，可用于页面之间的切换；可用于一级页面、二级及其以上界面（配置返回键）。
+
+说明
+
+该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+导入模块
+----
+
+1.  import { SelectTitleBar } from '@kit.ArkUI'
+
+SelectTitleBar({selected: number, options: Array<SelectOption\>, menuItems?: Array<SelectTitleBarMenuItem\>, subtitle?: ResourceStr, badgeValue?: number, hidesBackButton?: boolean, onSelected?: (index: number) =\> void})
+
+**装饰器类型：**@Component
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+名称
+
+参数类型
+
+必填
+
+装饰器类型
+
+说明
+
+selected
+
+number
+
+是
+
+@Prop
+
+当前选中项目的索引。
+
+第一项的索引为0。如果不设置该属性，则默认值为-1。
+
+options
+
+Array<[SelectOption](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-select-V5#selectoption%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)\>
+
+是
+
+\-
+
+下拉菜单中的项目。
+
+menuItems
+
+Array<[SelectTitleBarMenuItem](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-selecttitlebar-V5#selecttitlebarmenuitem)\>
+
+否
+
+\-
+
+右侧菜单项目列表，定义标题栏右侧的菜单项目。
+
+subtitle
+
+[ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr)
+
+否
+
+\-
+
+子标题。
+
+badgeValue
+
+number
+
+否
+
+\-
+
+新事件标记。
+
+hidesBackButton
+
+boolean
+
+否
+
+\-
+
+是否隐藏左侧的返回箭头。
+
+默认值：false。true：隐藏，false：显示。
+
+onSelected
+
+(index: number) =\> void
+
+否
+
+\-
+
+下拉菜单项目选中触发的回调函数，传入选中项的索引。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+名称
+
+类型
+
+必填
+
+说明
+
+value
+
+[ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr)
+
+是
+
+图标资源。
+
+isEnabled
+
+boolean
+
+否
+
+是否启用。
+
+默认值：false。true：启用，false：禁用。
+
+action
+
+() =\> void
+
+否
+
+触发时的动作闭包。
+
+示例
+--
+
+1.  import { SelectTitleBar, promptAction } from '@kit.ArkUI'
+
+3.  interface menuItems {
+4.    value: Resource;
+5.    isEnabled?: boolean;
+6.    action?: () =\> void
+7.  }  
+
+9.  @Entry
+10.  @Component
+11.  struct Index {
+12.    private  menuItems:Array<menuItems\> =
+13.    \[
+14.      {
+15.        value:$r('app.media.ic\_public\_save'),
+16.        isEnabled:true,
+17.        action:() =\> promptAction.showToast({ message: "show toast index 1" })
+18.      },
+19.      {
+20.        value:$r('app.media.ic\_public\_reduce'),
+21.        isEnabled:true,
+22.        action:() =\> promptAction.showToast({ message: "show toast index 2" })
+23.      },
+24.      {
+25.        value:$r('app.media.ic\_public\_edit'),
+26.        isEnabled:true,
+27.        action:() =\> promptAction.showToast({ message: "show toast index 3" })
+28.      },
+29.      {
+30.        value:$r('app.media.ic\_public\_reduce'),
+31.        isEnabled:true,
+32.        action:() =\> promptAction.showToast({ message: "show toast index 4" })
+33.      }
+34.    \]
+
+36.    build() {
+37.      Row() {
+38.        Column() {
+39.          Divider().height(2).color(0xCCCCCC)
+40.          SelectTitleBar({
+41.            options: \[
+42.              { value: '所有照片' },
+43.              { value: '本地（设备）' },
+44.              { value: '本地本地本地本地本地（储存卡）' }
+45.            \],
+46.            selected: 0,
+47.            onSelected: (index) =\> promptAction.showToast({ message: 'page index ' + index }),
+48.            hidesBackButton: true
+49.          })
+50.          Divider().height(2).color(0xCCCCCC)
+51.          SelectTitleBar({
+52.            options: \[
+53.              { value: '所有照片' },
+54.              { value: '本地（设备）' },
+55.              { value: '本地本地本地本地本地（储存卡）' }
+56.            \],
+57.            selected: 0,
+58.            onSelected: (index) =\> promptAction.showToast({ message: 'page index ' + index }),
+59.            hidesBackButton: false
+60.          })
+61.          Divider().height(2).color(0xCCCCCC)
+62.          SelectTitleBar({
+63.            options: \[
+64.              { value: '所有照片' },
+65.              { value: '本地（设备）' },
+66.              { value: '本地本地本地本地本地（储存卡）' }
+67.            \],
+68.            selected: 1,
+69.            onSelected: (index) =\> promptAction.showToast({ message: 'page index ' + index }),
+70.            subtitle: "example@example.com"
+71.          })
+72.          Divider().height(2).color(0xCCCCCC)
+73.          SelectTitleBar({
+74.            options: \[
+75.              { value: '所有照片' },
+76.              { value: '本地（设备）' },
+77.              { value: '本地本地本地本地本地（储存卡）' }
+78.            \],
+79.            selected: 1,
+80.            onSelected: (index) =\> promptAction.showToast({ message: 'page index ' + index }),
+81.            subtitle: "example@example.com",
+82.            menuItems: \[{ isEnabled: true, value: $r('app.media.ic\_public\_save'),
+83.              action: () =\> promptAction.showToast({ message: "show toast index 1" })
+84.            }\]
+85.          })
+86.          Divider().height(2).color(0xCCCCCC)
+87.          SelectTitleBar({
+88.            options: \[
+89.              { value: '所有照片' },
+90.              { value: '本地（设备）' },
+91.              { value: '本地本地本地本地本地（储存卡）' }
+92.            \],
+93.            selected: 0,
+94.            onSelected: (index) =\> promptAction.showToast({ message: 'page index ' + index }),
+95.            subtitle: "example@example.com",
+96.            menuItems: this.menuItems,
+97.            badgeValue: 99,
+98.            hidesBackButton: true
+99.          })
+100.          Divider().height(2).color(0xCCCCCC)
+101.        }.width('100%')
+102.      }.height('100%')
+103.    }
+104.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114516.49172633900871022345873782094737:50001231000000:2800:20BBE1FEA27C68DFF447B1CFB297B9ADB1555430E94A25464E6D77E5D3F6C20D.jpg?needInitFileName=true?needInitFileName=true)

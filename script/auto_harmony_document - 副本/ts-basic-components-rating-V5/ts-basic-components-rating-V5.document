@@ -1,0 +1,626 @@
+Title: Rating-按钮与选择-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-rating-V5
+
+Markdown Content:
+提供在给定范围内选择评分的组件。
+
+说明
+
+该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+接口
+--
+
+Rating(options?: { rating: number, indicator?: boolean })
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+rating
+
+number
+
+是
+
+设置并接收评分值。
+
+默认值：0
+
+取值范围： \[0, stars\]
+
+小于0取0，大于stars取最大值stars。
+
+从API version 10开始，该参数支持[$$](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-two-way-sync-V5)双向绑定变量。
+
+indicator
+
+boolean
+
+否
+
+设置评分组件作为指示器使用，不可改变评分。
+
+默认值：false, 可进行评分
+
+**说明：**
+
+indicator=true时，默认组件高度height=12.0vp，组件width=height \* stars。
+
+indicator=false时，默认组件高度height=28.0vp，组件width=height \* stars。
+
+属性
+--
+
+### stars
+
+stars(value: number)
+
+设置评分总数。设置为小于等于0的值时，按默认值显示。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+设置评分总数。
+
+默认值：5
+
+### stepSize
+
+stepSize(value: number)
+
+设置操作评级的步长。设置为小于0.1的值时，按默认值显示。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+操作评级的步长。
+
+默认值：0.5
+
+取值范围：\[0.1, stars\]
+
+### starStyle
+
+starStyle(value: { backgroundUri: string, foregroundUri: string, secondaryUri?: string })
+
+设置评分的样式。该属性所支持的图片类型能力参考[Image](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-image-V5)组件。
+
+支持加载本地图片和网络图片，暂不支持PixelMap类型和Resource资源。
+
+默认图片加载方式为异步，暂不支持同步加载。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+{
+
+backgroundUri: string,
+
+foregroundUri: string,
+
+secondaryUri?: string
+
+}
+
+是
+
+backgroundUri：未选中的星级的图片链接，可由用户自定义或使用系统默认图片。
+
+foregroundUri：选中的星级的图片路径，可由用户自定义或使用系统默认图片。
+
+secondaryUri：部分选中的星级的图片路径，可由用户自定义或使用系统默认图片。
+
+**说明：**
+
+backgroundUri或者foregroundUri或者secondaryUri设置的图片路径错误时，图片不显示。
+
+backgroundUri或者foregroundUri设置为undefined或者空字符串时，rating会选择加载系统默认星型图源。
+
+secondaryUri不设置或者设置的值为undefined或者空字符串时，优先设置为backgroundUri，效果上等同于只设置了foregroundUri、backgroundUri。
+
+说明
+
+rating宽高为\[width, height\]时，单个图片的绘制区域为\[width / stars, height\]。
+
+为了指定绘制区域为方形，建议自定义宽高时采取\[height \* stars, height\], width = height \* stars的方式。
+
+### contentModifier12+
+
+contentModifier(modifier: ContentModifier<RatingConfiguration\>)
+
+定制Rating内容区的方法。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+事件
+--
+
+### onChange
+
+onChange(callback:(value: number) =\> void)
+
+操作评分条的评星发生改变时触发该回调。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+评分条的评分。
+
+键盘走焦规格
+------
+
+按键
+
+功能描述
+
+Tab
+
+组件间切换焦点。
+
+左右方向键
+
+评分预览增加/减少（步长为step），不改变实际分值。
+
+Home
+
+移动到第一个星星， 不改变实际分值。
+
+End
+
+移动到最后一个星星， 不改变实际分值。
+
+Space/Enter
+
+根据当前评分提交评分结果。
+
+RatingConfiguration12+对象说明
+--------------------------
+
+开发者需要自定义class实现ContentModifier接口。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+只读
+
+可选
+
+说明
+
+rating
+
+number
+
+否
+
+否
+
+评分条当前评分数。
+
+默认值：0
+
+indicator
+
+boolean
+
+否
+
+否
+
+评分条是否作为一个指示器。
+
+默认值：false
+
+stars
+
+number
+
+否
+
+否
+
+评分条的星级总数。
+
+默认值：5
+
+stepSize
+
+number
+
+否
+
+否
+
+评分条的评分步长。
+
+默认值：0.5
+
+triggerChange
+
+Callback<number\>
+
+否
+
+否
+
+触发评分数量变化。
+
+示例
+--
+
+### 示例1
+
+2.  @Entry
+3.  @Component
+4.  struct RatingExample {
+5.    @State rating: number = 3.5
+
+7.    build() {
+8.      Column() {
+9.        Column() {
+10.          Rating({ rating: this.rating, indicator: false })
+11.            .stars(5)
+12.            .stepSize(0.5)
+13.            .margin({ top: 24 })
+14.            .onChange((value: number) =\> {
+15.              this.rating = value
+16.            })
+17.          Text('current score is ' + this.rating)
+18.            .fontSize(16)
+19.            .fontColor('rgba(24,36,49,0.60)')
+20.            .margin({ top: 16 })
+21.        }.width(360).height(113).backgroundColor('#FFFFFF').margin({ top: 68 })
+
+23.        Row() {
+24.          Image('common/testImage.jpg')
+25.            .width(40)
+26.            .height(40)
+27.            .borderRadius(20)
+28.            .margin({ left: 24 })
+29.          Column() {
+30.            Text('Yue')
+31.              .fontSize(16)
+32.              .fontColor('#182431')
+33.              .fontWeight(500)
+34.            Row() {
+35.              Rating({ rating: 3.5, indicator: false }).margin({ top: 1, right: 8 })
+36.              Text('2021/06/02')
+37.                .fontSize(10)
+38.                .fontColor('#182431')
+39.            }
+40.          }.margin({ left: 12 }).alignItems(HorizontalAlign.Start)
+
+42.          Text('1st Floor')
+43.            .fontSize(10)
+44.            .fontColor('#182431')
+45.            .position({ x: 295, y: 8 })
+46.        }.width(360).height(56).backgroundColor('#FFFFFF').margin({ top: 64 })
+47.      }.width('100%').height('100%').backgroundColor('#F1F3F5')
+48.    }
+49.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114428.27945134336555082858851290661471:50001231000000:2800:19E107135E52AB012AB14207028A754DA72310735CF596BAC3D7DA44F4528507.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+2.  @Entry
+3.  @Component
+4.  struct RatingExample {
+5.    @State rating: number = 3.5
+
+7.    build() {
+8.      Column() {
+9.        Rating({ rating: this.rating, indicator: false })
+10.          .stars(5)
+11.          .stepSize(0.5)
+12.          .starStyle({
+13.            backgroundUri: '/common/imag1.png', 
+14.            foregroundUri: '/common/imag2.png',
+15.            secondaryUri: '/common/imag3.png'
+16.          })
+17.          .margin({ top: 24 })
+18.          .onChange((value: number) =\> {
+19.            this.rating = value
+20.          })
+21.        Text('current score is ' + this.rating)
+22.          .fontSize(16)
+23.          .fontColor('rgba(24,36,49,0.60)')
+24.          .margin({ top: 16 })
+25.      }.width('100%').height('100%').backgroundColor('#F1F3F5')
+26.    }
+27.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114428.34113498453991827099173170504554:50001231000000:2800:164DD8AA40A03B9AB1D4BF7BED53733D6825F89AE195FA53FE3ED52A3308A67D.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例3
+
+该示例实现了自定义评分条的功能，每个圆圈表示0.5分。ratingIndicator为true时表示评分条作为一个指示器不可改变评分；
+
+为false时可以进行评分。ratingStars可改变评分总数。ratingStepsize可改变评分步长。
+
+2.  class MyRatingStyle implements ContentModifier<RatingConfiguration\> {
+3.    name: string = ""
+4.    style: number = 0
+5.    constructor(value1: string, value2: number) {
+6.      this.name = value1
+7.      this.style = value2
+8.    }
+9.    applyContent() : WrappedBuilder<\[RatingConfiguration\]\> {
+10.      return wrapBuilder(buildRating)
+11.    }
+12.  }
+
+14.  @Builder function buildRating(config: RatingConfiguration) {
+15.    Column() {
+16.      Row() {
+17.        Circle({ width: 25, height: 25 })
+18.          .fill(config.rating \>\= 0.4 ? Color.Black : Color.Red)
+19.          .onClick((event: ClickEvent) =\> {
+20.            if (!config.indicator) {
+21.              if (config.stepSize = 0.5) {
+22.                config.triggerChange(0.5);
+23.                return
+24.              }
+25.              if (config.stepSize = 1) {
+26.                config.triggerChange(1);
+27.                return
+28.              }
+29.            }
+30.          }).visibility(config.stars \>\= 1 ? Visibility.Visible : Visibility.Hidden)
+31.        Circle({ width: 25, height: 25 })
+32.          .fill(config.rating \>\= 0.9 ? Color.Black : Color.Red)
+33.          .onClick((event: ClickEvent) =\> {
+34.            if (!config.indicator) {
+35.              config.triggerChange(1);
+36.            }
+37.          }).visibility(config.stars \>\= 1 ? Visibility.Visible : Visibility.Hidden)
+38.        Circle({ width: 25, height: 25 })
+39.          .fill(config.rating \>\= 1.4 ? Color.Black : Color.Red)
+40.          .onClick((event: ClickEvent) =\> {
+41.            if (!config.indicator) {
+42.              if (config.stepSize = 0.5) {
+43.                config.triggerChange(1.5);
+44.                return
+45.              }
+46.              if (config.stepSize = 1) {
+47.                config.triggerChange(2);
+48.                return
+49.              }
+50.            }
+51.          }).visibility(config.stars \>\= 2 ? Visibility.Visible : Visibility.Hidden).margin({left:10})
+52.        Circle({ width: 25, height: 25 })
+53.          .fill(config.rating \>\= 1.9 ? Color.Black : Color.Red)
+54.          .onClick((event: ClickEvent) =\> {
+55.            if (!config.indicator) {
+56.              config.triggerChange(2);
+57.            }
+58.          }).visibility(config.stars \>\= 2 ? Visibility.Visible : Visibility.Hidden)
+59.        Circle({ width: 25, height: 25 })
+60.          .fill(config.rating \>\= 2.4 ? Color.Black : Color.Red)
+61.          .onClick((event: ClickEvent) =\> {
+62.            if (!config.indicator) {
+63.              if (config.stepSize = 0.5) {
+64.                config.triggerChange(2.5);
+65.                return
+66.              }
+67.              if (config.stepSize = 1) {
+68.                config.triggerChange(3);
+69.                return
+70.              }
+71.            }
+72.          }).visibility(config.stars \>\= 3 ? Visibility.Visible : Visibility.Hidden).margin({left:10})
+73.        Circle({ width: 25, height: 25 })
+74.          .fill(config.rating \>\= 2.9 ? Color.Black : Color.Red)
+75.          .onClick((event: ClickEvent) =\> {
+76.            if (!config.indicator) {
+77.              config.triggerChange(3);
+78.            }
+79.          }).visibility(config.stars \>\= 3 ? Visibility.Visible : Visibility.Hidden)
+80.        Circle({ width: 25, height: 25 })
+81.          .fill(config.rating \>\= 3.4 ? Color.Black : Color.Red)
+82.          .onClick((event: ClickEvent) =\> {
+83.            if (!config.indicator) {
+84.              if (config.stepSize = 0.5) {
+85.                config.triggerChange(3.5);
+86.                return
+87.              }
+88.              if (config.stepSize = 1) {
+89.                config.triggerChange(4);
+90.                return
+91.              }
+92.            }
+93.          }).visibility(config.stars \>\= 4 ? Visibility.Visible : Visibility.Hidden).margin({left:10})
+94.        Circle({ width: 25, height: 25 })
+95.          .fill(config.rating \>\= 3.9 ? Color.Black : Color.Red)
+96.          .onClick((event: ClickEvent) =\> {
+97.            if (!config.indicator) {
+98.              config.triggerChange(4);
+99.            }
+100.          }).visibility(config.stars \>\= 4 ? Visibility.Visible : Visibility.Hidden)
+101.        Circle({ width: 25, height: 25 })
+102.          .fill(config.rating \>\= 4.4 ? Color.Black : Color.Red)
+103.          .onClick((event: ClickEvent) =\> {
+104.            if (!config.indicator) {
+105.              if (config.stepSize = 0.5) {
+106.                config.triggerChange(4.5);
+107.                return
+108.              }
+109.              if (config.stepSize = 1) {
+110.                config.triggerChange(5);
+111.                return
+112.              }
+113.            }
+114.          }).visibility(config.stars \>\= 5 ? Visibility.Visible : Visibility.Hidden).margin({left:10})
+115.        Circle({ width: 25, height: 25 })
+116.          .fill(config.rating \>\= 4.9 ? Color.Black : Color.Red)
+117.          .onClick((event: ClickEvent) =\> {
+118.            if (!config.indicator) {
+119.              config.triggerChange(5);
+120.            }
+121.          }).visibility(config.stars \>\= 5 ? Visibility.Visible : Visibility.Hidden)
+122.      }
+123.      Text("分值：" + config.rating)
+124.    }
+125.  }
+
+127.  @Entry
+128.  @Component
+129.  struct ratingExample {
+130.    @State rating: number = 0;
+131.    @State ratingIndicator: boolean = true;
+132.    @State ratingStars: number = 0;
+133.    @State ratingStepsize: number = 0.5;
+134.    @State ratingEnabled: boolean = true;
+135.    build() {
+136.      Row() {
+137.        Column() {
+138.          Rating({
+139.            rating: 0,
+140.            indicator: this.ratingIndicator
+141.          })
+142.            .stepSize(this.ratingStepsize)
+143.            .stars(this.ratingStars)
+144.            .backgroundColor(Color.Transparent)
+145.            .width('100%')
+146.            .height(50)
+147.            .onChange((value: number) =\> {
+148.              console.info('Rating change is'\+ value);
+149.              this.rating = value
+150.            })
+151.            .contentModifier(new MyRatingStyle("hello", 3))
+152.          Button(this.ratingIndicator ? "ratingIndicator : true" : "ratingIndicator : false")
+153.            .onClick((event) =\> {
+154.              if (this.ratingIndicator) {
+155.                this.ratingIndicator = false
+156.              } else {
+157.                this.ratingIndicator = true
+158.              }
+159.            }).margin({top : 5})
+
+161.          Button(this.ratingStars < 5 ? "ratingStars + 1, ratingStars =" + this.ratingStars : "ratingStars最大值为5")
+162.            .onClick((event) =\> {
+163.              if (this.ratingStars < 5) {
+164.                this.ratingStars += 1
+165.              }
+166.            }).margin({top : 5})
+
+168.          Button(this.ratingStars \> 0 ? "ratingStars - 1, ratingStars =" + this.ratingStars : "ratingStars小于等于0时默认等于5")
+169.            .onClick((event) =\> {
+170.              if (this.ratingStars \> 0) {
+171.                this.ratingStars -= 1
+172.              }
+173.            }).margin({top : 5})
+
+175.          Button(this.ratingStepsize == 0.5 ? "ratingStepsize : 0.5" : "ratingStepsize : 1")
+176.            .onClick((event) =\> {
+177.              if (this.ratingStepsize == 0.5) {
+178.                this.ratingStepsize = 1
+179.              } else {
+180.                this.ratingStepsize = 0.5
+181.              }
+182.            }).margin({top : 5})
+183.        }
+184.        .width('100%')
+185.        .height('100%')
+186.        .justifyContent(FlexAlign.Center)
+187.      }
+188.      .height('100%')
+189.    }
+190.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114428.20090940900248836243838257729259:50001231000000:2800:AD1C71A32A633C57BB5933A18509A6B4BB96A0081D450C86E36C517E77395C82.gif?needInitFileName=true?needInitFileName=true)

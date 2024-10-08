@@ -1,0 +1,145 @@
+{
+    "description": "子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, select?: SelectOptions, operationType?: OperationType, operationItem?: Array<OperationOption>, operationSymbolOptions?: Array<SymbolOptions>})",
+            "params": {
+                "icon": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "图标设置项。"
+                },
+                "iconSymbolOptions": {
+                    "type": "SymbolOptions",
+                    "required": false,
+                    "description": "icon为Symbol资源时的设置项。"
+                },
+                "primaryTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "标题内容。"
+                },
+                "secondaryTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "副标题内容。"
+                },
+                "select": {
+                    "type": "SelectOptions",
+                    "required": false,
+                    "description": "select内容以及事件。"
+                },
+                "operationType": {
+                    "type": "OperationType",
+                    "required": false,
+                    "description": "操作区(右侧)元素样式。",
+                    "default": "OperationType.BUTTON"
+                },
+                "operationItem": {
+                    "type": "Array<OperationOption>",
+                    "required": false,
+                    "description": "操作区（右侧）的设置项。"
+                },
+                "operationSymbolOptions": {
+                    "type": "Array<SymbolOptions>",
+                    "required": false,
+                    "description": "operationType为OperationType.ICON_GROUP，operationItem设置多个图标，图标为Symbol资源时的设置项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "primaryTitleModifier": {
+            "description": "设置标题文本属性，如设置标题颜色、字体大小、字重等。",
+            "params": {
+                "value": {
+                    "type": "TextModifier",
+                    "required": false,
+                    "description": "标题文本属性。"
+                }
+            }
+        },
+        "secondaryTitleModifier": {
+            "description": "设置副标题文本属性，如设置标题颜色、字体大小、字重等。",
+            "params": {
+                "value": {
+                    "type": "TextModifier",
+                    "required": false,
+                    "description": "副标题文本属性。"
+                }
+            }
+        },
+        "titleBuilder": {
+            "description": "自定义标题区内容。",
+            "params": {
+                "value": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "自定义标题区内容。"
+                }
+            }
+        },
+        "contentMargin": {
+            "description": "子标题外边距，不支持设置负数。",
+            "params": {
+                "value": {
+                    "type": "LocalizedMargin",
+                    "required": false,
+                    "description": "子标题外边距。",
+                    "default": {
+                        "start": "LengthMetrics.resource($r('sys.float.margin_left'))",
+                        "end": "LengthMetrics.resource($r('sys.float.margin_right'))"
+                    }
+                }
+            }
+        },
+        "contentPadding": {
+            "description": "子标题内边距。",
+            "params": {
+                "value": {
+                    "type": "LocalizedPadding",
+                    "required": false,
+                    "description": "子标题内边距。",
+                    "default": {
+                        "start": "LengthMetrics.vp(12)",
+                        "end": "LengthMetrics.vp(12)"
+                    }
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过 Column 布局实现了一个包含子标题（SubHeader）的界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上包含一个 SubHeader 组件，SubHeader 组件包含一级标题、二级标题以及一个操作按钮。\nSubHeader 组件的样式包括标题的字体、颜色、对齐方式等属性，支持自定义样式展示。操作按钮的样式包括背景颜色、边框、字体颜色等属性，支持点击事件。\n整个布局通过 Column 布局保证 SubHeader 组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'\n\n@Entry\n@Component\nstruct SubHeaderExample {\n  build() {\n    Column() {\n      SubHeader({\n        primaryTitle: '一级标题', // 设置一级标题的文本内容\n        secondaryTitle: '二级标题', // 设置二级标题的文本内容\n        operationType: OperationType.TEXT_ARROW, // 设置操作按钮的类型为文本带箭头\n        operationItem: [{ \n          value: '更多', // 设置操作按钮的文本内容\n          action: () => { // 设置操作按钮的点击事件\n            promptAction.showToast({ message: 'demo' }) // 点击按钮后显示提示信息\n          }\n        }]\n      })\n    }\n  }\n}"
+        },
+        {
+            "description": "该示例展示了如何使用 `SubHeader` 组件来创建一个带有图标、二级标题和操作按钮的子标题栏。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上包含一个 `SubHeader` 组件，该组件包含一个图标、一个二级标题和一个操作按钮。图标和二级标题水平排列，操作按钮位于右侧。\n\n`SubHeader` 组件的样式包括图标的资源名、二级标题的文本内容和样式、操作按钮的文本内容和样式。图标和二级标题的排列方式为水平布局，对齐方式为居中对齐。操作按钮的样式包括文本内容、背景颜色、边框圆角等属性。\n\n组件的功能包括点击操作按钮时触发的事件，用户可以通过点击操作按钮触发 `promptAction.showToast` 方法，显示一个提示消息。",
+            "code": "import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'\n\n@Entry\n@Component\nstruct SubHeaderExample {\n  build() {\n    Column() {\n      SubHeader({\n        icon: $r('app.media.ic_public_community_messages'), // 图标的资源名\n        secondaryTitle: '二级标题', // 二级标题的文本内容\n        operationType: OperationType.BUTTON, // 操作按钮的类型\n        operationItem: [{ \n          value: '操作', // 操作按钮的文本内容\n          action: () => { // 操作按钮的点击事件\n            promptAction.showToast({ message: 'demo' }) // 显示提示消息\n          }\n        }]\n      })\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个包含 SubHeader 组件的界面。布局宽度占据整个屏幕，高度根据内容自适应。SubHeader 组件位于 Column 布局的顶部，垂直方向上居中对齐。\nSubHeader 组件的样式包括左侧图标、主标题、副标题和右侧操作按钮。图标使用系统资源 sys.symbol.ohos_wifi，并通过 SymbolEffectStrategy.HIERARCHICAL 策略实现分层效果。副标题文本为“标题”，右侧操作按钮的文本为“操作”，点击按钮会触发 promptAction.showToast 方法，显示一条消息“demo”。\n整个布局通过 Column 布局保证 SubHeader 组件在垂直方向上居中对齐，确保界面简洁明了。",
+            "code": "import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'\n\n@Entry\n@Component\nstruct SubHeaderExample {\n  build() {\n    Column() {\n      SubHeader({\n        // 左侧图标，使用系统资源 sys.symbol.ohos_wifi\n        icon: $r('sys.symbol.ohos_wifi'),\n        // 图标效果策略，使用分层效果\n        iconSymbolOptions: {\n          effectStrategy: SymbolEffectStrategy.HIERARCHICAL,\n        },\n        // 副标题文本\n        secondaryTitle: '标题',\n        // 操作类型为按钮\n        operationType: OperationType.BUTTON,\n        // 操作按钮配置\n        operationItem: [{ \n          value: '操作', // 按钮文本\n          action: () => {\n            // 点击按钮时触发的操作，显示一条消息“demo”\n            promptAction.showToast({ message: 'demo' })\n          }\n        }]\n      })\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个包含自定义标题、一级标题、二级标题、图标和操作项的子标题栏。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上被分为一个子标题栏，子标题栏包含自定义标题、一级标题、二级标题、图标和操作项。\n自定义标题通过 Text 组件实现，字体大小为 24vp，字体颜色为红色，字体加粗。一级标题和二级标题通过 SubHeader 组件的属性设置，字体大小和颜色未明确指定，但通常会根据系统默认样式显示。图标通过资源名 $r('sys.symbol.ohos_star') 指定，操作项通过 OperationType.TEXT_ARROW 指定，点击操作项会触发一个提示框显示 \"demo\" 消息。\n整个布局通过 Column 布局保证子标题栏在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';\n\n@Entry\n@Component\nstruct SubHeaderExample {\n  // 自定义标题的构建器\n  @Builder\n  TitleBuilder(): void {\n    Text('自定义标题')\n      .fontSize(24) // 设置字体大小为 24vp\n      .fontColor(Color.Red) // 设置字体颜色为红色\n      .fontWeight(FontWeight.Bold) // 设置字体加粗\n  }\n\n  build() {\n    Column() {\n      SubHeader({\n        titleBuilder: () => {\n          this.TitleBuilder(); // 使用自定义标题构建器\n        },\n        primaryTitle: '一级标题', // 设置一级标题\n        secondaryTitle: '二级标题', // 设置二级标题\n        icon: $r('sys.symbol.ohos_star'), // 设置图标资源\n        operationType: OperationType.TEXT_ARROW, // 设置操作类型为文本箭头\n        operationItem: [{\n          value: '更多信息', // 设置操作项的文本\n          action: () => {\n            promptAction.showToast({ message: 'demo' }) // 点击操作项时显示提示框\n          }\n        }]\n      })\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个带有子标题和操作按钮的界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上包含一个 SubHeader 组件，SubHeader 组件内部包含一个选择器和一组操作按钮。\n选择器的样式包括选项的值和默认选中的索引，支持用户点击选择不同的选项，并在选择时触发回调函数显示提示信息。操作按钮的样式包括图标资源和点击事件，用户可以通过点击按钮触发相应操作，并在操作时显示提示信息。\n整个布局通过 Column 布局保证 SubHeader 组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'\n\n@Entry\n@Component\nstruct SubHeaderExample {\n  build() {\n    Column() {\n      SubHeader({\n        select: {\n          options: [ // 选择器的选项列表\n            { value: 'aaa' }, \n            { value: 'bbb' }, \n            { value: 'ccc' }\n          ],\n          value: 'selectdemo', // 选择器的默认值\n          selected: 2, // 默认选中的索引\n          onSelect: (index: number, value?: string) => { // 选择器的选择事件回调函数\n            promptAction.showToast({ message: 'demo' }) // 显示提示信息\n          }\n        },\n        operationType: OperationType.ICON_GROUP, // 操作按钮的类型为图标组\n        operationItem: [ // 操作按钮的列表\n          {\n            value: $r('app.media.ic_public_community_messages'), // 图标资源\n            action: () => { // 点击事件回调函数\n              promptAction.showToast({ message: 'demo' }) // 显示提示信息\n            }\n          }, {\n            value: $r('app.media.ic_public_community_messages'), // 图标资源\n            action: () => { // 点击事件回调函数\n              promptAction.showToast({ message: 'demo' }) // 显示提示信息\n            }\n          }, {\n            value: $r('app.media.ic_public_community_messages'), // 图标资源\n            action: () => { // 点击事件回调函数\n              promptAction.showToast({ message: 'demo' }) // 显示提示信息\n            }\n          }\n        ]\n      })\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个子标题（SubHeader）的展示界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上包含一个 SubHeader 组件，SubHeader 组件内部包含两个标题（primaryTitle 和 secondaryTitle）以及一个操作按钮。\n\nSubHeader 组件的样式包括标题的字体颜色、操作按钮的样式、内容的边距和内边距等属性。标题的字体颜色通过 TextModifier 进行自定义，操作按钮的样式通过 operationType 属性指定为 TEXT_ARROW 类型。内容的边距和内边距通过 contentMargin 和 contentPadding 属性进行设置，确保内容在布局中有适当的间距。\n\n组件的功能包括点击操作按钮触发提示信息（promptAction.showToast），用户可以通过点击操作按钮查看更多信息。整个布局通过 Column 布局保证 SubHeader 组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "import { promptAction, OperationType, SubHeader, LengthMetrics, TextModifier } from '@kit.ArkUI';\n\n@Entry\n@Component\nstruct SubHeaderExample {\n  @State primaryModifier: TextModifier = new TextModifier().fontColor(Color.Red); // 主标题的文本修饰器，设置字体颜色为红色\n  @State secondaryModifier: TextModifier = new TextModifier().fontColor(Color.Red); // 副标题的文本修饰器，设置字体颜色为红色\n\n  build() {\n    Column() {\n      SubHeader({\n        primaryTitle: 'primaryTitle', // 主标题内容\n        secondaryTitle: 'secondaryTitle', // 副标题内容\n        primaryTitleModifier: this.primaryModifier, // 主标题的文本修饰器\n        secondaryTitleModifier: this.secondaryModifier, // 副标题的文本修饰器\n        operationType: OperationType.TEXT_ARROW, // 操作按钮的类型，设置为文本箭头类型\n        operationItem: [{\n          value: '更多信息', // 操作按钮的显示文本\n          action: () => {\n            promptAction.showToast({ message: 'demo' }) // 点击操作按钮时触发的动作，显示提示信息\n          }\n        }],\n        contentMargin: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) }, // 内容的边距，设置为左右各20vp\n        contentPadding: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) } // 内容的内边距，设置为左右各20vp\n      })\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个包含 SubHeader 组件的界面。SubHeader 组件包含一个选择器和一组操作图标。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上被分为一个 SubHeader 部分。\nSubHeader 组件的样式包括背景颜色、字体、透明度等属性，支持不同的样式展示。选择器的选项以水平布局方式排列，选项之间的间距均匀分布，且对齐方式为居中对齐。操作图标的样式包括图标颜色、字体粗细、渲染策略等属性，支持不同的样式展示。\nSubHeader 组件的功能包括选择器的选择事件和操作图标的点击事件，用户可以通过选择选项或点击图标触发相应操作。整个布局通过 Column 布局保证 SubHeader 组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'\n\n@Entry\n@Component\nstruct SubHeaderExample {\n  build() {\n    Column() {\n      SubHeader({\n        select: {\n          options: [{ value: 'aaa' }, { value: 'bbb' }, { value: 'ccc' }], // 选择器的选项列表\n          value: 'selectdemo', // 选择器的标识符\n          selected: 2, // 默认选中的选项索引\n          onSelect: (index: number, value?: string) => { // 选择器的选择事件处理函数\n            promptAction.showToast({ message: 'demo' }) // 显示提示信息\n          }\n        },\n        operationType: OperationType.ICON_GROUP, // 操作图标的类型\n        operationItem: [{\n          value: $r('sys.symbol.ohos_lungs'), // 操作图标的资源名\n          action: () => { // 操作图标的点击事件处理函数\n            promptAction.showToast({ message: 'icon1' }) // 显示提示信息\n          }\n        }, {\n          value: $r('sys.symbol.ohos_lungs'), // 操作图标的资源名\n          action: () => { // 操作图标的点击事件处理函数\n            promptAction.showToast({ message: 'icon2' }) // 显示提示信息\n          }\n        }, {\n          value: $r('sys.symbol.ohos_lungs'), // 操作图标的资源名\n          action: () => { // 操作图标的点击事件处理函数\n            promptAction.showToast({ message: 'icon3' }) // 显示提示信息\n          }\n        }],\n        operationSymbolOptions: [{\n          fontWeight: FontWeight.Lighter, // 操作图标的字体粗细\n        }, {\n          renderingStrategy: SymbolRenderingStrategy.MULTIPLE_COLOR, // 操作图标的渲染策略\n          fontColor: [Color.Blue, Color.Grey, Color.Green], // 操作图标的颜色\n        }, {\n          renderingStrategy: SymbolRenderingStrategy.MULTIPLE_OPACITY, // 操作图标的渲染策略\n          fontColor: [Color.Blue, Color.Grey, Color.Green], // 操作图标的颜色\n        }]\n      })\n    }\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

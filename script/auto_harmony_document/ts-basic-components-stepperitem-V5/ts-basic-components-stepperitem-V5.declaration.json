@@ -1,0 +1,56 @@
+{
+    "description": "用作Stepper组件的页面子组件。",
+    "details": "该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "StepperItem()",
+            "params": {}
+        }
+    ],
+    "attributes": {
+        "prevLabel": {
+            "description": "设置左侧文本按钮内容，第一页没有左侧文本按钮，当步骤导航器大于一页时，除第一页外默认值都为“返回”。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "左侧文本按钮内容。"
+                }
+            }
+        },
+        "nextLabel": {
+            "description": "设置右侧文本按钮内容，最后一页默认值为“开始”，其余页默认值为“下一步”。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "右侧文本按钮内容。"
+                }
+            }
+        },
+        "status": {
+            "description": "设置步骤导航器nextLabel的显示状态。",
+            "params": {
+                "value": {
+                    "type": "ItemState",
+                    "required": false,
+                    "description": "步骤导航器nextLabel的显示状态。",
+                    "default": "ItemState.Normal"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": [
+        "StepperItem组件不支持设置通用宽度属性，其宽度默认撑满Stepper父组件。",
+        "StepperItem组件不支持设置通用高度属性，其高度由Stepper父组件高度减去label按钮组件高度。",
+        "StepperItem组件不支持设置aspectRadio/constrainSize影响长宽的属性。"
+    ],
+    "examples": [
+        {
+            "description": "该示例展示了如何在鸿蒙ArkUI中使用Stepper和Tabs组件。Stepper组件用于创建一个步进器，允许用户通过点击按钮增加或减少数值。Tabs组件用于创建一个选项卡界面，用户可以通过点击不同的选项卡切换内容。\n\n布局方面，Stepper组件被放置在一个Flex容器中，宽度为100%，高度为50vp，水平和垂直居中对齐。Tabs组件也被放置在一个Flex容器中，宽度为100%，高度为300vp，水平和垂直居中对齐。每个Tab的内容是一个文本组件，显示当前选项卡的索引。\n\n样式方面，Stepper组件的按钮颜色为蓝色，文本颜色为白色，按钮的宽度和高度均为40vp。Tabs组件的选项卡标题颜色为黑色，选中时的颜色为蓝色，选项卡内容的背景颜色为浅灰色。\n\n功能方面，Stepper组件允许用户通过点击按钮增加或减少数值，数值范围为0到10。Tabs组件允许用户通过点击不同的选项卡切换内容，每个选项卡显示不同的文本内容。",
+            "code": "@Entry\n@Component\nstruct StepperTabsExample {\n  @State value: number = 0; // 步进器的初始值\n\n  build() {\n    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {\n      // Stepper组件\n      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {\n        Stepper({ min: 0, max: 10, step: 1, value: this.value }) // 步进器的最小值、最大值、步长和初始值\n          .width('100%') // 宽度为100%\n          .height(50) // 高度为50vp\n          .backgroundColor('#007DFF') // 背景颜色为蓝色\n          .fontColor('#FFFFFF') // 文本颜色为白色\n          .buttonWidth(40) // 按钮宽度为40vp\n          .buttonHeight(40) // 按钮高度为40vp\n          .onChange((value: number) => {\n            this.value = value; // 当步进器的值改变时，更新状态\n          })\n      }\n      .width('100%')\n      .height(50)\n\n      // Tabs组件\n      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {\n        Tabs() {\n          TabContent() {\n            Text('Tab 1') // 第一个选项卡的内容\n              .fontSize(20)\n              .fontColor('#000000')\n          }\n          .tabBar({ icon: 'icon1.png', text: 'Tab 1' }) // 第一个选项卡的标题\n\n          TabContent() {\n            Text('Tab 2') // 第二个选项卡的内容\n              .fontSize(20)\n              .fontColor('#000000')\n          }\n          .tabBar({ icon: 'icon2.png', text: 'Tab 2' }) // 第二个选项卡的标题\n\n          TabContent() {\n            Text('Tab 3') // 第三个选项卡的内容\n              .fontSize(20)\n              .fontColor('#000000')\n          }\n          .tabBar({ icon: 'icon3.png', text: 'Tab 3' }) // 第三个选项卡的标题\n        }\n        .width('100%') // 宽度为100%\n        .height(300) // 高度为300vp\n        .backgroundColor('#F0F0F0') // 背景颜色为浅灰色\n        .barWidth(100) // 选项卡标题的宽度为100vp\n        .barHeight(50) // 选项卡标题的高度为50vp\n        .barMode(BarMode.Fixed) // 选项卡标题的布局模式为固定\n        .barSelectedColor('#007DFF') // 选中选项卡标题的颜色为蓝色\n        .barBackgroundColor('#FFFFFF') // 选项卡标题的背景颜色为白色\n      }\n      .width('100%')\n      .height(300)\n    }\n    .width('100%')\n    .height('100%')\n  }\n}"
+        }
+    ],
+    "is_common_attrs": false
+}

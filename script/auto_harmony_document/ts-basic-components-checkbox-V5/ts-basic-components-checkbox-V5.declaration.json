@@ -1,0 +1,149 @@
+{
+    "description": "提供多选框组件，通常用于某选项的打开或关闭。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Checkbox(options?: CheckboxOptions)",
+            "params": {
+                "options": {
+                    "type": "CheckboxOptions",
+                    "required": false,
+                    "description": "多选框的配置选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "name": {
+            "description": "用于指定多选框名称。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": false,
+                    "description": "多选框名称。"
+                }
+            }
+        },
+        "group": {
+            "description": "用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": false,
+                    "description": "多选框所属群组的名称。"
+                }
+            }
+        },
+        "indicatorBuilder": {
+            "description": "配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。indicatorBuilder设置为undefined/null时，默认为indicatorBuilder未设置状态。",
+            "params": {
+                "value": {
+                    "type": "CustomBuilder",
+                    "required": false,
+                    "description": "自定义组件的构造器。"
+                }
+            }
+        },
+        "select": {
+            "description": "设置多选框是否选中。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "多选框是否选中。",
+                    "default": false
+                }
+            }
+        },
+        "selectedColor": {
+            "description": "设置多选框选中状态颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "多选框选中状态颜色。",
+                    "default": "$r('sys.color.ohos_id_color_text_primary_activated')"
+                }
+            }
+        },
+        "unselectedColor": {
+            "description": "设置多选框非选中状态边框颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "多选框非选中状态边框颜色。",
+                    "default": "$r('sys.color.ohos_id_color_switch_outline_off')"
+                }
+            }
+        },
+        "mark": {
+            "description": "设置多选框内部图标样式。",
+            "params": {
+                "value": {
+                    "type": "MarkStyle",
+                    "required": true,
+                    "description": "多选框内部图标样式。",
+                    "default": {
+                        "strokeColor": "$r('sys.color.ohos_id_color_foreground_contrary')",
+                        "strokeWidth": "$r('sys.float.ohos_id_checkbox_stroke_width')",
+                        "size": "20vp"
+                    }
+                }
+            }
+        },
+        "shape": {
+            "description": "设置CheckBox组件形状, 包括圆形和圆角方形。",
+            "params": {
+                "value": {
+                    "type": "CheckBoxShape",
+                    "required": true,
+                    "description": "CheckBox组件形状。",
+                    "default": "CheckBoxShape.CIRCLE"
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制CheckBox内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<CheckBoxConfiguration>",
+                    "required": false,
+                    "description": "定制CheckBox内容区的方法。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "当选中状态发生变化时，触发该回调。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "返回true时，表示已选中。返回false时，表示未选中。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过 Flex 布局实现了一个包含两个 Checkbox 的界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上被分为一个部分，包含两个 Checkbox。每个 Checkbox 以水平布局方式排列，Checkbox 之间的间距均匀分布，且对齐方式为居中对齐。\nCheckbox 的样式包括选中颜色、形状等属性，支持不同的样式展示。Checkbox 的功能包括点击事件和状态效果，用户可以通过点击 Checkbox 触发相应操作，Checkbox 也可以在选中或未选中状态下进行展示。\n整个布局通过 Flex 布局保证 Checkbox 在水平方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry // 标记该组件为入口组件\n@Component // 标记该组件为自定义组件\nstruct CheckboxExample {\n  build() {\n    Flex({ justifyContent: FlexAlign.SpaceAround }) { // 使用 Flex 布局，设置对齐方式为 SpaceAround，即子组件在主轴上均匀分布，两端留有空白\n      Checkbox({ name: 'checkbox1', group: 'checkboxGroup' }) // 创建一个 Checkbox 组件，设置名称和所属组\n        .select(true) // 设置 Checkbox 初始状态为选中\n        .selectedColor(0xed6f21) // 设置 Checkbox 选中时的颜色为橙色\n        .shape(CheckBoxShape.CIRCLE) // 设置 Checkbox 的形状为圆形\n        .onChange((value: boolean) => { // 设置 Checkbox 状态改变时的回调函数\n          console.info('Checkbox1 change is' + value) // 打印 Checkbox 状态改变的信息\n        })\n      Checkbox({ name: 'checkbox2', group: 'checkboxGroup' }) // 创建另一个 Checkbox 组件，设置名称和所属组\n        .select(false) // 设置 Checkbox 初始状态为未选中\n        .selectedColor(0x39a2db) // 设置 Checkbox 选中时的颜色为蓝色\n        .shape(CheckBoxShape.ROUNDED_SQUARE) // 设置 Checkbox 的形状为圆角方形\n        .onChange((value: boolean) => { // 设置 Checkbox 状态改变时的回调函数\n          console.info('Checkbox2 change is' + value) // 打印 Checkbox 状态改变的信息\n        })\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过嵌套的 Row 和 Column 布局实现了一个包含两个 Checkbox 的界面。布局宽度占据整个屏幕，高度设为 100%。组件的垂直方向上被分为两个部分，每个部分包含一个 Checkbox 和一个对应的文本标签。每个 Checkbox 组的 Checkbox 和文本标签以水平布局方式排列，对齐方式为居中对齐。\nCheckbox 的样式包括选中颜色、未选中颜色、形状、宽度和高度等属性，支持不同的样式展示。Checkbox 的功能包括点击事件，用户可以通过点击 Checkbox 触发相应操作，并在控制台输出当前 Checkbox 的状态。\n整个布局通过 Flex 布局保证 Checkbox 在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct Index {\n  build() {\n    Row() {\n      Column() {\n        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {\n          // 创建一个 Checkbox 组件，设置其名称、所属组、选中颜色、形状、点击事件、标记样式、未选中颜色、宽度和高度\n          Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })\n            .selectedColor(0x39a2db) // 设置选中时的颜色为蓝色\n            .shape(CheckBoxShape.ROUNDED_SQUARE) // 设置形状为圆角方形\n            .onChange((value: boolean) => {\n              console.info('Checkbox1 change is' + value) // 当 Checkbox 状态改变时，输出当前状态到控制台\n            })\n            .mark({\n              strokeColor: Color.Black, // 设置标记的颜色为黑色\n              size: 50, // 设置标记的大小为 50\n              strokeWidth: 5 // 设置标记的线条宽度为 5\n            })\n            .unselectedColor(Color.Red) // 设置未选中时的颜色为红色\n            .width(30) // 设置 Checkbox 的宽度为 30\n            .height(30) // 设置 Checkbox 的高度为 30\n          Text('Checkbox1').fontSize(20) // 创建一个文本标签，设置其内容为 \"Checkbox1\"，字体大小为 20\n        }\n        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {\n          // 创建另一个 Checkbox 组件，设置其名称、所属组、选中颜色、形状、点击事件、宽度和高度\n          Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })\n            .selectedColor(0x39a2db) // 设置选中时的颜色为蓝色\n            .shape(CheckBoxShape.ROUNDED_SQUARE) // 设置形状为圆角方形\n            .onChange((value: boolean) => {\n              console.info('Checkbox2 change is' + value) // 当 Checkbox 状态改变时，输出当前状态到控制台\n            })\n            .width(30) // 设置 Checkbox 的宽度为 30\n            .height(30) // 设置 Checkbox 的高度为 30\n          Text('Checkbox2').fontSize(20) // 创建一个文本标签，设置其内容为 \"Checkbox2\"，字体大小为 20\n        }\n      }\n      .width('100%') // 设置 Column 的宽度为 100%\n    }\n    .height('100%') // 设置 Row 的高度为 100%\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Row 和 Column 布局实现了一个包含两个 Checkbox 的界面。布局宽度占据整个屏幕，高度设为 100%。组件的垂直方向上被分为两个部分，每个部分包含一个 Checkbox 和一个对应的文本标签。每个 Checkbox 组的 Checkbox 和文本标签以水平布局方式排列，对齐方式为居中对齐。\nCheckbox 的样式包括形状（圆形和圆角方形）、宽度和高度、选中标记的颜色和大小等属性。Checkbox 的功能包括点击事件，用户可以通过点击 Checkbox 触发相应操作，并在控制台输出当前 Checkbox 的状态。\n整个布局通过 Row 和 Column 布局保证 Checkbox 在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct CheckboxExample {\n  // 定义一个 Builder 方法，用于自定义 Checkbox 的选中标记样式\n  @Builder\n  indicatorBuilder(value: number) {\n    Column(){\n      // 根据 value 的值显示不同的文本内容和字体大小\n      Text(value > 99 ? '99+' : value.toString())\n        .textAlign(TextAlign.Center) // 文本居中对齐\n        .fontSize(value > 99 ? '16vp' : '20vp') // 字体大小根据 value 的值动态调整\n        .fontWeight(FontWeight.Medium) // 字体粗细为中等\n        .fontColor('#ffffffff') // 字体颜色为白色\n    }\n  }\n\n  build() {\n    Row() {\n      Column() {\n        // 第一个 Checkbox 组\n        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center}) {\n          // 创建一个 Checkbox，使用自定义的 indicatorBuilder 方法\n          Checkbox({ name: 'checkbox1', group: 'checkboxGroup', indicatorBuilder: () => { this.indicatorBuilder(9) } })\n            .shape(CheckBoxShape.CIRCLE) // Checkbox 形状为圆形\n            .onChange((value: boolean) => {\n              console.info('Checkbox1 change is' + value) // 当 Checkbox 状态改变时，输出当前状态到控制台\n            })\n            .mark({\n              strokeColor: Color.Black, // 选中标记的颜色为黑色\n              size: 50, // 选中标记的大小为 50\n              strokeWidth: 5 // 选中标记的线条宽度为 5\n            })\n            .width(30) // Checkbox 的宽度为 30\n            .height(30) // Checkbox 的高度为 30\n          Text('Checkbox1').fontSize(20) // 文本标签，字体大小为 20\n        }.padding(15) // 内边距为 15\n\n        // 第二个 Checkbox 组\n        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {\n          // 创建另一个 Checkbox，使用自定义的 indicatorBuilder 方法\n          Checkbox({ name: 'checkbox2', group: 'checkboxGroup', indicatorBuilder: () => { this.indicatorBuilder(100) } })\n            .shape(CheckBoxShape.ROUNDED_SQUARE) // Checkbox 形状为圆角方形\n            .onChange((value: boolean) => {\n              console.info('Checkbox2 change is' + value) // 当 Checkbox 状态改变时，输出当前状态到控制台\n            })\n            .width(30) // Checkbox 的宽度为 30\n            .height(30) // Checkbox 的高度为 30\n          Text('Checkbox2').fontSize(20) // 文本标签，字体大小为 20\n        }\n      }\n      .width('100%') // 宽度占据整个屏幕\n    }\n    .height('100%') // 高度占据整个屏幕\n  }\n}"
+        },
+        {
+            "description": "该示例实现了一个自定义复选框样式的功能，通过自定义样式实现了一个五边形复选框。当复选框被选中时，内部会出现一个红色三角图案，并且标题会显示“选中”字样；当复选框未被选中时，红色三角图案消失，标题会显示“非选中”字样。复选框的状态可以通过点击五边形进行切换。\n\n布局方面，整个组件采用垂直布局（Column），包含一个标题文本和一个五边形形状。标题文本根据复选框的状态显示不同的内容。五边形形状内部嵌套了一个路径（Path），用于绘制五边形的外框，并通过点击事件触发复选框状态的切换。五边形内部还嵌套了另一个路径（Path），用于绘制红色三角图案，该图案的可见性根据复选框的状态进行切换。\n\n样式方面，五边形的外框使用白色填充，并通过 `strokeWidth` 属性设置了边框宽度。红色三角图案的填充颜色和边框颜色根据复选框的状态进行切换，当复选框被选中时，颜色为红色，否则为黑色。五边形的宽度和高度均为 300vp，内部视口的宽度和高度为 310vp，确保五边形和内部图案的显示效果。\n\n功能方面，复选框的状态通过 `config.selected` 属性进行判断，并通过 `config.triggerChange` 方法触发状态的切换。复选框的启用状态通过 `config.enabled` 属性进行判断，当复选框被禁用时，五边形和内部图案的透明度会降低，表示不可交互。\n\n整个组件通过自定义的 `MyCheckboxStyle` 类实现复选框的样式定制，并通过 `Checkbox` 组件的 `contentModifier` 属性应用该样式。组件的启用状态可以通过一个开关（Toggle）进行切换，开关的状态变化会同步更新复选框的启用状态。",
+            "code": "class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {\n  selectedColor: Color = Color.White; // 选中时的颜色，默认为白色\n  constructor(selectedColor: Color) {\n    this.selectedColor = selectedColor; // 构造函数，初始化选中颜色\n  }\n  applyContent(): WrappedBuilder<[CheckBoxConfiguration]> {\n    return wrapBuilder(buildCheckbox); // 应用自定义复选框样式\n  }\n}\n\n@Builder function buildCheckbox(config: CheckBoxConfiguration) {\n  Column({ space: 10 }) { // 垂直布局，间距为10\n    Text(config.name + (config.selected ? \"（ 选中 ）\" : \"（ 非选中 ）\"))\n      .margin({ right: 70, top: 50 }); // 标题文本，根据复选框状态显示不同内容，右边距70，上边距50\n    Text(config.enabled ? \"enabled true\" : \"enabled false\")\n      .margin({ right: 110 }); // 启用状态文本，右边距110\n    Shape() { // 形状组件，用于绘制五边形和内部图案\n      Path()\n        .width(100)\n        .height(100)\n        .commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z') // 绘制五边形路径\n        .fillOpacity(0) // 填充透明度为0，即不填充颜色\n        .strokeWidth(3) // 边框宽度为3\n        .onClick(() => { // 点击事件，切换复选框状态\n          if (config.selected) {\n            config.triggerChange(false); // 如果已选中，则取消选中\n          } else {\n            config.triggerChange(true); // 如果未选中，则选中\n          }\n        })\n        .opacity(config.enabled ? 1 : 0.1); // 根据启用状态设置透明度，启用时为1，禁用时为0.1\n      Path()\n        .width(10)\n        .height(10)\n        .commands('M50 0 L100 100 L0 100 Z') // 绘制红色三角图案路径\n        .visibility(config.selected ? Visibility.Visible : Visibility.Hidden) // 根据选中状态设置可见性\n        .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black) // 根据选中状态设置填充颜色\n        .stroke((config.contentModifier as MyCheckboxStyle).selectedColor) // 设置边框颜色\n        .margin({ left: 10, top: 10 }) // 左边距10，上边距10\n        .opacity(config.enabled ? 1 : 0.1); // 根据启用状态设置透明度\n    }\n    .width(300) // 形状宽度为300\n    .height(200) // 形状高度为200\n    .viewPort({ x: 0, y: 0, width: 310, height: 310 }) // 视口设置，确保五边形和内部图案的显示效果\n    .strokeLineJoin(LineJoinStyle.Miter) // 边框连接样式为Miter\n    .strokeMiterLimit(5) // 边框斜接限制为5\n    .margin({ left: 50 }); // 左边距50\n  }\n}\n\n@Entry\n@Component\nstruct Index {\n  @State checkboxEnabled: boolean = true; // 复选框启用状态，默认为启用\n  build() {\n    Column({ space: 100 }) { // 垂直布局，间距为100\n      Checkbox({ name: '复选框状态', group: 'checkboxGroup' }) // 复选框组件，名称和组别\n        .contentModifier(new MyCheckboxStyle(Color.Red)) // 应用自定义复选框样式，选中颜色为红色\n        .onChange((value: boolean) => { // 复选框状态变化事件\n          console.info('Checkbox change is' + value); // 打印复选框状态变化信息\n        })\n        .enabled(this.checkboxEnabled); // 设置复选框启用状态\n\n      Row() { // 水平布局，用于放置开关\n        Toggle({ type: ToggleType.Switch, isOn: true }) // 开关组件，类型为Switch，默认开启\n          .onChange((value: boolean) => { // 开关状态变化事件\n            if (value) {\n              this.checkboxEnabled = true; // 如果开关开启，则复选框启用\n            } else {\n              this.checkboxEnabled = false; // 如果开关关闭，则复选框禁用\n            }\n          })\n      }\n      .position({ x: 50, y: 130 }); // 开关位置设置，x轴50，y轴130\n    }\n    .margin({ top: 30 }); // 顶部边距30\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

@@ -1,0 +1,208 @@
+Title: ProgressButton-按钮与选择-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-progressbutton-V5
+
+Markdown Content:
+文本下载按钮，可显示具体下载进度。
+
+说明
+
+该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+导入模块
+----
+
+1.  import { ProgressButton } from '@kit.ArkUI'
+
+ProgressButton({progress: number, content: string, progressButtonWidth?: Length, clickCallback: () =\> void, enable: boolean})
+
+**装饰器类型：**@Component
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+名称
+
+参数类型
+
+必填
+
+装饰器类型
+
+说明
+
+progress
+
+number
+
+是
+
+@Prop
+
+下载按钮的当前进度值。
+
+content
+
+string
+
+是
+
+@Prop
+
+下载按钮的文本。
+
+progressButtonWidth
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+否
+
+\-
+
+下载按钮的宽度。
+
+默认值：44。
+
+clickCallback
+
+() =\> void
+
+是
+
+\-
+
+下载按钮的点击回调。
+
+enable
+
+boolean
+
+是
+
+@Prop
+
+下载按钮是否可以点击。
+
+enable为true时，表示可以点击。
+
+enable为false时，表示不可点击。
+
+示例
+--
+
+1.  import { ProgressButton } from '@kit.ArkUI'
+
+3.  @Entry
+4.  @Component
+5.  struct Index {
+6.    @State halfProgress: number = 0
+7.    @State smallProgress: number = 0
+8.    @State bigProgress: number = 0
+9.    @State textState1: string = ''
+10.    @State isRunning1: boolean = false
+11.    @State enableState1: boolean = true
+12.    @State progressState: Visibility = Visibility.None
+13.    @State ButtonState: Visibility = Visibility.Visible
+14.    @State buttonText: string = '下载'
+15.    @State buttonEnable: boolean = true
+16.    @State isEnd: boolean = false
+17.    build() {
+18.      Column({space: 20}) {
+19.        Text('下载按钮')
+20.        Button(this.buttonText)
+21.          .fontSize($r('sys.float.ohos\_id\_text\_size\_button3'))
+22.          .fontWeight(FontWeight.Medium)
+23.          .fontColor($r('sys.color.ohos\_id\_color\_emphasize'))
+24.          .padding({left: 8, right: 8})
+25.          .opacity(this.buttonEnable? 1: 0.4)
+26.          .enabled(this.buttonEnable)
+27.          .height(28)
+28.          .borderRadius(14)
+29.          .width(60)
+30.          .backgroundColor($r("sys.color.ohos\_id\_color\_button\_normal"))
+31.          .onClick(() =\> {
+32.            if(!this.isEnd) {
+33.              this.buttonText = '等待中'
+34.              let timer1 = setInterval(() =\> {
+35.                this.progressState = Visibility.Visible
+36.                this.ButtonState = Visibility.None
+37.                clearInterval(timer1)
+38.                this.isRunning1 = true
+39.                let timer = setInterval(() =\> {
+40.                  if (this.isRunning1) {
+41.                    if (this.halfProgress === 100) {
+42.                      this.isEnd = true
+43.                    } else {
+44.                      this.halfProgress++
+45.                      if (this.halfProgress === 100) {
+46.                        this.textState1 = '安装中'
+47.                        this.enableState1 = false
+48.                        this.ButtonState = Visibility.Visible
+49.                        this.progressState = Visibility.None
+50.                        this.buttonEnable = false
+51.                        this.buttonText = '安装中'
+52.                        let timer2 = setInterval(() =\> {
+53.                          this.buttonText = '打开'
+54.                          this.buttonEnable = true
+55.                          this.isEnd = true
+56.                          clearInterval(timer2)
+57.                        }, 2000)
+58.                      }
+59.                      console.info('x progress++ = ' + this.halfProgress)
+60.                    }
+61.                  } else {
+62.                    console.info('x isRunning = ' + false)
+63.                    clearInterval(timer)
+64.                  }
+65.                }, 100)
+66.              }, 2000)
+67.            }
+68.          }).visibility(this.ButtonState)
+69.        ProgressButton({
+70.          progress: this.halfProgress,
+71.          progressButtonWidth: "60",
+72.          content: this.textState1,
+73.          enable: this.enableState1,
+
+75.          clickCallback: () =\> {
+76.            if (this.isRunning1 && this.halfProgress < 100) {
+77.              this.textState1 = '继续'
+78.            }
+79.            this.isRunning1 = !this.isRunning1
+80.            let timer = setInterval(() =\> {
+
+82.              if (this.isRunning1) {
+83.                if (this.halfProgress === 100) {
+84.                } else {
+85.                  this.halfProgress++
+86.                  if (this.halfProgress === 100) {
+87.                    this.textState1 = '安装中'
+88.                    this.enableState1 = false
+89.                    this.ButtonState = Visibility.Visible
+90.                    this.progressState = Visibility.None
+91.                    this.buttonEnable = false
+92.                    this.buttonText = '安装中'
+93.                    let timer2 = setInterval(() =\> {
+94.                      this.buttonText = '打开'
+95.                      this.buttonEnable = true
+96.                      this.isEnd = true
+97.                      clearInterval(timer2)
+98.                    },2000)
+99.                  }
+100.                  console.info('x progress++ = ' + this.halfProgress)
+101.                }
+102.              } else {
+103.                console.info('x isRunning = ' + false)
+104.                clearInterval(timer)
+105.              }
+106.            }, 100)
+107.          }
+108.        }).visibility(this.progressState)
+109.      }.alignItems(HorizontalAlign.Center).width('100%')
+110.    }
+111.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114430.13391558300577660235511350382601:50001231000000:2800:4F8369E75902A5FAEBB83CCCEC2D246DB4C8573891BDDB3ECEBE353059A72FF4.png?needInitFileName=true?needInitFileName=true)

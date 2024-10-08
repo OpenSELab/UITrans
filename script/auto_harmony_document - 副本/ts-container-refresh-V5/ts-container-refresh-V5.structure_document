@@ -1,0 +1,76 @@
+{
+    "description": "可以进行页面下拉操作并显示刷新动效的容器组件。",
+    "details": "该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。从API Version 12开始支持与垂直滚动的Swiper和Web的联动。当Swiper设置loop属性为true时，Refresh无法和Swiper产生联动。",
+    "interfaces": [
+        {
+            "description": "Refresh(value: RefreshOptions)",
+            "params": {
+                "value": {
+                    "type": "RefreshOptions",
+                    "required": true,
+                    "description": "刷新选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "refreshOffset": {
+            "description": "设置触发刷新的下拉偏移量。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "下拉偏移量，单位vp。",
+                    "default": 64
+                }
+            }
+        },
+        "pullToRefresh": {
+            "description": "设置当下拉距离超过refreshOffset时是否触发刷新。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否触发刷新。",
+                    "default":true
+                }
+            }
+        },
+        "pullDownRatio": {
+            "description": "设置下拉跟手系数。",
+            "params": {
+                "ratio": {
+                    "type": "number",
+                    "required": true,
+                    "description": "下拉跟手系数。数值越大，跟随手势下拉的反应越灵敏。",
+                    "default": "动态下拉跟手系数"
+                }
+            }
+        }
+    },
+    "events": {
+        "onStateChange": {
+            "description": "当前刷新状态变更时，触发回调。",
+            "params": {
+                "state": {
+                    "type": "RefreshStatus",
+                    "required": true,
+                    "description": "当前刷新状态。"
+                }
+            }
+        },
+        "onRefreshing": {
+            "description": "进入刷新状态时触发回调。"
+        },
+        "onOffsetChange": {
+            "description": "下拉距离发生变化时触发回调。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "下拉距离，单位vp。"
+                }
+            }
+        }
+    }
+}

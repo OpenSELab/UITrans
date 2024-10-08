@@ -1,0 +1,226 @@
+{
+    "description": "为开发者提供满足定制化诉求的Web高阶组件，屏蔽原生Web组件中无需关注的接口，并提供JS扩展能力。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "AtomicServiceWeb({ src: ResourceStr, controller: AtomicServiceWebController, navPathStack?: NavPathStack, mixedMode?: MixedMode, darkMode?: WebDarkMode, forceDarkAccess?: boolean, onMessage?: Callback<OnMessageEvent>, onErrorReceive?: Callback<OnErrorReceiveEvent>, onHttpErrorReceive?: Callback<OnHttpErrorReceiveEvent>, onPageBegin?: Callback<OnPageBeginEvent>, onPageEnd?: Callback<OnPageEndEvent>, onControllerAttached?: Callback<void>, onLoadIntercept?: Callback<OnLoadInterceptEvent, boolean>, onProgressChange?: Callback<OnProgressChangeEvent> })",
+            "params": {
+                "src": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "网页资源地址，访问网络资源需要在AGC配置业务域名，访问本地资源仅支持包内文件（$rawfile）。不支持通过状态变量（例如@State）动态更新地址。加载的网页中支持通过JS SDK提供的接口调用系统能力，具体以JS SDK为准。"
+                },
+                "controller": {
+                    "type": "AtomicServiceWebController",
+                    "required": true,
+                    "description": "通过AtomicServiceWebController可以控制AtomicServiceWeb组件各种行为。"
+                },
+                "navPathStack": {
+                    "type": "NavPathStack",
+                    "required": false,
+                    "description": "路由栈信息。当使用NavDestination作为页面的根容器时，需传入NavDestination容器对应的NavPathStack处理页面路由。"
+                },
+                "mixedMode": {
+                    "type": "MixedMode",
+                    "required": false,
+                    "description": "设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。"
+                },
+                "darkMode": {
+                    "type": "WebDarkMode",
+                    "required": false,
+                    "description": "设置Web深色模式，默认关闭。"
+                },
+                "forceDarkAccess": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "设置网页是否开启强制深色模式。默认关闭。该属性仅在darkMode开启深色模式时生效。"
+                },
+                "onMessage": {
+                    "type": "Callback<OnMessageEvent>",
+                    "required": false,
+                    "description": "H5页面通过JS SDK的postMessage()发送消息后，Web组件对应的页面返回或销毁时，触发该回调。"
+                },
+                "onErrorReceive": {
+                    "type": "Callback<OnErrorReceiveEvent>",
+                    "required": false,
+                    "description": "网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。"
+                },
+                "onHttpErrorReceive": {
+                    "type": "Callback<OnHttpErrorReceiveEvent>",
+                    "required": false,
+                    "description": "网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。"
+                },
+                "onPageBegin": {
+                    "type": "Callback<OnPageBeginEvent>",
+                    "required": false,
+                    "description": "网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。"
+                },
+                "onPageEnd": {
+                    "type": "Callback<OnPageEndEvent>",
+                    "required": false,
+                    "description": "网页加载完成时触发该回调，且只在主frame触发。"
+                },
+                "onControllerAttached": {
+                    "type": "Callback<void>",
+                    "required": false,
+                    "description": "当Controller成功绑定到Web组件时触发该回调。"
+                },
+                "onLoadIntercept": {
+                    "type": "Callback<OnLoadInterceptEvent, boolean>",
+                    "required": false,
+                    "description": "当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。"
+                },
+                "onProgressChange": {
+                    "type": "Callback<OnProgressChangeEvent>",
+                    "required": false,
+                    "description": "网页加载进度变化时触发该回调。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "src": {
+            "description": "网页资源地址，访问网络资源需要在AGC配置业务域名，访问本地资源仅支持包内文件（$rawfile）。不支持通过状态变量（例如@State）动态更新地址。加载的网页中支持通过JS SDK提供的接口调用系统能力，具体以JS SDK为准。",
+            "params": {
+                "value": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "网页资源地址。"
+                }
+            }
+        },
+        "controller": {
+            "description": "通过AtomicServiceWebController可以控制AtomicServiceWeb组件各种行为。",
+            "params": {
+                "value": {
+                    "type": "AtomicServiceWebController",
+                    "required": true,
+                    "description": "AtomicServiceWebController对象。"
+                }
+            }
+        },
+        "navPathStack": {
+            "description": "路由栈信息。当使用NavDestination作为页面的根容器时，需传入NavDestination容器对应的NavPathStack处理页面路由。",
+            "params": {
+                "value": {
+                    "type": "NavPathStack",
+                    "required": false,
+                    "description": "路由栈信息。"
+                }
+            }
+        },
+        "mixedMode": {
+            "description": "设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。",
+            "params": {
+                "value": {
+                    "type": "MixedMode",
+                    "required": false,
+                    "description": "混合内容模式。"
+                }
+            }
+        },
+        "darkMode": {
+            "description": "设置Web深色模式，默认关闭。",
+            "params": {
+                "value": {
+                    "type": "WebDarkMode",
+                    "required": false,
+                    "description": "深色模式。"
+                }
+            }
+        },
+        "forceDarkAccess": {
+            "description": "设置网页是否开启强制深色模式。默认关闭。该属性仅在darkMode开启深色模式时生效。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否开启强制深色模式。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onMessage": {
+            "description": "H5页面通过JS SDK的postMessage()发送消息后，Web组件对应的页面返回或销毁时，触发该回调。",
+            "params": {
+                "event": {
+                    "type": "OnMessageEvent",
+                    "required": true,
+                    "description": "消息事件。"
+                }
+            }
+        },
+        "onErrorReceive": {
+            "description": "网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。",
+            "params": {
+                "event": {
+                    "type": "OnErrorReceiveEvent",
+                    "required": true,
+                    "description": "错误接收事件。"
+                }
+            }
+        },
+        "onHttpErrorReceive": {
+            "description": "网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。",
+            "params": {
+                "event": {
+                    "type": "OnHttpErrorReceiveEvent",
+                    "required": true,
+                    "description": "HTTP错误接收事件。"
+                }
+            }
+        },
+        "onPageBegin": {
+            "description": "网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。",
+            "params": {
+                "event": {
+                    "type": "OnPageBeginEvent",
+                    "required": true,
+                    "description": "页面开始加载事件。"
+                }
+            }
+        },
+        "onPageEnd": {
+            "description": "网页加载完成时触发该回调，且只在主frame触发。",
+            "params": {
+                "event": {
+                    "type": "OnPageEndEvent",
+                    "required": true,
+                    "description": "页面加载完成事件。"
+                }
+            }
+        },
+        "onControllerAttached": {
+            "description": "当Controller成功绑定到Web组件时触发该回调。",
+            "params": {}
+        },
+        "onLoadIntercept": {
+            "description": "当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。",
+            "params": {
+                "event": {
+                    "type": "OnLoadInterceptEvent",
+                    "required": true,
+                    "description": "加载拦截事件。"
+                }
+            },
+            "returns": {
+                "type": "boolean",
+                "description": "是否阻止此次访问。"
+            }
+        },
+        "onProgressChange": {
+            "description": "网页加载进度变化时触发该回调。",
+            "params": {
+                "event": {
+                    "type": "OnProgressChangeEvent",
+                    "required": true,
+                    "description": "进度变化事件。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

@@ -1,0 +1,166 @@
+{
+    "description": "Counter是用于精确调节数值的组件。",
+    "details": "该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "CounterComponent({ options: CounterOptions })",
+            "params": {
+                "options": {
+                    "type": "CounterOptions",
+                    "required": true,
+                    "description": "Counter的类型及具体式样参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "CounterOptions": {
+            "description": "CounterOptions定义Counter的类型及具体式样参数。",
+            "params": {
+                "type": {
+                    "type": ["CounterType.LIST", "CounterType.COMPACT", "CounterType.INLINE", "CounterType.INLINE_DATE"],
+                    "required": true,
+                    "description": "Counter的类型。"
+                },
+                "numberOptions": {
+                    "type": "NumberStyleOptions",
+                    "required": false,
+                    "description": "当类型为LIST或COMPACT时，使用NumberStyleOptions。"
+                },
+                "inlineOptions": {
+                    "type": "InlineStyleOptions",
+                    "required": false,
+                    "description": "当类型为INLINE时，使用InlineStyleOptions。"
+                },
+                "dateOptions": {
+                    "type": "DateStyleOptions",
+                    "required": false,
+                    "description": "当类型为INLINE_DATE时，使用DateStyleOptions。"
+                }
+            }
+        },
+        "CommonOptions": {
+            "description": "CommonOptions定义Counter的共通属性和事件。",
+            "params": {
+                "focusable": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "设置Counter是否可以获焦。",
+                    "default": true
+                },
+                "step": {
+                    "type": "number",
+                    "required": false,
+                    "description": "设置Counter的步长。",
+                    "default": 1
+                },
+                "onHoverIncrease": {
+                    "type": "(isHover: boolean) => void",
+                    "required": false,
+                    "description": "鼠标进入或退出Counter组件的增加按钮触发该回调。"
+                },
+                "onHoverDecrease": {
+                    "type": "(isHover: boolean) => void",
+                    "required": false,
+                    "description": "鼠标进入或退出Counter组件的减小按钮触发该回调。"
+                }
+            }
+        },
+        "InlineStyleOptions": {
+            "description": "InlineStyleOptions定义Inline Style（数值内联型Counter）的属性和事件。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": false,
+                    "description": "设置Counter的初始值。",
+                    "default": 0
+                },
+                "min": {
+                    "type": "number",
+                    "required": false,
+                    "description": "设置Counter的最小值。",
+                    "default": 0
+                },
+                "max": {
+                    "type": "number",
+                    "required": false,
+                    "description": "设置Counter的最大值。",
+                    "default": 999
+                },
+                "textWidth": {
+                    "type": "number",
+                    "required": false,
+                    "description": "设置数值文本的宽度。",
+                    "default": 0
+                },
+                "onChange": {
+                    "type": "(value: number) => void",
+                    "required": false,
+                    "description": "当数值改变时，返回当前值。"
+                }
+            }
+        },
+        "NumberStyleOptions": {
+            "description": "NumberStyleOptions定义Number style（列表型Counter和紧凑型Counter）的属性和事件。",
+            "params": {
+                "label": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "设置Counter的说明文本。"
+                },
+                "onFocusIncrease": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "当前Counter组件增加按钮获取焦点时触发的回调。"
+                },
+                "onFocusDecrease": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "当前Counter组件减小按钮获取焦点时触发的回调。"
+                },
+                "onBlurIncrease": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "当前Counter组件增加按钮失去焦点时触发的回调。"
+                },
+                "onBlurDecrease": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "当前Counter组件减小按钮失去焦点时触发的回调。"
+                }
+            }
+        },
+        "DateStyleOptions": {
+            "description": "DateStyleOptions定义Date style（日期内联型Counter）的属性和事件。",
+            "params": {
+                "year": {
+                    "type": "number",
+                    "required": false,
+                    "description": "设置日期内联型初始年份。",
+                    "default": 1
+                },
+                "month": {
+                    "type": "number",
+                    "required": false,
+                    "description": "设置日期内联型初始月份。",
+                    "default": 1
+                },
+                "day": {
+                    "type": "number",
+                    "required": false,
+                    "description": "设置日期内联型初始日。",
+                    "default": 1
+                },
+                "onDateChange": {
+                    "type": "(date: DateData) => void",
+                    "required": false,
+                    "description": "当日期改变时，返回当前日期。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

@@ -1,0 +1,842 @@
+Title: 警告弹窗 (AlertDialog)-全局UI方法-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5
+
+Markdown Content:
+显示警告弹窗组件，可设置文本内容与响应回调。
+
+AlertDialog.show
+----------------
+
+static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions)
+
+定义警告弹窗并弹出。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+AlertDialogParam对象说明
+--------------------
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| title | [ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr) | 否 | 弹窗标题。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| subtitle10+ | [ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr) | 否 | 弹窗副标题。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| message | [ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr) | 是 | 弹窗内容。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| autoCancel | boolean | 否 | 点击遮障层时，是否关闭弹窗，true表示关闭弹窗。false表示不关闭弹窗。
+
+默认值：true
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| cancel | () => void | 否 | 点击遮障层关闭dialog时的回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| alignment | [DialogAlignment](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#dialogalignment%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 弹窗在竖直方向上的对齐方式。
+
+默认值：DialogAlignment.Default
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**说明**：
+
+若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。
+
+ |
+| offset | [Offset](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#offset) | 否 | 弹窗相对alignment所在位置的偏移量。
+
+默认值：{ dx: 0 , dy: 0 }
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| gridCount | number | 否 | 弹窗容器宽度所占用栅格数。
+
+默认值：4
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| maskRect10+ | [Rectangle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#rectangle8%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E) | 否 | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。
+
+默认值：{ x: 0, y: 0, width: '100%', height: '100%' }
+
+**说明：**
+
+showInSubWindow为true时，maskRect不生效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| showInSubWindow11+ | boolean | 否 | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。
+
+默认值：false，弹窗显示在应用内，而非独立子窗口。
+
+**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| isModal11+ | boolean | 否 | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。
+
+默认值：true，此时弹窗有蒙层。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| backgroundColor11+ | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 弹窗背板颜色。
+
+默认值：Color.Transparent
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| backgroundBlurStyle11+ | [BlurStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-background-V5#blurstyle9) | 否 | 弹窗背板模糊材质。
+
+默认值：BlurStyle.COMPONENT\_ULTRA\_THICK
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| onWillDismiss12+ | Callback<[DismissDialogAction](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#dismissdialogaction12%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E)\> | 否 | 交互式关闭回调函数。
+
+**说明：**
+
+1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE\_BUTTON的枚举值。
+
+2.在onWillDismiss回调中，不能再做onWillDismiss拦截。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| cornerRadius12+ | [BorderRadiuses](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#borderradiuses9) | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10) | [LocalizedBorderRadiuses](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#LocalizedBorderRadiuses12) | 否 | 设置背板的圆角半径。
+
+可分别设置4个圆角的半径。
+
+默认值：{ topLeft: '32vp', topRight: '32vp', bottomLeft: '32vp', bottomRight: '32vp' }
+
+圆角大小受组件尺寸限制，最大值为组件宽或高的一半，若值为负，则按照默认值处理。
+
+百分比参数方式：以父元素弹窗宽和高的百分比来设置弹窗的圆角。
+
+**说明：**
+
+当cornerRadius属性类型为LocalizedBorderRadiuses时，支持随语言习惯改变布局顺序。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| transition12+ | [TransitionEffect](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-transition-animation-component-V5#transitioneffect10) | 否 | 设置弹窗显示和退出的过渡效果。
+
+**说明：**
+
+1.如果不设置，则使用默认的显示/退出动效。
+
+2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。
+
+3.退出动效中按back键，不会打断退出动效，退出动效继续执行，继续按back键退出应用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| width12+ | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10) | 否 | 设置弹窗背板的宽度。
+
+**说明：**
+
+\- 弹窗宽度默认最大值：400vp。
+
+\- 百分比参数方式：弹窗参考宽度为所在窗口的宽度，在此基础上调小或调大。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| height12+ | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10) | 否 | 设置弹窗背板的高度。
+
+**说明：**
+
+\- 弹窗高度默认最大值：0.9 \*（窗口高度 - 安全区域）。
+
+\- 百分比参数方式：弹窗参考高度为（窗口高度 - 安全区域），在此基础上调小或调大。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| borderWidth12+ | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10) | [EdgeWidths](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#edgewidths9) | [LocalizedEdgeWidths](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#LocalizedEdgeWidths12) | 否 | 可分别设置4个边框宽度。
+
+默认值：0
+
+百分比参数方式：以父元素弹窗宽的百分比来设置弹窗的边框宽度。
+
+当弹窗左边框和右边框大于弹窗宽度，弹窗上边框和下边框大于弹窗高度，显示可能不符合预期。
+
+**说明：**
+
+当borderWidth属性类型为LocalizedEdgeWidths时，支持随语言习惯改变布局顺序。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| borderColor12+ | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | [EdgeColors](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#edgecolors9) | [LocalizedEdgeColors](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#LocalizedEdgeColors12) | 否 | 设置弹窗背板的边框颜色。
+
+默认值：Color.Black
+
+如果使用borderColor属性，需要和borderWidth属性一起使用。**说明：**
+
+当borderColor属性类型为LocalizedEdgeColors时，支持随语言习惯改变布局顺序。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| borderStyle12+ | [BorderStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#borderstyle) | [EdgeStyles](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#edgestyles9) | 否 | 设置弹窗背板的边框样式。
+
+默认值：BorderStyle.Solid
+
+如果使用borderStyle属性，需要和borderWidth属性一起使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| shadow12+ | [ShadowOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-image-effect-V5#shadowoptions%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | [ShadowStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-image-effect-V5#shadowstyle10%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 设置弹窗背板的阴影。
+
+当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER\_FLOATING\_MD，失焦为ShadowStyle.OUTER\_FLOATING\_SM
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| textStyle12+ | [TextStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#textstyle12%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E) | 否 | 设置弹窗message内容的文本样式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+
+AlertDialogParamWithConfirm对象说明
+-------------------------------
+
+继承自[AlertDialogParam](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#alertdialogparam%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| confirm | {
+enabled10+?: boolean,
+
+defaultFocus10+?: boolean,
+
+style10+?: [DialogButtonStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#dialogbuttonstyle10%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E),
+
+value: [ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr),
+
+fontColor?: [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor),
+
+backgroundColor?: [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor),
+
+action: () => void
+
+}
+
+ | 否 | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。
+
+enabled：点击Button是否响应，true表示Button可以响应，false表示Button不可以响应。
+
+默认值：true
+
+defaultFocus：设置Button是否是默认焦点，true表示Button是默认焦点，false表示Button不是默认焦点。
+
+默认值：false
+
+style：设置Button的风格样式。
+
+默认值：DialogButtonStyle.DEFAULT。
+
+value：Button文本内容。
+
+fontColor：Button文本颜色。
+
+backgroundColor：Button背景颜色。
+
+action： Button选中时的回调。
+
+ |
+
+confirm参数优先级：fontColor、backgroundColor > style > defaultFocus
+
+| backgroundColor | fontColor | style | defaultFocus | 效果 |
+| --- | --- | --- | --- | --- |
+| 绿底 | 红字 | \- | \- | 绿底红字 |
+| 绿底 | \- | DialogButtonStyle.HIGHLIGHT | \- | 绿底白字 |
+| 绿底 | \- | DialogButtonStyle.DEFAULT | \- | 绿底蓝字 |
+| 绿底 | \- | \- | TRUE | 绿底白字 |
+| 绿底 | \- | \- | FALSE/- | 绿底蓝字 |
+| \- | 红字 | DialogButtonStyle.HIGHLIGHT | \- | 蓝底红字 |
+| \- | 红字 | DialogButtonStyle.DEFAULT | \- | 白底红字 |
+| \- | 红字 | \- | TRUE | 蓝底红字 |
+| \- | 红字 | \- | FALSE/- | 白底红字 |
+| \- | \- | DialogButtonStyle.HIGHLIGHT | \- | 蓝底白字 |
+| \- | \- | DialogButtonStyle.DEFAULT | \- | 白底蓝字 |
+| \- | \- | \- | TRUE | 蓝底白字 |
+| \- | \- | \- | FALSE/- | 白底蓝字 |
+
+AlertDialogParamWithButtons对象说明
+-------------------------------
+
+继承自[AlertDialogParam](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#alertdialogparam%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| primaryButton | {
+enabled10+?: boolean,
+
+defaultFocus10+?: boolean,
+
+style10+?: [DialogButtonStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#dialogbuttonstyle10%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E),
+
+value: [ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr),
+
+fontColor?: [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor),
+
+backgroundColor?: [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor),
+
+action: () => void;
+
+}
+
+ | 否 | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。
+
+enabled：点击Button是否响应。
+
+默认值：true
+
+defaultFocus：设置Button是否是默认焦点。
+
+默认值：false
+
+style：设置Button的风格样式。
+
+默认值：DialogButtonStyle.DEFAULT。
+
+value：Button文本内容。
+
+fontColor：Button文本颜色。
+
+backgroundColor：Button背景颜色。
+
+action： Button选中时的回调。
+
+ |
+| secondaryButton | {
+
+enabled10+?: boolean,
+
+defaultFocus10+?: boolean,
+
+style10+?: [DialogButtonStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#dialogbuttonstyle10%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E),
+
+value: [ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr),
+
+fontColor?: [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor),
+
+backgroundColor?: [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor),
+
+action: () => void;
+
+}
+
+ | 否 | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。
+
+enabled：点击Button是否响应。
+
+默认值：true。
+
+defaultFocus：设置Button是否是默认焦点。
+
+默认值：false。
+
+style：设置Button的风格样式。
+
+默认值：DialogButtonStyle.DEFAULT。
+
+value：Button文本内容。
+
+fontColor：Button文本颜色。
+
+backgroundColor：Button背景颜色。
+
+action： Button选中时的回调。
+
+ |
+
+AlertDialogParamWithOptions10+对象说明
+----------------------------------
+
+继承自[AlertDialogParam](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#alertdialogparam%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| buttons10+ | Array<[AlertDialogButtonOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#alertdialogbuttonoptions10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)\> | 是 | 弹窗容器中的多个按钮。 |
+| buttonDirection10+ | [DialogButtonDirection](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#dialogbuttondirection10%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 按钮排布方向默认值为DialogButtonDirection.AUTO，建议3个以上按钮使用Auto模式（两个以上按钮会切换为纵向模式，通常能显示更多按钮），非Auto模式下，3个以上按钮可能会显示不全，超出显示范围的按钮会被截断。 |
+
+AlertDialogButtonOptions10+对象说明
+-------------------------------
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| enabled | boolean | 否 | 点击Button是否响应，默认值true。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| defaultFocus | boolean | 否 | 设置Button是否是默认焦点，默认值false。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| style | [DialogButtonStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#dialogbuttonstyle10%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 设置Button的风格样式，默认值DialogButtonStyle.DEFAULT。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| value | [ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr) | 是 | Button的文本内容，若值为null，则该按钮不显示。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| fontColor | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | Button的文本颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| backgroundColor | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | Button背景颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| action | () => void | 是 | Button选中时的回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| primary12+ | boolean | 否 | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。在defaultFocus为true时不生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+
+DialogButtonDirection10+枚举说明
+----------------------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 描述 |
+| --- | --- |
+| AUTO | 两个及以下按钮水平排布，两个以上为竖直排布。 |
+| HORIZONTAL | 按钮水平布局。 |
+| VERTICAL | 按钮竖直布局。 |
+
+DialogAlignment枚举说明
+-------------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 描述 |
+| --- | --- |
+| Top | 垂直顶部对齐。 |
+| Center | 垂直居中对齐。 |
+| Bottom | 垂直底部对齐。 |
+| Default | 默认对齐。 |
+| TopStart8+ | 左上对齐。 |
+| TopEnd8+ | 右上对齐。 |
+| CenterStart8+ | 左中对齐。 |
+| CenterEnd8+ | 右中对齐。 |
+| BottomStart8+ | 左下对齐。 |
+| BottomEnd8+ | 右下对齐。 |
+
+Rectangle8+类型说明
+---------------
+
+Rectangle是各种Dialog中maskRect参数的类型。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| x | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 弹窗遮蔽层区域相对于窗口左上角的x轴坐标。
+默认值：0vp
+
+ |
+| y | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 弹窗遮蔽层区域相对于窗口左上角的y轴坐标。
+
+默认值：0vp
+
+ |
+| width | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 弹窗遮蔽层区域的宽度。
+
+默认值：'100%'
+
+ |
+| height | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 弹窗遮蔽层区域的高度。
+
+默认值：'100%'
+
+ |
+
+说明
+
+x和y可以设置正负值百分比。当x设置为'100%'时表示遮蔽层区域往右偏移窗口本身宽度大小，当x设置为'-100%'时表示遮蔽层区域往左偏移窗口本身宽度大小。当y设置为'100%'时表示遮蔽层区域往下偏移窗口本身高度大小，当y设置为'-100%'时表示遮蔽层区域往上偏移窗口本身高度大小。
+
+width和height只能设置正值，支持百分比，如果设置为负值，那么该值将被重置为默认值。
+
+百分比相对于窗口自身宽高进行计算。
+
+DismissDialogAction12+类型说明
+--------------------------
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| dismiss | Callback<void> | 是 | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
+| reason | [DismissReason](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#dismissreason12) | 是 | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
+
+TextStyle12+类型说明
+----------------
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| wordBreak | [WordBreak](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#wordbreak11) | 否 | 弹窗message内容的文本截断方式。
+默认值：WordBreak.BREAK\_ALL
+
+ |
+
+示例
+--
+
+### 示例1
+
+分别弹出一、二、三个按钮的弹窗。
+
+2.  @Entry
+3.  @Component
+4.  struct AlertDialogExample {
+5.    build() {
+6.      Column({ space: 5 }) {
+7.        Button('one button dialog')
+8.          .onClick(() => {
+9.            AlertDialog.show(
+10.              {
+11.                title: 'title',
+12.                message: 'text',
+13.                autoCancel: true,
+14.                alignment: DialogAlignment.Bottom,
+15.                offset: { dx: 0, dy: -20 },
+16.                gridCount: 3,
+17.                confirm: {
+18.                  value: 'button',
+19.                  action: () => {
+20.                    console.info('Button-clicking callback')
+21.                  }
+22.                },
+23.                cancel: () => {
+24.                  console.info('Closed callbacks')
+25.                },
+26.                onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+27.                  console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+28.                  console.log("dialog onWillDismiss")
+29.                  if (dismissDialogAction.reason == DismissReason.PRESS\_BACK) {
+30.                    dismissDialogAction.dismiss()
+31.                  }
+32.                  if (dismissDialogAction.reason == DismissReason.TOUCH\_OUTSIDE) {
+33.                    dismissDialogAction.dismiss()
+34.                  }
+35.                }
+36.              }
+37.            )
+38.          })
+39.          .backgroundColor(0x317aff)
+40.        Button('two button dialog')
+41.          .onClick(() => {
+42.            AlertDialog.show(
+43.              {
+44.                title: 'title',
+45.                subtitle: 'subtitle',
+46.                message: 'text',
+47.                autoCancel: true,
+48.                alignment: DialogAlignment.Bottom,
+49.                gridCount: 4,
+50.                offset: { dx: 0, dy: -20 },
+51.                primaryButton: {
+52.                  value: 'cancel',
+53.                  action: () => {
+54.                    console.info('Callback when the first button is clicked')
+55.                  }
+56.                },
+57.                secondaryButton: {
+58.                  enabled: true,
+59.                  defaultFocus: true,
+60.                  style: DialogButtonStyle.HIGHLIGHT,
+61.                  value: 'ok',
+62.                  action: () => {
+63.                    console.info('Callback when the second button is clicked')
+64.                  }
+65.                },
+66.                cancel: () => {
+67.                  console.info('Closed callbacks')
+68.                },
+69.                onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+70.                  console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+71.                  console.log("dialog onWillDismiss")
+72.                  if (dismissDialogAction.reason == DismissReason.PRESS\_BACK) {
+73.                    dismissDialogAction.dismiss()
+74.                  }
+75.                  if (dismissDialogAction.reason == DismissReason.TOUCH\_OUTSIDE) {
+76.                    dismissDialogAction.dismiss()
+77.                  }
+78.                }
+79.              }
+80.            )
+81.          }).backgroundColor(0x317aff)
+82.          Button('three button dialog')
+83.          .onClick(() => {
+84.            AlertDialog.show(
+85.              {
+86.                title: 'title',
+87.                subtitle: 'subtitle',
+88.                message: 'text',
+89.                autoCancel: true,
+90.                alignment: DialogAlignment.Bottom,
+91.                gridCount: 4,
+92.                offset: { dx: 0, dy: -20 },
+93.                buttonDirection: DialogButtonDirection.HORIZONTAL,
+94.                buttons: \[
+95.                  {
+96.                    value: '按钮',
+97.                    action: () => {
+98.                      console.info('Callback when button1 is clicked')
+99.                    }
+100.                  },
+101.                  {
+102.                    value: '按钮',
+103.                    action: () => {
+104.                      console.info('Callback when button2 is clicked')
+105.                    }
+106.                  },
+107.                  {
+108.                    value: '按钮',
+109.                    enabled: true,
+110.                    defaultFocus: true,
+111.                    style: DialogButtonStyle.HIGHLIGHT,
+112.                    action: () => {
+113.                      console.info('Callback when button3 is clicked')
+114.                    }
+115.                  },
+116.                \],
+117.                cancel: () => {
+118.                  console.info('Closed callbacks')
+119.                },
+120.                onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+121.                  console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+122.                  console.log("dialog onWillDismiss")
+123.                  if (dismissDialogAction.reason == DismissReason.PRESS\_BACK) {
+124.                    dismissDialogAction.dismiss()
+125.                  }
+126.                  if (dismissDialogAction.reason == DismissReason.TOUCH\_OUTSIDE) {
+127.                    dismissDialogAction.dismiss()
+128.                  }
+129.                }
+130.              }
+131.            )
+132.          }).backgroundColor(0x317aff)
+133.      }.width('100%').margin({ top: 5 })
+134.    }
+135.  }
+
+![Image 1](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122311.29019259054229812560327544263657:50001231000000:2800:8C1E85659C86CE3906662F2EBD4C9746C9A19A33B33BE339014D189A1744CAE2.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+弹出可展示在主窗外的弹窗。
+
+2.  @Entry
+3.  @Component
+4.  struct AlertDialogExample {
+5.    build() {
+6.      Column({ space: 5 }) {
+7.        Button('one button dialog')
+8.          .onClick(() => {
+9.            AlertDialog.show(
+10.              {
+11.                title: 'title',
+12.                subtitle: 'subtitle',
+13.                message: 'text',
+14.                autoCancel: true,
+15.                alignment: DialogAlignment.Center,
+16.                gridCount: 4,
+17.                showInSubWindow: true,
+18.                isModal: true,
+19.                offset: { dx: 0, dy: -20 },
+20.                buttonDirection: DialogButtonDirection.HORIZONTAL,
+21.                buttons: \[
+22.                  {
+23.                    value: '按钮',
+24.                    action: () => {
+25.                      console.info('Callback when button1 is clicked')
+26.                    }
+27.                  },
+28.                  {
+29.                    value: '按钮',
+30.                    action: () => {
+31.                      console.info('Callback when button2 is clicked')
+32.                    }
+33.                  },
+34.                  {
+35.                    value: '按钮',
+36.                    enabled: true,
+37.                    defaultFocus: true,
+38.                    style: DialogButtonStyle.HIGHLIGHT,
+39.                    action: () => {
+40.                      console.info('Callback when button3 is clicked')
+41.                    }
+42.                  },
+43.                \],
+44.                cancel: () => {
+45.                  console.info('Closed callbacks')
+46.                },
+47.                onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+48.                  console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+49.                  console.log("dialog onWillDismiss")
+50.                  if (dismissDialogAction.reason == DismissReason.PRESS\_BACK) {
+51.                    dismissDialogAction.dismiss()
+52.                  }
+53.                  if (dismissDialogAction.reason == DismissReason.TOUCH\_OUTSIDE) {
+54.                    dismissDialogAction.dismiss()
+55.                  }
+56.                }
+57.              })
+58.          })
+59.      }.width('100%').margin({ top: 5 }).backgroundColor(0x317aff)
+60.    }
+61.  }
+
+![Image 2](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122312.92526764400002893010413681951815:50001231000000:2800:DEE314BF81F9BA238D30D2033AB51CF5C707A534D2D237B6A653CB12B4D57502.jpg?needInitFileName=true?needInitFileName=true)
+
+### 示例3
+
+AlertDialog显示动画持续3秒，退出动画持续100毫秒
+
+2.  import { router } from '@kit.ArkUI';
+3.  @Entry
+4.  @Component
+5.  struct AlertDialogExample {
+6.    build() {
+7.      Column({ space: 5 }) {
+8.        Button('AlertDialog Set Duration')
+9.          .onClick(()=>{
+10.              AlertDialog.show(
+11.                {
+12.                  title: 'AlertDialog 1',
+13.                  message: 'Set Animation Duration open 3 second, close 100ms',
+14.                  autoCancel: true,
+15.                  alignment: DialogAlignment.Top,
+16.                  offset: { dx: 0, dy: -20 },
+17.                  gridCount: 3,
+18.                  transition:TransitionEffect.asymmetric(TransitionEffect.OPACITY
+19.                    .animation({ duration: 3000, curve: Curve.Sharp }).combine(TransitionEffect.scale({x: 1.5, y: 1.5}).animation({duration: 3000, curve: Curve.Sharp})),
+20.                    TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
+21.                      .combine(TransitionEffect.scale({x: 0.5, y: 0.5}).animation({duration: 100, curve: Curve.Smooth}))),
+22.                  confirm: {
+23.                    value: 'button',
+24.                    action: () => {
+25.                      console.info('Button-clicking callback')
+26.                    }
+27.                  },
+28.                  cancel: () => {
+29.                    console.info('Closed callbacks')
+30.                  }
+31.                }
+32.              )
+33.          })
+34.          .backgroundColor(0x317aff).height("88px")
+35.      }.width('100%').margin({ top: 5 })
+36.    }
+37.  }
+
+![Image 3](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122312.27059524649424245958609506882836:50001231000000:2800:DB74733A933091938F0B7D25C83037917A31459620271DBC6AAF5CAFC743C6CE.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例4
+
+该示例定义了AlertDialog的样式，如宽度、高度、背景色、阴影等等
+
+2.  @Entry
+3.  @Component
+4.  struct AlertDialogExample {
+5.    build() {
+6.      Column({ space: 5 }) {
+7.        Button('one button dialog')
+8.          .onClick(() => {
+9.            AlertDialog.show(
+10.              {
+11.                title: 'title',
+12.                message: 'text',
+13.                autoCancel: true,
+14.                alignment: DialogAlignment.Center,
+15.                offset: { dx: 0, dy: -20 },
+16.                gridCount: 3,
+17.                width: 300,
+18.                height: 200,
+19.                cornerRadius: 20,
+20.                borderWidth: 1,
+21.                borderStyle: BorderStyle.Dashed,
+22.                borderColor: Color.Blue,
+23.                backgroundColor: Color.White,
+24.                shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+25.                textStyle: { wordBreak: WordBreak.BREAK\_ALL },
+26.                confirm: {
+27.                  value: 'button',
+28.                  action: () => {
+29.                    console.info('Button-clicking callback')
+30.                  }
+31.                },
+32.                cancel: () => {
+33.                  console.info('Closed callbacks')
+34.                },
+35.                onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+36.                  console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+37.                  console.log("dialog onWillDismiss")
+38.                  if (dismissDialogAction.reason == DismissReason.PRESS\_BACK) {
+39.                    dismissDialogAction.dismiss()
+40.                  }
+41.                  if (dismissDialogAction.reason == DismissReason.TOUCH\_OUTSIDE) {
+42.                    dismissDialogAction.dismiss()
+43.                  }
+44.                }
+45.              }
+46.            )
+47.          })
+48.          .backgroundColor(0x317aff)
+49.      }.width('100%').margin({ top: 5 })
+50.    }
+51.  }
+
+![Image 4](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122312.12022619354188301621615740181821:50001231000000:2800:7E1E2BCB07282E72E51B050E66147A213A69568816F8FDF83488BE4AECA6687C.gif?needInitFileName=true?needInitFileName=true)

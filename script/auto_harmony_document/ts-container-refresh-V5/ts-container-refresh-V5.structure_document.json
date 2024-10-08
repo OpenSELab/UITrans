@@ -1,0 +1,133 @@
+{
+    "description": "可以进行页面下拉操作并显示刷新动效的容器组件。可以包含单个子组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Refresh(value: RefreshOptions)",
+            "params": {
+                "value": {
+                    "type": "RefreshOptions",
+                    "required": true,
+                    "description": "刷新选项对象。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "refreshing": {
+            "description": "当前组件是否正在刷新。",
+            "params": {
+                "refreshing": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "当前组件是否正在刷新。",
+                    "default": false
+                }
+            }
+        },
+        "offset": {
+            "description": "下拉起点距离组件顶部的距离。",
+            "params": {
+                "offset": {
+                    "type": ["string", "number"],
+                    "required": false,
+                    "description": "下拉起点距离组件顶部的距离。",
+                    "default": 16
+                }
+            }
+        },
+        "friction": {
+            "description": "下拉摩擦系数，取值范围为0到100。",
+            "params": {
+                "friction": {
+                    "type": ["number", "string"],
+                    "required": false,
+                    "description": "下拉摩擦系数，取值范围为0到100。",
+                    "default": 62
+                }
+            }
+        },
+        "builder": {
+            "description": "自定义刷新区域显示内容。",
+            "params": {
+                "builder": {
+                    "type": "CustomBuilder",
+                    "required": false,
+                    "description": "自定义刷新区域显示内容。"
+                }
+            }
+        },
+        "promptText": {
+            "description": "设置刷新区域底部显示的自定义文本。",
+            "params": {
+                "promptText": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "设置刷新区域底部显示的自定义文本。"
+                }
+            }
+        },
+        "refreshOffset": {
+            "description": "设置触发刷新的下拉偏移量。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "下拉偏移量，单位vp。",
+                    "default": 64
+                }
+            }
+        },
+        "pullToRefresh": {
+            "description": "设置当下拉距离超过refreshOffset时是否触发刷新。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否触发刷新。",
+                    "default": true
+                }
+            }
+        },
+        "pullDownRatio": {
+            "description": "设置下拉跟手系数。",
+            "params": {
+                "ratio": {
+                    "type": "Optional<number>",
+                    "required": true,
+                    "description": "下拉跟手系数。",
+                    "default": null
+                }
+            }
+        }
+    },
+    "events": {
+        "onStateChange": {
+            "description": "当前刷新状态变更时，触发回调。",
+            "params": {
+                "state": {
+                    "type": "RefreshStatus",
+                    "required": true,
+                    "description": "当前刷新状态。"
+                }
+            }
+        },
+        "onRefreshing": {
+            "description": "进入刷新状态时触发回调。",
+            "params": {}
+        },
+        "onOffsetChange": {
+            "description": "下拉距离发生变化时触发回调。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "下拉距离。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

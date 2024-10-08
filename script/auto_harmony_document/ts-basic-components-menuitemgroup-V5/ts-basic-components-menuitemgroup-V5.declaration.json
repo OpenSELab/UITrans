@@ -1,0 +1,53 @@
+{
+    "description": "该组件用来展示菜单MenuItem的分组。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "MenuItemGroup(value?: MenuItemGroupOptions)",
+            "params": {
+                "value": {
+                    "type": "MenuItemGroupOptions",
+                    "required": false,
+                    "description": "包含设置MenuItemGroup的标题和尾部显示信息。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "header": {
+            "description": "设置对应group的标题显示信息。",
+            "params": {
+                "value": {
+                    "type": [
+                        "ResourceStr",
+                        "CustomBuilder"
+                    ],
+                    "required": false,
+                    "description": "标题显示信息。"
+                }
+            }
+        },
+        "footer": {
+            "description": "设置对应group的尾部显示信息。",
+            "params": {
+                "value": {
+                    "type": [
+                        "ResourceStr",
+                        "CustomBuilder"
+                    ],
+                    "required": false,
+                    "description": "尾部显示信息。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "该示例展示了如何在鸿蒙ArkUI中使用Menu组件、MenuItem组件和ContextMenu方法来创建和管理上下文菜单。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上包含一个按钮，点击按钮后会弹出一个上下文菜单，菜单中包含多个菜单项。\n\n布局属性：\n- 按钮的宽度为 100vp，高度为 50vp，内边距为 10vp。\n- 菜单项的宽度为 100vp，高度为 40vp，内边距为 5vp。\n\n组件的样式和外观：\n- 按钮的背景颜色为 #007DFF，字体颜色为白色，字体大小为 16fp。\n- 菜单项的背景颜色为白色，字体颜色为黑色，字体大小为 14fp。\n- 菜单项的边框颜色为 #CCCCCC，边框宽度为 1vp。\n\n组件的排列和嵌套关系：\n- 按钮和菜单项都采用 Flex 布局，按钮居中对齐，菜单项垂直排列。\n- 菜单项之间通过 Flex 组件进行分隔。\n\n组件的功能和交互：\n- 按钮的点击事件会触发 ContextMenu 的显示。\n- 菜单项的点击事件会触发相应的操作，例如打印日志。\n\n整个布局通过 Flex 布局保证按钮和菜单项在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct MenuExample {\n  build() {\n    Column() {\n      // 创建一个按钮，点击按钮后会弹出上下文菜单\n      Button('Open Menu')\n        .width(100) // 按钮宽度为 100vp\n        .height(50) // 按钮高度为 50vp\n        .padding(10) // 按钮内边距为 10vp\n        .backgroundColor('#007DFF') // 按钮背景颜色为 #007DFF\n        .fontColor(Color.White) // 按钮字体颜色为白色\n        .fontSize(16) // 按钮字体大小为 16fp\n        .onClick(() => {\n          // 点击按钮后调用 ContextMenu 方法显示菜单\n          ContextMenu.show({\n            start: { x: 100, y: 100 }, // 菜单显示的起始位置\n            items: [\n              // 创建第一个菜单项\n              MenuItem({\n                content: 'Item 1', // 菜单项内容为 \"Item 1\"\n                action: () => {\n                  console.log('Item 1 clicked'); // 点击菜单项后打印日志\n                }\n              }),\n              // 创建第二个菜单项\n              MenuItem({\n                content: 'Item 2', // 菜单项内容为 \"Item 2\"\n                action: () => {\n                  console.log('Item 2 clicked'); // 点击菜单项后打印日志\n                }\n              })\n            ]\n          });\n        })\n    }\n    .width('100%') // 布局宽度占据整个屏幕\n    .height('100%') // 布局高度占据整个屏幕\n    .padding(10) // 布局内边距为 10vp\n    .backgroundColor('#FFFFFF') // 布局背景颜色为白色\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

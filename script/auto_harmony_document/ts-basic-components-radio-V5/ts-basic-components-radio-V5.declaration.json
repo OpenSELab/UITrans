@@ -1,0 +1,77 @@
+{
+    "description": "单选框，提供相应的用户交互选择项。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Radio(options: RadioOptions)",
+            "params": {
+                "options": {
+                    "type": "RadioOptions",
+                    "required": true,
+                    "description": "单选框的配置选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "checked": {
+            "description": "设置单选框的选中状态。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "单选框的选中状态。",
+                    "default": false
+                }
+            }
+        },
+        "radioStyle": {
+            "description": "设置单选框选中状态和非选中状态的样式。",
+            "params": {
+                "value": {
+                    "type": "RadioStyle",
+                    "required": false,
+                    "description": "单选框的样式配置。"
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制Radio内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<RadioConfiguration>",
+                    "required": true,
+                    "description": "定制Radio内容区的配置。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "单选框选中状态改变时触发回调。",
+            "params": {
+                "isChecked": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "单选框的状态。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过 Flex 布局实现了一个展示多个单选按钮（Radio）及其状态效果的界面。布局宽度占据整个屏幕，高度根据内容自适应，内边距为顶部 30vp。组件的垂直方向上被分为三个部分，每个部分包含一个标题和一个单选按钮。每个单选按钮组的按钮以垂直布局方式排列，按钮之间的间距均匀分布，且对齐方式为居中对齐。\n单选按钮的样式包括背景颜色、宽度和高度等属性，支持不同的样式展示。单选按钮组之间通过 Flex 组件进行分隔。单选按钮的功能包括点击事件和状态效果，用户可以通过点击单选按钮触发相应操作，单选按钮也可以在选中或未选中状态下进行展示。\n整个布局通过 Flex 布局保证单选按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct RadioExample {\n  build() {\n    Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {\n      Column() {\n        Text('Radio1') // 显示文本 \"Radio1\"\n        Radio({ value: 'Radio1', group: 'radioGroup' }).checked(true) // 创建一个单选按钮，值为 \"Radio1\"，属于 \"radioGroup\" 组，默认选中\n          .radioStyle({\n            checkedBackgroundColor: Color.Pink // 设置选中状态下的背景颜色为粉色\n          })\n          .height(50) // 设置单选按钮的高度为 50vp\n          .width(50) // 设置单选按钮的宽度为 50vp\n          .onChange((isChecked: boolean) => {\n            console.log('Radio1 status is ' + isChecked) // 当单选按钮状态改变时，输出当前状态到控制台\n          })\n      }\n      Column() {\n        Text('Radio2') // 显示文本 \"Radio2\"\n        Radio({ value: 'Radio2', group: 'radioGroup' }).checked(false) // 创建一个单选按钮，值为 \"Radio2\"，属于 \"radioGroup\" 组，默认未选中\n          .radioStyle({\n            checkedBackgroundColor: Color.Pink // 设置选中状态下的背景颜色为粉色\n          })\n          .height(50) // 设置单选按钮的高度为 50vp\n          .width(50) // 设置单选按钮的宽度为 50vp\n          .onChange((isChecked: boolean) => {\n            console.log('Radio2 status is ' + isChecked) // 当单选按钮状态改变时，输出当前状态到控制台\n          })\n      }\n      Column() {\n        Text('Radio3') // 显示文本 \"Radio3\"\n        Radio({ value: 'Radio3', group: 'radioGroup' }).checked(false) // 创建一个单选按钮，值为 \"Radio3\"，属于 \"radioGroup\" 组，默认未选中\n          .radioStyle({\n            checkedBackgroundColor: Color.Pink // 设置选中状态下的背景颜色为粉色\n          })\n          .height(50) // 设置单选按钮的高度为 50vp\n          .width(50) // 设置单选按钮的宽度为 50vp\n          .onChange((isChecked: boolean) => {\n            console.log('Radio3 status is ' + isChecked) // 当单选按钮状态改变时，输出当前状态到控制台\n          })\n      }\n    }.padding({ top: 30 }) // 设置顶部内边距为 30vp\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Flex 布局实现了一个展示三种不同样式单选按钮（Radio）的界面。布局宽度占据整个屏幕，高度根据内容自适应，内边距为顶部 30vp。组件的垂直方向上被分为三个部分，每个部分包含一个标题和一个单选按钮。每个单选按钮组的按钮以垂直布局方式排列，按钮之间的间距均匀分布，且对齐方式为居中对齐。\n单选按钮的样式包括高度、宽度、选中状态的指示器类型（如勾选、点、自定义图片）等属性，支持不同的样式展示。单选按钮组之间通过 Flex 组件进行分隔。单选按钮的功能包括点击事件和状态效果，用户可以通过点击单选按钮触发相应操作，单选按钮也可以在选中或未选中状态下进行展示。\n整个布局通过 Flex 布局保证单选按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct RadioExample {\n  // 自定义单选按钮选中状态的指示器，使用图片资源\n  @Builder \n  indicatorBuilder() {\n    Image($r(\"app.media.star\")) // 使用图片资源作为选中状态的指示器\n  }\n\n  build() {\n    Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {\n      Column() {\n        Text('Radio1') // 单选按钮的标题\n        Radio({ \n          value: 'Radio1', // 单选按钮的值\n          group: 'radioGroup', // 单选按钮所属的组\n          indicatorType: RadioIndicatorType.TICK // 选中状态的指示器类型为勾选\n        }).checked(true) // 默认选中状态\n          .height(50) // 单选按钮的高度\n          .width(80) // 单选按钮的宽度\n          .onChange((isChecked: boolean) => {\n            console.log('Radio1 status is ' + isChecked) // 单选按钮状态变化时的回调函数\n          })\n      }\n      Column() {\n        Text('Radio2') // 单选按钮的标题\n        Radio({ \n          value: 'Radio2', // 单选按钮的值\n          group: 'radioGroup', // 单选按钮所属的组\n          indicatorType: RadioIndicatorType.DOT // 选中状态的指示器类型为点\n        }).checked(false) // 默认未选中状态\n          .height(50) // 单选按钮的高度\n          .width(80) // 单选按钮的宽度\n          .onChange((isChecked: boolean) => {\n            console.log('Radio2 status is ' + isChecked) // 单选按钮状态变化时的回调函数\n          })\n      }\n      Column() {\n        Text('Radio3') // 单选按钮的标题\n        Radio({ \n          value: 'Radio3', // 单选按钮的值\n          group: 'radioGroup', // 单选按钮所属的组\n          indicatorType: RadioIndicatorType.CUSTOM, // 选中状态的指示器类型为自定义\n          indicatorBuilder: () => { this.indicatorBuilder() } // 使用自定义的指示器构建器\n        }).checked(false) // 默认未选中状态\n          .height(50) // 单选按钮的高度\n          .width(80) // 单选按钮的宽度\n          .onChange((isChecked: boolean) => {\n            console.log('Radio3 status is ' + isChecked) // 单选按钮状态变化时的回调函数\n          })\n      }\n    }.padding({ top: 30 }) // 顶部内边距\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个自定义样式的单选按钮组。布局采用垂直排列的列（Column），其中包含两个水平排列的行（Row），每行包含一个自定义样式的单选按钮（Radio）。每个单选按钮的样式通过自定义的 `MyRadioStyle` 类进行设置，包括按钮的类型和选中时的颜色。单选按钮的布局属性包括宽度、高度和内边距。单选按钮的样式包括边框颜色、填充颜色和按钮文本颜色。单选按钮的功能包括点击事件，用户可以通过点击按钮切换其选中状态。",
+            "code": "// 定义一个自定义样式类 `MyRadioStyle`，实现 `ContentModifier` 接口，用于修改单选按钮的样式\nclass MyRadioStyle implements ContentModifier<RadioConfiguration> {\n  // 单选按钮的类型，用于区分不同样式的按钮\n  type: number = 0\n  // 单选按钮选中时的颜色\n  selectedColor: ResourceColor = Color.Black\n\n  // 构造函数，初始化单选按钮的类型和选中颜色\n  constructor(numberType: number, colorType: ResourceColor) {\n    this.type = numberType\n    this.selectedColor = colorType\n  }\n\n  // 实现 `applyContent` 方法，返回一个 `WrappedBuilder`，用于构建单选按钮的内容\n  applyContent(): WrappedBuilder<[RadioConfiguration]> {\n    return wrapBuilder(buildRadio)\n  }\n}\n\n// 定义一个 `@Builder` 函数 `buildRadio`，用于构建单选按钮的内容\n@Builder\nfunction buildRadio(config: RadioConfiguration) {\n  // 使用 `Row` 组件创建一个水平布局，设置间距为 30\n  Row({ space: 30 }) {\n    // 创建一个圆形组件，设置宽度和高度为 50，边框颜色为黑色\n    Circle({ width: 50, height: 50 })\n      .stroke(Color.Black)\n      // 根据单选按钮的选中状态，设置填充颜色为选中颜色或白色\n      .fill(config.checked ? (config.contentModifier as MyRadioStyle).selectedColor : Color.White)\n    // 创建一个按钮组件，设置按钮文本为 \"off\" 或 \"on\"，根据单选按钮的选中状态\n    Button(config.checked ? \"off\" : \"on\")\n      .width(100)\n      // 根据单选按钮的选中状态，设置按钮类型\n      .type(config.checked ? (config.contentModifier as MyRadioStyle).type : ButtonType.Normal)\n      .backgroundColor('#2787D9')\n      // 设置按钮的点击事件，切换单选按钮的选中状态\n      .onClick(() => {\n        if (config.checked) {\n          config.triggerChange(false)\n        } else {\n          config.triggerChange(true)\n        }\n      })\n  }\n}\n\n// 定义一个入口组件 `refreshExample`，使用 `@Entry` 和 `@Component` 装饰器\n@Entry\n@Component\nstruct refreshExample {\n  // 实现 `build` 方法，构建组件的 UI\n  build() {\n    // 使用 `Column` 组件创建一个垂直布局，设置间距为 50\n    Column({ space: 50 }) {\n      // 创建一个水平布局的行\n      Row() {\n        // 创建一个单选按钮，设置值为 \"Radio1\"，组名为 \"radioGroup\"\n        Radio({ value: 'Radio1', group: 'radioGroup' })\n          // 设置单选按钮的样式为 `MyRadioStyle`，类型为 1，选中颜色为 \"#004AAF\"\n          .contentModifier(new MyRadioStyle(1, '#004AAF'))\n          // 设置单选按钮的初始选中状态为 false\n          .checked(false)\n          // 设置单选按钮的宽度为 300，高度为 100\n          .width(300)\n          .height(100)\n      }\n\n      // 创建另一个水平布局的行\n      Row() {\n        // 创建一个单选按钮，设置值为 \"Radio2\"，组名为 \"radioGroup\"\n        Radio({ value: 'Radio2', group: 'radioGroup' })\n          // 设置单选按钮的初始选中状态为 true\n          .checked(true)\n          // 设置单选按钮的宽度为 300，高度为 60\n          .width(300)\n          .height(60)\n          // 设置单选按钮的样式为 `MyRadioStyle`，类型为 2，选中颜色为 \"#004AAF\"\n          .contentModifier(new MyRadioStyle(2, '#004AAF'))\n      }\n    }\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

@@ -1,0 +1,76 @@
+{
+    "description": "通过页签进行内容视图切换的容器组件，每个页签对应一个内容视图。",
+    "interfaces": [
+        {
+            "description": "Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsController})",
+            "params": {
+                "value": {
+                    "type": "object",
+                    "description": "Tabs组件的初始化参数。",
+                    "params": {
+                        "barPosition": {
+                            "type": "BarPosition",
+                            "description": "设置Tabs的页签位置。",
+                            "default": "BarPosition.Start"
+                        },
+                        "index": {
+                            "type": "number",
+                            "description": "设置当前显示页签的索引。",
+                            "default": 0
+                        },
+                        "controller": {
+                            "type": "TabsController",
+                            "description": "设置Tabs控制器。"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "barPosition": {
+            "description": "设置Tabs的页签位置。",
+            "params": {
+                "value": {
+                    "type": "BarPosition",
+                    "required": true,
+                    "description": "页签位置。",
+                    "default": "BarPosition.Start"
+                }
+            }
+        },
+        "index": {
+            "description": "设置当前显示页签的索引。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "页签索引。",
+                    "default": 0
+                }
+            }
+        },
+        "controller": {
+            "description": "设置Tabs控制器。",
+            "params": {
+                "value": {
+                    "type": "TabsController",
+                    "required": true,
+                    "description": "Tabs控制器。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "Tab页签切换后触发的事件。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前显示的index索引，索引从0开始计算。"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,230 @@
+{
+    "description": "弹出框是一种模态窗口，通常用于在保持当前的上下文环境时，临时展示用户需关注的信息或待处理的操作，用户在模态弹出框内完成上述交互任务。模态弹出框需要用户进行交互才能够退出模态模式。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: SizeOptions, title?: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, checkAction?: (isChecked: boolean) => void, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})",
+            "params": {
+                "controller": {
+                    "type": "CustomDialogController",
+                    "required": true,
+                    "description": "提示弹出框控制器。"
+                },
+                "imageRes": {
+                    "type": ["ResourceStr", "PixelMap"],
+                    "required": true,
+                    "description": "展示的图片。"
+                },
+                "imageSize": {
+                    "type": "SizeOptions",
+                    "required": false,
+                    "description": "自定义图片尺寸。",
+                    "default": "64*64vp"
+                },
+                "title": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "提示弹出框标题。"
+                },
+                "content": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "提示弹出框内容。"
+                },
+                "checkTips": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "checkbox的提示内容。"
+                },
+                "isChecked": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "value为true时，表示checkbox已选中，value为false时，表示未选中。",
+                    "default": false
+                },
+                "checkAction": {
+                    "type": "(isChecked: boolean) => void",
+                    "required": false,
+                    "description": "现推荐使用 onCheckedChange12+。"
+                },
+                "primaryButton": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "提示框左侧按钮。"
+                },
+                "secondaryButton": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "提示框右侧按钮。"
+                }
+            }
+        },
+        {
+            "description": "SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, selectedIndex?: number, confirm?: ButtonOptions, radioContent: Array<SheetInfo>})",
+            "params": {
+                "controller": {
+                    "type": "CustomDialogController",
+                    "required": true,
+                    "description": "选择弹出框控制器。"
+                },
+                "title": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "选择弹出框标题。"
+                },
+                "content": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "选择弹出框内容。"
+                },
+                "selectedIndex": {
+                    "type": "number",
+                    "required": false,
+                    "description": "选择弹出框的选中项。",
+                    "default": -1
+                },
+                "confirm": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "选择弹出框底部按钮。"
+                },
+                "radioContent": {
+                    "type": "Array<SheetInfo>",
+                    "required": true,
+                    "description": "选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。"
+                }
+            }
+        },
+        {
+            "description": "ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})",
+            "params": {
+                "controller": {
+                    "type": "CustomDialogController",
+                    "required": true,
+                    "description": "确认弹出框控制器。"
+                },
+                "title": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "确认弹出框标题。"
+                },
+                "content": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "确认弹出框内容。"
+                },
+                "checkTips": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "checkbox的提示内容。"
+                },
+                "isChecked": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "value为true时，表示checkbox已选中，value为false时，表示未选中。",
+                    "default": false
+                },
+                "primaryButton": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "确认框左侧按钮。"
+                },
+                "secondaryButton": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "确认框右侧按钮。"
+                }
+            }
+        },
+        {
+            "description": "AlertDialog({controller: CustomDialogController, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})",
+            "params": {
+                "controller": {
+                    "type": "CustomDialogController",
+                    "required": true,
+                    "description": "确认弹出框控制器。"
+                },
+                "primaryTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "确认框一级标题。"
+                },
+                "secondaryTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "确认框二级标题。"
+                },
+                "content": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "确认弹出框内容。"
+                },
+                "primaryButton": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "确认框左侧按钮。"
+                },
+                "secondaryButton": {
+                    "type": "ButtonOptions",
+                    "required": false,
+                    "description": "确认框右侧按钮。"
+                }
+            }
+        },
+        {
+            "description": "LoadingDialog({controller: CustomDialogController, content?: ResourceStr})",
+            "params": {
+                "controller": {
+                    "type": "CustomDialogController",
+                    "required": true,
+                    "description": "加载弹出框控制器。"
+                },
+                "content": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "加载弹出框内容。"
+                }
+            }
+        },
+        {
+            "description": "CustomContentDialog({controller: CustomDialogController, contentBuilder: () => void, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, contentAreaPadding?: Padding, buttons?: ButtonOptions[]})",
+            "params": {
+                "controller": {
+                    "type": "CustomDialogController",
+                    "required": true,
+                    "description": "自定义内容区弹出框控制器。"
+                },
+                "contentBuilder": {
+                    "type": "() => void",
+                    "required": true,
+                    "description": "自定义内容区构建函数。"
+                },
+                "primaryTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "自定义内容区弹出框一级标题。"
+                },
+                "secondaryTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "自定义内容区弹出框二级标题。"
+                },
+                "contentAreaPadding": {
+                    "type": "Padding",
+                    "required": false,
+                    "description": "自定义内容区填充。"
+                },
+                "buttons": {
+                    "type": "ButtonOptions[]",
+                    "required": false,
+                    "description": "自定义内容区按钮。"
+                }
+            }
+        }
+    ],
+    "attributes": {},
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

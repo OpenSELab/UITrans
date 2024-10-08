@@ -1,0 +1,240 @@
+{
+    "description": "时间滑动选择器弹窗 (TimePickerDialog) 是一个全局UI方法，用于以24小时的时间区间创建时间滑动选择器，并展示在弹窗上。",
+    "details": "该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见UIContext说明。从API version 10开始，可以通过使用UIContext中的showTimePickerDialog来明确UI的执行上下文。",
+    "interfaces": [
+        {
+            "description": "static show(options?: TimePickerDialogOptions)",
+            "params": {
+                "options": {
+                    "type": "TimePickerDialogOptions",
+                    "required": false,
+                    "description": "配置时间选择器弹窗的参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "useMilitaryTime": {
+            "description": "展示时间是否为24小时制，默认为12小时制。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否使用24小时制。",
+                    "default": false
+                }
+            }
+        },
+        "disappearTextStyle": {
+            "description": "设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "required": false,
+                    "description": "文本样式。",
+                    "default": {
+                        "color": "#ff182431",
+                        "font": {
+                            "size": "14fp",
+                            "weight": "FontWeight.Regular"
+                        }
+                    }
+                }
+            }
+        },
+        "textStyle": {
+            "description": "设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "required": false,
+                    "description": "文本样式。",
+                    "default": {
+                        "color": "#ff182431",
+                        "font": {
+                            "size": "16fp",
+                            "weight": "FontWeight.Regular"
+                        }
+                    }
+                }
+            }
+        },
+        "selectedTextStyle": {
+            "description": "设置选中项的文本颜色、字号、字体粗细。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "required": false,
+                    "description": "文本样式。",
+                    "default": {
+                        "color": "#ff007dff",
+                        "font": {
+                            "size": "20vp",
+                            "weight": "FontWeight.Medium"
+                        }
+                    }
+                }
+            }
+        },
+        "acceptButtonStyle": {
+            "description": "设置确认按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。",
+            "params": {
+                "value": {
+                    "type": "PickerDialogButtonStyle",
+                    "required": false,
+                    "description": "按钮样式。"
+                }
+            }
+        },
+        "cancelButtonStyle": {
+            "description": "设置取消按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。",
+            "params": {
+                "value": {
+                    "type": "PickerDialogButtonStyle",
+                    "required": false,
+                    "description": "按钮样式。"
+                }
+            }
+        },
+        "alignment": {
+            "description": "弹窗在竖直方向上的对齐方式。",
+            "params": {
+                "value": {
+                    "type": "DialogAlignment",
+                    "required": false,
+                    "description": "对齐方式。",
+                    "default": "DialogAlignment.Default"
+                }
+            }
+        },
+        "offset": {
+            "description": "弹窗相对alignment所在位置的偏移量。",
+            "params": {
+                "value": {
+                    "type": "Offset",
+                    "required": false,
+                    "description": "偏移量。",
+                    "default": {
+                        "dx": 0,
+                        "dy": 0
+                    }
+                }
+            }
+        },
+        "maskRect": {
+            "description": "弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。",
+            "params": {
+                "value": {
+                    "type": "Rectangle",
+                    "required": false,
+                    "description": "遮蔽层区域。",
+                    "default": {
+                        "x": 0,
+                        "y": 0,
+                        "width": "100%",
+                        "height": "100%"
+                    }
+                }
+            }
+        },
+        "backgroundColor": {
+            "description": "弹窗背板颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "背景颜色。",
+                    "default": "Color.Transparent"
+                }
+            }
+        },
+        "backgroundBlurStyle": {
+            "description": "弹窗背板模糊材质。",
+            "params": {
+                "value": {
+                    "type": "BlurStyle",
+                    "required": false,
+                    "description": "模糊材质。",
+                    "default": "BlurStyle.COMPONENT_ULTRA_THICK"
+                }
+            }
+        },
+        "shadow": {
+            "description": "设置弹窗背板的阴影。",
+            "params": {
+                "value": {
+                    "type": [
+                        "ShadowOptions",
+                        "ShadowStyle"
+                    ],
+                    "required": false,
+                    "description": "阴影样式。"
+                }
+            }
+        },
+        "dateTimeOptions": {
+            "description": "设置时分是否显示前置0，目前只支持设置hour和minute参数。",
+            "params": {
+                "value": {
+                    "type": "DateTimeOptions",
+                    "required": false,
+                    "description": "日期时间选项。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onAccept": {
+            "description": "点击弹窗中的“确定”按钮时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "TimePickerResult",
+                    "required": false,
+                    "description": "选中时间的结果。"
+                }
+            }
+        },
+        "onCancel": {
+            "description": "点击弹窗中的“取消”按钮时触发该回调。",
+            "params": {}
+        },
+        "onChange": {
+            "description": "滑动弹窗中的选择器使当前选中时间改变时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "TimePickerResult",
+                    "required": false,
+                    "description": "选中时间的结果。"
+                }
+            }
+        },
+        "onDidAppear": {
+            "description": "弹窗弹出时的事件回调。",
+            "params": {}
+        },
+        "onDidDisappear": {
+            "description": "弹窗消失时的事件回调。",
+            "params": {}
+        },
+        "onWillAppear": {
+            "description": "弹窗显示动效前的事件回调。",
+            "params": {}
+        },
+        "onWillDisappear": {
+            "description": "弹窗退出动效前的事件回调。",
+            "params": {}
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过Column布局实现了一个展示两种时间选择对话框（TimePickerDialog）的界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上被分为两个部分，每个部分包含一个按钮。每个按钮以水平布局方式排列，按钮之间的间距为20vp，且对齐方式为居中对齐。\n按钮的样式包括默认的背景颜色、边框圆角（或半径）、宽度和高度等属性。按钮的功能包括点击事件，用户可以通过点击按钮触发相应的时间选择对话框。\n时间选择对话框的样式包括文本颜色、字体大小和字体粗细等属性，支持不同的样式展示。时间选择对话框的功能包括选择时间、确认、取消、时间变化等事件，用户可以通过选择时间并确认来更新选择的时间，或者通过取消来关闭对话框。\n整个布局通过Column布局保证按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "// xxx.ets\n@Entry\n@Component\nstruct TimePickerDialogExample {\n  // 定义一个私有变量selectTime，用于存储当前选择的时间\n  private selectTime: Date = new Date('2020-12-25T08:30:00')\n\n  build() {\n    Column() {\n      // 创建一个按钮，点击后弹出12小时制的时间选择对话框\n      Button(\"TimePickerDialog 12小时制\")\n        .margin(20) // 设置按钮的外边距为20vp\n        .onClick(() => {\n          TimePickerDialog.show({\n            selected: this.selectTime, // 设置初始选择的时间\n            disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } }, // 设置消失文本的样式\n            textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } }, // 设置普通文本的样式\n            selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } }, // 设置选中时间的文本样式\n            onAccept: (value: TimePickerResult) => {\n              // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间\n              if (value.hour != undefined && value.minute != undefined) {\n                this.selectTime.setHours(value.hour, value.minute)\n                console.info(\"TimePickerDialog:onAccept()\" + JSON.stringify(value))\n              }\n            },\n            onCancel: () => {\n              console.info(\"TimePickerDialog:onCancel()\")\n            },\n            onChange: (value: TimePickerResult) => {\n              console.info(\"TimePickerDialog:onChange()\" + JSON.stringify(value))\n            },\n            onDidAppear: () => {\n              console.info(\"TimePickerDialog:onDidAppear()\")\n            },\n            onDidDisappear: () => {\n              console.info(\"TimePickerDialog:onDidDisappear()\")\n            },\n            onWillAppear: () => {\n              console.info(\"TimePickerDialog:onWillAppear()\")\n            },\n            onWillDisappear: () => {\n              console.info(\"TimePickerDialog:onWillDisappear()\")\n            }\n          })\n        })\n      // 创建一个按钮，点击后弹出24小时制的时间选择对话框\n      Button(\"TimePickerDialog 24小时制\")\n        .margin(20) // 设置按钮的外边距为20vp\n        .onClick(() => {\n          TimePickerDialog.show({\n            selected: this.selectTime, // 设置初始选择的时间\n            useMilitaryTime: true, // 设置为24小时制\n            disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } }, // 设置消失文本的样式\n            textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } }, // 设置普通文本的样式\n            selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } }, // 设置选中时间的文本样式\n            onAccept: (value: TimePickerResult) => {\n              if (value.hour != undefined && value.minute != undefined) {\n                this.selectTime.setHours(value.hour, value.minute)\n                console.info(\"TimePickerDialog:onAccept()\" + JSON.stringify(value))\n              }\n            },\n            onCancel: () => {\n              console.info(\"TimePickerDialog:onCancel()\")\n            },\n            onChange: (value: TimePickerResult) => {\n              console.info(\"TimePickerDialog:onChange()\" + JSON.stringify(value))\n            },\n            onDidAppear: () => {\n              console.info(\"TimePickerDialog:onDidAppear()\")\n            },\n            onDidDisappear: () => {\n              console.info(\"TimePickerDialog:onDidDisappear()\")\n            },\n            onWillAppear: () => {\n              console.info(\"TimePickerDialog:onWillAppear()\")\n            },\n            onWillDisappear: () => {\n              console.info(\"TimePickerDialog:onWillDisappear()\")\n            }\n          })\n        })\n    }.width('100%') // 设置Column的宽度为100%\n  }\n}"
+        },
+        {
+            "description": "该组件展示了一个按钮，点击按钮后会弹出一个时间选择对话框（TimePickerDialog）。布局宽度占据整个屏幕，按钮位于屏幕中央，按钮的文本为“TimePickerDialog 24小时制”。按钮的样式包括外边距为20vp，点击按钮后会触发一个事件，弹出时间选择对话框。\n\n时间选择对话框支持24小时制，并且可以自定义对话框中各个元素的样式，包括文本颜色、字体大小、字体粗细等。对话框中的按钮（确认和取消）也可以自定义样式，包括按钮类型、样式模式、角色、字体颜色、字体大小、字体粗细、字体样式、字体家族、背景颜色和边框圆角等。\n\n对话框还支持多个生命周期事件，如对话框显示前、显示后、消失前、消失后等，这些事件可以通过回调函数进行处理。",
+            "code": "// xxx.ets\n@Entry\n@Component\nstruct TimePickerDialogExample {\n  // 定义一个私有变量selectTime，初始值为2020年12月25日8:30:00\n  private selectTime: Date = new Date('2020-12-25T08:30:00')\n\n  build() {\n    Column() {\n      // 创建一个按钮，按钮文本为“TimePickerDialog 24小时制”，外边距为20vp\n      Button(\"TimePickerDialog 24小时制\")\n        .margin(20)\n        .onClick(() => {\n          // 点击按钮后显示时间选择对话框\n          TimePickerDialog.show({\n            // 设置对话框的初始选中时间为selectTime\n            selected: this.selectTime,\n            // 设置对话框使用24小时制\n            useMilitaryTime: true,\n            // 设置对话框消失时的文本样式，颜色为红色，字体大小为15，字体粗细为较细\n            disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },\n            // 设置对话框中普通文本的样式，颜色为黑色，字体大小为20，字体粗细为正常\n            textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },\n            // 设置对话框中选中时间的文本样式，颜色为蓝色，字体大小为30，字体粗细为加粗\n            selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },\n            // 设置对话框中确认按钮的样式，按钮类型为普通，样式模式为正常，角色为普通，字体颜色为红色，字体大小为26fp，字体粗细为加粗，字体样式为正常，字体家族为sans-serif，背景颜色为半透明红色，边框圆角为20\n            acceptButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Red,\n              fontSize: '26fp', fontWeight: FontWeight.Bolder, fontStyle: FontStyle.Normal, fontFamily: 'sans-serif', backgroundColor:'#80834511',\n              borderRadius: 20 },\n            // 设置对话框中取消按钮的样式，按钮类型为普通，样式模式为正常，角色为普通，字体颜色为蓝色，字体大小为16fp，字体粗细为正常，字体样式为斜体，字体家族为sans-serif，背景颜色为半透明蓝色，边框圆角为10\n            cancelButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Blue,\n              fontSize: '16fp', fontWeight: FontWeight.Normal, fontStyle: FontStyle.Italic, fontFamily: 'sans-serif', backgroundColor:'#50182431',\n              borderRadius: 10 },\n            // 当用户点击确认按钮时，更新selectTime的值，并在控制台输出选中时间\n            onAccept: (value: TimePickerResult) => {\n              if (value.hour != undefined && value.minute != undefined) {\n                this.selectTime.setHours(value.hour, value.minute)\n                console.info(\"TimePickerDialog:onAccept()\" + JSON.stringify(value))\n              }\n            },\n            // 当用户点击取消按钮时，在控制台输出取消信息\n            onCancel: () => {\n              console.info(\"TimePickerDialog:onCancel()\")\n            },\n            // 当用户选择时间时，在控制台输出当前选中时间\n            onChange: (value: TimePickerResult) => {\n              console.info(\"TimePickerDialog:onChange()\" + JSON.stringify(value))\n            },\n            // 当对话框显示时，在控制台输出显示信息\n            onDidAppear: () => {\n              console.info(\"TimePickerDialog:onDidAppear()\")\n            },\n            // 当对话框消失时，在控制台输出消失信息\n            onDidDisappear: () => {\n              console.info(\"TimePickerDialog:onDidDisappear()\")\n            },\n            // 当对话框即将显示时，在控制台输出即将显示信息\n            onWillAppear: () => {\n              console.info(\"TimePickerDialog:onWillAppear()\")\n            },\n            // 当对话框即将消失时，在控制台输出即将消失信息\n            onWillDisappear: () => {\n              console.info(\"TimePickerDialog:onWillDisappear()\")\n            }\n          })\n        })\n    }.width('100%')\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

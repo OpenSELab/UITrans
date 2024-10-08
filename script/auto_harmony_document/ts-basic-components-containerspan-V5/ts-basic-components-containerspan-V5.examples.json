@@ -1,0 +1,6 @@
+[
+    {
+        "description": "该组件通过Column布局实现了一个包含文本和图像的复合文本展示界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上包含一个Text组件，Text组件内部嵌套了一个ContainerSpan组件，用于组合图像和文本。图像和文本的排列方式为水平布局，图像位于文本的左侧，图像和文本之间有一定的间距。\n\n组件的样式包括背景颜色、字体颜色、字体大小、图像的宽度和高度等属性。文本的背景颜色为紫色，带有圆角边框，文本内容为白色，字体大小为16fp。图像的宽度和高度均为40vp，垂直对齐方式为居中对齐。\n\n组件的功能主要是展示一个带有图像的文本内容，图像和文本组合在一起形成一个整体，图像用于增强文本的视觉效果。整个布局通过Column布局保证内容在垂直方向上居中对齐，确保界面整洁美观。",
+        "code": "// xxx.ets\n@Component\n@Entry\nstruct Index {\n  build() {\n    Column() {\n      Text() {\n        ContainerSpan() {\n          ImageSpan($r('app.media.app_icon')) // 使用ImageSpan组件嵌入图像，图像资源名为app_icon\n            .width('40vp') // 设置图像的宽度为40vp\n            .height('40vp') // 设置图像的高度为40vp\n            .verticalAlign(ImageSpanAlignment.CENTER) // 设置图像的垂直对齐方式为居中对齐\n          Span('   Hello World !   ') // 使用Span组件嵌入文本内容，文本内容为\"Hello World !\"\n            .fontSize('16fp') // 设置文本的字体大小为16fp\n            .fontColor(Color.White) // 设置文本的字体颜色为白色\n        }.textBackgroundStyle({color: \"#7F007DFF\", radius: \"12vp\"}) // 设置文本的背景样式，背景颜色为紫色，圆角半径为12vp\n      }\n    }.width('100%') // 设置Column组件的宽度为100%\n     .alignItems(HorizontalAlign.Center) // 设置Column组件的子元素水平居中对齐\n  }\n}"
+    }
+]

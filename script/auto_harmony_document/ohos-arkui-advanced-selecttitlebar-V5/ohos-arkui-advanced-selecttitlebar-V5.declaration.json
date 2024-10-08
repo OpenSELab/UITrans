@@ -1,0 +1,147 @@
+{
+    "description": "下拉菜单标题栏包含一个下拉菜单，可用于页面之间的切换；可用于一级页面、二级及其以上界面（配置返回键）。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "SelectTitleBar({selected: number, options: Array<SelectOption>, menuItems?: Array<SelectTitleBarMenuItem>, subtitle?: ResourceStr, badgeValue?: number, hidesBackButton?: boolean, onSelected?: (index: number) => void})",
+            "params": {
+                "selected": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前选中项目的索引。第一项的索引为0。如果不设置该属性，则默认值为-1。",
+                    "default": -1
+                },
+                "options": {
+                    "type": [
+                        "Array",
+                        "SelectOption"
+                    ],
+                    "required": true,
+                    "description": "下拉菜单中的项目。"
+                },
+                "menuItems": {
+                    "type": [
+                        "Array",
+                        "SelectTitleBarMenuItem"
+                    ],
+                    "required": false,
+                    "description": "右侧菜单项目列表，定义标题栏右侧的菜单项目。"
+                },
+                "subtitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "子标题。"
+                },
+                "badgeValue": {
+                    "type": "number",
+                    "required": false,
+                    "description": "新事件标记。"
+                },
+                "hidesBackButton": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否隐藏左侧的返回箭头。",
+                    "default": false
+                },
+                "onSelected": {
+                    "type": [
+                        "Function",
+                        "number"
+                    ],
+                    "required": false,
+                    "description": "下拉菜单项目选中触发的回调函数，传入选中项的索引。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "selected": {
+            "description": "当前选中项目的索引。第一项的索引为0。如果不设置该属性，则默认值为-1。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前选中项目的索引。",
+                    "default": -1
+                }
+            }
+        },
+        "options": {
+            "description": "下拉菜单中的项目。",
+            "params": {
+                "value": {
+                    "type": [
+                        "Array",
+                        "SelectOption"
+                    ],
+                    "required": true,
+                    "description": "下拉菜单中的项目。"
+                }
+            }
+        },
+        "menuItems": {
+            "description": "右侧菜单项目列表，定义标题栏右侧的菜单项目。",
+            "params": {
+                "value": {
+                    "type": [
+                        "Array",
+                        "SelectTitleBarMenuItem"
+                    ],
+                    "required": false,
+                    "description": "右侧菜单项目列表。"
+                }
+            }
+        },
+        "subtitle": {
+            "description": "子标题。",
+            "params": {
+                "value": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "子标题。"
+                }
+            }
+        },
+        "badgeValue": {
+            "description": "新事件标记。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": false,
+                    "description": "新事件标记。"
+                }
+            }
+        },
+        "hidesBackButton": {
+            "description": "是否隐藏左侧的返回箭头。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否隐藏左侧的返回箭头。",
+                    "default": false
+                }
+            }
+        }
+    },
+    "events": {
+        "onSelected": {
+            "description": "下拉菜单项目选中触发的回调函数，传入选中项的索引。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "选中项的索引。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该示例展示了如何在鸿蒙ArkUI中使用`SelectTitleBar`组件。布局采用`Row`和`Column`嵌套，实现了一个垂直排列的布局结构。每个`SelectTitleBar`组件占据一行，并通过`Divider`组件进行分隔，形成清晰的视觉分界线。\n\n布局属性方面，`Row`组件的高度设置为`100%`，占据整个屏幕高度；`Column`组件的宽度设置为`100%`，占据整个屏幕宽度。每个`SelectTitleBar`组件的选项通过`options`属性进行配置，支持用户选择不同的选项。\n\n组件的样式和外观方面，`Divider`组件的高度为`2`，颜色为`0xCCCCCC`，用于分隔不同的`SelectTitleBar`组件。`SelectTitleBar`组件的选项文本通过`value`属性进行设置，支持不同的选项文本展示。\n\n组件的排列和嵌套关系方面，`Row`组件作为根布局，包含一个`Column`组件，`Column`组件内部依次排列多个`SelectTitleBar`组件和`Divider`组件。每个`SelectTitleBar`组件通过`options`属性配置选项，并通过`onSelected`事件处理用户选择操作。\n\n组件的功能和交互方面，用户可以通过点击`SelectTitleBar`组件中的选项触发`onSelected`事件，事件处理函数通过`promptAction.showToast`方法显示提示信息。此外，`SelectTitleBar`组件还支持配置`subtitle`、`menuItems`和`badgeValue`等属性，实现更丰富的功能和交互效果。",
+            "code": "import { SelectTitleBar, promptAction } from '@kit.ArkUI';\n\n// 定义菜单项接口\ninterface menuItems {\n  value: Resource; // 菜单项的值，通常是一个资源ID\n  isEnabled?: boolean; // 菜单项是否启用，可选，默认为true\n  action?: () => void; // 菜单项点击后的动作，可选\n}\n\n@Entry\n@Component\nstruct Index {\n  // 定义菜单项数组\n  private menuItems: Array<menuItems> = [\n    {\n      value: $r('app.media.ic_public_save'), // 菜单项的图标资源\n      isEnabled: true, // 菜单项启用\n      action: () => promptAction.showToast({ message: \"show toast index 1\" }) // 点击后的动作，显示提示信息\n    },\n    {\n      value: $r('app.media.ic_public_reduce'), // 菜单项的图标资源\n      isEnabled: true, // 菜单项启用\n      action: () => promptAction.showToast({ message: \"show toast index 2\" }) // 点击后的动作，显示提示信息\n    },\n    {\n      value: $r('app.media.ic_public_edit'), // 菜单项的图标资源\n      isEnabled: true, // 菜单项启用\n      action: () => promptAction.showToast({ message: \"show toast index 3\" }) // 点击后的动作，显示提示信息\n    },\n    {\n      value: $r('app.media.ic_public_reduce'), // 菜单项的图标资源\n      isEnabled: true, // 菜单项启用\n      action: () => promptAction.showToast({ message: \"show toast index 4\" }) // 点击后的动作，显示提示信息\n    }\n  ];\n\n  build() {\n    Row() {\n      Column() {\n        Divider().height(2).color(0xCCCCCC) // 分隔线，高度为2，颜色为0xCCCCCC\n        SelectTitleBar({\n          options: [\n            { value: '所有照片' }, // 选项1\n            { value: '本地（设备）' }, // 选项2\n            { value: '本地本地本地本地本地（储存卡）' } // 选项3\n          ],\n          selected: 0, // 默认选中第一个选项\n          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }), // 选中选项后的动作，显示提示信息\n          hidesBackButton: true // 隐藏返回按钮\n        })\n        Divider().height(2).color(0xCCCCCC) // 分隔线，高度为2，颜色为0xCCCCCC\n        SelectTitleBar({\n          options: [\n            { value: '所有照片' }, // 选项1\n            { value: '本地（设备）' }, // 选项2\n            { value: '本地本地本地本地本地（储存卡）' } // 选项3\n          ],\n          selected: 0, // 默认选中第一个选项\n          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }), // 选中选项后的动作，显示提示信息\n          hidesBackButton: false // 显示返回按钮\n        })\n        Divider().height(2).color(0xCCCCCC) // 分隔线，高度为2，颜色为0xCCCCCC\n        SelectTitleBar({\n          options: [\n            { value: '所有照片' }, // 选项1\n            { value: '本地（设备）' }, // 选项2\n            { value: '本地本地本地本地本地（储存卡）' } // 选项3\n          ],\n          selected: 1, // 默认选中第二个选项\n          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }), // 选中选项后的动作，显示提示信息\n          subtitle: \"example@example.com\" // 副标题\n        })\n        Divider().height(2).color(0xCCCCCC) // 分隔线，高度为2，颜色为0xCCCCCC\n        SelectTitleBar({\n          options: [\n            { value: '所有照片' }, // 选项1\n            { value: '本地（设备）' }, // 选项2\n            { value: '本地本地本地本地本地（储存卡）' } // 选项3\n          ],\n          selected: 1, // 默认选中第二个选项\n          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }), // 选中选项后的动作，显示提示信息\n          subtitle: \"example@example.com\", // 副标题\n          menuItems: [{ isEnabled: true, value: $r('app.media.ic_public_save'), // 菜单项配置\n            action: () => promptAction.showToast({ message: \"show toast index 1\" }) // 菜单项点击后的动作，显示提示信息\n          }]\n        })\n        Divider().height(2).color(0xCCCCCC) // 分隔线，高度为2，颜色为0xCCCCCC\n        SelectTitleBar({\n          options: [\n            { value: '所有照片' }, // 选项1\n            { value: '本地（设备）' }, // 选项2\n            { value: '本地本地本地本地本地（储存卡）' } // 选项3\n          ],\n          selected: 0, // 默认选中第一个选项\n          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }), // 选中选项后的动作，显示提示信息\n          subtitle: \"example@example.com\", // 副标题\n          menuItems: this.menuItems, // 菜单项配置\n          badgeValue: 99, // 徽章值\n          hidesBackButton: true // 隐藏返回按钮\n        })\n        Divider().height(2).color(0xCCCCCC) // 分隔线，高度为2，颜色为0xCCCCCC\n      }.width('100%') // Column组件宽度占据整个屏幕宽度\n    }.height('100%') // Row组件高度占据整个屏幕高度\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

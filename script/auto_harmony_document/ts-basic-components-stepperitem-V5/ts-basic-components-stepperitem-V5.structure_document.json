@@ -1,0 +1,51 @@
+{
+    "description": "用作Stepper组件的页面子组件。",
+    "details": "该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "StepperItem()",
+            "params": {}
+        }
+    ],
+    "attributes": {
+        "prevLabel": {
+            "description": "设置左侧文本按钮内容，第一页没有左侧文本按钮，当步骤导航器大于一页时，除第一页外默认值都为“返回”。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "左侧文本按钮内容。"
+                }
+            }
+        },
+        "nextLabel": {
+            "description": "设置右侧文本按钮内容，最后一页默认值为“开始”，其余页默认值为“下一步”。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "右侧文本按钮内容。"
+                }
+            }
+        },
+        "status": {
+            "description": "设置步骤导航器nextLabel的显示状态。",
+            "params": {
+                "value": {
+                    "type": "ItemState",
+                    "required": false,
+                    "description": "步骤导航器nextLabel的显示状态。",
+                    "default": "ItemState.Normal"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": [
+        "StepperItem组件不支持设置通用宽度属性，其宽度默认撑满Stepper父组件。",
+        "StepperItem组件不支持设置通用高度属性，其高度由Stepper父组件高度减去label按钮组件高度。",
+        "StepperItem组件不支持设置aspectRadio/constrainSize影响长宽的属性。"
+    ],
+    "examples": null,
+    "is_common_attrs": false
+}

@@ -1,0 +1,51 @@
+{
+    "description": "滚动条组件ScrollBar，用于配合可滚动组件使用，如List、Grid、Scroll。可以包含单个子组件。",
+    "details": "ScrollBar组件负责定义可滚动区域的行为样式，ScrollBar的子节点负责定义滚动条的行为样式。滚动条组件与可滚动组件通过Scroller进行绑定，且只有当两者方向相同时，才能联动，ScrollBar与可滚动组件仅支持一对一绑定。从API version 12开始，ScrollBar组件没有子节点时，支持显示默认样式的滚动条。",
+    "interfaces": [
+        {
+            "description": "ScrollBar(value: ScrollBarOptions)",
+            "params": {
+                "value": {
+                    "type": "ScrollBarOptions",
+                    "required": true,
+                    "description": "滚动条组件参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "ScrollBarOptions": {
+            "description": "滚动条组件参数对象。",
+            "params": {
+                "scroller": {
+                    "type": "Scroller",
+                    "required": true,
+                    "description": "可滚动组件的控制器。用于与可滚动组件进行绑定。"
+                },
+                "direction": {
+                    "type": "ScrollBarDirection",
+                    "required": false,
+                    "description": "滚动条的方向，控制可滚动组件对应方向的滚动。",
+                    "default": "ScrollBarDirection.Vertical"
+                },
+                "state": {
+                    "type": "BarState",
+                    "required": false,
+                    "description": "滚动条状态。",
+                    "default": "BarState.Auto"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": [
+        "ScrollBar组件负责定义可滚动区域的行为样式，ScrollBar的子节点负责定义滚动条的行为样式。",
+        "滚动条组件与可滚动组件通过Scroller进行绑定，且只有当两者方向相同时，才能联动，ScrollBar与可滚动组件仅支持一对一绑定。",
+        "从API version 12开始，ScrollBar组件没有子节点时，支持显示默认样式的滚动条。"
+    ],
+    "examples": [
+        "示例1：该示例为ScrollBar组件有子节点时的滚动条样式。",
+        "示例2：该示例为ScrollBar组件没有子节点时的滚动条样式。"
+    ],
+    "is_common_attrs": true
+}

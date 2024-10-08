@@ -1,0 +1,74 @@
+{
+    "description": "用于显示行内图片的组件，是Text和ContainerSpan组件的子组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "ImageSpan(value: ResourceStr | PixelMap)",
+            "params": {
+                "value": {
+                    "type": ["ResourceStr", "PixelMap"],
+                    "required": true,
+                    "description": "图片的数据源，支持本地图片和网络图片。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "alt": {
+            "description": "设置图片加载时显示的占位图。",
+            "params": {
+                "value": {
+                    "type": "PixelMap",
+                    "required": true,
+                    "description": "占位图的数据源。"
+                }
+            }
+        },
+        "verticalAlign": {
+            "description": "设置图片基于行高的对齐方式。",
+            "params": {
+                "value": {
+                    "type": "ImageSpanAlignment",
+                    "required": true,
+                    "description": "对齐方式。"
+                }
+            }
+        },
+        "objectFit": {
+            "description": "设置图片的缩放类型。",
+            "params": {
+                "value": {
+                    "type": "ImageFit",
+                    "required": true,
+                    "description": "图片的缩放类型。",
+                    "default": "ImageFit.Cover"
+                }
+            }
+        }
+    },
+    "events": {
+        "onComplete": {
+            "description": "图片数据加载成功和解码成功时均触发该回调，返回成功加载的图片尺寸。",
+            "params": {
+                "callback": {
+                    "type": "ImageCompleteCallback",
+                    "required": true,
+                    "description": "图片加载成功和解码成功时的回调函数。"
+                }
+            }
+        },
+        "onError": {
+            "description": "图片加载异常时触发该回调。",
+            "params": {
+                "callback": {
+                    "type": "ImageErrorCallback",
+                    "required": true,
+                    "description": "图片加载异常时的回调函数。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

@@ -1,0 +1,108 @@
+{
+    "description": "以垂直列表形式显示的菜单。",
+    "details": "Menu组件需和bindMenu或bindContextMenu方法配合使用，不支持作为普通组件单独使用。",
+    "interfaces": [
+        {
+            "description": "Menu()",
+            "params": {}
+        }
+    ],
+    "attributes": {
+        "fontSize": {
+            "description": "统一设置Menu中所有文本的尺寸。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "Menu中所有文本的尺寸，Length为number类型时，使用fp单位。"
+                }
+            }
+        },
+        "font": {
+            "description": "统一设置Menu中所有文本的尺寸。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "Menu中所有文本的尺寸。",
+                    "default": {
+                        "size": 16,
+                        "family": "HarmonyOS Sans",
+                        "weight": "FontWeight.Medium",
+                        "style": "FontStyle.Normal"
+                    }
+                }
+            }
+        },
+        "fontColor": {
+            "description": "统一设置Menu中所有文本的颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "Menu中所有文本的颜色。"
+                }
+            }
+        },
+        "radius": {
+            "description": "设置Menu边框圆角半径。",
+            "params": {
+                "value": {
+                    "type": ["Dimension", "BorderRadiuses"],
+                    "required": true,
+                    "description": "Menu边框圆角半径。",
+                    "default": "2in1设备上默认值为8vp，其他设备上默认值为20vp。"
+                }
+            }
+        },
+        "width": {
+            "description": "设置Menu边框宽度，支持设置的最小宽度为64vp。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "Menu边框宽度。"
+                }
+            }
+        },
+        "menuItemDivider": {
+            "description": "设置menuItem分割线样式, 不设置该属性则不展示分割线。",
+            "params": {
+                "options": {
+                    "type": ["DividerStyleOptions", "undefined"],
+                    "required": true,
+                    "description": "设置menuItem分割线样式。"
+                }
+            }
+        },
+        "menuItemGroupDivider": {
+            "description": "设置menuItemGroup上下分割线的样式, 不设置该属性则默认展示分割线。",
+            "params": {
+                "options": {
+                    "type": ["DividerStyleOptions", "undefined"],
+                    "required": true,
+                    "description": "设置menuItemGroup顶部和底部分割线样式。"
+                }
+            }
+        },
+        "subMenuExpandingMode": {
+            "description": "设置Menu子菜单展开样式。",
+            "params": {
+                "mode": {
+                    "type": "SubMenuExpandingMode",
+                    "required": true,
+                    "description": "Menu子菜单展开样式。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": [
+        "菜单和菜单项宽度计算规则：布局过程中，期望每个菜单项的宽度一致。若子组件设置了宽度，则以尺寸计算规则为准。不设置宽度的情况：菜单组件会对子组件MenuItem、MenuItemGroup设置默认2栅格的宽度，若菜单项内容区比2栅格宽，则会自适应撑开。设置宽度的情况：菜单组件会对子组件MenuItem、MenuItemGroup设置减去padding后的固定宽度。"
+    ],
+    "examples": [
+        "示例1：普通菜单(使用图标类型图标)",
+        "示例2：普通菜单(使用symbol类型图标)"
+    ],
+    "is_common_attrs": true
+}

@@ -1,0 +1,140 @@
+{
+    "description": "提供侧边栏可以显示和隐藏的侧边栏容器，通过子组件定义侧边栏和内容区，第一个子组件表示侧边栏，第二个子组件表示内容区。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "SideBarContainer( type?: SideBarContainerType )",
+            "params": {
+                "type": {
+                    "type": "SideBarContainerType",
+                    "required": false,
+                    "description": "侧边栏容器的类型。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "showSideBar": {
+            "description": "设置是否显示侧边栏。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否显示侧边栏。",
+                    "default": true
+                }
+            }
+        },
+        "controlButton": {
+            "description": "设置侧边栏控制按钮的属性。",
+            "params": {
+                "value": {
+                    "type": "ButtonStyle",
+                    "required": true,
+                    "description": "侧边栏控制按钮的属性。"
+                }
+            }
+        },
+        "showControlButton": {
+            "description": "设置是否显示控制按钮。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否显示控制按钮。",
+                    "default": true
+                }
+            }
+        },
+        "sideBarWidth": {
+            "description": "设置侧边栏的宽度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "侧边栏的宽度。",
+                    "default": 240
+                }
+            }
+        },
+        "minSideBarWidth": {
+            "description": "设置侧边栏最小宽度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "侧边栏最小宽度。",
+                    "default": 240
+                }
+            }
+        },
+        "maxSideBarWidth": {
+            "description": "设置侧边栏最大宽度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "侧边栏最大宽度。",
+                    "default": 280
+                }
+            }
+        },
+        "autoHide": {
+            "description": "设置当侧边栏拖拽到小于最小宽度后，是否自动隐藏。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否自动隐藏。",
+                    "default": true
+                }
+            }
+        },
+        "sideBarPosition": {
+            "description": "设置侧边栏显示位置。",
+            "params": {
+                "value": {
+                    "type": "SideBarPosition",
+                    "required": true,
+                    "description": "侧边栏显示位置。"
+                }
+            }
+        },
+        "divider": {
+            "description": "设置分割线的样式。",
+            "params": {
+                "value": {
+                    "type": "DividerStyle",
+                    "required": true,
+                    "description": "分割线的样式。"
+                }
+            }
+        },
+        "minContentWidth": {
+            "description": "设置SideBarContainer组件内容区可显示的最小宽度。",
+            "params": {
+                "value": {
+                    "type": "Dimension",
+                    "required": true,
+                    "description": "内容区可显示的最小宽度。",
+                    "default": 360
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "当侧边栏的状态在显示和隐藏之间切换时触发回调。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "true表示显示，false表示隐藏。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

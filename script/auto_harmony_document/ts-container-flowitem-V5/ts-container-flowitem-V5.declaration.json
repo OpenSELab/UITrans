@@ -1,0 +1,22 @@
+{
+    "description": "瀑布流组件的子组件，用来展示瀑布流具体item。仅支持作为Waterflow组件的子组件使用。",
+    "details": "该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "FlowItem()",
+            "params": {}
+        }
+    ],
+    "attributes": {},
+    "events": {},
+    "rules": [
+        "仅支持作为Waterflow组件的子组件使用。"
+    ],
+    "examples": [
+        {
+            "description": "该组件通过 WaterFlow 布局实现了一个瀑布流展示图片的界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上被分为多个列，每列包含多个图片项。每个图片项以垂直布局方式排列，图片之间的间距均匀分布，且对齐方式为居中对齐。\n图片的样式包括背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。图片项之间通过 WaterFlow 组件进行分隔。图片的功能包括点击事件和状态效果，用户可以通过点击图片触发相应操作，图片也可以在加载或加载完成状态下进行展示。\n整个布局通过 WaterFlow 布局保证图片在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct WaterFlowExample {\n  @State private images: string[] = [\n    'image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg',\n    'image6.jpg', 'image7.jpg', 'image8.jpg', 'image9.jpg', 'image10.jpg'\n  ]; // 图片资源数组\n\n  build() {\n    Column() {\n      WaterFlow({\n        columns: 3, // 设置瀑布流的列数为3\n        spacing: 10 // 设置图片项之间的间距为10vp\n      }) {\n        ForEach(this.images, (image) => {\n          WaterFlowItem() {\n            Image(image)\n              .width('100%') // 图片宽度占据父容器的100%\n              .height(200) // 图片高度固定为200vp\n              .borderRadius(10) // 图片边框圆角为10vp\n              .onClick(() => {\n                console.log(`Image ${image} clicked`); // 图片点击事件\n              })\n          }\n        })\n      }\n      .width('100%') // 瀑布流宽度占据整个屏幕\n      .height('100%') // 瀑布流高度根据内容自适应\n    }\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

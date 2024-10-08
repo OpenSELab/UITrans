@@ -1,0 +1,183 @@
+{
+    "description": "AtomicServiceTabs高级组件，对Tabs组件一些不需提供给用户自定义设计的属性进行简化，限制最多显示5个页签，固定页签样式，位置和大小。",
+    "details": "该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "AtomicServiceTabs({ tabContents?: [ TabContentBuilder?, TabContentBuilder?, TabContentBuilder?, TabContentBuilder?, TabContentBuilder? ], tabBarOptionsArray: [ TabBarOptions, TabBarOptions, TabBarOptions?, TabBarOptions?, TabBarOptions? ], tabBarPosition?: TabBarPosition, barBackgroundColor?: ResourceColor, index?: number, barOverlap?: boolean, controller?: TabsController, onChange?: Callback<number>, onTabBarClick?: Callback<number>, onContentWillChange?: OnContentWillChangeCallback })",
+            "params": {
+                "tabContents": {
+                    "type": [
+                        "TabContentBuilder?",
+                        "TabContentBuilder?",
+                        "TabContentBuilder?",
+                        "TabContentBuilder?",
+                        "TabContentBuilder?"
+                    ],
+                    "description": "内容视图容器数组。"
+                },
+                "tabBarOptionsArray": {
+                    "type": [
+                        "TabBarOptions",
+                        "TabBarOptions",
+                        "TabBarOptions?",
+                        "TabBarOptions?",
+                        "TabBarOptions?"
+                    ],
+                    "required": true,
+                    "description": "页签容器数组。"
+                },
+                "tabBarPosition": {
+                    "type": "TabBarPosition",
+                    "description": "设置页签栏位置。"
+                },
+                "barBackgroundColor": {
+                    "type": "ResourceColor",
+                    "description": "设置TabBar的背景颜色。"
+                },
+                "index": {
+                    "type": "number",
+                    "description": "设置当前显示页签的索引。"
+                },
+                "barOverlap": {
+                    "type": "boolean",
+                    "description": "设置TabBar是否背后变模糊并叠加在TabContent之上。"
+                },
+                "controller": {
+                    "type": "TabsController",
+                    "description": "Tabs组件的控制器，用于控制Tabs组件进行页签切换。"
+                },
+                "onChange": {
+                    "type": "Callback<number>",
+                    "description": "Tabs页签切换后触发的事件。"
+                },
+                "onTabBarClick": {
+                    "type": "Callback<number>",
+                    "description": "Tabs页签点击后触发的事件。"
+                },
+                "onContentWillChange": {
+                    "type": "OnContentWillChangeCallback",
+                    "description": "Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "tabContents": {
+            "description": "内容视图容器数组。",
+            "params": {
+                "value": {
+                    "type": [
+                        "TabContentBuilder?",
+                        "TabContentBuilder?",
+                        "TabContentBuilder?",
+                        "TabContentBuilder?",
+                        "TabContentBuilder?"
+                    ],
+                    "description": "内容视图容器数组。"
+                }
+            }
+        },
+        "tabBarOptionsArray": {
+            "description": "页签容器数组。",
+            "params": {
+                "value": {
+                    "type": [
+                        "TabBarOptions",
+                        "TabBarOptions",
+                        "TabBarOptions?",
+                        "TabBarOptions?",
+                        "TabBarOptions?"
+                    ],
+                    "required": true,
+                    "description": "页签容器数组。"
+                }
+            }
+        },
+        "tabBarPosition": {
+            "description": "设置页签栏位置。",
+            "params": {
+                "value": {
+                    "type": "TabBarPosition",
+                    "description": "设置页签栏位置。"
+                }
+            }
+        },
+        "barBackgroundColor": {
+            "description": "设置TabBar的背景颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "description": "设置TabBar的背景颜色。"
+                }
+            }
+        },
+        "index": {
+            "description": "设置当前显示页签的索引。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "设置当前显示页签的索引。"
+                }
+            }
+        },
+        "barOverlap": {
+            "description": "设置TabBar是否背后变模糊并叠加在TabContent之上。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "description": "设置TabBar是否背后变模糊并叠加在TabContent之上。"
+                }
+            }
+        },
+        "controller": {
+            "description": "Tabs组件的控制器，用于控制Tabs组件进行页签切换。",
+            "params": {
+                "value": {
+                    "type": "TabsController",
+                    "description": "Tabs组件的控制器，用于控制Tabs组件进行页签切换。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "Tabs页签切换后触发的事件。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "当前页签索引。"
+                }
+            }
+        },
+        "onTabBarClick": {
+            "description": "Tabs页签点击后触发的事件。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "当前页签索引。"
+                }
+            }
+        },
+        "onContentWillChange": {
+            "description": "Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。",
+            "params": {
+                "currentIndex": {
+                    "type": "number",
+                    "description": "当前页签索引。"
+                },
+                "comingIndex": {
+                    "type": "number",
+                    "description": "即将切换的页签索引。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过 Stack 布局实现了一个包含多个选项卡（Tab）的界面。布局宽度占据整个屏幕，高度设为 100%。组件的垂直方向上被分为两个主要部分：一个 AtomicServiceTabs 组件和一个 Column 组件。AtomicServiceTabs 组件用于展示多个选项卡及其内容，而 Column 组件用于显示当前选项卡的索引和点击次数。\n\nAtomicServiceTabs 组件的选项卡内容通过 @Builder 装饰器定义的三个方法（tabContent1、tabContent2、tabContent3）生成，每个方法返回一个 Column 组件，分别设置了不同的背景颜色。选项卡的标签通过 TabBarOptions 类实例化，每个标签包含一个图标、一个文本、一个未选中时的颜色和一个选中时的颜色。选项卡的位置设置为底部（TabBarPosition.BOTTOM），背景颜色通过资源名 $r('sys.color.ohos_id_color_bottom_tab_bg') 指定。\n\nColumn 组件包含两个 Text 组件，分别用于显示选项卡切换时的回调次数和当前选项卡的索引。Column 组件的顶部边距为 500vp，确保其在屏幕上的位置。\n\n整个布局通过 Stack 布局保证 AtomicServiceTabs 和 Column 组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "// Index.ets\nimport { AtomicServiceTabs, TabBarOptions, TabBarPosition, OnContentWillChangeCallback } from '@kit.ArkUI';\n\n@Entry\n@Component\nstruct Index {\n  @State message: string = '首页'; // 状态变量，用于存储首页的标题\n  @State onClickNumber: number = 0; // 状态变量，用于记录选项卡点击次数\n  @State currentIndex: number = 0; // 状态变量，用于存储当前选项卡的索引\n  @State comingIndex: number = 0; // 状态变量，用于存储即将切换到的选项卡的索引\n\n  // 选项卡内容即将切换时的回调函数\n  onContentWillChangeCallBack: OnContentWillChangeCallback = (currentIndex: number, comingIndex: number): boolean => {\n    this.currentIndex = currentIndex; // 更新当前选项卡的索引\n    this.comingIndex = comingIndex; // 更新即将切换到的选项卡的索引\n    console.log('OnContentWillChangeCallback'); // 打印日志\n    return true; // 返回 true 表示允许切换\n  }\n\n  // 选项卡点击事件的回调函数\n  onTabClick: Callback<number> = (index: number) => {\n    this.onClickNumber++; // 增加点击次数\n    console.log('onTabClick'); // 打印日志\n  }\n\n  // 第一个选项卡的内容\n  @Builder\n  tabContent1() {\n    Column()\n      .width('100%') // 宽度占满父容器\n      .height('100%') // 高度占满父容器\n      .alignItems(HorizontalAlign.Center) // 水平居中对齐\n      .backgroundColor('#00CB87') // 背景颜色为绿色\n  }\n\n  // 第二个选项卡的内容\n  @Builder\n  tabContent2() {\n    Column()\n      .width('100%') // 宽度占满父容器\n      .height('100%') // 高度占满父容器\n      .backgroundColor('#007DFF') // 背景颜色为蓝色\n  }\n\n  // 第三个选项卡的内容\n  @Builder\n  tabContent3() {\n    Column()\n      .width('100%') // 宽度占满父容器\n      .height('100%') // 高度占满父容器\n      .backgroundColor('#FFBF00') // 背景颜色为黄色\n  }\n\n  // 构建整个界面的方法\n  build() {\n    Stack() {\n      AtomicServiceTabs({\n        tabContents: [\n          () => {\n            this.tabContent1() // 第一个选项卡的内容\n          },\n          () => {\n            this.tabContent2() // 第二个选项卡的内容\n          },\n          () => {\n            this.tabContent3() // 第三个选项卡的内容\n          }\n        ],\n        tabBarOptionsArray: [\n          new TabBarOptions($r('sys.media.ohos_ic_public_phone'), '绿色', Color.Black, Color.Blue), // 第一个选项卡的标签\n          new TabBarOptions($r('sys.media.ohos_ic_public_location'), '蓝色', Color.Black, Color.Blue), // 第二个选项卡的标签\n          new TabBarOptions($r('sys.media.ohos_ic_public_more'), '黄色', Color.Black, Color.Blue) // 第三个选项卡的标签\n        ],\n        tabBarPosition: TabBarPosition.BOTTOM, // 选项卡位置在底部\n        barBackgroundColor: $r('sys.color.ohos_id_color_bottom_tab_bg'), // 选项卡背景颜色\n        onTabBarClick: this.onTabClick, // 选项卡点击事件的回调函数\n        onContentWillChange: this.onContentWillChangeCallBack // 选项卡内容即将切换时的回调函数\n      })\n      Column() {\n        Text(\"onchange回调次数:\" + this.onClickNumber) // 显示选项卡点击次数\n        Text(\"comingIndex = \" + this.comingIndex + \", currentIndex = \" + this.currentIndex) // 显示当前选项卡的索引\n      }\n      .margin({ top: 500 }) // 顶部边距为 500vp\n    }\n    .height('100%') // 高度占满父容器\n  }\n}"
+        }
+    ],
+    "is_common_attrs": false
+}

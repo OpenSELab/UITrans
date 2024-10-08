@@ -1,0 +1,240 @@
+Title: EmbeddedComponent-渲染绘制-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-embedded-component-V5
+
+Markdown Content:
+EmbeddedComponent用于支持在当前页面嵌入本应用内其他[EmbeddedUIExtensionAbility](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-app-ability-embeddeduiextensionability-V5)提供的UI。EmbeddedUIExtensionAbility在独立进程中运行，完成页面布局和渲染。
+
+通常用于有进程隔离诉求的模块化开发场景。
+
+说明
+
+该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+使用约束
+----
+
+EmbeddedComponent仅支持在拥有多进程权限的设备上使用。
+
+EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。
+
+接口
+--
+
+EmbeddedComponent(loader: Want, type: EmbeddedType)
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+参数名
+
+参数类型
+
+必填
+
+参数描述
+
+loader
+
+[Want](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-app-ability-want-V5)
+
+是
+
+要加载的EmbeddedUIExtensionAbility。
+
+type
+
+[EmbeddedType](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#embeddedtype)
+
+是
+
+提供方的类型。
+
+属性
+--
+
+支持[通用属性](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-size-V5)。
+
+说明
+
+EmbeddedComponent组件宽高默认值和最小值均为10vp, 不支持如下与宽高相关的属性："constraintSize"、"aspectRatio"、"layoutWeight"、"flexBasis"、"flexGrow"和"flexShrink"。
+
+事件
+--
+
+与屏幕坐标相关的事件信息会基于EmbeddedComponent的位置宽高进行坐标转换后传递给被拉起的EmbeddedUIExtensionAbility处理。
+
+不支持[点击](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-events-click-V5)等通用事件。仅支持以下事件：
+
+### onTerminated
+
+onTerminated(callback: Callback<TerminationInfo\>)
+
+被拉起的EmbeddedUIExtensionAbility通过调用terminateSelfWithResult或者terminateSelf正常退出时，触发本回调函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+说明
+
+*   若EmbeddedUIExtensionAbility通过调用terminateSelfWithResult退出，其携带的信息会传给回调函数的入参；
+*   若EmbeddedUIExtensionAbility通过调用terminateSelf退出，上述回调函数的入参中，"code"取默认值"0"，"want"为"undefined"。
+
+### onError
+
+onError(callback: ErrorCallback)
+
+被拉起的EmbeddedUIExtensionAbility在运行过程中发生异常时触发本回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+说明
+
+如下情形会触发本回调：
+
+*   通知提供方拉起EmbeddedUIExtensionAbility失败。
+*   通知提供方EmbeddedUIExtensionAbility切后台失败。
+*   通知提供方销毁EmbeddedUIExtensionAbility失败。
+*   提供方EmbeddedUIExtensionAbility异常退出。
+*   在EmbeddedUIExtensionAbility中嵌套使用EmbeddedComponent。
+
+TerminationInfo
+---------------
+
+用于表示被拉起的EmbeddedUIExtensionAbility的返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+属性名
+
+类型
+
+说明
+
+code
+
+number
+
+被拉起EmbeddedUIExtensionAbility退出时返回的结果码。
+
+want
+
+[Want](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-app-ability-want-V5)
+
+被拉起EmbeddedUIExtensionAbility退出时返回的数据。
+
+示例
+--
+
+本示例展示EmbeddedComponent组件和EmbeddedUIExtensionAbility的基础使用方式，示例应用的bundleName为"com.example.embeddeddemo", 被拉起的EmbeddedUIExtensionAbility为"ExampleEmbeddedAbility".
+
+*   示例应用中的EntryAbility(UIAbility)加载首页文件：pages/Index.ets，其中内容如下：
+    
+    2.  import { Want } from '@kit.AbilityKit';
+    
+    4.  @Entry
+    5.  @Component
+    6.  struct Index {
+    7.    @State message: string = 'Message: '
+    8.    private want: Want = {
+    9.      bundleName: "com.example.embeddeddemo",
+    10.      abilityName: "ExampleEmbeddedAbility",
+    11.    }
+    
+    13.    build() {
+    14.      Row() {
+    15.        Column() {
+    16.          Text(this.message).fontSize(30)
+    17.          EmbeddedComponent(this.want, EmbeddedType.EMBEDDED\_UI\_EXTENSION)
+    18.            .width('100%')
+    19.            .height('90%')
+    20.            .onTerminated((info)=\>{
+    21.              this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
+    22.            })
+    23.            .onError((error)=\>{
+    24.              this.message = 'Error: code = ' + error.code;
+    25.            })
+    26.        }
+    27.        .width('100%')
+    28.      }
+    29.      .height('100%')
+    30.    }
+    31.  }
+    
+*   EmbeddedComponent拉起的EmbeddedUIExtensionAbility在ets/extensionAbility/ExampleEmbeddedAbility文件中实现，内容如下：
+    
+    1.  import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+    
+    3.  const TAG: string = '\[ExampleEmbeddedAbility\]'
+    4.  export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
+    
+    6.    onCreate() {
+    7.      console.log(TAG, \`onCreate\`);
+    8.    }
+    
+    10.    onForeground() {
+    11.      console.log(TAG, \`onForeground\`);
+    12.    }
+    
+    14.    onBackground() {
+    15.      console.log(TAG, \`onBackground\`);
+    16.    }
+    
+    18.    onDestroy() {
+    19.      console.log(TAG, \`onDestroy\`);
+    20.    }
+    
+    22.    onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    23.      console.log(TAG, \`onSessionCreate, want: ${JSON.stringify(want)}\`);
+    24.      let param: Record<string, UIExtensionContentSession\> = {
+    25.        'session': session
+    26.      };
+    27.      let storage: LocalStorage = new LocalStorage(param);
+    28.      session.loadContent('pages/extension', storage);
+    29.    }
+    
+    31.    onSessionDestroy(session: UIExtensionContentSession) {
+    32.      console.log(TAG, \`onSessionDestroy\`);
+    33.    }
+    34.  }
+    
+*   EmbeddedUIExtensionAbility的入口页面文件pages/extension.ets内容如下：
+    
+    1.  import { UIExtensionContentSession } from '@kit.AbilityKit';
+    
+    3.  let storage = LocalStorage.getShared()
+    
+    5.  @Entry(storage)
+    6.  @Component
+    7.  struct Extension {
+    8.    @State message: string = 'EmbeddedUIExtensionAbility Index';
+    9.    private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession\>('session');
+    
+    11.    build() {
+    12.      Column() {
+    13.        Text(this.message)
+    14.          .fontSize(20)
+    15.          .fontWeight(FontWeight.Bold)
+    16.        Button("terminateSelfWithResult").fontSize(20).onClick(() =\> {
+    17.          this.session?.terminateSelfWithResult({
+    18.            resultCode: 1,
+    19.            want: {
+    20.              bundleName: "com.example.embeddeddemo",
+    21.              abilityName: "ExampleEmbeddedAbility",
+    22.            }});
+    23.        })
+    24.      }.width('100%').height('100%')
+    25.    }
+    26.  }
+    
+*   最后，示例应用的module.json5中的"extensionAbilities"中需要增加一项，具体内容如下：
+    
+    1.  {
+    2.    "name": "ExampleEmbeddedAbility",
+    3.    "srcEntry": "./ets/extensionAbility/ExampleEmbeddedAbility.ets",
+    4.    "type": "embeddedUI"
+    5.  }

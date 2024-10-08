@@ -1,0 +1,54 @@
+{
+    "description": "该组件用来展示列表item分组，宽度默认充满List组件，必须配合List组件来使用。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "ListItemGroup(options?: ListItemGroupOptions)",
+            "params": {
+                "options": {
+                    "type": "ListItemGroupOptions",
+                    "required": false,
+                    "description": "ListItemGroup的配置选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "divider": {
+            "description": "设置ListItem分割线样式，默认无分割线。",
+            "params": {
+                "value": {
+                    "type": {
+                        "strokeWidth": "Length",
+                        "color": "ResourceColor",
+                        "startMargin": "Length",
+                        "endMargin": "Length"
+                    },
+                    "required": true,
+                    "description": "ListItem分割线样式。"
+                }
+            }
+        },
+        "childrenMainSize": {
+            "description": "设置ListItemGroup组件的子组件在主轴方向的大小信息。",
+            "params": {
+                "value": {
+                    "type": "ChildrenMainSize",
+                    "required": true,
+                    "description": "子组件在主轴方向的大小信息。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": [
+        "该组件从API Version 9开始支持。",
+        "该组件的父组件只能是List。",
+        "ListItemGroup组件不支持设置通用属性aspectRatio。",
+        "当ListItemGroup的父组件List的listDirection属性为Axis.Vertical时，设置通用属性height属性不生效。",
+        "当父组件List的listDirection属性为Axis.Horizontal时，设置通用属性width属性不生效。",
+        "当前ListItemGroup内部的ListItem组件不支持编辑、拖拽功能，即ListItem组件的editable属性不生效。"
+    ],
+    "examples": null,
+    "is_common_attrs": false
+}

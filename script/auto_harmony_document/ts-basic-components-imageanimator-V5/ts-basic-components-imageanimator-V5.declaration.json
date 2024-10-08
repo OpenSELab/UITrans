@@ -1,0 +1,119 @@
+{
+    "description": "提供帧动画组件来实现逐帧播放图片的能力，可以配置需要播放的图片列表，每张图片可以配置时长。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "ImageAnimator()",
+            "params": {}
+        }
+    ],
+    "attributes": {
+        "images": {
+            "description": "设置图片帧信息集合。不支持动态更新。",
+            "params": {
+                "value": {
+                    "type": "Array<ImageFrameInfo>",
+                    "required": true,
+                    "description": "设置图片帧信息集合。每一帧的帧信息(ImageFrameInfo)包含图片路径、图片大小、图片位置和图片播放时长信息，详见ImageFrameInfo属性说明。",
+                    "default": "[]"
+                }
+            }
+        },
+        "state": {
+            "description": "控制播放状态。",
+            "params": {
+                "value": {
+                    "type": "AnimationStatus",
+                    "required": true,
+                    "description": "默认为初始状态，用于控制播放状态。",
+                    "default": "AnimationStatus.Initial"
+                }
+            }
+        },
+        "duration": {
+            "description": "设置播放时长。当Images中任意一帧图片设置了单独的duration后，该属性设置无效。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "播放时长。value为0时，不播放图片。value的改变只会在下一次循环开始时生效。单位：毫秒",
+                    "default": "1000ms"
+                }
+            }
+        },
+        "reverse": {
+            "description": "设置播放方向。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "播放方向。false表示从第1张图片播放到最后1张图片，true表示从最后1张图片播放到第1张图片。",
+                    "default": "false"
+                }
+            }
+        },
+        "fixedSize": {
+            "description": "设置图片大小是否固定为组件大小。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "设置图片大小是否固定为组件大小。 true表示图片大小与组件大小一致，此时设置图片的width 、height 、top 和left属性是无效的。false表示每一张图片的width 、height 、top和left属性都要单独设置。",
+                    "default": "true"
+                }
+            }
+        },
+        "fillMode": {
+            "description": "设置当前播放方向下，动画开始前和结束后的状态。动画结束后的状态由fillMode和reverse属性共同决定。例如，fillMode为Forwards表示停止时维持动画最后一个关键帧的状态，若reverse为false则维持正播的最后一帧，即最后一张图，若reverse为true则维持逆播的最后一帧，即第一张图。",
+            "params": {
+                "value": {
+                    "type": "FillMode",
+                    "required": true,
+                    "description": "当前播放方向下，动画开始前和结束后的状态。",
+                    "default": "FillMode.Forwards"
+                }
+            }
+        },
+        "iterations": {
+            "description": "设置播放次数。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "默认播放一次，设置为-1时表示无限次播放。",
+                    "default": "1"
+                }
+            }
+        }
+    },
+    "events": {
+        "onStart": {
+            "description": "状态回调，动画开始播放时触发。",
+            "params": {}
+        },
+        "onPause": {
+            "description": "状态回调，动画暂停播放时触发。",
+            "params": {}
+        },
+        "onRepeat": {
+            "description": "状态回调，动画重复播放时触发。",
+            "params": {}
+        },
+        "onCancel": {
+            "description": "状态回调，动画返回最初状态时触发。",
+            "params": {}
+        },
+        "onFinish": {
+            "description": "状态回调，动画播放完成时或者停止播放时触发。",
+            "params": {}
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过Column布局实现了一个展示Resource动画和PixelMap动画的界面。布局宽度占据整个屏幕，高度设为100%，内边距为顶部100vp。组件的垂直方向上被分为两个主要部分：动画展示区域和控制按钮区域。\n\n动画展示区域使用ImageAnimator组件来展示动画，动画的图片资源通过images属性传入，动画的持续时间通过duration属性设置为2000毫秒。动画的状态（如运行、暂停、停止）通过state属性控制，动画的播放方向通过reverse属性控制，动画的重复次数通过iterations属性控制。动画的宽度为340vp，高度为240vp，顶部边距为100vp。\n\n控制按钮区域使用Row布局来排列按钮，按钮之间的间距均匀分布，且对齐方式为居中对齐。按钮的样式包括宽度为100vp，内边距为5vp，外边距为5vp。按钮的功能包括点击事件，用户可以通过点击按钮来控制动画的播放状态（如开始、暂停、停止）和播放方向（如正向、反向）以及重复次数（如一次、无限次）。\n\n整个布局通过Column布局保证动画展示区域和控制按钮区域在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ImageAnimatorExample {\n  @State state: AnimationStatus = AnimationStatus.Initial // 动画状态，初始为Initial\n  @State reverse: boolean = false // 动画播放方向，初始为正向\n  @State iterations: number = 1 // 动画重复次数，初始为1次\n\n  build() {\n    Column({ space: 10 }) {\n      ImageAnimator()\n        .images([ // 设置动画的图片资源\n          {\n            src: $r('app.media.img1') // 第一帧图片资源\n          },\n          {\n            src: $r('app.media.img2') // 第二帧图片资源\n          },\n          {\n            src: $r('app.media.img3') // 第三帧图片资源\n          },\n          {\n            src: $r('app.media.img4') // 第四帧图片资源\n          }\n        ])\n        .duration(2000) // 设置动画的持续时间为2000毫秒\n        .state(this.state) // 设置动画的状态\n        .reverse(this.reverse) // 设置动画的播放方向\n        .fillMode(FillMode.None) // 设置动画的填充模式为None\n        .iterations(this.iterations) // 设置动画的重复次数\n        .width(340) // 设置动画的宽度为340vp\n        .height(240) // 设置动画的高度为240vp\n        .margin({ top: 100 }) // 设置动画的顶部边距为100vp\n        .onStart(() => { // 动画开始时的回调\n          console.info('Start')\n        })\n        .onPause(() => { // 动画暂停时的回调\n          console.info('Pause')\n        })\n        .onRepeat(() => { // 动画重复时的回调\n          console.info('Repeat')\n        })\n        .onCancel(() => { // 动画取消时的回调\n          console.info('Cancel')\n        })\n        .onFinish(() => { // 动画结束时的回调\n          console.info('Finish')\n          this.state = AnimationStatus.Stopped // 动画结束后将状态设置为Stopped\n        })\n\n      Row() { // 控制按钮区域\n        Button('start').width(100).padding(5).onClick(() => { // 开始按钮\n          this.state = AnimationStatus.Running // 点击后将动画状态设置为Running\n        }).margin(5)\n        Button('pause').width(100).padding(5).onClick(() => { // 暂停按钮\n          this.state = AnimationStatus.Paused // 点击后将动画状态设置为Paused\n        }).margin(5)\n        Button('stop').width(100).padding(5).onClick(() => { // 停止按钮\n          this.state = AnimationStatus.Stopped // 点击后将动画状态设置为Stopped\n        }).margin(5)\n      }\n\n      Row() { // 控制按钮区域\n        Button('reverse').width(100).padding(5).onClick(() => { // 反向播放按钮\n          this.reverse = !this.reverse // 点击后切换动画的播放方向\n        }).margin(5)\n        Button('once').width(100).padding(5).onClick(() => { // 播放一次按钮\n          this.iterations = 1 // 点击后将动画的重复次数设置为1次\n        }).margin(5)\n        Button('infinite').width(100).padding(5).onClick(() => { // 无限播放按钮\n          this.iterations = -1 // 点击后将动画的重复次数设置为无限次\n        }).margin(5)\n      }\n    }.width('100%').height('100%') // 设置布局的宽度和高度为100%\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

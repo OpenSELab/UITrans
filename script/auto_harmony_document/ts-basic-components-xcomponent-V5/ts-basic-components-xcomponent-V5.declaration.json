@@ -1,0 +1,88 @@
+{
+    "description": "提供用于图形绘制和媒体数据写入的Surface，XComponent负责将其嵌入到视图中，支持应用自定义Surface位置和大小。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "XComponent(options: XComponentOptions)",
+            "params": {
+                "options": {
+                    "type": "XComponentOptions",
+                    "required": true,
+                    "description": "XComponent的具体配置参数。"
+                }
+            }
+        },
+        {
+            "description": "XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})",
+            "params": {
+                "value": {
+                    "type": {
+                        "id": "string",
+                        "type": "XComponentType",
+                        "libraryname": "string",
+                        "controller": "XComponentController"
+                    },
+                    "required": true,
+                    "description": "XComponent的配置参数。"
+                }
+            }
+        },
+        {
+            "description": "XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})",
+            "params": {
+                "value": {
+                    "type": {
+                        "id": "string",
+                        "type": "string",
+                        "libraryname": "string",
+                        "controller": "XComponentController"
+                    },
+                    "required": true,
+                    "description": "XComponent的配置参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "enableAnalyzer": {
+            "description": "设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。",
+            "params": {
+                "enable": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否启用图像分析功能。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onLoad": {
+            "description": "插件加载完成时回调事件。",
+            "params": {
+                "event": {
+                    "type": "object",
+                    "required": false,
+                    "description": "获取XComponent实例对象的context，context上挂载的方法由开发者在c++层定义。"
+                }
+            }
+        },
+        "onDestroy": {
+            "description": "插件卸载完成时回调事件。",
+            "params": {
+                "event": {
+                    "type": "function",
+                    "required": true,
+                    "description": "插件卸载完成时回调函数。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "示例1描述：\n该组件通过Column布局实现了一个图像AI分析功能的界面。布局宽度占据整个屏幕，包含多个按钮和一个XComponent组件。按钮的排列方式为垂直布局，按钮之间的间距为5vp。按钮的样式包括背景颜色、边框圆角、宽度和高度等属性，支持不同的样式展示。按钮的功能包括点击事件和状态效果，用户可以通过点击按钮触发相应操作，如改变XComponent的尺寸、启动和停止AI分析、获取支持的分析类型等。XComponent组件用于显示图像分析的结果，其宽度和高度可以通过按钮动态调整。整个布局通过Column布局保证按钮和XComponent在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "/*\n示例2描述：\n该组件通过Flex布局实现了一个surface旋转过程中锁定功能的界面。布局宽度占据整个屏幕，高度设为100%，包含一个XComponent组件。XComponent组件的排列方式为垂直布局，对齐方式为居中对齐。XComponent组件的样式包括宽度和高度等属性，支持动态调整。XComponent组件的功能包括在加载时设置surface的旋转锁定状态，并通过控制器获取当前的锁定状态。整个布局通过Flex布局保证XComponent在垂直方向上居中对齐，确保界面整洁美观。\n*/\n\n/*\n示例1代码：\n*/\n\nimport { BusinessError } from '@kit.BasicServicesKit'; // 导入BusinessError类，用于处理业务错误\n\nclass CustomXComponentController extends XComponentController {\n  onSurfaceCreated(surfaceId: string): void {\n    console.log(`onSurfaceCreated surfaceId: ${surfaceId}`) // 当surface创建时，输出surfaceId\n  }\n\n  onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {\n    console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}`) // 当surface改变时，输出surfaceId和rect信息\n  }\n\n  onSurfaceDestroyed(surfaceId: string): void {\n    console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`) // 当surface销毁时，输出surfaceId\n  }\n}\n\n@Entry\n@Component\nstruct XComponentExample {\n  xComponentController: XComponentController = new CustomXComponentController() // 创建XComponentController实例\n  private config: ImageAnalyzerConfig = {\n    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT] // 配置图像分析类型\n  }\n  private aiController: ImageAnalyzerController = new ImageAnalyzerController() // 创建ImageAnalyzerController实例\n  private options: ImageAIOptions = {\n    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT], // 配置图像分析类型\n    aiController: this.aiController // 设置AI控制器\n  }\n  @State xcWidth: string = \"320px\" // 初始化XComponent的宽度\n  @State xcHeight: string = \"480px\" // 初始化XComponent的高度\n\n  build() {\n    Column({ space: 5 }) { // 创建一个垂直布局，按钮之间的间距为5vp\n      Button(\"change size\")\n        .onClick(() => {\n          this.xcWidth = \"640px\" // 点击按钮时，改变XComponent的宽度\n          this.xcHeight = \"720px\" // 点击按钮时，改变XComponent的高度\n        })\n      Button('start AI analyze')\n        .onClick(() => {\n          this.xComponentController.startImageAnalyzer(this.config) // 点击按钮时，启动图像分析\n            .then(() => {\n              console.log(\"analysis complete\") // 分析完成后，输出提示信息\n            })\n            .catch((error: BusinessError) => {\n              console.log(\"error code: \" + error.code) // 分析失败时，输出错误代码\n            })\n        })\n      Button('stop AI analyze')\n        .onClick(() => {\n          this.xComponentController.stopImageAnalyzer() // 点击按钮时，停止图像分析\n        })\n      Button('get analyzer types')\n        .onClick(() => {\n          this.aiController.getImageAnalyzerSupportTypes() // 点击按钮时，获取支持的分析类型\n        })\n      XComponent({\n        type: XComponentType.SURFACE, // 设置XComponent的类型为SURFACE\n        controller: this.xComponentController, // 设置XComponent的控制器\n        imageAIOptions: this.options // 设置图像分析选项\n      })\n        .width(this.xcWidth) // 设置XComponent的宽度\n        .height(this.xcHeight) // 设置XComponent的高度\n    }\n    .width(\"100%\") // 设置布局宽度为100%\n  }\n}\n\n/*\n示例2代码：\n*/\n\n@Entry\n@Component\nstruct Index{\n  @State isLock: boolean = true; // 初始化surface旋转锁定状态\n  @State xc_width: number = 500; // 初始化XComponent的宽度\n  @State xc_height: number = 700; // 初始化XComponent的高度\n  myXComponentController: XComponentController = new XComponentController(); // 创建XComponentController实例\n\n  build() {\n    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) { // 创建一个垂直布局，对齐方式为居中对齐\n      XComponent({\n        id: 'xComponentId', // 设置XComponent的ID\n        type: XComponentType.SURFACE, // 设置XComponent的类型为SURFACE\n        libraryname: 'nativerender', // 设置XComponent的库名\n        controller: this.myXComponentController // 设置XComponent的控制器\n      })\n      .width(this.xc_width) // 设置XComponent的宽度\n      .height(this.xc_height) // 设置XComponent的高度\n      .onLoad(() => {\n        let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock }; // 设置surface旋转锁定状态\n        this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation); // 设置surface旋转锁定状态\n        console.log(\"Surface getXComponentSurfaceRotation lock = \" +\n          this.myXComponentController.getXComponentSurfaceRotation().lock); // 输出当前的surface旋转锁定状态\n      })\n    }\n    .width('100%') // 设置布局宽度为100%\n    .height('100%') // 设置布局高度为100%\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

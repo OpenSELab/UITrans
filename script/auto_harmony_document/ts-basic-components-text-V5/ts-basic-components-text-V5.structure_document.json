@@ -1,0 +1,496 @@
+{
+    "description": "显示一段文本的组件。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Text(content?: string | Resource, value?: TextOptions)",
+            "params": {
+                "content": {
+                    "type": ["string", "Resource"],
+                    "description": "文本内容。包含子组件Span且未设置属性字符串时不生效，显示Span内容，并且此时text组件的样式不生效。"
+                },
+                "value": {
+                    "type": "TextOptions",
+                    "description": "文本组件初始化选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "textAlign": {
+            "description": "设置文本段落在水平方向的对齐方式。",
+            "params": {
+                "value": {
+                    "type": "TextAlign",
+                    "required": true,
+                    "description": "文本段落在水平方向的对齐方式。",
+                    "default": "TextAlign.Start"
+                }
+            }
+        },
+        "textOverflow": {
+            "description": "设置文本超长时的显示方式。",
+            "params": {
+                "value": {
+                    "type": {
+                        "overflow": "TextOverflow"
+                    },
+                    "required": true,
+                    "description": "文本超长时的显示方式。",
+                    "default": {
+                        "overflow": "TextOverflow.Clip"
+                    }
+                }
+            }
+        },
+        "maxLines": {
+            "description": "设置文本的最大行数。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "文本的最大行数。"
+                }
+            }
+        },
+        "lineHeight": {
+            "description": "设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。",
+            "params": {
+                "value": {
+                    "type": ["number", "string", "Resource"],
+                    "required": true,
+                    "description": "文本的文本行高。"
+                }
+            }
+        },
+        "decoration": {
+            "description": "设置文本装饰线样式及其颜色。",
+            "params": {
+                "value": {
+                    "type": "DecorationStyleInterface",
+                    "required": true,
+                    "description": "文本装饰线样式对象。",
+                    "default": {
+                        "type": "TextDecorationType.None",
+                        "color": "Color.Black",
+                        "style": "TextDecorationStyle.SOLID"
+                    }
+                }
+            }
+        },
+        "baselineOffset": {
+            "description": "设置文本基线的偏移量，设置该值为百分比时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "文本基线的偏移量。",
+                    "default": 0
+                }
+            }
+        },
+        "letterSpacing": {
+            "description": "设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "文本字符间距。"
+                }
+            }
+        },
+        "minFontSize": {
+            "description": "设置文本最小显示字号。",
+            "params": {
+                "value": {
+                    "type": ["number", "string", "Resource"],
+                    "required": true,
+                    "description": "文本最小显示字号。"
+                }
+            }
+        },
+        "maxFontSize": {
+            "description": "设置文本最大显示字号。",
+            "params": {
+                "value": {
+                    "type": ["number", "string", "Resource"],
+                    "required": true,
+                    "description": "文本最大显示字号。"
+                }
+            }
+        },
+        "textCase": {
+            "description": "设置文本大小写。",
+            "params": {
+                "value": {
+                    "type": "TextCase",
+                    "required": true,
+                    "description": "文本大小写。",
+                    "default": "TextCase.Normal"
+                }
+            }
+        },
+        "fontColor": {
+            "description": "设置字体颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "字体颜色。"
+                }
+            }
+        },
+        "fontSize": {
+            "description": "设置字体大小。",
+            "params": {
+                "value": {
+                    "type": ["Resource", "number", "string"],
+                    "required": true,
+                    "description": "字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。"
+                }
+            }
+        },
+        "fontStyle": {
+            "description": "设置字体样式。",
+            "params": {
+                "value": {
+                    "type": "FontStyle",
+                    "required": true,
+                    "description": "字体样式。",
+                    "default": "FontStyle.Normal"
+                }
+            }
+        },
+        "fontWeight": {
+            "description": "设置文本的字体粗细，设置过大可能会在不同字体下有截断。",
+            "params": {
+                "value": {
+                    "type": ["FontWeight", "number", "string"],
+                    "required": true,
+                    "description": "文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如\"400\"，以及\"bold\"、\"bolder\"、\"lighter\"、\"regular\"、\"medium\"，分别对应FontWeight中相应的枚举值。",
+                    "default": "FontWeight.Normal"
+                }
+            }
+        },
+        "fontFamily": {
+            "description": "设置字体列表。",
+            "params": {
+                "value": {
+                    "type": ["Resource", "string"],
+                    "required": true,
+                    "description": "字体列表。默认字体'HarmonyOS Sans'。",
+                    "default": "HarmonyOS Sans"
+                }
+            }
+        },
+        "copyOption": {
+            "description": "设置组件是否支持文本可复制粘贴。设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作。",
+            "params": {
+                "value": {
+                    "type": "CopyOptions",
+                    "required": true,
+                    "description": "组件是否支持文本可复制粘贴。",
+                    "default": "CopyOptions.None"
+                }
+            }
+        },
+        "draggable": {
+            "description": "设置选中文本拖拽效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "选中文本拖拽效果。",
+                    "default": false
+                }
+            }
+        },
+        "fontFeature": {
+            "description": "设置文字特性效果，比如数字等宽的特性。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "文字特性效果。"
+                }
+            }
+        },
+        "textShadow": {
+            "description": "设置文字阴影效果。",
+            "params": {
+                "value": {
+                    "type": ["ShadowOptions", ["ShadowOptions"]],
+                    "required": true,
+                    "description": "文字阴影效果。"
+                }
+            }
+        },
+        "heightAdaptivePolicy": {
+            "description": "设置文本自适应高度的方式。",
+            "params": {
+                "value": {
+                    "type": "TextHeightAdaptivePolicy",
+                    "required": true,
+                    "description": "文本自适应高度的方式。"
+                }
+            }
+        },
+        "textIndent": {
+            "description": "设置首行文本缩进。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "首行文本缩进。",
+                    "default": 0
+                }
+            }
+        },
+        "wordBreak": {
+            "description": "设置断行规则。",
+            "params": {
+                "value": {
+                    "type": "WordBreak",
+                    "required": true,
+                    "description": "断行规则。",
+                    "default": "WordBreak.BREAK_WORD"
+                }
+            }
+        },
+        "selection": {
+            "description": "设置选中区域。选中区域高亮且显示手柄和文本选择菜单。",
+            "params": {
+                "selectionStart": {
+                    "type": "number",
+                    "required": true,
+                    "description": "所选文本的起始位置。",
+                    "default": -1
+                },
+                "selectionEnd": {
+                    "type": "number",
+                    "required": true,
+                    "description": "所选文本的结束位置。",
+                    "default": -1
+                }
+            }
+        },
+        "ellipsisMode": {
+            "description": "设置省略位置。",
+            "params": {
+                "value": {
+                    "type": "EllipsisMode",
+                    "required": true,
+                    "description": "省略位置。",
+                    "default": "EllipsisMode.END"
+                }
+            }
+        },
+        "enableDataDetector": {
+            "description": "设置是否进行文本特殊实体识别。",
+            "params": {
+                "enable": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "使能文本识别。",
+                    "default": false
+                }
+            }
+        },
+        "dataDetectorConfig": {
+            "description": "设置文本识别配置。",
+            "params": {
+                "config": {
+                    "type": "TextDataDetectorConfig",
+                    "required": true,
+                    "description": "文本识别配置。"
+                }
+            }
+        },
+        "bindSelectionMenu": {
+            "description": "设置自定义选择菜单。",
+            "params": {
+                "spanType": {
+                    "type": "TextSpanType",
+                    "required": true,
+                    "description": "Span类型信息。"
+                },
+                "content": {
+                    "type": "CustomBuilder",
+                    "required": true,
+                    "description": "自定义菜单内容。"
+                },
+                "responseType": {
+                    "type": "TextResponseType",
+                    "required": true,
+                    "description": "触发菜单弹出的方式。"
+                },
+                "options": {
+                    "type": "SelectionMenuOptions",
+                    "description": "菜单选项。"
+                }
+            }
+        },
+        "lineSpacing": {
+            "description": "设置文本的行间距，设置值不大于0时，取默认值0。",
+            "params": {
+                "value": {
+                    "type": "LengthMetrics",
+                    "required": true,
+                    "description": "文本的行间距。"
+                }
+            }
+        },
+        "privacySensitive": {
+            "description": "设置是否支持卡片敏感隐私信息。",
+            "params": {
+                "supported": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否支持卡片敏感隐私信息。",
+                    "default": false
+                }
+            }
+        },
+        "lineBreakStrategy": {
+            "description": "设置折行规则。",
+            "params": {
+                "strategy": {
+                    "type": "LineBreakStrategy",
+                    "required": true,
+                    "description": "折行规则。"
+                }
+            }
+        },
+        "textSelectable": {
+            "description": "设置是否支持文本可选择、可获焦以及Touch后能否获取焦点。",
+            "params": {
+                "mode": {
+                    "type": "TextSelectableMode",
+                    "required": true,
+                    "description": "文本是否支持可选择、可获焦。",
+                    "default": "TextSelectableMode.SELECTABLE_UNFOCUSABLE"
+                }
+            }
+        },
+        "editMenuOptions": {
+            "description": "设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。",
+            "params": {
+                "editMenu": {
+                    "type": "EditMenuOptions",
+                    "required": true,
+                    "description": "自定义菜单扩展项。"
+                }
+            }
+        },
+        "minFontScale": {
+            "description": "设置文本最小的字体缩放倍数。",
+            "params": {
+                "scale": {
+                    "type": ["number", "Resource"],
+                    "required": true,
+                    "description": "文本最小的字体缩放倍数。",
+                    "default": 0
+                }
+            }
+        },
+        "maxFontScale": {
+            "description": "设置文本最大的字体缩放倍数。",
+            "params": {
+                "scale": {
+                    "type": ["number", "Resource"],
+                    "required": true,
+                    "description": "文本最大的字体缩放倍数。",
+                    "default": 1
+                }
+            }
+        },
+        "halfLeading": {
+            "description": "设置文本是否将行间距平分至行的顶部与底部。",
+            "params": {
+                "halfLeading": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "文本是否将行间距平分至行的顶部与底部。",
+                    "default": false
+                }
+            }
+        },
+        "font": {
+            "description": "设置文本样式，支持设置字体配置项。",
+            "params": {
+                "fontValue": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "文本样式。"
+                },
+                "options": {
+                    "type": "FontSettingOptions",
+                    "description": "字体配置项。"
+                }
+            }
+        },
+        "fontWeight": {
+            "description": "设置文本字重，支持设置字体配置项。",
+            "params": {
+                "weight": {
+                    "type": ["FontWeight", "number", "string"],
+                    "required": true,
+                    "description": "文本的字体粗细。",
+                    "default": "FontWeight.Normal"
+                },
+                "options": {
+                    "type": "FontSettingOptions",
+                    "description": "字体配置项。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onCopy": {
+            "description": "长按文本内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。目前文本复制仅支持文本。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "复制的文本内容。"
+                }
+            }
+        },
+        "onTextSelectionChange": {
+            "description": "文本选择的位置发生变化时，触发该回调。",
+            "params": {
+                "selectionStart": {
+                    "type": "number",
+                    "required": true,
+                    "description": "所选文本的起始位置。"
+                },
+                "selectionEnd": {
+                    "type": "number",
+                    "required": true,
+                    "description": "所选文本的结束位置。"
+                }
+            }
+        }
+    },
+    "rules": [
+        "不支持Text内同时存在文本内容和Span或ImageSpan子组件。如果同时存在，只显示Span或ImageSpan内的内容。",
+        "字体排版引擎会对开发者传入的宽度[width]进行向下取整，保证是整型像素后进行排版。如果字体排版引擎向上取整，可能会出现文字右侧被截断。",
+        "当多个Text组件在[Row]容器内布局且没有设置具体的布局分配信息时，Text会以Row的最大尺寸进行布局。如果需要子组件主轴累加的尺寸不超过Row容器主轴的尺寸，可以设置[layoutWeight]或者是以[Flex]布局来约束子组件的主轴尺寸。"
+    ],
+    "examples": [
+        "示例1: textAlign、maxLines、textOverflow、lineHeight属性接口使用示例",
+        "示例2: decoration、baselineOffset、letterSpacing、textCase属性接口使用示例",
+        "示例3: textShadow、heightAdaptivePolicy、TextOverflow.MARQUEE使用示",
+        "示例4: ellipsisMode和wordBreak使用示例",
+        "示例5: selection和onCopy使用示例",
+        "示例6: enableDataDetector和dataDetectorConfig使用示例",
+        "示例7: bindSelectionMenu，onTextSelectionChange及closeSelectionMenu使用示例",
+        "示例8: fontFeature、lineSpacing和lineBreakStrategy使用示例",
+        "示例9: getLayoutManager使用示例",
+        "示例10: textSelectable使用示例",
+        "示例11: editMenuOptions使用示例",
+        "示例12: halfLeading使用示例",
+        "示例13: 该示例展示了如何配置隐私隐藏，效果展示需要卡片框架支持"
+    ],
+    "is_common_attrs": true
+}

@@ -1,0 +1,309 @@
+{
+    "description": "通过页签进行内容视图切换的容器组件，每个页签对应一个内容视图。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-expand-safe-area-V5)属性实现安全区避让。",
+    "interfaces": [
+        {
+            "description": "Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsController})",
+            "params": {
+                "value": {
+                    "type": {
+                        "barPosition": "BarPosition",
+                        "index": "number",
+                        "controller": "TabsController"
+                    },
+                    "description": "Tabs组件的初始化参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "barPosition": {
+            "description": "设置Tabs的页签位置。",
+            "params": {
+                "value": {
+                    "type": "BarPosition",
+                    "description": "Tabs的页签位置。",
+                    "default": "BarPosition.Start"
+                }
+            }
+        },
+        "index": {
+            "description": "设置当前显示页签的索引。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "当前显示页签的索引。",
+                    "default": 0
+                }
+            }
+        },
+        "controller": {
+            "description": "设置Tabs控制器。",
+            "params": {
+                "value": {
+                    "type": "TabsController",
+                    "description": "Tabs控制器。"
+                }
+            }
+        },
+        "vertical": {
+            "description": "设置是否为纵向Tab。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "description": "是否为纵向Tab。",
+                    "default": false
+                }
+            }
+        },
+        "scrollable": {
+            "description": "设置是否可以通过滑动页面进行页面切换。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "description": "是否可以通过滑动页面进行页面切换。",
+                    "default": true
+                }
+            }
+        },
+        "barMode": {
+            "description": "设置TabBar布局模式。",
+            "params": {
+                "value": {
+                    "type": "BarMode",
+                    "description": "TabBar布局模式。"
+                },
+                "options": {
+                    "type": "ScrollableBarModeOptions",
+                    "description": "Scrollable模式下的TabBar布局选项。"
+                }
+            }
+        },
+        "barWidth": {
+            "description": "设置TabBar的宽度值。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "description": "TabBar的宽度值。"
+                }
+            }
+        },
+        "barHeight": {
+            "description": "设置TabBar的高度值。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "description": "TabBar的高度值。"
+                }
+            }
+        },
+        "animationDuration": {
+            "description": "设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。",
+                    "default": 300
+                }
+            }
+        },
+        "animationMode": {
+            "description": "设置点击TabBar页签时切换TabContent的动画形式。",
+            "params": {
+                "mode": {
+                    "type": "AnimationMode",
+                    "description": "点击TabBar页签时切换TabContent的动画形式。",
+                    "default": "AnimationMode.CONTENT_FIRST"
+                }
+            }
+        },
+        "divider": {
+            "description": "设置区分TabBar和TabContent的分割线样式。",
+            "params": {
+                "value": {
+                    "type": "DividerStyle",
+                    "description": "分割线样式。"
+                }
+            }
+        },
+        "fadingEdge": {
+            "description": "设置页签超过容器宽度时是否渐隐消失。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "description": "页签超过容器宽度时是否渐隐消失。",
+                    "default": true
+                }
+            }
+        },
+        "barOverlap": {
+            "description": "设置TabBar是否背后变模糊并叠加在TabContent之上。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "description": "TabBar是否背后变模糊并叠加在TabContent之上。",
+                    "default": false
+                }
+            }
+        },
+        "barBackgroundColor": {
+            "description": "设置TabBar的背景颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "description": "TabBar的背景颜色。",
+                    "default": "Color.Transparent"
+                }
+            }
+        },
+        "barBackgroundBlurStyle": {
+            "description": "设置TabBar的背景模糊材质。",
+            "params": {
+                "value": {
+                    "type": "BlurStyle",
+                    "description": "TabBar的背景模糊材质。",
+                    "default": "BlurStyle.NONE"
+                }
+            }
+        },
+        "barGridAlign": {
+            "description": "以栅格化方式设置TabBar的可见区域。",
+            "params": {
+                "value": {
+                    "type": "BarGridColumnOptions",
+                    "description": "TabBar栅格化方式设置的对象。"
+                }
+            }
+        },
+        "edgeEffect": {
+            "description": "设置边缘回弹效果。",
+            "params": {
+                "edgeEffect": {
+                    "type": "EdgeEffect",
+                    "description": "边缘滑动效果。",
+                    "default": "EdgeEffect.Spring"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "Tab页签切换后触发的事件。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "当前显示的index索引，索引从0开始计算。"
+                }
+            }
+        },
+        "onTabBarClick": {
+            "description": "Tab页签点击后触发的事件。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "被点击的index索引，索引从0开始计算。"
+                }
+            }
+        },
+        "onAnimationStart": {
+            "description": "切换动画开始时触发该回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "当前显示元素的索引。"
+                },
+                "targetIndex": {
+                    "type": "number",
+                    "description": "切换动画目标元素的索引。"
+                },
+                "event": {
+                    "type": "TabsAnimationEvent",
+                    "description": "动画相关信息。"
+                }
+            }
+        },
+        "onAnimationEnd": {
+            "description": "切换动画结束时触发该回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "当前显示元素的索引。"
+                },
+                "event": {
+                    "type": "TabsAnimationEvent",
+                    "description": "动画相关信息。"
+                }
+            }
+        },
+        "onGestureSwipe": {
+            "description": "在页面跟手滑动过程中，逐帧触发该回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "当前显示元素的索引。"
+                },
+                "event": {
+                    "type": "TabsAnimationEvent",
+                    "description": "动画相关信息。"
+                }
+            }
+        },
+        "customContentTransition": {
+            "description": "自定义Tabs页面切换动画。",
+            "params": {
+                "delegate": {
+                    "type": "function",
+                    "description": "自定义切换动画的回调函数。",
+                    "params": {
+                        "from": {
+                            "type": "number",
+                            "description": "动画开始时，当前页面的index值。"
+                        },
+                        "to": {
+                            "type": "number",
+                            "description": "动画开始时，目标页面的index值。"
+                        }
+                    },
+                    "returns": {
+                        "type": "TabContentAnimatedTransition",
+                        "description": "自定义切换动画的相关信息。"
+                    }
+                }
+            }
+        },
+        "onContentWillChange": {
+            "description": "自定义Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。",
+            "params": {
+                "currentIndex": {
+                    "type": "number",
+                    "description": "当前显示页面的index索引，索引从0开始计算。"
+                },
+                "comingIndex": {
+                    "type": "number",
+                    "description": "将要显示的新页面的index索引。"
+                }
+            },
+            "returns": {
+                "type": "boolean",
+                "description": "当回调函数handler的返回值为true时，Tabs可以切换到新页面。当回调函数handler的返回值为false时，Tabs无法切换到新页面，仍然显示原来页面内容。"
+            }
+        }
+    },
+    "rules": [
+        "不支持自定义组件作为子组件，仅可包含子组件[TabContent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabcontent-V5)，以及渲染控制类型[if/else](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-rendering-control-ifelse-V5)和[ForEach](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-rendering-control-foreach-V5), 并且if/else和ForEach下也仅支持TabContent, 不支持自定义组件。",
+        "Tabs子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。"
+    ],
+    "examples": [
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabs-V5#示例1",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabs-V5#示例2",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabs-V5#示例3",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabs-V5#示例4",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabs-V5#示例5",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabs-V5#示例6",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabs-V5#示例7",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabs-V5#示例8",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabs-V5#示例9",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabs-V5#示例10"
+    ],
+    "is_common_attrs": true
+}

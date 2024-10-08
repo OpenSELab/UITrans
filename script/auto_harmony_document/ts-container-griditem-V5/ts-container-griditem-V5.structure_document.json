@@ -1,0 +1,106 @@
+{
+    "description": "网格容器中单项内容容器。仅支持作为Grid组件的子组件使用。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "GridItem(value?: GridItemOptions)",
+            "params": {
+                "value": {
+                    "type": "GridItemOptions",
+                    "required": false,
+                    "description": "GridItem的选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "rowStart": {
+            "description": "设置当前元素起始行号。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前元素起始行号。"
+                }
+            }
+        },
+        "rowEnd": {
+            "description": "设置当前元素终点行号。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前元素终点行号。"
+                }
+            }
+        },
+        "columnStart": {
+            "description": "设置当前元素起始列号。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前元素起始列号。"
+                }
+            }
+        },
+        "columnEnd": {
+            "description": "设置当前元素终点列号。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前元素终点列号。"
+                }
+            }
+        },
+        "forceRebuild": {
+            "description": "设置在触发组件build时是否重新创建此节点。GridItem会根据自身属性和子组件变化自行决定是否需要重新创建，无需设置。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "在触发组件build时是否重新创建此节点。",
+                    "default": false
+                }
+            }
+        },
+        "selectable": {
+            "description": "设置当前GridItem元素是否可以被鼠标框选。外层Grid容器的鼠标框选开启时，GridItem的框选才生效。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "当前GridItem元素是否可以被鼠标框选。",
+                    "default": true
+                }
+            }
+        },
+        "selected": {
+            "description": "设置当前GridItem选中状态。该属性支持$$双向绑定变量。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "当前GridItem选中状态。",
+                    "default": false
+                }
+            }
+        }
+    },
+    "events": {
+        "onSelect": {
+            "description": "GridItem元素被鼠标框选的状态改变时触发回调。",
+            "params": {
+                "isSelected": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "进入鼠标框选范围即被选中返回true， 移出鼠标框选范围即未被选中返回false。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

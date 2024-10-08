@@ -1,0 +1,276 @@
+{
+    "description": "显示警告弹窗组件，可设置文本内容与响应回调。",
+    "details": "可以包含单个子组件。",
+    "interfaces": [
+        {
+            "description": "AlertDialog.show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions)",
+            "params": {
+                "value": {
+                    "type": ["AlertDialogParamWithConfirm", "AlertDialogParamWithButtons", "AlertDialogParamWithOptions"],
+                    "required": true,
+                    "description": "定义警告弹窗并弹出。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "title": {
+            "description": "弹窗标题。",
+            "params": {
+                "value": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "弹窗标题。"
+                }
+            }
+        },
+        "subtitle": {
+            "description": "弹窗副标题。",
+            "params": {
+                "value": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "弹窗副标题。"
+                }
+            }
+        },
+        "message": {
+            "description": "弹窗内容。",
+            "params": {
+                "value": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "弹窗内容。"
+                }
+            }
+        },
+        "autoCancel": {
+            "description": "点击遮障层时，是否关闭弹窗。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "点击遮障层时，是否关闭弹窗。",
+                    "default": true
+                }
+            }
+        },
+        "cancel": {
+            "description": "点击遮障层关闭dialog时的回调。",
+            "params": {
+                "value": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "点击遮障层关闭dialog时的回调。"
+                }
+            }
+        },
+        "alignment": {
+            "description": "弹窗在竖直方向上的对齐方式。",
+            "params": {
+                "value": {
+                    "type": "DialogAlignment",
+                    "required": false,
+                    "description": "弹窗在竖直方向上的对齐方式。",
+                    "default": "DialogAlignment.Default"
+                }
+            }
+        },
+        "offset": {
+            "description": "弹窗相对alignment所在位置的偏移量。",
+            "params": {
+                "value": {
+                    "type": "Offset",
+                    "required": false,
+                    "description": "弹窗相对alignment所在位置的偏移量。",
+                    "default": { "dx": 0, "dy": 0 }
+                }
+            }
+        },
+        "gridCount": {
+            "description": "弹窗容器宽度所占用栅格数。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": false,
+                    "description": "弹窗容器宽度所占用栅格数。",
+                    "default": 4
+                }
+            }
+        },
+        "maskRect": {
+            "description": "弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。",
+            "params": {
+                "value": {
+                    "type": "Rectangle",
+                    "required": false,
+                    "description": "弹窗遮蔽层区域。",
+                    "default": { "x": 0, "y": 0, "width": "100%", "height": "100%" }
+                }
+            }
+        },
+        "showInSubWindow": {
+            "description": "某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否在子窗口显示此弹窗。",
+                    "default": false
+                }
+            }
+        },
+        "isModal": {
+            "description": "弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "弹窗是否为模态窗口。",
+                    "default": true
+                }
+            }
+        },
+        "backgroundColor": {
+            "description": "弹窗背板颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "弹窗背板颜色。",
+                    "default": "Color.Transparent"
+                }
+            }
+        },
+        "backgroundBlurStyle": {
+            "description": "弹窗背板模糊材质。",
+            "params": {
+                "value": {
+                    "type": "BlurStyle",
+                    "required": false,
+                    "description": "弹窗背板模糊材质。",
+                    "default": "BlurStyle.COMPONENT_ULTRA_THICK"
+                }
+            }
+        },
+        "onWillDismiss": {
+            "description": "交互式关闭回调函数。",
+            "params": {
+                "value": {
+                    "type": "Callback<DismissDialogAction>",
+                    "required": false,
+                    "description": "交互式关闭回调函数。"
+                }
+            }
+        },
+        "cornerRadius": {
+            "description": "设置背板的圆角半径。",
+            "params": {
+                "value": {
+                    "type": ["BorderRadiuses", "Dimension", "LocalizedBorderRadiuses"],
+                    "required": false,
+                    "description": "背板的圆角半径。",
+                    "default": { "topLeft": "32vp", "topRight": "32vp", "bottomLeft": "32vp", "bottomRight": "32vp" }
+                }
+            }
+        },
+        "transition": {
+            "description": "设置弹窗显示和退出的过渡效果。",
+            "params": {
+                "value": {
+                    "type": "TransitionEffect",
+                    "required": false,
+                    "description": "弹窗显示和退出的过渡效果。"
+                }
+            }
+        },
+        "width": {
+            "description": "设置弹窗背板的宽度。",
+            "params": {
+                "value": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "弹窗背板的宽度。"
+                }
+            }
+        },
+        "height": {
+            "description": "设置弹窗背板的高度。",
+            "params": {
+                "value": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "弹窗背板的高度。"
+                }
+            }
+        },
+        "borderWidth": {
+            "description": "设置弹窗背板的边框宽度。",
+            "params": {
+                "value": {
+                    "type": ["Dimension", "EdgeWidths", "LocalizedEdgeWidths"],
+                    "required": false,
+                    "description": "弹窗背板的边框宽度。",
+                    "default": 0
+                }
+            }
+        },
+        "borderColor": {
+            "description": "设置弹窗背板的边框颜色。",
+            "params": {
+                "value": {
+                    "type": ["ResourceColor", "EdgeColors", "LocalizedEdgeColors"],
+                    "required": false,
+                    "description": "弹窗背板的边框颜色。",
+                    "default": "Color.Black"
+                }
+            }
+        },
+        "borderStyle": {
+            "description": "设置弹窗背板的边框样式。",
+            "params": {
+                "value": {
+                    "type": ["BorderStyle", "EdgeStyles"],
+                    "required": false,
+                    "description": "弹窗背板的边框样式。",
+                    "default": "BorderStyle.Solid"
+                }
+            }
+        },
+        "shadow": {
+            "description": "设置弹窗背板的阴影。",
+            "params": {
+                "value": {
+                    "type": ["ShadowOptions", "ShadowStyle"],
+                    "required": false,
+                    "description": "弹窗背板的阴影。"
+                }
+            }
+        },
+        "textStyle": {
+            "description": "设置弹窗message内容的文本样式。",
+            "params": {
+                "value": {
+                    "type": "TextStyle",
+                    "required": false,
+                    "description": "弹窗message内容的文本样式。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onWillDismiss": {
+            "description": "交互式关闭回调函数。",
+            "params": {
+                "dismissDialogAction": {
+                    "type": "DismissDialogAction",
+                    "required": true,
+                    "description": "Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

@@ -1,0 +1,154 @@
+{
+    "description": "AtomicServiceTabs高级组件，对Tabs组件一些不需提供给用户自定义设计的属性进行简化，限制最多显示5个页签，固定页签样式，位置和大小。",
+    "details": "该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "AtomicServiceTabs({ tabContents?: [ TabContentBuilder?, TabContentBuilder?, TabContentBuilder?, TabContentBuilder?, TabContentBuilder? ], tabBarOptionsArray: [ TabBarOptions, TabBarOptions, TabBarOptions?, TabBarOptions?, TabBarOptions? ], tabBarPosition?: TabBarPosition, barBackgroundColor?: ResourceColor, index?: number, barOverlap?: boolean, controller?: TabsController, onChange?: Callback<number>, onTabBarClick?: Callback<number>, onContentWillChange?: OnContentWillChangeCallback })",
+            "params": {
+                "tabContents": {
+                    "type": ["TabContentBuilder?", "TabContentBuilder?", "TabContentBuilder?", "TabContentBuilder?", "TabContentBuilder?"],
+                    "description": "内容视图容器数组。"
+                },
+                "tabBarOptionsArray": {
+                    "type": ["TabBarOptions", "TabBarOptions", "TabBarOptions?", "TabBarOptions?", "TabBarOptions?"],
+                    "required": true,
+                    "description": "页签容器数组。"
+                },
+                "tabBarPosition": {
+                    "type": "TabBarPosition",
+                    "description": "设置页签栏位置。"
+                },
+                "barBackgroundColor": {
+                    "type": "ResourceColor",
+                    "description": "设置TabBar的背景颜色。"
+                },
+                "index": {
+                    "type": "number",
+                    "description": "设置当前显示页签的索引。"
+                },
+                "barOverlap": {
+                    "type": "boolean",
+                    "description": "设置TabBar是否背后变模糊并叠加在TabContent之上。"
+                },
+                "controller": {
+                    "type": "TabsController",
+                    "description": "Tabs组件的控制器，用于控制Tabs组件进行页签切换。"
+                },
+                "onChange": {
+                    "type": "Callback<number>",
+                    "description": "Tabs页签切换后触发的事件。"
+                },
+                "onTabBarClick": {
+                    "type": "Callback<number>",
+                    "description": "Tabs页签点击后触发的事件。"
+                },
+                "onContentWillChange": {
+                    "type": "OnContentWillChangeCallback",
+                    "description": "Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "tabContents": {
+            "description": "内容视图容器数组。",
+            "params": {
+                "value": {
+                    "type": ["TabContentBuilder?", "TabContentBuilder?", "TabContentBuilder?", "TabContentBuilder?", "TabContentBuilder?"],
+                    "description": "内容视图容器数组。"
+                }
+            }
+        },
+        "tabBarOptionsArray": {
+            "description": "页签容器数组。",
+            "params": {
+                "value": {
+                    "type": ["TabBarOptions", "TabBarOptions", "TabBarOptions?", "TabBarOptions?", "TabBarOptions?"],
+                    "required": true,
+                    "description": "页签容器数组。"
+                }
+            }
+        },
+        "tabBarPosition": {
+            "description": "设置页签栏位置。",
+            "params": {
+                "value": {
+                    "type": "TabBarPosition",
+                    "description": "设置页签栏位置。"
+                }
+            }
+        },
+        "barBackgroundColor": {
+            "description": "设置TabBar的背景颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "description": "设置TabBar的背景颜色。"
+                }
+            }
+        },
+        "index": {
+            "description": "设置当前显示页签的索引。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "设置当前显示页签的索引。"
+                }
+            }
+        },
+        "barOverlap": {
+            "description": "设置TabBar是否背后变模糊并叠加在TabContent之上。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "description": "设置TabBar是否背后变模糊并叠加在TabContent之上。"
+                }
+            }
+        },
+        "controller": {
+            "description": "Tabs组件的控制器，用于控制Tabs组件进行页签切换。",
+            "params": {
+                "value": {
+                    "type": "TabsController",
+                    "description": "Tabs组件的控制器，用于控制Tabs组件进行页签切换。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "Tabs页签切换后触发的事件。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "当前页签索引。"
+                }
+            }
+        },
+        "onTabBarClick": {
+            "description": "Tabs页签点击后触发的事件。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "当前页签索引。"
+                }
+            }
+        },
+        "onContentWillChange": {
+            "description": "Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。",
+            "params": {
+                "currentIndex": {
+                    "type": "number",
+                    "description": "当前页签索引。"
+                },
+                "comingIndex": {
+                    "type": "number",
+                    "description": "即将切换的页签索引。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": false
+}

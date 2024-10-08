@@ -1,0 +1,96 @@
+{
+    "description": "进度条组件，用于显示内容加载或操作处理等进度。",
+    "details": "该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Progress(options: ProgressOptions)",
+            "params": {
+                "options": {
+                    "type": "ProgressOptions",
+                    "required": true,
+                    "description": "创建进度条组件的参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "value": {
+            "description": "设置当前进度值。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前进度值。设置小于0的数值时置为0，设置大于total的数值时置为total。",
+                    "default": 0
+                }
+            }
+        },
+        "total": {
+            "description": "设置进度总长。",
+            "params": {
+                "total": {
+                    "type": "number",
+                    "required": false,
+                    "description": "进度总长。设置小于等于0的数值时置为100。",
+                    "default": 100
+                }
+            }
+        },
+        "type": {
+            "description": "设置进度条类型。",
+            "params": {
+                "type": {
+                    "type": ["ProgressType"],
+                    "required": false,
+                    "description": "进度条类型。",
+                    "default": "ProgressType.Linear"
+                }
+            }
+        },
+        "style": {
+            "description": "设置进度条样式。",
+            "params": {
+                "style": {
+                    "type": ["ProgressStyle"],
+                    "required": false,
+                    "description": "进度条样式。该参数从API version8开始废弃，建议使用type替代。",
+                    "default": "ProgressStyle.Linear"
+                }
+            }
+        },
+        "color": {
+            "description": "设置进度条前景色。",
+            "params": {
+                "value": {
+                    "type": ["ResourceColor", "LinearGradient"],
+                    "required": true,
+                    "description": "进度条前景色。从API version 10开始支持利用LinearGradient设置Ring样式的渐变色。"
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制progress内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<ProgressConfiguration>",
+                    "required": true,
+                    "description": "定制progress内容区的方法。"
+                }
+            }
+        },
+        "privacySensitive": {
+            "description": "设置隐私敏感。",
+            "params": {
+                "isPrivacySensitiveMode": {
+                    "type": ["Optional<boolean>"],
+                    "required": true,
+                    "description": "设置隐私敏感，隐私模式下进度清零，文字将被遮罩。设置null则不敏感。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

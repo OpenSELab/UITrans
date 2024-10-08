@@ -1,0 +1,302 @@
+{
+    "description": "滑动条组件，通常用于快速调节设置值，如音量调节、亮度调节等应用场景。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Slider(options?: SliderOptions)",
+            "params": {
+                "options": {
+                    "type": "SliderOptions",
+                    "description": "滑动条的配置选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "value": {
+            "description": "当前进度值。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "当前进度值。",
+                    "default": "与参数min的取值一致。"
+                }
+            }
+        },
+        "min": {
+            "description": "设置最小值。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "最小值。",
+                    "default": "0"
+                }
+            }
+        },
+        "max": {
+            "description": "设置最大值。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "最大值。",
+                    "default": "100"
+                }
+            }
+        },
+        "step": {
+            "description": "设置Slider滑动步长。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "滑动步长。",
+                    "default": "1"
+                }
+            }
+        },
+        "style": {
+            "description": "设置Slider的滑块与滑轨显示样式。",
+            "params": {
+                "value": {
+                    "type": "SliderStyle",
+                    "description": "滑块与滑轨显示样式。",
+                    "default": "SliderStyle.OutSet"
+                }
+            }
+        },
+        "direction": {
+            "description": "设置滑动条滑动方向为水平或竖直方向。",
+            "params": {
+                "value": {
+                    "type": "Axis",
+                    "description": "滑动方向。",
+                    "default": "Axis.Horizontal"
+                }
+            }
+        },
+        "reverse": {
+            "description": "设置滑动条取值范围是否反向。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "description": "取值范围是否反向。",
+                    "default": "false"
+                }
+            }
+        },
+        "blockColor": {
+            "description": "设置滑块的颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "滑块的颜色。"
+                }
+            }
+        },
+        "trackColor": {
+            "description": "设置滑轨的背景颜色。",
+            "params": {
+                "value": {
+                    "type": ["ResourceColor", "LinearGradient"],
+                    "required": true,
+                    "description": "滑轨的背景颜色。"
+                }
+            }
+        },
+        "selectedColor": {
+            "description": "设置滑轨的已滑动部分颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "滑轨的已滑动部分颜色。"
+                }
+            }
+        },
+        "showSteps": {
+            "description": "设置当前是否显示步长刻度值。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "当前是否显示步长刻度值。",
+                    "default": "false"
+                }
+            }
+        },
+        "showTips": {
+            "description": "设置滑动时是否显示气泡提示。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "滑动时是否显示气泡提示。",
+                    "default": "false"
+                },
+                "content": {
+                    "type": "ResourceStr",
+                    "description": "气泡提示的文本内容，默认显示当前百分比。"
+                }
+            }
+        },
+        "trackThickness": {
+            "description": "设置滑轨的粗细。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "滑轨的粗细。"
+                }
+            }
+        },
+        "blockBorderColor": {
+            "description": "设置滑块描边颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "滑块描边颜色。"
+                }
+            }
+        },
+        "blockBorderWidth": {
+            "description": "设置滑块描边粗细。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "滑块描边粗细。"
+                }
+            }
+        },
+        "stepColor": {
+            "description": "设置刻度颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "刻度颜色。"
+                }
+            }
+        },
+        "trackBorderRadius": {
+            "description": "设置底板圆角半径。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "底板圆角半径。"
+                }
+            }
+        },
+        "selectedBorderRadius": {
+            "description": "设置已滑动部分（高亮）圆角半径。",
+            "params": {
+                "value": {
+                    "type": "Dimension",
+                    "required": true,
+                    "description": "已选择部分圆角半径。"
+                }
+            }
+        },
+        "blockSize": {
+            "description": "设置滑块大小。",
+            "params": {
+                "value": {
+                    "type": "SizeOptions",
+                    "required": true,
+                    "description": "滑块大小。"
+                }
+            }
+        },
+        "blockStyle": {
+            "description": "设置滑块形状参数。",
+            "params": {
+                "value": {
+                    "type": "SliderBlockStyle",
+                    "required": true,
+                    "description": "滑块形状参数。"
+                }
+            }
+        },
+        "stepSize": {
+            "description": "设置刻度大小（直径）。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "刻度大小（直径）。"
+                }
+            }
+        },
+        "sliderInteractionMode": {
+            "description": "设置用户与滑动条组件交互方式。",
+            "params": {
+                "value": {
+                    "type": "SliderInteraction",
+                    "required": true,
+                    "description": "用户与滑动条组件交互方式。",
+                    "default": "SliderInteraction.SLIDE_AND_CLICK"
+                }
+            }
+        },
+        "minResponsiveDistance": {
+            "description": "设置滑动响应的最小距离。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "滑动响应的最小距离。"
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制Slider内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<SliderConfiguration>",
+                    "required": true,
+                    "description": "定制Slider内容区的方法。"
+                }
+            }
+        },
+        "slideRange": {
+            "description": "设置有效滑动区间。",
+            "params": {
+                "value": {
+                    "type": "SlideRange",
+                    "required": true,
+                    "description": "有效滑动区间。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "Slider拖动或点击时触发事件回调。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前滑动进度值。"
+                },
+                "mode": {
+                    "type": "SliderChangeMode",
+                    "required": true,
+                    "description": "事件触发的相关状态值。"
+                }
+            }
+        }
+    },
+    "rules": [
+        "Slider无默认padding。",
+        "当Slider为水平滑动条时，Slider默认高度为40vp，宽度为父容器的宽度，滑动条居中显示，左右间距为分别为10vp，若设置padding，padding不会覆盖左右间距。",
+        "当Slider为竖直滑动条时，Slider默认宽度为40vp，高度为父容器的高度，滑动条居中显示，上下间距为分别为6vp，若设置padding，padding不会覆盖上下间距。"
+    ],
+    "examples": [
+        "示例1",
+        "示例2",
+        "示例3"
+    ],
+    "is_common_attrs": true
+}

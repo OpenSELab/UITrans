@@ -52,6 +52,9 @@ class CommonBaseModel(BaseModel):
     def __repr__(self):
         return str(self)
 
+    def __hash__(self):
+        return hash(str(self))
+
 
 class AgentTaskTool(CommonBaseModel):
     name: str = Field(description="工具名称")

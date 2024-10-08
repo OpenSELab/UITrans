@@ -1,0 +1,252 @@
+{
+    "description": "提供下拉选择菜单，可以让用户在多个选项之间选择。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Select(options: Array<SelectOption>)",
+            "params": {
+                "options": {
+                    "type": "Array<SelectOption>",
+                    "required": true,
+                    "description": "下拉选项数组。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "selected": {
+            "description": "设置下拉菜单初始选项的索引。",
+            "params": {
+                "value": {
+                    "type": ["number", "Resource"],
+                    "required": true,
+                    "description": "下拉菜单初始选项的索引。"
+                }
+            }
+        },
+        "value": {
+            "description": "设置下拉按钮本身的文本内容。",
+            "params": {
+                "value": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "下拉按钮本身的文本内容。"
+                }
+            }
+        },
+        "controlSize": {
+            "description": "设置Select组件的尺寸。",
+            "params": {
+                "value": {
+                    "type": "ControlSize",
+                    "required": true,
+                    "description": "Select组件的尺寸。",
+                    "default": "ControlSize.NORMAL"
+                }
+            }
+        },
+        "menuItemContentModifier": {
+            "description": "定制Select下拉菜单项内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<MenuItemConfiguration>",
+                    "required": true,
+                    "description": "定制下拉菜单项内容区的方法。"
+                }
+            }
+        },
+        "divider": {
+            "description": "设置分割线样式。",
+            "params": {
+                "options": {
+                    "type": ["Optional<DividerOptions>", "null"],
+                    "required": true,
+                    "description": "分割线样式。"
+                }
+            }
+        },
+        "font": {
+            "description": "设置下拉按钮本身的文本样式。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "下拉按钮本身的文本样式。"
+                }
+            }
+        },
+        "fontColor": {
+            "description": "设置下拉按钮本身的文本颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "下拉按钮本身的文本颜色。"
+                }
+            }
+        },
+        "selectedOptionBgColor": {
+            "description": "设置下拉菜单选中项的背景色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "下拉菜单选中项的背景色。"
+                }
+            }
+        },
+        "selectedOptionFont": {
+            "description": "设置下拉菜单选中项的文本样式。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "下拉菜单选中项的文本样式。"
+                }
+            }
+        },
+        "selectedOptionFontColor": {
+            "description": "设置下拉菜单选中项的文本颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "下拉菜单选中项的文本颜色。"
+                }
+            }
+        },
+        "optionBgColor": {
+            "description": "设置下拉菜单项的背景色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "下拉菜单项的背景色。"
+                }
+            }
+        },
+        "optionFont": {
+            "description": "设置下拉菜单项的文本样式。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "下拉菜单项的文本样式。"
+                }
+            }
+        },
+        "optionFontColor": {
+            "description": "设置下拉菜单项的文本颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "下拉菜单项的文本颜色。"
+                }
+            }
+        },
+        "space": {
+            "description": "设置下拉菜单项的文本与箭头之间的间距。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "下拉菜单项的文本与箭头之间的间距。",
+                    "default": 8
+                }
+            }
+        },
+        "arrowPosition": {
+            "description": "设置下拉菜单项的文本与箭头之间的对齐方式。",
+            "params": {
+                "value": {
+                    "type": "ArrowPosition",
+                    "required": true,
+                    "description": "下拉菜单项的文本与箭头之间的对齐方式。",
+                    "default": "ArrowPosition.END"
+                }
+            }
+        },
+        "menuAlign": {
+            "description": "设置下拉按钮与下拉菜单间的对齐方式。",
+            "params": {
+                "alignType": {
+                    "type": "MenuAlignType",
+                    "required": true,
+                    "description": "对齐方式类型。",
+                    "default": "MenuAlignType.START"
+                },
+                "offset": {
+                    "type": "Offset",
+                    "required": false,
+                    "description": "按照对齐类型对齐后，下拉菜单相对下拉按钮的偏移量。",
+                    "default": {
+                        "dx": 0,
+                        "dy": 0
+                    }
+                }
+            }
+        },
+        "optionWidth": {
+            "description": "设置下拉菜单项的宽度。",
+            "params": {
+                "value": {
+                    "type": ["Dimension", "OptionWidthMode"],
+                    "required": true,
+                    "description": "下拉菜单项的宽度。"
+                }
+            }
+        },
+        "optionHeight": {
+            "description": "设置下拉菜单显示的最大高度。",
+            "params": {
+                "value": {
+                    "type": "Dimension",
+                    "required": true,
+                    "description": "下拉菜单显示的最大高度。"
+                }
+            }
+        },
+        "menuBackgroundColor": {
+            "description": "设置下拉菜单的背景色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "下拉菜单的背景色。"
+                }
+            }
+        },
+        "menuBackgroundBlurStyle": {
+            "description": "设置下拉菜单的背景模糊材质。",
+            "params": {
+                "value": {
+                    "type": "BlurStyle",
+                    "required": true,
+                    "description": "下拉菜单的背景模糊材质。",
+                    "default": "BlurStyle.COMPONENT_ULTRA_THICK"
+                }
+            }
+        }
+    },
+    "events": {
+        "onSelect": {
+            "description": "下拉菜单选中某一项的回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "选中项的索引。"
+                },
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "选中项的值。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

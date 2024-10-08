@@ -6700,13 +6700,21 @@ COMPONENT_TYPE = {
             "colorMode": {
                 "type": "ThemeColorMode",
                 "description": "用于指定WithTheme作用域内组件深浅色模式。",
-                "default": "ThemeColorMode.System",
+                "default": "ThemeColorMode.SYSTEM",
                 "required": False
             }
         }
-    }
-    ,
-
+    },
+    "ThemeColorMode": {
+        "type": "enum",
+        "enum": ["SYSTEM", "LIGHT", "DARK"],
+        "description": "设置WithTheme作用域内组件深浅色模式。",
+        "enumDescriptions": {
+            "SYSTEM": "跟随系统深浅色模式。",
+            "LIGHT": "固定使用浅色模式。",
+            "DARK": "固定使用深色模式。"
+        }
+    },
     "VideoOptions": {
         "type": "object",
         "description": "视频选项对象，用于配置视频的数据源、播放倍速、预览图片路径、控制器和图像AI分析选项。",
@@ -8290,6 +8298,26 @@ COMPONENT_TYPE = {
         "enumDescriptions": {
             "INDICATOR": "使用下划线模式。",
             "BOARD": "使用背板模式。"
+        }
+    },
+    "TextInputOptions": {
+        "type": "object",
+        "description": "TextInput文本输入框的配置参数。",
+        "properties": {
+            "placeholder": {
+                "type": "ResourceStr",
+                "description": "设置无输入时的提示文本。",
+                "required": False
+            },
+            "text": {
+                "type": "ResourceStr",
+                "description": "设置输入框当前的文本内容。该参数支持$$双向绑定变量。",
+                "required": False
+            },
+            "controller": {
+                "type": "TextInputController",
+                "description": "设置TextInput控制器。"
+            }
         }
     }
 }

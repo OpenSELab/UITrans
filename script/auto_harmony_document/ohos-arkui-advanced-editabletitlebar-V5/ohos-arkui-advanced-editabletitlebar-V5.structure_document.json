@@ -1,0 +1,71 @@
+{
+    "description": "编辑型标题栏，适用于多选界面或者内容的编辑界面，一般采取左叉右勾的形式。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitleBarItem, title: ResourceStr, subtitle?: ResourceStr, menuItems?: Array<EditableTitleBarMenuItem>, isSaveIconRequired?: boolean, onSave?: () => void, onCancel?: () => void, options?: EditableTitleBarOptions, contentMargin?: LocalizedMargin})",
+            "params": {
+                "leftIconStyle": {
+                    "type": "EditableLeftIconType",
+                    "required": true,
+                    "description": "左侧按钮类型。"
+                },
+                "imageItem": {
+                    "type": "EditableTitleBarItem",
+                    "required": false,
+                    "description": "用于左侧头像的单个菜单项目。"
+                },
+                "title": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "标题。"
+                },
+                "subtitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "副标题。"
+                },
+                "menuItems": {
+                    "type": ["EditableTitleBarMenuItem"],
+                    "required": false,
+                    "description": "右侧菜单项目列表。"
+                },
+                "isSaveIconRequired": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否需要右侧的保存按钮。",
+                    "default": true
+                },
+                "onSave": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "保存时的动作闭包。"
+                },
+                "onCancel": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "当左侧按钮类型为 Cancel，触发取消时的动作闭包。从API version 12开始，当左侧按钮类型为 Back，触发返回时的动作闭包。"
+                },
+                "options": {
+                    "type": "EditableTitleBarOptions",
+                    "required": false,
+                    "description": "标题样式。"
+                },
+                "contentMargin": {
+                    "type": "LocalizedMargin",
+                    "required": false,
+                    "description": "标题栏外边距，不支持设置负数。",
+                    "default": {
+                        "start": "LengthMetrics.resource($r('sys.float.margin_left'))",
+                        "end": "LengthMetrics.resource($r('sys.float.margin_right'))"
+                    }
+                }
+            }
+        }
+    ],
+    "attributes": {},
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

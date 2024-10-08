@@ -17,3 +17,5 @@ class TranslationTable(Base):
     target_component_code: Mapped[str] = mapped_column(Text, nullable=False)
     target_component_description: Mapped[str] = mapped_column(Text)
     target_component_version: Mapped[str] = mapped_column()
+
+    disabled: Mapped[bool] = mapped_column(default=True)

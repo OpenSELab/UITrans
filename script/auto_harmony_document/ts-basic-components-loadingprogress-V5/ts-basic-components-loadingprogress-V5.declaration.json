@@ -1,0 +1,57 @@
+{
+    "description": "用于显示加载动效的组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "LoadingProgress()",
+            "params": {}
+        }
+    ],
+    "attributes": {
+        "color": {
+            "description": "设置加载进度条前景色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "加载进度条的前景色。",
+                    "default": "#ff666666"
+                }
+            }
+        },
+        "enableLoading": {
+            "description": "设置LoadingProgress动画显示或者不显示。LoadingProgress动画不显示时，该组件依旧占位。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "LoadingProgress动画是否显示。",
+                    "default": true
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制LoadingProgress内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<LoadingProgressConfiguration>",
+                    "required": true,
+                    "description": "定制LoadingProgress内容区的方法。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件展示了一个带有文本和加载进度条的界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上被分为两个部分：一个文本部分和一个加载进度条部分。文本部分包含一个描述性的文本，字体大小为9，颜色为浅灰色，宽度占据90%的父容器宽度。加载进度条部分使用默认的LoadingProgress组件，颜色设置为蓝色，占据剩余的垂直空间。\n组件的排列和嵌套关系如下：整个布局通过Column组件进行垂直排列，Column组件的子元素包括一个Text组件和一个LoadingProgress组件。Text组件位于顶部，LoadingProgress组件位于底部。Column组件的宽度设置为100%，顶部有5个单位的边距。\n加载进度条的功能是展示一个动态的加载效果，颜色为蓝色，通过layoutWeight属性设置为1，使其占据剩余的垂直空间。",
+            "code": "@Entry\n@Component\nstruct LoadingProgressExample {\n  build() {\n    Column({ space: 5 }) { // 创建一个垂直布局的Column组件，子元素之间的间距为5个单位\n      Text('Orbital LoadingProgress ') // 创建一个文本组件，内容为'Orbital LoadingProgress '\n        .fontSize(9) // 设置文本的字体大小为9\n        .fontColor(0xCCCCCC) // 设置文本的颜色为浅灰色（0xCCCCCC）\n        .width('90%') // 设置文本的宽度为父容器的90%\n      LoadingProgress() // 创建一个加载进度条组件\n        .color(Color.Blue) // 设置加载进度条的颜色为蓝色\n        .layoutWeight(1) // 设置加载进度条的布局权重为1，使其占据剩余的垂直空间\n    }\n    .width('100%') // 设置Column组件的宽度为100%\n    .margin({ top: 5 }) // 设置Column组件的顶部边距为5个单位\n  }\n}"
+        },
+        {
+            "description": "该组件通过Column和Row布局实现了一个展示加载进度及其状态效果的界面。布局宽度占据整个屏幕，内边距为10vp。组件的垂直方向上被分为多个部分，每个部分包含一个Circle、Button、Gauge和List组件。每个组件组的组件以水平布局方式排列，组件之间的间距均匀分布，且对齐方式为居中对齐。\n\nCircle组件的样式包括宽度、高度和填充颜色等属性，支持不同的样式展示。Button组件的样式包括字体颜色、背景颜色和点击事件等属性，用户可以通过点击按钮触发相应操作。Gauge组件的样式包括宽度、高度、颜色和阴影等属性，支持不同的样式展示。List组件的样式包括高度、宽度、字体颜色、背景颜色和边框等属性，支持不同的样式展示。\n\n整个布局通过Column和Row布局保证组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "// 导入性能分析工具\nimport { hilog } from '@kit.PerformanceAnalysisKit'\n// 导入ArkUI的提示动作工具\nimport { promptAction } from '@kit.ArkUI'\n\n// 定义一个自定义的加载进度样式类\nclass MyLoadingProgressStyle implements ContentModifier<LoadingProgressConfiguration> {\n  // 是否启用加载进度\n  enableLoading: boolean = false\n\n  // 构造函数，初始化enableLoading属性\n  constructor(enableLoading: boolean) {\n    this.enableLoading = enableLoading\n  }\n\n  // 应用内容修改器，返回一个WrappedBuilder\n  applyContent(): WrappedBuilder<[LoadingProgressConfiguration]> {\n    return wrapBuilder(buildLoadingProgress)\n  }\n}\n\n// 定义两个字符串数组\nlet arr1: string[] = [\"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"19\"]\nlet arr2: string[] = [\"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\"]\n\n// 定义一个Builder函数，用于构建加载进度组件\n@Builder\nfunction buildLoadingProgress(config: LoadingProgressConfiguration) {\n  Column({ space: 8 }) {\n    Row() {\n      Column() {\n        Circle({\n          width: ((config.contentModifier as MyLoadingProgressStyle).enableLoading) ? 100 : 80, // 根据enableLoading属性设置Circle的宽度\n          height: ((config.contentModifier as MyLoadingProgressStyle).enableLoading) ? 100 : 80 // 根据enableLoading属性设置Circle的高度\n        })\n          .fill(((config.contentModifier as MyLoadingProgressStyle).enableLoading) ? Color.Grey : 0x2577e3) // 根据enableLoading属性设置Circle的填充颜色\n      }.width('50%')\n\n      Column() {\n        Button('' + ((config.contentModifier as MyLoadingProgressStyle).enableLoading)) // 根据enableLoading属性设置Button的文本\n          .onClick((event: ClickEvent) => {\n            promptAction.showToast({\n              message: ((config.contentModifier as MyLoadingProgressStyle).enableLoading) + '' // 显示enableLoading属性的值\n            })\n          })\n          .fontColor(Color.White) // 设置Button的字体颜色为白色\n          .backgroundColor(((config.contentModifier as MyLoadingProgressStyle).enableLoading) ? Color.Grey : 0x2577e3) // 根据enableLoading属性设置Button的背景颜色\n      }.width('50%')\n    }\n\n    Row() {\n      Column() {\n        Gauge({\n          value: (config.contentModifier as MyLoadingProgressStyle).enableLoading?50:30, // 根据enableLoading属性设置Gauge的值\n          min: 11, // 设置Gauge的最小值\n          max: 100 // 设置Gauge的最大值\n        }) {\n          Column() {\n            Text('60')\n              .maxFontSize(\"180sp\") // 设置Text的最大字体大小\n              .minFontSize(\"160.0vp\") // 设置Text的最小字体大小\n              .fontWeight(FontWeight.Medium) // 设置Text的字体粗细\n              .fontColor(\"#ff182431\") // 设置Text的字体颜色\n              .width('40%') // 设置Text的宽度\n              .height('30%') // 设置Text的高度\n              .textAlign(TextAlign.Center) // 设置Text的对齐方式为居中\n              .margin({ top: '22.2%' }) // 设置Text的上边距\n              .textOverflow({ overflow: TextOverflow.Ellipsis }) // 设置Text的溢出处理方式为省略号\n              .maxLines(1) // 设置Text的最大行数为1\n          }.width('100%').height('100%')\n        }\n        .colors(((config.contentModifier as MyLoadingProgressStyle).enableLoading) ? Color.Grey : 0x2577e3) // 根据enableLoading属性设置Gauge的颜色\n        .width(200) // 设置Gauge的宽度\n        .strokeWidth(18) // 设置Gauge的描边宽度\n        .padding(5) // 设置Gauge的内边距\n        .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 }) // 设置Gauge的阴影\n        .height(200) // 设置Gauge的高度\n      }.width('100%')\n    }\n\n    Column() {\n      List({ space: 20, initialIndex: 0 }) {\n        ForEach(arr2, (item: string) => {\n          ListItem() {\n            Text((config.contentModifier as MyLoadingProgressStyle).enableLoading ? '' + item : Number(item) * 2 + '') // 根据enableLoading属性设置Text的文本\n              .width('100%') // 设置Text的宽度\n              .height('100%') // 设置Text的高度\n              .fontColor((config.contentModifier as MyLoadingProgressStyle).enableLoading ? Color.White : Color.Orange) // 根据enableLoading属性设置Text的字体颜色\n              .fontSize((config.contentModifier as MyLoadingProgressStyle).enableLoading ? 16 : 20) // 根据enableLoading属性设置Text的字体大小\n              .textAlign(TextAlign.Center) // 设置Text的对齐方式为居中\n              .backgroundColor((config.contentModifier as MyLoadingProgressStyle).enableLoading ? Color.Grey : 0x2577e3) // 根据enableLoading属性设置Text的背景颜色\n          }\n          .height(110) // 设置ListItem的高度\n          .border({\n            width: 2, // 设置ListItem的边框宽度\n            color: Color.White // 设置ListItem的边框颜色\n          })\n        }, (item: string) => item)\n      }\n      .height(200) // 设置List的高度\n      .width('100%') // 设置List的宽度\n      .friction(0.6) // 设置List的摩擦系数\n      .lanes({ minLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading?40:80, maxLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading?40:80 }) // 根据enableLoading属性设置List的行长度\n      .scrollBar(BarState.Off) // 设置List的滚动条状态为关闭\n    }\n  }.width(\"100%\").padding(10) // 设置Column的宽度为100%，内边距为10vp\n}\n\n// 定义一个入口组件\n@Entry\n@Component\nstruct LoadingProgressDemoExample {\n  // 定义一个状态变量，用于存储加载进度列表\n  @State loadingProgressList: (boolean | undefined | null)[] = [undefined, true, null, false]\n  // 定义一个状态变量，用于存储宽度列表\n  @State widthList: (number | string)[] = ['110%', 220, '40%', 80]\n  // 定义一个状态变量，用于存储加载进度索引\n  @State loadingProgressIndex: number = 0\n  // 定义一个状态变量，用于存储点击标志\n  @State clickFlag: number = 0\n  // 定义一个Scroller对象\n  scroller: Scroller = new Scroller()\n\n  // 构建组件\n  build() {\n    Column() {\n      Scroll(this.scroller) {\n        Column({ space: 5 }) {\n          Column() {\n            LoadingProgress()\n              .color('#106836') // 设置LoadingProgress的颜色\n              .size({ width: '100%' }) // 设置LoadingProgress的宽度为100%\n              .contentModifier(new MyLoadingProgressStyle(this.loadingProgressList[this.loadingProgressIndex])) // 设置LoadingProgress的内容修改器\n          }.width('100%').backgroundColor(0xdcdcdc) // 设置Column的宽度为100%，背景颜色为0xdcdcdc\n        }.width('100%').margin({ top: 5 }) // 设置Column的宽度为100%，上边距为5vp\n      }.height('85%') // 设置Scroll的高度为85%\n\n      Button('点击切换config.enableloading').onClick(() => {\n        this.clickFlag++ // 增加点击标志\n        this.loadingProgressIndex = (this.loadingProgressIndex + 1) % this.loadingProgressList.length // 更新加载进度索引\n        console.log('enableLoading:' + this.loadingProgressList[this.loadingProgressIndex]) // 打印enableLoading的值\n      }).margin(20) // 设置Button的上边距为20vp\n    }\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

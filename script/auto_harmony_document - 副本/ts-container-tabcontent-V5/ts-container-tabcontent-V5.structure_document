@@ -1,0 +1,32 @@
+{
+    "description": "仅在Tabs中使用，对应一个切换页签的内容视图。",
+    "details": "TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。vertical属性为false值，交换上述2个限制。TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。",
+    "interfaces": [
+        {
+            "description": "TabContent()",
+            "params": {}
+        }
+    ],
+    "attributes": {
+        "tabBar": {
+            "description": "设置TabBar上显示内容。",
+            "params": {
+                "value": {
+                    "type": ["string", "Resource", "CustomBuilder", "object"],
+                    "required": true,
+                    "description": "TabBar上显示的内容。如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。设置的内容超出tabbar页签时进行裁切。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onWillShow": {
+            "description": "逻辑回调，TabContent将要显示的时候触发该回调。场景包括TabContent首次显示，TabContent切换，页面切换，窗口前后台切换。",
+            "params": {}
+        },
+        "onWillHide": {
+            "description": "逻辑回调，TabContent将要隐藏的时候触发该回调。场景包括TabContent切换，页面切换，窗口前后台切换。",
+            "params": {}
+        }
+    }
+}

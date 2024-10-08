@@ -1,0 +1,26 @@
+以下是一个示例：
+安卓组件：EditText
+<EditText
+android:id="@+id/et_1"
+android:layout_width="match_parent"
+android:layout_height="50dp"
+android:layout_marginBottom="15dp"
+android:autofillHints=""
+android:hint="请输入文字"
+android:inputType="text"
+android:paddingLeft="15dp"
+android:paddingRight="15dp"
+android:textColor="@color/black"
+android:textSize="16sp" />
+回答：
+```json
+{
+    "components": ["TextInput"],
+    "queries": [
+        {
+            "queries": ["设置输入框的高度", "设置输入框的宽度", "设置输入框的底部边距", "设置输入框的提示文本", "设置输入框的输入类型", "设置输入框的左内边距", "设置输入框的右内边距", "设置输入框的文本颜色", "设置输入框的字体大小"],
+            "component": "TextInput",
+        },
+    ]
+}
+```

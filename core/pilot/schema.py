@@ -80,9 +80,9 @@ class BreakdownAndroidLayout(CommonBaseModel):
 
 
 class TranslateAndroidComponent(CommonBaseModel):
-    android_component: str = Field(description="待转译的Android组件")
-    harmony_component: str = Field(description="转译后的Harmony组件")
-    harmony_component_description: str = Field(description="Harmony组件的描述")
+    # android_component: str = Field(description="待转译的Android组件")
+    harmony_component: str = Field(description="转译后的Harmony组件代码")
+    # harmony_component_description: str = Field(description="Harmony组件的描述")
     explanation: str = Field(description="转译过程的解释")
 
 
@@ -98,3 +98,13 @@ class Translation(CommonBaseModel):
     target_component_description: str = Field(description="目标组件描述")
 
     explanation: str = Field(description="转译过程的解释")
+
+
+class GenerateComponentQueryItem(CommonBaseModel):
+    component: str = Field(description="组件的名称")
+    queries: List[str] = Field(description="组件的查询描述")
+
+
+class GenerateComponentQuery(CommonBaseModel):
+    components: List[str] = Field(description="所需的鸿蒙ArkUI组件列表")
+    queries: List[GenerateComponentQueryItem] = Field(description="组件的查询描述列表")

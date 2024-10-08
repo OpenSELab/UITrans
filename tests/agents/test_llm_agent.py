@@ -9,7 +9,7 @@ from core.tools.file_tools import create_file, read_file, list_files
 os.chdir("../")
 config = ConfigLoader.from_file("./config.yaml")
 llm_client = LLMFactory.create_llm_from_config(llm_client_type="openai",
-                                               llm_config=config.llm_config["openai"].dict())
+                                               llm_config=config.llm_config["deepseek"].dict())
 
 
 class TestLLMAgent(unittest.TestCase):

@@ -1,0 +1,149 @@
+{
+    "description": "通过文本显示计时信息并控制其计时器状态的组件。",
+    "details": "在组件不可见时时间变动将停止，组件的可见状态基于onVisibleAreaChange处理，可见阈值ratios大于0即视为可见状态。",
+    "interfaces": [
+        {
+            "description": "TextTimer(options?: TextTimerOptions)",
+            "params": {
+                "options": {
+                    "type": "TextTimerOptions",
+                    "description": "TextTimer的选项对象。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "isCountDown": {
+            "description": "是否倒计时。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "description": "是否倒计时。",
+                    "default": false
+                }
+            }
+        },
+        "count": {
+            "description": "倒计时时间（isCountDown为true时生效），单位为毫秒。最长不超过86400000毫秒（24小时）。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "倒计时时间，单位为毫秒。",
+                    "default": 60000
+                }
+            }
+        },
+        "controller": {
+            "description": "TextTimer控制器。",
+            "params": {
+                "value": {
+                    "type": "TextTimerController",
+                    "description": "TextTimer控制器。"
+                }
+            }
+        },
+        "format": {
+            "description": "设置自定义格式，需至少包含一个HH、mm、ss、SS中的关键字。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "自定义格式。",
+                    "default": "HH:mm:ss.SS"
+                }
+            }
+        },
+        "fontColor": {
+            "description": "设置字体颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "字体颜色。"
+                }
+            }
+        },
+        "fontSize": {
+            "description": "设置字体大小。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。"
+                }
+            }
+        },
+        "fontStyle": {
+            "description": "设置字体样式。",
+            "params": {
+                "value": {
+                    "type": "FontStyle",
+                    "required": true,
+                    "description": "字体样式。",
+                    "default": "FontStyle.Normal"
+                }
+            }
+        },
+        "fontWeight": {
+            "description": "设置文本的字体粗细，设置过大可能会在不同字体下有截断。",
+            "params": {
+                "value": {
+                    "type": ["number", "FontWeight", "string"],
+                    "required": true,
+                    "description": "文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如\"400\"，以及\"bold\"、\"bolder\"、\"lighter\"、\"regular\"、\"medium\"，分别对应FontWeight中相应的枚举值。",
+                    "default": "FontWeight.Normal"
+                }
+            }
+        },
+        "fontFamily": {
+            "description": "设置字体列表。",
+            "params": {
+                "value": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "字体列表。默认字体'HarmonyOS Sans'。"
+                }
+            }
+        },
+        "textShadow": {
+            "description": "设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。不支持fill字段, 不支持智能取色模式。",
+            "params": {
+                "value": {
+                    "type": ["ShadowOptions", "Array<ShadowOptions>"],
+                    "required": true,
+                    "description": "文字阴影效果。"
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制TextTimer内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<TextTimerConfiguration>",
+                    "required": true,
+                    "description": "定制TextTimer内容区的方法。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onTimer": {
+            "description": "时间文本发生变化时触发。锁屏状态和应用后台状态下不会触发该事件。设置高精度的format（SSS、SS）时，回调间隔可能会出现波动。",
+            "params": {
+                "utc": {
+                    "type": "number",
+                    "required": true,
+                    "description": "Linux时间戳，即自1970年1月1日起经过的时间，单位为设置格式的最小单位。"
+                },
+                "elapsedTime": {
+                    "type": "number",
+                    "required": true,
+                    "description": "计时器经过的时间，单位为设置格式的最小单位。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

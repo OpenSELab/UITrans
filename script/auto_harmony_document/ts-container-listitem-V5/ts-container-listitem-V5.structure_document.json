@@ -1,0 +1,75 @@
+{
+    "description": "用来展示列表具体item，必须配合List来使用。可以包含单个子组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "ListItem(value?: ListItemOptions)",
+            "params": {
+                "value": {
+                    "type": "ListItemOptions",
+                    "required": false,
+                    "description": "为ListItem提供可选参数, 该对象内含有ListItemStyle枚举类型的style参数。"
+                }
+            }
+        },
+        {
+            "description": "ListItem(deprecated)(value?: string)",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": false,
+                    "description": "无"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "selectable": {
+            "description": "设置当前ListItem元素是否可以被鼠标框选。外层List容器的鼠标框选开启时，ListItem的框选才生效。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "ListItem元素是否可以被鼠标框选。",
+                    "default": true
+                }
+            }
+        },
+        "selected": {
+            "description": "设置当前ListItem选中状态。该属性支持$$双向绑定变量。该属性需要在设置选中态样式前使用才能生效选中态样式。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "当前ListItem选中状态。",
+                    "default": false
+                }
+            }
+        },
+        "swipeAction": {
+            "description": "用于设置ListItem的划出组件。",
+            "params": {
+                "value": {
+                    "type": "SwipeActionOptions",
+                    "required": true,
+                    "description": "划出组件的配置选项。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onSelect": {
+            "description": "ListItem元素被鼠标框选的状态改变时触发回调。",
+            "params": {
+                "isSelected": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "进入鼠标框选范围即被选中返回true， 移出鼠标框选范围即未被选中返回false。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

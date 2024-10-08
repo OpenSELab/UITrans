@@ -1,0 +1,155 @@
+{
+    "description": "TextClock组件通过文本将当前系统时间显示在设备上。支持不同时区的时间显示，最高精度到秒级。",
+    "details": "在组件不可见时时间变动将停止，组件的可见状态基于onVisibleAreaChange处理，可见阈值ratios大于0即视为可见状态。",
+    "interfaces": [
+        {
+            "description": "TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController })",
+            "params": {
+                "options": {
+                    "type": "object",
+                    "description": "TextClock组件的配置选项。",
+                    "params": {
+                        "timeZoneOffset": {
+                            "type": "number",
+                            "description": "设置时区偏移量。取值范围为[-14, 12]，表示东十二区到西十二区，其中负值表示东时区，正值表示西时区，比如东八区为-8。设置值为该取值范围内的浮点数时会进行取整，舍弃小数部分。对横跨国际日界线的国家或地区，用-13（UTC+13）和-14（UTC+14）来保证整个国家或者区域处在相同的时间，当设置的值不在取值范围内时，将使用当前系统的时区偏移量。",
+                            "default": "当前系统的时区偏移量"
+                        },
+                        "controller": {
+                            "type": "TextClockController",
+                            "description": "绑定一个控制器，用来控制文本时钟的状态。"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "format": {
+            "description": "设置显示时间格式，如“yyyy/MM/dd”、“yyyy-MM-dd”。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "显示时间格式。"
+                }
+            }
+        },
+        "fontColor": {
+            "description": "设置字体颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "字体颜色。"
+                }
+            }
+        },
+        "fontSize": {
+            "description": "设置字体大小。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。"
+                }
+            }
+        },
+        "fontStyle": {
+            "description": "设置字体样式。",
+            "params": {
+                "value": {
+                    "type": "FontStyle",
+                    "required": true,
+                    "description": "字体样式。",
+                    "default": "FontStyle.Normal"
+                }
+            }
+        },
+        "fontWeight": {
+            "description": "设置文本的字体粗细，设置过大可能会在不同字体下有截断。",
+            "params": {
+                "value": {
+                    "type": ["number", "FontWeight", "string"],
+                    "required": true,
+                    "description": "文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如\"400\"，以及\"bold\"、\"bolder\"、\"lighter\"、\"regular\"、\"medium\"，分别对应FontWeight中相应的枚举值。",
+                    "default": "FontWeight.Normal"
+                }
+            }
+        },
+        "fontFamily": {
+            "description": "设置字体列表。",
+            "params": {
+                "value": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "字体列表。默认字体'HarmonyOS Sans'。"
+                }
+            }
+        },
+        "textShadow": {
+            "description": "设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。不支持fill字段, 不支持智能取色模式。",
+            "params": {
+                "value": {
+                    "type": ["ShadowOptions", "Array<ShadowOptions>"],
+                    "required": true,
+                    "description": "文字阴影效果。"
+                }
+            }
+        },
+        "fontFeature": {
+            "description": "设置文字特性效果，比如数字等宽的特性。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "文字特性效果。"
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制TextClock内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<TextClockConfiguration>",
+                    "required": true,
+                    "description": "定制TextClock内容区的方法。"
+                }
+            }
+        },
+        "dateTimeOptions": {
+            "description": "设置小时是否显示前导0。",
+            "params": {
+                "dateTimeOptions": {
+                    "type": "Optional<DateTimeOptions>",
+                    "required": true,
+                    "description": "设置小时是否显示前导0，只支持设置hour参数，参数值为{hour: \"2-digit\"}时表示显示前导0，参数值为{hour: \"numeric\"}时表示不显示前导0。",
+                    "default": "undefined，由组件根据应用设置格式自行判断是否显示前导0。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onDateChange": {
+            "description": "提供时间变化回调，该事件回调间隔为秒。组件不可见时不回调。非卡片中使用时，该事件回调间隔为秒。卡片中使用时，该事件回调间隔为分钟。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "Unix Time Stamp，即自1970年1月1日（UTC）起经过的秒数。"
+                }
+            }
+        }
+    },
+    "rules": [
+        "该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+        "该组件支持在ArkTS卡片中使用。",
+        "该组件支持在元服务中使用。"
+    ],
+    "examples": [
+        "示例1展示了如何使用TextClock组件显示当前时间，并通过控制器启动和停止时钟。",
+        "示例2展示了如何使用textShadow属性为TextClock组件设置多重文字阴影效果。",
+        "示例3展示了如何通过自定义样式实现一个时间选择器组件，并根据文本时钟的启动状态切换12小时制与24小时制。",
+        "示例4展示了如何使用dateTimeOptions属性为小时字段增加或去除前导0。"
+    ],
+    "is_common_attrs": true
+}

@@ -1,0 +1,155 @@
+{
+    "description": "折线绘制组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Polyline(value?: {width?: string | number, height?: string | number})",
+            "params": {
+                "value": {
+                    "type": {
+                        "width": ["string", "number"],
+                        "height": ["string", "number"]
+                    },
+                    "required": false,
+                    "description": "组件的宽度和高度。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "points": {
+            "description": "设置折线经过坐标点列表。",
+            "params": {
+                "value": {
+                    "type": "Array<[Point]>",
+                    "required": true,
+                    "description": "折线经过坐标点列表。",
+                    "default": []
+                }
+            }
+        },
+        "fill": {
+            "description": "设置填充区域颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "填充区域颜色。"
+                }
+            }
+        },
+        "fillOpacity": {
+            "description": "设置填充区域透明度。",
+            "params": {
+                "value": {
+                    "type": ["number", "string", "Resource"],
+                    "required": true,
+                    "description": "填充区域透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "stroke": {
+            "description": "设置边框颜色，不设置时，默认没有边框线条。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "边框颜色。"
+                }
+            }
+        },
+        "strokeDashArray": {
+            "description": "设置线条间隙。",
+            "params": {
+                "value": {
+                    "type": "Array<any>",
+                    "required": true,
+                    "description": "线条间隙。",
+                    "default": []
+                }
+            }
+        },
+        "strokeDashOffset": {
+            "description": "设置线条绘制起点的偏移量。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "线条绘制起点的偏移量。",
+                    "default": 0
+                }
+            }
+        },
+        "strokeLineCap": {
+            "description": "设置线条端点绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineCapStyle",
+                    "required": true,
+                    "description": "线条端点绘制样式。",
+                    "default": "LineCapStyle.Butt"
+                }
+            }
+        },
+        "strokeLineJoin": {
+            "description": "设置线条拐角绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineJoinStyle",
+                    "required": true,
+                    "description": "线条拐角绘制样式。",
+                    "default": "LineJoinStyle.Miter"
+                }
+            }
+        },
+        "strokeMiterLimit": {
+            "description": "设置斜接长度与边框宽度比值的极限值。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "斜接长度与边框宽度比值的极限值。",
+                    "default": 4
+                }
+            }
+        },
+        "strokeOpacity": {
+            "description": "设置线条透明度。",
+            "params": {
+                "value": {
+                    "type": ["number", "string", "Resource"],
+                    "required": true,
+                    "description": "线条透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "strokeWidth": {
+            "description": "设置线条宽度。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "线条宽度。",
+                    "default": 1
+                }
+            }
+        },
+        "antiAlias": {
+            "description": "设置是否开启抗锯齿效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启抗锯齿效果。",
+                    "default": true
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

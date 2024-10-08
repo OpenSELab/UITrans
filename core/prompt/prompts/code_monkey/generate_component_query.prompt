@@ -1,0 +1,29 @@
+你在一家软件公司工作，你被指派去为将安卓组件转译为鸿蒙ArkUI代码。
+
+{# 任务描述 #}
+# 任务：
+{{ current_task.description }}
+
+{% if android_component %}
+待转译的安卓组件如下：
+# {{ android_component.name }}
+{{ android_component.description }}
+{{ android_component.content }}
+{% endif %}
+
+实现这个需求可能会使用到某些ArkUI组件。
+{% include "harmony/components.prompt" %}
+
+{% include "partials/resources_list.prompt" %}
+
+在开始任务之前，你需要对待转译的安卓组件进行分析，提取出其中的布局和样式信息。
+然后，你需要从上述ArkUI组件中选择一个或多个组件，使其能够实现上述安卓组件的功能，并保持布局和样式尽可能一致。
+对于无法直接转译的安卓组件，你可以通过组合多个ArkUI组件来实现，一定不能选择不存在的组件。
+在完成选择后，你需要编写一条或多条用于在知识库或RAG系统中检索的查询语句。每条查询应聚焦于不同的功能细节或组件的具体属性，帮助快速、精确地检索到相关的文档、代码示例或实现方法。
+**重要**：你只能从[{% for component_name in harmony_components.keys() %}{{component_name}}{% if not loop.last %}, {% endif %}{% endfor %}]中选择ArkUI组件，请你认真检查，一定不可以选择不存在的ArkUI组件。
+**重要**：查询语句需要涵盖以下方面：布局属性（如宽度、高度、边距等）、组件的样式和外观（如颜色、字体、透明度等）、组件的排列和嵌套关系（如垂直或水平布局、对齐方式）、组件的功能和交互（如点击事件、输入验证），确保每条查询简洁明了且仅聚焦单一方面，突出关键信息，以便加快内容检索过程。
+
+## 以下是选择组件的额外规则：
+* 规则1：待转译的安卓布局文件中存在属性layout_constraintXXX_toXXXOf，其中XXX为Start、End、Top、Bottom等，你应该额外选择鸿蒙ArkUI的RelativeContainer组件。
+
+{% include "harmony/examples/generate_component_query_example.prompt" %}

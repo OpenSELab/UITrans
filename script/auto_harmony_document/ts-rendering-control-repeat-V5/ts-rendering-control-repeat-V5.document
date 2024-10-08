@@ -1,0 +1,706 @@
+Title: Repeat-状态管理与渲染控制-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5
+
+Markdown Content:
+Repeat-状态管理与渲染控制-ArkTS组件-ArkUI（方舟UI框架）-应用框架 - 华为HarmonyOS开发者
+===============
+
+简体中文
+
+*   简体中文
+*   Русский
+*   English
+*   Español (América Latina)
+*   Português (Brasil)
+*   Français (Europe)
+*   Deutsch
+*   日本語
+*   한국어
+
+[App](https://developer.huawei.com/consumer/cn/huawei-app/)
+
+[](https://developer.huawei.com/consumer/cn/)
+
+*   探索
+*   设计
+*   开发
+*   分发
+*   推广与变现
+*   生态合作
+*   支持
+
+*   更多
+
+*   [探索](https://developer.huawei.com/consumer/cn/discover/)
+    
+*   [设计](https://developer.huawei.com/consumer/cn/design/)
+    
+*   [开发](https://developer.huawei.com/consumer/cn/develop/)
+    
+*   [分发](https://developer.huawei.com/consumer/cn/distribute/)
+    
+*   更多
+    *   [推广与变现](https://developer.huawei.com/consumer/cn/promote/)
+        
+    *   [生态合作](https://developer.huawei.com/consumer/cn/cooperate/)
+        
+    *   [支持](https://developer.huawei.com/consumer/cn/support/)
+        
+
+搜索
+
+热门搜索 _换一换_
+
+*   HarmonyOS NEXT
+*   HarmonyOS应用开发
+*   仓颉
+*   DevEco Studio
+*   开发者能力认证
+*   模拟器
+*   Navigation
+*   List
+*   Web
+*   TextInput
+*   Image
+*   AppGallery Connect
+
+[文档](https://developer.huawei.com/consumer/cn/doc/)[管理中心](https://developer.huawei.com/consumer/cn/console)
+
+HarmonyOS NEXT
+
+Beta1
+
+API参考
+
+*   [版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/releasenotes-baseline-V5?istab=1&catalogVersion=V5)
+*   [指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/application-dev-guide-V5?istab=1&catalogVersion=V5)
+*   [API参考](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/development-intro-api-V5?istab=1&catalogVersion=V5)
+*   [最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-develop-once-deploy-everywhere-V5?istab=1&catalogVersion=V5)
+*   [FAQ](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-development-V5?istab=1&catalogVersion=V5)
+*   [变更预告](https://developer.huawei.com/consumer/cn/doc/harmonyos-roadmap-V5/changelogs-in-31-V5?istab=1&catalogVersion=V5)
+*   更多
+
+筛选元服务API集
+
+API参考概述
+
+应用框架
+
+[Ability Kit（程序框架服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ability-api-V5)
+
+[Accessibility Kit（无障碍服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/accessibility-api-V5)
+
+[ArkData（方舟数据管理）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkdata-api-V5)
+
+[ArkTS（方舟编程语言）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkts-api-V5)
+
+[ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5)
+
+[ArkTS API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-V5)
+
+[ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5)
+
+[组件通用信息](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_1_u7ec4_u4ef6_u901a_u7528_u4fe1_u606f-V5)
+
+[行列与堆叠](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_2_u884c_u5217_u4e0e_u5806_u53e0-V5)
+
+[栅格与分栏](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_3_u6805_u683c_u4e0e_u5206_u680f-V5)
+
+[滚动与滑动](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_4_u6eda_u52a8_u4e0e_u6ed1_u52a8-V5)
+
+[导航与切换](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_5_u5bfc_u822a_u4e0e_u5207_u6362-V5)
+
+[按钮与选择](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_6_u6309_u94ae_u4e0e_u9009_u62e9-V5)
+
+[文本与输入](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_7_u6587_u672c_u4e0e_u8f93_u5165-V5)
+
+[图片与视频](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_8_u56fe_u7247_u4e0e_u89c6_u9891-V5)
+
+[信息展示](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_9_u4fe1_u606f_u5c55_u793a-V5)
+
+[空白与分隔](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_10_u7a7a_u767d_u4e0e_u5206_u9694-V5)
+
+[画布绘制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_11_u753b_u5e03_u7ed8_u5236-V5)
+
+[图形绘制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_12_u56fe_u5f62_u7ed8_u5236-V5)
+
+[渲染绘制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_13_u6e32_u67d3_u7ed8_u5236-V5)
+
+[标题栏与工具栏](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_14_u6807_u9898_u680f_u4e0e_u5de5_u5177_u680f-V5)
+
+[菜单](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_15_u83dc_u5355-V5)
+
+[动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_16_u52a8_u753b-V5)
+
+[弹窗](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_17_u5f39_u7a97-V5)
+
+[卡片](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_18_u5361_u7247-V5)
+
+[安全](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_19_u5b89_u5168-V5)
+
+[主题](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_20_u4e3b_u9898-V5)
+
+[原子化服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_21_u539f_u5b50_u5316_u670d_u52a1-V5)
+
+[自定义占位组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_22_u81ea_u5b9a_u4e49_u5360_u4f4d_u7ec4_u4ef6-V5)
+
+[自定义组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_23_u81ea_u5b9a_u4e49_u7ec4_u4ef6-V5)
+
+[状态管理与渲染控制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/b6_u6001_u7ba1_u7406_u4e0e_u6e32_u67d3_u63a7_u5236-V5)
+
+[应用级变量的状态管理](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-state-management-V5)
+
+[ForEach](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-foreach-V5)
+
+[LazyForEach](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-lazyforeach-V5)
+
+[Repeat](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5)
+
+[公共定义](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_25_u516c_u5171_u5b9a_u4e49-V5)
+
+[已停止维护的组件与接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/62_u7ef4_u62a4_u7684_u7ec4_u4ef6_u4e0e_u63a5_u53e3-V5)
+
+[JS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-js-comp-V5)
+
+[C API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-c-V5)
+
+[错误码](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-errcode-V5)
+
+[ArkWeb（方舟Web）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkweb-api-V5)
+
+[Background Tasks Kit（后台任务开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/background-tasks-api-V5)
+
+[Core File Kit（文件基础服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/core-file-api-V5)
+
+[Form Kit（卡片开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/form-api-V5)
+
+[IME Kit（输入法开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ime-api-V5)
+
+[IPC Kit（进程间通信服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ipc-api-V5)
+
+[Localization Kit（本地化开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/localization-api-V5)
+
+[UI Design Kit（UI设计套件）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ui-design-api-V5)
+
+系统
+
+媒体
+
+图形
+
+应用服务
+
+AI
+
+公共基础能力
+
+标准库
+
+您当前正在浏览HarmonyOS NEXT Beta1版本的配套文档，该版本API能力级别为API 12 Release，详细版本配套关系请参考[版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/overview-beta1-V5)。
+
+API参考 应用框架 [ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5) [ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5) [状态管理与渲染控制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/b6_u6001_u7ba1_u7406_u4e0e_u6e32_u67d3_u63a7_u5236-V5) Repeat
+
+Repeat
+======
+
+更新时间: 2024-09-30 06:10
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+本文导读
+
+[RepeatAttribute](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#repeatattribute)
+
+[each](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#each)
+
+[key](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#key)
+
+[virtualScroll](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#virtualscroll)
+
+[template](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#template)
+
+[templateId](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#templateid)
+
+[RepeatItem](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#repeatitem)
+
+[VirtualScrollOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#virtualscrolloptions)
+
+[RepeatItemBuilder](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#repeatitembuilder)
+
+[TemplateOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#templateoptions)
+
+[TemplateTypedFunc](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#templatetypedfunc)
+
+展开章节
+
+Repeat组件不开启virtualScroll开关时，Repeat基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
+
+Repeat组件开启virtualScroll开关时，Repeat将从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当在滚动容器中使用了Repeat，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会缓存组件，并在下一次迭代中使用。
+
+说明
+
+本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+arr
+
+Array<T\>
+
+是
+
+数据源，为Array<T\>类型的数组，由开发者决定数据类型。
+
+**返回值：**
+
+类型
+
+说明
+
+[RepeatAttribute](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#repeatattribute)<T\>
+
+Repeat组件属性
+
+RepeatAttribute
+---------------
+
+### each
+
+each(itemGenerator: (repeatItem: RepeatItem<T\>) =\> void): RepeatAttribute<T\>
+
+组件生成函数。template和templateId匹配不上的数据项走默认生成函数each。
+
+**说明：**
+
+*   each属性必须有，否则运行时会报错。
+*   itemGenerator的参数为RepeatItem，该参数将item和index结合到了一起，请勿将RepeatItem参数拆开使用。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+repeatItem
+
+[RepeatItem](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#repeatitem)<T\>
+
+是
+
+repeat数据项
+
+### key
+
+key(keyGenerator: (item: T, index: number) =\> string): RepeatAttribute<T\>
+
+键值生成函数。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+item
+
+T
+
+是
+
+arr数组中的数据项
+
+index
+
+number
+
+是
+
+arr数组中的数据项索引
+
+### virtualScroll
+
+virtualScroll(virtualScrollOptions?: VirtualScrollOptions): RepeatAttribute<T\>
+
+Repeat开启虚拟滚动。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+virtualScrollOptions
+
+[VirtualScrollOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#virtualscrolloptions)
+
+否
+
+虚拟滚动配置项
+
+### template
+
+template(type: string, itemBuilder: RepeatItemBuilder<T\>, templateOptions?: TemplateOptions): RepeatAttribute<T\>
+
+复用模板。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+type
+
+string
+
+是
+
+当前模板类型
+
+itemBuilder
+
+[RepeatItemBuilder](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#repeatitembuilder)<T\>
+
+是
+
+组件生成函数
+
+templateOptions
+
+[TemplateOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#templateoptions)
+
+否
+
+当前模板配置项
+
+### templateId
+
+templateId(typedFunc: TemplateTypedFunc<T\>): RepeatAttribute<T\>
+
+为当前数据项分配templateId。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+typedFunc
+
+[TemplateTypedFunc](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#templatetypedfunc)<T\>
+
+是
+
+生成当前数据项对应的templateId
+
+RepeatItem
+----------
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+item
+
+T
+
+是
+
+arr中每一个数据项。T为开发者传入的数据类型。
+
+index
+
+number
+
+是
+
+当前数据项对应的索引。
+
+VirtualScrollOptions
+--------------------
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+totalCount
+
+number
+
+否
+
+数据源的总长度，可以大于已加载数据项的数量
+
+令arr.length表示数据源长度，以下为totalCount的判断规则：
+
+1) totalCount不设置 || totalCount不是整数 || totalCount <\= 0 || totalCount == arr.length时，totalCount为数据源长度，列表正常滚动
+
+2) 0 < totalCount < arr.length时，界面中只渲染“totalCount”个数据
+
+3) totalCount \> arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
+
+注意
+
+RepeatItemBuilder
+-----------------
+
+type RepeatItemBuilder<T\> = (repeatItem: RepeatItem<T\>) =\> void
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+repeatItem
+
+[RepeatItem](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-repeat-V5#repeatitem)<T\>
+
+是
+
+将item和index结合到一起的一个状态变量。
+
+TemplateOptions
+---------------
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+cachedCount
+
+number
+
+否
+
+当前模板在Repeat的缓存池中可缓存子节点的最大数量，仅在开启virtualScroll后生效。
+
+将cachedCount设置为当前模板的节点在屏上可能出现的最大数量时，Repeat可以做到尽可能多的复用。但后果是当屏上没有当前模板的节点时，缓存池也不会释放，应用内存会增大。需要开发者依据具体情况自行把控。
+
+如果开发者未指定cachedCount，框架会分别对不同template，根据屏幕上的可见+预渲染的节点个数来计算cachedCount。当屏幕上的可见+预渲染的节点个数变多时，cachedCount也会对应增长。需要注意cachedCount数量不会减少。
+
+如果开发者要显式指定cachedCount，推荐设置成和屏幕上节点个数一致。需要注意，不推荐设置cachedCount小于2，因为这会导致在快速滑动场景下创建新的节点，从而导致性能劣化。
+
+TemplateTypedFunc
+-----------------
+
+type TemplateTypedFunc<T\> = (item : T, index : number) =\> string
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+item
+
+T
+
+是
+
+arr中每一个数据项。T为开发者传入的数据类型。
+
+index
+
+number
+
+是
+
+当前数据项对应的索引。
+
+[LazyForEach](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-rendering-control-lazyforeach-V5 "LazyForEach")
+
+[公共定义](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_25_u516c_u5171_u5b9a_u4e49-V5 "公共定义")
+
+**以上内容对您是否有帮助？**
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+意见反馈
+
+更多帮助请到“[社区论坛](https://developer.huawei.com/consumer/cn/forum/)”，如需要其他帮助，请通过“[智能客服](https://developer.huawei.com/consumer/cn/customerService/#/bot-dev-top/faq-top/faq-talk-top)”提问。
+
+简体中文
+
+*   ![](/images/foot/icon-xinlang-normal.png)
+*   ![](/images/home/Bi-hover.png)
+*   ![](/images/foot/icon-weixin-normal.png)
+    
+    ![](./assets/images/head/hua_wei_kai_fa_zhe_lian_meng_fu_wu_wei_xin_er_wei_ma_fu_ben_0.jpg)
+    
+    微信公众号
+    
+*   ![](/images/foot/icon-app-normal.png)
+    
+    ![](./assets/images/head/APPerweima.png)
+    
+    下载APP
+    
+*   ![](/images/foot/icon-xinxi-normal.png)
+*   ![](/images/foot/ic_blog_hover.svg)
+
+华为开发者联盟 版权所有 ©2023-2024
+
+[使用条款](https://developer.huawei.com/consumer/cn/devservice/use)
+
+[关于华为开发者联盟与隐私的声明](https://developer.huawei.com/consumer/cn/devservice/term)
+
+[隐私政策](https://consumer.huawei.com/cn/legal/privacy-policy/)
+
+[cookies](https://consumer.huawei.com/cn/legal/cookie-policy/)
+
+[开源软件声明](https://developer.huawei.com/consumer/cn/opensource/)
+
+在 API参考 中进行搜索
+
+只在 应用框架 中搜索只搜索章节标题
+
+请输入您想要搜索的关键词
+
+*   智能客服
+    
+    您的每一次的提问，都能匹配最合适的答案
+    
+
+*   合作咨询
+    
+    我们的专家服务团队将竭诚为您提供专业的合作咨询服务
+    
+
+*   解决方案
+    
+    精准高效的一站式服务支持，助力开发者商业成功
+    
+
+*   快速入门
+    
+    面向开发者提供快速入门指南，轻松找到你想要的各类资源

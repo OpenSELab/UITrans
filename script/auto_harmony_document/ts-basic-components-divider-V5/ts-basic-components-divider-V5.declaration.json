@@ -1,0 +1,68 @@
+{
+    "description": "提供分隔器组件，分隔不同内容块/内容元素。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Divider()",
+            "params": {}
+        }
+    ],
+    "attributes": {
+        "vertical": {
+            "description": "设置分割线的方向。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "使用水平分割线还是垂直分割线。",
+                    "default": false
+                }
+            }
+        },
+        "color": {
+            "description": "设置分割线的颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "分割线颜色。",
+                    "default": "#33182431"
+                }
+            }
+        },
+        "strokeWidth": {
+            "description": "设置分割线的宽度。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "分割线宽度。",
+                    "default": "1px"
+                }
+            }
+        },
+        "lineCap": {
+            "description": "设置分割线的端点样式。",
+            "params": {
+                "value": {
+                    "type": "LineCapStyle",
+                    "required": true,
+                    "description": "分割线的端点样式。",
+                    "default": "LineCapStyle.Butt"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件展示了如何在鸿蒙ArkUI中使用Divider组件来实现水平和垂直分割线。布局宽度占据整个屏幕，内边距为顶部24vp。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组列表或按钮。列表和按钮以垂直布局方式排列，列表项之间的间距均匀分布，且对齐方式为居中对齐。\n\n水平分割线用于分隔不同的列表部分，分割线的颜色为#F1F3F5，宽度为8vp。垂直分割线用于分隔按钮，分割线的颜色为#182431，高度为22vp，垂直方向上居中对齐，且左右有8vp的边距。\n\n列表项的样式包括背景颜色、字体大小、字体颜色、文本对齐方式等属性，支持不同的样式展示。按钮的样式包括背景颜色、边框圆角、宽度和高度、字体大小、字体颜色等属性，支持不同的样式展示。按钮组之间通过Flex组件进行分隔。\n\n整个布局通过Column布局保证列表和按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "// xxx.ets\n@Entry\n@Component\nstruct DividerExample {\n  build() {\n    Column() {\n      // 使用横向分割线场景\n      Text('Horizontal divider').fontSize(9).fontColor(0xCCCCCC) // 标题文本，字体大小为9，颜色为#CCCCCC\n      List() {\n        ForEach([1, 2, 3], (item: number) => {\n          ListItem() {\n            Text('list' + item).width('100%').fontSize(14).fontColor('#182431').textAlign(TextAlign.Start) // 列表项文本，宽度为100%，字体大小为14，颜色为#182431，文本左对齐\n          }.width(244).height(48) // 列表项宽度为244vp，高度为48vp\n        }, (item: number) => item.toString())\n      }.padding({ left: 24, bottom: 8 }) // 列表左内边距为24vp，底部内边距为8vp\n\n      Divider().strokeWidth(8).color('#F1F3F5') // 水平分割线，宽度为8vp，颜色为#F1F3F5\n      List() {\n        ForEach([4, 5], (item: number) => {\n          ListItem() {\n            Text('list' + item).width('100%').fontSize(14).fontColor('#182431').textAlign(TextAlign.Start) // 列表项文本，宽度为100%，字体大小为14，颜色为#182431，文本左对齐\n          }.width(244).height(48) // 列表项宽度为244vp，高度为48vp\n        }, (item: number) => item.toString())\n      }.padding({ left: 24, top: 8 }) // 列表左内边距为24vp，顶部内边距为8vp\n\n      // 使用纵向分割线场景\n      Text('Vertical divider').fontSize(9).fontColor(0xCCCCCC) // 标题文本，字体大小为9，颜色为#CCCCCC\n      Column() {\n        Column() {\n          Row().width(288).height(64).backgroundColor('#30C9F0').opacity(0.3) // 背景行，宽度为288vp，高度为64vp，背景颜色为#30C9F0，透明度为0.3\n          Row() {\n            Button('Button')\n              .width(136)\n              .height(22)\n              .fontSize(16)\n              .fontColor('#007DFF')\n              .fontWeight(500)\n              .backgroundColor(Color.Transparent) // 按钮，宽度为136vp，高度为22vp，字体大小为16，颜色为#007DFF，字体粗细为500，背景透明\n            Divider().vertical(true).height(22).color('#182431').opacity(0.6).margin({ left: 8, right: 8 }) // 垂直分割线，高度为22vp，颜色为#182431，透明度为0.6，左右边距为8vp\n            Button('Button')\n              .width(136)\n              .height(22)\n              .fontSize(16)\n              .fontColor('#007DFF')\n              .fontWeight(500)\n              .backgroundColor(Color.Transparent) // 按钮，宽度为136vp，高度为22vp，字体大小为16，颜色为#007DFF，字体粗细为500，背景透明\n          }.margin({ top: 17 }) // 按钮行，顶部外边距为17vp\n        }\n        .width(336)\n        .height(152)\n        .backgroundColor('#FFFFFF')\n        .borderRadius(24)\n        .padding(24) // 按钮列，宽度为336vp，高度为152vp，背景颜色为#FFFFFF，边框圆角为24vp，内边距为24vp\n      }\n      .width('100%')\n      .height(168)\n      .backgroundColor('#F1F3F5')\n      .justifyContent(FlexAlign.Center)\n      .margin({ top: 8 }) // 按钮列容器，宽度为100%，高度为168vp，背景颜色为#F1F3F5，内容居中对齐，顶部外边距为8vp\n    }.width('100%').padding({ top: 24 }) // 主列，宽度为100%，顶部内边距为24vp\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

@@ -146,7 +146,7 @@ def test_rerank():
     config = ConfigLoader.get_config()
     model = CrossEncoder(
         config.rag_config.embedding.rerank.model,
-        device="cpu",
+        device="cuda",
         automodel_args={"torch_dtype": "auto"},
         trust_remote_code=True,
     )
@@ -256,4 +256,4 @@ def test_harmony_document():
     # print(results)
 
 
-test_harmony_document()
+test_rerank()

@@ -1,0 +1,629 @@
+Title: Video-媒体组件-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-media-components-video-V5
+
+Markdown Content:
+用于播放视频文件并控制其播放状态的组件。
+
+说明
+
+该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+权限列表
+----
+
+使用网络视频时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[声明权限](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/declare-permissions-V5)。
+
+接口
+--
+
+### Video
+
+Video(value: VideoOptions)
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**参数：**
+
+VideoOptions对象说明
+----------------
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| src | string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | 否 | 视频的数据源，支持本地视频和网络视频。
+Resource格式可以跨包/跨模块访问资源文件，常用于访问本地视频。
+
+\- 支持rawfile文件下的资源，即通过$rawfile引用视频文件。
+
+string格式可用于加载网络视频和本地视频，常用于加载网络视频。
+
+\- 支持网络视频地址。
+
+\- 支持file://路径前缀的字符串，即[应用沙箱URI](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-file-fileuri-V5#constructor10)：file://<bundleName>/<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。
+
+**说明：**
+
+视频支持的格式是：mp4、mkv、TS。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| currentProgressRate | number | string | [PlaybackSpeed8+](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-media-components-video-V5#playbackspeed8%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 视频播放倍速。
+
+**说明：**
+
+number取值仅支持：0.75，1.0，1.25，1.75，2.0。
+
+默认值：1.0 | PlaybackSpeed.Speed\_Forward\_1\_00\_X
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| previewUri | string | [PixelMap](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-image-V5#pixelmap7) | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5) | 否 | 视频未播放时的预览图片路径，默认不显示图片。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| controller | [VideoController](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-media-components-video-V5#videocontroller) | 否 | 设置视频控制器，可以控制视频的播放状态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| imageAIOptions12+ | [ImageAIOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-image-common-V5#imageaioptions) | 否 | 设置图像AI分析选项，可配置分析类型或绑定一个分析控制器。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+
+PlaybackSpeed8+枚举说明
+-------------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 描述 |
+| --- | --- |
+| Speed\_Forward\_0\_75\_X | 0.75倍速播放。 |
+| Speed\_Forward\_1\_00\_X | 1倍速播放。 |
+| Speed\_Forward\_1\_25\_X | 1.25倍速播放。 |
+| Speed\_Forward\_1\_75\_X | 1.75倍速播放。 |
+| Speed\_Forward\_2\_00\_X | 2倍速播放。 |
+
+### muted
+
+muted(value: boolean)
+
+设置是否静音。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| value | boolean | 是 | 是否静音。
+默认值：false
+
+ |
+
+### autoPlay
+
+autoPlay(value: boolean)
+
+设置是否自动播放。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| value | boolean | 是 | 是否自动播放。
+默认值：false
+
+ |
+
+### controls
+
+controls(value: boolean)
+
+设置控制视频播放的控制栏是否显示。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| value | boolean | 是 | 控制视频播放的控制栏是否显示。
+默认值：true
+
+ |
+
+### objectFit
+
+objectFit(value: ImageFit)
+
+设置视频显示模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| value | [ImageFit](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#imagefit) | 是 | 视频显示模式。
+默认值：Cover
+
+ |
+
+### loop
+
+loop(value: boolean)
+
+设置是否单个视频循环播放。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| value | boolean | 是 | 是否单个视频循环播放。
+默认值：false
+
+ |
+
+### enableAnalyzer12+
+
+enableAnalyzer(enable: boolean)
+
+设置组件支持AI分析。使能后，视频播放暂停时自动进入分析状态，开始分析当前画面帧，视频继续播放后自动退出分析状态。
+
+不能和[overlay](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-overlay-V5)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| enable | boolean | 是 | 是否启用AI分析功能 |
+
+说明
+
+当前仅在使用自定义控制栏([controls](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-media-components-video-V5#controls)属性设置为false)时支持该功能。
+
+该特性依赖设备能力。
+
+### analyzerConfig12+
+
+analyzerConfig(config: ImageAnalyzerConfig)
+
+设置AI分析识别类型，包括主体识别和文字识别功能，默认全部开启。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onStart
+
+onStart(event:() => void)
+
+播放时触发该事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onPause
+
+onPause(event:() => void)
+
+暂停时触发该事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onFinish
+
+onFinish(event:() => void)
+
+播放结束时触发该事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onError
+
+onError(event:() => void)
+
+播放失败时触发该事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onStop12+
+
+onStop(event:() => void)
+
+播放停止时触发该事件(当stop()方法被调用后触发)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onPrepared
+
+onPrepared(callback:(event: { duration: number }) => void)
+
+视频准备完成时触发该事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| duration | number | 是 | 当前视频的时长，单位为秒。 |
+
+### onSeeking
+
+onSeeking(callback:(event: { time: number }) => void)
+
+操作进度条过程时上报时间信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| time | number | 是 | 当前视频播放的进度，单位为秒。 |
+
+### onSeeked
+
+onSeeked(callback:(event: { time: number }) => void)
+
+操作进度条完成后，上报播放时间信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| time | number | 是 | 当前视频播放的进度，单位为秒。 |
+
+### onUpdate
+
+onUpdate(callback:(event: { time: number }) => void)
+
+播放进度变化时触发该事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| time | number | 是 | 当前视频播放的进度，单位为秒。 |
+
+### onFullscreenChange
+
+onFullscreenChange(callback:(event: { fullscreen: boolean }) => void)
+
+在全屏播放与非全屏播放状态之间切换时触发该事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| fullscreen | boolean | 是 | 为true表示进入全屏播放状态，为false则表示非全屏播放。 |
+
+VideoController
+---------------
+
+一个VideoController对象可以控制一个或多个video，可用视频播放实例请参考[@ohos.multimedia.media](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-media-V5)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+### 导入对象
+
+1.  let controller: VideoController = new VideoController()
+
+### start
+
+start(): void
+
+开始播放。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+### pause
+
+pause(): void
+
+暂停播放，显示当前帧，再次播放时从当前位置继续播放。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+### stop
+
+stop(): void
+
+停止播放，显示当前帧，再次播放时从头开始播放。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+### reset12+
+
+reset(): void
+
+video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+### setCurrentTime
+
+setCurrentTime(value: number)
+
+指定视频播放的进度位置。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| value | number | 是 | 视频播放进度位置，单位为s。 |
+
+### requestFullscreen
+
+requestFullscreen(value: boolean)
+
+请求全屏播放。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| value | boolean | 是 | 是否全屏（填充满应用窗口）播放。 |
+
+### exitFullscreen
+
+exitFullscreen()
+
+退出全屏播放。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+### setCurrentTime8+
+
+setCurrentTime(value: number, seekMode: SeekMode)
+
+指定视频播放的进度位置，并指定跳转模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| --- | --- | --- | --- |
+| value | number | 是 | 视频播放进度位置，单位为s。 |
+| seekMode | [SeekMode](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-media-components-video-V5#seekmode8%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 是 | 跳转模式。 |
+
+SeekMode8+枚举说明
+--------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 描述 |
+| --- | --- |
+| PreviousKeyframe | 跳转到前一个最近的关键帧。 |
+| NextKeyframe | 跳转到后一个最近的关键帧。 |
+| ClosestKeyframe | 跳转到最近的关键帧。 |
+| Accurate | 精准跳转，不论是否为关键帧。 |
+
+示例
+--
+
+### 示例1
+
+2.  @Entry
+3.  @Component
+4.  struct VideoCreateComponent {
+5.    @State videoSrc: Resource = $rawfile('video1.mp4')
+6.    @State previewUri: Resource = $r('app.media.poster1')
+7.    @State curRate: PlaybackSpeed = PlaybackSpeed.Speed\_Forward\_1\_00\_X
+8.    @State isAutoPlay: boolean = false
+9.    @State showControls: boolean = true
+10.    controller: VideoController = new VideoController()
+
+12.    build() {
+13.      Column() {
+14.        Video({
+15.          src: this.videoSrc,
+16.          previewUri: this.previewUri,
+17.          currentProgressRate: this.curRate,
+18.          controller: this.controller
+19.        })
+20.          .width('100%')
+21.          .height(600)
+22.          .autoPlay(this.isAutoPlay)
+23.          .controls(this.showControls)
+24.          .onStart(() => {
+25.            console.info('onStart')
+26.          })
+27.          .onPause(() => {
+28.            console.info('onPause')
+29.          })
+30.          .onFinish(() => {
+31.            console.info('onFinish')
+32.          })
+33.          .onError(() => {
+34.            console.info('onError')
+35.          })
+36.          .onStop(() => {
+37.            console.info('onStop')
+38.          })
+39.          .onPrepared((e?: DurationObject) => {
+40.            if (e != undefined) {
+41.              console.info('onPrepared is ' + e.duration)
+42.            }
+43.          })
+44.          .onSeeking((e?: TimeObject) => {
+45.            if (e != undefined) {
+46.              console.info('onSeeking is ' + e.time)
+47.            }
+48.          })
+49.          .onSeeked((e?: TimeObject) => {
+50.            if (e != undefined) {
+51.              console.info('onSeeked is ' + e.time)
+52.            }
+53.          })
+54.          .onUpdate((e?: TimeObject) => {
+55.            if (e != undefined) {
+56.              console.info('onUpdate is ' + e.time)
+57.            }
+58.          })
+
+60.        Row() {
+61.          Button('src').onClick(() => {
+62.            this.videoSrc = $rawfile('video2.mp4') 
+63.          }).margin(5)
+64.          Button('previewUri').onClick(() => {
+65.            this.previewUri = $r('app.media.poster2') 
+66.          }).margin(5)
+67.          Button('controls').onClick(() => {
+68.            this.showControls = !this.showControls 
+69.          }).margin(5)
+70.        }
+
+72.        Row() {
+73.          Button('start').onClick(() => {
+74.            this.controller.start() 
+75.          }).margin(2)
+76.          Button('pause').onClick(() => {
+77.            this.controller.pause() 
+78.          }).margin(2)
+79.          Button('stop').onClick(() => {
+80.            this.controller.stop() 
+81.          }).margin(2)
+82.          Button('reset').onClick(() => {
+83.            this.controller.reset() 
+84.          }).margin(2)
+85.          Button('setTime').onClick(() => {
+86.            this.controller.setCurrentTime(10, SeekMode.Accurate) 
+87.          }).margin(2)
+88.        }
+
+90.        Row() {
+91.          Button('rate 0.75').onClick(() => {
+92.            this.curRate = PlaybackSpeed.Speed\_Forward\_0\_75\_X 
+93.          }).margin(5)
+94.          Button('rate 1').onClick(() => {
+95.            this.curRate = PlaybackSpeed.Speed\_Forward\_1\_00\_X 
+96.          }).margin(5)
+97.          Button('rate 2').onClick(() => {
+98.            this.curRate = PlaybackSpeed.Speed\_Forward\_2\_00\_X 
+99.          }).margin(5)
+100.        }
+101.      }
+102.    }
+103.  }
+
+105.  interface DurationObject {
+106.    duration: number;
+107.  }
+
+109.  interface TimeObject {
+110.    time: number;
+111.  }
+
+### 示例2
+
+图像分析功能使用示例。
+
+2.  @Entry
+3.  @Component
+4.  struct ImageAnalyzerExample {
+5.    @State videoSrc: Resource = $rawfile('video1.mp4')
+6.    @State previewUri: Resource = $r('app.media.poster1')
+7.    @State showControls: boolean = true
+8.    controller: VideoController = new VideoController()
+9.    config: ImageAnalyzerConfig = {
+10.      types: \[ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT\]
+11.    }
+12.    private aiController: ImageAnalyzerController = new ImageAnalyzerController()
+13.    private options: ImageAIOptions = {
+14.      types: \[ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT\],
+15.      aiController: this.aiController
+16.    }
+
+18.    build() {
+19.      Column() {
+20.        Video({
+21.          src: this.videoSrc,
+22.          previewUri: this.previewUri,
+23.          controller: this.controller,
+24.          imageAIOptions: this.options
+25.        })
+26.          .width('100%')
+27.          .height(600)
+28.          .controls(false)
+29.          .enableAnalyzer(true)
+30.          .analyzerConfig(this.config)
+31.          .onStart(() => {
+32.            console.info('onStart')
+33.          })
+34.          .onPause(() => {
+35.            console.info('onPause')
+36.          })
+
+38.        Row() {
+39.          Button('start').onClick(() => {
+40.            this.controller.start() 
+41.          }).margin(5)
+42.          Button('pause').onClick(() => {
+43.            this.controller.pause() 
+44.          }).margin(5)
+45.          Button('getTypes').onClick(() => {
+46.              this.aiController.getImageAnalyzerSupportTypes()
+47.          }).margin(5)
+48.        }
+49.      }
+50.    }
+51.  }

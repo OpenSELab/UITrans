@@ -1,0 +1,116 @@
+{
+    "description": "子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, select?: SelectOptions, operationType?: OperationType, operationItem?: Array<OperationOption>, operationSymbolOptions?: Array<SymbolOptions>})",
+            "params": {
+                "icon": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "图标设置项。"
+                },
+                "iconSymbolOptions": {
+                    "type": "SymbolOptions",
+                    "required": false,
+                    "description": "icon为Symbol资源时的设置项。"
+                },
+                "primaryTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "标题内容。"
+                },
+                "secondaryTitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "副标题内容。"
+                },
+                "select": {
+                    "type": "SelectOptions",
+                    "required": false,
+                    "description": "select内容以及事件。"
+                },
+                "operationType": {
+                    "type": "OperationType",
+                    "required": false,
+                    "description": "操作区(右侧)元素样式。",
+                    "default": "OperationType.BUTTON"
+                },
+                "operationItem": {
+                    "type": "Array<OperationOption>",
+                    "required": false,
+                    "description": "操作区（右侧）的设置项。"
+                },
+                "operationSymbolOptions": {
+                    "type": "Array<SymbolOptions>",
+                    "required": false,
+                    "description": "operationType为OperationType.ICON_GROUP，operationItem设置多个图标，图标为Symbol资源时的设置项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "primaryTitleModifier": {
+            "description": "设置标题文本属性，如设置标题颜色、字体大小、字重等。",
+            "params": {
+                "value": {
+                    "type": "TextModifier",
+                    "required": false,
+                    "description": "标题文本属性。"
+                }
+            }
+        },
+        "secondaryTitleModifier": {
+            "description": "设置副标题文本属性，如设置标题颜色、字体大小、字重等。",
+            "params": {
+                "value": {
+                    "type": "TextModifier",
+                    "required": false,
+                    "description": "副标题文本属性。"
+                }
+            }
+        },
+        "titleBuilder": {
+            "description": "自定义标题区内容。",
+            "params": {
+                "value": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "自定义标题区内容。"
+                }
+            }
+        },
+        "contentMargin": {
+            "description": "子标题外边距，不支持设置负数。",
+            "params": {
+                "value": {
+                    "type": "LocalizedMargin",
+                    "required": false,
+                    "description": "子标题外边距。",
+                    "default": {
+                        "start": "LengthMetrics.resource($r('sys.float.margin_left'))",
+                        "end": "LengthMetrics.resource($r('sys.float.margin_right'))"
+                    }
+                }
+            }
+        },
+        "contentPadding": {
+            "description": "子标题内边距。",
+            "params": {
+                "value": {
+                    "type": "LocalizedPadding",
+                    "required": false,
+                    "description": "子标题内边距。",
+                    "default": {
+                        "start": "LengthMetrics.vp(12)",
+                        "end": "LengthMetrics.vp(12)"
+                    }
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

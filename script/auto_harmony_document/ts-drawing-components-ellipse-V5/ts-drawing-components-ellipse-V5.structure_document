@@ -1,0 +1,147 @@
+{
+    "description": "椭圆绘制组件。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。从API version 11开始，该接口支持在元服务中使用。",
+    "interfaces": [
+        {
+            "description": "Ellipse(options?: {width?: string | number, height?: string | number})",
+            "params": {
+                "width": {
+                    "type": ["string", "number"],
+                    "description": "宽度，异常值按照默认值处理。",
+                    "default": 0
+                },
+                "height": {
+                    "type": ["string", "number"],
+                    "description": "高度，异常值按照默认值处理。",
+                    "default": 0
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "fill": {
+            "description": "设置填充区域颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "填充区域颜色。",
+                    "default": "Color.Black"
+                }
+            }
+        },
+        "fillOpacity": {
+            "description": "设置填充区域透明度。",
+            "params": {
+                "value": {
+                    "type": ["number", "string", "Resource"],
+                    "required": true,
+                    "description": "填充区域透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "stroke": {
+            "description": "设置边框颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "边框颜色。"
+                }
+            }
+        },
+        "strokeDashArray": {
+            "description": "设置边框间隙。",
+            "params": {
+                "value": {
+                    "type": "Array<any>",
+                    "required": true,
+                    "description": "边框间隙。",
+                    "default": []
+                }
+            }
+        },
+        "strokeDashOffset": {
+            "description": "设置边框绘制起点的偏移量。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "边框绘制起点的偏移量。",
+                    "default": 0
+                }
+            }
+        },
+        "strokeLineCap": {
+            "description": "设置边框端点绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineCapStyle",
+                    "required": true,
+                    "description": "边框端点绘制样式。",
+                    "default": "LineCapStyle.Butt"
+                }
+            }
+        },
+        "strokeLineJoin": {
+            "description": "设置边框拐角绘制样式。Ellipse组件无法形成拐角，该属性设置无效。",
+            "params": {
+                "value": {
+                    "type": "LineJoinStyle",
+                    "required": true,
+                    "description": "边框拐角绘制样式。",
+                    "default": "LineJoinStyle.Miter"
+                }
+            }
+        },
+        "strokeMiterLimit": {
+            "description": "设置斜接长度与边框宽度比值的极限值。Ellipse组件无法设置尖角图形，该属性设置无效。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "斜接长度与边框宽度比值的极限值。",
+                    "default": 4
+                }
+            }
+        },
+        "strokeOpacity": {
+            "description": "设置边框透明度。",
+            "params": {
+                "value": {
+                    "type": ["number", "string", "Resource"],
+                    "required": true,
+                    "description": "边框透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "strokeWidth": {
+            "description": "设置边框宽度。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "边框宽度。",
+                    "default": 1
+                }
+            }
+        },
+        "antiAlias": {
+            "description": "设置是否开启抗锯齿效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启抗锯齿效果。",
+                    "default": true
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

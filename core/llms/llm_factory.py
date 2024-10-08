@@ -6,7 +6,7 @@ from core.llms.oai_client import OpenAIClient
 class LLMFactory:
 
     @staticmethod
-    def create_llm_from_config(llm_client_type: str, llm_config: Dict[str, Any]):
+    def create_llm_from_config(llm_client_type: str, llm_config: Dict[str, Any], **kwargs):
         """根据配置创建大语言模型
 
         Args:
@@ -15,8 +15,8 @@ class LLMFactory:
         """
 
         if llm_client_type == "openai":
-            return OpenAIClient(llm_config)
+            return OpenAIClient(llm_config, **kwargs)
         elif llm_client_type == "basic":
-            return BasicLLMClient(llm_config)
+            return BasicLLMClient(llm_config, **kwargs)
         else:
             raise ValueError(f"不支持的大语言模型类型：{llm_client_type}")

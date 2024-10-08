@@ -1,0 +1,149 @@
+{
+    "description": "图案密码锁组件，以九宫格图案的方式输入密码，用于密码验证场景。手指在PatternLock组件区域按下时开始进入输入状态，手指离开屏幕时结束输入状态完成密码输入。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "PatternLock(controller?: PatternLockController)",
+            "params": {
+                "controller": {
+                    "type": "PatternLockController",
+                    "description": "PatternLock组件的控制器，用于控制组件状态。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "sideLength": {
+            "description": "设置组件的宽度和高度（宽高相同）。设置为0或负数时组件不显示。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "组件的宽度和高度。",
+                    "default": "288vp"
+                }
+            }
+        },
+        "circleRadius": {
+            "description": "设置宫格中圆点的半径。设置为0或负数时取默认值。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "宫格中圆点的半径。",
+                    "default": "6vp"
+                }
+            }
+        },
+        "backgroundColor": {
+            "description": "设置背景颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "背景颜色。"
+                }
+            }
+        },
+        "regularColor": {
+            "description": "设置宫格圆点在“未选中”状态的填充颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "宫格圆点在“未选中”状态的填充颜色。",
+                    "default": "'#ff182431'"
+                }
+            }
+        },
+        "selectedColor": {
+            "description": "设置宫格圆点在“选中”状态的填充颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "宫格圆点在“选中”状态的填充颜色。",
+                    "default": "'#ff182431'"
+                }
+            }
+        },
+        "activeColor": {
+            "description": "设置宫格圆点在“激活”状态的填充颜色，“激活”状态为手指经过圆点但还未选中的状态。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "宫格圆点在“激活”状态的填充颜色。",
+                    "default": "'#ff182431'"
+                }
+            }
+        },
+        "pathColor": {
+            "description": "设置连线的颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "连线的颜色。"
+                }
+            }
+        },
+        "pathStrokeWidth": {
+            "description": "设置连线的宽度。设置为0或负数时连线不显示。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "连线的宽度。",
+                    "default": "12vp"
+                }
+            }
+        },
+        "autoReset": {
+            "description": "设置在完成密码输入后再次在组件区域按下时是否重置组件状态。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "在完成密码输入后再次在组件区域按下时是否重置组件状态。",
+                    "default": true
+                }
+            }
+        },
+        "activateCircleStyle": {
+            "description": "设置宫格圆点在“激活”状态的背景圆环样式。",
+            "params": {
+                "options": {
+                    "type": "Optional<CircleStyleOptions>",
+                    "required": true,
+                    "description": "宫格圆点在“激活”状态的背景圆环样式。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onPatternComplete": {
+            "description": "密码输入结束时触发该回调。",
+            "params": {
+                "input": {
+                    "type": "Array<number>",
+                    "required": true,
+                    "description": "与选中宫格圆点顺序一致的数字数组，数字为选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。"
+                }
+            }
+        },
+        "onDotConnect": {
+            "description": "密码输入选中宫格圆点时触发该回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "选中宫格圆点顺序的数字，数字为选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

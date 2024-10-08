@@ -1,0 +1,127 @@
+{
+    "description": "FoldSplitContainer组件用于在栅格和分栏布局中管理多个区域的显示和布局，支持多个子组件。",
+    "interfaces": [
+        {
+            "description": "FoldSplitContainer({ primary: Callback<void>, secondary: Callback<void>, extra?: Callback<void>, expandedLayoutOptions?: ExpandedRegionLayoutOptions, hoverModeLayoutOptions?: HoverModeRegionLayoutOptions, foldedLayoutOptions?: FoldedRegionLayoutOptions, animationOptions?: AnimateParam, onHoverStatusChange?: onHoverStatusChangeHandler })",
+            "params": {
+                "primary": {
+                    "type": "Callback<void>",
+                    "required": true,
+                    "description": "主要区域的回调函数。"
+                },
+                "secondary": {
+                    "type": "Callback<void>",
+                    "required": true,
+                    "description": "次要区域的回调函数。"
+                },
+                "extra": {
+                    "type": "Callback<void>",
+                    "required": false,
+                    "description": "扩展区域的回调函数。"
+                },
+                "expandedLayoutOptions": {
+                    "type": "ExpandedRegionLayoutOptions",
+                    "required": false,
+                    "description": "展开态布局选项。"
+                },
+                "hoverModeLayoutOptions": {
+                    "type": "HoverModeRegionLayoutOptions",
+                    "required": false,
+                    "description": "悬停态布局选项。"
+                },
+                "foldedLayoutOptions": {
+                    "type": "FoldedRegionLayoutOptions",
+                    "required": false,
+                    "description": "折叠态布局选项。"
+                },
+                "animationOptions": {
+                    "type": "AnimateParam",
+                    "required": false,
+                    "description": "动画选项。"
+                },
+                "onHoverStatusChange": {
+                    "type": "onHoverStatusChangeHandler",
+                    "required": false,
+                    "description": "悬停状态变化的事件处理函数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "ExpandedRegionLayoutOptions": {
+            "description": "展开态布局信息。",
+            "params": {
+                "isExtraRegionPerpendicular": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "扩展区域是否从上到下贯穿整个组件。",
+                    "default": true
+                },
+                "verticalSplitRatio": {
+                    "type": "number",
+                    "required": false,
+                    "description": "主要区域与次要区域之间的高度比例。",
+                    "default": "PresetSplitRatio.LAYOUT_1V1"
+                },
+                "horizontalSplitRatio": {
+                    "type": "number",
+                    "required": false,
+                    "description": "主要区域与扩展区域之间的宽度比例。",
+                    "default": "PresetSplitRatio.LAYOUT_3V2"
+                },
+                "extraRegionPosition": {
+                    "type": "ExtraRegionPosition",
+                    "required": false,
+                    "description": "扩展区域的位置信息。",
+                    "default": "ExtraRegionPosition.top"
+                }
+            }
+        },
+        "HoverModeRegionLayoutOptions": {
+            "description": "悬停态布局信息。",
+            "params": {
+                "showExtraRegion": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "可折叠屏幕在半折叠状态下是否显示扩展区域。",
+                    "default": false
+                },
+                "horizontalSplitRatio": {
+                    "type": "number",
+                    "required": false,
+                    "description": "主要区域与扩展区域之间的宽度比例。",
+                    "default": "PresetSplitRatio.LAYOUT_3V2"
+                },
+                "extraRegionPosition": {
+                    "type": "ExtraRegionPosition",
+                    "required": false,
+                    "description": "扩展区域的位置信息。",
+                    "default": "ExtraRegionPosition.top"
+                }
+            }
+        },
+        "FoldedRegionLayoutOptions": {
+            "description": "折叠态布局信息。",
+            "params": {
+                "verticalSplitRatio": {
+                    "type": "number",
+                    "required": true,
+                    "description": "主要区域与次要区域之间的高度比例。",
+                    "default": "PresetSplitRatio.LAYOUT_1V1"
+                }
+            }
+        }
+    },
+    "events": {
+        "onHoverStatusChange": {
+            "description": "onHoverStatusChange事件处理。",
+            "params": {
+                "callback": {
+                    "type": "(status: HoverModeStatus) => void",
+                    "required": true,
+                    "description": "折叠屏进入或退出悬停模式时触发的回调函数。"
+                }
+            }
+        }
+    }
+}

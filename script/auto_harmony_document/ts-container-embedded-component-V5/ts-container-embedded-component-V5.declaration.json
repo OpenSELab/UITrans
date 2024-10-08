@@ -1,0 +1,60 @@
+{
+    "description": "用于在当前页面嵌入本应用内其他EmbeddedUIExtensionAbility提供的UI。EmbeddedUIExtensionAbility在独立进程中运行，完成页面布局和渲染。通常用于有进程隔离诉求的模块化开发场景。",
+    "details": "该组件从API Version 12开始支持。EmbeddedComponent仅支持在拥有多进程权限的设备上使用。EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。",
+    "interfaces": [
+        {
+            "description": "EmbeddedComponent(loader: Want, type: EmbeddedType)",
+            "params": {
+                "loader": {
+                    "type": "Want",
+                    "required": true,
+                    "description": "要加载的EmbeddedUIExtensionAbility。"
+                },
+                "type": {
+                    "type": "EmbeddedType",
+                    "required": true,
+                    "description": "提供方的类型。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "通用属性": {
+            "description": "支持通用属性。",
+            "params": {}
+        }
+    },
+    "events": {
+        "onTerminated": {
+            "description": "被拉起的EmbeddedUIExtensionAbility通过调用terminateSelfWithResult或者terminateSelf正常退出时，触发本回调函数。",
+            "params": {
+                "callback": {
+                    "type": "Callback<TerminationInfo>",
+                    "required": true,
+                    "description": "回调函数，接收TerminationInfo作为参数。"
+                }
+            }
+        },
+        "onError": {
+            "description": "被拉起的EmbeddedUIExtensionAbility在运行过程中发生异常时触发本回调。",
+            "params": {
+                "callback": {
+                    "type": "ErrorCallback",
+                    "required": true,
+                    "description": "回调函数，接收错误信息作为参数。"
+                }
+            }
+        }
+    },
+    "rules": [
+        "EmbeddedComponent仅支持在拥有多进程权限的设备上使用。",
+        "EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。"
+    ],
+    "examples": [
+        {
+            "description": "该示例展示了如何在鸿蒙ArkUI中使用EmbeddedComponent组件和EmbeddedUIExtensionAbility。示例应用的bundleName为\"com.example.embeddeddemo\"，被拉起的EmbeddedUIExtensionAbility为\"ExampleEmbeddedAbility\"。\n\n布局属性：\n- 主页面（Index）采用Row和Column布局，宽度占据整个屏幕，高度为100%。\n- EmbeddedComponent组件的宽度为100%，高度为90%。\n\n组件的样式和外观：\n- Text组件的字体大小为30。\n- EmbeddedComponent组件的宽度和高度分别设置为100%和90%。\n\n组件的排列和嵌套关系：\n- 主页面采用Row布局，内部嵌套Column布局。\n- Column布局中包含一个Text组件和一个EmbeddedComponent组件。\n\n组件的功能和交互：\n- Text组件用于显示消息。\n- EmbeddedComponent组件用于拉起EmbeddedUIExtensionAbility，并监听其生命周期事件（如终止和错误）。\n- EmbeddedUIExtensionAbility的生命周期方法（如onCreate、onForeground、onBackground、onDestroy）用于管理其生命周期。\n- onSessionCreate方法用于创建会话并加载内容。\n- onSessionDestroy方法用于销毁会话。\n- EmbeddedUIExtensionAbility的入口页面（extension.ets）包含一个Text组件和一个Button组件，Button组件用于终止自身并返回结果。",
+            "code": "// 导入Want模块\nimport { Want } from '@kit.AbilityKit';\n\n// 定义Index组件\n@Entry\n@Component\nstruct Index {\n  // 定义状态变量message，用于显示消息\n  @State message: string = 'Message: '\n  \n  // 定义want对象，指定要拉起的EmbeddedUIExtensionAbility\n  private want: Want = {\n    bundleName: \"com.example.embeddeddemo\",\n    abilityName: \"ExampleEmbeddedAbility\",\n  }\n\n  // 构建页面布局\n  build() {\n    Row() {\n      Column() {\n        // 显示消息的Text组件\n        Text(this.message).fontSize(30)\n        \n        // 使用EmbeddedComponent组件拉起EmbeddedUIExtensionAbility\n        EmbeddedComponent(this.want, EmbeddedType.EMBEDDED_UI_EXTENSION)\n          .width('100%') // 设置宽度为100%\n          .height('90%') // 设置高度为90%\n          .onTerminated((info) => {\n            // 监听EmbeddedUIExtensionAbility的终止事件\n            this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);\n          })\n          .onError((error) => {\n            // 监听EmbeddedUIExtensionAbility的错误事件\n            this.message = 'Error: code = ' + error.code;\n          })\n      }\n      .width('100%') // 设置Column的宽度为100%\n    }\n    .height('100%') // 设置Row的高度为100%\n  }\n}\n\n/*\n该示例展示了如何在鸿蒙ArkUI中实现一个EmbeddedUIExtensionAbility。EmbeddedUIExtensionAbility的生命周期方法（如onCreate、onForeground、onBackground、onDestroy）用于管理其生命周期。onSessionCreate方法用于创建会话并加载内容，onSessionDestroy方法用于销毁会话。\n\n布局属性：\n- EmbeddedUIExtensionAbility的入口页面（extension.ets）采用Column布局，宽度占据整个屏幕，高度为100%。\n\n组件的样式和外观：\n- Text组件的字体大小为20，字体加粗。\n- Button组件的字体大小为20。\n\n组件的排列和嵌套关系：\n- 入口页面采用Column布局，内部包含一个Text组件和一个Button组件。\n\n组件的功能和交互：\n- Text组件用于显示消息。\n- Button组件用于终止自身并返回结果。\n*/\n\n// 导入EmbeddedUIExtensionAbility和UIExtensionContentSession模块\nimport { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';\n\n// 定义TAG常量，用于日志输出\nconst TAG: string = '[ExampleEmbeddedAbility]'\n\n// 定义ExampleEmbeddedAbility类，继承自EmbeddedUIExtensionAbility\nexport default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {\n\n  // 生命周期方法：创建时调用\n  onCreate() {\n    console.log(TAG, `onCreate`);\n  }\n\n  // 生命周期方法：进入前台时调用\n  onForeground() {\n    console.log(TAG, `onForeground`);\n  }\n\n  // 生命周期方法：进入后台时调用\n  onBackground() {\n    console.log(TAG, `onBackground`);\n  }\n\n  // 生命周期方法：销毁时调用\n  onDestroy() {\n    console.log(TAG, `onDestroy`);\n  }\n\n  // 会话创建时调用\n  onSessionCreate(want: Want, session: UIExtensionContentSession) {\n    console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);\n    let param: Record<string, UIExtensionContentSession> = {\n      'session': session\n    };\n    let storage: LocalStorage = new LocalStorage(param);\n    session.loadContent('pages/extension', storage);\n  }\n\n  // 会话销毁时调用\n  onSessionDestroy(session: UIExtensionContentSession) {\n    console.log(TAG, `onSessionDestroy`);\n  }\n}\n\n/*\n该示例展示了如何在鸿蒙ArkUI中实现EmbeddedUIExtensionAbility的入口页面。入口页面包含一个Text组件和一个Button组件，Button组件用于终止自身并返回结果。\n\n布局属性：\n- 入口页面采用Column布局，宽度占据整个屏幕，高度为100%。\n\n组件的样式和外观：\n- Text组件的字体大小为20，字体加粗。\n- Button组件的字体大小为20。\n\n组件的排列和嵌套关系：\n- 入口页面采用Column布局，内部包含一个Text组件和一个Button组件。\n\n组件的功能和交互：\n- Text组件用于显示消息。\n- Button组件用于终止自身并返回结果。\n*/\n\n// 导入UIExtensionContentSession模块\nimport { UIExtensionContentSession } from '@kit.AbilityKit';\n\n// 获取共享的LocalStorage\nlet storage = LocalStorage.getShared()\n\n// 定义Extension组件\n@Entry(storage)\n@Component\nstruct Extension {\n  // 定义状态变量message，用于显示消息\n  @State message: string = 'EmbeddedUIExtensionAbility Index';\n  \n  // 获取UIExtensionContentSession对象\n  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');\n\n  // 构建页面布局\n  build() {\n    Column() {\n      // 显示消息的Text组件\n      Text(this.message)\n        .fontSize(20) // 设置字体大小为20\n        .fontWeight(FontWeight.Bold) // 设置字体加粗\n      \n      // 用于终止自身的Button组件\n      Button(\"terminateSelfWithResult\").fontSize(20).onClick(() => {\n        this.session?.terminateSelfWithResult({\n          resultCode: 1,\n          want: {\n            bundleName: \"com.example.embeddeddemo\",\n            abilityName: \"ExampleEmbeddedAbility\",\n          }});\n      })\n    }.width('100%').height('100%') // 设置Column的宽度和高度为100%\n  }\n}\n\n/*\n该示例展示了如何在module.json5中配置EmbeddedUIExtensionAbility。配置项包括name、srcEntry和type。\n\n配置项：\n- name：指定EmbeddedUIExtensionAbility的名称。\n- srcEntry：指定EmbeddedUIExtensionAbility的入口文件路径。\n- type：指定EmbeddedUIExtensionAbility的类型为\"embeddedUI\"。\n*/\n\n{\n  \"name\": \"ExampleEmbeddedAbility\",\n  \"srcEntry\": \"./ets/extensionAbility/ExampleEmbeddedAbility.ets\",\n  \"type\": \"embeddedUI\"\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

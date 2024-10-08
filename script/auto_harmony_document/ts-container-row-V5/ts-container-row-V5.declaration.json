@@ -1,0 +1,55 @@
+{
+    "description": "沿水平方向布局容器，可以包含子组件。",
+    "interfaces": [
+        {
+            "description": "Row(value?:{space?: number | string })",
+            "params": {
+                "value": {
+                    "type": "object",
+                    "required": false,
+                    "description": "包含space参数的对象。",
+                    "properties": {
+                        "space": {
+                            "type": [
+                                "number",
+                                "string"
+                            ],
+                            "required": false,
+                            "description": "横向布局元素间距。默认值：0，单位vp。可选值为大于等于0的数字，或者可以转换为数字的字符串。"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "alignItems": {
+            "description": "设置子组件在垂直方向上的对齐格式。",
+            "params": {
+                "value": {
+                    "type": "VerticalAlign",
+                    "required": true,
+                    "description": "子组件在垂直方向上的对齐格式。默认值：VerticalAlign.Center"
+                }
+            }
+        },
+        "justifyContent": {
+            "description": "设置子组件在水平方向上的对齐格式。",
+            "params": {
+                "value": {
+                    "type": "FlexAlign",
+                    "required": true,
+                    "description": "子组件在水平方向上的对齐格式。默认值：FlexAlign.Start"
+                }
+            }
+        }
+    },
+    "events": {},
+    "is_common_attrs": true,
+    "examples": [
+        {
+            "description": "实现一个展示Row组件不同布局和对齐方式的示例。通过设置不同的属性，展示子组件在水平和垂直方向上的对齐方式，以及子组件之间的间距。",
+            "code": "@Entry\n@Component\nstruct RowExample {\n  build() {\n    Column({ space: 5 }) { // 创建一个Column容器，设置子组件之间的垂直间距为5\n      // 设置子组件水平方向的间距为5\n      Text('space').width('90%') // 创建一个Text组件，显示文字“space”，宽度为父容器的90%\n      Row({ space: 5 }) { // 创建一个Row容器，设置子组件之间的水平间距为5\n        Row().width('30%').height(50).backgroundColor(0xAFEEEE) // 创建一个Row组件，宽度为父容器的30%，高度为50，背景色为浅蓝色\n        Row().width('30%').height(50).backgroundColor(0x00FFFF) // 创建一个Row组件，宽度为父容器的30%，高度为50，背景色为青色\n      }.width('90%').height(107).border({ width: 1 }) // 设置Row容器的宽度为父容器的90%，高度为107，并添加一个宽度为1的边框\n\n      // 设置子元素垂直方向对齐方式\n      Text('alignItems(Bottom)').width('90%') // 创建一个Text组件，显示文字“alignItems(Bottom)”，宽度为父容器的90%\n      Row() { // 创建一个Row容器\n        Row().width('30%').height(50).backgroundColor(0xAFEEEE) // 创建一个Row组件，宽度为父容器的30%，高度为50，背景色为浅蓝色\n        Row().width('30%').height(50).backgroundColor(0x00FFFF) // 创建一个Row组件，宽度为父容器的30%，高度为50，背景色为青色\n      }.width('90%').alignItems(VerticalAlign.Bottom).height('15%').border({ width: 1 }) // 设置Row容器的宽度为父容器的90%，子元素垂直方向对齐方式为底部对齐，高度为父容器的15%，并添加一个宽度为1的边框\n\n      Text('alignItems(Center)').width('90%') // 创建一个Text组件，显示文字“alignItems(Center)”，宽度为父容器的90%\n      Row() { // 创建一个Row容器\n        Row().width('30%').height(50).backgroundColor(0xAFEEEE) // 创建一个Row组件，宽度为父容器的30%，高度为50，背景色为浅蓝色\n        Row().width('30%').height(50).backgroundColor(0x00FFFF) // 创建一个Row组件，宽度为父容器的30%，高度为50，背景色为青色\n      }.width('90%').alignItems(VerticalAlign.Center).height('15%').border({ width: 1 }) // 设置Row容器的宽度为父容器的90%，子元素垂直方向对齐方式为居中对齐，高度为父容器的15%，并添加一个宽度为1的边框\n\n      // 设置子元素水平方向对齐方式\n      Text('justifyContent(End)').width('90%') // 创建一个Text组件，显示文字“justifyContent(End)”，宽度为父容器的90%\n      Row() { // 创建一个Row容器\n        Row().width('30%').height(50).backgroundColor(0xAFEEEE) // 创建一个Row组件，宽度为父容器的30%，高度为50，背景色为浅蓝色\n        Row().width('30%').height(50).backgroundColor(0x00FFFF) // 创建一个Row组件，宽度为父容器的30%，高度为50，背景色为青色\n      }.width('90%').border({ width: 1 }).justifyContent(FlexAlign.End) // 设置Row容器的宽度为父容器的90%，子元素水平方向对齐方式为尾部对齐，并添加一个宽度为1的边框\n\n      Text('justifyContent(Center)').width('90%') // 创建一个Text组件，显示文字“justifyContent(Center)”，宽度为父容器的90%\n      Row() { // 创建一个Row容器\n        Row().width('30%').height(50).backgroundColor(0xAFEEEE) // 创建一个Row组件，宽度为父容器的30%，高度为50，背景色为浅蓝色\n        Row().width('30%').height(50).backgroundColor(0x00FFFF) // 创建一个Row组件，宽度为父容器的30%，高度为50，背景色为青色\n      }.width('90%').border({ width: 1 }).justifyContent(FlexAlign.Center) // 设置Row容器的宽度为父容器的90%，子元素水平方向对齐方式为居中对齐，并添加一个宽度为1的边框\n    }.width('100%') // 设置Column容器的宽度为父容器的100%\n  }\n}"
+        }
+    ]
+}

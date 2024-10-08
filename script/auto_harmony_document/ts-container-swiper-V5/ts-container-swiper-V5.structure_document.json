@@ -1,0 +1,333 @@
+{
+    "description": "滑块视图容器，提供子组件滑动轮播显示的能力。",
+    "details": "可以包含子组件。",
+    "interfaces": [
+        {
+            "description": "Swiper(controller?: SwiperController)",
+            "params": {
+                "controller": {
+                    "type": "SwiperController",
+                    "description": "Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，可以通过它控制翻页。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "index": {
+            "description": "设置当前在容器中显示的子组件的索引值。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前在容器中显示的子组件的索引值。",
+                    "default": 0
+                }
+            }
+        },
+        "autoPlay": {
+            "description": "设置子组件是否自动播放。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "子组件是否自动播放。",
+                    "default": false
+                }
+            }
+        },
+        "interval": {
+            "description": "设置使用自动播放时播放的时间间隔。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "自动播放时播放的时间间隔。",
+                    "default": 3000
+                }
+            }
+        },
+        "indicator": {
+            "description": "设置可选导航点指示器样式。",
+            "params": {
+                "value": {
+                    "type": ["DotIndicator", "DigitIndicator", "boolean"],
+                    "required": true,
+                    "description": "可选导航点指示器样式。",
+                    "default": true
+                }
+            }
+        },
+        "loop": {
+            "description": "设置是否开启循环。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启循环。",
+                    "default": true
+                }
+            }
+        },
+        "duration": {
+            "description": "设置子组件切换的动画时长。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "子组件切换的动画时长。",
+                    "default": 400
+                }
+            }
+        },
+        "vertical": {
+            "description": "设置是否为纵向滑动。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否为纵向滑动。",
+                    "default": false
+                }
+            }
+        },
+        "itemSpace": {
+            "description": "设置子组件与子组件之间间隙。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "子组件与子组件之间间隙。",
+                    "default": 0
+                }
+            }
+        },
+        "displayMode": {
+            "description": "设置主轴方向上元素排列的模式，优先以displayCount设置的个数显示，displayCount未设置时本属性生效。",
+            "params": {
+                "value": {
+                    "type": "SwiperDisplayMode",
+                    "required": true,
+                    "description": "主轴方向上元素排列的模式。"
+                }
+            }
+        },
+        "cachedCount": {
+            "description": "设置预加载子组件个数，以当前页面为基准，加载当前显示页面的前后个数。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "预加载子组件个数。",
+                    "default": 1
+                }
+            }
+        },
+        "disableSwipe": {
+            "description": "设置禁用组件滑动切换功能。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "禁用组件滑动切换功能。",
+                    "default": false
+                }
+            }
+        },
+        "curve": {
+            "description": "设置Swiper的动画曲线。",
+            "params": {
+                "value": {
+                    "type": ["Curve", "string", "ICurve"],
+                    "required": true,
+                    "description": "Swiper的动画曲线。",
+                    "default": "interpolatingSpring(-1, 1, 328, 34)"
+                }
+            }
+        },
+        "displayCount": {
+            "description": "设置Swiper视窗内元素显示个数。",
+            "params": {
+                "value": {
+                    "type": ["number", "string", "SwiperAutoFill"],
+                    "required": true,
+                    "description": "视窗内显示的子元素个数。",
+                    "default": 1
+                },
+                "swipeByGroup": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否按组进行翻页。",
+                    "default": false
+                }
+            }
+        },
+        "effectMode": {
+            "description": "设置边缘滑动效果，loop = false时生效。",
+            "params": {
+                "value": {
+                    "type": "EdgeEffect",
+                    "required": true,
+                    "description": "边缘滑动效果。",
+                    "default": "EdgeEffect.Spring"
+                }
+            }
+        },
+        "displayArrow": {
+            "description": "设置导航点箭头样式。",
+            "params": {
+                "value": {
+                    "type": ["ArrowStyle", "boolean"],
+                    "required": true,
+                    "description": "支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。设置为false不显示箭头和底板，true显示默认的箭头和底板样式。",
+                    "default": false
+                },
+                "isHoverShow": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "设置鼠标悬停时是否显示箭头。",
+                    "default": false
+                }
+            }
+        },
+        "nextMargin": {
+            "description": "设置后边距，用于露出后一项的一小部分。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "后边距。",
+                    "default": 0
+                },
+                "ignoreBlank": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "非loop场景下尾页不显示nextMargin。",
+                    "default": false
+                }
+            }
+        },
+        "prevMargin": {
+            "description": "设置前边距，用于露出前一项的一小部分。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "前边距。",
+                    "default": 0
+                },
+                "ignoreBlank": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "非loop场景下首页不显示prevMargin。",
+                    "default": false
+                }
+            }
+        },
+        "nestedScroll": {
+            "description": "设置Swiper组件和父组件的嵌套滚动模式。",
+            "params": {
+                "value": {
+                    "type": "SwiperNestedScrollMode",
+                    "required": true,
+                    "description": "Swiper组件和父组件的嵌套滚动模式。"
+                }
+            }
+        },
+        "indicatorInteractive": {
+            "description": "设置禁用组件导航点交互功能。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "导航点是否可交互。",
+                    "default": true
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "当前显示的子组件索引变化时触发该事件，返回值为当前显示的子组件的索引值。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前显示元素的索引。"
+                }
+            }
+        },
+        "onAnimationStart": {
+            "description": "切换动画开始时触发该回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前显示元素的索引。"
+                },
+                "targetIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "切换动画目标元素的索引。"
+                },
+                "extraInfo": {
+                    "type": "SwiperAnimationEvent",
+                    "required": true,
+                    "description": "动画相关信息。"
+                }
+            }
+        },
+        "onAnimationEnd": {
+            "description": "切换动画结束时触发该回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前显示元素的索引。"
+                },
+                "extraInfo": {
+                    "type": "SwiperAnimationEvent",
+                    "required": true,
+                    "description": "动画相关信息。"
+                }
+            }
+        },
+        "onGestureSwipe": {
+            "description": "在页面跟手滑动过程中，逐帧触发该回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前显示元素的索引。"
+                },
+                "extraInfo": {
+                    "type": "SwiperAnimationEvent",
+                    "required": true,
+                    "description": "动画相关信息。"
+                }
+            }
+        },
+        "customContentTransition": {
+            "description": "自定义Swiper页面切换动画。",
+            "params": {
+                "transition": {
+                    "type": "SwiperContentAnimatedTransition",
+                    "required": true,
+                    "description": "Swiper自定义切换动画相关信息。"
+                }
+            }
+        },
+        "onContentDidScroll": {
+            "description": "监听Swiper页面滑动事件。",
+            "params": {
+                "handler": {
+                    "type": "ContentDidScrollCallback",
+                    "required": true,
+                    "description": "Swiper滑动时触发的回调。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

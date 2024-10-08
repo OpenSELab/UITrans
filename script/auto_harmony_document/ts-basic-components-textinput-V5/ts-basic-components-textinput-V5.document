@@ -1,0 +1,3150 @@
+Title: TextInput-文本与输入-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5
+
+Markdown Content:
+单行文本输入框组件。
+
+说明
+
+该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+接口
+--
+
+TextInput(value?: TextInputOptions)
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+TextInputOptions对象说明
+--------------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+placeholder
+
+[ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr)
+
+否
+
+设置无输入时的提示文本。
+
+text
+
+[ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr)
+
+否
+
+设置输入框当前的文本内容。
+
+建议通过onChange事件将状态变量与文本实时绑定，
+
+避免组件刷新时TextInput中的文本内容异常。
+
+从API version 10开始，该参数支持[$$](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-two-way-sync-V5)双向绑定变量。
+
+controller8+
+
+[TextInputController](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#textinputcontroller8)
+
+否
+
+设置TextInput控制器。
+
+属性
+--
+
+除支持[通用属性](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-size-V5)，还支持以下属性：
+
+说明
+
+默认情况下，通用属性[padding](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-size-V5#padding)的默认值为：
+
+{
+
+top: '8vp',
+
+right: '16vp',
+
+bottom: '8vp',
+
+left: '16vp'
+
+}
+
+输入框开启下划线模式时，通用属性padding的默认值为：
+
+{
+
+top: '12vp',
+
+right: '0vp',
+
+bottom: '12vp',
+
+left: '0vp'
+
+}
+
+从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-size-V5#%E5%B1%9E%E6%80%A7)。
+
+### type
+
+type(value: InputType)
+
+设置输入框类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[InputType](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#inputtype%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E)
+
+是
+
+输入框类型。
+
+默认值：InputType.Normal
+
+### placeholderColor
+
+placeholderColor(value: ResourceColor)
+
+设置placeholder文本颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### placeholderFont
+
+placeholderFont(value?: Font)
+
+设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-font-V5)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Font](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#font)
+
+否
+
+placeholder文本样式。
+
+### enterKeyType
+
+enterKeyType(value: EnterKeyType)
+
+设置输入法回车键类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[EnterKeyType](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#enterkeytype%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E)
+
+是
+
+输入法回车键类型。
+
+默认值：EnterKeyType.Done
+
+### caretColor
+
+caretColor(value: ResourceColor)
+
+设置输入框光标颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+说明
+
+从API version 12开始，此接口支持设置文本手柄颜色，光标和文本手柄颜色保持一致。
+
+### maxLength
+
+maxLength(value: number)
+
+设置文本的最大输入字符数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+文本的最大输入字符数。
+
+默认值：Infinity，可以无限输入。
+
+**说明：**
+
+当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。
+
+### fontColor
+
+fontColor(value: ResourceColor)
+
+设置字体颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### fontSize
+
+fontSize(value: number | string | Resource)
+
+设置字体大小。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | number | string
+
+是
+
+字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。
+
+### fontStyle
+
+fontStyle(value: FontStyle)
+
+设置字体样式。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[FontStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontstyle)
+
+是
+
+字体样式。
+
+默认值：FontStyle.Normal
+
+### fontWeight
+
+fontWeight(value: number | FontWeight | string)
+
+设置文本的字体粗细，设置过大可能会在不同字体下有截断。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[FontWeight](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontweight) | number | string
+
+是
+
+文本的字体粗细，number类型取值\[100, 900\]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。
+
+默认值：FontWeight.Normal
+
+### fontFamily
+
+fontFamily(value: string | Resource)
+
+设置字体列表。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | string
+
+是
+
+字体列表。默认字体'HarmonyOS Sans'。
+
+应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-font-V5)。
+
+卡片当前仅支持'HarmonyOS Sans'字体。
+
+### inputFilter8+
+
+inputFilter(value: ResourceStr, error?: (value: string) =\> void)
+
+通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。
+
+从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致设置输入框类型(即type接口)附带的文本过滤效果失效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr)
+
+是
+
+正则表达式。
+
+error
+
+(value: string) =\> void
+
+否
+
+正则匹配失败时，返回被过滤的内容。
+
+### copyOption9+
+
+copyOption(value: CopyOptions)
+
+设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制或剪切，仅支持粘贴。
+
+设置CopyOptions.None时，不允许拖拽。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[CopyOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#copyoptions9)
+
+是
+
+输入的文本是否可复制。
+
+默认值：CopyOptions.LocalDevice，支持设备内复制。
+
+### showPasswordIcon9+
+
+showPasswordIcon(value: boolean)
+
+设置当密码输入模式时，输入框末尾的图标是否显示。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+密码输入模式时，输入框末尾的图标是否显示。
+
+默认值：true
+
+### style9+
+
+style(value: TextInputStyle | TextContentStyle)
+
+设置输入框为默认风格或内联输入风格，内联输入风格只支持InputType.Normal类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### textAlign9+
+
+textAlign(value: TextAlign)
+
+设置文本在输入框中的水平对齐方式。
+
+仅支持TextAlign.Start、TextAlign.Center和TextAlign.End。
+
+可通过[align](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-location-V5)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[TextAlign](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#textalign)
+
+是
+
+文本在输入框中的水平对齐方式。
+
+默认值：TextAlign.Start
+
+### selectedBackgroundColor10+
+
+selectedBackgroundColor(value: ResourceColor)
+
+设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### caretStyle10+
+
+caretStyle(value: CaretStyle)
+
+设置光标风格。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### caretPosition10+
+
+caretPosition(value: number)
+
+设置光标位置。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+光标的位置。
+
+### showUnit10+
+
+showUnit(value: CustomBuilder)
+
+设置控件作为文本框单位。需搭配[showUnderline](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#showunderline10)使用，当showUnderline为true时生效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### showError10+
+
+showError(value?: ResourceStr | undefined)
+
+设置错误状态下提示的错误文本或者不显示错误状态。
+
+当参数类型为ResourceStr并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#%E7%A4%BA%E4%BE%8B2)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr) | undefined
+
+否
+
+错误状态下提示的错误文本或者不显示错误状态。
+
+默认不显示错误状态。
+
+**说明：**
+
+从API version 12开始，value支持Resource类型。
+
+### showUnderline10+
+
+showUnderline(value: boolean)
+
+设置是否开启下划线。下划线默认颜色为'#33182431'，默认粗细为1px，文本框尺寸48vp，下划线只支持InputType.Normal类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+是否开启下划线。
+
+默认值：false
+
+### passwordIcon10+
+
+passwordIcon(value: PasswordIcon)
+
+设置当密码输入模式时，输入框末尾的图标。
+
+支持jpg、png、bmp、heic和webp类型的图片格式。
+
+该图标的固定尺寸为24vp，若引用的图标过大或过小，均显示为固定尺寸。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[PasswordIcon](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#passwordicon10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+是
+
+密码输入模式时，输入框末尾的图标。
+
+默认为系统提供的密码图标。
+
+### enableKeyboardOnFocus10+
+
+enableKeyboardOnFocus(value: boolean)
+
+设置TextInput通过点击以外的方式获焦时，是否绑定输入法。
+
+从API version 10开始，获焦默认绑定输入法。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+通过点击以外的方式获焦时，是否绑定输入法。
+
+默认值：true
+
+selectionMenuHidden(value: boolean)
+
+设置是否不弹出系统文本选择菜单。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+是否不弹出系统文本选择菜单。
+
+设置为true时，单击输入框光标、长按输入框、双击输入框、三击输入框或者右键输入框，不弹出系统文本选择菜单。
+
+设置为false时，弹出系统文本选择菜单。
+
+默认值：false
+
+### barState10+
+
+barState(value: BarState)
+
+设置内联输入风格编辑态时滚动条的显示模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[BarState](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#barstate)
+
+是
+
+内联输入风格编辑态时滚动条的显示模式。
+
+默认值：BarState.Auto
+
+### maxLines10+
+
+maxLines(value: number)
+
+设置内联输入风格编辑态时文本可显示的最大行数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+内联输入风格编辑态时文本可显示的最大行数。
+
+默认值：3
+
+取值范围：(0, +∞)
+
+### customKeyboard10+
+
+customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
+
+设置自定义键盘。
+
+当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。
+
+自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。
+
+自定义键盘采用覆盖原始界面的方式呈现，当没有开启避让模式或者输入框不需要避让的场景不会对应用原始界面产生压缩或者上提。
+
+自定义键盘无法获取焦点，但是会拦截手势事件。
+
+默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[TextInputController](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#textinputcontroller8).[stopEditing](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#stopediting10)方法控制键盘关闭。
+
+如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### enableAutoFill11+
+
+enableAutoFill(value: boolean)
+
+设置是否启用自动填充。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+是否启用自动填充。
+
+true表示启用，false表示不启用。
+
+默认值：true
+
+### passwordRules11+
+
+passwordRules(value: string)
+
+定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+string
+
+是
+
+定义生成密码的规则。
+
+### cancelButton11+
+
+cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
+
+设置右侧清除按钮样式。不支持内联模式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### selectAll11+
+
+selectAll(value: boolean)
+
+设置当初始状态，是否全选文本。不支持内联模式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+是否全选文本。
+
+默认值：false
+
+### showCounter11+
+
+showCounter(value: boolean, options?: InputCounterOptions)
+
+设置当通过InputCounterOptions输入的字符数超过阈值时显示计数器。
+
+参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。
+
+当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数超过最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色，框体抖动。
+
+内联模式和密码模式下字符计数器不显示。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### contentType12+
+
+contentType(value: ContentType)
+
+设置自动填充类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### underlineColor12+
+
+underlineColor(value: ResourceColor|UnderlineColor|undefined)
+
+开启下划线时，支持配置下划线颜色。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | [UnderlineColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#underlinecolor12%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | undefined
+
+是
+
+设置下划线颜色。
+
+当设置下划线颜色模式时，修改下划线颜色。当只设定非特殊状态下的颜色，可以直接输入ResourceColor。设定值为undefined、null、无效值时，所有下划线恢复为默认值。
+
+默认值：主题配置的下划线颜色。主题配置的默认下滑颜色为'#33182431'。
+
+### lineHeight12+
+
+lineHeight(value: number | string | Resource)
+
+设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number | string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+是
+
+文本的文本行高。
+
+### decoration12+
+
+decoration(value: TextDecorationOptions)
+
+设置文本装饰线类型样式及其颜色。密码模式不生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[TextDecorationOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#textdecorationoptions12%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+是
+
+文本装饰线对象。
+
+默认值：{
+
+type: TextDecorationType.None,
+
+color: Color.Black,
+
+style: TextDecorationStyle.SOLID
+
+}
+
+### letterSpacing12+
+
+letterSpacing(value: number | string | Resource)
+
+设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。
+
+当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number | string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+是
+
+文本字符间距。
+
+### fontFeature12+
+
+fontFeature(value: string)
+
+设置文字特性效果，比如数字等宽的特性。
+
+格式为：normal | <feature-tag-value\>
+
+<feature-tag-value\>的格式为：<string\> \[ <integer\> | on | off \]
+
+<feature-tag-value\>的个数可以有多个，中间用','隔开。
+
+例如，使用等宽数字的输入格式为："ss01" on。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+string
+
+是
+
+文字特性效果。
+
+Font Feature当前支持的属性见 [fontFeature属性列表](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-text-V5#fontfeature12)。
+
+设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
+
+更多 Font Feature 能力介绍可参考 [https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop](https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop) 和 [https://sparanoid.com/lab/opentype-features/](https://sparanoid.com/lab/opentype-features/)
+
+说明
+
+type属性中InputType枚举为Password、NEW\_PASSWORD和NUMBER\_PASSWORD等密码模式时，暂时不支持fontFeature设置文本样式。
+
+### wordBreak12+
+
+wordBreak(value: WordBreak)
+
+设置文本断行规则。该属性在组件设置内联模式时样式生效，但对placeholder文本无效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[WordBreak](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#wordbreak11)
+
+是
+
+内联输入风格编辑态时断行规则。
+
+默认值：WordBreak.BREAK\_WORD
+
+说明
+
+组件不支持clip属性设置，设置该属性任意枚举值对组件文本截断无影响。
+
+### textOverflow12+
+
+textOverflow(value: TextOverflow)
+
+设置文本超长时的显示方式。仅在内联模式的编辑态、非编辑态下支持。
+
+文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，wordBreak属性可设置为WordBreak.BREAK\_ALL。
+
+当overflow设置TextOverflow.None与TextOverflow.Clip效果一样。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[TextOverflow](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#textoverflow)
+
+是
+
+文本超长时的显示方式。
+
+内联模式非编辑态下默认值：TextOverflow.Ellipsis
+
+内联模式编辑态下默认值：TextOverflow.Clip
+
+说明
+
+TextInput组件不支持设置TextOverflow.MARQUEE模式,当设置为TextOverflow.MARQUEE模式时 内联模式非编辑态下显示为TextOverflow.Ellipsis，内联模式编辑态下以及非内联模式下显示为TextOverflow.Clip
+
+### textIndent12+
+
+textIndent(value: Dimension)
+
+设置首行文本缩进。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### minFontSize12+
+
+minFontSize(value: number | string | Resource)
+
+设置文本最小显示字号。
+
+需配合[maxFontSize](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#maxfontsize12)以及[maxLines](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#maxlines10)(组件设置为内联输入风格且编辑态时使用)或布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number | string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+是
+
+文本最小显示字号。
+
+### maxFontSize12+
+
+maxFontSize(value: number | string | Resource)
+
+设置文本最大显示字号。
+
+需配合[minFontSize](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#minfontsize12)以及[maxLines](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#maxlines10)(组件设置为内联输入风格且编辑态时使用)或布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number | string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+是
+
+文本最大显示字号。
+
+### heightAdaptivePolicy12+
+
+heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
+
+组件设置为内联输入风格时，设置文本自适应高度的方式。
+
+当设置为TextHeightAdaptivePolicy.MAX\_LINES\_FIRST时，优先使用[maxLines](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#maxlines10)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#minfontsize12)和[maxFontSize](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#maxfontsize12)的范围内缩小字体以显示更多文本。
+
+当设置为TextHeightAdaptivePolicy.MIN\_FONT\_SIZE\_FIRST时，优先使用minFontSize属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和maxFontSize的范围内增大字体并使用最大可能的字体大小。
+
+当设置为TextHeightAdaptivePolicy.LAYOUT\_CONSTRAINT\_FIRST时，与TextHeightAdaptivePolicy.MIN\_FONT\_SIZE\_FIRST效果一样。
+
+组件设置为非内联输入风格时，设置文本自适应高度(TextHeightAdaptivePolicy)的三种方式效果一样，即在minFontSize和maxFontSize的范围内缩小字体以显示更多文本。
+
+说明
+
+组件设置为内联输入风格，编辑态与非编辑态存在字体大小不一致情况。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### showPassword12+
+
+showPassword(visible: boolean)
+
+设置密码的显隐状态。
+
+需组合密码模式才能生效，非密码输入模式不生效。
+
+密码模式时，由于输入框末尾的图标内置更新密码模式的状态，建议在[onSecurityStateChange](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textinput-V5#onsecuritystatechange12)上增加状态同步。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+visible
+
+boolean
+
+是
+
+是否显示密码。
+
+默认值：false
+
+### lineBreakStrategy12+
+
+lineBreakStrategy(strategy: LineBreakStrategy)
+
+设置折行规则。该属性在wordBreak不等于breakAll的时候生效，不支持连词符。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+strategy
+
+[LineBreakStrategy](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#linebreakstrategy12)
+
+是
+
+文本的折行规则。
+
+默认值：LineBreakStrategy.GREEDY
+
+**说明：**
+
+非Inline模式该属性不生效
+
+editMenuOptions(editMenu: EditMenuOptions)
+
+设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### enablePreviewText12+
+
+enablePreviewText(enable: boolean)
+
+设置是否开启输入预上屏。
+
+预上屏内容定义为文字暂存态，目前不支持文字拦截功能，因此不触发onWillInsert、onDidInsert、onWillDelete、onDidDelete回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+enable
+
+boolean
+
+是
+
+是否开启输入预上屏。
+
+默认值：true
+
+说明
+
+该接口在CAPI场景使用时下，默认关闭。可以在工程的module.json5中配置[metadata](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/module-structure-V5#metadata%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84)字段控制是否启用预上屏，配置如下：
+
+1.  "metadata": \[
+2.   {
+3.      "name": "can\_preview\_text",
+4.      "value": "true",
+5.   }
+6.  \]
+
+InputType枚举说明
+-------------
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+描述
+
+Normal
+
+基本输入模式，无特殊限制。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+Password
+
+密码输入模式。
+
+支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+Email
+
+邮箱地址输入模式。
+
+支持数字、字母、下划线、小数点、!、#、$、%、&、'、\*、+、-、/、=、?、^、\`、{、|、}、~，以及@字符（只能存在一个@字符）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+Number
+
+纯数字输入模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+PhoneNumber9+
+
+电话号码输入模式。
+
+支持输入数字、空格、+ 、-、\*、#、(、)，长度不限。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+USER\_NAME11+
+
+用户名输入模式。
+
+在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+NEW\_PASSWORD11+
+
+新密码输入模式。
+
+密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+NUMBER\_PASSWORD11+
+
+纯数字密码输入模式。
+
+密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+NUMBER\_DECIMAL11+
+
+带小数点的数字输入模式。
+
+支持数字，小数点（只能存在一个小数点）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+URL12+
+
+带URL的输入模式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ContentType12+枚举说明
+------------------
+
+自动填充类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+值
+
+描述
+
+USER\_NAME
+
+0
+
+【用户名】在已启用密码保险箱的情况下，支持用户名的自动保存和自动填充。
+
+PASSWORD
+
+1
+
+【密码】在已启用密码保险箱的情况下，支持密码的自动保存和自动填充。
+
+NEW\_PASSWORD
+
+2
+
+【新密码】在已启用密码保险箱的情况下，支持自动生成新密码。
+
+FULL\_STREET\_ADDRESS
+
+3
+
+【详细地址】在已启用情景化自动填充的情况下，支持详细地址的自动保存和自动填充。
+
+HOUSE\_NUMBER
+
+4
+
+【门牌号】在已启用情景化自动填充的情况下，支持门牌号的自动保存和自动填充。
+
+DISTRICT\_ADDRESS
+
+5
+
+【区/县】在已启用情景化自动填充的情况下，支持区/县的自动保存和自动填充。
+
+CITY\_ADDRESS
+
+6
+
+【市】在已启用情景化自动填充的情况下，支持市的自动保存和自动填充。
+
+PROVINCE\_ADDRESS
+
+7
+
+【省】在已启用情景化自动填充的情况下，支持省的自动保存和自动填充。
+
+COUNTRY\_ADDRESS
+
+8
+
+【国家】在已启用情景化自动填充的情况下，支持国家的自动保存和自动填充。
+
+PERSON\_FULL\_NAME
+
+9
+
+【姓名】在已启用情景化自动填充的情况下，支持姓名的自动保存和自动填充。
+
+PERSON\_LAST\_NAME
+
+10
+
+【姓氏】在已启用情景化自动填充的情况下，支持姓氏的自动保存和自动填充。
+
+PERSON\_FIRST\_NAME
+
+11
+
+【名字】在已启用情景化自动填充的情况下，支持名字的自动保存和自动填充。
+
+PHONE\_NUMBER
+
+12
+
+【手机号码】在已启用情景化自动填充的情况下，支持手机号码的自动保存和自动填充。
+
+PHONE\_COUNTRY\_CODE
+
+13
+
+【国家代码】在已启用情景化自动填充的情况下，支持国家代码的自动保存和自动填充。
+
+FULL\_PHONE\_NUMBER
+
+14
+
+【包含国家代码的手机号码】在已启用情景化自动填充的情况下，支持包含国家代码的手机号码的自动保存和自动填充。
+
+EMAIL\_ADDRESS
+
+15
+
+【邮箱地址】在已启用情景化自动填充的情况下，支持邮箱地址的自动保存和自动填充。
+
+BANK\_CARD\_NUMBER
+
+16
+
+【银行卡号】在已启用情景化自动填充的情况下，支持银行卡号的自动保存和自动填充。
+
+ID\_CARD\_NUMBER
+
+17
+
+【身份证号】在已启用情景化自动填充的情况下，支持身份证号的自动保存和自动填充。
+
+NICKNAME
+
+23
+
+【昵称】在已启用情景化自动填充的情况下，支持昵称的自动保存和自动填充。
+
+DETAIL\_INFO\_WITHOUT\_STREET
+
+24
+
+【无街道地址】在已启用情景化自动填充的情况下，支持无街道地址的自动保存和自动填充。
+
+FORMAT\_ADDRESS
+
+25
+
+【标准地址】在已启用情景化自动填充的情况下，支持标准地址的自动保存和自动填充。
+
+TextInputStyle9+枚举说明
+--------------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+描述
+
+Default
+
+默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。
+
+Inline
+
+内联输入风格。文本选中底板高度与输入框高度相同。
+
+内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。
+
+不支持showError属性。
+
+内联模式下，不支持拖入文本。
+
+PasswordIcon10+对象说明
+-------------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+onIconSrc
+
+string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+否
+
+密码输入模式时，能够切换密码隐藏的显示状态的图标。
+
+offIconSrc
+
+string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+否
+
+密码输入模式时，能够切换密码显示的隐藏状态的图标。
+
+### onChange
+
+onChange(callback: EditableTextOnChangeCallback)
+
+输入内容发生变化时，触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### onSubmit
+
+onSubmit(callback: (enterKey: EnterKeyType, event: SubmitEvent) =\> void)
+
+按下输入法回车键触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### onEditChanged(deprecated)
+
+onEditChanged(callback: (isEditing: boolean) =\> void)
+
+输入状态变化时，触发该回调。
+
+从API 8开始废弃，建议使用onEditChange。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+isEditing
+
+boolean
+
+是
+
+为true表示正在输入。
+
+### onEditChange8+
+
+onEditChange(callback: (isEditing: boolean) =\> void)
+
+输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+isEditing
+
+boolean
+
+是
+
+为true表示正在输入。
+
+### onCopy8+
+
+onCopy(callback: (value: string) =\> void)
+
+进行复制操作时，触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+string
+
+是
+
+复制的文本内容。
+
+### onCut8+
+
+onCut(callback: (value: string) =\> void)
+
+进行剪切操作时，触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+string
+
+是
+
+剪切的文本内容。
+
+### onPaste8+
+
+onPaste(callback: (value: string, event: PasteEvent) =\> void)
+
+进行粘贴操作时，触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+string
+
+是
+
+粘贴的文本内容。
+
+event11+
+
+[PasteEvent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-richeditor-V5#pasteevent11)
+
+是
+
+用户自定义的粘贴事件。
+
+### onTextSelectionChange10+
+
+onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =\> void)
+
+文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+selectionStart
+
+number
+
+是
+
+所选文本的起始位置，文字的起始位置为0。
+
+selectionEnd
+
+number
+
+是
+
+所选文本的结束位置。
+
+### onContentScroll10+
+
+onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) =\> void)
+
+文本内容滚动时，触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+totalOffsetX
+
+number
+
+是
+
+文本在内容区的横坐标偏移，单位px。
+
+totalOffsetY
+
+number
+
+是
+
+文本在内容区的纵坐标偏移，单位px。
+
+### onSecurityStateChange12+
+
+onSecurityStateChange(callback: Callback<boolean\>)
+
+密码显隐状态切换时，触发该回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+callback
+
+Callback<boolean\>
+
+是
+
+回调函数。
+
+### onWillInsert12+
+
+onWillInsert(callback: Callback<InsertValue, boolean\>)
+
+在将要输入时，触发该回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+callback
+
+Callback<[InsertValue](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-text-common-V5#insertvalue12%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E), boolean\>
+
+是
+
+在将要输入时调用的回调。
+
+在返回true时，表示正常插入，返回false时，表示不插入。
+
+在预上屏操作时，该回调不触发。
+
+仅支持系统输入法输入的场景。
+
+### onDidInsert12+
+
+onDidInsert(callback: Callback<InsertValue\>)
+
+在输入完成时，触发该回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+callback
+
+Callback<[InsertValue](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-text-common-V5#insertvalue12%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)\>
+
+是
+
+在输入完成时调用的回调。
+
+仅支持系统输入法输入的场景。
+
+### onWillDelete12+
+
+onWillDelete(callback: Callback<DeleteValue, boolean\>)
+
+在将要删除时，触发该回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+callback
+
+Callback<[DeleteValue](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-text-common-V5#deletevalue12%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E), boolean\>
+
+是
+
+在将要删除时调用的回调。
+
+在返回true时，表示正常删除，返回false时，表示不删除。
+
+在预上屏删除操作时，该回调不触发。
+
+仅支持系统输入法输入的场景。
+
+### onDidDelete12+
+
+onDidDelete(callback: Callback<DeleteValue\>)
+
+在删除完成时，触发该回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+callback
+
+Callback<[DeleteValue](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-text-common-V5#deletevalue12%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)\>
+
+是
+
+在删除完成时调用的回调。
+
+仅支持系统输入法输入的场景。
+
+TextInputController8+
+---------------------
+
+TextInput组件的控制器继承自[TextContentControllerBase](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#textcontentcontrollerbase10)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 导入对象
+
+1.  controller: TextInputController = new TextInputController()
+
+### constructor8+
+
+constructor()
+
+TextInputController的构造函数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### caretPosition8+
+
+caretPosition(value: number): void
+
+设置输入光标的位置。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+从字符串开始到光标所在位置的字符长度。
+
+### setTextSelection10+
+
+setTextSelection(selectionStart: number, selectionEnd: number, options?: SelectionOptions): void
+
+设置文本选择区域并高亮显示。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+selectionStart
+
+number
+
+是
+
+文本选择区域起始位置，文本框中文字的起始位置为0。
+
+selectionEnd
+
+number
+
+是
+
+文本选择区域结束位置。
+
+options12+
+
+[SelectionOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#selectionoptions12%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+否
+
+选中文字时的配置。
+
+默认值：MenuPolicy.DEFAULT
+
+从API version 12开始，该接口中的options参数支持在元服务中使用。
+
+说明
+
+如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
+
+如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.SHOW，调用setTextSelection也不弹出菜单。
+
+如果选中的文本含有emoji表情时，表情的起始位置包含在设置的文本选中区域内就会被选中。
+
+### stopEditing10+
+
+stopEditing(): void
+
+退出编辑态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+UnderlineColor12+对象说明
+---------------------
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+typing
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | undefined
+
+否
+
+键入时下划线颜色。不填写、undefined、null、无效值时恢复默认。
+
+normal
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | undefined
+
+否
+
+非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。
+
+error
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | undefined
+
+否
+
+错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。
+
+disable
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | undefined
+
+否
+
+禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。
+
+SubmitEvent11+对象说明
+------------------
+
+定义用户提交事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+参数名
+
+类型
+
+必填
+
+说明
+
+text
+
+string
+
+是
+
+输入框文本内容。
+
+### keepEditableState
+
+keepEditableState(): void
+
+用户自定义输入框编辑状态，调用时保持编辑态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+示例
+--
+
+### 示例1
+
+TextInput基本使用示例。
+
+2.  @Entry
+3.  @Component
+4.  struct TextInputExample {
+5.    @State text: string = ''
+6.    @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
+7.    @State passwordState: boolean = false
+8.    controller: TextInputController = new TextInputController()
+
+10.    build() {
+11.      Column() {
+12.        TextInput({ text: this.text, placeholder: 'input your word...', controller: this.controller })
+13.          .placeholderColor(Color.Grey)
+14.          .placeholderFont({ size: 14, weight: 400 })
+15.          .caretColor(Color.Blue)
+16.          .width('95%')
+17.          .height(40)
+18.          .margin(20)
+19.          .fontSize(14)
+20.          .fontColor(Color.Black)
+21.          .inputFilter('\[a-z\]', (e) =\> {
+22.            console.log(JSON.stringify(e))
+23.          })
+24.          .onChange((value: string) =\> {
+25.            this.text = value
+26.          })
+27.        Text(this.text)
+28.        Button('Set caretPosition 1')
+29.          .margin(15)
+30.          .onClick(() =\> {
+
+32.            this.controller.caretPosition(1)
+33.          })
+34.        Button('Get CaretOffset')
+35.          .margin(15)
+36.          .onClick(() =\> {
+37.            this.positionInfo = this.controller.getCaretOffset()
+38.          })
+
+40.        TextInput({ placeholder: 'input your password...' })
+41.          .width('95%')
+42.          .height(40)
+43.          .margin(20)
+44.          .type(InputType.Password)
+45.          .maxLength(9)
+46.          .showPasswordIcon(true)
+47.          .showPassword(this.passwordState)
+48.          .onSecurityStateChange(((isShowPassword: boolean) =\> {
+
+50.            console.info('isShowPassword',isShowPassword)
+51.            this.passwordState = isShowPassword
+52.          }))
+
+54.        TextInput({ placeholder: 'input your email...' })
+55.          .width('95%')
+56.          .height(40)
+57.          .margin(20)
+58.          .contentType(ContentType.EMAIL\_ADDRESS)
+59.          .maxLength(9)
+
+61.        TextInput({ text: 'inline style' })
+62.          .width('95%')
+63.          .height(50)
+64.          .margin(20)
+65.          .borderRadius(0)
+66.          .style(TextInputStyle.Inline)
+67.      }.width('100%')
+68.    }
+69.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114436.98469236674987017267528586892352:50001231000000:2800:28B32129BAA54E9C5C26833B477E8C7B00C6E60E04760FE48E8316B5869B9960.png?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+passwordIcon、showUnderline、showUnit、showError属性接口使用示例。
+
+1.  @Entry
+2.  @Component
+3.  struct TextInputExample {
+4.    @State PassWordSrc1: Resource = $r('app.media.onIcon')
+5.    @State PassWordSrc2: Resource = $r('app.media.offIcon')
+6.    @State TextError: string = ''
+7.    @State Text: string = ''
+8.    @State NameText: string = 'test'
+
+10.    @Builder itemEnd() {
+11.      Select(\[{ value: 'KB' },
+12.        { value: 'MB' },
+13.        { value: 'GB' },
+14.        { value: 'TB', }\])
+15.        .height("48vp")
+16.        .borderRadius(0)
+17.        .selected(2)
+18.        .align(Alignment.Center)
+19.        .value('MB')
+20.        .font({ size: 20, weight: 500 })
+21.        .fontColor('#182431')
+22.        .selectedOptionFont({ size: 20, weight: 400 })
+23.        .optionFont({ size: 20, weight: 400 })
+24.        .backgroundColor(Color.Transparent)
+25.        .responseRegion({ height: "40vp", width: "80%", x: '10%', y: '6vp' })
+26.        .onSelect((index: number) =\> {
+27.          console.info('Select:' + index)
+28.        })
+29.    }
+
+31.    build() {
+32.      Column({ space: 20 }) {
+
+34.        TextInput({ placeholder: 'user define password icon' })
+35.          .type(InputType.Password)
+36.          .width(380)
+37.          .height(60)
+38.          .passwordIcon({ onIconSrc: this.PassWordSrc1, offIconSrc: this.PassWordSrc2 })
+
+40.        TextInput({ placeholder: 'underline style' })
+41.          .showUnderline(true)
+42.          .width(380)
+43.          .height(60)
+44.          .showError('Error')
+45.          .showUnit(this.itemEnd)
+
+47.        Text(\`用户名：${this.Text}\`)
+48.          .width('95%')
+49.        TextInput({ placeholder: '请输入用户名', text: this.Text })
+50.          .showUnderline(true)
+51.          .width(380)
+52.          .showError(this.TextError)
+53.          .onChange((value: string) =\> {
+54.            this.Text = value
+55.          })
+56.          .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) =\> {
+
+58.            if (this.Text == this.NameText) {
+59.              this.TextError = ''
+60.            } else {
+61.              this.TextError = '用户名输入错误'
+62.              this.Text = ''
+
+64.              event.keepEditableState()
+65.            }
+66.          })
+
+68.      }.width('100%')
+69.    }
+70.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114436.45864900978528313462628358810026:50001231000000:2800:2CEE1058DC6F560D62E367EED5F462C90C0472769C945F092F7C40C5DCDF250F.png?needInitFileName=true?needInitFileName=true)
+
+### 示例3
+
+TextInput绑定自定义键盘使用示例。
+
+2.  @Entry
+3.  @Component
+4.  struct TextInputExample {
+5.    controller: TextInputController = new TextInputController()
+6.    @State inputValue: string = ""
+
+9.    @Builder CustomKeyboardBuilder() {
+10.      Column() {
+11.        Button('x').onClick(() =\> {
+
+13.          this.controller.stopEditing()
+14.        })
+15.        Grid() {
+16.          ForEach(\[1, 2, 3, 4, 5, 6, 7, 8, 9, '\*', 0, '#'\], (item:number|string) =\> {
+17.            GridItem() {
+18.              Button(item + "")
+19.                .width(110).onClick(() =\> {
+20.                this.inputValue += item
+21.              })
+22.            }
+23.          })
+24.        }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
+25.      }.backgroundColor(Color.Gray)
+26.    }
+
+28.    build() {
+29.      Column() {
+30.        TextInput({ controller: this.controller, text: this.inputValue })
+
+32.          .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 }).height('48vp')
+33.      }
+34.    }
+35.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114436.56128711239662455622050700155552:50001231000000:2800:C8469D3FB169343CFAB57C43DCA816B40DCADF20E605C64F14888FB554A8CF0B.png?needInitFileName=true?needInitFileName=true)
+
+### 示例4
+
+cancelButton属性接口使用示例。
+
+2.  @Entry
+3.  @Component
+4.  struct ClearNodeExample {
+5.    @State text: string = ''
+6.    controller: TextInputController = new TextInputController()
+
+8.    build() {
+9.      Column() {
+10.        TextInput({ placeholder: 'input ...', controller: this.controller })
+11.          .width(380)
+12.          .height(60)
+13.          .cancelButton({
+14.            style: CancelButtonStyle.CONSTANT,
+15.            icon: {
+16.              size: 45,
+17.              src: $r('app.media.icon'),
+18.              color: Color.Blue
+19.            }
+20.          })
+21.          .onChange((value: string) =\> {
+22.            this.text = value
+23.          })
+24.      }
+25.    }
+26.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114436.50851210495869291030284056302341:50001231000000:2800:3174D47593358B442CC391B64191BAAB6B96CF200008CF1DA093A18B73FF46C3.png?needInitFileName=true?needInitFileName=true)
+
+### 示例5
+
+TextInput计数器使用示例。
+
+2.  @Entry
+3.  @Component
+4.  struct TextInputExample {
+5.    @State text: string = ''
+6.    controller: TextInputController = new TextInputController()
+
+8.    build() {
+9.      Column() {
+10.        TextInput({ text: this.text, controller: this.controller })
+11.          .placeholderFont({ size: 16, weight: 400 })
+12.          .width(336)
+13.          .height(56)
+14.          .maxLength(6)
+15.          .showUnderline(true)
+16.          .showCounter(true, { thresholdPercentage: 50, highlightBorder: true })
+
+20.          .onChange((value: string) =\> {
+21.            this.text = value
+22.          })
+23.      }.width('100%').height('100%').backgroundColor('#F1F3F5')
+24.    }
+25.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114436.61059616667397558628290497303577:50001231000000:2800:D9CBD3BB9AC03FF6FC8EEB4E47AF8FC2ACEA8427BBADC1AE54764B528FC9601E.jpg?needInitFileName=true?needInitFileName=true)
+
+### 示例6
+
+本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX。
+
+1.  @Entry
+2.  @Component
+3.  struct phone\_example {
+4.    @State submitValue: string = ''
+5.    @State text: string = ''
+6.    public readonly NUM\_TEXT\_MAXSIZE\_LENGTH = 13
+7.    @State teleNumberNoSpace: string = ""
+8.    @State nextCaret: number = -1 
+9.    @State actualCh: number = -1 
+10.    @State lastCaretPosition: number = 0
+11.    @State lastCaretPositionEnd: number = 0
+12.    controller: TextInputController = new TextInputController()
+
+14.    isEmpty(str?: string): boolean {
+15.      return str == 'undefined' || !str || !new RegExp("\[^\\\\s\]").test(str)
+16.    }
+
+18.    checkNeedNumberSpace(numText: string) {
+19.      let isSpace: RegExp = new RegExp('\[\\\\+;,#\\\\\*\]', 'g')
+20.      let isRule: RegExp = new RegExp('^\\\\+.\*')
+
+22.      if (isSpace.test(numText)) {
+
+24.        if (isRule.test(numText)) {
+25.          return true
+26.        } else {
+27.          return false
+28.        }
+29.      }
+30.      return true;
+31.    }
+
+33.    removeSpace(str: string): string {
+34.      if (this.isEmpty(str)) {
+35.        return ''
+36.      }
+37.      return str.replace(new RegExp("\[\\\\s\]", "g"), '')
+38.    }
+
+40.    setCaret() {
+41.      if (this.nextCaret != -1) {
+42.        console.log("to keep caret position right, change caret to", this.nextCaret)
+43.        this.controller.caretPosition(this.nextCaret)
+44.        this.nextCaret = -1
+45.      }
+46.    }
+
+48.    calcCaretPosition(nextText: string) {
+49.      let befNumberNoSpace: string = this.removeSpace(this.text)
+50.      this.actualCh = 0
+51.      if (befNumberNoSpace.length < this.teleNumberNoSpace.length) { 
+52.        for (let i = 0; i < this.lastCaretPosition; i++) {
+53.          if (this.text\[i\] != ' ') {
+54.            this.actualCh += 1
+55.          }
+56.        }
+57.        this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length
+58.        console.log("actualCh: " + this.actualCh)
+59.        for (let i = 0; i < nextText.length; i++) {
+60.          if (nextText\[i\] != ' ') {
+61.            this.actualCh -= 1
+62.            if (this.actualCh <\= 0) {
+63.              this.nextCaret = i + 1
+64.              break;
+65.            }
+66.          }
+67.        }
+68.      } else if (befNumberNoSpace.length \> this.teleNumberNoSpace.length) { 
+69.        if (this.lastCaretPosition === this.text.length) {
+70.          console.log("Caret at last, no need to change")
+71.        } else if (this.lastCaretPosition === this.lastCaretPositionEnd) {
+
+73.          for (let i = this.lastCaretPosition; i < this.text.length; i++) {
+74.            if (this.text\[i\] != ' ') {
+75.              this.actualCh += 1
+76.            }
+77.          }
+78.          for (let i = nextText.length - 1; i \>\= 0; i--) {
+79.            if (nextText\[i\] != ' ') {
+80.              this.actualCh -= 1
+81.              if (this.actualCh <\= 0) {
+82.                this.nextCaret = i
+83.                break;
+84.              }
+85.            }
+86.          }
+87.        } else {
+
+89.          this.nextCaret = this.lastCaretPosition 
+90.        }
+91.      }
+92.    }
+
+94.    build() {
+95.      Column() {
+96.        Row() {
+97.          TextInput({ text: \`${this.text}\`, controller: this.controller }).type(InputType.PhoneNumber).height('48vp')
+98.            .onChange((number: string) =\> {
+99.              this.teleNumberNoSpace = this.removeSpace(number);
+100.              let nextText: string = ""
+101.              if (this.teleNumberNoSpace.length \> this.NUM\_TEXT\_MAXSIZE\_LENGTH - 2) {
+102.                nextText = this.teleNumberNoSpace
+103.              } else if (this.checkNeedNumberSpace(number)) {
+104.                if (this.teleNumberNoSpace.length <\= 3) {
+105.                  nextText = this.teleNumberNoSpace
+106.                } else {
+107.                  let split1: string = this.teleNumberNoSpace.substring(0, 3)
+108.                  let split2: string = this.teleNumberNoSpace.substring(3)
+109.                  nextText = split1 + ' ' + split2
+110.                  if (this.teleNumberNoSpace.length \> 7) {
+111.                    split2 = this.teleNumberNoSpace.substring(3, 7)
+112.                    let split3: string = this.teleNumberNoSpace.substring(7)
+113.                    nextText = split1 + ' ' + split2 + ' ' + split3
+114.                  }
+115.                }
+116.              } else {
+117.                nextText = number
+118.              }
+119.              console.log("onChange Triggered:" + this.text + "|" + nextText + "|" + number)
+120.              if (this.text === nextText && nextText === number) {
+
+122.                this.setCaret()
+123.              } else {
+124.                this.calcCaretPosition(nextText)
+125.              }
+126.              this.text = nextText
+127.            })
+128.            .onTextSelectionChange((selectionStart, selectionEnd) =\> {
+
+130.              console.log("selection change: ", selectionStart, selectionEnd)
+131.              this.lastCaretPosition = selectionStart
+132.              this.lastCaretPositionEnd = selectionEnd
+133.            })
+134.        }
+135.      }
+136.      .width('100%')
+137.      .height("100%")
+138.    }
+139.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114436.88344029819451931885286094062046:50001231000000:2800:655423DB7F8DFE244D522C6B10E9770EACE0FCB3C94EE459DAB1E412C9CF6F11.png?needInitFileName=true?needInitFileName=true)
+
+### 示例7
+
+本示例展示如何在下划线开启时，设置下划线颜色。
+
+1.  @Entry
+2.  @Component
+3.  struct Index {
+
+5.    build() {
+6.      Row() {
+7.        Column() {
+8.          TextInput({placeholder:'提示文本内容'})
+9.            .showUnderline(true)
+10.            .underlineColor({normal:Color.Orange,typing:Color.Green,error:Color.Red,disable:Color.Gray});
+11.          TextInput({placeholder:'提示文本内容'})
+12.            .showUnderline(true)
+13.            .underlineColor(Color.Gray);
+14.        }
+15.        .width('100%')
+16.      }
+17.      .height('100%')
+18.    }
+19.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114436.13174154804287161415433438840850:50001231000000:2800:B826374CC89C44F3AFDC35B1835B7E3CF468B2D7D7DECF82C81745BE67C5E630.png?needInitFileName=true?needInitFileName=true)
+
+### 示例8
+
+示例展示设置不同wordBreak属性的TextInput样式。
+
+2.  @Entry
+3.  @Component
+4.  struct TextInputExample {
+5.    build() {
+6.      Column() {
+7.        Text("TextInput为inline模式，WordBreakType属性为NORMAL的样式：").fontSize(16).fontColor(0xFF0000)
+8.        TextInput({
+9.          text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
+10.        })
+11.          .fontSize(16)
+12.          .style(TextInputStyle.Inline) 
+13.          .wordBreak(WordBreak.NORMAL) 
+
+15.        Text("TextInput为inline模式，英文文本，WordBreakType属性为BREAK\_ALL的样式：").fontSize(16).fontColor(0xFF0000)
+16.        TextInput({
+17.          text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
+18.        })
+19.          .fontSize(16)
+20.          .style(TextInputStyle.Inline)
+21.          .wordBreak(WordBreak.BREAK\_ALL)
+
+23.        Text("TextInput为inline模式，中文文本，WordBreakType属性为BREAK\_ALL的样式：").fontSize(16).fontColor(0xFF0000)
+24.        TextInput({
+25.          text: '多行文本输入框组件，当输入的文本内容超过组件宽度时会自动换行显示。\\n高度未设置时，组件无默认高度，自适应内容高度。宽度未设置时，默认撑满最大宽度。'
+26.        })
+27.          .fontSize(16)
+28.          .style(TextInputStyle.Inline)
+29.          .wordBreak(WordBreak.BREAK\_ALL)
+
+31.        Text("TextInput为inline模式，WordBreakType属性为BREAK\_WORD的样式：").fontSize(16).fontColor(0xFF0000)
+32.        TextInput({
+33.          text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
+34.        })
+35.          .fontSize(16)
+36.          .style(TextInputStyle.Inline)
+37.          .wordBreak(WordBreak.BREAK\_WORD)
+38.      }
+39.    }
+40.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114436.87642749339393229797908222382828:50001231000000:2800:A4F291CF1E70E7119E5D09D7CC532719E9E78F19842DDEC58C9718558A0D87D1.jpeg?needInitFileName=true?needInitFileName=true)
+
+### 示例9
+
+该示例实现了使用lineHeight设置文本的文本行高，使用letterSpacing设置文本字符间距，使用decoration设置文本装饰线样式。
+
+1.  @Entry
+2.  @Component
+3.  struct TextInputExample {
+4.    build() {
+5.      Row() {
+6.        Column() {
+7.          Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
+8.          TextInput({text: 'lineHeight unset'})
+9.            .border({ width: 1 }).padding(10).margin(5)
+10.          TextInput({text: 'lineHeight 15'})
+11.            .border({ width: 1 }).padding(10).margin(5).lineHeight(15)
+12.          TextInput({text: 'lineHeight 30'})
+13.            .border({ width: 1 }).padding(10).margin(5).lineHeight(30)
+
+15.          Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
+16.          TextInput({text: 'letterSpacing 0'})
+17.            .border({ width: 1 }).padding(5).margin(5).letterSpacing(0)
+18.          TextInput({text: 'letterSpacing 3'})
+19.            .border({ width: 1 }).padding(5).margin(5).letterSpacing(3)
+20.          TextInput({text: 'letterSpacing -1'})
+21.            .border({ width: 1 }).padding(5).margin(5).letterSpacing(-1)
+
+23.          Text('decoration').fontSize(9).fontColor(0xCCCCCC)
+24.          TextInput({text: 'LineThrough, Red'})
+25.            .border({ width: 1 }).padding(5).margin(5)
+26.            .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
+27.          TextInput({text: 'Overline, Red, DASHED'})
+28.            .border({ width: 1 }).padding(5).margin(5)
+29.            .decoration({type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED})
+30.          TextInput({text: 'Underline, Red, WAVY'})
+31.            .border({ width: 1 }).padding(5).margin(5)
+32.            .decoration({type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY})
+33.        }.height('90%')
+34.      }
+35.      .width('90%')
+36.      .margin(10)
+37.    }
+38.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114437.95068660983377749792041097849093:50001231000000:2800:8AA5050E753EC7DBC2ACB9FCB89E8DC89BCE3E6B26654F6848E98BC61C241981.png?needInitFileName=true?needInitFileName=true)
+
+### 示例10
+
+fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果。
+
+1.  @Entry
+2.  @Component
+3.  struct textInput {
+4.    @State text1: string = 'This is ss01 on : 0123456789'
+5.    @State text2: string = 'This is ss01 off: 0123456789'
+
+8.    build() {
+9.      Column(){
+10.        TextInput({text: this.text1})
+11.          .fontSize(20)
+12.          .margin({top:200})
+13.          .fontFeature("\\"ss01\\" on")
+14.        TextInput({text : this.text2})
+15.          .margin({top:10})
+16.          .fontSize(20)
+17.          .fontFeature("\\"ss01\\" off")
+18.      }
+19.      .width("90%")
+20.      .margin("5%")
+21.    }
+22.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114437.09996384917813940931059888950550:50001231000000:2800:F0DE8B7BB2C18619A67289516CDCFCEAD31AE1AD4BC7DCB8193C7AA4DE342B9E.png?needInitFileName=true?needInitFileName=true)
+
+### 示例11
+
+自定义键盘弹出发生避让示例。
+
+1.  @Entry
+2.  @Component
+3.  struct Input {
+4.    controller: TextInputController = new TextInputController()
+5.    @State inputValue: string = ""
+6.    @State height1:string|number = '80%'
+7.    @State supportAvoidance:boolean = true;
+
+9.    @Builder CustomKeyboardBuilder() {
+10.      Column() {
+11.        Row(){
+12.          Button('x').onClick(() =\> {
+
+14.            this.controller.stopEditing()
+15.          }).margin(10)
+16.        }
+17.        Grid() {
+18.          ForEach(\[1, 2, 3, 4, 5, 6, 7, 8, 9, '\*', 0, '#'\], (item:number|string) =\> {
+19.            GridItem() {
+20.              Button(item + "")
+21.                .width(110).onClick(() =\> {
+22.                this.inputValue += item
+23.              })
+24.            }
+25.          })
+26.        }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
+27.      }.backgroundColor(Color.Gray)
+28.    }
+29.    build() {
+30.      Column() {
+31.        Row(){
+32.          Button("20%")
+33.            .fontSize(24)
+34.            .onClick(()=\>{
+35.              this.height1 = "20%"
+36.            })
+37.          Button("80%")
+38.            .fontSize(24)
+39.            .margin({left:20})
+40.            .onClick(()=\>{
+41.              this.height1 = "80%"
+42.            })
+43.        }
+44.        .justifyContent(FlexAlign.Center)
+45.        .alignItems(VerticalAlign.Bottom)
+46.        .height(this.height1)
+47.        .width("100%")
+48.        .padding({bottom:50})
+49.        TextInput({ controller: this.controller, text: this.inputValue })
+
+51.          .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
+
+53.      }
+54.    }
+55.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114437.59762324975066378752971008495967:50001231000000:2800:739BA3AD5116E292E5E3A95F966CB51273E06E5CF068B97B719000F569A4348A.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例12
+
+该示例实现了使用minFontSize，maxFontSize及heightAdaptivePolicy设置文本自适应字号。
+
+1.  @Entry
+2.  @Component
+3.  struct TextInputExample {
+4.    build() {
+5.      Row() {
+6.        Column() {
+7.          Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC)
+8.          TextInput({text: 'This is the text without the height adaptive policy set'})
+9.            .width('80%').height(50).borderWidth(1).margin(1)
+10.          TextInput({text: 'This is the text with the height adaptive policy set'})
+11.            .width('80%').height(50).borderWidth(1).margin(1)
+12.            .minFontSize(4)
+13.            .maxFontSize(40)
+14.            .maxLines(3)
+15.            .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX\_LINES\_FIRST)
+16.          TextInput({text: 'This is the text with the height adaptive policy set'})
+17.            .width('80%').height(50).borderWidth(1).margin(1)
+18.            .minFontSize(4)
+19.            .maxFontSize(40)
+20.            .maxLines(3)
+21.            .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN\_FONT\_SIZE\_FIRST)
+22.          TextInput({text: 'This is the text with the height adaptive policy set'})
+23.            .width('80%').height(50).borderWidth(1).margin(1)
+24.            .minFontSize(4)
+25.            .maxFontSize(40)
+26.            .maxLines(3)
+27.            .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT\_CONSTRAINT\_FIRST)
+28.        }.height('90%')
+29.      }
+30.      .width('90%')
+31.      .margin(10)
+32.    }
+33.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114437.26884059564403322347954132930338:50001231000000:2800:8441E26D5D5C9CD2C4D4E66A2252BEA296486C44DF9A3FC1D6A54B277ACD4675.png?needInitFileName=true?needInitFileName=true)
+
+### 示例13
+
+lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakStrategy设置不同挡位的效果。
+
+1.  @Entry
+2.  @Component
+3.  struct TextExample1 {
+4.    @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+5.      "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+6.      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+
+8.    build() {
+9.      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+10.        Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+11.        TextInput({text: this.message1})
+12.          .fontSize(12)
+13.          .border({ width: 1 })
+14.          .padding(10)
+15.          .width('100%')
+16.          .maxLines(5)
+17.          .style(TextInputStyle.Inline)
+18.          .lineBreakStrategy(LineBreakStrategy.GREEDY)
+19.        Text('LineBreakStrategy.HIGH\_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+20.        TextInput({text: this.message1})
+21.          .fontSize(12)
+22.          .border({ width: 1 })
+23.          .padding(10)
+24.          .width('100%')
+25.          .maxLines(5)
+26.          .style(TextInputStyle.Inline)
+27.          .lineBreakStrategy(LineBreakStrategy.HIGH\_QUALITY)
+28.        Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+29.        TextInput({text: this.message1})
+30.          .fontSize(12)
+31.          .border({ width: 1 })
+32.          .padding(10)
+33.          .width('100%')
+34.          .maxLines(5)
+35.          .style(TextInputStyle.Inline)
+36.          .lineBreakStrategy(LineBreakStrategy.BALANCED)
+37.      }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
+38.    }
+39.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114437.70081873111576185670451289088701:50001231000000:2800:C851234203A6BB20568F10959E497ADCE852A64E967DF51BAC7FB18B1D39377D.png?needInitFileName=true?needInitFileName=true)
+
+### 示例14
+
+该实例展示输入框支持插入和删除回调。
+
+2.  @Entry
+3.  @Component
+4.  struct TextInputExample {
+5.    @State insertValue: string = ""
+6.    @State deleteValue: string = ""
+7.    @State insertOffset: number = 0
+8.    @State deleteOffset: number = 0
+9.    @State deleteDirection: number = 0
+
+11.    build() {
+12.      Row() {
+13.        Column() {
+14.          TextInput({ text: "TextInput支持插入回调文本" })
+15.            .height(60)
+16.            .onWillInsert((info: InsertValue) =\> {
+17.              this.insertValue = info.insertValue
+18.              return true;
+19.            })
+20.            .onDidInsert((info: InsertValue) =\> {
+21.              this.insertOffset = info.insertOffset
+22.            })
+
+24.          Text("insertValue:" + this.insertValue + "  insertOffset:" + this.insertOffset).height(30)
+
+26.          TextInput({ text: "TextInput支持删除回调文本b" })
+27.            .height(60)
+28.            .onWillDelete((info: DeleteValue) =\> {
+29.              this.deleteValue = info.deleteValue
+30.              info.direction
+31.              return true;
+32.            })
+33.            .onDidDelete((info: DeleteValue) =\> {
+34.              this.deleteOffset = info.deleteOffset
+35.              this.deleteDirection = info.direction
+36.            })
+
+38.          Text("deleteValue:" + this.deleteValue + "  deleteOffset:" + this.deleteOffset).height(30)
+39.          Text("deleteDirection:" + (this.deleteDirection == 0 ? "BACKWARD" : "FORWARD")).height(30)
+
+41.        }.width('100%')
+42.      }
+43.      .height('100%')
+44.    }
+45.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114437.11512309026496700044361913233215:50001231000000:2800:8F7BE61188392FDE4827FFD52983F89AA0A36E98A2B260EB16E8AC841C13A278.png?needInitFileName=true?needInitFileName=true)
+
+### 示例15
+
+editMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+
+2.  @Entry
+3.  @Component
+4.  struct TextInputExample {
+5.    @State text: string = 'TextInput editMenuOptions'
+
+7.    onCreateMenu(menuItems: Array<TextMenuItem\>) {
+8.      menuItems.forEach((value, index) =\> {
+9.        value.icon = $r('app.media.startIcon')
+10.        if (value.id.equals(TextMenuItemId.COPY)) {
+11.          value.content = "复制change"
+12.        }
+13.        if (value.id.equals(TextMenuItemId.SELECT\_ALL)) {
+14.          value.content = "全选change"
+15.        }
+16.      })
+17.      let item1: TextMenuItem = {
+18.        content: 'custom1',
+19.        icon: $r('app.media.startIcon'),
+20.        id: TextMenuItemId.of('custom1'),
+21.      }
+22.      let item2: TextMenuItem = {
+23.        content: 'custom2',
+24.        id: TextMenuItemId.of('custom2'),
+25.        icon: $r('app.media.startIcon'),
+26.      }
+27.      menuItems.push(item1)
+28.      menuItems.unshift(item2)
+29.      return menuItems
+30.    }
+
+32.    build() {
+33.      Column() {
+34.        TextInput({ text: this.text })
+35.          .width('95%')
+36.          .height(50)
+37.          .editMenuOptions({
+38.            onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) =\> {
+39.              if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+40.                console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+41.                return true;
+42.              }
+43.              if (menuItem.id.equals(TextMenuItemId.COPY)) {
+44.                console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
+45.                return true;
+46.              }
+47.              if (menuItem.id.equals(TextMenuItemId.SELECT\_ALL)) {
+48.                console.log("不拦截 SELECT\_ALL start:" + textRange.start + "; end:" + textRange.end)
+49.                return false;
+50.              }
+51.              return false;
+52.            }
+53.          })
+54.          .margin({ top: 100 })
+55.      }
+56.      .width("90%")
+57.      .margin("5%")
+58.    }
+59.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114437.41666601488050136859426766404244:50001231000000:2800:BED39240B3F59741ADA7E03462AAFC3A182AEF52AEF9C942C39D3CE8D4A54C01.gif?needInitFileName=true?needInitFileName=true)

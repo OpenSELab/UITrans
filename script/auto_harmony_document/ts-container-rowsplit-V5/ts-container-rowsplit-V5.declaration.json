@@ -1,0 +1,9 @@
+{
+    "description": "将子组件横向布局，并在每个子组件之间插入一根纵向的分割线，可以包含子组件。",
+    "examples": [
+        {
+            "description": "实现一个可拖动的行分割组件，其中包含五个文本组件，每个文本组件代表一行。用户可以通过拖动分割线来调整每行的高度。",
+            "code": "@Entry // 标记该组件为入口组件\n@Component // 标记该结构体为一个组件\nstruct RowSplitExample {\n  build() {\n    Column() { // 创建一个垂直布局的容器\n      Text('The second line can be dragged') // 显示提示文本，说明第二行可以被拖动\n        .fontSize(9) // 设置字体大小为9\n        .fontColor(0xCCCCCC) // 设置字体颜色为浅灰色\n        .width('90%') // 设置文本宽度为父容器的90%\n      \n      RowSplit() { // 创建一个可拖动的行分割组件\n        Text('1') // 创建第一个文本组件\n          .width('10%') // 设置文本宽度为父容器的10%\n          .height(100) // 设置文本高度为100\n          .backgroundColor(0xF5DEB3) // 设置背景颜色为浅棕色\n          .textAlign(TextAlign.Center) // 设置文本居中对齐\n        \n        Text('2') // 创建第二个文本组件\n          .width('10%') // 设置文本宽度为父容器的10%\n          .height(100) // 设置文本高度为100\n          .backgroundColor(0xD2B48C) // 设置背景颜色为深棕色\n          .textAlign(TextAlign.Center) // 设置文本居中对齐\n        \n        Text('3') // 创建第三个文本组件\n          .width('10%') // 设置文本宽度为父容器的10%\n          .height(100) // 设置文本高度为100\n          .backgroundColor(0xF5DEB3) // 设置背景颜色为浅棕色\n          .textAlign(TextAlign.Center) // 设置文本居中对齐\n        \n        Text('4') // 创建第四个文本组件\n          .width('10%') // 设置文本宽度为父容器的10%\n          .height(100) // 设置文本高度为100\n          .backgroundColor(0xD2B48C) // 设置背景颜色为深棕色\n          .textAlign(TextAlign.Center) // 设置文本居中对齐\n        \n        Text('5') // 创建第五个文本组件\n          .width('10%') // 设置文本宽度为父容器的10%\n          .height(100) // 设置文本高度为100\n          .backgroundColor(0xF5DEB3) // 设置背景颜色为浅棕色\n          .textAlign(TextAlign.Center) // 设置文本居中对齐\n      }\n      .resizeable(true) // 设置RowSplit组件为可拖动，用户可以通过拖动分割线来调整每行的高度\n      .width('90%') // 设置RowSplit组件的宽度为父容器的90%\n      .height(100) // 设置RowSplit组件的高度为100\n    }\n    .width('100%') // 设置Column容器的宽度为父容器的100%\n    .margin({ top: 5 }) // 设置Column容器的上边距为5\n  }\n}"
+        }
+    ]
+}

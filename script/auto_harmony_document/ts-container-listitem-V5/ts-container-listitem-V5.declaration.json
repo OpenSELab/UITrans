@@ -1,0 +1,88 @@
+{
+    "description": "用来展示列表具体item，必须配合List来使用。可以包含单个子组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "ListItem(value?: ListItemOptions)",
+            "params": {
+                "value": {
+                    "type": "ListItemOptions",
+                    "required": false,
+                    "description": "为ListItem提供可选参数, 该对象内含有ListItemStyle枚举类型的style参数。"
+                }
+            }
+        },
+        {
+            "description": "ListItem(deprecated)(value?: string)",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": false,
+                    "description": "无"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "selectable": {
+            "description": "设置当前ListItem元素是否可以被鼠标框选。外层List容器的鼠标框选开启时，ListItem的框选才生效。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "ListItem元素是否可以被鼠标框选。",
+                    "default": true
+                }
+            }
+        },
+        "selected": {
+            "description": "设置当前ListItem选中状态。该属性支持$$双向绑定变量。该属性需要在设置选中态样式前使用才能生效选中态样式。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "当前ListItem选中状态。",
+                    "default": false
+                }
+            }
+        },
+        "swipeAction": {
+            "description": "用于设置ListItem的划出组件。",
+            "params": {
+                "value": {
+                    "type": "SwipeActionOptions",
+                    "required": true,
+                    "description": "划出组件的配置选项。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onSelect": {
+            "description": "ListItem元素被鼠标框选的状态改变时触发回调。",
+            "params": {
+                "isSelected": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "进入鼠标框选范围即被选中返回true， 移出鼠标框选范围即未被选中返回false。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过Column布局实现了一个展示数字列表的界面。布局宽度占据整个屏幕，高度设为100%，背景颜色为0xDCDCDC，顶部内边距为5vp。组件的垂直方向上包含一个List组件，用于展示数字列表。\nList组件的宽度为90%，高度自适应，不显示滚动条。List组件内部通过ForEach循环遍历一个数字数组，生成多个ListItem组件。每个ListItem组件包含一个Text组件，用于显示数字。\nText组件的样式包括宽度为100%，高度为100vp，字体大小为16，文本居中对齐，边框圆角为10，背景颜色为0xFFFFFF。Text组件的功能是显示数字，用户可以通过滚动List组件查看所有数字。\n整个布局通过Column布局保证List组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ListItemExample {\n  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] // 定义一个数字数组\n\n  build() {\n    Column() { // 使用Column布局，垂直排列子组件\n      List({ space: 20, initialIndex: 0 }) { // 创建一个List组件，设置项间距为20，初始索引为0\n        ForEach(this.arr, (item: number) => { // 遍历数字数组，生成多个ListItem组件\n          ListItem() { // 创建一个ListItem组件\n            Text('' + item) // 创建一个Text组件，显示数字\n              .width('100%') // 设置Text组件的宽度为100%\n              .height(100) // 设置Text组件的高度为100vp\n              .fontSize(16) // 设置Text组件的字体大小为16\n              .textAlign(TextAlign.Center) // 设置Text组件的文本居中对齐\n              .borderRadius(10) // 设置Text组件的边框圆角为10\n              .backgroundColor(0xFFFFFF) // 设置Text组件的背景颜色为0xFFFFFF\n          }\n        }, (item: string) => item) // 使用数字作为ListItem的唯一标识\n      }.width('90%') // 设置List组件的宽度为90%\n       .scrollBar(BarState.Off) // 设置List组件不显示滚动条\n    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 }) // 设置Column组件的宽度为100%，高度为100%，背景颜色为0xDCDCDC，顶部内边距为5vp\n  }\n}"
+        },
+        {
+            "description": "该组件通过Column布局实现了一个展示列表项的界面。布局宽度占据整个屏幕，内边距为顶部5vp。组件的垂直方向上包含一个List组件，该List组件包含两个部分：一个ListItemGroup和一个独立的ListItem。ListItemGroup和独立的ListItem都通过ForEach循环生成多个列表项。\n\nList组件的布局属性包括宽度占据整个屏幕，支持多选模式，背景颜色为浅灰色（0xDCDCDC）。List组件的样式和外观包括列表项之间的间距为4vp，初始选中项索引为0。\n\nListItemGroup的样式为卡片风格（ListItemGroupStyle.CARD），包含三个列表项，每个列表项的样式分别为卡片风格（ListItemStyle.CARD）和无风格（ListItemStyle.NONE）。每个列表项的内容为一个居中对齐的文本，文本内容为列表项的索引。\n\n独立的ListItem部分也包含三个列表项，每个列表项的样式分别为卡片风格（ListItemStyle.CARD）和无风格（ListItemStyle.NONE）。每个列表项的内容为一个居中对齐的文本，文本内容为列表项的索引。\n\n整个布局通过Column布局保证列表项在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ListItemExample3 {\n  build() {\n    Column() {\n      List({ space: \"4vp\", initialIndex: 0 }) { // 创建一个List组件，设置列表项之间的间距为4vp，初始选中项索引为0\n        ListItemGroup({ style: ListItemGroupStyle.CARD }) { // 创建一个ListItemGroup组件，样式为卡片风格\n          ForEach([ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE], (itemStyle: number, index?: number) => { // 通过ForEach循环生成三个列表项\n            ListItem({ style: itemStyle }) { // 创建一个ListItem组件，样式根据itemStyle变量动态设置\n              Text(\"\" + index) // 创建一个Text组件，显示列表项的索引\n                .width(\"100%\") // 设置Text组件的宽度为100%\n                .textAlign(TextAlign.Center) // 设置Text组件的文本对齐方式为居中对齐\n            }\n          })\n        }\n        ForEach([ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE], (itemStyle: number, index?: number) => { // 通过ForEach循环生成三个独立的列表项\n          ListItem({ style: itemStyle }) { // 创建一个ListItem组件，样式根据itemStyle变量动态设置\n            Text(\"\" + index) // 创建一个Text组件，显示列表项的索引\n              .width(\"100%\") // 设置Text组件的宽度为100%\n              .textAlign(TextAlign.Center) // 设置Text组件的文本对齐方式为居中对齐\n          }\n        })\n      }\n      .width('100%') // 设置List组件的宽度为100%\n      .multiSelectable(true) // 设置List组件支持多选模式\n      .backgroundColor(0xDCDCDC) // 设置List组件的背景颜色为浅灰色（0xDCDCDC）\n    }\n    .width('100%') // 设置Column组件的宽度为100%\n    .padding({ top: 5 }) // 设置Column组件的内边距为顶部5vp\n  }\n}"
+        },
+        {
+            "description": "该组件展示了一个列表项的示例，通过 List 组件和 ListItem 组件实现了一个可滑动的列表。布局宽度占据整个屏幕，高度设为 100%，内边距为 10vp，背景颜色为浅灰色（0xDCDCDC）。组件的垂直方向上被分为两个主要部分：列表部分和状态显示部分。\n\n列表部分通过 List 组件实现，每个列表项包含一个 Text 组件，显示当前项的编号。列表项的高度为 100vp，宽度为 100%，背景颜色为白色（0xFFFFFF），边框圆角为 10vp，字体大小为 16，文本居中对齐。列表项支持滑动操作，滑动到右侧时会显示两个按钮（Delete 和 Set），按钮之间通过 Row 组件水平排列，按钮之间的间距均匀分布，且对齐方式为均匀分布。\n\n状态显示部分包含两个 Text 组件，分别显示滑动操作的状态（进入和退出删除区域）。字体大小为 20，用于实时显示用户操作的状态。\n\n组件的功能包括滑动删除列表项和实时显示滑动操作的状态。用户可以通过滑动列表项到右侧触发删除操作，删除操作通过 animateTo 方法实现动画效果，删除后列表项会从数组中移除。滑动操作的状态通过 onEnterActionArea 和 onExitActionArea 事件实时更新。",
+            "code": "@Entry\n@Component\nstruct ListItemExample2 {\n  @State arr: number[] = [0, 1, 2, 3, 4] // 列表项的数据源，初始值为 [0, 1, 2, 3, 4]\n  @State enterEndDeleteAreaString: string = \"not enterEndDeleteArea\" // 进入删除区域的状态字符串，初始值为 \"not enterEndDeleteArea\"\n  @State exitEndDeleteAreaString: string = \"not exitEndDeleteArea\" // 退出删除区域的状态字符串，初始值为 \"not exitEndDeleteArea\"\n\n  // 定义一个 Builder 方法，用于生成列表项右侧的按钮区域\n  @Builder itemEnd() {\n    Row() {\n      Button(\"Delete\").margin(\"4vp\") // 删除按钮，设置外边距为 4vp\n      Button(\"Set\").margin(\"4vp\") // 设置按钮，设置外边距为 4vp\n    }.padding(\"4vp\").justifyContent(FlexAlign.SpaceEvenly) // Row 组件的内边距为 4vp，子组件均匀分布\n  }\n\n  build() {\n    Column() {\n      List({ space: 10 }) { // 创建一个列表组件，项之间的间距为 10vp\n        ForEach(this.arr, (item: number) => { // 遍历 arr 数组，生成列表项\n          ListItem() {\n            Text(\"item\" + item) // 显示当前列表项的编号\n              .width('100%') // 文本宽度为 100%\n              .height(100) // 文本高度为 100vp\n              .fontSize(16) // 字体大小为 16\n              .textAlign(TextAlign.Center) // 文本居中对齐\n              .borderRadius(10) // 边框圆角为 10vp\n              .backgroundColor(0xFFFFFF) // 背景颜色为白色（0xFFFFFF）\n          }\n          .transition({ type: TransitionType.Delete, opacity: 0 }) // 删除动画，透明度从 1 变为 0\n          .swipeAction({\n            end: {\n              builder: () => { this.itemEnd() }, // 滑动到右侧时显示的按钮区域\n              onAction: () => { // 点击按钮时的操作\n                animateTo({ duration: 1000 }, () => { // 动画持续时间为 1000ms\n                  let index = this.arr.indexOf(item) // 获取当前项的索引\n                  this.arr.splice(index, 1) // 从数组中移除当前项\n                })\n              },\n              actionAreaDistance: 56, // 滑动操作区域的最大距离为 56vp\n              onEnterActionArea: () => { // 进入滑动操作区域时的操作\n                this.enterEndDeleteAreaString = \"enterEndDeleteArea\" // 更新进入删除区域的状态字符串\n                this.exitEndDeleteAreaString = \"not exitEndDeleteArea\" // 更新退出删除区域的状态字符串\n              },\n              onExitActionArea: () => { // 退出滑动操作区域时的操作\n                this.enterEndDeleteAreaString = \"not enterEndDeleteArea\" // 更新进入删除区域的状态字符串\n                this.exitEndDeleteAreaString = \"exitEndDeleteArea\" // 更新退出删除区域的状态字符串\n              }\n            }\n          })\n        }, (item: string) => item) // 列表项的唯一标识符为 item\n      }\n      Text(this.enterEndDeleteAreaString).fontSize(20) // 显示进入删除区域的状态字符串，字体大小为 20\n      Text(this.exitEndDeleteAreaString).fontSize(20) // 显示退出删除区域的状态字符串，字体大小为 20\n    }\n    .padding(10) // Column 组件的内边距为 10vp\n    .backgroundColor(0xDCDCDC) // 背景颜色为浅灰色（0xDCDCDC）\n    .width('100%') // 宽度为 100%\n    .height('100%') // 高度为 100%\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

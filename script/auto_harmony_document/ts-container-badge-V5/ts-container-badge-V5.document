@@ -1,0 +1,477 @@
+Title: Badge-信息展示-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-badge-V5
+
+Markdown Content:
+可以附加在单个组件上用于信息标记的容器组件。
+
+说明
+
+该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+接口
+--
+
+### Badge
+
+Badge(value: BadgeParamWithNumber)
+
+创建数字标记组件。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### Badge
+
+Badge(value: BadgeParamWithString)
+
+根据字符串创建标记组件。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+从API version 12开始，该组件显隐时支持scale动效。
+
+**参数：**
+
+BadgeParam对象说明
+--------------
+
+包含创建Badge组件的基础参数。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+position
+
+[BadgePosition](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-badge-V5#badgeposition%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E)|[Position10+](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#position)
+
+否
+
+设置提示点显示位置。
+
+默认值：BadgePosition.RightTop
+
+**说明：**
+
+Position作为入参，不支持设置百分比；设置为非法值时，默认（0,0）处理。
+
+style
+
+[BadgeStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-badge-V5#badgestyle%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+是
+
+Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。
+
+BadgeParamWithNumber对象说明
+------------------------
+
+BadgeParamWithNumber继承自[BadgeParam](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-badge-V5#badgeparam%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)，具有BadgeParam的全部属性。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+count
+
+number
+
+是
+
+设置提醒消息数。
+
+**说明：**
+
+小于等于0时不显示信息标记。
+
+取值范围：\[-2147483648,2147483647\]，超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。
+
+maxCount
+
+number
+
+否
+
+最大消息数，超过最大消息时仅显示maxCount+。
+
+默认值：99
+
+取值范围：\[-2147483648,2147483647\]，超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。
+
+BadgeParamWithString对象说明
+------------------------
+
+BadgeParamWithString继承自[BadgeParam](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-badge-V5#badgeparam%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)，具有BadgeParam的全部属性。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+value
+
+string
+
+是
+
+提示内容的文本字符串。
+
+BadgePosition枚举说明
+-----------------
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+值
+
+说明
+
+RightTop
+
+0
+
+圆点显示在右上角。
+
+Right
+
+1
+
+圆点显示在右侧纵向居中。
+
+Left
+
+2
+
+圆点显示在左侧纵向居中。
+
+BadgeStyle对象说明
+--------------
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+color
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+否
+
+文本颜色。
+
+默认值：Color.White
+
+fontSize
+
+number | string
+
+否
+
+文本大小。
+
+默认值：10
+
+单位：fp
+
+**说明：**
+
+不支持设置百分比。
+
+badgeSize
+
+number | string
+
+否
+
+Badge的大小。
+
+默认值：16
+
+单位：vp
+
+**说明：**
+
+不支持设置百分比。当设置为非法值时，按照默认值处理。
+
+badgeColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+否
+
+Badge的颜色。
+
+默认值：Color.Red
+
+fontWeight10+
+
+number |[FontWeight](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontweight) | string
+
+否
+
+设置文本的字体粗细。
+
+默认值：FontWeight.Normal
+
+**说明：**
+
+不支持设置百分比。
+
+borderColor10+
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+否
+
+底板描边颜色。
+
+默认值：Color.Red
+
+borderWidth10+
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+否
+
+底板描边粗细。
+
+默认值：1
+
+单位：vp
+
+**说明：**
+
+不支持设置百分比。
+
+示例
+--
+
+### 示例1
+
+2.  @Entry
+3.  @Component
+4.  struct BadgeExample {
+5.    @Builder tabBuilder(index: number) {
+6.      Column() {
+7.        if (index === 2) {
+8.          Badge({
+9.            value: '',
+10.            style: { badgeSize: 6, badgeColor: '#FA2A2D' }
+11.          }) {
+12.            Image('/common/public\_icon\_off.svg')
+13.              .width(24)
+14.              .height(24)
+15.          }
+16.          .width(24)
+17.          .height(24)
+18.          .margin({ bottom: 4 })
+19.        } else {
+20.          Image('/common/public\_icon\_off.svg')
+21.            .width(24)
+22.            .height(24)
+23.            .margin({ bottom: 4 })
+24.        }
+25.        Text('Tab')
+26.          .fontColor('#182431')
+27.          .fontSize(10)
+28.          .fontWeight(500)
+29.          .lineHeight(14)
+30.      }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+31.    }
+
+33.    @Builder itemBuilder(value: string) {
+34.      Row() {
+35.        Image('common/public\_icon.svg').width(32).height(32).opacity(0.6)
+36.        Text(value)
+37.          .width(177)
+38.          .height(21)
+39.          .margin({ left: 15, right: 76 })
+40.          .textAlign(TextAlign.Start)
+41.          .fontColor('#182431')
+42.          .fontWeight(500)
+43.          .fontSize(16)
+44.          .opacity(0.9)
+45.        Image('common/public\_icon\_arrow\_right.svg').width(12).height(24).opacity(0.6)
+46.      }.width('100%').padding({ left: 12, right: 12 }).height(56)
+47.    }
+
+49.    build() {
+50.      Column() {
+51.        Text('dotsBadge').fontSize(18).fontColor('#182431').fontWeight(500).margin(24)
+52.        Tabs() {
+53.          TabContent()
+54.            .tabBar(this.tabBuilder(0))
+55.          TabContent()
+56.            .tabBar(this.tabBuilder(1))
+57.          TabContent()
+58.            .tabBar(this.tabBuilder(2))
+59.          TabContent()
+60.            .tabBar(this.tabBuilder(3))
+61.        }
+62.        .width(360)
+63.        .height(56)
+64.        .backgroundColor('#F1F3F5')
+
+66.        Column() {
+67.          Text('stringBadge').fontSize(18).fontColor('#182431').fontWeight(500).margin(24)
+68.          List({ space: 12 }) {
+69.            ListItem() {
+70.              Text('list1').fontSize(14).fontColor('#182431').margin({ left: 12 })
+71.            }
+72.            .width('100%')
+73.            .height(56)
+74.            .backgroundColor('#FFFFFF')
+75.            .borderRadius(24)
+76.            .align(Alignment.Start)
+
+78.            ListItem() {
+79.              Badge({
+80.                value: 'New',
+81.                position: BadgePosition.Right,
+82.                style: { badgeSize: 16, badgeColor: '#FA2A2D' }
+83.              }) {
+84.                Text('list2').width(27).height(19).fontSize(14).fontColor('#182431')
+85.              }.width(49.5).height(19)
+86.              .margin({ left: 12 })
+87.            }
+88.            .width('100%')
+89.            .height(56)
+90.            .backgroundColor('#FFFFFF')
+91.            .borderRadius(24)
+92.            .align(Alignment.Start)
+93.          }.width(336)
+
+95.          Text('numberBadge').fontSize(18).fontColor('#182431').fontWeight(500).margin(24)
+96.          List() {
+97.            ListItem() {
+98.              this.itemBuilder('list1')
+99.            }
+
+101.            ListItem() {
+102.              Row() {
+103.                Image('common/public\_icon.svg').width(32).height(32).opacity(0.6)
+104.                Badge({
+105.                  count: 1,
+106.                  position: BadgePosition.Right,
+107.                  style: { badgeSize: 16, badgeColor: '#FA2A2D' }
+108.                }) {
+109.                  Text('list2')
+110.                    .width(177)
+111.                    .height(21)
+112.                    .textAlign(TextAlign.Start)
+113.                    .fontColor('#182431')
+114.                    .fontWeight(500)
+115.                    .fontSize(16)
+116.                    .opacity(0.9)
+117.                }.width(240).height(21).margin({ left: 15, right: 11 })
+
+119.                Image('common/public\_icon\_arrow\_right.svg').width(12).height(24).opacity(0.6)
+120.              }.width('100%').padding({ left: 12, right: 12 }).height(56)
+121.            }
+
+123.            ListItem() {
+124.              this.itemBuilder('list3')
+125.            }
+
+127.            ListItem() {
+128.              this.itemBuilder('list4')
+129.            }
+130.          }
+131.          .width(336)
+132.          .height(232)
+133.          .backgroundColor('#FFFFFF')
+134.          .borderRadius(24)
+135.          .padding({ top: 4, bottom: 4 })
+136.          .divider({ strokeWidth: 0.5, color: 'rgba(0,0,0,0.1)', startMargin: 60, endMargin: 12 })
+137.        }.width('100%').backgroundColor('#F1F3F5').padding({ bottom: 12 })
+138.      }.width('100%')
+139.    }
+140.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114450.35999215727451923134261844885919:50001231000000:2800:53F4FB88C9E045E463B098AE11EE74AF4ACF5057569DAD882B8E195BCE52308C.png?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+2.  @Entry
+3.  @Component
+4.  struct Index {
+5.    @State badgeCount: number = 1
+
+7.    build() {
+8.      Column({ space: 40 }) {
+9.        Badge({
+10.          count: this.badgeCount,
+11.          style: {},
+12.          position: BadgePosition.RightTop,
+13.        }) {
+14.          Image($r("app.media.icon"))
+15.          .width(50)
+16.          .height(50)
+17.        }
+18.        .width(55)
+19.        Button('count 0').onClick(() =\> {
+20.          this.badgeCount = 0
+21.        })
+22.        Button('count 1').onClick(() =\> {
+23.          this.badgeCount = 1
+24.        })
+25.      }
+26.      .margin({top: 20})
+27.    }
+28.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114450.36982091394048578569715407921759:50001231000000:2800:CC41952BB9B35A9341FC6B321BE0CE1DD8C7F30F27C8996D384949AF044CA36B.gif?needInitFileName=true?needInitFileName=true)

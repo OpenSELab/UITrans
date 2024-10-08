@@ -1,0 +1,333 @@
+Title: ExceptionPrompt-信息展示-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-exceptionprompt-V5
+
+Markdown Content:
+异常提示，适用于有异常需要提示异常内容的情况。
+
+说明
+
+该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+导入模块
+----
+
+1.  import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+
+ExceptionPrompt({ options: PromptOptions, onTipClick?: ()=\>void, onActionTextClick?: ()=\>void })
+
+**装饰器类型：**@Component
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+名称
+
+参数类型
+
+必填
+
+装饰器类型
+
+说明
+
+options
+
+[PromptOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-exceptionprompt-V5#promptoptions)
+
+是
+
+@Prop
+
+指定当前异常提示的配置信息。
+
+onTipClick
+
+()=\>void
+
+否
+
+\-
+
+点击左侧提示文本的回调函数。
+
+onActionTextClick
+
+()=\>void
+
+否
+
+\-
+
+点击右侧图标按钮的回调函数。
+
+PromptOptions
+-------------
+
+PromptOptions定义options的类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+icon
+
+[ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr)
+
+否
+
+指定当前异常提示的异常图标式样。
+
+tip
+
+[ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr)
+
+否
+
+指定当前异常提示的文字提示内容。
+
+支持默认内置四种状态文字资源如下：
+
+1.无网络状态：显示网络未连接：引用ohos\_network\_not\_connected。
+
+2.网络差状态：显示网络连接不稳定，请点击重试：引用ohos\_network\_connected\_unstable。
+
+3.连不上服务器状态：显示无法连接到服务器，请点击重试：引用ohos\_unstable\_connect\_server。
+
+4.有网但是获取不到内容状态：显示无法获取位置，请点击重试：引用ohos\_custom\_network\_tips\_left。
+
+marginType
+
+[MarginType](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-exceptionprompt-V5#margintype)
+
+是
+
+指定当前异常提示的边距样式 。
+
+actionText
+
+[ResourceStr](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcestr)
+
+否
+
+指定当前异常提示的右侧图标按钮的文字内容。
+
+marginTop
+
+[Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10)
+
+是
+
+指定当前异常提示的距离顶部的位置。
+
+isShown
+
+boolean
+
+否
+
+指定当前异常提示的显隐状态。
+
+true:显示状态。
+
+false：隐藏状态。
+
+MarginType
+----------
+
+MarginType定义marginType的类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+值
+
+说明
+
+DEFAULT\_MARGIN
+
+0
+
+默认边距：
+
+边距1：引用ohos\_id\_card\_margin\_start。
+
+边距2：引用ohos\_id\_card\_margin\_end。
+
+FIT\_MARGIN
+
+1
+
+可适配边距：
+
+边距1：引用ohos\_id\_max\_padding\_start。
+
+边距2：引用ohos\_id\_max\_padding\_end。
+
+示例
+--
+
+### 示例1
+
+1.  import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+
+3.  @Entry
+4.  @Component
+5.  struct Index {
+6.    @State options: PromptOptions = {
+7.      icon: $r('sys.media.ohos\_ic\_public\_fail'),
+8.      tip: '异常提示',
+9.      marginType: MarginType.DEFAULT\_MARGIN,
+10.      actionText: '设置网络',
+11.      marginTop: 80,
+12.      isShown:true
+13.    }
+
+15.    build() {
+16.      Column() {
+17.        ExceptionPrompt({
+18.          options: this.options,
+19.          onTipClick: () =\> {
+
+21.          },
+22.          onActionTextClick: () =\> {
+
+24.          },
+25.        })
+26.      }
+27.    }
+28.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114453.44925148849411576742837117878573:50001231000000:2800:66D841086FDD02C7DD9370471511A36B6DE600C8B3E2F53ECF8A5528C504A5E8.png?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+1.  import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+
+3.  @CustomDialog
+4.  struct CustomDialogExample {
+5.    @Link textValue: string
+6.    @Link inputValue: string
+7.    @State options: PromptOptions = {
+8.      icon: $r('app.media.ic\_public\_fail'),
+9.      tip: '异常提示！',
+10.      marginType: MarginType.DEFAULT\_MARGIN,
+11.      actionText: '设置',
+12.      marginTop: 5,
+13.      isShown: true
+14.    }
+15.    cancel: () =\> void = () =\> {}
+16.    confirm: () =\> void = () =\> {}
+17.    controller: CustomDialogController
+
+19.    build() {
+20.      Column() {
+21.        ExceptionPrompt({
+22.          options: this.options,
+23.        })
+24.        TextInput({ placeholder: '', text: this.textValue }).margin({top:70}).height(60).width('90%')
+25.          .onChange((value: string) =\> {
+26.            this.textValue = value
+27.          })
+28.        Text('Whether to change a text?').fontSize(16).margin({ bottom: 10 })
+29.        Flex({ justifyContent: FlexAlign.SpaceAround }) {
+30.          Button('cancel')
+31.            .onClick(() =\> {
+32.              this.controller.close()
+33.              this.cancel()
+34.            }).backgroundColor(0xffffff).fontColor(Color.Black)
+35.          Button('confirm')
+36.            .onClick(() =\> {
+37.              this.inputValue = this.textValue
+38.              this.controller.close()
+39.              this.confirm()
+40.            }).backgroundColor(0xffffff).fontColor(Color.Red)
+41.        }.margin({ bottom: 10 })
+42.      }
+43.    }
+44.  }
+45.  @Entry
+46.  @Component
+47.  struct Index1 {
+48.    @State ButtonText: string = ''
+49.    @State MAP\_HEIGHT: string = '30%'
+50.    @State duration: number = 2500
+51.    @State tips: string = ''
+52.    @State actionText: string = ''
+53.    controller: TextInputController = new TextInputController()
+54.    cancel: () =\> void = () =\> {}
+55.    confirm: () =\> void = () =\> {}
+56.    @State options: PromptOptions = {
+57.      icon: $r('app.media.ic\_public\_fail'),
+58.      tip: '',
+59.      marginType: MarginType.DEFAULT\_MARGIN,
+60.      actionText: '',
+61.      marginTop: 80,
+62.      isShown: true
+63.    }
+64.    @State textValue: string = ''
+65.    @State inputValue: string = 'click me'
+66.    dialogController: CustomDialogController | undefined = new CustomDialogController({
+67.      builder: CustomDialogExample({
+68.        cancel: this.onCancel,
+69.        confirm: this.onAccept,
+70.        textValue: $textValue,
+71.        inputValue: $inputValue
+72.      }),
+73.      cancel: this.existApp,
+74.      autoCancel: true,
+75.      alignment: DialogAlignment.Bottom,
+76.      offset: { dx: 0, dy: -20 },
+77.      gridCount: 4,
+78.      customStyle: false
+79.    })
+
+81.    aboutToDisappear() {
+82.      this.dialogController = undefined 
+83.    }
+
+85.    onCancel() {
+86.      console.info('Callback when the first button is clicked')
+87.    }
+
+89.    onAccept() {
+90.      console.info('Callback when the second button is clicked')
+91.    }
+
+93.    existApp() {
+94.      console.info('Click the callback in the blank area')
+95.    }
+
+97.    build() {
+98.      Column() {
+99.        Button('Click Me')
+100.          .width('30%')
+101.          .margin({top:420})
+102.          .zIndex(999)
+103.          .onClick(()=\>{
+104.            if (this.dialogController != undefined) {
+105.              this.dialogController.open()
+106.            }
+107.          })
+108.      }
+109.      .height('100%')
+110.      .width('100%')
+
+112.    }
+113.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114453.42551158925319229579509249119475:50001231000000:2800:D701C22A7C88C442727EF89DD8F842B4050E526CC07A1EB58F0E681C52C08097.gif?needInitFileName=true?needInitFileName=true)

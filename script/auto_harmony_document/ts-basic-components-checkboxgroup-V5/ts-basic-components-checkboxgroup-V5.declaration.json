@@ -1,0 +1,106 @@
+{
+    "description": "多选框群组，用于控制多选框全选或者不全选状态。",
+    "details": "该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "CheckboxGroup(options?: CheckboxGroupOptions)",
+            "params": {
+                "options": {
+                    "type": "CheckboxGroupOptions",
+                    "required": false,
+                    "description": "多选框群组的选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "group": {
+            "description": "群组名称。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": false,
+                    "description": "群组名称。"
+                }
+            }
+        },
+        "selectAll": {
+            "description": "设置是否全选。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否全选。",
+                    "default": false
+                }
+            }
+        },
+        "selectedColor": {
+            "description": "设置被选中或部分选中状态的颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "被选中或部分选中状态的颜色。",
+                    "default": "$r('sys.color.ohos_id_color_text_primary_activated')"
+                }
+            }
+        },
+        "unselectedColor": {
+            "description": "设置非选中状态边框颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "非选中状态边框颜色。",
+                    "default": "$r('sys.color.ohos_id_color_switch_outline_off')"
+                }
+            }
+        },
+        "mark": {
+            "description": "设置多选框内部图标样式。",
+            "params": {
+                "value": {
+                    "type": "MarkStyle",
+                    "required": true,
+                    "description": "多选框内部图标样式。"
+                }
+            }
+        },
+        "checkboxShape": {
+            "description": "设置CheckboxGroup组件形状，包括圆形和圆角方形。",
+            "params": {
+                "value": {
+                    "type": "CheckBoxShape",
+                    "required": true,
+                    "description": "CheckboxGroup组件形状。",
+                    "default": "CheckBoxShape.CIRCLE"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。",
+            "params": {
+                "callback": {
+                    "type": "function",
+                    "required": true,
+                    "description": "回调函数，参数为CheckboxGroupResult对象。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过 Scroll 和 Column 布局实现了一个包含多个 Checkbox 的界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上被分为多个部分，每个部分包含一个 Checkbox 和对应的文本标签。每个 Checkbox 组的 Checkbox 以水平布局方式排列，Checkbox 之间的间距均匀分布，且对齐方式为居中对齐。\nCheckbox 的样式包括选中颜色、形状等属性，支持不同的样式展示。Checkbox 组之间通过 Flex 组件进行分隔。Checkbox 的功能包括点击事件和状态效果，用户可以通过点击 Checkbox 触发相应操作，Checkbox 也可以在选中或未选中状态下进行展示。\n整个布局通过 Scroll 和 Column 布局保证 Checkbox 在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct CheckboxExample {\n  build() {\n    Scroll() {\n      Column() {\n\n        /*\n        第一个 Flex 布局包含一个 CheckboxGroup 和一个文本标签 \"Select All\"。CheckboxGroup 的形状为圆角方形，选中颜色为 #007DFF。CheckboxGroup 的 onChange 事件会在 Checkbox 状态改变时触发，并将选中状态的信息打印到控制台。\n        */\n        Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {\n          CheckboxGroup({ group: 'checkboxGroup' })\n            .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)\n            .selectedColor('#007DFF')\n            .onChange((itemName: CheckboxGroupResult) => {\n              console.info(\"checkbox group content\" + JSON.stringify(itemName))\n            })\n          Text('Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)\n        }\n\n        /*\n        第二个 Flex 布局包含一个 Checkbox 和一个文本标签 \"Checkbox1\"。Checkbox 的形状为圆角方形，选中颜色为 #007DFF。Checkbox 的 onChange 事件会在 Checkbox 状态改变时触发，并将选中状态的信息打印到控制台。\n        */\n        Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {\n          Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })\n            .selectedColor('#007DFF')\n            .shape(CheckBoxShape.ROUNDED_SQUARE)\n            .onChange((value: boolean) => {\n              console.info('Checkbox1 change is' + value)\n            })\n          Text('Checkbox1').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)\n        }.margin({ left: 36 })\n\n        /*\n        第三个 Flex 布局包含一个 Checkbox 和一个文本标签 \"Checkbox2\"。Checkbox 的形状为圆角方形，选中颜色为 #007DFF。Checkbox 的 onChange 事件会在 Checkbox 状态改变时触发，并将选中状态的信息打印到控制台。\n        */\n        Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {\n          Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })\n            .selectedColor('#007DFF')\n            .shape(CheckBoxShape.ROUNDED_SQUARE)\n            .onChange((value: boolean) => {\n              console.info('Checkbox2 change is' + value)\n            })\n          Text('Checkbox2').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)\n        }.margin({ left: 36 })\n\n        /*\n        第四个 Flex 布局包含一个 Checkbox 和一个文本标签 \"Checkbox3\"。Checkbox 的形状为圆角方形，选中颜色为 #007DFF。Checkbox 的 onChange 事件会在 Checkbox 状态改变时触发，并将选中状态的信息打印到控制台。\n        */\n        Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {\n          Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })\n            .selectedColor('#007DFF')\n            .shape(CheckBoxShape.ROUNDED_SQUARE)\n            .onChange((value: boolean) => {\n              console.info('Checkbox3 change is' + value)\n            })\n          Text('Checkbox3').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)\n        }.margin({ left: 36 })\n      }\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过嵌套的 Row 和 Column 布局实现了一个包含多个 Checkbox 的界面。布局宽度占据整个屏幕，高度设为 100%。组件的垂直方向上被分为多个部分，每个部分包含一个 Checkbox 和对应的文本标签。每个 Checkbox 组的 Checkbox 以水平布局方式排列，Checkbox 之间的间距均匀分布，且对齐方式为居中对齐。\nCheckbox 的样式包括选中颜色、未选中颜色、形状、宽度和高度等属性，支持不同的样式展示。Checkbox 组之间通过 Flex 组件进行分隔。Checkbox 的功能包括点击事件和状态效果，用户可以通过点击 Checkbox 触发相应操作，Checkbox 也可以在选中或未选中状态下进行展示。\n整个布局通过 Flex 布局保证 Checkbox 在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct Index {\n  build() {\n    Row() {\n      Column() {\n        // 创建一个 Flex 布局，设置对齐方式为居中对齐\n        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {\n          // 创建一个 CheckboxGroup，设置组名为 'checkboxGroup'\n          CheckboxGroup({ group: 'checkboxGroup' })\n            .checkboxShape(CheckBoxShape.ROUNDED_SQUARE) // 设置 Checkbox 形状为圆角方形\n            .selectedColor(Color.Orange) // 设置选中时的颜色为橙色\n            .onChange((itemName: CheckboxGroupResult) => {\n              console.info(\"checkbox group content\" + JSON.stringify(itemName)) // 当 CheckboxGroup 状态改变时，输出选中项的名称\n            })\n            .mark({\n              strokeColor: Color.Black, // 设置选中标记的颜色为黑色\n              size: 40, // 设置选中标记的大小为 40\n              strokeWidth: 5 // 设置选中标记的线条宽度为 5\n            })\n            .unselectedColor(Color.Red) // 设置未选中时的颜色为红色\n            .width(30) // 设置 Checkbox 的宽度为 30\n            .height(30) // 设置 Checkbox 的高度为 30\n          Text('Select All').fontSize(20) // 创建一个文本标签，内容为 'Select All'，字体大小为 20\n        }.margin({ right: 15 }) // 设置 Flex 布局的右边距为 15\n\n        // 创建一个 Flex 布局，设置对齐方式为居中对齐\n        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {\n          // 创建一个 Checkbox，设置名称为 'checkbox1'，组名为 'checkboxGroup'\n          Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })\n            .selectedColor(0x39a2db) // 设置选中时的颜色为 0x39a2db\n            .shape(CheckBoxShape.ROUNDED_SQUARE) // 设置 Checkbox 形状为圆角方形\n            .onChange((value: boolean) => {\n              console.info('Checkbox1 change is' + value) // 当 Checkbox1 状态改变时，输出其状态\n            })\n            .mark({\n              strokeColor: Color.Black, // 设置选中标记的颜色为黑色\n              size: 50, // 设置选中标记的大小为 50\n              strokeWidth: 5 // 设置选中标记的线条宽度为 5\n            })\n            .unselectedColor(Color.Red) // 设置未选中时的颜色为红色\n            .width(30) // 设置 Checkbox 的宽度为 30\n            .height(30) // 设置 Checkbox 的高度为 30\n          Text('Checkbox1').fontSize(20) // 创建一个文本标签，内容为 'Checkbox1'，字体大小为 20\n        }\n\n        // 创建一个 Flex 布局，设置对齐方式为居中对齐\n        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {\n          // 创建一个 Checkbox，设置名称为 'checkbox2'，组名为 'checkboxGroup'\n          Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })\n            .selectedColor(0x39a2db) // 设置选中时的颜色为 0x39a2db\n            .shape(CheckBoxShape.ROUNDED_SQUARE) // 设置 Checkbox 形状为圆角方形\n            .onChange((value: boolean) => {\n              console.info('Checkbox2 change is' + value) // 当 Checkbox2 状态改变时，输出其状态\n            })\n            .width(30) // 设置 Checkbox 的宽度为 30\n            .height(30) // 设置 Checkbox 的高度为 30\n          Text('Checkbox2').fontSize(20) // 创建一个文本标签，内容为 'Checkbox2'，字体大小为 20\n        }\n\n        // 创建一个 Flex 布局，设置对齐方式为居中对齐\n        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {\n          // 创建一个 Checkbox，设置名称为 'checkbox3'，组名为 'checkboxGroup'\n          Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })\n            .selectedColor(0x39a2db) // 设置选中时的颜色为 0x39a2db\n            .shape(CheckBoxShape.ROUNDED_SQUARE) // 设置 Checkbox 形状为圆角方形\n            .onChange((value: boolean) => {\n              console.info('Checkbox3 change is' + value) // 当 Checkbox3 状态改变时，输出其状态\n            })\n            .width(30) // 设置 Checkbox 的宽度为 30\n            .height(30) // 设置 Checkbox 的高度为 30\n          Text('Checkbox3').fontSize(20) // 创建一个文本标签，内容为 'Checkbox3'，字体大小为 20\n        }\n      }\n      .width('100%') // 设置 Column 的宽度为 100%\n    }\n    .height('100%') // 设置 Row 的高度为 100%\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

@@ -1,0 +1,83 @@
+{
+    "description": "提供用于图形绘制和媒体数据写入的Surface，XComponent负责将其嵌入到视图中，支持应用自定义Surface位置和大小。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "XComponent(options: XComponentOptions)",
+            "params": {
+                "options": {
+                    "type": "XComponentOptions",
+                    "required": true,
+                    "description": "XComponent的具体配置参数。"
+                }
+            }
+        },
+        {
+            "description": "XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})",
+            "params": {
+                "value": {
+                    "type": {
+                        "id": "string",
+                        "type": "XComponentType",
+                        "libraryname": "string",
+                        "controller": "XComponentController"
+                    },
+                    "required": true,
+                    "description": "XComponent的配置参数。"
+                }
+            }
+        },
+        {
+            "description": "XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})",
+            "params": {
+                "value": {
+                    "type": {
+                        "id": "string",
+                        "type": "string",
+                        "libraryname": "string",
+                        "controller": "XComponentController"
+                    },
+                    "required": true,
+                    "description": "XComponent的配置参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "enableAnalyzer": {
+            "description": "设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。",
+            "params": {
+                "enable": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否启用图像分析功能。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onLoad": {
+            "description": "插件加载完成时回调事件。",
+            "params": {
+                "event": {
+                    "type": "object",
+                    "required": false,
+                    "description": "获取XComponent实例对象的context，context上挂载的方法由开发者在c++层定义。"
+                }
+            }
+        },
+        "onDestroy": {
+            "description": "插件卸载完成时回调事件。",
+            "params": {
+                "event": {
+                    "type": "function",
+                    "required": true,
+                    "description": "插件卸载完成时回调函数。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

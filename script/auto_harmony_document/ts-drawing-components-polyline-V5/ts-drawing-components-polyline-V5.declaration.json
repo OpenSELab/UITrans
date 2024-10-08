@@ -1,0 +1,180 @@
+{
+    "description": "折线绘制组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Polyline(value?: {width?: string | number, height?: string | number})",
+            "params": {
+                "value": {
+                    "type": {
+                        "width": [
+                            "string",
+                            "number"
+                        ],
+                        "height": [
+                            "string",
+                            "number"
+                        ]
+                    },
+                    "required": false,
+                    "description": "组件的宽度和高度。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "points": {
+            "description": "设置折线经过坐标点列表。",
+            "params": {
+                "value": {
+                    "type": "Array<[Point]>",
+                    "required": true,
+                    "description": "折线经过坐标点列表。",
+                    "default": []
+                }
+            }
+        },
+        "fill": {
+            "description": "设置填充区域颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "填充区域颜色。"
+                }
+            }
+        },
+        "fillOpacity": {
+            "description": "设置填充区域透明度。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "填充区域透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "stroke": {
+            "description": "设置边框颜色，不设置时，默认没有边框线条。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "边框颜色。"
+                }
+            }
+        },
+        "strokeDashArray": {
+            "description": "设置线条间隙。",
+            "params": {
+                "value": {
+                    "type": "Array<any>",
+                    "required": true,
+                    "description": "线条间隙。",
+                    "default": []
+                }
+            }
+        },
+        "strokeDashOffset": {
+            "description": "设置线条绘制起点的偏移量。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "线条绘制起点的偏移量。",
+                    "default": 0
+                }
+            }
+        },
+        "strokeLineCap": {
+            "description": "设置线条端点绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineCapStyle",
+                    "required": true,
+                    "description": "线条端点绘制样式。",
+                    "default": "LineCapStyle.Butt"
+                }
+            }
+        },
+        "strokeLineJoin": {
+            "description": "设置线条拐角绘制样式。",
+            "params": {
+                "value": {
+                    "type": "LineJoinStyle",
+                    "required": true,
+                    "description": "线条拐角绘制样式。",
+                    "default": "LineJoinStyle.Miter"
+                }
+            }
+        },
+        "strokeMiterLimit": {
+            "description": "设置斜接长度与边框宽度比值的极限值。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "斜接长度与边框宽度比值的极限值。",
+                    "default": 4
+                }
+            }
+        },
+        "strokeOpacity": {
+            "description": "设置线条透明度。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "线条透明度。",
+                    "default": 1
+                }
+            }
+        },
+        "strokeWidth": {
+            "description": "设置线条宽度。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "线条宽度。",
+                    "default": 1
+                }
+            }
+        },
+        "antiAlias": {
+            "description": "设置是否开启抗锯齿效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启抗锯齿效果。",
+                    "default": true
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过Column布局实现了一个展示两条折线（Polyline）的界面。布局宽度占据整个屏幕，高度由内容自动调整。组件的垂直方向上被分为两个部分，每个部分包含一个Polyline组件。每个Polyline组件的宽度为100vp，高度为100vp，且通过points属性定义了折线的顶点坐标。\n\n第一条折线的样式包括填充透明度为0（即不填充），线条颜色为蓝色，线条宽度为3vp。第二条折线的样式包括填充透明度为0（即不填充），线条颜色为红色，线条宽度为8vp，线条连接处和线条端点的样式均为圆角。\n\n整个布局通过Column布局保证Polyline组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct PolylineExample {\n  build() {\n    Column({ space: 10 }) { // 创建一个垂直布局，组件之间的间距为10vp\n\n      Polyline({ width: 100, height: 100 }) // 创建一个宽度为100vp，高度为100vp的Polyline组件\n        .points([[0, 0], [20, 60], [100, 100]]) // 设置折线的顶点坐标\n        .fillOpacity(0) // 设置填充透明度为0，即不填充\n        .stroke(Color.Blue) // 设置线条颜色为蓝色\n        .strokeWidth(3) // 设置线条宽度为3vp\n\n      Polyline() // 创建一个Polyline组件\n        .width(100) // 设置宽度为100vp\n        .height(100) // 设置高度为100vp\n        .fillOpacity(0) // 设置填充透明度为0，即不填充\n        .stroke(Color.Red) // 设置线条颜色为红色\n        .strokeWidth(8) // 设置线条宽度为8vp\n        .points([[20, 0], [0, 100], [100, 90]]) // 设置折线的顶点坐标\n        .strokeLineJoin(LineJoinStyle.Round) // 设置线条连接处的样式为圆角\n        .strokeLineCap(LineCapStyle.Round) // 设置线条端点的样式为圆角\n    }.width('100%') // 设置Column布局的宽度为100%\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

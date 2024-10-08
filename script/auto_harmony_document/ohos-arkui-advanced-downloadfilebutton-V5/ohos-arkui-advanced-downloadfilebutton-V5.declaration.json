@@ -1,0 +1,118 @@
+{
+    "description": "下载文件按钮，通过点击该下载按钮，可以获取到当前应用在Download公共目录中所属的存储路径。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Downloadbutton(contentOptions?: DownloadContentOptions, styleOptions?: DownloadStyleOptions)",
+            "params": {
+                "contentOptions": {
+                    "type": "DownloadContentOptions",
+                    "required": false,
+                    "description": "创建包含指定元素内容的下载按钮。"
+                },
+                "styleOptions": {
+                    "type": "DownloadStyleOptions",
+                    "required": false,
+                    "description": "创建包含指定元素样式的下载按钮。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "contentOptions": {
+            "description": "下载文件按钮中显示的内容。",
+            "params": {
+                "icon": {
+                    "type": "DownloadIconStyle",
+                    "required": false,
+                    "description": "设置下载按钮的图标风格。"
+                },
+                "text": {
+                    "type": "DownloadDescription",
+                    "required": false,
+                    "description": "设置下载按钮的文本描述。"
+                }
+            }
+        },
+        "styleOptions": {
+            "description": "下载文件按钮中图标和文字的样式。",
+            "params": {
+                "iconSize": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "下载控件上图标的尺寸。",
+                    "default": "16vp"
+                },
+                "layoutDirection": {
+                    "type": "DownloadLayoutDirection",
+                    "required": false,
+                    "description": "下载控件上图标和文字分布的方向。",
+                    "default": "DownloadLayoutDirection.HORIZONTAL"
+                },
+                "fontSize": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "下载控件上文字的尺寸。",
+                    "default": "16fp"
+                },
+                "fontStyle": {
+                    "type": "FontStyle",
+                    "required": false,
+                    "description": "下载控件上文字的样式。",
+                    "default": "FontStyle.Normal"
+                },
+                "fontWeight": {
+                    "type": [
+                        "number",
+                        "FontWeight",
+                        "string"
+                    ],
+                    "required": false,
+                    "description": "下载控件上文字粗细。",
+                    "default": "FontWeight.Medium"
+                },
+                "fontFamily": {
+                    "type": [
+                        "string",
+                        "Resource"
+                    ],
+                    "required": false,
+                    "description": "下载控件上文字的字体。",
+                    "default": "HarmonyOS Sans"
+                },
+                "fontColor": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "下载控件上文字的颜色。",
+                    "default": "#ffffffff"
+                },
+                "iconColor": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "下载控件上图标的颜色。",
+                    "default": "#ffffffff"
+                },
+                "textIconSpace": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "下载控件中图标和文字的间距。",
+                    "default": "4vp"
+                }
+            }
+        }
+    },
+    "events": {
+        "onClick": {
+            "description": "点击事件。",
+            "params": {}
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件实现了一个下载文件按钮的功能。布局上，按钮位于一个垂直布局的容器中，按钮的宽度、高度、边距、背景颜色、边框样式、字体样式等都进行了详细的设置。按钮的功能包括点击事件，点击后会触发下载操作。\n\n布局属性：\n- 按钮的宽度、高度通过 `constraintSize` 设置为默认值，具体大小由内容决定。\n- 按钮的边距通过 `padding` 设置为上下 12vp，左右 24vp。\n- 按钮的背景颜色通过 `backgroundColor` 设置为 '#007dff'。\n- 按钮的边框样式通过 `borderStyle` 设置为 `BorderStyle.Dotted`，边框宽度为 0，边框颜色为空。\n- 按钮的圆角通过 `borderRadius` 设置为 '24vp'。\n- 按钮的位置通过 `position` 和 `offset` 设置为 (0, 0)。\n\n组件的样式和外观：\n- 按钮的图标大小通过 `iconSize` 设置为 '16vp'。\n- 按钮的布局方向通过 `layoutDirection` 设置为 `DownloadLayoutDirection.HORIZONTAL`，即水平布局。\n- 按钮的字体大小通过 `fontSize` 设置为 '16vp'。\n- 按钮的字体样式通过 `fontStyle` 设置为 `FontStyle.Normal`。\n- 按钮的字体粗细通过 `fontWeight` 设置为 `FontWeight.Medium`。\n- 按钮的字体家族通过 `fontFamily` 设置为 'HarmonyOS Sans'。\n- 按钮的字体颜色和图标颜色通过 `fontColor` 和 `iconColor` 设置为 '#ffffffff'，即白色。\n- 按钮的文本和图标之间的间距通过 `textIconSpace` 设置为 '4vp'。\n\n组件的排列和嵌套关系：\n- 按钮位于一个 `Column` 布局中，`Column` 是垂直布局容器。\n\n组件的功能和交互：\n- 按钮的点击事件通过 `onClick` 绑定，点击后会调用 `downloadAction` 方法。\n- `downloadAction` 方法中，通过 `picker.DocumentViewPicker` 实现文件下载功能，下载完成后会在控制台输出下载结果。",
+            "code": "import { picker } from '@kit.CoreFileKit'; // 导入文件选择器模块\nimport { BusinessError } from '@kit.BasicServicesKit'; // 导入业务错误模块\nimport { DownloadFileButton, DownloadLayoutDirection } from '@kit.ArkUI'; // 导入下载按钮和布局方向模块\n\n@Entry\n@Component\nstruct Index {\n  build() {\n    Column() {\n      DownloadFileButton({\n        contentOptions: {\n          // icon: DownloadIconStyle.FULL_FILLED, // 图标样式（注释掉）\n          // text: DownloadDescription.DOWNLOAD // 文本内容（注释掉）\n        },\n        styleOptions: {\n          iconSize: '16vp', // 图标大小\n          layoutDirection: DownloadLayoutDirection.HORIZONTAL, // 布局方向：水平\n          fontSize: '16vp', // 字体大小\n          fontStyle: FontStyle.Normal, // 字体样式：正常\n          fontWeight: FontWeight.Medium, // 字体粗细：中等\n          fontFamily: 'HarmonyOS Sans', // 字体家族\n          fontColor: '#ffffffff', // 字体颜色：白色\n          iconColor: '#ffffffff', // 图标颜色：白色\n          textIconSpace: '4vp' // 文本和图标之间的间距\n        }\n      })\n        .backgroundColor('#007dff') // 背景颜色：蓝色\n        .borderStyle(BorderStyle.Dotted) // 边框样式：虚线（实际未显示）\n        .borderWidth(0) // 边框宽度：0\n        .borderColor('') // 边框颜色：空\n        .borderRadius('24vp') // 边框圆角：24vp\n        .position({ x: 0, y: 0 }) // 位置：(0, 0)\n        .markAnchor({ x: 0, y: 0 }) // 锚点：(0, 0)\n        .offset({ x: 0, y: 0 }) // 偏移：(0, 0)\n        .constraintSize({}) // 约束尺寸：默认\n        .padding({\n          top: '12vp', // 上边距：12vp\n          bottom: '12vp', // 下边距：12vp\n          left: '24vp', // 左边距：24vp\n          right: '24vp' // 右边距：24vp\n        })\n        .onClick(() => {\n          this.downloadAction(); // 点击事件：调用下载操作\n        })\n    }\n  }\n\n  downloadAction() {\n    try {\n      const document = new picker.DocumentSaveOptions(); // 创建文档保存选项\n      document.pickerMode = picker.DocumentPickerMode.DOWNLOAD; // 设置选择器模式为下载\n      new picker.DocumentViewPicker().save(document, (err: BusinessError, result: Array<string>) => {\n        if (err) {\n          return; // 如果有错误，直接返回\n        }\n        console.info(`downloadAction result:  ${JSON.stringify(result)}`); // 输出下载结果\n      });\n    } catch (e) {\n    }\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

@@ -6367,36 +6367,6 @@ BASIC_COMPONENT = {
             }
         ],
         "attributes": {
-            "placeholder": {
-                "description": "设置无输入时的提示文本。",
-                "params": {
-                    "value": {
-                        "type": "ResourceStr",
-                        "required": False,
-                        "description": "提示文本内容。"
-                    }
-                }
-            },
-            "text": {
-                "description": "设置输入框当前的文本内容。建议通过onChange事件将状态变量与文本实时绑定，避免组件刷新时TextInput中的文本内容异常。",
-                "params": {
-                    "value": {
-                        "type": "ResourceStr",
-                        "required": False,
-                        "description": "输入框的文本内容。"
-                    }
-                }
-            },
-            "controller": {
-                "description": "设置TextInput控制器。",
-                "params": {
-                    "value": {
-                        "type": "TextInputController",
-                        "required": False,
-                        "description": "TextInput组件的控制器。"
-                    }
-                }
-            },
             "type": {
                 "description": "设置输入框类型。",
                 "params": {

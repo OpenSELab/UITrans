@@ -1,0 +1,75 @@
+{
+    "description": "工具栏用于展示针对当前界面内容的操作选项，在界面底部显示。底部最多显示5个入口，超过则收纳入“更多”子项中，在最右侧显示。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsController})",
+            "params": {
+                "toolBarList": {
+                    "type": "ToolBarOptions",
+                    "required": true,
+                    "description": "工具栏列表。"
+                },
+                "activateIndex": {
+                    "type": "number",
+                    "required": false,
+                    "description": "激活态的子项。",
+                    "default": -1
+                },
+                "controller": {
+                    "type": "TabsController",
+                    "required": true,
+                    "description": "筛选器的样式类型。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "toolBarList": {
+            "description": "工具栏列表。",
+            "params": {
+                "toolBarList": {
+                    "type": "ToolBarOptions",
+                    "required": true,
+                    "description": "工具栏列表。"
+                }
+            }
+        },
+        "activateIndex": {
+            "description": "激活态的子项。",
+            "params": {
+                "activateIndex": {
+                    "type": "number",
+                    "required": false,
+                    "description": "激活态的子项。",
+                    "default": -1
+                }
+            }
+        },
+        "controller": {
+            "description": "筛选器的样式类型。",
+            "params": {
+                "controller": {
+                    "type": "TabsController",
+                    "required": true,
+                    "description": "筛选器的样式类型。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onToolBarItemClick": {
+            "description": "工具栏子项点击事件。",
+            "params": {
+                "action": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "工具栏子项点击事件。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

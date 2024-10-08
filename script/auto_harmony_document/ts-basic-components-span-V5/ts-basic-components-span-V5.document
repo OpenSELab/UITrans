@@ -1,0 +1,583 @@
+Title: Span-文本与输入-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-span-V5
+
+Markdown Content:
+作为[Text](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-text-V5)、[ContainerSpan](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-containerspan-V5)组件的子组件，用于显示行内文本的组件。
+
+说明
+
+该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+该组件从API Version 10开始支持继承父组件Text的属性，即如果子组件未设置属性且父组件设置属性，则继承父组件设置的属性。支持继承的属性仅包括：fontColor、fontSize、fontStyle、fontWeight、decoration、letterSpacing、textCase、fontfamily、textShadow。
+
+接口
+--
+
+Span(value: string | Resource)
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+是
+
+文本内容。
+
+### decoration
+
+decoration(value: DecorationStyleInterface)
+
+设置文本装饰线样式及其颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[DecorationStyleInterface12+](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-styled-string-V5#decorationstyleinterface%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+是
+
+文本装饰线样式对象。
+
+默认值：
+
+{
+
+type: TextDecorationType.None,
+
+color: Color.Black,
+
+style: TextDecorationStyle.SOLID
+
+}
+
+**说明：**
+
+style参数不支持卡片能力。
+
+### letterSpacing
+
+letterSpacing(value: number | string)
+
+设置文本字符间距。取值小于0，字符聚集重叠，取值大于0且随着数值变大，字符间距越来越大，稀疏分布。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number | string
+
+是
+
+文本字符间距。
+
+### textCase
+
+textCase(value: TextCase)
+
+设置文本大小写。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[TextCase](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#textcase)
+
+是
+
+文本大小写。
+
+默认值：TextCase.Normal
+
+### fontColor
+
+fontColor(value: ResourceColor)
+
+设置字体颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### fontSize
+
+fontSize(value: number | string | Resource)
+
+设置字体大小。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | number | string
+
+是
+
+字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。
+
+### fontStyle
+
+fontStyle(value: FontStyle)
+
+设置字体样式。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[FontStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontstyle)
+
+是
+
+字体样式。
+
+默认值：FontStyle.Normal
+
+### fontWeight
+
+fontWeight(value: number | FontWeight | string)
+
+设置文本的字体粗细，设置过大可能会在不同字体下有截断。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[FontWeight](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontweight) | number | string
+
+是
+
+文本的字体粗细，number类型取值\[100, 900\]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。
+
+默认值：FontWeight.Normal
+
+### fontFamily
+
+fontFamily(value: string | Resource)
+
+设置字体列表。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | string
+
+是
+
+字体列表。默认字体'HarmonyOS Sans'。
+
+应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-font-V5)。
+
+卡片当前仅支持'HarmonyOS Sans'字体。
+
+### lineHeight10+
+
+lineHeight(value: Length)
+
+设置文本行高。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length)
+
+是
+
+文本行高。
+
+### font10+
+
+font(value: Font)
+
+设置文本样式。包括字体大小、字体粗细、字体族和字体风格。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Font](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#font)
+
+是
+
+文本样式。
+
+### textShadow11+
+
+textShadow(value: ShadowOptions | Array<ShadowOptions\>)
+
+设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。不支持fill字段, 不支持智能取色模式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+事件
+--
+
+通用事件仅支持[点击事件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-events-click-V5)。
+
+说明
+
+由于Span组件无尺寸信息，因此点击事件返回的ClickEvent对象的target属性无效。
+
+BaseSpan
+--------
+
+定义BaseSpan基础类，包含Span的通用属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+### textBackgroundStyle11+
+
+textBackgroundStyle(style: TextBackgroundStyle): T
+
+设置背景样式。作为[ContainerSpan](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-containerspan-V5)的子组件时可以继承它的此属性值，优先使用其自身的此属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+**返回值：**
+
+### baselineOffset12+
+
+baselineOffset(value: LengthMetrics): T
+
+设置Span基线的偏移量。此属性与父组件的baselineOffset是共存的。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[LengthMetrics](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-graphics-V5#lengthmetrics12)
+
+是
+
+设置Span基线的偏移量，设置该值为百分比时，按默认值显示。
+
+正数内容向上偏移，负数向下偏移。
+
+默认值：0
+
+在ImageSpan中，设置为非0时会导致设置verticalAlign失效。
+
+**返回值：**
+
+TextBackgroundStyle11+对象说明
+--------------------------
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+示例
+--
+
+### 示例1
+
+decoration、letterSpacing、textCase属性接口使用示例
+
+2.  @Entry
+3.  @Component
+4.  struct SpanExample {
+5.    build() {
+6.      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+7.        Text('Basic Usage').fontSize(9).fontColor(0xCCCCCC)
+8.        Text() {
+9.          Span('In Line')
+10.          Span(' Component')
+11.          Span(' !')
+12.        }
+
+14.        Text() {
+15.          Span('This is the Span component').fontSize(12).textCase(TextCase.Normal)
+16.            .decoration({ type: TextDecorationType.None, color: Color.Red })
+17.        }
+
+20.        Text('Text Decoration').fontSize(9).fontColor(0xCCCCCC)
+21.        Text() {
+22.          Span('I am Underline-WAVY-span').decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY }).fontSize(12)
+23.        }
+
+25.        Text() {
+26.          Span('I am LineThrough-DOTTED-span')
+27.            .decoration({ type: TextDecorationType.LineThrough, color: Color.Red, style: TextDecorationStyle.DOTTED })
+28.            .fontSize(12)
+29.        }
+
+31.        Text() {
+32.          Span('I am Overline-DASHED-span').decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED }).fontSize(12)
+33.        }
+
+36.        Text('LetterSpacing').fontSize(9).fontColor(0xCCCCCC)
+37.        Text() {
+38.          Span('span letter spacing')
+39.            .letterSpacing(0)
+40.            .fontSize(12)
+41.        }
+
+43.        Text() {
+44.          Span('span letter spacing')
+45.            .letterSpacing(-2)
+46.            .fontSize(12)
+47.        }
+
+49.        Text() {
+50.          Span('span letter spacing')
+51.            .letterSpacing(3)
+52.            .fontSize(12)
+53.        }
+
+57.        Text('Text Case').fontSize(9).fontColor(0xCCCCCC)
+58.        Text() {
+59.          Span('I am Lower-span').fontSize(12)
+60.            .textCase(TextCase.LowerCase)
+61.            .decoration({ type: TextDecorationType.None })
+62.        }
+
+64.        Text() {
+65.          Span('I am Upper-span').fontSize(12)
+66.            .textCase(TextCase.UpperCase)
+67.            .decoration({ type: TextDecorationType.None })
+68.        }
+69.      }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
+70.    }
+71.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114442.70356735416874054564557069049600:50001231000000:2800:22E9614380B22D8341425B55EC2982E360BCAAAD3EE256DF34688153F084D687.png?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+1.  @Entry
+2.  @Component
+3.  struct TextSpanExample {
+4.    @State textShadows : ShadowOptions | Array<ShadowOptions\> = \[{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
+5.        { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
+6.        { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }\]
+7.    build() {
+8.      Column({ space: 8 }) {
+9.        Text() {
+10.          Span('123456789').fontSize(50).textShadow(this.textShadows)
+11.        }
+12.        Text() {
+13.          Span('123456789') 
+14.        }.fontSize(50).textShadow(this.textShadows)
+15.      }
+16.    }
+17.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114442.42633875108472223834488745779425:50001231000000:2800:AEB57FF70C9594D46A066196542DA4D8DAA4CA075491CA15BCD1114A1B048DCF.png?needInitFileName=true?needInitFileName=true)
+
+### 示例3
+
+2.  @Component
+3.  @Entry
+4.  struct Index {
+5.    build() {
+6.      Column() {
+7.        Text() {
+8.          Span('   Hello World !   ')
+9.            .fontSize('20fp')
+10.            .textBackgroundStyle({color: "#7F007DFF", radius: "5vp"})
+11.            .fontColor(Color.White)
+12.        }
+13.      }.width('100%').margin({bottom: '5vp'}).alignItems(HorizontalAlign.Center)
+14.    }
+15.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114443.42336615292320500711689873337130:50001231000000:2800:06A8683B89F3609CDFE2245B4F5060ED8CC3658B5353B2D5A4A1D399A35FE9DF.png?needInitFileName=true?needInitFileName=true)
+
+### 示例4
+
+该示例实现了如何设置Span基线的偏移量。
+
+1.  import { LengthUnit, LengthMetrics } from '@kit.ArkUI';
+
+3.  @Entry
+4.  @Component
+5.  struct Index {
+
+7.    build() {
+8.      Row() {
+9.        Column() {
+10.          Text(){
+11.            Span('word1')
+12.              .baselineOffset(new LengthMetrics(20,LengthUnit.VP))
+13.            Span('word2')
+14.              .baselineOffset(new LengthMetrics(0,LengthUnit.VP))
+15.            ImageSpan($r("app.media.icon"))
+16.              .width('45px')
+17.              .baselineOffset(new LengthMetrics(-20,LengthUnit.VP))
+18.          }
+19.          .backgroundColor(Color.Gray)
+20.        }
+21.        .width('100%')
+22.      }
+23.      .height('100%')
+24.    }
+25.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114443.33321321451776964199076643329508:50001231000000:2800:37896FB24F3BA23BBB5192F1A6E9D0FC662536F00B1598E020C80F8DB17C9762.png?needInitFileName=true?needInitFileName=true)

@@ -1,0 +1,115 @@
+{
+    "description": "网格容器中单项内容容器。仅支持作为Grid组件的子组件使用。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "GridItem(value?: GridItemOptions)",
+            "params": {
+                "value": {
+                    "type": "GridItemOptions",
+                    "required": false,
+                    "description": "GridItem的选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "rowStart": {
+            "description": "设置当前元素起始行号。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前元素起始行号。"
+                }
+            }
+        },
+        "rowEnd": {
+            "description": "设置当前元素终点行号。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前元素终点行号。"
+                }
+            }
+        },
+        "columnStart": {
+            "description": "设置当前元素起始列号。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前元素起始列号。"
+                }
+            }
+        },
+        "columnEnd": {
+            "description": "设置当前元素终点列号。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前元素终点列号。"
+                }
+            }
+        },
+        "forceRebuild": {
+            "description": "设置在触发组件build时是否重新创建此节点。GridItem会根据自身属性和子组件变化自行决定是否需要重新创建，无需设置。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "在触发组件build时是否重新创建此节点。",
+                    "default": false
+                }
+            }
+        },
+        "selectable": {
+            "description": "设置当前GridItem元素是否可以被鼠标框选。外层Grid容器的鼠标框选开启时，GridItem的框选才生效。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "当前GridItem元素是否可以被鼠标框选。",
+                    "default": true
+                }
+            }
+        },
+        "selected": {
+            "description": "设置当前GridItem选中状态。该属性支持$$双向绑定变量。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "当前GridItem选中状态。",
+                    "default": false
+                }
+            }
+        }
+    },
+    "events": {
+        "onSelect": {
+            "description": "GridItem元素被鼠标框选的状态改变时触发回调。",
+            "params": {
+                "isSelected": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "进入鼠标框选范围即被选中返回true， 移出鼠标框选范围即未被选中返回false。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过Grid布局实现了一个展示数字的网格界面。布局宽度占据整个屏幕的90%，高度设为300vp，内边距为顶部5vp。组件的垂直方向上被分为多个部分，每个部分包含一个Grid组件，用于展示数字。\nGrid组件的列数为5列，行数为5行，每列和每行的宽度均为1fr，即等分宽度。Grid组件内的GridItem组件用于展示每个数字，数字以Text组件的形式展示，每个Text组件的宽度为100%，高度为100%，背景颜色根据数字的不同而变化，字体大小为16，文本居中对齐。\nGridItem组件通过rowStart、rowEnd、columnStart、columnEnd属性来指定其在Grid中的位置，从而实现数字的排列。整个布局通过Grid布局保证数字在网格中有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct GridItemExample {\n  @State numbers: string[] = [\"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\", \"12\", \"13\", \"14\", \"15\"]\n\n  build() {\n    Column() {\n      Grid() {\n        GridItem() {\n          Text('4')\n            .fontSize(16) // 设置字体大小为16\n            .backgroundColor(0xFAEEE0) // 设置背景颜色为0xFAEEE0\n            .width('100%') // 设置宽度为100%\n            .height('100%') // 设置高度为100%\n            .textAlign(TextAlign.Center) // 设置文本居中对齐\n        }.rowStart(1).rowEnd(2).columnStart(1).columnEnd(2) // 设置GridItem的位置，从第1行第1列开始，到第2行第2列结束\n\n        ForEach(this.numbers, (item: string) => {\n          GridItem() {\n            Text(item)\n              .fontSize(16) // 设置字体大小为16\n              .backgroundColor(0xF9CF93) // 设置背景颜色为0xF9CF93\n              .width('100%') // 设置宽度为100%\n              .height('100%') // 设置高度为100%\n              .textAlign(TextAlign.Center) // 设置文本居中对齐\n          }\n        }, (item: string) => item)\n\n        GridItem() {\n          Text('5')\n            .fontSize(16) // 设置字体大小为16\n            .backgroundColor(0xDBD0C0) // 设置背景颜色为0xDBD0C0\n            .width('100%') // 设置宽度为100%\n            .height('100%') // 设置高度为100%\n            .textAlign(TextAlign.Center) // 设置文本居中对齐\n        }.columnStart(1).columnEnd(4) // 设置GridItem的位置，从第1列开始，到第4列结束\n      }\n      .columnsTemplate('1fr 1fr 1fr 1fr 1fr') // 设置Grid的列模板，每列宽度为1fr\n      .rowsTemplate('1fr 1fr 1fr 1fr 1fr') // 设置Grid的行模板，每行高度为1fr\n      .width('90%').height(300) // 设置Grid的宽度为90%，高度为300vp\n    }.width('100%').margin({ top: 5 }) // 设置Column的宽度为100%，顶部边距为5vp\n  }\n}"
+        },
+        {
+            "description": "该组件通过Grid布局实现了一个展示数字的界面。布局宽度占据整个屏幕，高度设为150vp，内边距为4vp。组件的垂直方向上被分为两个部分，每个部分包含一个Grid组件。每个Grid组件包含9个GridItem，每个GridItem显示一个数字。\n\nGrid组件的布局属性包括：\n- columnsTemplate('1fr 1fr 1fr')：设置列模板为三列，每列宽度相等。\n- rowsTemplate('1fr 1fr')：设置行模板为两行，每行高度相等。\n- columnsGap(4)：设置列之间的间距为4vp。\n- rowsGap(4)：设置行之间的间距为4vp。\n- width('60%')：设置Grid组件的宽度为父容器的60%。\n- backgroundColor(0xFAEEE0)：设置Grid组件的背景颜色为浅粉色。\n- height(150)：设置Grid组件的高度为150vp。\n- padding('4vp')：设置Grid组件的内边距为4vp。\n\nGridItem的样式和外观包括：\n- backgroundColor(0xF9CF93)：设置GridItem的背景颜色为浅橙色。\n- Text组件的样式包括：\n  - fontSize(16)：设置字体大小为16。\n  - width('100%')：设置文本宽度为GridItem的100%。\n  - height('100%')：设置文本高度为GridItem的100%。\n  - textAlign(TextAlign.Center)：设置文本居中对齐。\n  - focusable(true)：设置文本可聚焦。\n\n组件的功能和交互包括：\n- GridItem的style属性设置为GridItemStyle.NONE和GridItemStyle.PLAIN，分别表示无样式和普通样式。\n- 通过ForEach循环生成GridItem，每个GridItem显示一个数字。\n- 用户可以通过点击GridItem触发相应操作，但由于没有具体的事件处理逻辑，此处仅展示了布局和样式。\n\n整个布局通过Column布局保证两个Grid组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct GridItemExample {\n  @State numbers: String[] = ['0', '1', '2']\n\n  build() {\n    Column({ space: 5 }) {\n      Grid() {\n        ForEach(this.numbers, (day: string) => {\n          ForEach(this.numbers, (day: string) => {\n            GridItem({style:GridItemStyle.NONE}) {\n              Text(day)\n                .fontSize(16)\n                .width('100%')\n                .height('100%')\n                .textAlign(TextAlign.Center)\n                .focusable(true)\n            }\n            .backgroundColor(0xF9CF93)\n          }, (day: string) => day)\n        }, (day: string) => day)\n      }\n      .columnsTemplate('1fr 1fr 1fr')\n      .rowsTemplate('1fr 1fr')\n      .columnsGap(4)\n      .rowsGap(4)\n      .width('60%')\n      .backgroundColor(0xFAEEE0)\n      .height(150)\n      .padding('4vp')\n\n      Grid() {\n        ForEach(this.numbers, (day: string) => {\n          ForEach(this.numbers, (day: string) => {\n            GridItem({style:GridItemStyle.PLAIN}) {\n              Text(day)\n                .fontSize(16)\n                .width('100%')\n                .height('100%')\n                .textAlign(TextAlign.Center)\n                .focusable(true)\n            }\n            .backgroundColor(0xF9CF93)\n          }, (day: string) => day)\n        }, (day: string) => day)\n      }\n      .columnsTemplate('1fr 1fr 1fr')\n      .rowsTemplate('1fr 1fr')\n      .columnsGap(4)\n      .rowsGap(4)\n      .width('60%')\n      .backgroundColor(0xFAEEE0)\n      .height(150)\n      .padding('4vp')\n    }.width('100%').margin({ top: 5 })\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

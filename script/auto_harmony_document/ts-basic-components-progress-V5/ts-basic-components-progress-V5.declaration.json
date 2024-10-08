@@ -1,0 +1,134 @@
+{
+    "description": "进度条组件，用于显示内容加载或操作处理等进度。",
+    "details": "该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Progress(options: ProgressOptions)",
+            "params": {
+                "options": {
+                    "type": "ProgressOptions",
+                    "required": true,
+                    "description": "创建进度条组件的参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "value": {
+            "description": "设置当前进度值。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前进度值。设置小于0的数值时置为0，设置大于total的数值时置为total。",
+                    "default": 0
+                }
+            }
+        },
+        "total": {
+            "description": "设置进度总长。",
+            "params": {
+                "total": {
+                    "type": "number",
+                    "required": false,
+                    "description": "进度总长。设置小于等于0的数值时置为100。",
+                    "default": 100
+                }
+            }
+        },
+        "type": {
+            "description": "设置进度条类型。",
+            "params": {
+                "type": {
+                    "type": [
+                        "ProgressType"
+                    ],
+                    "required": false,
+                    "description": "进度条类型。",
+                    "default": "ProgressType.Linear"
+                }
+            }
+        },
+        "style": {
+            "description": "设置进度条样式。",
+            "params": {
+                "style": {
+                    "type": [
+                        "ProgressStyle"
+                    ],
+                    "required": false,
+                    "description": "进度条样式。该参数从API version8开始废弃，建议使用type替代。",
+                    "default": "ProgressStyle.Linear"
+                }
+            }
+        },
+        "color": {
+            "description": "设置进度条前景色。",
+            "params": {
+                "value": {
+                    "type": [
+                        "ResourceColor",
+                        "LinearGradient"
+                    ],
+                    "required": true,
+                    "description": "进度条前景色。从API version 10开始支持利用LinearGradient设置Ring样式的渐变色。"
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制progress内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<ProgressConfiguration>",
+                    "required": true,
+                    "description": "定制progress内容区的方法。"
+                }
+            }
+        },
+        "privacySensitive": {
+            "description": "设置隐私敏感。",
+            "params": {
+                "isPrivacySensitiveMode": {
+                    "type": [
+                        "Optional<boolean>"
+                    ],
+                    "required": true,
+                    "description": "设置隐私敏感，隐私模式下进度清零，文字将被遮罩。设置null则不敏感。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过 Scroll 和 Column 布局实现了一个展示进度条的界面。布局宽度占据整个屏幕，高度设为 400vp，内边距为左右 35vp、顶部 35vp。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组按钮。每个按钮组的按钮以水平布局方式排列，按钮之间的间距均匀分布，且对齐方式为居中对齐。\n按钮的样式包括背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。按钮组之间通过 Flex 组件进行分隔。按钮的功能包括点击事件和状态效果，用户可以通过点击按钮触发相应操作，按钮也可以在启用或禁用状态下进行展示。\n整个布局通过 Flex 布局保证按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ProgressExample {\n  build() {\n    Scroll() { // 创建一个可滚动的容器\n      Column({ space: 15 }) { // 创建一个垂直布局的容器，子组件之间的间距为15vp\n        Row() { // 创建一个水平布局的容器\n          Progress({ value: 50, total: 100, type: ProgressType.Capsule }) // 创建一个进度条组件，当前值为50，总进度为100，类型为胶囊形\n            .width(100) // 设置进度条的宽度为100vp\n            .height(50) // 设置进度条的高度为50vp\n            .style({\n              borderColor: Color.Blue, // 设置进度条的边框颜色为蓝色\n              borderWidth: 1, // 设置进度条的边框宽度为1vp\n              content: 'Installing...', // 设置进度条的文本内容为\"Installing...\"\n              font: { size: 13, style: FontStyle.Normal }, // 设置进度条文本的字体大小为13，样式为正常\n              fontColor: Color.Gray, // 设置进度条文本的颜色为灰色\n              enableScanEffect: false, // 禁用扫描效果\n              showDefaultPercentage: true // 显示默认的百分比\n            })\n            .privacySensitive(true) // 设置进度条为隐私敏感内容，隐藏具体进度值\n        }\n      }\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 和 Row 布局实现了一个胶囊形进度条的展示界面。布局宽度占据整个屏幕，内边距为顶部 5vp。组件的垂直方向上包含一个 Row 布局，Row 布局中包含一个 Progress 组件。\n\nProgress 组件的样式包括宽度为 100vp，高度为 50vp，类型为胶囊形（ProgressType.Capsule）。进度条的边框颜色为蓝色，边框宽度为 1vp，内容文本为 \"Installing...\"，字体大小为 13vp，字体样式为正常（FontStyle.Normal），字体颜色为灰色。进度条不启用扫描效果（enableScanEffect: false），并且不显示默认的百分比（showDefaultPercentage: false）。\n\n整个布局通过 Column 和 Row 布局保证进度条在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ProgressExample {\n  build() {\n    Column({ space: 15 }) { // 创建一个垂直布局，子组件之间的间距为 15vp\n      Row({ space: 40 }) { // 创建一个水平布局，子组件之间的间距为 40vp\n        Progress({ value: 100, total: 100, type: ProgressType.Capsule }) // 创建一个胶囊形进度条，当前值为 100，总值为 100\n          .width(100) // 设置进度条的宽度为 100vp\n          .height(50) // 设置进度条的高度为 50vp\n          .style({\n            borderColor: Color.Blue, // 设置进度条的边框颜色为蓝色\n            borderWidth: 1, // 设置进度条的边框宽度为 1vp\n            content: 'Installing...', // 设置进度条的内容文本为 \"Installing...\"\n            font: { size: 13, style: FontStyle.Normal }, // 设置进度条内容文本的字体大小为 13vp，字体样式为正常\n            fontColor: Color.Gray, // 设置进度条内容文本的字体颜色为灰色\n            enableScanEffect: false, // 禁用进度条的扫描效果\n            showDefaultPercentage: false // 不显示默认的百分比\n          })\n      }\n    }.width('100%') // 设置整个布局的宽度为 100%\n     .padding({ top: 5 }) // 设置整个布局的上内边距为 5vp\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个展示环形进度条的界面。布局宽度占据整个屏幕，内边距为顶部 5vp。组件的垂直方向上被分为两个部分，每个部分包含一个标题和一个环形进度条。每个环形进度条以水平布局方式排列，进度条之间的间距均匀分布，且对齐方式为居中对齐。\n环形进度条的样式包括宽度、颜色、描边宽度等属性，支持不同的样式展示。第一个进度条使用了渐变色作为进度条的颜色，第二个进度条使用了单一颜色并启用了阴影效果。进度条的功能包括展示当前进度值和总进度值，用户可以通过观察进度条的填充情况来了解当前进度。\n整个布局通过 Column 布局保证进度条在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ProgressExample {\n  // 定义一个渐变色对象，用于设置进度条的颜色\n  private gradientColor: LinearGradient = new LinearGradient([{ color: Color.Yellow, offset: 0.5 },\n                                                              { color: Color.Orange, offset: 1.0 }])\n\n  build() {\n    Column({ space: 15 }) {\n      // 标题文本，字体大小为 9，颜色为 0xCCCCCC，宽度为 90%\n      Text('Gradient Color').fontSize(9).fontColor(0xCCCCCC).width('90%')\n      \n      // 环形进度条，当前值为 70，总进度为 100，类型为环形\n      Progress({ value: 70, total: 100, type: ProgressType.Ring })\n        .width(100) // 进度条宽度为 100vp\n        .style({ strokeWidth: 20 }) // 进度条描边宽度为 20vp\n        .color(this.gradientColor) // 进度条颜色为渐变色\n\n      // 标题文本，字体大小为 9，颜色为 0xCCCCCC，宽度为 90%\n      Text('Shadow').fontSize(9).fontColor(0xCCCCCC).width('90%')\n      \n      // 环形进度条，当前值为 70，总进度为 100，类型为环形\n      Progress({ value: 70, total: 100, type: ProgressType.Ring })\n        .width(120) // 进度条宽度为 120vp\n        .color(Color.Orange) // 进度条颜色为橙色\n        .style({ strokeWidth: 20, shadow: true }) // 进度条描边宽度为 20vp，启用阴影效果\n    }.width('100%').padding({ top: 5 }) // 整个 Column 的宽度为 100%，顶部内边距为 5vp\n  }\n}"
+        },
+        {
+            "description": "该组件展示了一个进度条滑动效果的示例。布局宽度占据屏幕的50%，高度为100%，左侧有20vp的边距。组件的垂直方向上被分为三个部分：两个进度条和一个按钮。每个进度条的样式包括线条宽度、平滑效果的启用状态等属性。按钮的样式包括宽度、高度和字体大小等属性。按钮的功能包括点击事件，用户可以通过点击按钮增加进度条的值。",
+            "code": "@Entry\n@Component\nstruct Index {\n  @State value: number = 0 // 定义一个状态变量value，初始值为0，用于控制进度条的值\n\n  build() {\n    Column({space: 10}) { // 创建一个垂直布局的容器，子组件之间的间距为10vp\n      Text('enableSmoothEffect: true').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(5)\n        .margin({top: 20}) // 创建一个文本组件，显示\"enableSmoothEffect: true\"，字体大小为9，颜色为0xCCCCCC，宽度为90%，上下左右边距为5vp，顶部额外增加20vp的边距\n      Progress({value: this.value, total: 100, type:ProgressType.Linear})\n        .style({strokeWidth: 10, enableSmoothEffect: true}) // 创建一个进度条组件，当前值为value，总长度为100，类型为线性，线条宽度为10vp，启用平滑效果\n\n      Text('enableSmoothEffect: false').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(5)\n        .margin({top: 20}) // 创建一个文本组件，显示\"enableSmoothEffect: false\"，字体大小为9，颜色为0xCCCCCC，宽度为90%，上下左右边距为5vp，顶部额外增加20vp的边距\n      Progress({value: this.value, total: 100, type:ProgressType.Linear})\n        .style({strokeWidth: 10, enableSmoothEffect: false}) // 创建一个进度条组件，当前值为value，总长度为100，类型为线性，线条宽度为10vp，禁用平滑效果\n\n      Button('value +10').onClick(() => {\n        this.value += 10 // 创建一个按钮组件，显示\"value +10\"，点击按钮时将value增加10\n      })\n        .width(75) // 按钮宽度为75vp\n        .height(15) // 按钮高度为15vp\n        .fontSize(9) // 按钮字体大小为9\n    }\n    .width('50%') // 容器宽度为屏幕的50%\n    .height('100%') // 容器高度为屏幕的100%\n    .margin({left:20}) // 容器左侧边距为20vp\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个展示两种不同效果的环形进度条的界面。布局宽度占据整个屏幕，内边距为顶部 5vp。组件的垂直方向上被分为两个部分，每个部分包含一个标题和一个环形进度条。每个环形进度条以水平布局方式排列，进度条之间的间距均匀分布，且对齐方式为居中对齐。\n\n标题的样式包括字体大小为 9vp，字体颜色为 0xCCCCCC，宽度为 90%。进度条的样式包括宽度为 100vp，颜色分别为蓝色和橙色，线条宽度为 20vp。进度条的功能包括加载效果和扫描效果，用户可以通过观察进度条的动画效果来了解当前的进度状态。\n\n整个布局通过 Column 布局保证标题和进度条在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ProgressExample {\n  // 定义一个线性渐变颜色，从黄色（偏移量0.5）到橙色（偏移量1.0）\n  private gradientColor: LinearGradient = new LinearGradient([{ color: Color.Yellow, offset: 0.5 },\n                                                              { color: Color.Orange, offset: 1.0 }])\n  build() {\n    Column({ space: 15 }) {\n      // 创建一个文本组件，显示 \"Loading Effect\"，字体大小为 9vp，颜色为 0xCCCCCC，宽度为 90%\n      Text('Loading Effect').fontSize(9).fontColor(0xCCCCCC).width('90%')\n      \n      // 创建一个环形进度条，初始值为 0，总进度为 100，类型为环形\n      Progress({ value: 0, total: 100, type: ProgressType.Ring })\n        .width(100) // 设置进度条宽度为 100vp\n        .color(Color.Blue) // 设置进度条颜色为蓝色\n        .style({ strokeWidth: 20, status: ProgressStatus.LOADING }) // 设置进度条线条宽度为 20vp，状态为加载中\n\n      // 创建一个文本组件，显示 \"Scan Effect\"，字体大小为 9vp，颜色为 0xCCCCCC，宽度为 90%\n      Text('Scan Effect').fontSize(9).fontColor(0xCCCCCC).width('90%')\n      \n      // 创建一个环形进度条，初始值为 30，总进度为 100，类型为环形\n      Progress({ value: 30, total: 100, type: ProgressType.Ring })\n        .width(100) // 设置进度条宽度为 100vp\n        .color(Color.Orange) // 设置进度条颜色为橙色\n        .style({ strokeWidth: 20, enableScanEffect: true }) // 设置进度条线条宽度为 20vp，启用扫描效果\n    }.width('100%').padding({ top: 5 }) // 设置整个 Column 的宽度为 100%，顶部内边距为 5vp\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个自定义进度条的功能，进度条以星形图案表示，总进度为3，当前进度值可通过按钮进行增减。进度条的每个星形图案根据当前进度值进行填充，填充颜色由自定义的 `MyProgressModifier` 类决定。布局上，进度条和按钮垂直排列，按钮用于控制进度值的增减。进度条的星形图案通过 `Path` 组件绘制，每个星形图案的填充颜色根据当前进度值动态变化。\n\n布局属性：\n- 进度条和按钮的布局宽度占据整个屏幕，高度为100%。\n- 进度条和按钮通过 `Column` 组件垂直排列。\n- 按钮的宽度为30%。\n\n组件的样式和外观：\n- 进度条的星形图案通过 `Path` 组件绘制，每个星形图案的填充颜色根据当前进度值动态变化。\n- 星形图案的边框颜色为黑色，边框宽度为3。\n- 按钮的文本颜色为默认颜色，背景颜色为默认颜色。\n\n组件的排列和嵌套关系：\n- 进度条和按钮通过 `Column` 组件垂直排列。\n- 进度条内部的星形图案通过 `Row` 组件水平排列。\n- 星形图案通过 `Flex` 组件进行对齐，对齐方式为 `SpaceBetween`。\n\n组件的功能和交互：\n- 进度条的当前进度值通过按钮进行增减。\n- 按钮的点击事件用于增加或减少进度值。\n- 进度条的星形图案根据当前进度值动态填充颜色。",
+            "code": "// 自定义进度条修饰器类，用于设置进度条的填充颜色\nclass MyProgressModifier implements ContentModifier<ProgressConfiguration> {\n  color: Color = Color.White; // 默认颜色为白色\n\n  // 构造函数，接收颜色参数并赋值给 color 属性\n  constructor(color: Color) {\n    this.color = color;\n  }\n\n  // 应用内容修饰器，返回一个 WrappedBuilder\n  applyContent(): WrappedBuilder<[ProgressConfiguration]> {\n    return wrapBuilder(myProgress); // 返回 myProgress 构建器\n  }\n}\n\n// 自定义进度条构建器函数，接收 ProgressConfiguration 参数\n@Builder function myProgress(config: ProgressConfiguration) {\n  Column({ space: 30 }) { // 创建一个垂直布局，间距为30\n    Text(\"当前进度：\" + config.value + \"/\" + config.total).fontSize(20) // 显示当前进度值和总进度值，字体大小为20\n    Row() { // 创建一个水平布局\n      Flex({ justifyContent: FlexAlign.SpaceBetween }) { // 创建一个 Flex 布局，对齐方式为 SpaceBetween\n        Path() // 创建一个 Path 组件，绘制星形图案\n          .width('30%') // 宽度为30%\n          .height('30%') // 高度为30%\n          .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z') // 绘制星形路径\n          .fill(config.enabled && config.value >= 1 ? (config.contentModifier as MyProgressModifier).color : Color.White) // 根据进度值填充颜色\n          .stroke(Color.Black) // 边框颜色为黑色\n          .strokeWidth(3) // 边框宽度为3\n        Path() // 创建一个 Path 组件，绘制星形图案\n          .width('30%') // 宽度为30%\n          .height('30%') // 高度为30%\n          .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z') // 绘制星形路径\n          .fill(config.enabled && config.value >= 2 ? (config.contentModifier as MyProgressModifier).color : Color.White) // 根据进度值填充颜色\n          .stroke(Color.Black) // 边框颜色为黑色\n          .strokeWidth(3) // 边框宽度为3\n        Path() // 创建一个 Path 组件，绘制星形图案\n          .width('30%') // 宽度为30%\n          .height('30%') // 高度为30%\n          .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z') // 绘制星形路径\n          .fill(config.enabled && config.value >= 3 ? (config.contentModifier as MyProgressModifier).color : Color.White) // 根据进度值填充颜色\n          .stroke(Color.Black) // 边框颜色为黑色\n          .strokeWidth(3) // 边框宽度为3\n      }.width('100%') // Flex 布局宽度为100%\n    }\n  }.margin({ bottom: 100 }) // 垂直布局的下边距为100\n}\n\n// 入口组件，定义进度条和按钮\n@Entry\n@Component\nstruct Index {\n  @State currentValue: number = 0; // 当前进度值，初始值为0\n  modifier = new MyProgressModifier(Color.Red); // 创建一个 MyProgressModifier 实例，颜色为红色\n  @State myModifier: (MyProgressModifier | undefined) = this.modifier; // 定义一个状态变量，用于存储 MyProgressModifier 实例\n\n  build() {\n    Column() { // 创建一个垂直布局\n      Progress({ value: this.currentValue, total: 3, type: ProgressType.Ring }).contentModifier(this.modifier) // 创建一个进度条，当前值为 currentValue，总进度为3，类型为 Ring，内容修饰器为 modifier\n      Button('Progress++').onClick(() => { // 创建一个按钮，文本为 \"Progress++\"，点击事件为增加进度值\n        if (this.currentValue < 3) { // 如果当前进度值小于3\n          this.currentValue += 1; // 增加进度值\n        }\n      }).width('30%') // 按钮宽度为30%\n      Button('addProgress--').onClick(() => { // 创建一个按钮，文本为 \"addProgress--\"，点击事件为减少进度值\n        if (this.currentValue > 0) { // 如果当前进度值大于0\n          this.currentValue -= 1; // 减少进度值\n        }\n      }).width('30%') // 按钮宽度为30%\n    }.width('100%').height('100%') // 垂直布局宽度为100%，高度为100%\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个展示多种类型进度条（如线性进度条、环形进度条、胶囊进度条等）及其不同属性效果的界面。布局宽度占据整个屏幕，内边距为顶部 30vp。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组进度条。每个进度条组的进度条以水平布局方式排列，进度条之间的间距均匀分布，且对齐方式为居中对齐。\n进度条的样式包括颜色、宽度、高度、描边宽度、刻度数量、刻度宽度等属性，支持不同的样式展示。进度条组之间通过 Column 组件进行分隔。进度条的功能包括显示当前进度值和总进度值，用户可以通过这些进度条直观地了解任务的完成情况。\n整个布局通过 Column 布局保证进度条在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ProgressExample {\n  build() {\n    Column({ space: 15 }) { // 使用 Column 布局，设置子组件之间的间距为 15vp\n      Text('Linear Progress').fontSize(9).fontColor(0xCCCCCC).width('90%') // 显示标题 \"Linear Progress\"，字体大小为 9，颜色为灰色，宽度为 90%\n      Progress({ value: 10, type: ProgressType.Linear }).width(200) // 创建一个线性进度条，当前值为 10，宽度为 200vp\n      Progress({ value: 20, total: 150, type: ProgressType.Linear }).color(Color.Grey).value(50).width(200) // 创建一个线性进度条，当前值为 50，总进度为 150，颜色为灰色，宽度为 200vp\n\n      Text('Eclipse Progress').fontSize(9).fontColor(0xCCCCCC).width('90%') // 显示标题 \"Eclipse Progress\"，字体大小为 9，颜色为灰色，宽度为 90%\n      Row({ space: 40 }) { // 使用 Row 布局，设置子组件之间的间距为 40vp\n        Progress({ value: 10, type: ProgressType.Eclipse }).width(100) // 创建一个环形进度条，当前值为 10，宽度为 100vp\n        Progress({ value: 20, total: 150, type: ProgressType.Eclipse }).color(Color.Grey).value(50).width(100) // 创建一个环形进度条，当前值为 50，总进度为 150，颜色为灰色，宽度为 100vp\n      }\n\n      Text('ScaleRing Progress').fontSize(9).fontColor(0xCCCCCC).width('90%') // 显示标题 \"ScaleRing Progress\"，字体大小为 9，颜色为灰色，宽度为 90%\n      Row({ space: 40 }) { // 使用 Row 布局，设置子组件之间的间距为 40vp\n        Progress({ value: 10, type: ProgressType.ScaleRing }).width(100) // 创建一个刻度环形进度条，当前值为 10，宽度为 100vp\n        Progress({ value: 20, total: 150, type: ProgressType.ScaleRing })\n          .color(Color.Grey).value(50).width(100)\n          .style({ strokeWidth: 15, scaleCount: 15, scaleWidth: 5 }) // 创建一个刻度环形进度条，当前值为 50，总进度为 150，颜色为灰色，宽度为 100vp，描边宽度为 15vp，刻度数量为 15，刻度宽度为 5vp\n      }\n\n      Row({ space: 40 }) { // 使用 Row 布局，设置子组件之间的间距为 40vp\n        Progress({ value: 20, total: 150, type: ProgressType.ScaleRing })\n          .color(Color.Grey).value(50).width(100)\n          .style({ strokeWidth: 20, scaleCount: 20, scaleWidth: 5 }) // 创建一个刻度环形进度条，当前值为 50，总进度为 150，颜色为灰色，宽度为 100vp，描边宽度为 20vp，刻度数量为 20，刻度宽度为 5vp\n        Progress({ value: 20, total: 150, type: ProgressType.ScaleRing })\n          .color(Color.Grey).value(50).width(100)\n          .style({ strokeWidth: 20, scaleCount: 30, scaleWidth: 3 }) // 创建一个刻度环形进度条，当前值为 50，总进度为 150，颜色为灰色，宽度为 100vp，描边宽度为 20vp，刻度数量为 30，刻度宽度为 3vp\n      }\n\n      Text('Ring Progress').fontSize(9).fontColor(0xCCCCCC).width('90%') // 显示标题 \"Ring Progress\"，字体大小为 9，颜色为灰色，宽度为 90%\n      Row({ space: 40 }) { // 使用 Row 布局，设置子组件之间的间距为 40vp\n        Progress({ value: 10, type: ProgressType.Ring }).width(100) // 创建一个环形进度条，当前值为 10，宽度为 100vp\n        Progress({ value: 20, total: 150, type: ProgressType.Ring })\n          .color(Color.Grey).value(50).width(100)\n          .style({ strokeWidth: 20 }) // 创建一个环形进度条，当前值为 50，总进度为 150，颜色为灰色，宽度为 100vp，描边宽度为 20vp\n      }\n\n      Text('Capsule Progress').fontSize(9).fontColor(0xCCCCCC).width('90%') // 显示标题 \"Capsule Progress\"，字体大小为 9，颜色为灰色，宽度为 90%\n      Row({ space: 40 }) { // 使用 Row 布局，设置子组件之间的间距为 40vp\n        Progress({ value: 10, type: ProgressType.Capsule }).width(100).height(50) // 创建一个胶囊形进度条，当前值为 10，宽度为 100vp，高度为 50vp\n        Progress({ value: 20, total: 150, type: ProgressType.Capsule })\n          .color(Color.Grey)\n          .value(50)\n          .width(100)\n          .height(50) // 创建一个胶囊形进度条，当前值为 50，总进度为 150，颜色为灰色，宽度为 100vp，高度为 50vp\n      }\n    }.width('100%').margin({ top: 30 }) // 设置整个 Column 布局的宽度为 100%，顶部外边距为 30vp\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

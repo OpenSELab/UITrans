@@ -1,0 +1,286 @@
+{
+    "description": "提供下拉选择菜单，可以让用户在多个选项之间选择。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "Select(options: Array<SelectOption>)",
+            "params": {
+                "options": {
+                    "type": "Array<SelectOption>",
+                    "required": true,
+                    "description": "下拉选项数组。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "selected": {
+            "description": "设置下拉菜单初始选项的索引。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "下拉菜单初始选项的索引。"
+                }
+            }
+        },
+        "value": {
+            "description": "设置下拉按钮本身的文本内容。",
+            "params": {
+                "value": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "下拉按钮本身的文本内容。"
+                }
+            }
+        },
+        "controlSize": {
+            "description": "设置Select组件的尺寸。",
+            "params": {
+                "value": {
+                    "type": "ControlSize",
+                    "required": true,
+                    "description": "Select组件的尺寸。",
+                    "default": "ControlSize.NORMAL"
+                }
+            }
+        },
+        "menuItemContentModifier": {
+            "description": "定制Select下拉菜单项内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<MenuItemConfiguration>",
+                    "required": true,
+                    "description": "定制下拉菜单项内容区的方法。"
+                }
+            }
+        },
+        "divider": {
+            "description": "设置分割线样式。",
+            "params": {
+                "options": {
+                    "type": [
+                        "Optional<DividerOptions>",
+                        "null"
+                    ],
+                    "required": true,
+                    "description": "分割线样式。"
+                }
+            }
+        },
+        "font": {
+            "description": "设置下拉按钮本身的文本样式。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "下拉按钮本身的文本样式。"
+                }
+            }
+        },
+        "fontColor": {
+            "description": "设置下拉按钮本身的文本颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "下拉按钮本身的文本颜色。"
+                }
+            }
+        },
+        "selectedOptionBgColor": {
+            "description": "设置下拉菜单选中项的背景色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "下拉菜单选中项的背景色。"
+                }
+            }
+        },
+        "selectedOptionFont": {
+            "description": "设置下拉菜单选中项的文本样式。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "下拉菜单选中项的文本样式。"
+                }
+            }
+        },
+        "selectedOptionFontColor": {
+            "description": "设置下拉菜单选中项的文本颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "下拉菜单选中项的文本颜色。"
+                }
+            }
+        },
+        "optionBgColor": {
+            "description": "设置下拉菜单项的背景色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "下拉菜单项的背景色。"
+                }
+            }
+        },
+        "optionFont": {
+            "description": "设置下拉菜单项的文本样式。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "下拉菜单项的文本样式。"
+                }
+            }
+        },
+        "optionFontColor": {
+            "description": "设置下拉菜单项的文本颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "下拉菜单项的文本颜色。"
+                }
+            }
+        },
+        "space": {
+            "description": "设置下拉菜单项的文本与箭头之间的间距。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "下拉菜单项的文本与箭头之间的间距。",
+                    "default": 8
+                }
+            }
+        },
+        "arrowPosition": {
+            "description": "设置下拉菜单项的文本与箭头之间的对齐方式。",
+            "params": {
+                "value": {
+                    "type": "ArrowPosition",
+                    "required": true,
+                    "description": "下拉菜单项的文本与箭头之间的对齐方式。",
+                    "default": "ArrowPosition.END"
+                }
+            }
+        },
+        "menuAlign": {
+            "description": "设置下拉按钮与下拉菜单间的对齐方式。",
+            "params": {
+                "alignType": {
+                    "type": "MenuAlignType",
+                    "required": true,
+                    "description": "对齐方式类型。",
+                    "default": "MenuAlignType.START"
+                },
+                "offset": {
+                    "type": "Offset",
+                    "required": false,
+                    "description": "按照对齐类型对齐后，下拉菜单相对下拉按钮的偏移量。",
+                    "default": {
+                        "dx": 0,
+                        "dy": 0
+                    }
+                }
+            }
+        },
+        "optionWidth": {
+            "description": "设置下拉菜单项的宽度。",
+            "params": {
+                "value": {
+                    "type": [
+                        "Dimension",
+                        "OptionWidthMode"
+                    ],
+                    "required": true,
+                    "description": "下拉菜单项的宽度。"
+                }
+            }
+        },
+        "optionHeight": {
+            "description": "设置下拉菜单显示的最大高度。",
+            "params": {
+                "value": {
+                    "type": "Dimension",
+                    "required": true,
+                    "description": "下拉菜单显示的最大高度。"
+                }
+            }
+        },
+        "menuBackgroundColor": {
+            "description": "设置下拉菜单的背景色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "下拉菜单的背景色。"
+                }
+            }
+        },
+        "menuBackgroundBlurStyle": {
+            "description": "设置下拉菜单的背景模糊材质。",
+            "params": {
+                "value": {
+                    "type": "BlurStyle",
+                    "required": true,
+                    "description": "下拉菜单的背景模糊材质。",
+                    "default": "BlurStyle.COMPONENT_ULTRA_THICK"
+                }
+            }
+        }
+    },
+    "events": {
+        "onSelect": {
+            "description": "下拉菜单选中某一项的回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "选中项的索引。"
+                },
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "选中项的值。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件实现了一个带有选择功能的界面，用户可以通过点击选择不同的选项。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上包含一个 Select 组件，用于展示多个选项。每个选项包含一个文本和一个图标，选项的排列方式为垂直布局。\nSelect 组件的样式包括字体大小、字体颜色、选中项字体样式、选项字体样式等属性。选项的宽度为 200vp，高度为 300vp。组件的功能包括点击选项时触发选择事件，并更新当前选中的索引和文本。\n整个布局通过 Column 组件保证 Select 组件在垂直方向上居中对齐，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct SelectExample {\n  // 当前选中的文本\n  @State text: string = \"TTTTT\"\n  // 当前选中的索引\n  @State index: number = -1\n  // 箭头位置，默认为末尾\n  @State arrowPosition: ArrowPosition = ArrowPosition.END\n\n  build() {\n    Column() {\n      // Select 组件，用于展示多个选项\n      Select([\n        { value: 'aaa', icon: $r(\"app.media.icon\") },\n        { value: 'bbb', icon: $r(\"app.media.icon\") },\n        { value: 'ccc', icon: $r(\"app.media.icon\") },\n        { value: 'ddd', icon: $r(\"app.media.icon\") }\n      ])\n        // 设置当前选中的索引\n        .selected(this.index)\n        // 设置当前选中的文本\n        .value(this.text)\n        // 设置字体样式\n        .font({ size: 16, weight: 500 })\n        // 设置字体颜色\n        .fontColor('#182431')\n        // 设置选中项的字体样式\n        .selectedOptionFont({ size: 16, weight: 400 })\n        // 设置选项的字体样式\n        .optionFont({ size: 16, weight: 400 })\n        // 设置箭头位置\n        .arrowPosition(this.arrowPosition)\n        // 设置菜单对齐方式\n        .menuAlign(MenuAlignType.START, {dx:0, dy:0})\n        // 设置选项的宽度\n        .optionWidth(200)\n        // 设置选项的高度\n        .optionHeight(300)\n        // 隐藏分割线\n        .divider(null)\n        // 设置选择事件\n        .onSelect((index: number, text?: string | undefined) => {\n          console.info('Select:' + index)\n          this.index = index;\n          if (text) {\n            this.text = text;\n          }\n        })\n    }\n    // 设置布局宽度为 100%\n    .width('100%')\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个带有自定义分割线样式的选择器（Select）。布局宽度占据整个屏幕，高度由内容决定。组件的垂直方向上包含一个选择器，选择器的选项以垂直布局方式排列，每个选项之间通过自定义的分割线进行分隔。\n选择器的样式包括字体大小、字体颜色、选中项和未选中项的字体样式、箭头位置、菜单对齐方式、选项的宽度和高度等属性。选择器的功能包括点击事件和状态效果，用户可以通过点击选择器触发相应操作，选择器也可以在选中或未选中状态下进行展示。\n整个布局通过 Column 布局保证选择器在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct SelectExample {\n  @State text: string = \"TTTTT\" // 当前选中的文本\n  @State index: number = -1 // 当前选中的索引，初始值为-1表示未选中\n  @State arrowPosition: ArrowPosition = ArrowPosition.END // 箭头位置，初始值为END\n\n  build() {\n    Column() {\n      Select([\n        { value: 'aaa', icon: $r(\"app.media.icon\") }, // 选项1，包含文本和图标\n        { value: 'bbb', icon: $r(\"app.media.icon\") }, // 选项2，包含文本和图标\n        { value: 'ccc', icon: $r(\"app.media.icon\") }, // 选项3，包含文本和图标\n        { value: 'ddd', icon: $r(\"app.media.icon\") }  // 选项4，包含文本和图标\n      ])\n      .selected(this.index) // 设置当前选中的索引\n      .value(this.text) // 设置当前选中的文本\n      .font({ size: 16, weight: 500 }) // 设置字体大小和粗细\n      .fontColor('#182431') // 设置字体颜色\n      .selectedOptionFont({ size: 16, weight: 400 }) // 设置选中项的字体样式\n      .optionFont({ size: 16, weight: 400 }) // 设置未选中项的字体样式\n      .arrowPosition(this.arrowPosition) // 设置箭头位置\n      .menuAlign(MenuAlignType.START, {dx:0, dy:0}) // 设置菜单对齐方式\n      .optionWidth(200) // 设置选项的宽度\n      .optionHeight(300) // 设置选项的高度\n      .divider({ strokeWidth: 5, color: Color.Blue, startMargin: 10, endMargin: 10 }) // 设置分割线的样式\n      .onSelect((index: number, text?: string | undefined) => { // 选择事件处理函数\n        console.info('Select:' + index) // 打印选中的索引\n        this.index = index; // 更新当前选中的索引\n        if (text) {\n          this.text = text; // 更新当前选中的文本\n        }\n      })\n    }.width('100%') // 设置布局宽度为100%\n  }\n}"
+        },
+        {
+            "description": "该示例实现了一个自定义下拉菜单选项的Select组件。自定义下拉菜单选项样式为“文本 + 图片 + 空白间隔 + 文本 + 绘制三角形”，点击菜单选项后Select组件显示菜单选项的文本内容。\n\n布局属性：\n- 整个Select组件的布局宽度占据整个屏幕，高度设为50%。\n- 菜单选项的布局宽度为100px，高度为150px。\n- 图片的宽度为40px，高度为40px。\n- 空白间隔的宽度为30px。\n\n组件的样式和外观：\n- 文本使用默认字体和颜色。\n- 图片使用指定的资源名（如$r(\"app.media.icon\")）。\n- 绘制的三角形使用黑色边框，边框宽度为3，填充透明。\n\n组件的排列和嵌套关系：\n- 菜单选项使用Row布局，包含文本、图片、空白间隔、文本和绘制的三角形。\n- 整个Select组件嵌套在Column布局中，Column布局嵌套在Row布局中。\n\n组件的功能和交互：\n- 点击菜单选项后，触发Select组件的onSelect事件，输出选择的索引和文本内容。\n- 通过MenuItemContentModifier自定义菜单选项的内容和样式。",
+            "code": "import { MenuItemModifier } from '@kit.ArkUI'\n\n// 自定义菜单选项内容修饰器\nclass MyMenuItemContentModifier implements ContentModifier<MenuItemConfiguration> {\n  modifierText: string = \"\"\n  constructor(text: string) {\n    this.modifierText = text; // 初始化修饰文本\n  }\n  applyContent(): WrappedBuilder<[MenuItemConfiguration]> {\n    return wrapBuilder(MenuItemBuilder) // 应用自定义的菜单选项构建器\n  }\n}\n\n// 自定义菜单选项构建器\n@Builder\nfunction MenuItemBuilder(configuration: MenuItemConfiguration) {\n  Row() {\n    Text(configuration.value) // 显示菜单选项的值\n    Blank() // 添加空白间隔\n    Image(configuration.icon).size({ width: 40, height: 40 }) // 显示菜单选项的图标，设置图标大小\n    Blank(30) // 添加30px的空白间隔\n    Text((configuration.contentModifier as MyMenuItemContentModifier).modifierText) // 显示修饰文本\n    Path()\n      .width('100px') // 设置路径宽度\n      .height('150px') // 设置路径高度\n      .commands('M40 0 L80 100 L0 100 Z') // 绘制三角形路径\n      .fillOpacity(0) // 设置填充透明度\n      .stroke(Color.Black) // 设置边框颜色\n      .strokeWidth(3) // 设置边框宽度\n  }\n  .onClick(() => {\n    configuration.triggerSelect(configuration.index, configuration.value.valueOf().toString()) // 点击菜单选项后触发选择事件\n  })\n}\n\n// 入口组件\n@Entry\n@Component\nstruct SelectExample {\n  @State text: string = \"有modifier\" // 初始化Select组件的文本\n  build() {\n    Column() {\n      Row() {\n        Select([{ value: 'item1', icon: $r(\"app.media.icon\") },\n          { value: 'item2', icon: $r(\"app.media.icon\") }]) // 创建Select组件，设置菜单选项\n          .value(this.text) // 设置Select组件的初始值\n          .onSelect((index: number, text?: string) => {\n            console.info('Select index:' + index) // 输出选择的索引\n            console.info('Select text:' + text) // 输出选择的文本\n          })\n          .menuItemContentModifier(new MyMenuItemContentModifier(\"我来自Modifier\")) // 应用自定义的菜单选项内容修饰器\n      }\n      .alignItems(VerticalAlign.Center) // 设置对齐方式为垂直居中\n      .height(\"50%\") // 设置高度为50%\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过Column布局实现了一个选择器（Select）的示例。布局宽度占据整个屏幕，高度由内容自动调整。组件的垂直方向上包含一个Select组件，用于展示多个选项供用户选择。\n\nSelect组件的样式包括字体大小、字体颜色、选中项和未选中项的字体样式、选项之间的间距、箭头位置、菜单对齐方式、选项的宽度和高度等属性。Select组件的功能包括用户点击选择某个选项时触发的事件，事件中会更新当前选中的索引和文本内容。\n\n整个布局通过Column布局保证Select组件在垂直方向上居中显示，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct SelectExample {\n  // 定义一个状态变量text，用于存储当前选中的文本内容，初始值为\"TTTTT\"\n  @State text: string = \"TTTTT\"\n  \n  // 定义一个状态变量index，用于存储当前选中的索引，初始值为2\n  @State index: number = 2\n  \n  // 定义一个状态变量space，用于设置选项之间的间距，初始值为8\n  @State space: number = 8\n  \n  // 定义一个状态变量arrowPosition，用于设置箭头的位置，初始值为ArrowPosition.END\n  @State arrowPosition: ArrowPosition = ArrowPosition.END\n\n  build() {\n    Column() {\n      // 创建一个Select组件，包含四个选项，每个选项包含一个值和一个图标\n      Select([\n        { value: 'aaa', icon: $r(\"app.media.selection\") },\n        { value: 'bbb', icon: $r(\"app.media.selection\") },\n        { value: 'ccc', icon: $r(\"app.media.selection\") },\n        { value: 'ddd', icon: $r(\"app.media.selection\") }\n      ])\n      // 设置当前选中的索引为this.index\n      .selected(this.index)\n      \n      // 设置当前选中的文本内容为this.text\n      .value(this.text)\n      \n      // 设置Select组件的字体样式，字体大小为16，字体粗细为500\n      .font({ size: 16, weight: 500 })\n      \n      // 设置Select组件的字体颜色为#182431\n      .fontColor('#182431')\n      \n      // 设置选中项的字体样式，字体大小为16，字体粗细为400\n      .selectedOptionFont({ size: 16, weight: 400 })\n      \n      // 设置未选中项的字体样式，字体大小为16，字体粗细为400\n      .optionFont({ size: 16, weight: 400 })\n      \n      // 设置选项之间的间距为this.space\n      .space(this.space)\n      \n      // 设置箭头的位置为this.arrowPosition\n      .arrowPosition(this.arrowPosition)\n      \n      // 设置菜单的对齐方式为MenuAlignType.START，偏移量为{dx:0, dy:0}\n      .menuAlign(MenuAlignType.START, {dx:0, dy:0})\n      \n      // 设置选项的宽度为200\n      .optionWidth(200)\n      \n      // 设置选项的高度为300\n      .optionHeight(300)\n      \n      // 设置选择事件的回调函数，当用户选择某个选项时触发\n      .onSelect((index:number, text?: string | undefined)=>{\n        // 在控制台输出当前选中的索引\n        console.info('Select:' + index)\n        \n        // 更新当前选中的索引为index\n        this.index = index;\n        \n        // 如果text存在，则更新当前选中的文本内容为text\n        if(text){\n          this.text = text;\n        }\n      })\n    }\n    // 设置Column组件的宽度为100%\n    .width('100%')\n  }\n}"
+        },
+        {
+            "description": "该示例实现了一个自定义下拉菜单选项的Select组件。布局上，Select组件位于一个Column容器内，该容器包含一个Row组件，Row组件中嵌套了Select组件。Select组件的布局宽度占据整个屏幕，高度设为50%，内边距为左右35vp、顶部35vp。Select组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组按钮。每个按钮组的按钮以水平布局方式排列，按钮之间的间距均匀分布，且对齐方式为居中对齐。\n\nSelect组件的样式包括背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。Select组件的功能包括点击事件和状态效果，用户可以通过点击Select组件触发相应操作，Select组件也可以在启用或禁用状态下进行展示。\n\n整个布局通过Flex布局保证按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "import { MenuItemModifier, SymbolGlyphModifier } from '@kit.ArkUI'\n\n// 定义一个自定义的MenuItem内容修饰器类\nclass MyMenuItemContentModifier implements ContentModifier<MenuItemConfiguration> {\n  modifierText: string = \"\"\n  constructor(text: string) {\n    this.modifierText = text;\n  }\n  // 应用内容修饰器，返回一个MenuItemBuilder的包装构建器\n  applyContent(): WrappedBuilder<[MenuItemConfiguration]> {\n    return wrapBuilder(MenuItemBuilder)\n  }\n}\n\n// 定义一个MenuItem的构建器函数\n@Builder\nfunction MenuItemBuilder(configuration: MenuItemConfiguration) {\n  Row() {\n    // 显示菜单项的值\n    Text(configuration.value)\n    // 添加空白间隔\n    Blank()\n    // 如果有symbolIcon，则显示SymbolGlyph组件\n    if (configuration.symbolIcon) {\n      SymbolGlyph().attributeModifier(configuration.symbolIcon).fontSize(24)\n    // 否则，如果有icon，则显示Image组件\n    } else if (configuration.icon) {\n      Image(configuration.icon).size({ width: 24, height: 24 })\n    }\n    // 添加空白间隔\n    Blank(30)\n    // 显示自定义内容修饰器的文本\n    Text((configuration.contentModifier as MyMenuItemContentModifier).modifierText)\n    // 添加空白间隔\n    Blank(30)\n    // 绘制一个三角形路径\n    Path()\n      .width('100px')\n      .height('150px')\n      .commands('M40 0 L80 100 L0 100 Z')\n      .fillOpacity(0)\n      .stroke(Color.Black)\n      .strokeWidth(3)\n  }\n  // 点击菜单项时触发选择事件\n  .onClick(() => {\n    configuration.triggerSelect(configuration.index, configuration.value.valueOf().toString())\n  })\n}\n\n// 定义一个Select组件的示例\n@Entry\n@Component\nstruct SelectExample {\n  @State text: string = \"Content Modifier Select\"\n  @State symbolModifier1: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);\n  @State symbolModifier2: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);\n  build() {\n    Column() {\n      Row() {\n        // 创建一个Select组件，包含两个菜单项\n        Select([{ value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier1 },\n          { value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier2 }])\n          .value(this.text)\n          // 选择菜单项时触发的事件\n          .onSelect((index: number, text?: string) => {\n            console.info('Select index:' + index)\n            console.info('Select text:' + text)\n          })\n          // 应用自定义的菜单项内容修饰器\n          .menuItemContentModifier(new MyMenuItemContentModifier(\"Content Modifier\"))\n      }\n      // 设置Row组件的对齐方式为垂直居中，高度为50%\n      .alignItems(VerticalAlign.Center).height('50%')\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个下拉菜单中图片为Symbol的Select组件。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上包含一个Select组件，Select组件的选项以水平布局方式排列，每个选项包含一个Symbol图标和一个文本值。\nSelect组件的样式包括字体大小、字体颜色、选中项和未选中项的字体样式、选项之间的间距、箭头位置等属性。Select组件的功能包括选项的选择事件，用户可以通过点击选项触发相应操作，并更新当前选中的索引和文本值。\n整个布局通过Column布局保证Select组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "// 导入SymbolGlyphModifier模块，用于创建Symbol图标的样式\nimport { SymbolGlyphModifier } from '@kit.ArkUI'\n\n// 定义一个名为SelectExample的组件，作为页面的入口组件\n@Entry\n@Component\nstruct SelectExample {\n  // 定义一个状态变量text，用于存储当前选中的文本值，初始值为\"TTTTT\"\n  @State text: string = \"TTTTT\"\n  \n  // 定义一个状态变量index，用于存储当前选中的索引，初始值为2\n  @State index: number = 2\n  \n  // 定义一个状态变量space，用于设置选项之间的间距，初始值为8\n  @State space: number = 8\n  \n  // 定义一个状态变量arrowPosition，用于设置箭头的位置，初始值为ArrowPosition.END\n  @State arrowPosition: ArrowPosition = ArrowPosition.END\n  \n  // 定义一个状态变量symbolModifier1，用于创建第一个Symbol图标的样式，图标为系统图标ohos_wifi，颜色为绿色\n  @State symbolModifier1: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Green]);\n  \n  // 定义一个状态变量symbolModifier2，用于创建第二个Symbol图标的样式，图标为系统图标ohos_star，颜色为红色\n  @State symbolModifier2: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);\n  \n  // 定义一个状态变量symbolModifier3，用于创建第三个Symbol图标的样式，图标为系统图标ohos_trash，颜色为灰色\n  @State symbolModifier3: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);\n  \n  // 定义一个状态变量symbolModifier4，用于创建第四个Symbol图标的样式，图标为系统图标exposure，颜色为灰色\n  @State symbolModifier4: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);\n  \n  // 构建组件的UI结构\n  build() {\n    // 使用Column布局，宽度占据整个屏幕\n    Column() {\n      // 创建一个Select组件，选项数组包含四个选项，每个选项包含一个文本值和一个Symbol图标\n      Select([\n        { value: 'aaa', symbolIcon: this.symbolModifier1 },\n        { value: 'bbb', symbolIcon: this.symbolModifier2 },\n        { value: 'ccc', symbolIcon: this.symbolModifier3 },\n        { value: 'ddd', symbolIcon: this.symbolModifier4 }\n      ])\n      // 设置当前选中的索引\n      .selected(this.index)\n      // 设置当前选中的文本值\n      .value(this.text)\n      // 设置Select组件的字体样式，字体大小为16，字体粗细为500\n      .font({ size: 16, weight: 500 })\n      // 设置Select组件的字体颜色为#182431\n      .fontColor('#182431')\n      // 设置选中项的字体样式，字体大小为16，字体粗细为400\n      .selectedOptionFont({ size: 16, weight: 400 })\n      // 设置未选中项的字体样式，字体大小为16，字体粗细为400\n      .optionFont({ size: 16, weight: 400 })\n      // 设置选项之间的间距\n      .space(this.space)\n      // 设置箭头的位置\n      .arrowPosition(this.arrowPosition)\n      // 设置菜单的对齐方式为START，偏移量为{dx:0, dy:0}\n      .menuAlign(MenuAlignType.START, {dx:0, dy:0})\n      // 设置选项选择事件的回调函数\n      .onSelect((index:number, text?: string | undefined)=>{\n        // 打印当前选中的索引\n        console.info('Select:' + index)\n        // 更新当前选中的索引\n        this.index = index;\n        // 如果传入了文本值，则更新当前选中的文本值\n        if(text){\n          this.text = text;\n        }\n      })\n    }\n    // 设置Column布局的宽度为100%\n    .width('100%')\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

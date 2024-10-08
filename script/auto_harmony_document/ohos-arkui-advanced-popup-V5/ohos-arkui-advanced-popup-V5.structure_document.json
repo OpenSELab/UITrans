@@ -1,0 +1,44 @@
+{
+    "description": "可滚动的容器组件，当子组件的布局尺寸超过父组件的尺寸时，内容可以滚动，支持单个子组件。",
+    "interfaces": [
+        {
+            "description": "Scroll(scroller?: Scroller)",
+            "params": {
+                "scroller": {
+                    "type": "Scroller",
+                    "description": "可滚动组件的控制器。用于与可滚动组件进行绑定。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "scrollable": {
+            "description": "设置滚动方向。",
+            "params": {
+                "value": {
+                    "type": "ScrollDirection",
+                    "required": true,
+                    "description": "滚动方向。",
+                    "default": "ScrollDirection.Vertical"
+                }
+            }
+        }
+    },
+    "events": {
+        "onScrollFrameBegin": {
+            "description": "每帧开始滚动时触发，事件参数传入即将发生的滚动量，事件处理函数中可根据应用场景计算实际需要的滚动量并作为事件处理函数的返回值返回，Scroll将按照返回值的实际滚动量进行滚动。支持offsetRemain为负值。若通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None。触发该事件的条件：1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。2、调用控制器接口时不触发。3、越界回弹不触发。4、拖动滚动条不触发。",
+            "params": {
+                "offset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "即将发生的滑动量，单位vp。"
+                },
+                "state": {
+                    "type": "ScrollState",
+                    "required": true,
+                    "description": "当前滑动状态。"
+                }
+            }
+        }
+    }
+}

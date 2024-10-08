@@ -1,0 +1,443 @@
+{
+    "description": "网格容器，由“行”和“列”分割的单元格所组成，通过指定“项目”所在的单元格做出各种各样的布局。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)",
+            "params": {
+                "scroller": {
+                    "type": "Scroller",
+                    "description": "可滚动组件的控制器。用于与可滚动组件进行绑定。"
+                },
+                "layoutOptions": {
+                    "type": "GridLayoutOptions",
+                    "description": "布局选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "columnsTemplate": {
+            "description": "设置当前网格布局列的数量、固定列宽或最小列宽值，不设置时默认1列。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "当前网格布局列的数量或最小列宽值。"
+                }
+            }
+        },
+        "rowsTemplate": {
+            "description": "设置当前网格布局行的数量、固定行高或最小行高值，不设置时默认1行。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "当前网格布局行的数量或最小行高值。"
+                }
+            }
+        },
+        "columnsGap": {
+            "description": "设置列与列的间距。设置为小于0的值时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "列与列的间距。",
+                    "default": "0"
+                }
+            }
+        },
+        "rowsGap": {
+            "description": "设置行与行的间距。设置为小于0的值时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": true,
+                    "description": "行与行的间距。",
+                    "default": "0"
+                }
+            }
+        },
+        "scrollBar": {
+            "description": "设置滚动条状态。",
+            "params": {
+                "value": {
+                    "type": "BarState",
+                    "required": true,
+                    "description": "滚动条状态。",
+                    "default": "BarState.Auto"
+                }
+            }
+        },
+        "scrollBarColor": {
+            "description": "设置滚动条的颜色。",
+            "params": {
+                "value": {
+                    "type": [
+                        "Color",
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "滚动条的颜色。",
+                    "default": "'#182431'（40%不透明度）"
+                }
+            }
+        },
+        "scrollBarWidth": {
+            "description": "设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过Grid组件主轴方向的高度，则滚动条的宽度会变为默认值。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "required": true,
+                    "description": "滚动条的宽度。",
+                    "default": "4"
+                }
+            }
+        },
+        "cachedCount": {
+            "description": "设置预加载的GridItem的数量，只在LazyForEach和开启了virtualScroll开关的Repeat中生效。设置为小于0的值时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "预加载的GridItem的数量。",
+                    "default": "1"
+                }
+            }
+        },
+        "editMode": {
+            "description": "设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "Grid是否进入编辑模式。",
+                    "default": "false"
+                }
+            }
+        },
+        "layoutDirection": {
+            "description": "设置布局的主轴方向。",
+            "params": {
+                "value": {
+                    "type": "GridDirection",
+                    "required": true,
+                    "description": "布局的主轴方向。",
+                    "default": "GridDirection.Row"
+                }
+            }
+        },
+        "maxCount": {
+            "description": "设置可显示的最大行数或列数。设置为小于1的值时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "可显示的最大行数或列数。",
+                    "default": "Infinity"
+                }
+            }
+        },
+        "minCount": {
+            "description": "设置可显示的最小行数或列数。设置为小于1的值时，按默认值显示。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "可显示的最小行数或列数。",
+                    "default": "1"
+                }
+            }
+        },
+        "cellLength": {
+            "description": "设置一行的高度或者一列的宽度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "一行的高度或者一列的宽度。",
+                    "default": "第一个元素的大小"
+                }
+            }
+        },
+        "multiSelectable": {
+            "description": "设置是否开启鼠标框选。开启框选后，可以配合Griditem的selected属性和onSelect事件获取GridItem的选中状态，还可以设置选中态样式（无默认选中样式）。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启鼠标框选。",
+                    "default": "false"
+                }
+            }
+        },
+        "supportAnimation": {
+            "description": "设置是否支持动画。当前支持GridItem拖拽动画。仅在滚动模式下（只设置rowsTemplate、columnsTemplate其中一个）支持动画。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否支持动画。",
+                    "default": "false"
+                }
+            }
+        },
+        "edgeEffect": {
+            "description": "设置边缘滑动效果。",
+            "params": {
+                "value": {
+                    "type": "EdgeEffect",
+                    "required": true,
+                    "description": "Grid组件的边缘滑动效果，支持弹簧效果和阴影效果。",
+                    "default": "EdgeEffect.None"
+                },
+                "options": {
+                    "type": "EdgeEffectOptions",
+                    "description": "组件内容大小小于组件自身时，是否开启滑动效果。",
+                    "default": "{ alwaysEnabled: false }"
+                }
+            }
+        },
+        "enableScrollInteraction": {
+            "description": "设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否支持滚动手势。",
+                    "default": "true"
+                }
+            }
+        },
+        "nestedScroll": {
+            "description": "设置嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。",
+            "params": {
+                "value": {
+                    "type": "NestedScrollOptions",
+                    "required": true,
+                    "description": "嵌套滚动选项。"
+                }
+            }
+        },
+        "friction": {
+            "description": "设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "摩擦系数。",
+                    "default": "非可穿戴设备为0.75，可穿戴设备为0.9。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onScrollIndex": {
+            "description": "当前网格显示的起始位置/终止位置的item发生变化时触发。网格初始化时会触发一次。Grid显示区域上第一个子组件/最后一个组件的索引值有变化就会触发。",
+            "params": {
+                "first": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前显示的网格起始位置的索引值。"
+                },
+                "last": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前显示的网格终止位置的索引值。"
+                }
+            }
+        },
+        "onItemDragStart": {
+            "description": "开始拖拽网格元素时触发。返回void表示不能拖拽。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": true,
+                    "description": "拖拽点的信息。"
+                },
+                "itemIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "被拖拽网格元素索引值。"
+                }
+            }
+        },
+        "onItemDragEnter": {
+            "description": "拖拽进入网格元素范围内时触发。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": true,
+                    "description": "拖拽点的信息。"
+                }
+            }
+        },
+        "onItemDragMove": {
+            "description": "拖拽在网格元素范围内移动时触发。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": true,
+                    "description": "拖拽点的信息。"
+                },
+                "itemIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "拖拽起始位置。"
+                },
+                "insertIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "拖拽插入位置。"
+                }
+            }
+        },
+        "onItemDragLeave": {
+            "description": "拖拽离开网格元素时触发。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": true,
+                    "description": "拖拽点的信息。"
+                },
+                "itemIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "拖拽离开的网格元素索引值。"
+                }
+            }
+        },
+        "onItemDrop": {
+            "description": "绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。",
+            "params": {
+                "event": {
+                    "type": "ItemDragInfo",
+                    "required": true,
+                    "description": "拖拽点的信息。"
+                },
+                "itemIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "拖拽起始位置。"
+                },
+                "insertIndex": {
+                    "type": "number",
+                    "required": true,
+                    "description": "拖拽插入位置。"
+                },
+                "isSuccess": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否成功释放。"
+                }
+            }
+        },
+        "onScrollBarUpdate": {
+            "description": "当前网格显示的起始位置item发生变化时触发，可通过该回调设置滚动条的位置及长度。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前显示的网格起始位置的索引值。"
+                },
+                "offset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前显示的网格起始位置元素相对网格显示起始位置的偏移，单位vp。"
+                }
+            },
+            "returns": {
+                "type": "ComputedBarAttribute",
+                "description": "滚动条的位置及长度。"
+            }
+        },
+        "onReachStart": {
+            "description": "网格到达起始位置时触发。",
+            "params": {}
+        },
+        "onReachEnd": {
+            "description": "网格到达末尾位置时触发。",
+            "params": {}
+        },
+        "onScrollFrameBegin": {
+            "description": "网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。",
+            "params": {
+                "offset": {
+                    "type": "number",
+                    "required": true,
+                    "description": "即将发生的滑动量，单位vp。"
+                },
+                "state": {
+                    "type": "ScrollState",
+                    "required": true,
+                    "description": "当前滑动状态。"
+                }
+            },
+            "returns": {
+                "type": "{ offsetRemain: number }",
+                "description": "实际滑动量，单位vp。"
+            }
+        },
+        "onScrollStart": {
+            "description": "网格滑动开始时触发。手指拖动网格或网格的滚动条触发的滑动开始时，会触发该事件。使用Scroller滑动控制器触发的带动画的滑动，动画开始时会触发该事件。",
+            "params": {}
+        },
+        "onScrollStop": {
+            "description": "网格滑动停止时触发。手指拖动网格或网格的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件。使用Scroller滑动控制器触发的带动画的滑动，动画停止会触发该事件。",
+            "params": {}
+        }
+    },
+    "rules": [
+        "Grid子组件的索引值计算规则：按子组件的顺序依次递增。",
+        "if/else语句中，只有条件成立分支内的子组件会参与索引值计算，条件不成立分支内的子组件不计算索引值。",
+        "ForEach/LazyForEach和Repeat语句中，会计算展开所有子节点索引值。",
+        "if/else、ForEach、LazyForEach和Repeat发生变化以后，会更新子节点索引值。",
+        "Grid子组件的visibility属性设置为Hidden或None时依然会计算索引值。",
+        "Grid子组件的visibility属性设置为None时不显示，但依然会占用子组件对应的网格。",
+        "Grid子组件设置position属性，会占用子组件对应的网格，子组件将显示在相对Grid左上角偏移position的位置。该子组件不会随其对应网格滚动，在对应网格滑出Grid显示范围外后不显示。",
+        "当Grid子组件之间留有空隙时，会根据当前的展示区域尽可能填补空隙，因此GridItem可能会随着网格滚动而改变相对位置。"
+    ],
+    "examples": [
+        {
+            "description": "该组件通过 Grid 布局实现了一个展示数字网格的界面。布局宽度占据屏幕的 90%，高度为 300vp，内边距为顶部 5vp、左右 5vp。组件的垂直方向上被分为多个部分，包括一个空白区域、一个文本说明和一个网格区域。\n\n文本说明部分使用 Text 组件展示了一段提示信息，字体大小为 15vp，颜色为 0xCCCCCC，宽度占据 90%。\n\n网格区域使用 Grid 组件进行布局，包含多个 GridItem 组件，每个 GridItem 展示一个数字。GridItem 的宽度为 40vp，高度为 80vp，背景颜色为 0xF9CF93，边框宽度为 2vp，边框颜色为红色。\n\nGrid 组件的布局方向为水平方向（GridDirection.Row），最大列数为 6，最小列数为 2，单元格长度为 0（即自动计算）。Grid 组件的行间距和列间距均为 10vp，背景颜色为 0xFAEEE0。\n\n整个布局通过 Scroll 组件实现滚动功能，确保内容超出屏幕高度时可以滚动查看。",
+            "code": "@Entry\n@Component\nstruct GridExample {\n  @State numbers: string[] = [] // 存储数字字符串的数组\n\n  aboutToAppear() {\n    for (let i = 1; i <= 30; i++) {\n      this.numbers.push(i + '') // 初始化数字数组，填充 1 到 30 的数字字符串\n    }\n  }\n\n  build() {\n    Scroll() {\n      Column({ space: 5 }) {\n        Blank() // 空白区域，用于分隔内容\n        Text('rowsTemplate、columnsTemplate都不设置layoutDirection、maxcount、minCount、cellLength才生效')\n          .fontSize(15).fontColor(0xCCCCCC).width('90%') // 文本说明，字体大小 15vp，颜色 0xCCCCCC，宽度 90%\n        Grid() {\n          ForEach(this.numbers, (day: string) => {\n            GridItem() {\n              Text(day).fontSize(16).backgroundColor(0xF9CF93) // 每个 GridItem 展示一个数字，字体大小 16vp，背景颜色 0xF9CF93\n            }.width(40).height(80).borderWidth(2).borderColor(Color.Red) // GridItem 的宽度 40vp，高度 80vp，边框宽度 2vp，边框颜色红色\n          }, (day: string) => day)\n        }\n        .height(300) // Grid 组件的高度 300vp\n        .columnsGap(10) // 列间距 10vp\n        .rowsGap(10) // 行间距 10vp\n        .backgroundColor(0xFAEEE0) // 背景颜色 0xFAEEE0\n        .maxCount(6) // 最大列数 6\n        .minCount(2) // 最小列数 2\n        .cellLength(0) // 单元格长度 0，自动计算\n        .layoutDirection(GridDirection.Row) // 布局方向为水平方向\n      }\n      .width('90%').margin({ top: 5, left: 5, right: 5 }) // 宽度 90%，内边距顶部 5vp，左右 5vp\n      .align(Alignment.Center) // 内容居中对齐\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过Grid布局实现了一个可拖拽的网格界面。布局宽度占据整个屏幕的90%，高度设为300vp，内边距为顶部5vp。组件的垂直方向上包含一个Grid组件，Grid组件内部包含多个GridItem组件。每个GridItem组件包含一个Text组件，用于显示数字。Grid组件的列数为3列，列间距为10vp，行间距为10vp。\n\nGrid组件的样式包括背景颜色为0xFAEEE0，GridItem组件的样式包括背景颜色为0xF9CF93，字体大小为16，宽度为80vp，高度为80vp，文本居中对齐。\n\n组件的功能包括拖拽事件和拖拽完成事件。用户可以通过拖拽GridItem组件来改变其在Grid中的位置。拖拽过程中会显示一个自定义的拖拽图片，拖拽完成后会交换数组中对应元素的位置。",
+            "code": "@Entry\n@Component\nstruct GridExample {\n  @State numbers: string[] = [] // 存储网格中显示的数字\n  scroller: Scroller = new Scroller() // 用于滚动Grid组件\n  @State text: string = 'drag' // 用于存储拖拽过程中显示的文本\n\n  // 构建拖拽过程中显示的图片\n  @Builder pixelMapBuilder() { \n    Column() {\n      Text(this.text)\n        .fontSize(16) // 设置字体大小\n        .backgroundColor(0xF9CF93) // 设置背景颜色\n        .width(80) // 设置宽度\n        .height(80) // 设置高度\n        .textAlign(TextAlign.Center) // 设置文本居中对齐\n    }\n  }\n\n  // 组件初始化时填充numbers数组\n  aboutToAppear() {\n    for (let i = 1;i <= 15; i++) {\n      this.numbers.push(i + '')\n    }\n  }\n\n  // 交换数组中两个元素的位置\n  changeIndex(index1: number, index2: number) { \n    let temp: string;\n    temp = this.numbers[index1];\n    this.numbers[index1] = this.numbers[index2];\n    this.numbers[index2] = temp;\n  }\n\n  // 构建组件UI\n  build() {\n    Column({ space: 5 }) {\n      Grid(this.scroller) {\n        ForEach(this.numbers, (day: string) => {\n          GridItem() {\n            Text(day)\n              .fontSize(16) // 设置字体大小\n              .backgroundColor(0xF9CF93) // 设置背景颜色\n              .width(80) // 设置宽度\n              .height(80) // 设置高度\n              .textAlign(TextAlign.Center) // 设置文本居中对齐\n          }\n        })\n      }\n      .columnsTemplate('1fr 1fr 1fr') // 设置列模板，3列\n      .columnsGap(10) // 设置列间距\n      .rowsGap(10) // 设置行间距\n      .width('90%') // 设置宽度为屏幕的90%\n      .backgroundColor(0xFAEEE0) // 设置背景颜色\n      .height(300) // 设置高度\n      .editMode(true) // 设置Grid进入编辑模式，允许拖拽\n      .onItemDragStart((event: ItemDragInfo, itemIndex: number) => { \n        this.text = this.numbers[itemIndex] // 设置拖拽过程中显示的文本\n        return this.pixelMapBuilder() // 返回拖拽过程中显示的图片\n      })\n      .onItemDrop((event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => { \n        if (!isSuccess || insertIndex >= this.numbers.length) {\n          return\n        }\n        console.info('beixiang' + itemIndex + '', insertIndex + '') \n        this.changeIndex(itemIndex, insertIndex) // 交换数组中两个元素的位置\n      })\n    }.width('100%').margin({ top: 5 }) // 设置Column的宽度为100%，顶部边距为5vp\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个通过双指缩放手势来动态调整Grid组件列数的示例。布局宽度占据整个屏幕，高度设为100%。组件的垂直方向上被分为两个部分：顶部是一个文本提示，底部是一个Grid布局。\n\n顶部文本提示部分包含一个Row组件，其中包含一个Text组件，用于提示用户可以通过双指缩放来改变Grid的列数。Text组件的高度为5%，顶部和左侧分别有10vp和20vp的边距。\n\n底部Grid布局部分包含一个Grid组件，用于展示一系列的数字。Grid组件的列数通过`columns`状态变量控制，初始值为2。Grid组件的列宽通过`columnsTemplate`属性动态设置，列间距为10vp，行间距也为10vp。Grid组件的宽度为90%，高度为100%，背景颜色为0xFAEEE0。Grid组件的滚动条被隐藏，且启用了缓存机制，缓存数量为3。\n\nGrid组件内部通过嵌套的ForEach循环生成多个GridItem组件，每个GridItem组件包含一个Text组件，用于显示数字。Text组件的背景颜色为0xF9CF93，字体大小为16vp，宽度为100%，高度为80vp，文本居中对齐。\n\nGrid组件支持双指缩放手势，当用户进行双指缩放操作时，根据缩放比例动态调整Grid的列数。缩放手势的动画持续时间为300毫秒，动画曲线为平滑曲线。缩放手势结束后，根据缩放比例调整`columns`状态变量的值，并将其保存到AppStorage中，以便下次启动时恢复。",
+            "code": "@Entry\n@Component\nstruct GridExample {\n  @State numbers: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19']\n  @State columns: number = 2\n\n  aboutToAppear() {\n    // 从AppStorage中获取上次保存的列数，并更新`columns`状态变量\n    let lastCount = AppStorage.get<number>('columnsCount')\n    if (typeof lastCount != 'undefined') {\n      this.columns = lastCount\n    }\n  }\n\n  build() {\n    Column({ space: 5 }) {\n      Row() {\n        Text('双指缩放改变列数')\n          .height('5%')\n          .margin({ top: 10, left: 20 })\n      }\n\n      Grid() {\n        ForEach(this.numbers, (day: string) => {\n          ForEach(this.numbers, (day: string) => {\n            GridItem() {\n              Text(day)\n                .fontSize(16)\n                .backgroundColor(0xF9CF93)\n                .width('100%')\n                .height(80)\n                .textAlign(TextAlign.Center)\n            }\n          }, (day: string) => day)\n        }, (day: string) => day)\n      }\n      .columnsTemplate('1fr '.repeat(this.columns)) // 动态设置Grid的列数\n      .columnsGap(10) // 列间距\n      .rowsGap(10) // 行间距\n      .width('90%') // Grid的宽度\n      .scrollBar(BarState.Off) // 隐藏滚动条\n      .backgroundColor(0xFAEEE0) // Grid的背景颜色\n      .height('100%') // Grid的高度\n      .cachedCount(3) // 缓存数量\n\n      .animation({\n        duration: 300, // 动画持续时间\n        curve: Curve.Smooth // 动画曲线\n      })\n      .priorityGesture(\n        PinchGesture()\n          .onActionEnd((event: GestureEvent) => {\n            console.info('end scale:' + event.scale)\n\n            // 根据缩放比例调整Grid的列数\n            if (event.scale > 2) {\n              this.columns--\n            } else if (event.scale < 0.6) {\n              this.columns++\n            }\n\n            // 限制列数的范围在1到4之间\n            this.columns = Math.min(4, Math.max(1, this.columns));\n            // 将列数保存到AppStorage中\n            AppStorage.setOrCreate<number>('columnsCount', this.columns)\n          })\n      )\n    }.width('100%').margin({ top: 5 })\n  }\n}"
+        },
+        {
+            "description": "该组件通过Column布局实现了一个展示三种不同列模板（auto-fill、auto-fit、auto-stretch）的界面。布局宽度占据整个屏幕，高度设为100%，内边距为0。组件的垂直方向上被分为三个部分，每个部分包含一个标题和一个Grid组件。每个Grid组件的宽度为90%，高度为150vp，边框为黑色1vp宽。\nGrid组件的样式包括背景颜色为橙色，列间距和行间距均为10vp。每个Grid组件中的GridItem包含一个Text组件，显示内容为\"N\"加上数据项的值，高度为80vp。\n组件的功能是通过不同的columnsTemplate属性值（auto-fill、auto-fit、auto-stretch）展示不同的列布局效果。auto-fill会根据设定的列宽自动计算列数；auto-fit会先根据设定的列宽计算列数，余下的空间会均分到每一列中；auto-stretch会先根据设定的列宽计算列数，余下的空间会均分到每个列间距中。\n整个布局通过Column布局保证每个Grid组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct GridColumnsTemplate {\n  // 数据源，包含三个数组，每个数组包含6个数字\n  data: number[] = [0, 1, 2, 3, 4, 5]\n  data1: number[] = [0, 1, 2, 3, 4, 5]\n  data2: number[] = [0, 1, 2, 3, 4, 5]\n\n  build() {\n    Column({ space: 10 }) { // 创建一个垂直布局，子组件之间的间距为10vp\n      Text('auto-fill 根据设定的列宽自动计算列数').width('90%') // 显示文本，宽度为90%\n      Grid() { // 创建一个Grid组件\n        ForEach(this.data, (item: number) => { // 遍历data数组\n          GridItem() { // 创建一个GridItem组件\n            Text('N' + item).height(80) // 显示文本，高度为80vp\n          }\n          .backgroundColor(Color.Orange) // 设置背景颜色为橙色\n        })\n      }\n      .width('90%') // 设置Grid组件的宽度为90%\n      .border({ width: 1, color: Color.Black }) // 设置边框为黑色1vp宽\n      .columnsTemplate('repeat(auto-fill, 70)') // 设置列模板为auto-fill，列宽为70vp\n      .columnsGap(10) // 设置列间距为10vp\n      .rowsGap(10) // 设置行间距为10vp\n      .height(150) // 设置高度为150vp\n\n      Text('auto-fit 先根据设定的列宽计算列数，余下的空间会均分到每一列中').width('90%') // 显示文本，宽度为90%\n      Grid() { // 创建一个Grid组件\n        ForEach(this.data1, (item: number) => { // 遍历data1数组\n          GridItem() { // 创建一个GridItem组件\n            Text('N' + item).height(80) // 显示文本，高度为80vp\n          }\n          .backgroundColor(Color.Orange) // 设置背景颜色为橙色\n        })\n      }\n      .width('90%') // 设置Grid组件的宽度为90%\n      .border({ width: 1, color: Color.Black }) // 设置边框为黑色1vp宽\n      .columnsTemplate('repeat(auto-fit, 70)') // 设置列模板为auto-fit，列宽为70vp\n      .columnsGap(10) // 设置列间距为10vp\n      .rowsGap(10) // 设置行间距为10vp\n      .height(150) // 设置高度为150vp\n\n      Text('auto-stretch 先根据设定的列宽计算列数，余下的空间会均分到每个列间距中').width('90%') // 显示文本，宽度为90%\n      Grid() { // 创建一个Grid组件\n        ForEach(this.data2, (item: number) => { // 遍历data2数组\n          GridItem() { // 创建一个GridItem组件\n            Text('N' + item).height(80) // 显示文本，高度为80vp\n          }\n          .backgroundColor(Color.Orange) // 设置背景颜色为橙色\n        })\n      }\n      .width('90%') // 设置Grid组件的宽度为90%\n      .border({ width: 1, color: Color.Black }) // 设置边框为黑色1vp宽\n      .columnsTemplate('repeat(auto-stretch, 70)') // 设置列模板为auto-stretch，列宽为70vp\n      .columnsGap(10) // 设置列间距为10vp\n      .rowsGap(10) // 设置行间距为10vp\n      .height(150) // 设置高度为150vp\n    }\n    .width('100%') // 设置Column组件的宽度为100%\n    .height('100%') // 设置Column组件的高度为100%\n  }\n}"
+        },
+        {
+            "description": "该组件通过Grid布局实现了一个展示数字网格的界面。布局宽度占据整个屏幕，高度设为300vp，内边距为顶部5vp。组件的垂直方向上被分为两个部分，每个部分包含一个Grid布局。每个Grid布局中的GridItem以水平布局方式排列，GridItem之间的间距均匀分布，且对齐方式为居中对齐。\nGridItem的样式包括背景颜色、字体大小、宽度和高度等属性，支持不同的样式展示。Grid布局的功能包括多选和滚动条隐藏，用户可以通过点击GridItem触发相应操作，GridItem也可以在选中或未选中状态下进行展示。\n整个布局通过Column布局保证Grid布局在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct GridExample {\n  @State numbers: String[] = ['0', '1', '2', '3', '4'] // 定义一个状态变量numbers，用于存储展示的数字\n  scroller: Scroller = new Scroller() // 创建一个Scroller对象，用于Grid的滚动控制\n\n  // 定义第一个GridLayoutOptions对象，设置常规尺寸和非规则索引\n  layoutOptions1: GridLayoutOptions = {\n    regularSize: [1, 1],        // 设置常规GridItem的尺寸为1x1\n    irregularIndexes: [0, 6],   // 设置非规则GridItem的索引为0和6\n  }\n\n  // 定义第二个GridLayoutOptions对象，设置常规尺寸、非规则索引和非规则尺寸获取函数\n  layoutOptions2: GridLayoutOptions = {\n    regularSize: [1, 1],        // 设置常规GridItem的尺寸为1x1\n    irregularIndexes: [0, 7],   // 设置非规则GridItem的索引为0和7\n    onGetIrregularSizeByIndex: (index: number) => { // 定义非规则GridItem的尺寸获取函数\n      if (index === 0) {\n        return [1, 5]            // 如果索引为0，返回尺寸为1x5\n      }\n      return [1, index % 6 + 1] // 否则返回尺寸为1x(index % 6 + 1)\n    }\n  }\n\n  build() {\n    Column({ space: 5 }) { // 创建一个Column布局，设置子组件之间的间距为5vp\n      Grid(this.scroller, this.layoutOptions1) { // 创建第一个Grid布局，使用scroller和layoutOptions1\n        ForEach(this.numbers, (day: string) => { // 遍历numbers数组，生成GridItem\n          ForEach(this.numbers, (day: string) => {\n            GridItem() { // 创建GridItem\n              Text(day) // 创建Text组件，显示数字\n                .fontSize(16) // 设置字体大小为16\n                .backgroundColor(0xF9CF93) // 设置背景颜色为0xF9CF93\n                .width('100%') // 设置宽度为100%\n                .height(80) // 设置高度为80vp\n                .textAlign(TextAlign.Center) // 设置文本居中对齐\n            }.selectable(false) // 设置GridItem不可选中\n          }, (day: string) => day) // 设置GridItem的key\n        }, (day: string) => day) // 设置GridItem的key\n      }\n      .columnsTemplate('1fr 1fr 1fr 1fr 1fr') // 设置Grid的列模板为5列，每列宽度相等\n      .columnsGap(10) // 设置列间距为10vp\n      .rowsGap(10) // 设置行间距为10vp\n      .multiSelectable(true) // 设置Grid支持多选\n      .scrollBar(BarState.Off) // 设置滚动条为隐藏\n      .width('90%') // 设置Grid宽度为90%\n      .backgroundColor(0xFAEEE0) // 设置背景颜色为0xFAEEE0\n      .height(300) // 设置高度为300vp\n\n      Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%') // 创建一个Text组件，显示\"scroll\"，设置字体颜色、大小和宽度\n\n      Grid(undefined, this.layoutOptions2) { // 创建第二个Grid布局，使用layoutOptions2\n        ForEach(this.numbers, (day: string) => { // 遍历numbers数组，生成GridItem\n          ForEach(this.numbers, (day: string) => {\n            GridItem() { // 创建GridItem\n              Text(day) // 创建Text组件，显示数字\n                .fontSize(16) // 设置字体大小为16\n                .backgroundColor(0xF9CF93) // 设置背景颜色为0xF9CF93\n                .width('100%') // 设置宽度为100%\n                .height(80) // 设置高度为80vp\n                .textAlign(TextAlign.Center) // 设置文本居中对齐\n            }\n          }, (day: string) => day) // 设置GridItem的key\n        }, (day: string) => day) // 设置GridItem的key\n      }\n      .columnsTemplate('1fr 1fr 1fr 1fr 1fr') // 设置Grid的列模板为5列，每列宽度相等\n      .columnsGap(10) // 设置列间距为10vp\n      .rowsGap(10) // 设置行间距为10vp\n      .scrollBar(BarState.Off) // 设置滚动条为隐藏\n      .width('90%') // 设置Grid宽度为90%\n      .backgroundColor(0xFAEEE0) // 设置背景颜色为0xFAEEE0\n      .height(300) // 设置高度为300vp\n    }.width('100%').margin({ top: 5 }) // 设置Column的宽度为100%，顶部外边距为5vp\n  }\n}"
+        },
+        {
+            "description": "该组件通过Grid布局实现了一个可滚动的网格展示界面。布局宽度占据整个屏幕的90%，高度设为300vp，内边距为顶部5vp。组件的垂直方向上被分为两个部分：一个文本标签和一个可滚动的网格。文本标签显示“scroll”，字体颜色为浅灰色，字体大小为9vp，宽度为90%。\n\n网格部分由多个GridItem组成，每个GridItem包含一个文本标签，显示数字0到4。每个GridItem的宽度为100%，高度为80vp，背景颜色为浅橙色，文本居中对齐。网格的列数为5列，列间距为10vp，行间距为10vp。网格支持滚动交互，滚动摩擦系数为0.6，不支持动画效果，边缘效果为弹性效果，滚动条始终显示，颜色为灰色，宽度为4vp。\n\n网格的滚动事件包括滚动开始、滚动停止、滚动到开始位置、滚动到结束位置、滚动索引变化、滚动条更新和滚动状态更新。每个事件都会在控制台输出相应的信息。此外，还有一个按钮“next page”，点击该按钮可以滚动到下一页。",
+            "code": "@Entry\n@Component\nstruct GridExample {\n  @State numbers: String[] = ['0', '1', '2', '3', '4'] // 定义一个状态变量，存储数字字符串数组\n  scroller: Scroller = new Scroller() // 创建一个Scroller对象，用于控制网格的滚动\n  @State gridPosition: number = 0 // 定义一个状态变量，存储网格的当前位置\n\n  build() {\n    Column({ space: 5 }) { // 创建一个垂直布局，子组件之间的间距为5vp\n      Text('scroll') // 创建一个文本标签，显示“scroll”\n        .fontColor(0xCCCCCC) // 设置字体颜色为浅灰色\n        .fontSize(9) // 设置字体大小为9vp\n        .width('90%') // 设置宽度为90%\n      \n      Grid(this.scroller) { // 创建一个可滚动的网格，使用Scroller对象控制滚动\n        ForEach(this.numbers, (day: string) => { // 遍历numbers数组，生成GridItem\n          ForEach(this.numbers, (day: string) => { // 嵌套遍历numbers数组，生成GridItem\n            GridItem() { // 创建一个GridItem\n              Text(day) // 创建一个文本标签，显示当前数字\n                .fontSize(16) // 设置字体大小为16vp\n                .backgroundColor(0xF9CF93) // 设置背景颜色为浅橙色\n                .width('100%') // 设置宽度为100%\n                .height(80) // 设置高度为80vp\n                .textAlign(TextAlign.Center) // 设置文本居中对齐\n            }\n          }, (day: string) => day) // 使用day作为key\n        }, (day: string) => day) // 使用day作为key\n      }\n      .columnsTemplate('1fr 1fr 1fr 1fr 1fr') // 设置网格的列模板，5列，每列宽度相等\n      .columnsGap(10) // 设置列间距为10vp\n      .rowsGap(10) // 设置行间距为10vp\n      .friction(0.6) // 设置滚动摩擦系数为0.6\n      .enableScrollInteraction(true) // 启用滚动交互\n      .supportAnimation(false) // 禁用滚动动画\n      .multiSelectable(false) // 禁用多选\n      .edgeEffect(EdgeEffect.Spring) // 设置边缘效果为弹性效果\n      .scrollBar(BarState.On) // 设置滚动条始终显示\n      .scrollBarColor(Color.Grey) // 设置滚动条颜色为灰色\n      .scrollBarWidth(4) // 设置滚动条宽度为4vp\n      .width('90%') // 设置宽度为90%\n      .backgroundColor(0xFAEEE0) // 设置背景颜色为浅米色\n      .height(300) // 设置高度为300vp\n      .onScrollIndex((first: number, last: number) => { // 监听滚动索引变化事件\n        console.info(first.toString()) // 输出第一个可见项的索引\n        console.info(last.toString()) // 输出最后一个可见项的索引\n      })\n      .onScrollBarUpdate((index: number, offset: number) => { // 监听滚动条更新事件\n        console.info(\"XXX\" + 'Grid onScrollBarUpdate,index : ' + index.toString() + \",offset\" + offset.toString()) // 输出滚动条更新信息\n        return { totalOffset: (index / 5) * (80 + 10) - offset, totalLength: 80 * 5 + 10 * 4 } // 返回滚动条的总偏移量和总长度\n      })\n      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => { // 监听滚动状态更新事件\n        console.info(scrollOffset.toString()) // 输出滚动偏移量\n        console.info(scrollState.toString()) // 输出滚动状态\n      })\n      .onScrollStart(() => { // 监听滚动开始事件\n        console.info(\"XXX\" + \"Grid onScrollStart\") // 输出滚动开始信息\n      })\n      .onScrollStop(() => { // 监听滚动停止事件\n        console.info(\"XXX\" + \"Grid onScrollStop\") // 输出滚动停止信息\n      })\n      .onReachStart(() => { // 监听滚动到开始位置事件\n        this.gridPosition = 0 // 设置网格位置为0\n        console.info(\"XXX\" + \"Grid onReachStart\") // 输出滚动到开始位置信息\n      })\n      .onReachEnd(() => { // 监听滚动到结束位置事件\n        this.gridPosition = 2 // 设置网格位置为2\n        console.info(\"XXX\" + \"Grid onReachEnd\") // 输出滚动到结束位置信息\n      })\n\n      Button('next page') // 创建一个按钮，显示“next page”\n        .onClick(() => { // 监听按钮点击事件\n          this.scroller.scrollPage({ next: true }) // 滚动到下一页\n        })\n    }.width('100%').margin({ top: 5 }) // 设置垂直布局的宽度为100%，顶部外边距为5vp\n  }\n}"
+        },
+        {
+            "description": "该示例展示了如何在鸿蒙ArkUI中使用Grid组件来创建一个固定行列的网格布局，并通过GridLayoutOptions中的onGetRectByIndex方法自定义每个GridItem的位置和大小。\n\n布局属性：\n- 整个布局由两个Grid组件组成，分别位于一个Column容器中。\n- 第一个Grid组件的宽度为90%，高度为300vp，背景颜色为0xFAEEE0。\n- 第二个Grid组件的宽度为90%，高度为300vp，背景颜色为0xFAEEE0。\n- Column容器的宽度为100%，顶部外边距为5vp。\n\n组件的样式和外观：\n- GridItem中的Text组件字体大小为16，背景颜色为0xF9CF93，宽度为100%，高度为100%，文本居中对齐。\n- 第一个Grid组件的列模板为'1fr 1fr 1fr 1fr 1fr'，行模板为'1fr 1fr 1fr 1fr 1fr'，列间距为10vp，行间距为10vp。\n- 第二个Grid组件的列模板为'1fr 1fr 1fr 1fr 1fr 1fr'，行模板为'1fr 1fr 1fr 1fr 1fr 1fr'，列间距为10vp，行间距为10vp。\n\n组件的排列和嵌套关系：\n- 两个Grid组件垂直排列在Column容器中。\n- 每个Grid组件内部通过ForEach循环生成多个GridItem，每个GridItem包含一个Text组件。\n\n组件的功能和交互：\n- 通过GridLayoutOptions中的onGetRectByIndex方法，可以自定义每个GridItem的位置和大小。\n- 第一个Grid组件展示了5x5的网格布局，第二个Grid组件展示了6x6的网格布局，并通过onGetRectByIndex方法自定义了部分GridItem的位置和大小。",
+            "code": "@Entry\n@Component\nstruct GridExample {\n  @State numbers1: String[] = ['0', '1', '2', '3', '4']\n  @State numbers2: String[] = ['0', '1','2','3','4','5']\n\n  layoutOptions3: GridLayoutOptions = {\n    regularSize: [1, 1], // 定义每个GridItem的默认大小为1x1\n    onGetRectByIndex: (index: number) => {\n      if (index == 0)\n        return [0, 0, 1, 1] // 第一个GridItem的位置和大小为(0, 0, 1, 1)\n      else if(index==1)\n        return [0, 1, 2, 2] // 第二个GridItem的位置和大小为(0, 1, 2, 2)\n      else if(index==2)\n        return [0 ,3 ,3 ,3] // 第三个GridItem的位置和大小为(0, 3, 3, 3)\n      else if(index==3)\n        return [3, 0, 3, 3] // 第四个GridItem的位置和大小为(3, 0, 3, 3)\n      else if(index==4)\n        return [4, 3, 2, 2] // 第五个GridItem的位置和大小为(4, 3, 2, 2)\n      else\n        return [5, 5, 1, 1] // 其他GridItem的位置和大小为(5, 5, 1, 1)\n    }\n  }\n\n  build() {\n    Column({ space: 5 }) {\n      Grid() {\n        ForEach(this.numbers1, (day: string) => {\n          ForEach(this.numbers1, (day: string) => {\n            GridItem() {\n              Text(day)\n                .fontSize(16) // 字体大小为16\n                .backgroundColor(0xF9CF93) // 背景颜色为0xF9CF93\n                .width('100%') // 宽度为100%\n                .height('100%') // 高度为100%\n                .textAlign(TextAlign.Center) // 文本居中对齐\n            }\n          }, (day: string) => day)\n        }, (day: string) => day)\n      }\n      .columnsTemplate('1fr 1fr 1fr 1fr 1fr') // 列模板为'1fr 1fr 1fr 1fr 1fr'\n      .rowsTemplate('1fr 1fr 1fr 1fr 1fr') // 行模板为'1fr 1fr 1fr 1fr 1fr'\n      .columnsGap(10) // 列间距为10vp\n      .rowsGap(10) // 行间距为10vp\n      .width('90%') // 宽度为90%\n      .backgroundColor(0xFAEEE0) // 背景颜色为0xFAEEE0\n      .height(300) // 高度为300vp\n\n      Text('GridLayoutOptions的使用：onGetRectByIndex。').fontColor(0xCCCCCC).fontSize(9).width('90%')\n\n      Grid(undefined, this.layoutOptions3) {\n        ForEach(this.numbers2, (day: string) => {\n          GridItem() {\n            Text(day)\n              .fontSize(16) // 字体大小为16\n              .backgroundColor(0xF9CF93) // 背景颜色为0xF9CF93\n              .width('100%') // 宽度为100%\n              .height(\"100%\") // 高度为100%\n              .textAlign(TextAlign.Center) // 文本居中对齐\n          }\n          .height(\"100%\") // GridItem的高度为100%\n          .width('100%') // GridItem的宽度为100%\n        }, (day: string) => day)\n      }\n      .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr') // 列模板为'1fr 1fr 1fr 1fr 1fr 1fr'\n      .rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr') // 行模板为'1fr 1fr 1fr 1fr 1fr 1fr'\n      .columnsGap(10) // 列间距为10vp\n      .rowsGap(10) // 行间距为10vp\n      .width('90%') // 宽度为90%\n      .backgroundColor(0xFAEEE0) // 背景颜色为0xFAEEE0\n      .height(300) // 高度为300vp\n    }.width('100%').margin({ top: 5 }) // Column容器的宽度为100%，顶部外边距为5vp\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Stack 布局实现了一个包含多个嵌套滚动视图的界面。布局宽度占据整个屏幕，高度设为 100%，内边距为左右 10vp。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一个列表。列表中的每个项包含一个 Grid 组件，用于展示不同类型的商品列表。\n\n组件的样式包括背景颜色、字体大小、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。组件的排列和嵌套关系通过 Stack、Column、Row、List、Grid 等组件实现，确保界面整洁美观。\n\n组件的功能包括点击事件、滚动事件和嵌套滚动控制。用户可以通过点击按钮触发相应操作，如滚动到顶部。滚动事件通过 onScrollFrameBegin 和 onScrollStart、onScrollStop 等事件处理函数实现，控制滚动行为和嵌套滚动优先级。",
+            "code": "@Entry\n@Component\nstruct GridExample {\n  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]\n  @State numbers: number[] = []\n  @State translateY: number = 0\n  private scroller: Scroller = new Scroller()\n  private gridScroller: Scroller = new Scroller()\n  private touchDown: boolean = false\n  private listTouchDown: boolean = false\n  private scrolling: boolean = false\n\n  // 初始化数据，生成 100 个数字\n  aboutToAppear() {\n    for (let i = 0; i < 100; i++) {\n      this.numbers.push(i)\n    }\n  }\n\n  build() {\n    Stack() {\n      Column() {\n        Row() {\n          Text('Head')\n        }\n\n        Column() {\n          List({ scroller: this.scroller }) {\n            ListItem() {\n              Grid() {\n                GridItem() {\n                  Text('GoodsTypeList1')\n                }\n                .backgroundColor(this.colors[0])\n                .columnStart(0)\n                .columnEnd(1)\n\n                GridItem() {\n                  Text('GoodsTypeList2')\n                }\n                .backgroundColor(this.colors[1])\n                .columnStart(0)\n                .columnEnd(1)\n\n                GridItem() {\n                  Text('GoodsTypeList3')\n                }\n                .backgroundColor(this.colors[2])\n                .columnStart(0)\n                .columnEnd(1)\n\n                GridItem() {\n                  Text('GoodsTypeList4')\n                }\n                .backgroundColor(this.colors[3])\n                .columnStart(0)\n                .columnEnd(1)\n\n                GridItem() {\n                  Text('GoodsTypeList5')\n                }\n                .backgroundColor(this.colors[4])\n                .columnStart(0)\n                .columnEnd(1)\n              }\n              .scrollBar(BarState.Off)\n              .columnsGap(15)\n              .rowsGap(10)\n              .rowsTemplate('1fr 1fr 1fr 1fr 1fr')\n              .columnsTemplate('1fr')\n              .width('100%')\n              .height(200)\n            }\n\n            ListItem() {\n              Grid(this.gridScroller) {\n                ForEach(this.numbers, (item: number) => {\n                  GridItem() {\n                    Text(item + '')\n                      .fontSize(16)\n                      .backgroundColor(0xF9CF93)\n                      .width('100%')\n                      .height('100%')\n                      .textAlign(TextAlign.Center)\n                  }\n                  .width('100%')\n                  .height(40)\n                  .shadow({ radius: 10, color: '#909399', offsetX: 1, offsetY: 1 })\n                  .borderRadius(10)\n                  .translate({ x: 0, y: this.translateY })\n                }, (item: string) => item)\n              }\n              .columnsTemplate('1fr 1fr')\n              .friction(0.3)\n              .columnsGap(15)\n              .rowsGap(10)\n              .scrollBar(BarState.Off)\n              .width('100%')\n              .height('100%')\n              .layoutDirection(GridDirection.Column)\n              .nestedScroll({\n                scrollForward: NestedScrollMode.PARENT_FIRST,\n                scrollBackward: NestedScrollMode.SELF_FIRST\n              })\n              .onTouch((event: TouchEvent) => {\n                if (event.type == TouchType.Down) {\n                  this.listTouchDown = true\n                } else if (event.type == TouchType.Up) {\n                  this.listTouchDown = false\n                }\n              })\n            }\n          }\n          .scrollBar(BarState.Off)\n          .edgeEffect(EdgeEffect.None)\n          .onTouch((event: TouchEvent) => {\n            if (event.type == TouchType.Down) {\n              this.touchDown = true\n            } else if (event.type == TouchType.Up) {\n              this.touchDown = false\n            }\n          })\n          .onScrollFrameBegin((offset: number, state: ScrollState) => {\n            if (this.scrolling && offset > 0) {\n              let newOffset = this.scroller.currentOffset().yOffset\n              if (newOffset >= 590) {\n                this.gridScroller.scrollBy(0, offset)\n                return { offsetRemain: 0 }\n              } else if (newOffset + offset > 590) {\n                this.gridScroller.scrollBy(0, newOffset + offset - 590)\n                return { offsetRemain: 590 - newOffset }\n              }\n            }\n            return { offsetRemain: offset }\n          })\n          .onScrollStart(() => {\n            if (this.touchDown && !this.listTouchDown) {\n              this.scrolling = true\n            }\n          })\n          .onScrollStop(() => {\n            this.scrolling = false\n          })\n        }\n        .width('100%')\n        .height('100%')\n        .padding({ left: 10, right: 10 })\n      }\n\n      Row() {\n        Text('Top')\n          .width(30)\n          .height(30)\n          .borderRadius(50)\n      }\n      .padding(5)\n      .borderRadius(50)\n      .backgroundColor('#ffffff')\n      .shadow({ radius: 10, color: '#909399', offsetX: 1, offsetY: 1 })\n      .margin({ right: 22, bottom: 15 })\n      .onClick(() => {\n        this.scroller.scrollTo({ xOffset: 0, yOffset: 0 })\n        this.gridScroller.scrollTo({ xOffset: 0, yOffset: 0 })\n      })\n    }\n    .align(Alignment.BottomEnd)\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

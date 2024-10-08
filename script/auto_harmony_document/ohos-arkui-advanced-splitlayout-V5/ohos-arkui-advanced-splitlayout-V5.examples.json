@@ -1,0 +1,6 @@
+[
+    {
+        "description": "该组件通过 Column 布局实现了一个展示音乐推荐信息的界面。布局宽度占据整个屏幕，高度设为 100%，内边距为左右 35vp、顶部 35vp。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组按钮。每个按钮组的按钮以水平布局方式排列，按钮之间的间距均匀分布，且对齐方式为居中对齐。\n按钮的样式包括背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。按钮组之间通过 Flex 组件进行分隔。按钮的功能包括点击事件和状态效果，用户可以通过点击按钮触发相应操作，按钮也可以在启用或禁用状态下进行展示。\n整个布局通过 Flex 布局保证按钮在垂直方向上有序排列，确保界面整洁美观。",
+        "code": "import { SplitLayout } from '@kit.ArkUI' // 导入 SplitLayout 组件\n\n@Entry // 标记该组件为入口组件\n@Component // 标记该结构体为组件\nstruct Index {\n  @State demoImage: Resource = $r(\"app.media.music\") // 定义一个状态变量 demoImage，用于存储图片资源\n\n  build() {\n    Column() { // 创建一个垂直布局的容器\n      SplitLayout({ // 使用 SplitLayout 组件\n        mainImage: this.demoImage, // 设置主图片为 demoImage\n        primaryText: '新歌推荐', // 设置主标题为 \"新歌推荐\"\n        secondaryText: '私人订制新歌精选站，为你推荐专属优质新歌;', // 设置副标题为 \"私人订制新歌精选站，为你推荐专属优质新歌;\"\n        tertiaryText: \"每日更新\", // 设置三级标题为 \"每日更新\"\n      }) {\n        Text('示例：空白区域容器内可添加组件') // 在 SplitLayout 的空白区域添加一个文本组件\n          .margin({top:36}) // 设置文本组件的上边距为 36vp\n      }\n    }\n    .justifyContent(FlexAlign.SpaceBetween) // 设置 Column 的对齐方式为 SpaceBetween\n    .height('100%') // 设置 Column 的高度为 100%\n    .width('100%') // 设置 Column 的宽度为 100%\n  }\n}"
+    }
+]

@@ -1,0 +1,1034 @@
+Title: SegmentButton-按钮与选择-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5
+
+Markdown Content:
+分段按钮组件，包含页签类分段按钮、单选类分段按钮、多选类分段按钮。
+
+说明
+
+该组件及其子组件从 API Version 11 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+导入模块
+----
+
+1.  import { SegmentButton, SegmentButtonOptions, SegmentButtonItemOptionsArray } from '@kit.ArkUI';
+
+SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number\[\] })
+
+**装饰器类型：**@Component
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+名称
+
+参数类型
+
+必填
+
+装饰器类型
+
+说明
+
+options
+
+[SegmentButtonOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5#segmentbuttonoptions)
+
+是
+
+@ObjectLink
+
+分段按钮选项。
+
+selectedIndexes
+
+number\[\]
+
+是
+
+@Link
+
+分段按钮的选中项编号，第一项的编号为0，之后顺序增加。
+
+**说明：**
+
+selectedIndexes使用[@Link装饰器：父子双向同步](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-link-V5)，仅支持有效的按钮编号（第一个按钮编号为0，之后按顺序累加），如没有选中项可传入空数组\[\]。
+
+说明
+
+分段按钮组件不支持通用属性。分段按钮组件使用当前区域可使用的最大宽度做为组件宽度，并且根据按钮个数平均分配每个按钮宽度；分段按钮组件高度根据按钮内容（文本及图片）自动适应，其最小高度为28vp。
+
+SegmentButtonOptions
+--------------------
+
+分段按钮选项类，用于为分段按钮提供初始数据和自定义属性。
+
+### 属性
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+属性
+
+类型
+
+描述
+
+type
+
+"tab" | "capsule"
+
+分段按钮的类型。
+
+multiply
+
+boolean
+
+是否可以多选。
+
+**说明：**
+
+页签类分段按钮只支持单选，设置multiply为true不生效。
+
+buttons
+
+[SegmentButtonItemOptionsArray](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5#segmentbuttonitemoptionsarray)
+
+按钮信息，包括图标和文本信息。
+
+fontColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+按钮未选中态的文本颜色。
+
+默认值：$r('sys.color.ohos\_id\_color\_text\_secondary')
+
+selectedFontColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+按钮选中态的文本颜色。
+
+type为"tab"时，默认值为$r('sys.color.ohos\_id\_color\_text\_primary')。
+
+type为"capsule"时，默认值为$r('sys.color.ohos\_id\_color\_foreground\_contrary')。
+
+fontSize
+
+[DimensionNoPercentage](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5#dimensionnopercentage)
+
+按钮未选中态的字体大小（不支持百分比设置）。
+
+默认值：$r('sys.float.ohos\_id\_text\_size\_body2')
+
+selectedFontSize
+
+[DimensionNoPercentage](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5#dimensionnopercentage)
+
+按钮选中态的字体大小（不支持百分比设置）。
+
+默认值：$r('sys.float.ohos\_id\_text\_size\_body2')
+
+fontWeight
+
+[FontWeight](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontweight)
+
+按钮未选中态的字体粗细。
+
+默认值：FontWeight.Regular
+
+selectedFontWeight
+
+[FontWeight](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontweight)
+
+按钮选中态的字体粗细。
+
+默认值：FontWeight.Medium。
+
+backgroundColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+底板颜色。
+
+默认值：$r('sys.color.ohos\_id\_color\_button\_normal')
+
+selectedBackgroundColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+按钮选中态底板颜色。
+
+type为"tab"时，默认值为$r('sys.color.ohos\_id\_color\_foreground\_contrary')。
+
+type为"capsule"时，默认值为$r('sys.color.ohos\_id\_color\_emphasize')。
+
+imageSize
+
+[SizeOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#sizeoptions)
+
+图片尺寸，默认值：{ width: 24, height: 24 }。
+
+**说明：**
+
+imageSize属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。
+
+buttonPadding
+
+[Padding](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#padding) | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10)
+
+按钮内边距，默认值：仅图标按钮和仅文字按钮{ top: 4, right: 8, bottom: 4, left: 8 }，图标+文本按钮{ top: 6, right: 8, bottom: 6, left: 8 }。
+
+textPadding
+
+[Padding](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#padding) | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10)
+
+文本内边距。
+
+默认值：0
+
+localizedButtonPadding12+
+
+[LocalizedPadding](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#localizedpadding12)
+
+按钮内边距，默认值：仅图标按钮和仅文字按钮{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }，图标+文本按钮{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }。
+
+localizedTextPadding12+
+
+[LocalizedPadding](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#localizedpadding12)
+
+文本内边距。
+
+默认值：0
+
+direction12+
+
+[Direction](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#direction)
+
+布局方向。
+
+默认值：Direction.Auto
+
+backgroundBlurStyle
+
+[BlurStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-background-V5#blurstyle9)
+
+背景模糊材质。
+
+默认值：BlurStyle.NONE
+
+### constructor
+
+constructor(options: TabSegmentButtonOptions | CapsuleSegmentButtonOptions)
+
+构造函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### tab
+
+static tab(options: TabSegmentButtonConstructionOptions): SegmentButtonOptions
+
+创建页签类的SegmentButtonOptions。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+**返回值：**
+
+### capsule
+
+static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonOptions
+
+创建单选类/多选类的SegmentButtonOptions。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+**返回值：**
+
+DimensionNoPercentage
+---------------------
+
+不支持百分比类型的长度的联合类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+类型
+
+说明
+
+[PX](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#px10)
+
+长度类型，用于描述以px像素单位为单位的长度。
+
+[VP](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#vp10)
+
+长度类型，用于描述以vp像素单位为单位的长度。
+
+[FP](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#fp10)
+
+长度类型，用于描述以fp像素单位为单位的长度。
+
+[LPX](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#lpx10)
+
+长度类型，用于描述以lpx像素单位为单位的长度。
+
+[Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+资源引用类型，用于设置组件属性的值。
+
+CommonSegmentButtonOptions
+--------------------------
+
+用于定义分段按钮组件可自定义的属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**属性：**
+
+属性
+
+类型
+
+描述
+
+fontColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+按钮未选中态的文本颜色。
+
+默认值：$r('sys.color.ohos\_id\_color\_text\_secondary')
+
+selectedFontColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+按钮选中态的文本颜色。
+
+type为"tab"时，默认值为$r('sys.color.ohos\_id\_color\_text\_primary')。
+
+type为"capsule"时，默认值为$r('sys.color.ohos\_id\_color\_foreground\_contrary')。
+
+fontSize
+
+[DimensionNoPercentage](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5#dimensionnopercentage)
+
+按钮未选中态的字体大小（不支持百分比设置）。
+
+默认值：$r('sys.float.ohos\_id\_text\_size\_body2')
+
+selectedFontSize
+
+[DimensionNoPercentage](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5#dimensionnopercentage)
+
+按钮选中态的字体大小（不支持百分比设置）。
+
+默认值：$r('sys.float.ohos\_id\_text\_size\_body2')
+
+fontWeight
+
+[FontWeight](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontweight)
+
+按钮未选中态的字体粗细。
+
+默认值：FontWeight.Regular
+
+selectedFontWeight
+
+[FontWeight](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontweight)
+
+按钮选中态的字体粗细。
+
+默认值：FontWeight.Medium。
+
+backgroundColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+底板颜色。
+
+默认值：$r('sys.color.ohos\_id\_color\_button\_normal')
+
+selectedBackgroundColor
+
+[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)
+
+按钮选中态底板颜色。
+
+type为"tab"时，默认值为$r('sys.color.ohos\_id\_color\_foreground\_contrary')。
+
+type为"capsule"时，默认值为$r('sys.color.ohos\_id\_color\_emphasize')。
+
+imageSize
+
+[SizeOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#sizeoptions)
+
+图片尺寸，默认值：{ width: 24, height: 24 }。
+
+**说明：**
+
+imageSize属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。
+
+buttonPadding
+
+[Padding](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#padding) | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10)
+
+按钮内边距，默认值：仅图标按钮和仅文字按钮{ top: 4, right: 8, bottom: 4, left: 8 }，图标+文本按钮{ top: 6, right: 8, bottom: 6, left: 8 }。
+
+textPadding
+
+[Padding](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#padding) | [Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10)
+
+文本内边距。
+
+默认值：0
+
+localizedButtonPadding12+
+
+[LocalizedPadding](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#localizedpadding12)
+
+按钮内边距，默认值：仅图标按钮和仅文字按钮{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }，图标+文本按钮{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }。
+
+localizedTextPadding12+
+
+[LocalizedPadding](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#localizedpadding12)
+
+文本内边距。
+
+默认值：0
+
+direction12+
+
+[Direction](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#direction)
+
+布局方向。
+
+默认值：Direction.Auto
+
+backgroundBlurStyle
+
+[BlurStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-background-V5#blurstyle9)
+
+背景模糊材质。
+
+默认值：BlurStyle.NONE
+
+TabSegmentButtonConstructionOptions
+-----------------------------------
+
+用于构建页签类的SegmentButtonOptions对象。
+
+继承[CommonSegmentButtonOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5#commonsegmentbuttonoptions)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+CapsuleSegmentButtonConstructionOptions
+---------------------------------------
+
+用于构建单选类/多选类的SegmentButtonOptions对象。
+
+继承[CommonSegmentButtonOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5#commonsegmentbuttonoptions)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+ItemRestriction
+---------------
+
+用于保存按钮信息的元组。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+取值范围
+
+说明
+
+ItemRestriction<T\> = \[T, T, T?, T?, T?\]
+
+表示包含2~5个相同类型元素的元组。
+
+SegmentButtonItemTuple
+----------------------
+
+用于保存按钮信息的元组的联合类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+SegmentButtonItemArray
+----------------------
+
+用于保存按钮信息的数组的联合类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+SegmentButtonItemOptionsArray
+-----------------------------
+
+用于保存按钮信息的数组。
+
+说明
+
+分段按钮组件仅支持2到5个按钮，SegmentButtonItemOptionsArray只保存2到5个按钮信息。
+
+### constructor
+
+constructor(elements: SegmentButtonItemTuple)
+
+构造函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+### push
+
+push(...items: SegmentButtonItemArray): number
+
+在数组末尾添加新的元素，返回添加元素后数组的长度。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+**返回值：**
+
+说明
+
+分段按钮组件仅支持2到5个按钮，SegmentButtonItemOptionsArray只保存2到5个按钮信息，当超过按钮信息个数限制此方法无效。
+
+### pop
+
+pop(): SegmentButtonItemOptions | undefined
+
+移除数组末尾最后一个元素，返回被移除的元素。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**返回值：**
+
+说明
+
+分段按钮组件仅支持2到5个按钮，SegmentButtonItemOptionsArray只保存2到5个按钮信息，当超过按钮信息个数限制此方法无效。
+
+### shift
+
+shift(): SegmentButtonItemOptions | undefined
+
+移除数组开头第一个元素，返回被移除的元素。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**返回值：**
+
+说明
+
+分段按钮组件仅支持2到5个按钮，SegmentButtonItemOptionsArray只保存2到5个按钮信息，当超过按钮信息个数限制此方法无效。
+
+### unshift
+
+unshift(...items: SegmentButtonItemArray): number
+
+在数组开头添加新的元素，返回添加元素后数组的长度。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+**返回值：**
+
+说明
+
+分段按钮组件仅支持2到5个按钮，SegmentButtonItemOptionsArray只保存2到5个按钮信息，当超过按钮信息个数限制此方法无效。
+
+### splice
+
+splice(start: number, deleteCount: number, ...items: SegmentButtonItemOptions\[\]): SegmentButtonItemOptions\[\]
+
+在数组中，删除从start位置开始的deleteCount数量的元素，并插入items中的元素，返回一个包含了被删除的元素的数组。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+**返回值：**
+
+说明
+
+分段按钮组件仅支持2到5个按钮，SegmentButtonItemOptionsArray只保存2到5个按钮信息，当超过按钮信息个数限制此方法无效。
+
+### create
+
+static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
+
+创建一个SegmentButtonItemOptionsArray对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+**返回值：**
+
+TabSegmentButtonOptions
+-----------------------
+
+页签类分段按钮选项。继承自[TabSegmentButtonConstructionOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5#tabsegmentbuttonconstructionoptions)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+属性
+
+类型
+
+描述
+
+type
+
+"tab"
+
+类型为页签类分段按钮。
+
+CapsuleSegmentButtonOptions
+---------------------------
+
+单选类/多选类分段按钮选项。继承自[CapsuleSegmentButtonConstructionOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5#capsulesegmentbuttonconstructionoptions)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+属性
+
+类型
+
+描述
+
+type
+
+"capsule"
+
+类型为单选类/多选类分段按钮。
+
+SegmentButtonTextItem
+---------------------
+
+仅文本按钮信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+SegmentButtonIconItem
+---------------------
+
+仅图标按钮信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+说明
+
+未选中态图标icon与选中态图标selectedIcon都需要被设置，单独设置不生效。
+
+SegmentButtonIconTextItem
+-------------------------
+
+图标+文本按钮信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+说明
+
+未选中态图标icon与选中态图标selectedIcon都需要被设置，单独设置不生效。
+
+SegmentButtonItemOptions
+------------------------
+
+分段按钮中按钮的选项。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**属性：**
+
+### constructor
+
+constructor(options: SegmentButtonItemOptionsConstructorOptions)
+
+构造函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+SegmentButtonItemOptionsConstructorOptions
+------------------------------------------
+
+SegmentButtonItemOptions的构造参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+示例
+--
+
+### 示例1
+
+2.  import {
+3.    ItemRestriction,
+4.    SegmentButton,
+5.    SegmentButtonItemTuple,
+6.    SegmentButtonOptions,
+7.    SegmentButtonTextItem
+8.  } from '@kit.ArkUI';
+
+10.  @Entry
+11.  @Component
+12.  struct Index {
+13.    @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
+14.      buttons: \[{ text: '页签按钮1' }, { text: '页签按钮2' }, {
+15.        text: '页签按钮3'
+16.      }\] as ItemRestriction<SegmentButtonTextItem\>,
+17.      backgroundBlurStyle: BlurStyle.BACKGROUND\_THICK
+18.    })
+19.    @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+20.      buttons: \[{ text: '单选按钮1' }, { text: '单选按钮2' }, { text: '单选按钮3' }\] as SegmentButtonItemTuple,
+21.      multiply: false,
+22.      backgroundBlurStyle: BlurStyle.BACKGROUND\_THICK
+23.    })
+24.    @State multiplySelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+25.      buttons: \[{ text: '多选按钮1' }, { text: '多选按钮2' }, { text: '多选按钮3' }\] as SegmentButtonItemTuple,
+26.      multiply: true
+27.    })
+28.    @State iconCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+29.      buttons: \[
+30.        { icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+31.        { icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+32.        { icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+33.        { icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') }
+34.      \] as SegmentButtonItemTuple,
+35.      multiply: false,
+36.      backgroundBlurStyle: BlurStyle.BACKGROUND\_THICK
+37.    })
+38.    @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+39.      buttons: \[
+40.        { text: '图标1', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+41.        { text: '图标2', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+42.        { text: '图标3', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+43.        { text: '图标4', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+44.        { text: '图标5', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') }
+45.      \] as SegmentButtonItemTuple,
+46.      multiply: true
+47.    })
+48.    @State tabSelectedIndexes: number\[\] = \[1\]
+49.    @State singleSelectCapsuleSelectedIndexes: number\[\] = \[0\]
+50.    @State multiplySelectCapsuleSelectedIndexes: number\[\] = \[0, 1\]
+51.    @State singleSelectIconCapsuleSelectedIndexes: number\[\] = \[3\]
+52.    @State multiplySelectIconTextCapsuleSelectedIndexes: number\[\] = \[1, 2\]
+
+54.    build() {
+55.      Row() {
+56.        Column() {
+57.          Column({ space: 25 }) {
+58.            SegmentButton({ options: this.tabOptions,
+59.              selectedIndexes: $tabSelectedIndexes })
+60.            SegmentButton({ options: this.singleSelectCapsuleOptions,
+61.              selectedIndexes: $singleSelectCapsuleSelectedIndexes })
+62.            SegmentButton({
+63.              options: this.multiplySelectCapsuleOptions,
+64.              selectedIndexes: $multiplySelectCapsuleSelectedIndexes })
+65.            SegmentButton({ options: this.iconCapsuleOptions,
+66.              selectedIndexes: $singleSelectIconCapsuleSelectedIndexes })
+67.            SegmentButton({ options: this.iconTextCapsuleOptions,
+68.              selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes })
+69.          }.width('90%')
+70.        }.width('100%')
+71.      }.height('100%')
+72.    }
+73.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114431.99653564463276513109177216459152:50001231000000:2800:6AAAAE6BE15FEAB6EA9CA90018787564EDB82C11352F49BE4D4A1469971E6E45.png?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+2.  import {
+3.    ItemRestriction,
+4.    SegmentButton,
+5.    SegmentButtonItemTuple,
+6.    SegmentButtonOptions,
+7.    SegmentButtonTextItem
+8.  } from '@kit.ArkUI';
+
+10.  @Entry
+11.  @Component
+12.  struct Index {
+13.    @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
+14.      buttons: \[{ text: '页签按钮1' }, { text: '页签按钮2' }, {
+15.        text: '页签按钮3'
+16.      }\] as ItemRestriction<SegmentButtonTextItem\>,
+17.      backgroundColor: Color.Green,
+18.      selectedBackgroundColor: Color.Orange,
+19.      textPadding: { top: 10, right: 10, bottom: 10, left: 10 },
+20.    })
+21.    @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+22.      buttons: \[{ text: '单选按钮1' }, { text: '单选按钮2' }, { text: '单选按钮3' }\] as SegmentButtonItemTuple,
+23.      multiply: false,
+24.      fontColor: Color.Black,
+25.      selectedFontColor: Color.Yellow,
+26.      backgroundBlurStyle: BlurStyle.BACKGROUND\_THICK
+27.    })
+28.    @State multiplySelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+29.      buttons: \[{ text: '多选按钮1' }, { text: '多选按钮2' }, { text: '多选按钮3' }\] as SegmentButtonItemTuple,
+30.      multiply: true,
+31.      fontSize: 18,
+32.      selectedFontSize: 18,
+33.      fontWeight: FontWeight.Bolder,
+34.      selectedFontWeight: FontWeight.Lighter,
+35.    })
+36.    @State iconCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+37.      buttons: \[
+38.        { icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+39.        { icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+40.        { icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+41.        { icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') }
+42.      \] as SegmentButtonItemTuple,
+43.      multiply: false,
+44.      imageSize: { width: 40, height: 40 },
+45.      buttonPadding: { top: 6, right: 10, bottom: 6, left: 10 },
+46.      backgroundBlurStyle: BlurStyle.BACKGROUND\_THICK
+47.    })
+48.    @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+49.      buttons: \[
+50.        { text: '图标1', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+51.        { text: '图标2', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+52.        { text: '图标3', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+53.        { text: '图标4', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+54.        { text: '图标5', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') }
+55.      \] as SegmentButtonItemTuple,
+56.      multiply: true,
+57.      imageSize: { width: 10, height: 10 },
+58.    })
+59.    @State tabSelectedIndexes: number\[\] = \[0\]
+60.    @State singleSelectCapsuleSelectedIndexes: number\[\] = \[0\]
+61.    @State multiplySelectCapsuleSelectedIndexes: number\[\] = \[0, 1\]
+62.    @State singleSelectIconCapsuleSelectedIndexes: number\[\] = \[3\]
+63.    @State multiplySelectIconTextCapsuleSelectedIndexes: number\[\] = \[1, 2\]
+
+65.    build() {
+66.      Row() {
+67.        Column() {
+68.          Column({ space: 20 }) {
+69.            SegmentButton({ options: this.tabOptions, selectedIndexes: $tabSelectedIndexes })
+70.            SegmentButton({ options: this.singleSelectCapsuleOptions,
+71.              selectedIndexes: $singleSelectCapsuleSelectedIndexes })
+72.            SegmentButton({ options: this.multiplySelectCapsuleOptions,
+73.              selectedIndexes: $multiplySelectCapsuleSelectedIndexes })
+74.            SegmentButton({ options: this.iconCapsuleOptions,
+75.              selectedIndexes: $singleSelectIconCapsuleSelectedIndexes })
+76.            SegmentButton({ options: this.iconTextCapsuleOptions,
+77.              selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes })
+78.          }.width('90%')
+79.        }.width('100%')
+80.      }.height('100%')
+81.    }
+82.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114431.23446383772919284486784398904263:50001231000000:2800:FD57F2C9C9E2580A19B8965026D08D4D6FDB08F35C551A2EF9162E4F5869AD64.png?needInitFileName=true?needInitFileName=true)
+
+### 示例3
+
+1.  import {
+2.    SegmentButton,
+3.    SegmentButtonOptions,
+4.    SegmentButtonItemOptionsArray,
+5.    SegmentButtonItemTuple,
+6.    SegmentButtonItemOptions
+7.  } from '@kit.ArkUI';
+
+9.  @Entry
+10.  @Component
+11.  struct Index {
+12.    @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+13.      buttons: \[{ text: '1' }, { text: '2' }, { text: '3' },
+14.        { text: '4' }, { text: '5' }\] as SegmentButtonItemTuple,
+15.      multiply: false,
+16.      backgroundBlurStyle: BlurStyle.BACKGROUND\_THICK
+17.    })
+18.    @State capsuleSelectedIndexes: number\[\] = \[0\]
+
+20.    build() {
+21.      Row() {
+22.        Column() {
+23.          Column({ space: 10 }) {
+24.            SegmentButton({ options: this.singleSelectCapsuleOptions,
+25.              selectedIndexes: $capsuleSelectedIndexes })
+26.            Button("删除第一个按钮")
+27.              .onClick(() =\> {
+28.                this.singleSelectCapsuleOptions.buttons.shift()
+29.              })
+30.            Button("删除最后一个按钮")
+31.              .onClick(() =\> {
+32.                this.singleSelectCapsuleOptions.buttons.pop()
+33.              })
+34.            Button("末尾增加一个按钮push")
+35.              .onClick(() =\> {
+36.                this.singleSelectCapsuleOptions.buttons.push({ text: 'push' })
+37.              })
+38.            Button("开头增加一个按钮unshift")
+39.              .onClick(() =\> {
+40.                this.singleSelectCapsuleOptions.buttons.unshift(({ text: 'unshift' }))
+41.              })
+42.            Button("将按钮2、3替换为splice1、splice2")
+43.              .onClick(() =\> {
+44.                this.singleSelectCapsuleOptions.buttons.splice(1, 2, new SegmentButtonItemOptions({
+45.                  text: 'splice1'
+46.                }), new SegmentButtonItemOptions({ text: 'splice2' }))
+47.              })
+48.            Button("更改所有按钮文字")
+49.              .onClick(() =\> {
+50.                this.singleSelectCapsuleOptions.buttons =
+51.                SegmentButtonItemOptionsArray.create(\[{ text: 'a' }, { text: 'b' },
+52.                  { text: 'c' }, { text: 'd' }, { text: 'e' }\])
+53.              })
+54.          }.width('90%')
+55.        }.width('100%')
+56.      }.height('100%')
+57.    }
+58.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114431.51142095559664143412804172069088:50001231000000:2800:E0924F0368542282490FD685D7746CE92E21E981AE88DD7B8C0C4A881F010CF8.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例4
+
+SegmentButton布局镜像展示
+
+2.  import { LengthMetrics, SegmentButton, SegmentButtonOptions } from '@kit.ArkUI'
+
+5.  @Entry
+6.  @Component
+7.  struct Index {
+8.    @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
+9.      buttons: \[{ text: '页签按钮1' }, { text: '页签按钮2' }, {
+10.        text: '页签按钮3'
+11.      }\],
+12.      direction: Direction.Rtl,
+13.      backgroundColor: Color.Green,
+14.      selectedBackgroundColor: Color.Orange,
+15.      localizedTextPadding: {
+16.        end: LengthMetrics.vp(10),
+17.        start: LengthMetrics.vp(10)
+18.      },
+19.    })
+20.    @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+21.      buttons: \[{ text: '单选按钮1' }, { text: '单选按钮2' }, { text: '单选按钮3' }\],
+22.      multiply: false,
+23.      direction: Direction.Rtl,
+24.      fontColor: Color.Black,
+25.      selectedFontColor: Color.Yellow,
+26.      backgroundBlurStyle: BlurStyle.BACKGROUND\_THICK
+27.    })
+28.    @State multiplySelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+29.      buttons: \[{ text: '多选按钮1' }, { text: '多选按钮2' }, { text: '多选按钮3' }\],
+30.      multiply: true,
+31.      direction: Direction.Rtl,
+32.      fontSize: 18,
+33.      selectedFontSize: 18,
+34.      fontWeight: FontWeight.Bolder,
+35.      selectedFontWeight: FontWeight.Lighter,
+36.    })
+37.    @State iconCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+38.      buttons: \[
+39.        { icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+40.        { icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+41.        { icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+42.        { icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+43.        { icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') }
+44.      \],
+45.      multiply: false,
+46.      direction: Direction.Rtl,
+47.      imageSize: { width: 40, height: 40 },
+48.      localizedButtonPadding: {
+49.        end: LengthMetrics.vp(10),
+50.        start: LengthMetrics.vp(10)
+51.      },
+52.      backgroundBlurStyle: BlurStyle.BACKGROUND\_THICK
+53.    })
+54.    @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+55.      buttons: \[
+56.        { text: '图标1', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+57.        { text: '图标2', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+58.        { text: '图标3', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+59.        { text: '图标4', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') },
+60.        { text: '图标5', icon: $r('sys.media.ohos\_ic\_public\_email'), selectedIcon: $r('sys.media.ohos\_ic\_public\_clock') }
+61.      \],
+62.      multiply: true,
+63.      direction: Direction.Rtl,
+64.      imageSize: { width: 10, height: 10 },
+65.    })
+66.    @State tabSelectedIndexes: number\[\] = \[0\]
+67.    @State singleSelectCapsuleSelectedIndexes: number\[\] = \[0\]
+68.    @State multiplySelectCapsuleSelectedIndexes: number\[\] = \[0, 1\]
+69.    @State singleSelectIconCapsuleSelectedIndexes: number\[\] = \[3\]
+70.    @State multiplySelectIconTextCapsuleSelectedIndexes: number\[\] = \[1, 2\]
+
+72.    build() {
+73.      Row() {
+74.        Column() {
+75.          Column({ space: 20 }) {
+76.            SegmentButton({ options: this.tabOptions, selectedIndexes: $tabSelectedIndexes })
+77.            SegmentButton({
+78.              options: this.singleSelectCapsuleOptions,
+79.              selectedIndexes: $singleSelectCapsuleSelectedIndexes
+80.            })
+81.            SegmentButton({
+82.              options: this.multiplySelectCapsuleOptions,
+83.              selectedIndexes: $multiplySelectCapsuleSelectedIndexes
+84.            })
+85.            SegmentButton({
+86.              options: this.iconCapsuleOptions,
+87.              selectedIndexes: $singleSelectIconCapsuleSelectedIndexes
+88.            })
+89.            SegmentButton({
+90.              options: this.iconTextCapsuleOptions,
+91.              selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes
+92.            })
+93.          }.width('90%')
+94.        }.width('100%')
+95.      }.height('100%')
+96.    }
+97.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114431.23495832250553723459814551472800:50001231000000:2800:79393B2CEF5D96D794D2246612C19E420A224DC9C9E2754C303AEE40F6B89B50.png?needInitFileName=true?needInitFileName=true)

@@ -1,0 +1,335 @@
+Title: Marquee-信息展示-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-marquee-V5
+
+Markdown Content:
+跑马灯组件，用于滚动展示一段单行文本。仅当文本内容宽度超过跑马灯组件宽度时滚动，不超过时不滚动。
+
+说明
+
+该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+为了不影响滚动帧率，建议在滚动类组件中Marquee的个数不超过4个，或者使用[Text](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-text-V5)组件的[TextOverflow.MARQUEE](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#textoverflow)替代。
+
+接口
+--
+
+Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boolean, src: string })
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+{ start: boolean, step?: number, loop?: number, fromStart?: boolean, src: string }
+
+是
+
+配置跑马灯组件的参数。
+
+\- start：控制跑马灯是否进入播放状态。
+
+**说明：**
+
+有限的滚动次数播放完毕后，不可以通过改变start重置滚动次数重新开始播放。
+
+\- step：滚动动画文本滚动步长，当step大于Marquee的文本宽度时，取默认值。
+
+默认值：6，单位vp
+
+\- loop：设置重复滚动的次数，小于等于零时无限循环。
+
+默认值：-1
+
+**说明：**
+
+ArkTS卡片上该参数设置任意值都仅在可见时滚动一次。
+
+\- fromStart：设置文本从头开始滚动或反向滚动。
+
+默认值：true
+
+\- src：需要滚动的文本。
+
+### fontColor
+
+fontColor(value: ResourceColor)
+
+设置字体颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### fontSize
+
+fontSize(value: number | string | Resource)
+
+设置字体大小。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | number | string
+
+是
+
+字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。
+
+### fontWeight
+
+fontWeight(value: number | FontWeight | string)
+
+设置文本的字体粗细，设置过大可能会在不同字体下有截断。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[FontWeight](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontweight) | number | string
+
+是
+
+文本的字体粗细，number类型取值\[100, 900\]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。
+
+默认值：FontWeight.Normal
+
+### fontFamily
+
+fontFamily(value: string | Resource)
+
+设置字体列表。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | string
+
+是
+
+字体列表。默认字体'HarmonyOS Sans'。
+
+应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-font-V5)。
+
+卡片当前仅支持'HarmonyOS Sans'字体。
+
+### allowScale
+
+allowScale(value: boolean)
+
+设置是否允许文本缩放。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+是否允许文本缩放。
+
+默认值：false
+
+**说明：**
+
+仅当fontSize为fp单位时生效。
+
+### marqueeUpdateStrategy12+
+
+marqueeUpdateStrategy(value: MarqueeUpdateStrategy)
+
+跑马灯组件属性更新后，跑马灯的滚动策略。(当跑马灯为播放状态，且文本内容宽度超过跑马灯组件宽度时，该属性生效。)
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+事件
+--
+
+### onStart
+
+onStart(event: () =\> void)
+
+当滚动的文本内容变化或者开始滚动时触发回调。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onBounce
+
+onBounce(event: () =\> void)
+
+完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onFinish
+
+onFinish(event: () =\> void)
+
+滚动全部循环次数完成时触发回调。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+示例
+--
+
+2.  @Entry
+3.  @Component
+4.  struct MarqueeExample {
+5.    @State start: boolean = false
+6.    @State src: string = ''
+7.    @State marqueeText: string = 'Running Marquee'
+8.    private fromStart: boolean = true
+9.    private step: number = 10
+10.    private loop: number = Number.POSITIVE\_INFINITY
+11.    controller: TextClockController = new TextClockController()
+12.    convert2time(value: number): string{
+13.      let date = new Date(Number(value+'000'));
+14.      let hours = date.getHours().toString().padStart(2, '0');
+15.      let minutes = date.getMinutes().toString().padStart(2, '0');
+16.      let seconds = date.getSeconds().toString().padStart(2, '0');
+17.      return hours+ ":" + minutes + ":" + seconds;
+18.    }
+
+20.    build() {
+21.      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+22.        Marquee({
+23.          start: this.start,
+24.          step: this.step,
+25.          loop: this.loop,
+26.          fromStart: this.fromStart,
+27.          src: this.marqueeText + this.src
+28.        })
+29.          .marqueeUpdateStrategy(MarqueeUpdateStrategy.PRESERVE\_POSITION)
+30.          .width(300)
+31.          .height(80)
+32.          .fontColor('#FFFFFF')
+33.          .fontSize(48)
+34.          .fontWeight(700)
+35.          .backgroundColor('#182431')
+36.          .margin({ bottom: 40 })
+37.          .onStart(() =\> {
+38.            console.info('Marquee animation complete onStart')
+39.          })
+40.          .onBounce(() =\> {
+41.            console.info('Marquee animation complete onBounce')
+42.          })
+43.          .onFinish(() =\> {
+44.            console.info('Marquee animation complete onFinish')
+45.          })
+46.        Button('Start')
+47.          .onClick(() =\> {
+48.            this.start = true
+
+50.            this.controller.start()
+51.          })
+52.          .width(120)
+53.          .height(40)
+54.          .fontSize(16)
+55.          .fontWeight(500)
+56.          .backgroundColor('#007DFF')
+57.        TextClock({ timeZoneOffset: -8, controller: this.controller })
+58.          .format('hms')
+59.          .onDateChange((value: number) =\> {
+60.            this.src = this.convert2time(value);
+61.          })
+62.          .margin(20)
+63.          .fontSize(30)
+64.      }
+65.      .width('100%')
+66.      .height('100%')
+67.    }
+68.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114454.91567881419102781329108512081239:50001231000000:2800:8D629F1AFA2356C632138E55FDF5339492042C0AA95FCD71CE4498175A5B2420.gif?needInitFileName=true?needInitFileName=true)

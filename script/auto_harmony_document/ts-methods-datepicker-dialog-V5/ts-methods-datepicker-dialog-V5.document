@@ -1,0 +1,791 @@
+Title: 日期滑动选择器弹窗 (DatePickerDialog)-全局UI方法-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-datepicker-dialog-V5
+
+Markdown Content:
+日期滑动选择器弹窗 (DatePickerDialog)-全局UI方法-ArkTS组件-ArkUI（方舟UI框架）-应用框架 - 华为HarmonyOS开发者
+===============
+
+简体中文
+
+*   简体中文
+*   Русский
+*   English
+*   Español (América Latina)
+*   Português (Brasil)
+*   Français (Europe)
+*   Deutsch
+*   日本語
+*   한국어
+
+[App](https://developer.huawei.com/consumer/cn/huawei-app/)
+
+[](https://developer.huawei.com/consumer/cn/)
+
+*   探索
+*   设计
+*   开发
+*   分发
+*   推广与变现
+*   生态合作
+*   支持
+
+*   更多
+
+*   [探索](https://developer.huawei.com/consumer/cn/discover/)
+    
+*   [设计](https://developer.huawei.com/consumer/cn/design/)
+    
+*   [开发](https://developer.huawei.com/consumer/cn/develop/)
+    
+*   [分发](https://developer.huawei.com/consumer/cn/distribute/)
+    
+*   更多
+    *   [推广与变现](https://developer.huawei.com/consumer/cn/promote/)
+        
+    *   [生态合作](https://developer.huawei.com/consumer/cn/cooperate/)
+        
+    *   [支持](https://developer.huawei.com/consumer/cn/support/)
+        
+
+搜索
+
+热门搜索 _换一换_
+
+*   HarmonyOS NEXT
+*   HarmonyOS应用开发
+*   仓颉
+*   DevEco Studio
+*   开发者能力认证
+*   模拟器
+*   Navigation
+*   List
+*   Web
+*   TextInput
+*   Image
+*   AppGallery Connect
+
+[文档](https://developer.huawei.com/consumer/cn/doc/)[管理中心](https://developer.huawei.com/consumer/cn/console)
+
+HarmonyOS NEXT
+
+Developer Beta3
+
+API参考
+
+*   [版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/releasenotes-baseline-V5?istab=1&catalogVersion=V5)
+*   [指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/application-dev-guide-V5?istab=1&catalogVersion=V5)
+*   [API参考](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/development-intro-api-V5?istab=1&catalogVersion=V5)
+*   [最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-develop-once-deploy-everywhere-V5?istab=1&catalogVersion=V5)
+*   [FAQ](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-development-V5?istab=1&catalogVersion=V5)
+*   [变更预告](https://developer.huawei.com/consumer/cn/doc/harmonyos-roadmap-V5/changelogs-in-31-V5?istab=1&catalogVersion=V5)
+*   更多
+
+筛选元服务API集
+
+API参考概述
+
+应用框架
+
+[Ability Kit（程序框架服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ability-api-V5)
+
+[Accessibility Kit（无障碍开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/accessibility-api-V5)
+
+[ArkData（方舟数据管理）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkdata-api-V5)
+
+[ArkTS（方舟编程语言）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkts-api-V5)
+
+[ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5)
+
+[ArkTS API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-V5)
+
+[ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5)
+
+[组件导读](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-components-summary-V5)
+
+[组件通用信息](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_2_u7ec4_u4ef6_u901a_u7528_u4fe1_u606f-V5)
+
+[基础组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_3_u57fa_u7840_u7ec4_u4ef6-V5)
+
+[容器组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_4_u5bb9_u5668_u7ec4_u4ef6-V5)
+
+[媒体组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_5_u5a92_u4f53_u7ec4_u4ef6-V5)
+
+[绘制组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_6_u7ed8_u5236_u7ec4_u4ef6-V5)
+
+[画布组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_7_u753b_u5e03_u7ec4_u4ef6-V5)
+
+[渲染组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_8_u6e32_u67d3_u7ec4_u4ef6-V5)
+
+[高级组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_9_u9ad8_u7ea7_u7ec4_u4ef6-V5)
+
+[安全控件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_10_u5b89_u5168_u63a7_u4ef6-V5)
+
+[动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_11_u52a8_u753b-V5)
+
+[全局UI方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_12_u5168_u5c40ui_u65b9_u6cd5-V5)
+
+[警告弹窗 (AlertDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5)
+
+[列表选择弹窗 (ActionSheet)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-action-sheet-V5)
+
+[自定义弹窗 (CustomDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-custom-dialog-box-V5)
+
+[日历选择器弹窗 (CalendarPickerDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-calendarpicker-dialog-V5)
+
+[日期滑动选择器弹窗 (DatePickerDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-datepicker-dialog-V5)
+
+[时间滑动选择器弹窗 (TimePickerDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-timepicker-dialog-V5)
+
+[文本滑动选择器弹窗 (TextPickerDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-textpicker-dialog-V5)
+
+[菜单](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-menu-V5)
+
+[自定义组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_13_u81ea_u5b9a_u4e49_u7ec4_u4ef6-V5)
+
+[类型定义](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_14_u7c7b_u578b_u5b9a_u4e49-V5)
+
+[应用级变量的状态管理](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-state-management-V5)
+
+[渲染控制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_16_u6e32_u67d3_u63a7_u5236-V5)
+
+[像素单位](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-pixel-units-V5)
+
+[枚举说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5)
+
+[设置事件回调](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-uicommonevent-V5)
+
+[属性字符串](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-styled-string-V5)
+
+[已停止维护的组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/21_u5df2_u505c_u6b62_u7ef4_u62a4_u7684_u7ec4_u4ef6-V5)
+
+[已停止维护的接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/22_u5df2_u505c_u6b62_u7ef4_u62a4_u7684_u63a5_u53e3-V5)
+
+[JS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-js-comp-V5)
+
+[C API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-c-V5)
+
+[错误码](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-errcode-V5)
+
+[ArkWeb（方舟Web）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkweb-api-V5)
+
+[Background Tasks Kit（后台任务开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/background-tasks-api-V5)
+
+[Core File Kit（文件基础服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/core-file-api-V5)
+
+[Form Kit（卡片开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/form-api-V5)
+
+[IME Kit（输入法开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ime-api-V5)
+
+[IPC Kit（进程间通信服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ipc-api-V5)
+
+[Localization Kit（本地化开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/localization-api-V5)
+
+[UI Design Kit（UI设计套件）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ui-design-api-V5)
+
+系统
+
+媒体
+
+图形
+
+应用服务
+
+AI
+
+公共基础能力
+
+标准库
+
+您当前正在浏览HarmonyOS NEXT Developer Beta3版本的配套文档，该版本API能力级别为API 12 Beta3，详细版本配套关系请参考[版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/overview-db3-V5)。
+
+API参考 应用框架 [ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5) [ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5) [全局UI方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_12_u5168_u5c40ui_u65b9_u6cd5-V5) 日期滑动选择器弹窗 (DatePickerDialog)
+
+日期滑动选择器弹窗 (DatePickerDialog)
+============================
+
+更新时间: 2024-08-21 06:17
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+本文导读
+
+[DatePickerDialog.show](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-datepicker-dialog-V5#datepickerdialogshow)
+
+[DatePickerDialogOptions对象说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-datepicker-dialog-V5#datepickerdialogoptions%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+[PickerDialogButtonStyle12+类型说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-datepicker-dialog-V5#pickerdialogbuttonstyle12%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E)
+
+[示例](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-datepicker-dialog-V5#%E7%A4%BA%E4%BE%8B)
+
+[示例1](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-datepicker-dialog-V5#%E7%A4%BA%E4%BE%8B1)
+
+[示例2](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-datepicker-dialog-V5#%E7%A4%BA%E4%BE%8B2)
+
+展开章节
+
+根据指定的日期范围创建日期滑动选择器，展示在弹窗上。
+
+说明
+
+该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-uicontext-V5#uicontext)说明。
+
+从API version 10开始，可以通过使用[UIContext](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-uicontext-V5#uicontext)中的[showDatePickerDialog](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-uicontext-V5#showdatepickerdialog)来明确UI的执行上下文。
+
+DatePickerDialog.show
+---------------------
+
+static show(options?: DatePickerDialogOptions)
+
+定义日期滑动选择器弹窗并弹出。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| :-- | :-- | :-- | :-- |
+| options | [DatePickerDialogOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-datepicker-dialog-V5#datepickerdialogoptions%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | 否 | 配置日期选择器弹窗的参数。 |
+
+DatePickerDialogOptions对象说明
+---------------------------
+
+继承自[DatePickerOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-datepicker-V5#datepickeroptions%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)。
+
+| 名称 | 类型 | 必填 | 说明 |
+| :-- | :-- | :-- | :-- |
+| lunar | boolean | 否 | 日期是否显示为农历，true表示显示农历，false表示不显示农历。
+默认值：false
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| showTime10+ | boolean | 否 | 是否展示时间项，true表示显示时间，false表示不显示时间。
+
+默认值：false
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| useMilitaryTime10+ | boolean | 否 | 展示时间是否为24小时制，true表示显示24小时制，false表示显示12小时制。
+
+默认值：false
+
+**说明：**
+
+当展示时间为12小时制时，上下午与小时无联动关系。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| lunarSwitch10+ | boolean | 否 | 是否展示切换农历的开关，true表示展示开关，false表示不展示开关。
+
+默认值：false
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| disappearTextStyle10+ | [PickerTextStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-datepicker-V5#pickertextstyle10%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。
+
+默认值：
+
+{
+
+color: '#ff182431',
+
+font: {
+
+size: '14fp',
+
+weight: FontWeight.Regular
+
+}
+
+}
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| textStyle10+ | [PickerTextStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-datepicker-V5#pickertextstyle10%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。
+
+默认值：
+
+{
+
+color: '#ff182431',
+
+font: {
+
+size: '16fp',
+
+weight: FontWeight.Regular
+
+}
+
+}
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| selectedTextStyle10+ | [PickerTextStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-datepicker-V5#pickertextstyle10%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E) | 否 | 设置选中项的文本颜色、字号、字体粗细。
+
+默认值：
+
+{
+
+color: '#ff007dff',
+
+font: {
+
+size: '20vp',
+
+weight: FontWeight.Medium
+
+}
+
+}
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| acceptButtonStyle12+ | [PickerDialogButtonStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-datepicker-dialog-V5#pickerdialogbuttonstyle12%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E) | 否 | 设置确认按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。
+
+**说明：**
+
+acceptButtonStyle与cancelButtonStyle中最多只能有一个primary字段配置为true，二者primary字段均配置为true时均不生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| cancelButtonStyle12+ | [PickerDialogButtonStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-datepicker-dialog-V5#pickerdialogbuttonstyle12%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E) | 否 | 设置取消按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。
+
+**说明：**
+
+acceptButtonStyle与cancelButtonStyle中最多只能有一个primary字段配置为true，二者primary字段均配置为true时均不生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| alignment10+ | [DialogAlignment](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#dialogalignment%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 弹窗在竖直方向上的对齐方式。
+
+默认值：DialogAlignment.Default
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| offset10+ | [Offset](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#offset) | 否 | 弹窗相对alignment所在位置的偏移量。
+
+默认值：{ dx: 0 , dy: 0 }
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| maskRect10+ | [Rectangle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-alert-dialog-box-V5#rectangle8%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E) | 否 | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。
+
+默认值：{ x: 0, y: 0, width: '100%', height: '100%' }
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| onAccept(deprecated) | (value: [DatePickerResult](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-datepicker-V5#datepickerresult%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)) => void | 否 | 点击弹窗中的“确定”按钮时触发该回调。
+
+**说明：**
+
+从API version 8 开始支持，从 API version 10 开始废弃，建议使用onDateAccept。
+
+ |
+| onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| onChange(deprecated) | (value: [DatePickerResult](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-datepicker-V5#datepickerresult%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)) => void | 否 | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。
+
+**说明：**
+
+从API version 8 开始支持，从 API version 10 开始废弃，建议使用onDateChange。
+
+ |
+| onDateAccept10+ | (value: Date) => void | 否 | 点击弹窗中的“确定”按钮时触发该回调。
+
+**说明：**
+
+当showTime设置为true时，回调接口返回值value中时和分为选择器选择的时和分。否则，返回值value中时和分为系统时间的时和分。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| onDateChange10+ | (value: Date) => void | 否 | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。
+
+**说明：**
+
+当showTime设置为true时，回调接口返回值value中时和分为选择器选择的时和分。否则，返回值value中时和分为系统时间的时和分。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+ |
+| backgroundColor11+ | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 弹窗背板颜色。
+
+默认值：Color.Transparent
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| backgroundBlurStyle11+ | [BlurStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-background-V5#blurstyle9) | 否 | 弹窗背板模糊材质。
+
+默认值：BlurStyle.COMPONENT\_ULTRA\_THICK
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| onDidAppear12+ | () => void | 否 | 弹窗弹出时的事件回调。
+
+**说明：**
+
+1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。
+
+2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。
+
+3.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。
+
+4\. 当弹窗入场动效未完成时关闭弹窗，该回调不会触发。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| onDidDisappear12+ | () => void | 否 | 弹窗消失时的事件回调。
+
+**说明：**
+
+1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| onWillAppear12+ | () => void | 否 | 弹窗显示动效前的事件回调。
+
+**说明：**
+
+1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。
+
+2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| onWillDisappear12+ | () => void | 否 | 弹窗退出动效前的事件回调。
+
+**说明：**
+
+1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。
+
+2.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| shadow12+ | [ShadowOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-image-effect-V5#shadowoptions%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | [ShadowStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-image-effect-V5#shadowstyle10%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 设置弹窗背板的阴影。
+
+当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER\_FLOATING\_MD，失焦为ShadowStyle.OUTER\_FLOATING\_SM
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+| dateTimeOptions12+ | [DateTimeOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-intl-V5#datetimeoptions) | 否 | 设置时分是否显示前置0，目前只支持设置hour和minute参数。
+
+默认值：
+
+hour: 24小时制默认为"2-digit"，即有前置0；12小时制默认为"numeric"，即没有前置0。
+
+minute: 默认为"2-digit"，即有前置0。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ |
+
+PickerDialogButtonStyle12+类型说明
+------------------------------
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| :-- | :-- | :-- | :-- |
+| type | [ButtonType](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-button-V5#buttontype%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 按钮显示样式。 |
+| style | [ButtonStyleMode](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-button-V5#buttonstylemode11%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | 按钮的样式和重要程度。 |
+| role | [ButtonRole](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-button-V5#buttonrole12%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E) | 否 | Button组件的角色。 |
+| fontSize | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | 否 | 文本显示字号。 |
+| fontColor | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 文本显示颜色。 |
+| fontWeight | [FontWeight](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontweight) | number | string | 否 | 文本的字体粗细，number类型取值\[100, 900\]，取值间隔为100，取值越大，字体越粗 |
+| fontStyle | [FontStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontstyle) | 否 | 文本的字体样式。 |
+| fontFamily | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource) | string | 否 | 字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-font-V5)。 |
+| backgroundColor | [ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor) | 否 | 按钮背景色。 |
+| borderRadius | [Length](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#length) | [BorderRadiuses](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#borderradiuses9) | 否 | 圆角半径。 |
+| primary | boolean | 否 | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。 |
+
+**异常情形说明:**
+
+| 异常情形 | 对应结果 |
+| :-- | :-- |
+| 起始日期晚于结束日期，选中日期未设置 | 起始日期、结束日期和选中日期都为默认值 |
+| 起始日期晚于结束日期，选中日期早于起始日期默认值 | 起始日期、结束日期都为默认值，选中日期为起始日期默认值 |
+| 起始日期晚于结束日期，选中日期晚于结束日期默认值 | 起始日期、结束日期都为默认值，选中日期为结束日期默认值 |
+| 起始日期晚于结束日期，选中日期在起始日期与结束日期默认值范围内 | 起始日期、结束日期都为默认值，选中日期为设置的值 |
+| 选中日期早于起始日期 | 选中日期为起始日期 |
+| 选中日期晚于结束日期 | 选中日期为结束日期 |
+| 起始日期晚于当前系统日期，选中日期未设置 | 选中日期为起始日期 |
+| 结束日期早于当前系统日期，选中日期未设置 | 选中日期为结束日期 |
+| 日期格式不符合规范，如‘1999-13-32’ | 取默认值 |
+| 起始日期或结束日期早于系统有效范围 | 起始日期或结束日期取系统有效范围最早日期 |
+| 起始日期或结束日期晚于系统有效范围 | 起始日期或结束日期取系统有效范围最晚日期 |
+
+系统日期范围：1900-1-31 ~ 2100-12-31
+
+选中日期会在起始日期与结束日期异常处理完成后再进行异常情形判断处理
+
+示例
+--
+
+### 示例1
+
+DatePickerDialog基本使用
+
+已复制
+
+1.  // xxx.ets
+2.  @Entry
+3.  @Component
+4.  struct DatePickerDialogExample {
+5.    selectedDate: Date = new Date("2010-1-1")
+
+7.    build() {
+8.      Column() {
+9.        Button("DatePickerDialog")
+10.          .margin(20)
+11.          .onClick(() => {
+12.            DatePickerDialog.show({
+13.              start: new Date("2000-1-1"),
+14.              end: new Date("2100-12-31"),
+15.              selected: this.selectedDate,
+16.              showTime:true,
+17.              useMilitaryTime:false,
+18.              disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
+19.              textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
+20.              selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
+21.              onDateAccept: (value: Date) => {
+22.                // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
+23.                this.selectedDate = value
+24.                console.info("DatePickerDialog:onDateAccept()" + value.toString())
+25.              },
+26.              onCancel: () => {
+27.                console.info("DatePickerDialog:onCancel()")
+28.              },
+29.              onDateChange: (value: Date) => {
+30.                console.info("DatePickerDialog:onDateChange()" + value.toString())
+31.              },
+32.              onDidAppear: () => {
+33.                console.info("DatePickerDialog:onDidAppear()")
+34.              },
+35.              onDidDisappear: () => {
+36.                console.info("DatePickerDialog:onDidDisappear()")
+37.              },
+38.              onWillAppear: () => {
+39.                console.info("DatePickerDialog:onWillAppear()")
+40.              },
+41.              onWillDisappear: () => {
+42.                console.info("DatePickerDialog:onWillDisappear()")
+43.              }
+44.            })
+45.          })
+
+47.        Button("Lunar DatePickerDialog")
+48.          .margin(20)
+49.          .onClick(() => {
+50.            DatePickerDialog.show({
+51.              start: new Date("2000-1-1"),
+52.              end: new Date("2100-12-31"),
+53.              selected: this.selectedDate,
+54.              lunar: true,
+55.              disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
+56.              textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
+57.              selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
+58.              onDateAccept: (value: Date) => {
+59.                this.selectedDate = value
+60.                console.info("DatePickerDialog:onDateAccept()" + value.toString())
+61.              },
+62.              onCancel: () => {
+63.                console.info("DatePickerDialog:onCancel()")
+64.              },
+65.              onDateChange: (value: Date) => {
+66.                console.info("DatePickerDialog:onDateChange()" + value.toString())
+67.              },
+68.              onDidAppear: () => {
+69.                console.info("DatePickerDialog:onDidAppear()")
+70.              },
+71.              onDidDisappear: () => {
+72.                console.info("DatePickerDialog:onDidDisappear()")
+73.              },
+74.              onWillAppear: () => {
+75.                console.info("DatePickerDialog:onWillAppear()")
+76.              },
+77.              onWillDisappear: () => {
+78.                console.info("DatePickerDialog:onWillDisappear()")
+79.              }
+80.            })
+81.          })
+82.      }.width('100%')
+83.    }
+84.  }
+
+![Image 1](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122314.06141138232154316365319119176551:50001231000000:2800:26A98932272339AC5EC0EB2E76BB16D7941C64F26E7EEA4BA3B4CE7B31B7B4FE.gif?needInitFileName=true?needInitFileName=true)
+
+### 示例2
+
+按钮支持自定义样式
+
+已复制
+
+1.  // xxx.ets
+2.  @Entry
+3.  @Component
+4.  struct DatePickerDialogExample {
+5.    selectedDate: Date = new Date("2010-1-1")
+
+7.    build() {
+8.      Column() {
+9.        Button("DatePickerDialog")
+10.          .margin(20)
+11.          .onClick(() => {
+12.            DatePickerDialog.show({
+13.              start: new Date("2000-1-1"),
+14.              end: new Date("2100-12-31"),
+15.              selected: this.selectedDate,
+16.              showTime:true,
+17.              useMilitaryTime:false,
+18.              disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
+19.              textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
+20.              selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
+21.              acceptButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Red,
+22.                fontSize: '26fp', fontWeight: FontWeight.Bolder, fontStyle: FontStyle.Normal, fontFamily: 'sans-serif', backgroundColor:'#80834511',
+23.                borderRadius: 20 },
+24.              cancelButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Blue,
+25.                fontSize: '16fp', fontWeight: FontWeight.Normal, fontStyle: FontStyle.Italic, fontFamily: 'sans-serif', backgroundColor:'#50182431',
+26.                borderRadius: 10 },
+27.              onDateAccept: (value: Date) => {
+28.                // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
+29.                this.selectedDate = value
+30.                console.info("DatePickerDialog:onDateAccept()" + value.toString())
+31.              },
+32.              onCancel: () => {
+33.                console.info("DatePickerDialog:onCancel()")
+34.              },
+35.              onDateChange: (value: Date) => {
+36.                console.info("DatePickerDialog:onDateChange()" + value.toString())
+37.              },
+38.              onDidAppear: () => {
+39.                console.info("DatePickerDialog:onDidAppear()")
+40.              },
+41.              onDidDisappear: () => {
+42.                console.info("DatePickerDialog:onDidDisappear()")
+43.              },
+44.              onWillAppear: () => {
+45.                console.info("DatePickerDialog:onWillAppear()")
+46.              },
+47.              onWillDisappear: () => {
+48.                console.info("DatePickerDialog:onWillDisappear()")
+49.              }
+50.            })
+51.          })
+52.      }.width('100%')
+53.    }
+54.  }
+
+![Image 2](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240821122314.07564610216095197443574776770412:50001231000000:2800:1AC16B7F79C5C5C5CF467D6BF9F7E78997DF8D9FF5BD299DE1894E414102975A.png?needInitFileName=true?needInitFileName=true)
+
+说明
+
+如需完全自定义实现日期滑动选择器弹窗，可以通过先使用[自定义弹窗 (CustomDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-custom-dialog-box-V5)，然后使用[DatePicker组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-datepicker-V5)来实现。
+
+[日历选择器弹窗 (CalendarPickerDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-calendarpicker-dialog-V5 "日历选择器弹窗 (CalendarPickerDialog)")
+
+[时间滑动选择器弹窗 (TimePickerDialog)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-methods-timepicker-dialog-V5 "时间滑动选择器弹窗 (TimePickerDialog)")
+
+**以上内容对您是否有帮助？**
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+意见反馈
+
+更多帮助请到“[社区论坛](https://developer.huawei.com/consumer/cn/forum/)”，如需要其他帮助，请通过“[智能客服](https://developer.huawei.com/consumer/cn/customerService/#/bot-dev-top/faq-top/faq-talk-top)”提问。
+
+简体中文
+
+*   ![Image 3](https://developer.huawei.com/images/foot/icon-xinlang-normal.png)
+*   ![Image 4](https://developer.huawei.com/images/home/Bi-hover.png)
+*   ![Image 5](https://developer.huawei.com/images/foot/icon-weixin-normal.png)
+    
+    ![Image 6](https://developer.huawei.com/consumer/cn/doc/assets/images/head/hua_wei_kai_fa_zhe_lian_meng_fu_wu_wei_xin_er_wei_ma_fu_ben_0.jpg)
+    
+    微信公众号
+    
+*   ![Image 7](https://developer.huawei.com/images/foot/icon-app-normal.png)
+    
+    ![Image 8](https://developer.huawei.com/consumer/cn/doc/assets/images/head/APPerweima.png)
+    
+    下载APP
+    
+*   ![Image 9](https://developer.huawei.com/images/foot/icon-xinxi-normal.png)
+*   ![Image 10](https://developer.huawei.com/images/foot/ic_blog_hover.svg)
+
+华为开发者联盟 版权所有 ©2023-2024
+
+[使用条款](https://developer.huawei.com/consumer/cn/devservice/use)
+
+[关于华为开发者联盟与隐私的声明](https://developer.huawei.com/consumer/cn/devservice/term)
+
+[隐私政策](https://consumer.huawei.com/cn/legal/privacy-policy/)
+
+[cookies](https://consumer.huawei.com/cn/legal/cookie-policy/)
+
+[开源软件声明](https://developer.huawei.com/consumer/cn/opensource/)
+
+在 API参考 中进行搜索
+
+只在 应用框架 中搜索只搜索章节标题
+
+请输入您想要搜索的关键词
+
+*   智能客服
+    
+    您的每一次的提问，都能匹配最合适的答案
+    
+
+*   合作咨询
+    
+    我们的专家服务团队将竭诚为您提供专业的合作咨询服务
+    
+
+*   解决方案
+    
+    精准高效的一站式服务支持，助力开发者商业成功
+    
+
+*   快速入门
+    
+    面向开发者提供快速入门指南，轻松找到你想要的各类资源
+    
+
+文档内容搜索功能移到这里了
+
+好的，知道了

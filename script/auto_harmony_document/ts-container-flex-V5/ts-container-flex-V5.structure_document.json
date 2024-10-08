@@ -1,0 +1,84 @@
+{
+    "description": "以弹性方式布局子组件的容器组件。",
+    "interfaces": [
+        {
+            "description": "标准Flex布局容器。",
+            "params": {
+                "value": {
+                    "type": "FlexOptions",
+                    "required": false,
+                    "description": "Flex布局的配置选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "direction": {
+            "description": "子组件在Flex容器上排列的方向，即主轴的方向。",
+            "params": {
+                "value": {
+                    "type": "FlexDirection",
+                    "required": false,
+                    "description": "子组件排列方向。",
+                    "default": "FlexDirection.Row"
+                }
+            }
+        },
+        "wrap": {
+            "description": "Flex容器是单行/列还是多行/列排列。在多行布局时，通过交叉轴方向，确认新行堆叠方向。",
+            "params": {
+                "value": {
+                    "type": "FlexWrap",
+                    "required": false,
+                    "description": "容器排列方式。",
+                    "default": "FlexWrap.NoWrap"
+                }
+            }
+        },
+        "justifyContent": {
+            "description": "所有子组件在Flex容器主轴上的对齐格式。",
+            "params": {
+                "value": {
+                    "type": "FlexAlign",
+                    "required": false,
+                    "description": "主轴对齐格式。",
+                    "default": "FlexAlign.Start"
+                }
+            }
+        },
+        "alignItems": {
+            "description": "所有子组件在Flex容器交叉轴上的对齐格式。",
+            "params": {
+                "value": {
+                    "type": "ItemAlign",
+                    "required": false,
+                    "description": "交叉轴对齐格式。",
+                    "default": "ItemAlign.Start"
+                }
+            }
+        },
+        "alignContent": {
+            "description": "交叉轴中有额外的空间时，多行内容的对齐方式。仅在wrap为Wrap或WrapReverse下生效。",
+            "params": {
+                "value": {
+                    "type": "FlexAlign",
+                    "required": false,
+                    "description": "多行内容对齐方式。",
+                    "default": "FlexAlign.Start"
+                }
+            }
+        },
+        "space": {
+            "description": "所有子组件在Flex容器主轴或交叉轴的space。space为负数、百分比或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。可选值为大于等于0的数字，或者可以转换为数字的字符串。",
+            "params": {
+                "value": {
+                    "type": "FlexSpaceOptions",
+                    "required": false,
+                    "description": "主轴或交叉轴的space。",
+                    "default": "{main: LengthMetrics.px(0), cross: LengthMetrics.px(0)}"
+                }
+            }
+        }
+    },
+    "events": {}
+}

@@ -1,0 +1,334 @@
+{
+    "description": "图片组件，常用于在应用中显示图片。支持加载PixelMap、ResourceStr和DrawableDescriptor类型的数据源，支持png、jpg、jpeg、bmp、svg、webp、gif和heif类型的图片格式。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Image(src: PixelMap | ResourceStr | DrawableDescriptor)",
+            "params": {
+                "src": {
+                    "type": ["PixelMap", "ResourceStr", "DrawableDescriptor"],
+                    "required": true,
+                    "description": "图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-graphics-display-V5#%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90)。"
+                }
+            }
+        },
+        {
+            "description": "Image(src: PixelMap | ResourceStr | DrawableDescriptor | ImageContent)",
+            "params": {
+                "src": {
+                    "type": ["PixelMap", "ResourceStr", "DrawableDescriptor", "ImageContent"],
+                    "required": true,
+                    "description": "图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-graphics-display-V5#%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90)。"
+                }
+            }
+        },
+        {
+            "description": "Image(src: PixelMap | ResourceStr | DrawableDescriptor, imageAIOptions: ImageAIOptions)",
+            "params": {
+                "src": {
+                    "type": ["PixelMap", "ResourceStr", "DrawableDescriptor"],
+                    "required": true,
+                    "description": "图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-graphics-display-V5#%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90)。"
+                },
+                "imageAIOptions": {
+                    "type": "ImageAIOptions",
+                    "required": true,
+                    "description": "给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "alt": {
+            "description": "设置图片加载时显示的占位图。",
+            "params": {
+                "value": {
+                    "type": ["string", "Resource", "PixelMap"],
+                    "required": true,
+                    "description": "加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型）,支持PixelMap类型图片，不支持网络图片。"
+                }
+            }
+        },
+        "objectFit": {
+            "description": "设置图片的填充效果。",
+            "params": {
+                "value": {
+                    "type": "ImageFit",
+                    "required": true,
+                    "description": "图片的填充效果。",
+                    "default": "ImageFit.Cover"
+                }
+            }
+        },
+        "objectRepeat": {
+            "description": "设置图片的重复样式，从中心点向两边重复，剩余空间不足放下一张图片时会截断。svg类型图源不支持该属性。",
+            "params": {
+                "value": {
+                    "type": "ImageRepeat",
+                    "required": true,
+                    "description": "图片的重复样式。",
+                    "default": "ImageRepeat.NoRepeat"
+                }
+            }
+        },
+        "interpolation": {
+            "description": "设置图片的插值效果，即缓解图片在缩放时的锯齿问题。svg类型图源不支持该属性。",
+            "params": {
+                "value": {
+                    "type": "ImageInterpolation",
+                    "required": true,
+                    "description": "图片的插值效果。"
+                }
+            }
+        },
+        "renderMode": {
+            "description": "设置图片的渲染模式。svg类型图源不支持该属性。",
+            "params": {
+                "value": {
+                    "type": "ImageRenderMode",
+                    "required": true,
+                    "description": "图片的渲染模式为原色或黑白。",
+                    "default": "ImageRenderMode.Original"
+                }
+            }
+        },
+        "sourceSize": {
+            "description": "设置图片解码尺寸。仅在目标尺寸小于图源尺寸时生效。svg类型图源和PixelMap资源不支持该属性。",
+            "params": {
+                "value": {
+                    "type": {
+                        "width": "number",
+                        "height": "number"
+                    },
+                    "required": true,
+                    "description": "图片解码尺寸，降低图片的分辨率，常用于需要让图片显示尺寸比组件尺寸更小的场景。"
+                }
+            }
+        },
+        "matchTextDirection": {
+            "description": "设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "图片是否跟随系统语言方向。",
+                    "default": false
+                }
+            }
+        },
+        "fitOriginalSize": {
+            "description": "设置图片的显示尺寸是否跟随图源尺寸。图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "图片的显示尺寸是否跟随图源尺寸",
+                    "default": false
+                }
+            }
+        },
+        "fillColor": {
+            "description": "设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片的填充颜色。如需对png图片进行修改颜色，可以使用colorFilter。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "填充颜色。"
+                }
+            }
+        },
+        "autoResize": {
+            "description": "设置图片解码过程中是否对图源自动缩放。降采样解码时图片的部分信息丢失，因此可能会导致图片质量的下降（如：出现锯齿），这时可以选择把autoResize设为false，按原图尺寸解码，提升显示效果，但会增加内存占用。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "图片解码过程中是否对图源自动缩放。设置为true时，组件会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。",
+                    "default": false
+                }
+            }
+        },
+        "syncLoad": {
+            "description": "设置是否同步加载图片。建议加载尺寸较小的本地图片时将syncLoad设为true，因为耗时较短，在主线程上执行即可。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。",
+                    "default": false
+                }
+            }
+        },
+        "copyOption": {
+            "description": "设置图片是否可复制。当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。svg图片不支持复制。",
+            "params": {
+                "value": {
+                    "type": "CopyOptions",
+                    "required": true,
+                    "description": "图片是否可复制。",
+                    "default": "CopyOptions.None"
+                }
+            }
+        },
+        "colorFilter": {
+            "description": "为图像设置颜色滤镜效果。",
+            "params": {
+                "value": {
+                    "type": ["ColorFilter", "DrawingColorFilter"],
+                    "required": true,
+                    "description": "给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。"
+                }
+            }
+        },
+        "draggable": {
+            "description": "设置组件默认拖拽效果。不能和onDragStart事件同时使用。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "组件默认拖拽效果，设置为true时，组件可拖拽，绑定的长按手势不生效。",
+                    "default": true
+                }
+            }
+        },
+        "enableAnalyzer": {
+            "description": "设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。具体使用指导请参考[AI识图](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/vision-imageanalyzer-V5)",
+            "params": {
+                "enable": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "组件支持AI分析，设置为true时，组件可进行AI分析。",
+                    "default": false
+                }
+            }
+        },
+        "resizable": {
+            "description": "设置图像拉伸时可调整大小的图像选项。拉伸对拖拽缩略图以及占位图有效。",
+            "params": {
+                "value": {
+                    "type": "ResizableOptions",
+                    "required": true,
+                    "description": "图像拉伸时可调整大小的图像选项。"
+                }
+            }
+        },
+        "privacySensitive": {
+            "description": "设置是否支持卡片敏感隐私信息。",
+            "params": {
+                "supported": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否支持卡片敏感隐私信息。",
+                    "default": false
+                }
+            }
+        },
+        "dynamicRangeMode": {
+            "description": "设置期望展示的图像动态范围。",
+            "params": {
+                "value": {
+                    "type": "DynamicRangeMode",
+                    "required": true,
+                    "description": "期望展示的图像动态范围。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onComplete": {
+            "description": "图片数据加载成功和解码成功时均触发该回调，返回成功加载的图片尺寸。",
+            "params": {
+                "width": {
+                    "type": "number",
+                    "required": true,
+                    "description": "图片的宽。"
+                },
+                "height": {
+                    "type": "number",
+                    "required": true,
+                    "description": "图片的高。"
+                },
+                "componentWidth": {
+                    "type": "number",
+                    "required": true,
+                    "description": "组件的宽。"
+                },
+                "componentHeight": {
+                    "type": "number",
+                    "required": true,
+                    "description": "组件的高。"
+                },
+                "loadingStatus": {
+                    "type": "number",
+                    "required": true,
+                    "description": "图片加载成功的状态值。返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。"
+                },
+                "contentWidth": {
+                    "type": "number",
+                    "required": true,
+                    "description": "图片实际绘制的宽度。仅在loadingStatus返回1时有效。"
+                },
+                "contentHeight": {
+                    "type": "number",
+                    "required": true,
+                    "description": "图片实际绘制的高度。仅在loadingStatus返回1时有效。"
+                },
+                "contentOffsetX": {
+                    "type": "number",
+                    "required": true,
+                    "description": "实际绘制内容相对于组件自身的x轴偏移。仅在loadingStatus返回1时有效。"
+                },
+                "contentOffsetY": {
+                    "type": "number",
+                    "required": true,
+                    "description": "实际绘制内容相对于组件自身的y轴偏移。仅在loadingStatus返回1时有效。"
+                }
+            }
+        },
+        "onError": {
+            "description": "图片加载异常时触发该回调。",
+            "params": {
+                "componentWidth": {
+                    "type": "number",
+                    "required": true,
+                    "description": "组件的宽。"
+                },
+                "componentHeight": {
+                    "type": "number",
+                    "required": true,
+                    "description": "组件的高。"
+                },
+                "message": {
+                    "type": "string",
+                    "required": true,
+                    "description": "报错信息。"
+                }
+            }
+        },
+        "onFinish": {
+            "description": "当加载的源文件为带动效的svg格式图片时，svg动效播放完成时会触发这个回调。如果动效为无限循环动效，则不会触发这个回调。",
+            "params": {}
+        }
+    },
+    "rules": [
+        "使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[声明权限](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/declare-permissions-V5)。",
+        "如果下载的网络图片大于10MB或一次下载的网络图片数量较多，建议使用[HTTP](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/http-request-V5)工具提前预下载，提高图片加载性能，方便应用侧管理数据。",
+        "如果SVG图片没有原生大小，需要给Image组件设置宽高，否则不显示。",
+        "如果SVG图片通过image标签引用本地其他图片，被引用的图片不支持svg格式和gif格式。",
+        "src由有效切换为无效时，图片保持不动。"
+    ],
+    "examples": [
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-image-V5#%E7%A4%BA%E4%BE%8B1",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-image-V5#%E7%A4%BA%E4%BE%8B2",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-image-V5#%E7%A4%BA%E4%BE%8B3",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-image-V5#%E7%A4%BA%E4%BE%8B4",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-image-V5#%E7%A4%BA%E4%BE%8B5",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-image-V5#%E7%A4%BA%E4%BE%8B6",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-image-V5#%E7%A4%BA%E4%BE%8B7",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-image-V5#%E7%A4%BA%E4%BE%8B8",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-image-V5#%E7%A4%BA%E4%BE%8B9",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-image-V5#%E7%A4%BA%E4%BE%8B10",
+        "https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-image-V5#%E7%A4%BA%E4%BE%8B11"
+    ],
+    "is_common_attrs": true
+}

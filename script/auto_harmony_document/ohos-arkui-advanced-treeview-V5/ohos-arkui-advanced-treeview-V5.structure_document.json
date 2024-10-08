@@ -1,0 +1,73 @@
+{
+    "description": "树视图作为一种分层显示的列表，适合显示嵌套结构。拥有父列表项和子列表项，可展开或折叠。用于效率型应用，如备忘录、电子邮件、图库中的侧边导航栏中。",
+    "details": "该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "TreeView({ treeController: TreeController })",
+            "params": {
+                "treeController": {
+                    "type": "TreeController",
+                    "required": true,
+                    "description": "树视图组件的控制器，可以将此对象绑定至树视图组件，然后通过它控制树的节点信息，同一个控制器不可以控制多个树视图组件。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "TreeController": {
+            "description": "树视图组件的控制器，可以将此对象绑定至树视图组件，然后通过它控制树的节点信息，同一个控制器不可以控制多个树视图组件。",
+            "params": {}
+        },
+        "TreeListenerManager": {
+            "description": "树视图组件的监听器，可以将此对象绑定至树视图组件，然后通过它监听树的节点的变化，同一个监听器不可以控制多个树视图组件。",
+            "params": {}
+        }
+    },
+    "events": {
+        "addNode": {
+            "description": "点击某个节点后，调用该方法可以触发新增孩子节点。",
+            "params": {
+                "nodeParam": {
+                    "type": "NodeParam",
+                    "required": false,
+                    "description": "新增节点的参数。"
+                }
+            }
+        },
+        "removeNode": {
+            "description": "点击某个节点后，调用该方法可以触发删除该节点。",
+            "params": {}
+        },
+        "modifyNode": {
+            "description": "点击某个节点后，调用该方法可以触发修改该节点。",
+            "params": {}
+        },
+        "buildDone": {
+            "description": "建立树视图。节点增加完毕后，必须调用该方法，触发树信息的保存。",
+            "params": {}
+        },
+        "refreshNode": {
+            "description": "更新树视图。调用该方法，更新当前节点的信息。",
+            "params": {
+                "parentId": {
+                    "type": "number",
+                    "required": true,
+                    "description": "父节点Id。"
+                },
+                "parentSubTitle": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "父节点副文本。"
+                },
+                "currentSubtitle": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "当前节点副文本。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

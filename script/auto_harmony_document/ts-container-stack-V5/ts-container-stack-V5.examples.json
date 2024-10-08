@@ -1,0 +1,6 @@
+[
+    {
+        "description": "该组件通过 Stack 布局实现了一个展示两个文本组件的界面。布局宽度占据整个屏幕，高度设为 150vp，顶部外边距为 5vp。组件的垂直方向上被分为两个部分，每个部分包含一个文本组件。每个文本组件的排列和嵌套关系通过 Stack 组件的 alignContent 属性进行控制，确保文本组件在垂直方向上有序排列，且第二个文本组件位于顶部，第一个文本组件位于底部。\n文本组件的样式包括背景颜色、宽度和高度等属性，支持不同的样式展示。第一个文本组件的背景颜色为 0xd2cab3，宽度为 90%，高度为 100%，对齐方式为顶部对齐。第二个文本组件的背景颜色为 0xc1cbac，宽度为 70%，高度为 60%，对齐方式为顶部对齐。\n整个布局通过 Stack 布局保证文本组件在垂直方向上有序排列，确保界面整洁美观。",
+        "code": "// xxx.ets\n@Entry\n@Component\nstruct StackExample {\n  build() {\n    // 创建一个 Stack 组件，设置 alignContent 属性为 Alignment.Bottom，表示子组件从底部开始排列\n    Stack({ alignContent: Alignment.Bottom }) {\n      // 第一个文本组件，背景颜色为 0xd2cab3，宽度为 90%，高度为 100%，对齐方式为顶部对齐\n      Text('First child, show in bottom').width('90%').height('100%').backgroundColor(0xd2cab3).align(Alignment.Top)\n      // 第二个文本组件，背景颜色为 0xc1cbac，宽度为 70%，高度为 60%，对齐方式为顶部对齐\n      Text('Second child, show in top').width('70%').height('60%').backgroundColor(0xc1cbac).align(Alignment.Top)\n    }\n    // 设置 Stack 组件的宽度为 100%，高度为 150vp，顶部外边距为 5vp\n    .width('100%').height(150).margin({ top: 5 })\n  }\n}"
+    }
+]

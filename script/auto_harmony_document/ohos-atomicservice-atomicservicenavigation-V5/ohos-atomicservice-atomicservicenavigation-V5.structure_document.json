@@ -1,0 +1,198 @@
+{
+    "description": "作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（NavDestination的子组件），首页和非首页通过路由进行切换。",
+    "details": "可以包含单个子组件。",
+    "interfaces": [
+        {
+            "description": "AtomicServiceNavigation({ navPathStack, navigationContent, title, titleBackgroundColor, hideTitleBar, navBarWidth, mode, navDestinationBuilder, navBarWidthRange, minContentWidth, stateChangeCallback, modeChangeCallback })",
+            "params": {
+                "navPathStack": {
+                    "type": "NavPathStack",
+                    "required": false,
+                    "description": "路由栈信息。"
+                },
+                "navigationContent": {
+                    "type": "Callback<void>",
+                    "required": false,
+                    "description": "Navigation容器内容。"
+                },
+                "title": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "设置页面标题。"
+                },
+                "titleBackgroundColor": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "设置标题栏背景颜色。"
+                },
+                "hideTitleBar": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "设置是否隐藏标题栏。"
+                },
+                "navBarWidth": {
+                    "type": "Length",
+                    "required": false,
+                    "description": "设置导航栏宽度。仅在Navigation组件分栏时生效。"
+                },
+                "mode": {
+                    "type": ["NavigationMode"],
+                    "required": false,
+                    "description": "设置导航栏的显示模式。支持Stack、Split与Auto模式。"
+                },
+                "navDestinationBuilder": {
+                    "type": "NavDestinationBuilder",
+                    "required": false,
+                    "description": "创建NavDestination组件所需要的Builder数据。"
+                },
+                "navBarWidthRange": {
+                    "type": ["Dimension", "Dimension"],
+                    "required": false,
+                    "description": "设置导航栏最小和最大宽度（双栏模式下生效）。"
+                },
+                "minContentWidth": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "设置导航栏内容区最小宽度（双栏模式下生效）。"
+                },
+                "stateChangeCallback": {
+                    "type": "Callback<boolean>",
+                    "required": false,
+                    "description": "导航栏显示状态切换时触发该回调。"
+                },
+                "modeChangeCallback": {
+                    "type": "Callback<NavigationMode>",
+                    "required": false,
+                    "description": "当Navigation首次显示或者单双栏状态发生变化时触发该回调。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "navPathStack": {
+            "description": "路由栈信息。",
+            "params": {
+                "value": {
+                    "type": "NavPathStack",
+                    "required": false,
+                    "description": "路由栈信息。"
+                }
+            }
+        },
+        "navigationContent": {
+            "description": "Navigation容器内容。",
+            "params": {
+                "value": {
+                    "type": "Callback<void>",
+                    "required": false,
+                    "description": "Navigation容器内容。"
+                }
+            }
+        },
+        "title": {
+            "description": "设置页面标题。",
+            "params": {
+                "value": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "设置页面标题。"
+                }
+            }
+        },
+        "titleOptions": {
+            "description": "标题栏选项。",
+            "params": {
+                "value": {
+                    "type": "TitleOptions",
+                    "required": false,
+                    "description": "标题栏选项。"
+                }
+            }
+        },
+        "hideTitleBar": {
+            "description": "设置是否隐藏标题栏。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "设置是否隐藏标题栏。"
+                }
+            }
+        },
+        "navBarWidth": {
+            "description": "设置导航栏宽度。仅在Navigation组件分栏时生效。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "required": false,
+                    "description": "设置导航栏宽度。"
+                }
+            }
+        },
+        "mode": {
+            "description": "设置导航栏的显示模式。支持Stack、Split与Auto模式。",
+            "params": {
+                "value": {
+                    "type": ["NavigationMode"],
+                    "required": false,
+                    "description": "设置导航栏的显示模式。"
+                }
+            }
+        },
+        "navDestinationBuilder": {
+            "description": "创建NavDestination组件所需要的Builder数据。",
+            "params": {
+                "value": {
+                    "type": "NavDestinationBuilder",
+                    "required": false,
+                    "description": "创建NavDestination组件所需要的Builder数据。"
+                }
+            }
+        },
+        "navBarWidthRange": {
+            "description": "设置导航栏最小和最大宽度（双栏模式下生效）。",
+            "params": {
+                "value": {
+                    "type": ["Dimension", "Dimension"],
+                    "required": false,
+                    "description": "设置导航栏最小和最大宽度。"
+                }
+            }
+        },
+        "minContentWidth": {
+            "description": "设置导航栏内容区最小宽度（双栏模式下生效）。",
+            "params": {
+                "value": {
+                    "type": "Dimension",
+                    "required": false,
+                    "description": "设置导航栏内容区最小宽度。"
+                }
+            }
+        }
+    },
+    "events": {
+        "stateChangeCallback": {
+            "description": "导航栏显示状态切换时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "Callback<boolean>",
+                    "required": false,
+                    "description": "导航栏显示状态切换时触发该回调。"
+                }
+            }
+        },
+        "modeChangeCallback": {
+            "description": "当Navigation首次显示或者单双栏状态发生变化时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "Callback<NavigationMode>",
+                    "required": false,
+                    "description": "当Navigation首次显示或者单双栏状态发生变化时触发该回调。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

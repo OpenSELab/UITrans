@@ -141,7 +141,7 @@ class LLMAgent:
         print(make_plan_messages[-1]["content"])
         print(make_plan_messages[-1].get("tool_calls", None))
 
-    def generate_reply(self, messages: Union[str, List[Dict[str, Any]]], sender: Sender = "__temp__",
+    def generate_reply(self, messages: Optional[Union[str, List[Dict[str, Any]]]], sender: Sender = "__temp__",
                        remember: bool = True,
                        **kwargs) -> List[Dict[str, Any]]:
         """生成大模型回复
@@ -152,14 +152,23 @@ class LLMAgent:
             remember (bool): 是否记住对话记录
             **kwargs: 其他参数
         """
-        # 格式化消息
-        if isinstance(messages, str):
-            messages = [
-                {"role": "user", "content": messages}
-            ]
-        # 获取对话记录
+
         # TODO: 裁剪对话记录使其不超过大模型上下文长度
-        messages = self._chat_messages.get(sender, []) + messages
+        if messages:
+            # 格式化消息
+            if isinstance(messages, str):
+                messages = [
+                    {"role": "user", "content": messages}
+                ]
+
+            # 获取对话记录
+            messages = self._chat_messages.get(sender, []) + messages
+        else:
+            messages = self._chat_messages.get(sender, [])
+
+        # 若消息为空，则返回空
+        if not messages:
+            raise ValueError("消息不能为空")
 
         # 生成回复
         for reply_hook in self._reply_hooks:
@@ -193,15 +202,18 @@ class LLMAgent:
         """
         model_schema = kwargs.pop("model_schema", None)
         current_round = 0
+        # solve 不计入消息记录中
+        all_messages = []
         while current_round < max_rounds:
             if current_round == 0:
                 temp_messages = self.generate_reply(messages, sender, **kwargs)
             else:
-                temp_messages = self.generate_reply("", sender, **kwargs)
+                temp_messages = self.generate_reply(None, sender, **kwargs)
             if not temp_messages or terminate_trigger(temp_messages[-1].get("content", "")):
+                all_messages = temp_messages
                 break
             current_round += 1
-        return messages
+        return all_messages
 
     def _generate_llm_reply(self, messages: List[Dict[str, Any]], sender: Sender, **kwargs) -> Dict[str, Any]:
         """生成大模型回复
@@ -267,12 +279,22 @@ class LLMAgent:
                     "content": f"工具调用：{tool_signature}\n工具调用结果：{tool_response}",
                     "tool_call_id": tool_call["id"]
                 }
+                # tool_call_message = {
+                #     "role": "tool",
+                #     "content": f"{tool_response}",
+                #     "tool_call_id": tool_call["id"]
+                # }
             except Exception as e:
                 tool_call_message = {
                     "role": "tool",
                     "content": f"工具调用：{tool_signature}\n工具调用错误：{e}",
                     "tool_call_id": tool_call["id"]
                 }
+                # tool_call_message = {
+                #     "role": "tool",
+                #     "content": f"{e}",
+                #     "tool_call_id": tool_call["id"]
+                # }
             tool_call_result_messages.append(tool_call_message)
         self.logger.debug("generate_tool_reply: messages={messages}, response={response}".format(messages=messages, response=tool_call_result_messages))
         # tool_call_response_message = self._generate_llm_reply(messages + tool_call_result_messages, sender, **kwargs)

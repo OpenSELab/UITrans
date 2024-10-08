@@ -113,5 +113,6 @@ Column() {
         console.info('+1 clicked!');
       })
   }
+  .width('100%')
 }
 ```

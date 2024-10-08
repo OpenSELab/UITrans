@@ -1,0 +1,126 @@
+{
+    "description": "日历选择器弹窗组件，点击日期弹出日历选择器弹窗，可选择弹窗内任意日期。",
+    "details": "该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-uicontext-V5#uicontext)说明。",
+    "interfaces": [
+        {
+            "description": "static show(options?: CalendarDialogOptions)",
+            "params": {
+                "options": {
+                    "type": "CalendarDialogOptions",
+                    "required": false,
+                    "description": "日历选择器弹窗的配置选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "onAccept": {
+            "description": "点击弹窗中的“确定”按钮时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "Date",
+                    "required": true,
+                    "description": "选中的日期值。"
+                }
+            }
+        },
+        "onCancel": {
+            "description": "点击弹窗中的“取消”按钮时触发该回调。",
+            "params": {}
+        },
+        "onChange": {
+            "description": "选择弹窗中日期使当前选中项改变时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "Date",
+                    "required": true,
+                    "description": "选中的日期值。"
+                }
+            }
+        },
+        "backgroundColor": {
+            "description": "弹窗背板颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": false,
+                    "description": "弹窗背板颜色。",
+                    "default": "Color.Transparent"
+                }
+            }
+        },
+        "backgroundBlurStyle": {
+            "description": "弹窗背板模糊材质。",
+            "params": {
+                "value": {
+                    "type": "BlurStyle",
+                    "required": false,
+                    "description": "弹窗背板模糊材质。",
+                    "default": "BlurStyle.COMPONENT_ULTRA_THICK"
+                }
+            }
+        },
+        "acceptButtonStyle": {
+            "description": "设置确认按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。",
+            "params": {
+                "value": {
+                    "type": "PickerDialogButtonStyle",
+                    "required": false,
+                    "description": "确认按钮的样式配置。"
+                }
+            }
+        },
+        "cancelButtonStyle": {
+            "description": "设置取消按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。",
+            "params": {
+                "value": {
+                    "type": "PickerDialogButtonStyle",
+                    "required": false,
+                    "description": "取消按钮的样式配置。"
+                }
+            }
+        },
+        "onDidAppear": {
+            "description": "弹窗弹出时的事件回调。",
+            "params": {}
+        },
+        "onDidDisappear": {
+            "description": "弹窗消失时的事件回调。",
+            "params": {}
+        },
+        "onWillAppear": {
+            "description": "弹窗显示动效前的事件回调。",
+            "params": {}
+        },
+        "onWillDisappear": {
+            "description": "弹窗退出动效前的事件回调。",
+            "params": {}
+        },
+        "shadow": {
+            "description": "设置弹窗背板的阴影。",
+            "params": {
+                "value": {
+                    "type": [
+                        "ShadowOptions",
+                        "ShadowStyle"
+                    ],
+                    "required": false,
+                    "description": "弹窗背板的阴影配置。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件展示了一个日历选择对话框的基本使用示例。布局宽度占据整个屏幕，包含一个按钮，点击该按钮会弹出一个日历选择对话框。按钮的样式包括内边距为20vp，按钮的文本为“Show CalendarPicker Dialog”。\n日历选择对话框的功能包括选择日期、接受选择、取消选择、日期变化、对话框显示和消失的回调事件。用户可以通过点击按钮触发日历选择对话框的显示，并在对话框中选择日期。选择日期后，可以通过点击“接受”按钮确认选择，或点击“取消”按钮取消选择。\n整个布局通过Column组件实现，确保按钮在垂直方向上居中显示。",
+            "code": "@Entry\n@Component\nstruct CalendarPickerDialogExample {\n  // 初始选择的日期为2024年4月23日\n  private selectedDate: Date = new Date('2024-04-23')\n\n  build() {\n    Column() {\n      Button(\"Show CalendarPicker Dialog\")\n        .margin(20) // 按钮的内边距为20vp\n        .onClick(() => {\n          console.info(\"CalendarDialog.show\")\n          CalendarPickerDialog.show({\n            selected: this.selectedDate, // 初始选择的日期\n            onAccept: (value) => {\n              console.info(\"calendar onAccept:\" + JSON.stringify(value)) // 用户接受选择时的回调\n            },\n            onCancel: () => {\n              console.info(\"calendar onCancel\") // 用户取消选择时的回调\n            },\n            onChange: (value) => {\n              console.info(\"calendar onChange:\" + JSON.stringify(value)) // 日期变化时的回调\n            },\n            onDidAppear: () => {\n              console.info(\"calendar onDidAppear\") // 对话框显示完成时的回调\n            },\n            onDidDisappear: () => {\n              console.info(\"calendar onDidDisappear\") // 对话框消失完成时的回调\n            },\n            onWillAppear: () => {\n              console.info(\"calendar onWillAppear\") // 对话框即将显示时的回调\n            },\n            onWillDisappear: () => {\n              console.info(\"calendar onWillDisappear\") // 对话框即将消失时的回调\n            }\n          })\n        })\n    }.width('100%') // 布局宽度占据整个屏幕\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个展示按钮和日历选择器对话框的界面。布局宽度占据整个屏幕，按钮位于布局的顶部，按钮的点击事件会触发日历选择器对话框的显示。\n按钮的样式包括边距、字体颜色、字体大小、字体粗细、字体样式、字体家族、背景颜色和边框圆角等属性，支持自定义样式展示。\n日历选择器对话框的样式包括接受按钮和取消按钮的自定义样式，按钮的样式包括字体颜色、字体大小、字体粗细、字体样式、字体家族、背景颜色和边框圆角等属性。\n日历选择器对话框的功能包括接受按钮和取消按钮的点击事件，以及对话框显示和消失时的回调事件。\n整个布局通过 Column 布局保证按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct CalendarPickerDialogExample {\n  // 定义一个私有变量 selectedDate，用于存储当前选择的日期，默认为当前日期\n  private selectedDate: Date = new Date()\n\n  build() {\n    Column() {\n      // 创建一个按钮，按钮文本为 \"Show CalendarPicker Dialog\"，按钮的点击事件会触发日历选择器对话框的显示\n      Button(\"Show CalendarPicker Dialog\")\n        .margin(20) // 设置按钮的边距为 20vp\n        .onClick(() => {\n          console.info(\"CalendarDialog.show\") // 打印日志，表示日历选择器对话框即将显示\n          CalendarPickerDialog.show({\n            selected: this.selectedDate, // 设置日历选择器对话框的初始选中日期为 selectedDate\n            acceptButtonStyle: { \n              type: ButtonType.Normal, // 设置接受按钮的类型为普通按钮\n              style: ButtonStyleMode.NORMAL, // 设置接受按钮的样式模式为普通模式\n              role: ButtonRole.NORMAL, // 设置接受按钮的角色为普通角色\n              fontColor: Color.Red, // 设置接受按钮的字体颜色为红色\n              fontSize: '26fp', // 设置接受按钮的字体大小为 26fp\n              fontWeight: FontWeight.Bolder, // 设置接受按钮的字体粗细为更粗\n              fontStyle: FontStyle.Normal, // 设置接受按钮的字体样式为正常\n              fontFamily: 'sans-serif', // 设置接受按钮的字体家族为 sans-serif\n              backgroundColor: '#80834511', // 设置接受按钮的背景颜色为 #80834511\n              borderRadius: 20 // 设置接受按钮的边框圆角为 20vp\n            },\n            cancelButtonStyle: { \n              type: ButtonType.Normal, // 设置取消按钮的类型为普通按钮\n              style: ButtonStyleMode.NORMAL, // 设置取消按钮的样式模式为普通模式\n              role: ButtonRole.NORMAL, // 设置取消按钮的角色为普通角色\n              fontColor: Color.Blue, // 设置取消按钮的字体颜色为蓝色\n              fontSize: '16fp', // 设置取消按钮的字体大小为 16fp\n              fontWeight: FontWeight.Normal, // 设置取消按钮的字体粗细为正常\n              fontStyle: FontStyle.Italic, // 设置取消按钮的字体样式为斜体\n              fontFamily: 'sans-serif', // 设置取消按钮的字体家族为 sans-serif\n              backgroundColor: '#50182431', // 设置取消按钮的背景颜色为 #50182431\n              borderRadius: 10 // 设置取消按钮的边框圆角为 10vp\n            },\n            onAccept: (value) => {\n              console.info(\"calendar onAccept:\" + JSON.stringify(value)) // 打印日志，表示用户点击了接受按钮，并输出选中的日期\n            },\n            onCancel: () => {\n              console.info(\"calendar onCancel\") // 打印日志，表示用户点击了取消按钮\n            },\n            onChange: (value) => {\n              console.info(\"calendar onChange:\" + JSON.stringify(value)) // 打印日志，表示用户改变了选中的日期，并输出新的日期\n            },\n            onDidAppear: () => {\n              console.info(\"calendar onDidAppear\") // 打印日志，表示日历选择器对话框已经显示\n            },\n            onDidDisappear: () => {\n              console.info(\"calendar onDidDisappear\") // 打印日志，表示日历选择器对话框已经消失\n            },\n            onWillAppear: () => {\n              console.info(\"calendar onWillAppear\") // 打印日志，表示日历选择器对话框即将显示\n            },\n            onWillDisappear: () => {\n              console.info(\"calendar onWillDisappear\") // 打印日志，表示日历选择器对话框即将消失\n            }\n          })\n        })\n    }.width('100%') // 设置 Column 布局的宽度为 100%\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

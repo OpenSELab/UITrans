@@ -961,5 +961,15 @@ BASIC_TYPE = {
             "BOTTOM": "图片在容器的下方居中显示。",
             "BOTTOM_END": "图片在容器的右下角显示。"
         }
-    }
+    },
+    "Direction": {
+        "type": "enum",
+        "enum": ["Ltr", "Rtl", "Auto"],
+        "description": "布局方向。",
+        "enumDescriptions": {
+            "Ltr": "元素从左到右布局。",
+            "Rtl": "元素从右到左布局。",
+            "Auto": "使用系统默认布局方向。"
+        }
+    },
 }

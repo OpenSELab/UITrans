@@ -1,0 +1,339 @@
+{
+    "description": "通过页签进行内容视图切换的容器组件，每个页签对应一个内容视图。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-expand-safe-area-V5)属性实现安全区避让。",
+    "interfaces": [
+        {
+            "description": "Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsController})",
+            "params": {
+                "value": {
+                    "type": {
+                        "barPosition": "BarPosition",
+                        "index": "number",
+                        "controller": "TabsController"
+                    },
+                    "description": "Tabs组件的初始化参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "barPosition": {
+            "description": "设置Tabs的页签位置。",
+            "params": {
+                "value": {
+                    "type": "BarPosition",
+                    "description": "Tabs的页签位置。",
+                    "default": "BarPosition.Start"
+                }
+            }
+        },
+        "index": {
+            "description": "设置当前显示页签的索引。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "当前显示页签的索引。",
+                    "default": 0
+                }
+            }
+        },
+        "controller": {
+            "description": "设置Tabs控制器。",
+            "params": {
+                "value": {
+                    "type": "TabsController",
+                    "description": "Tabs控制器。"
+                }
+            }
+        },
+        "vertical": {
+            "description": "设置是否为纵向Tab。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "description": "是否为纵向Tab。",
+                    "default": false
+                }
+            }
+        },
+        "scrollable": {
+            "description": "设置是否可以通过滑动页面进行页面切换。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "description": "是否可以通过滑动页面进行页面切换。",
+                    "default": true
+                }
+            }
+        },
+        "barMode": {
+            "description": "设置TabBar布局模式。",
+            "params": {
+                "value": {
+                    "type": "BarMode",
+                    "description": "TabBar布局模式。"
+                },
+                "options": {
+                    "type": "ScrollableBarModeOptions",
+                    "description": "Scrollable模式下的TabBar布局选项。"
+                }
+            }
+        },
+        "barWidth": {
+            "description": "设置TabBar的宽度值。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "description": "TabBar的宽度值。"
+                }
+            }
+        },
+        "barHeight": {
+            "description": "设置TabBar的高度值。",
+            "params": {
+                "value": {
+                    "type": "Length",
+                    "description": "TabBar的高度值。"
+                }
+            }
+        },
+        "animationDuration": {
+            "description": "设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "description": "点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。",
+                    "default": 300
+                }
+            }
+        },
+        "animationMode": {
+            "description": "设置点击TabBar页签时切换TabContent的动画形式。",
+            "params": {
+                "mode": {
+                    "type": "AnimationMode",
+                    "description": "点击TabBar页签时切换TabContent的动画形式。",
+                    "default": "AnimationMode.CONTENT_FIRST"
+                }
+            }
+        },
+        "divider": {
+            "description": "设置区分TabBar和TabContent的分割线样式。",
+            "params": {
+                "value": {
+                    "type": "DividerStyle",
+                    "description": "分割线样式。"
+                }
+            }
+        },
+        "fadingEdge": {
+            "description": "设置页签超过容器宽度时是否渐隐消失。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "description": "页签超过容器宽度时是否渐隐消失。",
+                    "default": true
+                }
+            }
+        },
+        "barOverlap": {
+            "description": "设置TabBar是否背后变模糊并叠加在TabContent之上。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "description": "TabBar是否背后变模糊并叠加在TabContent之上。",
+                    "default": false
+                }
+            }
+        },
+        "barBackgroundColor": {
+            "description": "设置TabBar的背景颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "description": "TabBar的背景颜色。",
+                    "default": "Color.Transparent"
+                }
+            }
+        },
+        "barBackgroundBlurStyle": {
+            "description": "设置TabBar的背景模糊材质。",
+            "params": {
+                "value": {
+                    "type": "BlurStyle",
+                    "description": "TabBar的背景模糊材质。",
+                    "default": "BlurStyle.NONE"
+                }
+            }
+        },
+        "barGridAlign": {
+            "description": "以栅格化方式设置TabBar的可见区域。",
+            "params": {
+                "value": {
+                    "type": "BarGridColumnOptions",
+                    "description": "TabBar栅格化方式设置的对象。"
+                }
+            }
+        },
+        "edgeEffect": {
+            "description": "设置边缘回弹效果。",
+            "params": {
+                "edgeEffect": {
+                    "type": "EdgeEffect",
+                    "description": "边缘滑动效果。",
+                    "default": "EdgeEffect.Spring"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "Tab页签切换后触发的事件。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "当前显示的index索引，索引从0开始计算。"
+                }
+            }
+        },
+        "onTabBarClick": {
+            "description": "Tab页签点击后触发的事件。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "被点击的index索引，索引从0开始计算。"
+                }
+            }
+        },
+        "onAnimationStart": {
+            "description": "切换动画开始时触发该回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "当前显示元素的索引。"
+                },
+                "targetIndex": {
+                    "type": "number",
+                    "description": "切换动画目标元素的索引。"
+                },
+                "event": {
+                    "type": "TabsAnimationEvent",
+                    "description": "动画相关信息。"
+                }
+            }
+        },
+        "onAnimationEnd": {
+            "description": "切换动画结束时触发该回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "当前显示元素的索引。"
+                },
+                "event": {
+                    "type": "TabsAnimationEvent",
+                    "description": "动画相关信息。"
+                }
+            }
+        },
+        "onGestureSwipe": {
+            "description": "在页面跟手滑动过程中，逐帧触发该回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "description": "当前显示元素的索引。"
+                },
+                "event": {
+                    "type": "TabsAnimationEvent",
+                    "description": "动画相关信息。"
+                }
+            }
+        },
+        "customContentTransition": {
+            "description": "自定义Tabs页面切换动画。",
+            "params": {
+                "delegate": {
+                    "type": "function",
+                    "description": "自定义切换动画的回调函数。",
+                    "params": {
+                        "from": {
+                            "type": "number",
+                            "description": "动画开始时，当前页面的index值。"
+                        },
+                        "to": {
+                            "type": "number",
+                            "description": "动画开始时，目标页面的index值。"
+                        }
+                    },
+                    "returns": {
+                        "type": "TabContentAnimatedTransition",
+                        "description": "自定义切换动画的相关信息。"
+                    }
+                }
+            }
+        },
+        "onContentWillChange": {
+            "description": "自定义Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。",
+            "params": {
+                "currentIndex": {
+                    "type": "number",
+                    "description": "当前显示页面的index索引，索引从0开始计算。"
+                },
+                "comingIndex": {
+                    "type": "number",
+                    "description": "将要显示的新页面的index索引。"
+                }
+            },
+            "returns": {
+                "type": "boolean",
+                "description": "当回调函数handler的返回值为true时，Tabs可以切换到新页面。当回调函数handler的返回值为false时，Tabs无法切换到新页面，仍然显示原来页面内容。"
+            }
+        }
+    },
+    "rules": [
+        "不支持自定义组件作为子组件，仅可包含子组件[TabContent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-tabcontent-V5)，以及渲染控制类型[if/else](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-rendering-control-ifelse-V5)和[ForEach](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-rendering-control-foreach-V5), 并且if/else和ForEach下也仅支持TabContent, 不支持自定义组件。",
+        "Tabs子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。"
+    ],
+    "examples": [
+        {
+            "description": "该组件通过 Tabs 组件实现了一个带有自定义 TabBar 和 TabContent 的选项卡切换界面。布局宽度占据整个屏幕，高度设为 296vp，内边距为顶部 52vp。组件的垂直方向上被分为一个 TabBar 和一个 TabContent 区域。TabBar 位于顶部，包含四个选项卡，每个选项卡的宽度为 360vp，高度为 56vp，选项卡之间的切换通过水平布局方式排列。\n\nTabBar 的样式包括背景颜色、字体颜色、字体大小、字体粗细、行高等属性，支持不同的样式展示。选项卡的内容区域通过 TabContent 组件进行分隔，每个 TabContent 区域包含一个 Column 组件，背景颜色分别为绿色、蓝色、黄色和粉色。选项卡的功能包括点击事件和状态效果，用户可以通过点击选项卡触发相应内容区域的切换，选项卡也可以在选中或未选中状态下进行展示。\n\n整个布局通过 Column 布局保证选项卡在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TabsExample {\n  @State fontColor: string = '#182431' // 未选中选项卡的字体颜色\n  @State selectedFontColor: string = '#007DFF' // 选中选项卡的字体颜色\n  @State currentIndex: number = 0 // 当前选中的选项卡索引\n  private controller: TabsController = new TabsController() // 选项卡控制器\n\n  // 自定义选项卡构建器\n  @Builder tabBuilder(index: number, name: string) {\n    Column() {\n      Text(name) // 选项卡名称\n        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor) // 根据选中状态设置字体颜色\n        .fontSize(16) // 字体大小\n        .fontWeight(this.currentIndex === index ? 500 : 400) // 根据选中状态设置字体粗细\n        .lineHeight(22) // 行高\n        .margin({ top: 17, bottom: 7 }) // 上下边距\n      Divider() // 分隔线\n        .strokeWidth(2) // 分隔线宽度\n        .color('#007DFF') // 分隔线颜色\n        .opacity(this.currentIndex === index ? 1 : 0) // 根据选中状态设置分隔线透明度\n    }.width('100%') // 选项卡宽度占满父容器\n  }\n\n  build() {\n    Column() {\n      Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor('#00CB87') // 绿色背景的 TabContent\n        }.tabBar(this.tabBuilder(0, 'green')) // 使用自定义构建器创建选项卡\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor('#007DFF') // 蓝色背景的 TabContent\n        }.tabBar(this.tabBuilder(1, 'blue')) // 使用自定义构建器创建选项卡\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor('#FFBF00') // 黄色背景的 TabContent\n        }.tabBar(this.tabBuilder(2, 'yellow')) // 使用自定义构建器创建选项卡\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor('#E67C92') // 粉色背景的 TabContent\n        }.tabBar(this.tabBuilder(3, 'pink')) // 使用自定义构建器创建选项卡\n      }\n      .vertical(false) // 水平布局\n      .barMode(BarMode.Fixed) // 固定 TabBar 模式\n      .barWidth(360) // TabBar 宽度\n      .barHeight(56) // TabBar 高度\n      .animationDuration(400) // 切换动画持续时间\n      .onChange((index: number) => {\n        this.currentIndex = index // 更新当前选中的选项卡索引\n      })\n      .width(360) // Tabs 组件宽度\n      .height(296) // Tabs 组件高度\n      .margin({ top: 52 }) // 顶部边距\n      .backgroundColor('#F1F3F5') // 背景颜色\n    }.width('100%') // 父容器宽度占满屏幕\n  }\n}"
+        },
+        {
+            "description": "该组件通过Column布局实现了一个包含Tabs组件的界面，Tabs组件用于在多个TabContent之间切换。布局宽度占据整个屏幕，高度设为500vp，内边距为顶部24vp、左右24vp。组件的垂直方向上被分为两个部分：一个按钮和一个Tabs组件。按钮用于切换Tabs组件的barOverlap属性，从而控制TabBar是否背后变模糊并叠加在TabContent之上。Tabs组件的TabBar位于顶部，包含三个TabContent，每个TabContent包含一个Column布局，Column布局中包含两个Text组件，分别显示barOverlap和barBackgroundColor的值。每个TabContent的背景颜色不同，分别为粉色、黄色和绿色。Tabs组件的高度为60%，TabBar的背景颜色为半透明的灰色。",
+            "code": "@Entry\n@Component\nstruct barBackgroundColorTest {\n  // 创建一个TabsController实例，用于控制Tabs组件\n  private controller: TabsController = new TabsController()\n  \n  // 定义一个状态变量barOverlap，用于控制TabBar是否背后变模糊并叠加在TabContent之上\n  @State barOverlap: boolean = true;\n  \n  // 定义一个状态变量barBackgroundColor，用于设置TabBar的背景颜色\n  @State barBackgroundColor: string = '#88888888';\n\n  build() {\n    Column() {\n      // 创建一个按钮，用于切换barOverlap的值\n      Button(\"barOverlap变化\").width('100%').margin({ bottom: '12vp' })\n        .onClick((event?: ClickEvent) => {\n          // 点击按钮时，切换barOverlap的值\n          if (this.barOverlap) {\n            this.barOverlap = false;\n          } else {\n            this.barOverlap = true;\n          }\n        })\n\n      // 创建一个Tabs组件，包含三个TabContent\n      Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller }) {\n        // 第一个TabContent\n        TabContent() {\n          Column() {\n            // 显示barOverlap的值\n            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })\n            // 显示barBackgroundColor的值\n            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)\n          }.width('100%').height('100%')\n          .backgroundColor(Color.Pink) // 设置背景颜色为粉色\n        }\n        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), \"1\")) // 设置TabBar的图标和文本\n\n        // 第二个TabContent\n        TabContent() {\n          Column() {\n            // 显示barOverlap的值\n            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })\n            // 显示barBackgroundColor的值\n            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)\n          }.width('100%').height('100%')\n          .backgroundColor(Color.Yellow) // 设置背景颜色为黄色\n        }\n        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), \"2\")) // 设置TabBar的图标和文本\n\n        // 第三个TabContent\n        TabContent() {\n          Column() {\n            // 显示barOverlap的值\n            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })\n            // 显示barBackgroundColor的值\n            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)\n          }.width('100%').height('100%')\n          .backgroundColor(Color.Green) // 设置背景颜色为绿色\n        }\n        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), \"3\")) // 设置TabBar的图标和文本\n      }\n      .vertical(false) // 设置Tabs组件为水平布局\n      .barMode(BarMode.Fixed) // 设置TabBar为固定模式\n      .height('60%') // 设置Tabs组件的高度为60%\n      .barOverlap(this.barOverlap) // 设置TabBar是否背后变模糊并叠加在TabContent之上\n      .scrollable(true) // 设置Tabs组件可滚动\n      .animationDuration(10) // 设置Tabs组件的动画持续时间为10毫秒\n      .barBackgroundColor(this.barBackgroundColor) // 设置TabBar的背景颜色\n    }\n    .height(500) // 设置Column布局的高度为500vp\n    .padding({ top: '24vp', left: '24vp', right: '24vp' }) // 设置Column布局的内边距\n  }\n}"
+        },
+        {
+            "description": "该组件通过自定义的Tabs页面切换动画实现了一个具有动态效果的Tabs界面。布局宽度占据整个屏幕，高度设为500vp，背景颜色为浅灰色（0xf1f3f5）。组件的垂直方向上包含一个Tabs组件，Tabs组件内部通过ForEach循环遍历数据数组，生成多个TabContent。每个TabContent的标签文本和背景颜色根据数据数组中的元素动态设置。\n\n每个TabContent的样式包括透明度和缩放比例，这些样式属性通过@State变量opacityList和scaleList进行管理。在Tabs切换时，通过自定义的customContentTransition函数实现TabContent的动画效果。动画效果包括透明度和缩放比例的变化，动画持续时间和延迟时间根据数据数组的长度动态计算。\n\n组件的功能包括Tabs页面的切换和自定义动画效果的展示。用户可以通过点击Tabs标签切换不同的页面，切换过程中会触发自定义的动画效果，动画效果包括当前页面的透明度逐渐降低并缩小，目标页面的透明度逐渐增加并放大。\n\n整个布局通过Column布局保证Tabs组件在垂直方向上居中显示，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TabsCustomAnimationExample {\n  // 定义数据类型，包含文本和背景颜色\n  interface itemType {\n    text: string,\n    backgroundColor: Color\n  }\n\n  // 数据数组，包含多个itemType对象\n  @State data: itemType[] = [\n    {\n      text: 'Red',\n      backgroundColor: Color.Red\n    },\n    {\n      text: 'Yellow',\n      backgroundColor: Color.Yellow\n    },\n    {\n      text: 'Blue',\n      backgroundColor: Color.Blue\n    }\n  ]\n\n  // 透明度列表，用于管理每个TabContent的透明度\n  @State opacityList: number[] = []\n  // 缩放比例列表，用于管理每个TabContent的缩放比例\n  @State scaleList: number[] = []\n\n  // 动画持续时间列表，用于管理每个TabContent的动画持续时间\n  private durationList: number[] = []\n  // 动画延迟时间列表，用于管理每个TabContent的动画延迟时间\n  private timeoutList: number[] = []\n\n  // 自定义的TabContent切换动画函数\n  private customContentTransition: (from: number, to: number) => TabContentAnimatedTransition = (from: number, to: number) => {\n    let tabContentAnimatedTransition = {\n      // 动画延迟时间\n      timeout: this.timeoutList[from],\n      // 动画效果实现\n      transition: (proxy: TabContentTransitionProxy) => {\n        // 设置当前TabContent的缩放比例和透明度\n        this.scaleList[from] = 1.0\n        this.scaleList[to] = 0.5\n        this.opacityList[from] = 1.0\n        this.opacityList[to] = 0.5\n        // 执行动画\n        animateTo({\n          // 动画持续时间\n          duration: this.durationList[from],\n          // 动画结束回调\n          onFinish: () => {\n            // 完成动画切换\n            proxy.finishTransition()\n          }\n        }, () => {\n          // 设置目标TabContent的缩放比例和透明度\n          this.scaleList[from] = 0.5\n          this.scaleList[to] = 1.0\n          this.opacityList[from] = 0.5\n          this.opacityList[to] = 1.0\n        })\n      }\n    } as TabContentAnimatedTransition\n    return tabContentAnimatedTransition\n  }\n\n  // 组件初始化时执行的函数\n  aboutToAppear(): void {\n    let duration = 1000\n    let timeout = 1000\n    // 根据数据数组的长度初始化透明度、缩放比例、动画持续时间和延迟时间列表\n    for (let i = 1; i <= this.data.length; i++) {\n      this.opacityList.push(1.0)\n      this.scaleList.push(1.0)\n      this.durationList.push(duration * i)\n      this.timeoutList.push(timeout * i)\n    }\n  }\n\n  // 构建组件UI\n  build() {\n    Column() {\n      Tabs() {\n        // 遍历数据数组，生成多个TabContent\n        ForEach(this.data, (item: itemType, index: number) => {\n          TabContent() {}\n          .tabBar(item.text) // 设置TabContent的标签文本\n          .backgroundColor(item.backgroundColor) // 设置TabContent的背景颜色\n          .opacity(this.opacityList[index]) // 设置TabContent的透明度\n          .scale({ x: this.scaleList[index], y: this.scaleList[index] }) // 设置TabContent的缩放比例\n        })\n      }\n      .backgroundColor(0xf1f3f5) // 设置Tabs的背景颜色\n      .width('100%') // 设置Tabs的宽度为100%\n      .height(500) // 设置Tabs的高度为500vp\n      .customContentTransition(this.customContentTransition) // 设置自定义的TabContent切换动画\n    }\n  }\n}"
+        },
+        {
+            "description": "该示例展示了如何使用鸿蒙ArkUI框架中的Tabs组件，并通过preloadItems接口实现预加载指定子节点。布局上，整个界面由一个Column容器包裹，内部包含一个Tabs组件和一个Button组件。Tabs组件包含四个TabContent子组件，每个TabContent子组件内嵌一个MyComponent组件。每个MyComponent组件根据传入的颜色参数设置背景颜色。Tabs组件的宽度为360vp，高度为296vp，背景颜色为#F1F3F5。Button组件用于触发预加载操作，点击后会预加载指定索引的TabContent子组件。\n\n布局属性：\n- Column容器：用于垂直排列Tabs组件和Button组件。\n- Tabs组件：宽度为360vp，高度为296vp，背景颜色为#F1F3F5。\n- Button组件：设置了5vp的边距。\n\n组件的样式和外观：\n- Tabs组件：背景颜色为#F1F3F5，每个TabContent子组件的tabBar样式通过SubTabBarStyle.of方法设置为不同的颜色（green、blue、yellow、pink）。\n- MyComponent组件：根据传入的颜色参数设置背景颜色。\n- Button组件：文本内容为'preload items: [0, 2, 3]'，设置了5vp的边距。\n\n组件的排列和嵌套关系：\n- Column容器：垂直排列Tabs组件和Button组件。\n- Tabs组件：包含四个TabContent子组件，每个TabContent子组件内嵌一个MyComponent组件。\n\n组件的功能和交互：\n- Tabs组件：通过onChange事件监听当前选中的Tab索引，并更新currentIndex状态。\n- Button组件：点击后调用tabsController的preloadItems方法，预加载指定索引的TabContent子组件，并在控制台输出预加载成功或失败的信息。",
+            "code": "import { BusinessError } from '@kit.BasicServicesKit'\n\n@Entry\n@Component\nstruct TabsPreloadItems {\n  @State currentIndex: number = 1 // 当前选中的Tab索引，初始值为1\n  private tabsController: TabsController = new TabsController() // Tabs组件的控制器\n\n  build() {\n    Column() {\n      Tabs({ index: this.currentIndex, controller: this.tabsController }) {\n        TabContent() {\n          MyComponent({ color: '#00CB87' }) // 第一个TabContent子组件，背景颜色为#00CB87\n        }.tabBar(SubTabBarStyle.of('green')) // 设置tabBar样式为绿色\n\n        TabContent() {\n          MyComponent({ color: '#007DFF' }) // 第二个TabContent子组件，背景颜色为#007DFF\n        }.tabBar(SubTabBarStyle.of('blue')) // 设置tabBar样式为蓝色\n\n        TabContent() {\n          MyComponent({ color: '#FFBF00' }) // 第三个TabContent子组件，背景颜色为#FFBF00\n        }.tabBar(SubTabBarStyle.of('yellow')) // 设置tabBar样式为黄色\n\n        TabContent() {\n          MyComponent({ color: '#E67C92' }) // 第四个TabContent子组件，背景颜色为#E67C92\n        }.tabBar(SubTabBarStyle.of('pink')) // 设置tabBar样式为粉色\n      }\n      .width(360) // Tabs组件的宽度为360vp\n      .height(296) // Tabs组件的高度为296vp\n      .backgroundColor('#F1F3F5') // Tabs组件的背景颜色为#F1F3F5\n      .onChange((index: number) => {\n        this.currentIndex = index // 监听Tab切换事件，更新当前选中的Tab索引\n      })\n\n      Button('preload items: [0, 2, 3]')\n        .margin(5) // Button组件的边距为5vp\n        .onClick(() => {\n          this.tabsController.preloadItems([0, 2, 3]) // 点击Button后预加载索引为0、2、3的TabContent子组件\n            .then(() => {\n              console.info('preloadItems success.') // 预加载成功时在控制台输出信息\n            })\n            .catch((error: BusinessError) => {\n              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message) // 预加载失败时在控制台输出错误信息\n            })\n        })\n    }\n  }\n}\n\n@Component\nstruct MyComponent {\n  private color: string = \"\" // 背景颜色\n\n  aboutToAppear(): void {\n    console.info('aboutToAppear backgroundColor:' + this.color) // 组件即将显示时在控制台输出背景颜色\n  }\n\n  aboutToDisappear(): void {\n    console.info('aboutToDisappear backgroundColor:' + this.color) // 组件即将消失时在控制台输出背景颜色\n  }\n\n  build() {\n    Column()\n      .width('100%') // 组件的宽度为100%\n      .height('100%') // 组件的高度为100%\n      .backgroundColor(this.color) // 设置组件的背景颜色\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Tabs 组件实现了一个带有自定义手势滑动切换拦截的页面切换功能。布局宽度为 360vp，高度为 600vp，背景颜色为 #F1F3F5。组件的垂直方向上包含一个 Tabs 组件和一个按钮组。Tabs 组件的标签栏位于底部，宽度为 360vp，高度为 60vp，标签栏模式为固定模式。Tabs 组件的内容区域可以水平滑动，且在滑动到特定页面时会触发拦截逻辑。\n\nTabs 组件的每个标签页内容通过 TabContent 组件实现，每个 TabContent 包含一个 Column 组件，Column 组件内包含一个 Text 组件，用于显示当前标签页的内容。每个标签页的背景颜色不同，分别为 #00CB87、#007DFF、#FFBF00 和 #E67C92。\n\n按钮组包含两个按钮，分别为“动态修改index”和“changeIndex”，按钮的宽度为 50%，顶部边距为 20vp。按钮的功能包括点击事件，用户可以通过点击按钮动态修改当前选中的标签页索引。\n\n整个布局通过 Column 组件保证 Tabs 组件和按钮组在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TabsExample {\n  @State currentIndex: number = 2 // 当前选中的标签页索引，初始值为 2\n  private controller: TabsController = new TabsController() // Tabs 组件的控制器\n\n  // 自定义标签栏构建器，根据当前选中的索引设置标签栏文本的颜色\n  @Builder tabBuilder(title: string, targetIndex: number) {\n    Column() {\n      Text(title).fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B') // 根据当前索引设置文本颜色\n    }.width('100%')\n     .height(50)\n     .justifyContent(FlexAlign.Center) // 内容居中对齐\n  }\n\n  build() {\n    Column() {\n      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {\n        TabContent() {\n          Column() {\n            Text('首页的内容')\n          }.width('100%').height('100%').backgroundColor('#00CB87').justifyContent(FlexAlign.Center) // 首页内容，背景颜色为 #00CB87\n        }.tabBar(this.tabBuilder('首页', 0)) // 使用自定义标签栏构建器\n\n        TabContent() {\n          Column() {\n            Text('发现的内容')\n          }.width('100%').height('100%').backgroundColor('#007DFF').justifyContent(FlexAlign.Center) // 发现内容，背景颜色为 #007DFF\n        }.tabBar(this.tabBuilder('发现', 1))\n\n        TabContent() {\n          Column() {\n            Text('推荐的内容')\n          }.width('100%').height('100%').backgroundColor('#FFBF00').justifyContent(FlexAlign.Center) // 推荐内容，背景颜色为 #FFBF00\n        }.tabBar(this.tabBuilder('推荐', 2))\n\n        TabContent() {\n          Column() {\n            Text('我的内容')\n          }.width('100%').height('100%').backgroundColor('#E67C92').justifyContent(FlexAlign.Center) // 我的内容，背景颜色为 #E67C92\n        }.tabBar(this.tabBuilder('我的', 3))\n      }\n      .vertical(false) // 标签页内容水平滑动\n      .barMode(BarMode.Fixed) // 标签栏固定模式\n      .barWidth(360) // 标签栏宽度\n      .barHeight(60) // 标签栏高度\n      .animationDuration(0) // 切换动画时长为 0\n      .onChange((index: number) => {\n        this.currentIndex = index // 更新当前选中的标签页索引\n      })\n      .width(360) // Tabs 组件宽度\n      .height(600) // Tabs 组件高度\n      .backgroundColor('#F1F3F5') // Tabs 组件背景颜色\n      .scrollable(true) // 标签页内容可滚动\n      .onContentWillChange((currentIndex, comingIndex) => {\n        if (comingIndex == 2) {\n          return false // 拦截滑动到索引为 2 的标签页\n        }\n        return true // 允许滑动到其他标签页\n      })\n\n      Button('动态修改index').width('50%').margin({ top: 20 })\n        .onClick(() => {\n          this.currentIndex = (this.currentIndex + 1) % 4 // 点击按钮动态修改当前选中的标签页索引\n        })\n\n      Button('changeIndex').width('50%').margin({ top: 20 })\n        .onClick(() => {\n          this.currentIndex = (this.currentIndex + 1) % 4 // 点击按钮动态修改当前选中的标签页索引\n          this.controller.changeIndex(this.currentIndex) // 使用控制器更新标签页索引\n        })\n    }.width('100%') // Column 组件宽度\n  }\n}"
+        },
+        {
+            "description": "该组件通过两个Tabs组件实现了一个展示多个子页签的界面，并提供了切换子页签时是否渐隐的功能。布局宽度占据整个屏幕，高度设为30%，内边距为顶部24vp、左右24vp。组件的垂直方向上被分为两个部分，每个部分包含一组子页签。每个子页签的内容以不同的背景颜色展示，且子页签的标题显示在页签栏中。\n\n第一个Tabs组件的页签栏位于底部，水平排列，支持滚动，页签栏高度为80vp，动画切换时间为400毫秒。第二个Tabs组件的页签栏位于顶部，垂直排列，支持滚动，页签栏高度为200vp，宽度为80vp，动画切换时间为400毫秒。两个Tabs组件都支持通过点击按钮来切换子页签的渐隐效果。\n\n按钮的样式包括宽度占据整个屏幕，底部边距为12vp。按钮的功能包括点击事件，用户可以通过点击按钮触发相应操作，切换子页签的渐隐效果。\n\n整个布局通过Column布局保证两个Tabs组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TabsOpaque {\n  @State message: string = 'Hello World' // 状态变量，用于存储消息内容\n  private controller: TabsController = new TabsController() // 第一个Tabs组件的控制器\n  private controller1: TabsController = new TabsController() // 第二个Tabs组件的控制器\n  @State selfFadingFade: boolean = true; // 状态变量，用于控制子页签的渐隐效果\n\n  build() {\n    Column() {\n      Button('子页签设置渐隐').width('100%').margin({ bottom: '12vp' }) // 按钮，点击后设置子页签渐隐\n        .onClick((event?: ClickEvent) => {\n          this.selfFadingFade = true; // 设置子页签渐隐\n        })\n      Button('子页签设置不渐隐').width('100%').margin({ bottom: '12vp' }) // 按钮，点击后设置子页签不渐隐\n        .onClick((event?: ClickEvent) => {\n          this.selfFadingFade = false; // 设置子页签不渐隐\n        })\n      Tabs({ barPosition: BarPosition.End, controller: this.controller }) { // 第一个Tabs组件，页签栏位于底部\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Pink) // 子页签内容，背景颜色为粉色\n        }.tabBar('pink') // 子页签标题为\"pink\"\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Yellow) // 子页签内容，背景颜色为黄色\n        }.tabBar('yellow') // 子页签标题为\"yellow\"\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Blue) // 子页签内容，背景颜色为蓝色\n        }.tabBar('blue') // 子页签标题为\"blue\"\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Green) // 子页签内容，背景颜色为绿色\n        }.tabBar('green') // 子页签标题为\"green\"\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Green) // 子页签内容，背景颜色为绿色\n        }.tabBar('green') // 子页签标题为\"green\"\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Green) // 子页签内容，背景颜色为绿色\n        }.tabBar('green') // 子页签标题为\"green\"\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Green) // 子页签内容，背景颜色为绿色\n        }.tabBar('green') // 子页签标题为\"green\"\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Green) // 子页签内容，背景颜色为绿色\n        }.tabBar('green') // 子页签标题为\"green\"\n      }\n      .vertical(false) // 页签栏水平排列\n      .scrollable(true) // 页签栏支持滚动\n      .barMode(BarMode.Scrollable) // 页签栏模式为可滚动\n      .barHeight(80) // 页签栏高度为80vp\n      .animationDuration(400) // 动画切换时间为400毫秒\n      .onChange((index: number) => {\n        console.info(index.toString()) // 页签切换时输出当前页签的索引\n      })\n      .fadingEdge(this.selfFadingFade) // 设置子页签的渐隐效果\n      .height('30%') // Tabs组件高度为30%\n      .width('100%') // Tabs组件宽度为100%\n\n      Tabs({ barPosition: BarPosition.Start, controller: this.controller1 }) { // 第二个Tabs组件，页签栏位于顶部\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Pink) // 子页签内容，背景颜色为粉色\n        }.tabBar('pink') // 子页签标题为\"pink\"\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Yellow) // 子页签内容，背景颜色为黄色\n        }.tabBar('yellow') // 子页签标题为\"yellow\"\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Blue) // 子页签内容，背景颜色为蓝色\n        }.tabBar('blue') // 子页签标题为\"blue\"\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Green) // 子页签内容，背景颜色为绿色\n        }.tabBar('green') // 子页签标题为\"green\"\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Green) // 子页签内容，背景颜色为绿色\n        }.tabBar('green') // 子页签标题为\"green\"\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor(Color.Green) // 子页签内容，背景颜色为绿色\n        }.tabBar('green') // 子页签标题为\"green\"\n      }\n      .vertical(true) // 页签栏垂直排列\n      .scrollable(true) // 页签栏支持滚动\n      .barMode(BarMode.Scrollable) // 页签栏模式为可滚动\n      .barHeight(200) // 页签栏高度为200vp\n      .barWidth(80) // 页签栏宽度为80vp\n      .animationDuration(400) // 动画切换时间为400毫秒\n      .onChange((index: number) => {\n        console.info(index.toString()) // 页签切换时输出当前页签的索引\n      })\n      .fadingEdge(this.selfFadingFade) // 设置子页签的渐隐效果\n      .height('30%') // Tabs组件高度为30%\n      .width('100%') // Tabs组件宽度为100%\n    }\n    .padding({ top: '24vp', left: '24vp', right: '24vp' }) // 设置内边距\n  }\n}"
+        },
+        {
+            "description": "该组件通过栅格化方式设置TabBar的可见区域，并提供了动态调整栅格参数的功能。布局宽度占据整个屏幕，高度设为500vp，内边距为10vp。组件的垂直方向上被分为多个部分，每个部分包含一组按钮和一个Tabs组件。\n按钮组的按钮以水平布局方式排列，按钮之间的间距均匀分布，且对齐方式为居中对齐。按钮的样式包括背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。按钮组之间通过Row组件进行分隔。\nTabs组件的TabBar位于底部，包含三个TabContent，每个TabContent的内容为一个带有不同背景颜色的Column组件。TabBar的栅格化布局参数（如margin、gutter、sm）可以通过按钮进行动态调整。\n整个布局通过Column和Row组件保证按钮和Tabs在垂直和水平方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TabsExample5 {\n  private controller: TabsController = new TabsController() // 创建一个TabsController实例，用于控制Tabs组件的切换\n  @State gridMargin: number = 10 // 定义一个状态变量gridMargin，用于控制TabBar的栅格化布局的margin\n  @State gridGutter: number = 10 // 定义一个状态变量gridGutter，用于控制TabBar的栅格化布局的gutter\n  @State sm: number = -2 // 定义一个状态变量sm，用于控制TabBar的栅格化布局的sm\n  @State clickedContent: string = \"\" // 定义一个状态变量clickedContent，用于记录被点击的TabContent的索引\n\n  build() {\n    Column() {\n      Row() {\n        Button(\"gridMargin+10 \" + this.gridMargin) // 创建一个按钮，显示当前的gridMargin值，并提供增加gridMargin的功能\n          .width('47%') // 设置按钮的宽度为父容器的47%\n          .height(50) // 设置按钮的高度为50vp\n          .margin({ top: 5 }) // 设置按钮的上边距为5vp\n          .onClick((event?: ClickEvent) => { // 设置按钮的点击事件，点击时增加gridMargin的值\n            this.gridMargin += 10\n          })\n          .margin({ right: '6%', bottom: '12vp' }) // 设置按钮的右边距为6%，下边距为12vp\n        Button(\"gridMargin-10 \" + this.gridMargin) // 创建一个按钮，显示当前的gridMargin值，并提供减少gridMargin的功能\n          .width('47%') // 设置按钮的宽度为父容器的47%\n          .height(50) // 设置按钮的高度为50vp\n          .margin({ top: 5 }) // 设置按钮的上边距为5vp\n          .onClick((event?: ClickEvent) => { // 设置按钮的点击事件，点击时减少gridMargin的值\n            this.gridMargin -= 10\n          })\n          .margin({ bottom: '12vp' }) // 设置按钮的下边距为12vp\n      }\n\n      Row() {\n        Button(\"gridGutter+10 \" + this.gridGutter) // 创建一个按钮，显示当前的gridGutter值，并提供增加gridGutter的功能\n          .width('47%') // 设置按钮的宽度为父容器的47%\n          .height(50) // 设置按钮的高度为50vp\n          .margin({ top: 5 }) // 设置按钮的上边距为5vp\n          .onClick((event?: ClickEvent) => { // 设置按钮的点击事件，点击时增加gridGutter的值\n            this.gridGutter += 10\n          })\n          .margin({ right: '6%', bottom: '12vp' }) // 设置按钮的右边距为6%，下边距为12vp\n        Button(\"gridGutter-10 \" + this.gridGutter) // 创建一个按钮，显示当前的gridGutter值，并提供减少gridGutter的功能\n          .width('47%') // 设置按钮的宽度为父容器的47%\n          .height(50) // 设置按钮的高度为50vp\n          .margin({ top: 5 }) // 设置按钮的上边距为5vp\n          .onClick((event?: ClickEvent) => { // 设置按钮的点击事件，点击时减少gridGutter的值\n            this.gridGutter -= 10\n          })\n          .margin({ bottom: '12vp' }) // 设置按钮的下边距为12vp\n      }\n\n      Row() {\n        Button(\"sm+2 \" + this.sm) // 创建一个按钮，显示当前的sm值，并提供增加sm的功能\n          .width('47%') // 设置按钮的宽度为父容器的47%\n          .height(50) // 设置按钮的高度为50vp\n          .margin({ top: 5 }) // 设置按钮的上边距为5vp\n          .onClick((event?: ClickEvent) => { // 设置按钮的点击事件，点击时增加sm的值\n            this.sm += 2\n          })\n          .margin({ right: '6%' }) // 设置按钮的右边距为6%\n        Button(\"sm-2 \" + this.sm).width('47%').height(50).margin({ top: 5 }) // 创建一个按钮，显示当前的sm值，并提供减少sm的功能\n          .onClick((event?: ClickEvent) => { // 设置按钮的点击事件，点击时减少sm的值\n            this.sm -= 2\n          })\n      }\n\n      Text(\"点击内容:\" + this.clickedContent).width('100%').height(200).margin({ top: 5 }) // 创建一个Text组件，显示被点击的TabContent的索引\n\n      Tabs({ barPosition: BarPosition.End, controller: this.controller }) { // 创建一个Tabs组件，TabBar位于底部，并使用之前创建的TabsController实例\n        TabContent() { // 创建第一个TabContent\n          Column().width('100%').height('100%').backgroundColor(Color.Pink) // 设置TabContent的内容为一个粉色背景的Column组件\n        }.tabBar(BottomTabBarStyle.of($r(\"sys.media.ohos_app_icon\"), \"1\")) // 设置TabBar的样式，使用系统资源sys.media.ohos_app_icon作为图标，文本为\"1\"\n\n        TabContent() { // 创建第二个TabContent\n          Column().width('100%').height('100%').backgroundColor(Color.Green) // 设置TabContent的内容为一个绿色背景的Column组件\n        }.tabBar(BottomTabBarStyle.of($r(\"sys.media.ohos_app_icon\"), \"2\")) // 设置TabBar的样式，使用系统资源sys.media.ohos_app_icon作为图标，文本为\"2\"\n\n        TabContent() { // 创建第三个TabContent\n          Column().width('100%').height('100%').backgroundColor(Color.Blue) // 设置TabContent的内容为一个蓝色背景的Column组件\n        }.tabBar(BottomTabBarStyle.of($r(\"sys.media.ohos_app_icon\"), \"3\")) // 设置TabBar的样式，使用系统资源sys.media.ohos_app_icon作为图标，文本为\"3\"\n      }\n      .width('350vp') // 设置Tabs组件的宽度为350vp\n      .animationDuration(300) // 设置Tabs组件的动画持续时间为300毫秒\n      .height('60%') // 设置Tabs组件的高度为父容器的60%\n      .barGridAlign({ sm: this.sm, margin: this.gridMargin, gutter: this.gridGutter }) // 设置TabBar的栅格化布局参数\n      .backgroundColor(0xf1f3f5) // 设置Tabs组件的背景颜色为浅灰色\n      .onTabBarClick((index: number) => { // 设置TabBar的点击事件，点击时记录被点击的TabContent的索引\n        this.clickedContent += \"now index \" + index + \" is clicked\\n\";\n      })\n    }\n    .width('100%') // 设置Column组件的宽度为100%\n    .height(500) // 设置Column组件的高度为500vp\n    .margin({ top: 5 }) // 设置Column组件的上边距为5vp\n    .padding('10vp') // 设置Column组件的内边距为10vp\n  }\n}"
+        },
+        {
+            "description": "该组件通过Column和Row布局实现了一个包含多个按钮和Tabs组件的界面。布局宽度占据整个屏幕，高度设为500vp，内边距为24vp。组件的垂直方向上被分为多个部分，每个部分包含一组按钮和一个Tabs组件。每个按钮组的按钮以水平布局方式排列，按钮之间的间距均匀分布，且对齐方式为居中对齐。\n按钮的样式包括背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。按钮组之间通过Row组件进行分隔。按钮的功能包括点击事件和状态效果，用户可以通过点击按钮触发相应操作，按钮也可以在启用或禁用状态下进行展示。\nTabs组件的布局高度占据整个布局的60%，背景颜色为浅灰色（0xf1f3f5），TabBar的位置在Tabs的底部（BarPosition.End）。Tabs组件支持滚动模式（Scrollable），并且可以通过按钮动态调整滚动边距（scrollMargin）和布局样式（layoutStyle）。\n整个布局通过Column和Row布局保证按钮和Tabs组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TabsExample6 {\n  private controller: TabsController = new TabsController() // 创建一个TabsController实例，用于控制Tabs组件的行为\n  @State scrollMargin: number = 0 // 定义一个状态变量scrollMargin，用于控制Tabs组件的滚动边距\n  @State layoutStyle: LayoutStyle = LayoutStyle.ALWAYS_CENTER // 定义一个状态变量layoutStyle，用于控制Tabs组件的布局样式\n  @State text: string = \"文本\" // 定义一个状态变量text，用于控制TabBar的文本内容\n\n  build() {\n    Column() {\n      Row() {\n        Button(\"scrollMargin+10 \" + this.scrollMargin) // 创建一个按钮，点击后增加scrollMargin的值\n          .width('47%') // 设置按钮的宽度为47%\n          .height(50) // 设置按钮的高度为50vp\n          .margin({ top: 5 }) // 设置按钮的上边距为5vp\n          .onClick((event?: ClickEvent) => { // 设置按钮的点击事件\n            this.scrollMargin += 10 // 点击按钮后，scrollMargin增加10\n          })\n          .margin({ right: '6%', bottom: '12vp' }) // 设置按钮的右边距为6%，下边距为12vp\n        Button(\"scrollMargin-10 \" + this.scrollMargin) // 创建一个按钮，点击后减少scrollMargin的值\n          .width('47%') // 设置按钮的宽度为47%\n          .height(50) // 设置按钮的高度为50vp\n          .margin({ top: 5 }) // 设置按钮的上边距为5vp\n          .onClick((event?: ClickEvent) => { // 设置按钮的点击事件\n            this.scrollMargin -= 10 // 点击按钮后，scrollMargin减少10\n          })\n          .margin({ bottom: '12vp' }) // 设置按钮的下边距为12vp\n      }\n\n      Row() {\n        Button(\"文本增加 \") // 创建一个按钮，点击后增加text的值\n          .width('47%') // 设置按钮的宽度为47%\n          .height(50) // 设置按钮的高度为50vp\n          .margin({ top: 5 }) // 设置按钮的上边距为5vp\n          .onClick((event?: ClickEvent) => { // 设置按钮的点击事件\n            this.text += '文本增加' // 点击按钮后，text增加“文本增加”\n          })\n          .margin({ right: '6%', bottom: '12vp' }) // 设置按钮的右边距为6%，下边距为12vp\n        Button(\"文本重置\") // 创建一个按钮，点击后重置text的值\n          .width('47%') // 设置按钮的宽度为47%\n          .height(50) // 设置按钮的高度为50vp\n          .margin({ top: 5 }) // 设置按钮的上边距为5vp\n          .onClick((event?: ClickEvent) => { // 设置按钮的点击事件\n            this.text = \"文本\" // 点击按钮后，text重置为“文本”\n          })\n          .margin({ bottom: '12vp' }) // 设置按钮的下边距为12vp\n      }\n\n      Row() {\n        Button(\"layoutStyle.ALWAYS_CENTER\") // 创建一个按钮，点击后将layoutStyle设置为ALWAYS_CENTER\n          .width('100%') // 设置按钮的宽度为100%\n          .height(50) // 设置按钮的高度为50vp\n          .margin({ top: 5 }) // 设置按钮的上边距为5vp\n          .fontSize(15) // 设置按钮的字体大小为15\n          .onClick((event?: ClickEvent) => { // 设置按钮的点击事件\n            this.layoutStyle = LayoutStyle.ALWAYS_CENTER; // 点击按钮后，layoutStyle设置为ALWAYS_CENTER\n          })\n          .margin({ bottom: '12vp' }) // 设置按钮的下边距为12vp\n      }\n\n      Row() {\n        Button(\"layoutStyle.ALWAYS_AVERAGE_SPLIT\") // 创建一个按钮，点击后将layoutStyle设置为ALWAYS_AVERAGE_SPLIT\n          .width('100%') // 设置按钮的宽度为100%\n          .height(50) // 设置按钮的高度为50vp\n          .margin({ top: 5 }) // 设置按钮的上边距为5vp\n          .fontSize(15) // 设置按钮的字体大小为15\n          .onClick((event?: ClickEvent) => { // 设置按钮的点击事件\n            this.layoutStyle = LayoutStyle.ALWAYS_AVERAGE_SPLIT; // 点击按钮后，layoutStyle设置为ALWAYS_AVERAGE_SPLIT\n          })\n          .margin({ bottom: '12vp' }) // 设置按钮的下边距为12vp\n      }\n\n      Row() {\n        Button(\"layoutStyle.SPACE_BETWEEN_OR_CENTER\") // 创建一个按钮，点击后将layoutStyle设置为SPACE_BETWEEN_OR_CENTER\n          .width('100%') // 设置按钮的宽度为100%\n          .height(50) // 设置按钮的高度为50vp\n          .margin({ top: 5 }) // 设置按钮的上边距为5vp\n          .fontSize(15) // 设置按钮的字体大小为15\n          .onClick((event?: ClickEvent) => { // 设置按钮的点击事件\n            this.layoutStyle = LayoutStyle.SPACE_BETWEEN_OR_CENTER; // 点击按钮后，layoutStyle设置为SPACE_BETWEEN_OR_CENTER\n          })\n          .margin({ bottom: '12vp' }) // 设置按钮的下边距为12vp\n      }\n\n      Tabs({ barPosition: BarPosition.End, controller: this.controller }) { // 创建一个Tabs组件，TabBar位于底部，使用controller控制\n        TabContent() { // 创建一个TabContent，包含一个粉色背景的Column\n          Column().width('100%').height('100%').backgroundColor(Color.Pink)\n        }.tabBar(SubTabBarStyle.of(this.text)) // 设置TabBar的样式为SubTabBarStyle，文本内容为text\n\n        TabContent() { // 创建一个TabContent，包含一个绿色背景的Column\n          Column().width('100%').height('100%').backgroundColor(Color.Green)\n        }.tabBar(SubTabBarStyle.of(this.text)) // 设置TabBar的样式为SubTabBarStyle，文本内容为text\n\n        TabContent() { // 创建一个TabContent，包含一个蓝色背景的Column\n          Column().width('100%').height('100%').backgroundColor(Color.Blue)\n        }.tabBar(SubTabBarStyle.of(this.text)) // 设置TabBar的样式为SubTabBarStyle，文本内容为text\n      }\n      .animationDuration(300) // 设置Tabs切换动画的持续时间为300毫秒\n      .height('60%') // 设置Tabs的高度为整个布局的60%\n      .backgroundColor(0xf1f3f5) // 设置Tabs的背景颜色为浅灰色（0xf1f3f5）\n      .barMode(BarMode.Scrollable, { margin: this.scrollMargin, nonScrollableLayoutStyle: this.layoutStyle }) // 设置Tabs的BarMode为Scrollable，并动态调整滚动边距和布局样式\n    }\n    .width('100%') // 设置整个布局的宽度为100%\n    .height(500) // 设置整个布局的高度为500vp\n    .margin({ top: 5 }) // 设置整个布局的上边距为5vp\n    .padding('24vp') // 设置整个布局的内边距为24vp\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个自定义的TabBar，通过Tabs组件和自定义动画效果实现了Tab的切换动画。布局宽度占据整个屏幕，高度设为296vp，内边距为左右100%、顶部0。组件的垂直方向上被分为两个部分：顶部是TabBar，底部是TabContent。TabBar的宽度占据整个屏幕，高度为56vp，背景颜色为#F1F3F5。TabContent的高度占据剩余空间，背景颜色根据当前选中的Tab动态变化。\n\nTabBar的样式包括背景颜色、字体颜色、字体大小、字体粗细等属性，支持不同的样式展示。TabBar的Tab项以水平布局方式排列，Tab项之间的间距均匀分布，且对齐方式为居中对齐。Tab项的样式根据当前选中的Tab动态变化，选中的Tab项字体颜色为#007DFF，字体粗细为500，未选中的Tab项字体颜色为#182431，字体粗细为400。\n\nTabBar的功能包括点击事件和滑动事件，用户可以通过点击Tab项或滑动TabBar触发Tab的切换动画。Tab的切换动画通过onChange、onAnimationStart、onAnimationEnd、onGestureSwipe等接口实现，动画持续时间为300ms，动画曲线为线性。Tab的切换动画效果包括Tab项的字体颜色和字体粗细的变化，以及TabContent的背景颜色的变化。\n\n整个布局通过Stack布局保证TabBar和TabContent在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "import { ComponentUtils } from '@kit.ArkUI'\n\n@Entry\n@Component\nstruct TabsExample {\n  @State currentIndex: number = 0 // 当前选中的Tab索引\n  @State animationDuration: number = 300 // Tab切换动画的持续时间\n  @State indicatorLeftMargin: number = 0 // 指示器的左边距\n  @State indicatorWidth: number = 0 // 指示器的宽度\n  private tabsWidth: number = 0 // TabBar的总宽度\n  private componentUtils: ComponentUtils = this.getUIContext().getComponentUtils() // 获取组件工具类实例\n\n  @Builder\n  tabBuilder(index: number, name: string) {\n    Column() {\n      Text(name)\n        .fontSize(16) // 字体大小为16\n        .fontColor(this.currentIndex === index ? '#007DFF' : '#182431') // 字体颜色根据当前选中的Tab动态变化\n        .fontWeight(this.currentIndex === index ? 500 : 400) // 字体粗细根据当前选中的Tab动态变化\n        .id(index.toString()) // 设置Tab项的唯一标识\n        .onAreaChange((oldValue: Area,newValue: Area) => {\n          if (this.currentIndex === index && (this.indicatorLeftMargin === 0 || this.indicatorWidth === 0)){\n            if (newValue.position.x != undefined) {\n              let positionX = Number.parseFloat(newValue.position.x.toString())\n              this.indicatorLeftMargin = Number.isNaN(positionX) ? 0 : positionX // 更新指示器的左边距\n            }\n            let width = Number.parseFloat(newValue.width.toString())\n            this.indicatorWidth = Number.isNaN(width) ? 0 : width // 更新指示器的宽度\n          }\n        })\n    }.width('100%') // 设置Tab项的宽度为100%\n  }\n\n  build() {\n    Stack({ alignContent: Alignment.TopStart }) {\n      Tabs({ barPosition: BarPosition.Start }) {\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor('#00CB87') // TabContent的背景颜色为#00CB87\n        }.tabBar(this.tabBuilder(0, 'green')) // 设置Tab项的内容和样式\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor('#007DFF') // TabContent的背景颜色为#007DFF\n        }.tabBar(this.tabBuilder(1, 'blue')) // 设置Tab项的内容和样式\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor('#FFBF00') // TabContent的背景颜色为#FFBF00\n        }.tabBar(this.tabBuilder(2, 'yellow')) // 设置Tab项的内容和样式\n\n        TabContent() {\n          Column().width('100%').height('100%').backgroundColor('#E67C92') // TabContent的背景颜色为#E67C92\n        }.tabBar(this.tabBuilder(3, 'pink')) // 设置Tab项的内容和样式\n      }\n      .onAreaChange((oldValue: Area,newValue: Area)=> {\n        let width = Number.parseFloat(newValue.width.toString())\n        this.tabsWidth = Number.isNaN(width) ? 0 : width // 更新TabBar的总宽度\n      })\n      .barWidth('100%') // 设置TabBar的宽度为100%\n      .barHeight(56) // 设置TabBar的高度为56vp\n      .width('100%') // 设置Tabs的宽度为100%\n      .height(296) // 设置Tabs的高度为296vp\n      .backgroundColor('#F1F3F5') // 设置Tabs的背景颜色为#F1F3F5\n      .animationDuration(this.animationDuration) // 设置Tab切换动画的持续时间\n      .onChange((index: number) => {\n        this.currentIndex = index  // 更新当前选中的Tab索引\n      })\n      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {\n        this.currentIndex = targetIndex // 更新当前选中的Tab索引\n        let targetIndexInfo = this.getTextInfo(targetIndex)\n        this.startAnimateTo(this.animationDuration, targetIndexInfo.left, targetIndexInfo.width) // 开始Tab切换动画\n      })\n      .onAnimationEnd((index: number,event: TabsAnimationEvent) => {\n        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index,event)\n        this.startAnimateTo(0,currentIndicatorInfo.left,currentIndicatorInfo.width) // 结束Tab切换动画\n      })\n      .onGestureSwipe((index: number,event: TabsAnimationEvent) => {\n        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index,event)\n        this.currentIndex = currentIndicatorInfo.index // 更新当前选中的Tab索引\n        this.indicatorLeftMargin = currentIndicatorInfo.left // 更新指示器的左边距\n        this.indicatorWidth = currentIndicatorInfo.width // 更新指示器的宽度\n      })\n\n      Column()\n        .height(2) // 设置指示器的高度为2vp\n        .width(this.indicatorWidth) // 设置指示器的宽度为动态计算的宽度\n        .margin({ left: this.indicatorLeftMargin, top:48}) // 设置指示器的左边距和上边距\n        .backgroundColor('#007DFF') // 设置指示器的背景颜色为#007DFF\n    }.width('100%') // 设置Stack的宽度为100%\n  }\n\n  private getTextInfo(index: number): Record<string, number> {\n    let rectangle = this.componentUtils.getRectangleById(index.toString())\n    return { 'left': px2vp(rectangle.windowOffset.x), 'width': px2vp(rectangle.size.width) } // 获取Tab项的位置和宽度信息\n  }\n\n  private getCurrentIndicatorInfo(index: number, event: TabsAnimationEvent): Record<string, number> {\n    let nextIndex = index\n    if (index > 0 && event.currentOffset > 0) {\n      nextIndex--\n    } else if (index < 3 && event.currentOffset < 0) {\n      nextIndex++\n    }\n    let indexInfo = this.getTextInfo(index)\n    let nextIndexInfo = this.getTextInfo(nextIndex)\n    let swipeRatio = Math.abs(event.currentOffset / this.tabsWidth)\n    let currentIndex = swipeRatio > 0.5 ? nextIndex : index \n    let currentLeft = indexInfo.left + (nextIndexInfo.left - indexInfo.left) * swipeRatio\n    let currentWidth = indexInfo.width + (nextIndexInfo.width - indexInfo.width) * swipeRatio\n    return { 'index': currentIndex, 'left': currentLeft, 'width': currentWidth } // 获取当前指示器的位置和宽度信息\n  }\n\n  private startAnimateTo(duration: number, leftMargin: number, width: number) {\n    animateTo({\n      duration: duration, \n      curve: Curve.Linear, \n      iterations: 1, \n      playMode: PlayMode.Normal, \n      onFinish: () => {\n        console.info('play end')\n      }\n    }, () => {\n      this.indicatorLeftMargin = leftMargin // 更新指示器的左边距\n      this.indicatorWidth = width // 更新指示器的宽度\n    })\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Tabs 组件实现了一个垂直方向的标签页布局，每个标签页包含一个不同颜色的背景。布局宽度占据整个屏幕，高度设为 200vp，内边距为左右 24vp、顶部 24vp。组件的垂直方向上被分为多个部分，每个部分包含一个标签页和一个按钮组。每个标签页的内容以垂直布局方式排列，标签页之间的间距均匀分布，且对齐方式为居中对齐。\n标签页的样式包括背景颜色、标签栏的宽度、高度、动画持续时间等属性，支持不同的样式展示。标签页组之间通过 Divider 组件进行分隔。Divider 的功能包括颜色、宽度、上下边距的调整，用户可以通过点击按钮触发相应操作，Divider 也可以在启用或禁用状态下进行展示。\n整个布局通过 Column 布局保证标签页在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct TabsDivider1 {\n  private controller1: TabsController = new TabsController() // 创建一个 TabsController 实例，用于控制 Tabs 组件的行为\n  @State dividerColor: string = 'red' // 定义 Divider 的颜色，初始值为红色\n  @State strokeWidth: number = 2 // 定义 Divider 的宽度，初始值为 2\n  @State startMargin: number = 0 // 定义 Divider 的上边距，初始值为 0\n  @State endMargin: number = 0 // 定义 Divider 的下边距，初始值为 0\n  @State nullFlag: boolean = false // 定义一个标志位，用于控制 Divider 是否显示，初始值为 false\n\n  build() {\n    Column() {\n      Tabs({ controller: this.controller1 }) { // 创建一个 Tabs 组件，并传入 TabsController 实例\n        TabContent() { // 创建第一个标签页内容\n          Column().width('100%').height('100%').backgroundColor(Color.Pink) // 创建一个 Column 组件，设置宽度和高度为 100%，背景颜色为粉色\n        }.tabBar('pink') // 设置标签页的标签栏文本为 \"pink\"\n\n        TabContent() { // 创建第二个标签页内容\n          Column().width('100%').height('100%').backgroundColor(Color.Yellow) // 创建一个 Column 组件，设置宽度和高度为 100%，背景颜色为黄色\n        }.tabBar('yellow') // 设置标签页的标签栏文本为 \"yellow\"\n\n        TabContent() { // 创建第三个标签页内容\n          Column().width('100%').height('100%').backgroundColor(Color.Blue) // 创建一个 Column 组件，设置宽度和高度为 100%，背景颜色为蓝色\n        }.tabBar('blue') // 设置标签页的标签栏文本为 \"blue\"\n\n        TabContent() { // 创建第四个标签页内容\n          Column().width('100%').height('100%').backgroundColor(Color.Green) // 创建一个 Column 组件，设置宽度和高度为 100%，背景颜色为绿色\n        }.tabBar('green') // 设置标签页的标签栏文本为 \"green\"\n\n        TabContent() { // 创建第五个标签页内容\n          Column().width('100%').height('100%').backgroundColor(Color.Red) // 创建一个 Column 组件，设置宽度和高度为 100%，背景颜色为红色\n        }.tabBar('red') // 设置标签页的标签栏文本为 \"red\"\n      }\n      .vertical(true) // 设置 Tabs 组件为垂直方向\n      .scrollable(true) // 设置 Tabs 组件可滚动\n      .barMode(BarMode.Fixed) // 设置标签栏模式为固定模式\n      .barWidth(70) // 设置标签栏的宽度为 70\n      .barHeight(200) // 设置标签栏的高度为 200\n      .animationDuration(400) // 设置标签页切换动画的持续时间为 400 毫秒\n      .onChange((index: number) => { // 设置标签页切换时的回调函数\n        console.info(index.toString()) // 打印当前选中的标签页索引\n      })\n      .height('200vp') // 设置 Tabs 组件的高度为 200vp\n      .margin({ bottom: '12vp' }) // 设置 Tabs 组件的下边距为 12vp\n      .divider(this.nullFlag ? null : { // 设置 Tabs 组件的 Divider，如果 nullFlag 为 true，则不显示 Divider\n        strokeWidth: this.strokeWidth, // 设置 Divider 的宽度\n        color: this.dividerColor, // 设置 Divider 的颜色\n        startMargin: this.startMargin, // 设置 Divider 的上边距\n        endMargin: this.endMargin // 设置 Divider 的下边距\n      })\n\n      Button('常规Divider').width('100%').margin({ bottom: '12vp' }) // 创建一个按钮，设置宽度为 100%，下边距为 12vp，文本为 \"常规Divider\"\n        .onClick(() => { // 设置按钮点击事件的回调函数\n          this.nullFlag = false; // 设置 nullFlag 为 false，显示 Divider\n          this.strokeWidth = 2; // 设置 Divider 的宽度为 2\n          this.dividerColor = 'red'; // 设置 Divider 的颜色为红色\n          this.startMargin = 0; // 设置 Divider 的上边距为 0\n          this.endMargin = 0; // 设置 Divider 的下边距为 0\n        })\n      Button('空Divider').width('100%').margin({ bottom: '12vp' }) // 创建一个按钮，设置宽度为 100%，下边距为 12vp，文本为 \"空Divider\"\n        .onClick(() => { // 设置按钮点击事件的回调函数\n          this.nullFlag = true // 设置 nullFlag 为 true，隐藏 Divider\n        })\n      Button('颜色变为蓝色').width('100%').margin({ bottom: '12vp' }) // 创建一个按钮，设置宽度为 100%，下边距为 12vp，文本为 \"颜色变为蓝色\"\n        .onClick(() => { // 设置按钮点击事件的回调函数\n          this.dividerColor = 'blue' // 设置 Divider 的颜色为蓝色\n        })\n      Button('宽度增加').width('100%').margin({ bottom: '12vp' }) // 创建一个按钮，设置宽度为 100%，下边距为 12vp，文本为 \"宽度增加\"\n        .onClick(() => { // 设置按钮点击事件的回调函数\n          this.strokeWidth += 2 // 增加 Divider 的宽度\n        })\n      Button('宽度减小').width('100%').margin({ bottom: '12vp' }) // 创建一个按钮，设置宽度为 100%，下边距为 12vp，文本为 \"宽度减小\"\n        .onClick(() => { // 设置按钮点击事件的回调函数\n          if (this.strokeWidth > 2) { // 如果 Divider 的宽度大于 2\n            this.strokeWidth -= 2 // 减少 Divider 的宽度\n          }\n        })\n      Button('上边距增加').width('100%').margin({ bottom: '12vp' }) // 创建一个按钮，设置宽度为 100%，下边距为 12vp，文本为 \"上边距增加\"\n        .onClick(() => { // 设置按钮点击事件的回调函数\n          this.startMargin += 2 // 增加 Divider 的上边距\n        })\n      Button('上边距减少').width('100%').margin({ bottom: '12vp' }) // 创建一个按钮，设置宽度为 100%，下边距为 12vp，文本为 \"上边距减少\"\n        .onClick(() => { // 设置按钮点击事件的回调函数\n          if (this.startMargin > 2) { // 如果 Divider 的上边距大于 2\n            this.startMargin -= 2 // 减少 Divider 的上边距\n          }\n        })\n      Button('下边距增加').width('100%').margin({ bottom: '12vp' }) // 创建一个按钮，设置宽度为 100%，下边距为 12vp，文本为 \"下边距增加\"\n        .onClick(() => { // 设置按钮点击事件的回调函数\n          this.endMargin += 2 // 增加 Divider 的下边距\n        })\n      Button('下边距减少').width('100%').margin({ bottom: '12vp' }) // 创建一个按钮，设置宽度为 100%，下边距为 12vp，文本为 \"下边距减少\"\n        .onClick(() => { // 设置按钮点击事件的回调函数\n          if (this.endMargin > 2) { // 如果 Divider 的下边距大于 2\n            this.endMargin -= 2 // 减少 Divider 的下边距\n          }\n        })\n    }.padding({ top: '24vp', left: '24vp', right: '24vp' }) // 设置 Column 组件的内边距为顶部 24vp，左右 24vp\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

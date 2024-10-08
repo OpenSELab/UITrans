@@ -1,0 +1,465 @@
+Title: ColumnSplit-栅格与分栏-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-columnsplit-V5
+
+Markdown Content:
+ColumnSplit-栅格与分栏-ArkTS组件-ArkUI（方舟UI框架）-应用框架 - 华为HarmonyOS开发者
+===============
+
+简体中文
+
+*   简体中文
+*   Русский
+*   English
+*   Español (América Latina)
+*   Português (Brasil)
+*   Français (Europe)
+*   Deutsch
+*   日本語
+*   한국어
+
+[App](https://developer.huawei.com/consumer/cn/huawei-app/)
+
+[](https://developer.huawei.com/consumer/cn/)
+
+*   探索
+*   设计
+*   开发
+*   分发
+*   推广与变现
+*   生态合作
+*   支持
+
+*   更多
+
+*   [探索](https://developer.huawei.com/consumer/cn/discover/)
+    
+*   [设计](https://developer.huawei.com/consumer/cn/design/)
+    
+*   [开发](https://developer.huawei.com/consumer/cn/develop/)
+    
+*   [分发](https://developer.huawei.com/consumer/cn/distribute/)
+    
+*   更多
+    *   [推广与变现](https://developer.huawei.com/consumer/cn/promote/)
+        
+    *   [生态合作](https://developer.huawei.com/consumer/cn/cooperate/)
+        
+    *   [支持](https://developer.huawei.com/consumer/cn/support/)
+        
+
+搜索
+
+热门搜索 _换一换_
+
+*   HarmonyOS NEXT
+*   HarmonyOS应用开发
+*   仓颉
+*   DevEco Studio
+*   开发者能力认证
+*   模拟器
+*   Navigation
+*   List
+*   Web
+*   TextInput
+*   Image
+*   AppGallery Connect
+
+[文档](https://developer.huawei.com/consumer/cn/doc/)[管理中心](https://developer.huawei.com/consumer/cn/console)
+
+HarmonyOS NEXT
+
+Beta1
+
+API参考
+
+*   [版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/releasenotes-baseline-V5?istab=1&catalogVersion=V5)
+*   [指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/application-dev-guide-V5?istab=1&catalogVersion=V5)
+*   [API参考](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/development-intro-api-V5?istab=1&catalogVersion=V5)
+*   [最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-develop-once-deploy-everywhere-V5?istab=1&catalogVersion=V5)
+*   [FAQ](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-development-V5?istab=1&catalogVersion=V5)
+*   [变更预告](https://developer.huawei.com/consumer/cn/doc/harmonyos-roadmap-V5/changelogs-in-31-V5?istab=1&catalogVersion=V5)
+*   更多
+
+筛选元服务API集
+
+API参考概述
+
+应用框架
+
+[Ability Kit（程序框架服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ability-api-V5)
+
+[Accessibility Kit（无障碍服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/accessibility-api-V5)
+
+[ArkData（方舟数据管理）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkdata-api-V5)
+
+[ArkTS（方舟编程语言）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkts-api-V5)
+
+[ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5)
+
+[ArkTS API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-V5)
+
+[ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5)
+
+[组件通用信息](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_1_u7ec4_u4ef6_u901a_u7528_u4fe1_u606f-V5)
+
+[行列与堆叠](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_2_u884c_u5217_u4e0e_u5806_u53e0-V5)
+
+[栅格与分栏](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_3_u6805_u683c_u4e0e_u5206_u680f-V5)
+
+[GridRow](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridrow-V5)
+
+[GridCol](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridcol-V5)
+
+[ColumnSplit](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-columnsplit-V5)
+
+[RowSplit](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-rowsplit-V5)
+
+[SplitLayout](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-splitlayout-V5)
+
+[FoldSplitContainer](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-foldsplitcontainer-V5)
+
+[SideBarContainer](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-sidebarcontainer-V5)
+
+[滚动与滑动](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_4_u6eda_u52a8_u4e0e_u6ed1_u52a8-V5)
+
+[导航与切换](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_5_u5bfc_u822a_u4e0e_u5207_u6362-V5)
+
+[按钮与选择](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_6_u6309_u94ae_u4e0e_u9009_u62e9-V5)
+
+[文本与输入](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_7_u6587_u672c_u4e0e_u8f93_u5165-V5)
+
+[图片与视频](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_8_u56fe_u7247_u4e0e_u89c6_u9891-V5)
+
+[信息展示](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_9_u4fe1_u606f_u5c55_u793a-V5)
+
+[空白与分隔](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_10_u7a7a_u767d_u4e0e_u5206_u9694-V5)
+
+[画布绘制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_11_u753b_u5e03_u7ed8_u5236-V5)
+
+[图形绘制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_12_u56fe_u5f62_u7ed8_u5236-V5)
+
+[渲染绘制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_13_u6e32_u67d3_u7ed8_u5236-V5)
+
+[标题栏与工具栏](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_14_u6807_u9898_u680f_u4e0e_u5de5_u5177_u680f-V5)
+
+[菜单](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_15_u83dc_u5355-V5)
+
+[动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_16_u52a8_u753b-V5)
+
+[弹窗](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_17_u5f39_u7a97-V5)
+
+[卡片](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_18_u5361_u7247-V5)
+
+[安全](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_19_u5b89_u5168-V5)
+
+[主题](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_20_u4e3b_u9898-V5)
+
+[原子化服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_21_u539f_u5b50_u5316_u670d_u52a1-V5)
+
+[自定义占位组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_22_u81ea_u5b9a_u4e49_u5360_u4f4d_u7ec4_u4ef6-V5)
+
+[自定义组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_23_u81ea_u5b9a_u4e49_u7ec4_u4ef6-V5)
+
+[状态管理与渲染控制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/b6_u6001_u7ba1_u7406_u4e0e_u6e32_u67d3_u63a7_u5236-V5)
+
+[公共定义](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_25_u516c_u5171_u5b9a_u4e49-V5)
+
+[已停止维护的组件与接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/62_u7ef4_u62a4_u7684_u7ec4_u4ef6_u4e0e_u63a5_u53e3-V5)
+
+[JS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-js-comp-V5)
+
+[C API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-c-V5)
+
+[错误码](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-errcode-V5)
+
+[ArkWeb（方舟Web）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkweb-api-V5)
+
+[Background Tasks Kit（后台任务开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/background-tasks-api-V5)
+
+[Core File Kit（文件基础服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/core-file-api-V5)
+
+[Form Kit（卡片开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/form-api-V5)
+
+[IME Kit（输入法开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ime-api-V5)
+
+[IPC Kit（进程间通信服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ipc-api-V5)
+
+[Localization Kit（本地化开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/localization-api-V5)
+
+[UI Design Kit（UI设计套件）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ui-design-api-V5)
+
+系统
+
+媒体
+
+图形
+
+应用服务
+
+AI
+
+公共基础能力
+
+标准库
+
+您当前正在浏览HarmonyOS NEXT Beta1版本的配套文档，该版本API能力级别为API 12 Release，详细版本配套关系请参考[版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/overview-beta1-V5)。
+
+API参考 应用框架 [ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5) [ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5) [栅格与分栏](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_3_u6805_u683c_u4e0e_u5206_u680f-V5) ColumnSplit
+
+ColumnSplit
+===========
+
+更新时间: 2024-09-30 06:10
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+本文导读
+
+[子组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-columnsplit-V5#%E5%AD%90%E7%BB%84%E4%BB%B6)
+
+[接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-columnsplit-V5#%E6%8E%A5%E5%8F%A3)
+
+[属性](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-columnsplit-V5#%E5%B1%9E%E6%80%A7)
+
+[resizeable](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-columnsplit-V5#resizeable)
+
+[divider10+](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-columnsplit-V5#divider10)
+
+[ColumnSplitDividerStyle10+对象说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-columnsplit-V5#columnsplitdividerstyle10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+[示例](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-columnsplit-V5#%E7%A4%BA%E4%BE%8B)
+
+展开章节
+
+将子组件纵向布局，并在每个子组件之间插入一根横向的分割线。
+
+说明
+
+该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+子组件
+---
+
+可以包含子组件。
+
+ColumnSplit通过分割线限制子组件的高度。初始化时，分割线位置根据子组件的高度来计算。初始化后，后续动态修改子组件的高度则不生效，分割线位置保持不变，子组件高度可以通过拖动相邻分割线进行改变。
+
+初始化后，动态修改[margin](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-size-V5#margin)、[border](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-border-V5#border)、[padding](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-size-V5#padding)通用属性导致子组件尺寸大于相邻分割线间距的异常情况下，不支持拖动分割线改变子组件的高度。
+
+接口
+--
+
+ColumnSplit()
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+属性
+--
+
+### resizeable
+
+resizeable(value: boolean)
+
+设置分割线是否可拖拽。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+分割线是否可拖拽。
+
+默认值：false
+
+### divider10+
+
+divider(value: ColumnSplitDividerStyle | null)
+
+设置分割线的margin。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[ColumnSplitDividerStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-columnsplit-V5#columnsplitdividerstyle10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E) | null
+
+是
+
+分割线的margin。
+
+默认值：null，分割线上下margin为0。ColumnSplitDividerStyle设置分割线与上下子节点的距离。
+
+ColumnSplitDividerStyle10+对象说明
+------------------------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+startMargin
+
+[Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10)
+
+否
+
+分割线与其上方子组件的距离。
+
+默认值：0
+
+endMargin
+
+[Dimension](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#dimension10)
+
+否
+
+分割线与其下方子组件的距离。
+
+默认值：0
+
+说明
+
+与[RowSplit](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-rowsplit-V5#rowsplit)相同，ColumnSplit的分割线可以改变上下两边子组件的高度，子组件可改变高度的范围取决于子组件的最大最小高度。
+
+支持[clip](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-sharp-clipping-V5#clip)、[margin](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-size-V5#margin)等通用属性，clip不设置的时候默认值为true。
+
+示例
+--
+
+已复制
+
+1.  // xxx.ets
+2.  @Entry
+3.  @Component
+4.  struct ColumnSplitExample {
+5.    build() {
+6.      Column(){
+7.        Text('The secant line can be dragged').fontSize(9).fontColor(0xCCCCCC).width('90%')
+8.        ColumnSplit() {
+9.          Text('1').width('100%').height(50).backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
+10.          Text('2').width('100%').height(50).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
+11.          Text('3').width('100%').height(50).backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
+12.          Text('4').width('100%').height(50).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
+13.          Text('5').width('100%').height(50).backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
+14.        }
+15.        .borderWidth(1)
+16.        .resizeable(true) // 可拖动
+17.        .width('90%').height('60%')
+18.      }.width('100%')
+19.    }
+20.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114404.68089720847809440745866659890726:50001231000000:2800:7E747B6F1FE7865950CC41227FCFF01A197036450AA2B18172826EDF3537BB46.gif?needInitFileName=true?needInitFileName=true)
+
+[GridCol](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-gridcol-V5 "GridCol")
+
+[RowSplit](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-container-rowsplit-V5 "RowSplit")
+
+**以上内容对您是否有帮助？**
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+意见反馈
+
+更多帮助请到“[社区论坛](https://developer.huawei.com/consumer/cn/forum/)”，如需要其他帮助，请通过“[智能客服](https://developer.huawei.com/consumer/cn/customerService/#/bot-dev-top/faq-top/faq-talk-top)”提问。
+
+简体中文
+
+*   ![](/images/foot/icon-xinlang-normal.png)
+*   ![](/images/home/Bi-hover.png)
+*   ![](/images/foot/icon-weixin-normal.png)
+    
+    ![](./assets/images/head/hua_wei_kai_fa_zhe_lian_meng_fu_wu_wei_xin_er_wei_ma_fu_ben_0.jpg)
+    
+    微信公众号
+    
+*   ![](/images/foot/icon-app-normal.png)
+    
+    ![](./assets/images/head/APPerweima.png)
+    
+    下载APP
+    
+*   ![](/images/foot/icon-xinxi-normal.png)
+*   ![](/images/foot/ic_blog_hover.svg)
+
+华为开发者联盟 版权所有 ©2023-2024
+
+[使用条款](https://developer.huawei.com/consumer/cn/devservice/use)
+
+[关于华为开发者联盟与隐私的声明](https://developer.huawei.com/consumer/cn/devservice/term)
+
+[隐私政策](https://consumer.huawei.com/cn/legal/privacy-policy/)
+
+[cookies](https://consumer.huawei.com/cn/legal/cookie-policy/)
+
+[开源软件声明](https://developer.huawei.com/consumer/cn/opensource/)
+
+在 API参考 中进行搜索
+
+只在 应用框架 中搜索只搜索章节标题
+
+请输入您想要搜索的关键词
+
+*   智能客服
+    
+    您的每一次的提问，都能匹配最合适的答案
+    
+
+*   合作咨询
+    
+    我们的专家服务团队将竭诚为您提供专业的合作咨询服务
+    
+
+*   解决方案
+    
+    精准高效的一站式服务支持，助力开发者商业成功
+    
+
+*   快速入门
+    
+    面向开发者提供快速入门指南，轻松找到你想要的各类资源

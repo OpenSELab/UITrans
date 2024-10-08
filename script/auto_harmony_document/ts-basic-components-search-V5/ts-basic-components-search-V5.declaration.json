@@ -1,0 +1,509 @@
+{
+    "description": "搜索框组件，适用于浏览器的搜索内容输入框等应用场景。",
+    "interfaces": [
+        {
+            "description": "Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, controller?: SearchController })",
+            "params": {
+                "options": {
+                    "type": "object",
+                    "description": "搜索框的配置选项。",
+                    "params": {
+                        "value": {
+                            "type": "string",
+                            "description": "设置当前显示的搜索文本内容。"
+                        },
+                        "placeholder": {
+                            "type": "ResourceStr",
+                            "description": "设置无输入时的提示文本。"
+                        },
+                        "icon": {
+                            "type": "string",
+                            "description": "设置搜索图标路径，默认使用系统搜索图标。"
+                        },
+                        "controller": {
+                            "type": "SearchController",
+                            "description": "设置Search组件控制器。"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "searchButton": {
+            "description": "设置搜索框末尾搜索按钮。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "搜索框末尾搜索按钮文本内容。"
+                },
+                "option": {
+                    "type": "SearchButtonOptions",
+                    "description": "配置搜索框文本样式。"
+                }
+            }
+        },
+        "placeholderColor": {
+            "description": "设置placeholder文本颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "placeholder文本颜色。"
+                }
+            }
+        },
+        "placeholderFont": {
+            "description": "设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "description": "placeholder文本样式。"
+                }
+            }
+        },
+        "textFont": {
+            "description": "设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "description": "搜索框内输入文本样式。"
+                }
+            }
+        },
+        "textAlign": {
+            "description": "设置文本在搜索框中的对齐方式。",
+            "params": {
+                "value": {
+                    "type": "TextAlign",
+                    "required": true,
+                    "description": "文本在搜索框中的对齐方式。"
+                }
+            }
+        },
+        "copyOption": {
+            "description": "设置输入的文本是否可复制。",
+            "params": {
+                "value": {
+                    "type": "CopyOptions",
+                    "required": true,
+                    "description": "输入的文本是否可复制。"
+                }
+            }
+        },
+        "searchIcon": {
+            "description": "设置左侧搜索图标样式。",
+            "params": {
+                "value": {
+                    "type": [
+                        "IconOptions",
+                        "SymbolGlyphModifier"
+                    ],
+                    "required": true,
+                    "description": "左侧搜索图标样式。"
+                }
+            }
+        },
+        "cancelButton": {
+            "description": "设置右侧清除按钮样式。",
+            "params": {
+                "value": {
+                    "type": [
+                        "CancelButtonOptions",
+                        "CancelButtonSymbolOptions"
+                    ],
+                    "required": true,
+                    "description": "右侧清除按钮样式。"
+                }
+            }
+        },
+        "fontColor": {
+            "description": "设置输入文本的字体颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "输入文本的字体颜色。"
+                }
+            }
+        },
+        "caretStyle": {
+            "description": "设置光标样式。",
+            "params": {
+                "value": {
+                    "type": "CaretStyle",
+                    "required": true,
+                    "description": "光标样式。"
+                }
+            }
+        },
+        "enableKeyboardOnFocus": {
+            "description": "设置Search通过点击以外的方式获焦时，是否绑定输入法。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "Search获焦时，是否绑定输入法。"
+                }
+            }
+        },
+        "selectionMenuHidden": {
+            "description": "设置是否不弹出系统文本选择菜单。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否不弹出系统文本选择菜单。"
+                }
+            }
+        },
+        "customKeyboard": {
+            "description": "设置自定义键盘。",
+            "params": {
+                "value": {
+                    "type": "CustomBuilder",
+                    "required": true,
+                    "description": "自定义键盘的构建器。"
+                },
+                "options": {
+                    "type": "KeyboardOptions",
+                    "description": "自定义键盘的配置选项。"
+                }
+            }
+        },
+        "type": {
+            "description": "设置输入框类型。",
+            "params": {
+                "value": {
+                    "type": "SearchType",
+                    "required": true,
+                    "description": "输入框类型。"
+                }
+            }
+        },
+        "maxLength": {
+            "description": "设置文本的最大输入字符数。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "文本的最大输入字符数。"
+                }
+            }
+        },
+        "enterKeyType": {
+            "description": "设置输入法回车键类型。",
+            "params": {
+                "value": {
+                    "type": "EnterKeyType",
+                    "required": true,
+                    "description": "输入法回车键类型。"
+                }
+            }
+        },
+        "lineHeight": {
+            "description": "设置文本的文本行高。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "文本的文本行高。"
+                }
+            }
+        },
+        "decoration": {
+            "description": "设置文本装饰线类型样式及其颜色。",
+            "params": {
+                "value": {
+                    "type": "TextDecorationOptions",
+                    "required": true,
+                    "description": "文本装饰线对象。"
+                }
+            }
+        },
+        "letterSpacing": {
+            "description": "设置文本字符间距。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "文本字符间距。"
+                }
+            }
+        },
+        "selectedBackgroundColor": {
+            "description": "设置文本选中底板颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "文本选中底板颜色。"
+                }
+            }
+        },
+        "inputFilter": {
+            "description": "通过正则表达式设置输入过滤器。",
+            "params": {
+                "value": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "正则表达式。"
+                },
+                "error": {
+                    "type": "Callback<string>",
+                    "description": "正则匹配失败时，返回被过滤的内容。"
+                }
+            }
+        },
+        "textIndent": {
+            "description": "设置首行文本缩进。",
+            "params": {
+                "value": {
+                    "type": "Dimension",
+                    "required": true,
+                    "description": "首行文本缩进。"
+                }
+            }
+        },
+        "minFontSize": {
+            "description": "设置文本最小显示字号。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "文本最小显示字号。"
+                }
+            }
+        },
+        "maxFontSize": {
+            "description": "设置文本最大显示字号。",
+            "params": {
+                "value": {
+                    "type": [
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "文本最大显示字号。"
+                }
+            }
+        },
+        "editMenuOptions": {
+            "description": "设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。",
+            "params": {
+                "editMenu": {
+                    "type": "EditMenuOptions",
+                    "required": true,
+                    "description": "自定义菜单扩展项的配置。"
+                }
+            }
+        },
+        "enablePreviewText": {
+            "description": "设置是否开启输入预上屏。",
+            "params": {
+                "enable": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否开启输入预上屏。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onSubmit": {
+            "description": "点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "当前搜索框中输入的文本内容。"
+                }
+            }
+        },
+        "onChange": {
+            "description": "输入内容发生变化时，触发该回调。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "当前输入的文本内容。"
+                }
+            }
+        },
+        "onCopy": {
+            "description": "进行复制操作时，触发该回调。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "复制的文本内容。"
+                }
+            }
+        },
+        "onCut": {
+            "description": "进行剪切操作时，触发该回调。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "剪切的文本内容。"
+                }
+            }
+        },
+        "onPaste": {
+            "description": "进行粘贴操作时，触发该回调。",
+            "params": {
+                "value": {
+                    "type": "string",
+                    "required": true,
+                    "description": "粘贴的文本内容。"
+                },
+                "event": {
+                    "type": "PasteEvent",
+                    "required": true,
+                    "description": "用户自定义的粘贴事件。"
+                }
+            }
+        },
+        "onTextSelectionChange": {
+            "description": "文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。",
+            "params": {
+                "selectionStart": {
+                    "type": "number",
+                    "required": true,
+                    "description": "文本选择区域起始位置，文本框中文字的起始位置为0。"
+                },
+                "selectionEnd": {
+                    "type": "number",
+                    "required": true,
+                    "description": "文本选择区域结束位置。"
+                }
+            }
+        },
+        "onContentScroll": {
+            "description": "文本内容滚动时，触发该回调。",
+            "params": {
+                "totalOffsetX": {
+                    "type": "number",
+                    "required": true,
+                    "description": "文本在内容区的横坐标偏移，单位px。"
+                },
+                "totalOffsetY": {
+                    "type": "number",
+                    "required": true,
+                    "description": "文本在内容区的纵坐标偏移，单位px。"
+                }
+            }
+        },
+        "onEditChange": {
+            "description": "输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。",
+            "params": {
+                "isEditing": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "为true表示正在输入。"
+                }
+            }
+        },
+        "onWillInsert": {
+            "description": "在将要输入时，触发该回调。",
+            "params": {
+                "callback": {
+                    "type": "Callback<InsertValue, boolean>",
+                    "required": true,
+                    "description": "在将要输入时调用的回调。在返回true时，表示正常插入，返回false时，表示不插入。在预上屏操作时，该回调不触发。仅支持系统输入法输入的场景。"
+                }
+            }
+        },
+        "onDidInsert": {
+            "description": "在输入完成时，触发该回调。",
+            "params": {
+                "callback": {
+                    "type": "Callback<InsertValue>",
+                    "required": true,
+                    "description": "在输入完成时调用的回调。仅支持系统输入法输入的场景。"
+                }
+            }
+        },
+        "onWillDelete": {
+            "description": "在将要删除时，触发该回调。",
+            "params": {
+                "callback": {
+                    "type": "Callback<DeleteValue, boolean>",
+                    "required": true,
+                    "description": "在将要删除时调用的回调。在返回true时，表示正常删除，返回false时，表示不删除。在预上屏删除操作时，该回调不触发。仅支持系统输入法输入的场景。"
+                }
+            }
+        },
+        "onDidDelete": {
+            "description": "在删除完成时，触发该回调。",
+            "params": {
+                "callback": {
+                    "type": "Callback<DeleteValue>",
+                    "required": true,
+                    "description": "在删除完成时调用的回调。仅支持系统输入法输入的场景。"
+                }
+            }
+        }
+    },
+    "examples": [
+        {
+            "description": "该示例通过使用 `minFontSize` 和 `maxFontSize` 属性实现了文本自适应字号的功能。布局采用 `Row` 和 `Column` 组件进行嵌套，形成一个垂直布局的界面。整体宽度占据屏幕的 90%，高度占据屏幕的 90%，并设置了 10vp 的边距。\n\n`Row` 组件用于水平布局，内部嵌套了一个 `Column` 组件，用于垂直布局。`Column` 组件内部包含一个 `Text` 组件和两个 `Search` 组件。`Text` 组件用于显示静态文本，设置了字体大小为 9vp，字体颜色为浅灰色（0xCCCCCC）。\n\n两个 `Search` 组件分别用于展示不同字体大小的文本。第一个 `Search` 组件没有设置 `minFontSize` 和 `maxFontSize`，因此文本字体大小保持默认。第二个 `Search` 组件设置了 `minFontSize` 为 4vp 和 `maxFontSize` 为 40vp，使得文本可以根据容器大小自适应调整字体大小。\n\n每个 `Search` 组件的宽度为 80%，高度为 90vp，并设置了 1vp 的边框宽度。`Column` 组件的高度为 90%，确保内部的组件在垂直方向上占据适当的空间。",
+            "code": "@Entry\n@Component\nstruct SearchExample {\n  build() {\n    Row() {\n      Column() {\n        // 静态文本，字体大小为 9vp，颜色为浅灰色\n        Text('adaptive font').fontSize(9).fontColor(0xCCCCCC)\n\n        // 第一个 Search 组件，展示默认字体大小的文本\n        Search({value: 'This is the text without the adaptive font'})\n          .width('80%').height(90).borderWidth(1)\n\n        // 第二个 Search 组件，展示自适应字体大小的文本\n        Search({value: 'This is the text without the adaptive font'})\n          .width('80%').height(90).borderWidth(1)\n          .minFontSize(4) // 设置最小字体大小为 4vp\n          .maxFontSize(40) // 设置最大字体大小为 40vp\n      }.height('90%') // Column 组件的高度为 90%\n    }\n    .width('90%') // Row 组件的宽度为 90%\n    .margin(10) // 设置 10vp 的边距\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个展示字体特性（fontFeature）效果的界面。布局宽度占据屏幕的 90%，高度自适应内容，内边距为左右 5%。组件的垂直方向上被分为两个部分，每个部分包含一个 Search 组件。每个 Search 组件的文本内容通过 @State 变量进行管理，分别展示了使用 ss01 字体特性和不使用 ss01 字体特性的效果。\n\nSearch 组件的样式包括字体特性的设置（fontFeature），通过设置 \"ss01\" 属性为 \"on\" 或 \"off\" 来控制字体特性的开启与关闭。组件的排列和嵌套关系为垂直布局，两个 Search 组件之间通过 margin 属性设置了 10vp 的间距。\n\n组件的功能主要是展示不同字体特性对文本显示效果的影响。用户可以通过观察两个 Search 组件的文本内容，直观地看到 ss01 字体特性开启与关闭时的差异。",
+            "code": "@Entry\n@Component\nstruct search {\n  @State text1: string = 'This is ss01 on : 0123456789' // 定义一个状态变量 text1，用于存储第一个 Search 组件的文本内容，展示 ss01 字体特性开启的效果\n  @State text2: string = 'This is ss01 off: 0123456789' // 定义一个状态变量 text2，用于存储第二个 Search 组件的文本内容，展示 ss01 字体特性关闭的效果\n\n  build() {\n    Column(){\n      Search({value: this.text1}) // 创建一个 Search 组件，文本内容为 text1，展示 ss01 字体特性开启的效果\n        .margin({top:200}) // 设置 Search 组件的上边距为 200vp，使其在垂直方向上与顶部保持一定距离\n        .fontFeature(\"\\\\\"ss01\\\\\" on\") // 设置 Search 组件的字体特性为 \"ss01\" 开启\n      Search({value: this.text2}) // 创建一个 Search 组件，文本内容为 text2，展示 ss01 字体特性关闭的效果\n        .margin({top:10}) // 设置 Search 组件的上边距为 10vp，使其在垂直方向上与前一个 Search 组件保持一定距离\n        .fontFeature(\"\\\\\"ss01\\\\\" off\") // 设置 Search 组件的字体特性为 \"ss01\" 关闭\n    }\n    .width(\"90%\") // 设置 Column 组件的宽度为屏幕宽度的 90%\n    .margin(\"5%\") // 设置 Column 组件的外边距为左右各 5%，使其在水平方向上居中\n  }\n}"
+        },
+        {
+            "description": "该组件通过Column布局实现了一个搜索输入框和按钮的界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上被分为两个部分：一个搜索输入框和一个按钮。搜索输入框的宽度为380vp，按钮的宽度为100%。\n搜索输入框的样式包括占位符文本“请输入文本”，输入框的值绑定到@State变量Text，输入框的enterKeyType属性根据@State变量index动态设置，支持多种EnterKeyType类型。输入框的功能包括输入文本的实时更新和提交事件的触发。\n按钮的样式包括文本“改变EnterKeyType”，按钮的功能是点击后改变输入框的enterKeyType属性。\n整个布局通过Column布局保证搜索输入框和按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct SearchExample {\n  @State Text: string = '' // 用于存储搜索输入框的文本内容\n  @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE] // 存储多种EnterKeyType类型\n  @State index: number = 0 // 用于记录当前使用的EnterKeyType类型的索引\n\n  build() {\n    Column({ space: 20 }) { // 使用Column布局，垂直方向上排列子组件，子组件间距为20vp\n      Search({ placeholder: '请输入文本', value: this.Text }) // 创建一个搜索输入框，占位符为“请输入文本”，值绑定到@State变量Text\n        .width(380) // 设置搜索输入框的宽度为380vp\n        .enterKeyType(this.enterTypes[this.index]) // 根据@State变量index动态设置输入框的enterKeyType属性\n        .onChange((value: string) => { // 监听输入框文本变化事件\n          this.Text = value // 更新@State变量Text的值\n        })\n        .onSubmit((value: String) => { // 监听输入框提交事件\n          console.log(\"trigger search onsubmit\" + value); // 打印提交的文本内容\n        })\n\n      Button('改变EnterKeyType').onClick(() => { // 创建一个按钮，文本为“改变EnterKeyType”，点击事件处理函数\n        this.index = (this.index + 1) % this.enterTypes.length; // 更新@State变量index的值，循环使用enterTypes数组中的EnterKeyType类型\n      })\n    }.width('100%') // 设置Column布局的宽度为100%\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个带有自定义键盘的搜索框功能。布局上，搜索框位于页面的顶部，自定义键盘位于搜索框下方。搜索框的宽度为整个屏幕宽度，边距为10vp，边框宽度为1vp。自定义键盘的背景颜色为灰色，包含一个关闭按钮和一个数字键盘。数字键盘通过Grid布局实现，每行最多显示3个数字按钮，按钮之间的列间距和行间距均为10vp，内边距为5vp。\n\n搜索框的功能包括输入文本和使用自定义键盘进行输入。自定义键盘的功能包括点击数字按钮将数字添加到输入框中，点击关闭按钮停止编辑。整个布局通过Column组件实现垂直排列，确保搜索框和自定义键盘在垂直方向上有序排列。",
+            "code": "@Entry\n@Component\nstruct SearchExample {\n  // 创建一个SearchController实例，用于控制搜索框的行为\n  controller: SearchController = new SearchController()\n  \n  // 定义一个状态变量inputValue，用于存储搜索框的输入值\n  @State inputValue: string = \"\"\n\n  // 自定义键盘的构建器，用于生成自定义键盘的UI\n  @Builder CustomKeyboardBuilder() {\n    Column() {\n      // 关闭按钮，点击后停止编辑\n      Button('x').onClick(() => {\n        this.controller.stopEditing()\n      })\n      \n      // 数字键盘，通过Grid布局实现\n      Grid() {\n        // 使用ForEach循环生成数字按钮\n        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {\n          GridItem() {\n            // 每个数字按钮的宽度为110vp，点击后将数字添加到输入框中\n            Button(item + \"\")\n              .width(110).onClick(() => {\n                this.inputValue += item\n              })\n          }\n        })\n      }\n      // 设置Grid的最大列数为3，列间距和行间距均为10vp，内边距为5vp\n      .maxCount(3).columnsGap(10).rowsGap(10).padding(5)\n    }\n    // 设置自定义键盘的背景颜色为灰色\n    .backgroundColor(Color.Gray)\n  }\n\n  // 构建页面的主方法\n  build() {\n    Column() {\n      // 创建一个Search组件，绑定SearchController和输入值，并设置自定义键盘\n      Search({ controller: this.controller, value: this.inputValue})\n        .customKeyboard(this.CustomKeyboardBuilder())\n        .margin(10) // 设置搜索框的边距为10vp\n        .border({ width: 1 }) // 设置搜索框的边框宽度为1vp\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个搜索框的功能，包含输入框、搜索按钮、搜索图标和取消按钮。布局宽度占据整个屏幕，高度为400vp，内边距为左右35vp、顶部35vp。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组按钮。每个按钮组的按钮以水平布局方式排列，按钮之间的间距均匀分布，且对齐方式为居中对齐。\n按钮的样式包括背景颜色、边框圆角（或半径）、宽度和高度等属性，支持不同的样式展示。按钮组之间通过Flex组件进行分隔。按钮的功能包括点击事件和状态效果，用户可以通过点击按钮触发相应操作，按钮也可以在启用或禁用状态下进行展示。\n整个布局通过Flex布局保证按钮在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct SearchExample {\n  @State changeValue: string = '' // 用于存储搜索框的输入值\n  @State submitValue: string = '' // 用于存储提交的搜索值\n\n  build() {\n    Column() {\n      Text('onSubmit:' + this.submitValue) // 显示提交的搜索值\n        .fontSize(18) // 设置字体大小为18\n        .margin(15) // 设置上下左右边距为15\n\n      Search({ value: this.changeValue, placeholder: 'Type to search...' }) // 创建搜索框组件，初始值为changeValue，占位符为'Type to search...'\n        .searchButton('SEARCH') // 设置搜索按钮的文本为'SEARCH'\n        .searchIcon({\n          src: $r('app.media.search') // 设置搜索图标的资源路径\n        })\n        .cancelButton({\n          style: CancelButtonStyle.CONSTANT, // 设置取消按钮的样式为常量样式\n          icon: {\n            src: $r('app.media.cancel') // 设置取消按钮图标的资源路径\n          }\n        })\n        .width('90%') // 设置搜索框的宽度为90%\n        .height(40) // 设置搜索框的高度为40\n        .maxLength(20) // 设置搜索框的最大输入长度为20\n        .backgroundColor('#F5F5F5') // 设置搜索框的背景颜色为#F5F5F5\n        .placeholderColor(Color.Grey) // 设置占位符的文本颜色为灰色\n        .placeholderFont({ size: 14, weight: 400 }) // 设置占位符的字体大小为14，字体粗细为400\n        .textFont({ size: 14, weight: 400 }) // 设置输入文本的字体大小为14，字体粗细为400\n        .onSubmit((value: string) => { // 当用户提交搜索时触发的事件\n          this.submitValue = value // 将提交的值赋给submitValue\n        })\n        .onChange((value: string) => { // 当搜索框内容变化时触发的事件\n          this.changeValue = value // 将变化的值赋给changeValue\n        })\n        .margin(20) // 设置搜索框的上下左右边距为20\n    }.width('100%') // 设置Column组件的宽度为100%\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个搜索框界面，通过Column布局将搜索框垂直居中显示在屏幕中央。搜索框的宽度为屏幕宽度的95%，高度为40vp，背景颜色为浅灰色（#F5F5F5），边距为10vp。搜索框的占位符文本颜色为灰色，字体大小为14，字重为400。输入文本的字体大小和字重与占位符文本一致。\n\n搜索框的左侧显示一个红色的搜索图标，图标使用系统资源'sys.symbol.magnifyingglass'。搜索框的右侧显示一个绿色的取消按钮，按钮样式为常驻显示（CancelButtonStyle.CONSTANT），图标使用系统资源'sys.symbol.xmark'。搜索框底部显示一个文本为'SEARCH'的搜索按钮。\n\n组件的功能包括用户输入搜索内容、点击取消按钮清空输入内容、点击搜索按钮提交搜索内容。",
+            "code": "@Entry\n@Component\nstruct SearchExample {\n  // 创建一个SearchController实例，用于控制搜索框的行为\n  controller: SearchController = new SearchController()\n  \n  // 定义一个状态变量changeValue，用于存储用户输入的搜索内容\n  @State changeValue: string = ''\n  \n  // 定义一个状态变量submitValue，用于存储提交的搜索内容\n  @State submitValue: string = ''\n\n  build() {\n    Column() {\n      // 创建一个Search组件，绑定changeValue作为输入值，占位符文本为'Type to search...'，使用controller控制搜索框\n      Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller })\n        // 设置搜索框左侧的搜索图标，使用SymbolGlyphModifier设置图标样式，图标颜色为红色\n        .searchIcon(new SymbolGlyphModifier($r('sys.symbol.magnifyingglass')).fontColor([Color.Red]))\n        // 设置搜索框右侧的取消按钮，按钮样式为常驻显示，图标颜色为绿色\n        .cancelButton({\n          style: CancelButtonStyle.CONSTANT,\n          icon: new SymbolGlyphModifier($r('sys.symbol.xmark')).fontColor([Color.Green])\n        })\n        // 设置搜索框底部的搜索按钮文本为'SEARCH'\n        .searchButton('SEARCH')\n        // 设置搜索框的宽度为屏幕宽度的95%\n        .width('95%')\n        // 设置搜索框的高度为40vp\n        .height(40)\n        // 设置搜索框的背景颜色为浅灰色（#F5F5F5）\n        .backgroundColor('#F5F5F5')\n        // 设置搜索框占位符文本的颜色为灰色\n        .placeholderColor(Color.Grey)\n        // 设置搜索框占位符文本的字体大小为14，字重为400\n        .placeholderFont({ size: 14, weight: 400 })\n        // 设置搜索框输入文本的字体大小为14，字重为400\n        .textFont({ size: 14, weight: 400 })\n        // 设置搜索框的边距为10vp\n        .margin(10)\n    }\n    // 设置Column的宽度为屏幕宽度\n    .width('100%')\n    // 设置Column的高度为屏幕高度\n    .height('100%')\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Flex 布局实现了一个展示文本行高、字符间距和文本装饰线样式的界面。布局宽度占据整个屏幕的 90%，高度设为 90%，内边距为 10vp。组件的垂直方向上被分为三个部分，每个部分包含一个标题和一组文本展示。每个文本展示组的文本以垂直布局方式排列，文本之间的间距均匀分布，且对齐方式为居中对齐。\n文本的样式包括字体大小、字体颜色、行高、字符间距和装饰线样式等属性，支持不同的样式展示。文本组之间通过 Flex 组件进行分隔。文本的功能包括展示不同的行高、字符间距和装饰线样式，用户可以通过观察文本的展示效果来理解这些属性的作用。\n整个布局通过 Flex 布局保证文本在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct SearchExample {\n  build() {\n    Row() {\n      Column() {\n        // 展示文本行高的标题\n        Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)\n        \n        // 展示未设置行高的文本\n        Search({value: 'lineHeight unset'})\n          .border({ width: 1 }).padding(10)\n        \n        // 展示行高为 15 的文本\n        Search({value: 'lineHeight 15'})\n          .border({ width: 1 }).padding(10).lineHeight(15)\n        \n        // 展示行高为 30 的文本\n        Search({value: 'lineHeight 30'})\n          .border({ width: 1 }).padding(10).lineHeight(30)\n\n        // 展示字符间距的标题\n        Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)\n        \n        // 展示字符间距为 0 的文本\n        Search({value: 'letterSpacing 0'})\n          .border({ width: 1 }).padding(5).letterSpacing(0)\n        \n        // 展示字符间距为 3 的文本\n        Search({value: 'letterSpacing 3'})\n          .border({ width: 1 }).padding(5).letterSpacing(3)\n        \n        // 展示字符间距为 -1 的文本\n        Search({value: 'letterSpacing -1'})\n          .border({ width: 1 }).padding(5).letterSpacing(-1)\n\n        // 展示文本装饰线样式的标题\n        Text('decoration').fontSize(9).fontColor(0xCCCCCC)\n        \n        // 展示带有删除线、红色装饰线的文本\n        Search({value: 'LineThrough, Red'})\n          .border({ width: 1 }).padding(5)\n          .decoration({type: TextDecorationType.LineThrough, color: Color.Red})\n        \n        // 展示带有上划线、红色、点状装饰线的文本\n        Search({value: 'Overline, Red, DOTTED'})\n          .border({ width: 1 }).padding(5)\n          .decoration({type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DOTTED})\n        \n        // 展示带有下划线、红色、波浪状装饰线的文本\n        Search({value: 'Underline, Red, WAVY'})\n          .border({ width: 1 }).padding(5)\n          .decoration({type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY})\n      }.height('90%')\n    }\n    .width('90%')\n    .margin(10)\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Row 和 Column 布局实现了一个展示两个 Search 输入框及其插入和删除回调功能的界面。布局宽度占据整个屏幕，高度设为 100%，内边距为无。组件的垂直方向上被分为两个主要部分，每个部分包含一个 Search 输入框和相关的文本显示。每个 Search 输入框的高度为 60vp，文本显示的高度为 30vp。\n\nSearch 输入框的样式包括高度属性，支持插入和删除回调功能。插入回调功能通过 onWillInsert 和 onDidInsert 事件实现，删除回调功能通过 onWillDelete 和 onDidDelete 事件实现。插入和删除的回调信息通过文本显示组件展示，文本显示组件的样式包括高度属性。\n\n组件的功能包括插入和删除回调，用户可以通过输入或删除文本触发相应操作，回调信息通过文本显示组件展示。整个布局通过 Row 和 Column 布局保证输入框和文本显示在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct SearchExample {\n  @State insertValue: string = \"\" // 插入的文本值\n  @State deleteValue: string = \"\" // 删除的文本值\n  @State insertOffset: number = 0 // 插入的偏移量\n  @State deleteOffset: number = 0 // 删除的偏移量\n  @State deleteDirection: number = 0 // 删除的方向（0: BACKWARD, 1: FORWARD）\n\n  build() {\n    Row() {\n      Column() {\n        Search({ value: \"Search支持插入回调文本\" }) // 创建一个 Search 输入框，初始值为 \"Search支持插入回调文本\"\n          .height(60) // 设置输入框高度为 60vp\n          .onWillInsert((info: InsertValue) => { // 插入前的回调函数\n            this.insertValue = info.insertValue // 获取插入的文本值\n            return true; // 允许插入\n          })\n          .onDidInsert((info: InsertValue) => { // 插入后的回调函数\n            this.insertOffset = info.insertOffset // 获取插入的偏移量\n          })\n\n        Text(\"insertValue:\" + this.insertValue + \"  insertOffset:\" + this.insertOffset) // 显示插入的文本值和偏移量\n          .height(30) // 设置文本显示高度为 30vp\n\n        Search({ value: \"Search支持删除回调文本b\" }) // 创建另一个 Search 输入框，初始值为 \"Search支持删除回调文本b\"\n          .height(60) // 设置输入框高度为 60vp\n          .onWillDelete((info: DeleteValue) => { // 删除前的回调函数\n            this.deleteValue = info.deleteValue // 获取删除的文本值\n            info.direction // 获取删除的方向\n            return true; // 允许删除\n          })\n          .onDidDelete((info: DeleteValue) => { // 删除后的回调函数\n            this.deleteOffset = info.deleteOffset // 获取删除的偏移量\n            this.deleteDirection = info.direction // 获取删除的方向\n          })\n\n        Text(\"deleteValue:\" + this.deleteValue + \"  deleteOffset:\" + this.deleteOffset) // 显示删除的文本值和偏移量\n          .height(30) // 设置文本显示高度为 30vp\n\n        Text(\"deleteDirection:\" + (this.deleteDirection == 0 ? \"BACKWARD\" : \"FORWARD\")) // 显示删除的方向\n          .height(30) // 设置文本显示高度为 30vp\n\n      }.width('100%') // 设置 Column 宽度为 100%\n    }\n    .height('100%') // 设置 Row 高度为 100%\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个包含搜索框和按钮的界面。布局宽度占据整个屏幕，高度根据内容自适应。组件的垂直方向上被分为多个部分，每个部分包含一个文本显示区域和一个搜索框或按钮。\n搜索框的样式包括背景颜色、边框圆角、宽度和高度等属性，支持不同的样式展示。搜索框的功能包括输入事件和提交事件，用户可以通过输入文本触发相应操作，也可以通过点击搜索按钮提交搜索内容。\n按钮的样式包括背景颜色、边框圆角、宽度和高度等属性，支持不同的样式展示。按钮的功能包括点击事件，用户可以通过点击按钮触发相应操作。\n整个布局通过 Column 布局保证组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct SearchExample {\n  @State changeValue: string = '' // 用于存储搜索框的输入值\n  @State submitValue: string = '' // 用于存储搜索框的提交值\n  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 } // 用于存储光标位置信息\n  controller: SearchController = new SearchController() // 搜索框的控制器，用于控制搜索框的行为\n\n  build() {\n    Column({space: 10}) { // 使用 Column 布局，组件之间的间距为 10vp\n      Text('onSubmit:' + this.submitValue) // 显示搜索框的提交值\n        .fontSize(18) // 字体大小为 18\n        .margin(15) // 上下左右边距为 15vp\n      Text('onChange:' + this.changeValue) // 显示搜索框的输入值\n        .fontSize(18) // 字体大小为 18\n        .margin(15) // 上下左右边距为 15vp\n      Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller }) // 创建搜索框，绑定输入值和控制器\n        .searchButton('SEARCH') // 设置搜索按钮的文本为 \"SEARCH\"\n        .width('95%') // 搜索框的宽度为父容器的 95%\n        .height(40) // 搜索框的高度为 40vp\n        .backgroundColor('#F5F5F5') // 搜索框的背景颜色为 #F5F5F5\n        .placeholderColor(Color.Grey) // 占位符文本颜色为灰色\n        .placeholderFont({ size: 14, weight: 400 }) // 占位符文本字体大小为 14，字体粗细为 400\n        .textFont({ size: 14, weight: 400 }) // 输入文本字体大小为 14，字体粗细为 400\n        .onSubmit((value: string) => { // 当用户提交搜索时触发的事件\n          this.submitValue = value // 更新提交值\n        })\n        .onChange((value: string) => { // 当用户输入时触发的事件\n          this.changeValue = value // 更新输入值\n        })\n        .margin(20) // 上下左右边距为 20vp\n      Button('Set caretPosition 1') // 创建按钮，文本为 \"Set caretPosition 1\"\n        .onClick(() => { // 当按钮被点击时触发的事件\n          this.controller.caretPosition(1) // 设置光标位置为 1\n        })\n      Button('Get CaretOffset') // 创建按钮，文本为 \"Get CaretOffset\"\n        .onClick(() => { // 当按钮被点击时触发的事件\n          this.positionInfo = this.controller.getCaretOffset() // 获取光标位置信息并更新状态\n        })\n    }.width('100%') // Column 布局的宽度为父容器的 100%\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个自定义键盘弹出时发生避让的搜索示例。布局宽度占据整个屏幕，高度根据状态变量 `height1` 动态调整，初始值为 80%。组件的垂直方向上被分为两个主要部分：顶部是一个包含两个按钮的行，用于动态调整高度；底部是一个搜索框，支持自定义键盘输入。\n\n顶部按钮行的高度由状态变量 `height1` 控制，初始值为 80%，可以通过点击按钮分别设置为 20% 或 80%。按钮的排列方式为水平居中对齐，按钮之间的间距通过 `margin` 属性设置为 20vp。按钮的样式包括字体大小为 24vp，点击事件用于更新 `height1` 的值。\n\n底部搜索框的高度为自适应，宽度占据整个屏幕，内边距为底部 50vp。搜索框的样式包括边框宽度为 1vp，边距为 10vp。搜索框支持自定义键盘输入，键盘的样式为灰色背景，包含一个关闭按钮和数字键盘。数字键盘通过 `Grid` 组件实现，每行最多显示 3 个按钮，按钮之间的列间距和行间距均为 10vp，内边距为 5vp。\n\n自定义键盘的功能包括点击数字按钮时更新搜索框的输入值，点击关闭按钮时停止编辑。搜索框的输入值通过 `onChange` 事件实时更新状态变量 `inputValue`。",
+            "code": "@Entry\n@Component\nstruct SearchExample {\n  controller: SearchController = new SearchController() // 搜索控制器，用于控制搜索框的行为\n  @State inputValue: string = \"\" // 搜索框的输入值，初始为空字符串\n  @State height1: string | number = '80%' // 顶部按钮行的高度，初始为 80%\n  @State supportAvoidance: boolean = true // 是否支持键盘避让，初始为 true\n\n  @Builder\n  CustomKeyboardBuilder() {\n    Column() {\n      Row() {\n        Button('x').onClick(() => {\n          this.controller.stopEditing() // 点击关闭按钮时停止编辑\n        }).margin(10) // 按钮的边距为 10vp\n      }\n\n      Grid() {\n        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {\n          GridItem() {\n            Button(item + \"\")\n              .width(110).onClick(() => {\n                this.inputValue += item // 点击数字按钮时更新搜索框的输入值\n              })\n          }\n        })\n      }.maxCount(3).columnsGap(10).rowsGap(10).padding(5) // 数字键盘的布局属性，每行最多显示 3 个按钮，列间距和行间距均为 10vp，内边距为 5vp\n    }\n    .backgroundColor(Color.Gray) // 自定义键盘的背景颜色为灰色\n  }\n\n  build() {\n    Column() {\n      Row() {\n        Button(\"20%\")\n          .fontSize(24)\n          .onClick(() => {\n            this.height1 = \"20%\" // 点击按钮时将顶部按钮行的高度设置为 20%\n          })\n        Button(\"80%\")\n          .fontSize(24)\n          .margin({ left: 20 }) // 按钮之间的间距为 20vp\n          .onClick(() => {\n            this.height1 = \"80%\" // 点击按钮时将顶部按钮行的高度设置为 80%\n          })\n      }\n      .justifyContent(FlexAlign.Center) // 按钮行在水平方向上居中对齐\n      .alignItems(VerticalAlign.Bottom) // 按钮行在垂直方向上底部对齐\n      .height(this.height1) // 按钮行的高度由状态变量 `height1` 控制\n      .width(\"100%\") // 按钮行的宽度占据整个屏幕\n      .padding({ bottom: 50 }) // 按钮行的底部内边距为 50vp\n\n      Search({ controller: this.controller, value: this.inputValue })\n        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance }) // 搜索框使用自定义键盘，并支持键盘避让\n        .margin(10) // 搜索框的边距为 10vp\n        .border({ width: 1 }) // 搜索框的边框宽度为 1vp\n        .onChange((value: string) => {\n          this.inputValue = value // 搜索框的输入值通过 `onChange` 事件实时更新状态变量 `inputValue`\n        })\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个包含搜索框的界面。布局宽度占据整个屏幕的 90%，高度自适应内容，内边距为左右 5%。组件的垂直方向上包含一个 Search 组件，该组件的宽度为 95%，顶部外边距为 100vp。\nSearch 组件的样式包括宽度、边距等属性，支持自定义菜单扩展项。Search 组件的功能包括文本输入和自定义菜单项的点击事件，用户可以通过点击菜单项触发相应操作，菜单项也可以在点击时进行拦截或不拦截。\n整个布局通过 Column 布局保证 Search 组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct Index {\n  @State text: string = 'Search editMenuOptions' // 定义一个状态变量 text，初始值为 'Search editMenuOptions'\n\n  // 定义 onCreateMenu 方法，用于自定义菜单项的内容、图标和回调方法\n  onCreateMenu(menuItems: Array<TextMenuItem>) {\n    menuItems.forEach((value, index) => {\n      value.icon = $r('app.media.startIcon') // 为每个菜单项设置图标，图标资源名为 'app.media.startIcon'\n      if (value.id.equals(TextMenuItemId.COPY)) {\n        value.content = \"复制change\" // 如果菜单项的 id 为 COPY，则修改其内容为 \"复制change\"\n      }\n      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {\n        value.content = \"全选change\" // 如果菜单项的 id 为 SELECT_ALL，则修改其内容为 \"全选change\"\n      }\n    })\n    let item1: TextMenuItem = {\n      content: 'custom1', // 定义一个自定义菜单项，内容为 'custom1'\n      icon: $r('app.media.startIcon'), // 设置图标，图标资源名为 'app.media.startIcon'\n      id: TextMenuItemId.of('custom1'), // 设置菜单项的 id 为 'custom1'\n    }\n    let item2: TextMenuItem = {\n      content: 'custom2', // 定义一个自定义菜单项，内容为 'custom2'\n      id: TextMenuItemId.of('custom2'), // 设置菜单项的 id 为 'custom2'\n      icon: $r('app.media.startIcon'), // 设置图标，图标资源名为 'app.media.startIcon'\n    }\n    menuItems.push(item1) // 将自定义菜单项 item1 添加到菜单项列表的末尾\n    menuItems.unshift(item2) // 将自定义菜单项 item2 添加到菜单项列表的开头\n    return menuItems // 返回修改后的菜单项列表\n  }\n\n  build() {\n    Column() {\n      Search({ value: this.text }) // 创建一个 Search 组件，绑定状态变量 text\n        .width('95%') // 设置 Search 组件的宽度为 95%\n        .editMenuOptions({\n          onCreateMenu: this.onCreateMenu, // 设置 onCreateMenu 回调方法，用于自定义菜单项\n          onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => { // 设置 onMenuItemClick 回调方法，用于处理菜单项点击事件\n            if (menuItem.id.equals(TextMenuItemId.of(\"custom2\"))) {\n              console.log(\"拦截 id: custom2 start:\" + textRange.start + \"; end:\" + textRange.end) // 如果点击的菜单项 id 为 'custom2'，则拦截并输出日志\n              return true; // 返回 true 表示拦截该点击事件\n            }\n            if (menuItem.id.equals(TextMenuItemId.COPY)) {\n              console.log(\"拦截 COPY start:\" + textRange.start + \"; end:\" + textRange.end) // 如果点击的菜单项 id 为 COPY，则拦截并输出日志\n              return true; // 返回 true 表示拦截该点击事件\n            }\n            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {\n              console.log(\"不拦截 SELECT_ALL start:\" + textRange.start + \"; end:\" + textRange.end) // 如果点击的菜单项 id 为 SELECT_ALL，则不拦截并输出日志\n              return false; // 返回 false 表示不拦截该点击事件\n            }\n            return false; // 默认返回 false，表示不拦截其他菜单项的点击事件\n          }\n        })\n        .margin({ top: 100 }) // 设置 Search 组件的顶部外边距为 100vp\n    }\n    .width(\"90%\") // 设置 Column 组件的宽度为 90%\n    .margin(\"5%\") // 设置 Column 组件的左右外边距为 5%\n  }\n}"
+        }
+    ]
+}

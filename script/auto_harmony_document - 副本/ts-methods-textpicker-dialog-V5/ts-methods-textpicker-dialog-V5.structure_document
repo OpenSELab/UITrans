@@ -1,0 +1,218 @@
+{
+    "description": "文本滑动选择器弹窗，用于在指定的选择范围内创建文本选择器并展示在弹窗上。",
+    "interfaces": [
+        {
+            "description": "static show(options?: TextPickerDialogOptions)",
+            "params": {
+                "options": {
+                    "type": "TextPickerDialogOptions",
+                    "description": "配置文本选择器弹窗的参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "defaultPickerItemHeight": {
+            "description": "设置选择器中选项的高度。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "description": "选项的高度。"
+                }
+            }
+        },
+        "disappearTextStyle": {
+            "description": "设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "description": "文本样式。"
+                }
+            }
+        },
+        "textStyle": {
+            "description": "设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "description": "文本样式。"
+                }
+            }
+        },
+        "selectedTextStyle": {
+            "description": "设置选中项的文本颜色、字号、字体粗细。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "description": "文本样式。"
+                }
+            }
+        },
+        "acceptButtonStyle": {
+            "description": "设置确认按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。",
+            "params": {
+                "value": {
+                    "type": "PickerDialogButtonStyle",
+                    "description": "按钮样式。"
+                }
+            }
+        },
+        "cancelButtonStyle": {
+            "description": "设置取消按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。",
+            "params": {
+                "value": {
+                    "type": "PickerDialogButtonStyle",
+                    "description": "按钮样式。"
+                }
+            }
+        },
+        "canLoop": {
+            "description": "设置是否可循环滚动。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "description": "是否可循环滚动。"
+                }
+            }
+        },
+        "alignment": {
+            "description": "弹窗在竖直方向上的对齐方式。",
+            "params": {
+                "value": {
+                    "type": "DialogAlignment",
+                    "description": "对齐方式。"
+                }
+            }
+        },
+        "offset": {
+            "description": "弹窗相对alignment所在位置的偏移量。",
+            "params": {
+                "value": {
+                    "type": "Offset",
+                    "description": "偏移量。"
+                }
+            }
+        },
+        "maskRect": {
+            "description": "弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。",
+            "params": {
+                "value": {
+                    "type": "Rectangle",
+                    "description": "遮蔽层区域。"
+                }
+            }
+        },
+        "onAccept": {
+            "description": "点击弹窗中的“确定”按钮时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "function",
+                    "description": "回调函数。"
+                }
+            }
+        },
+        "onCancel": {
+            "description": "点击弹窗中的“取消”按钮时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "function",
+                    "description": "回调函数。"
+                }
+            }
+        },
+        "onChange": {
+            "description": "滑动弹窗中的选择器使当前选中项改变时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "function",
+                    "description": "回调函数。"
+                }
+            }
+        },
+        "onDidAppear": {
+            "description": "弹窗弹出时的事件回调。",
+            "params": {
+                "value": {
+                    "type": "function",
+                    "description": "回调函数。"
+                }
+            }
+        },
+        "onDidDisappear": {
+            "description": "弹窗消失时的事件回调。",
+            "params": {
+                "value": {
+                    "type": "function",
+                    "description": "回调函数。"
+                }
+            }
+        },
+        "onWillAppear": {
+            "description": "弹窗显示动效前的事件回调。",
+            "params": {
+                "value": {
+                    "type": "function",
+                    "description": "回调函数。"
+                }
+            }
+        },
+        "onWillDisappear": {
+            "description": "弹窗退出动效前的事件回调。",
+            "params": {
+                "value": {
+                    "type": "function",
+                    "description": "回调函数。"
+                }
+            }
+        },
+        "shadow": {
+            "description": "设置弹窗背板的阴影。",
+            "params": {
+                "value": {
+                    "type": ["ShadowOptions", "ShadowStyle"],
+                    "description": "阴影样式。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onAccept": {
+            "description": "点击弹窗中的“确定”按钮时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "TextPickerResult",
+                    "description": "选中项的文本内容和索引值。"
+                }
+            }
+        },
+        "onCancel": {
+            "description": "点击弹窗中的“取消”按钮时触发该回调。",
+            "params": {}
+        },
+        "onChange": {
+            "description": "滑动弹窗中的选择器使当前选中项改变时触发该回调。",
+            "params": {
+                "value": {
+                    "type": "TextPickerResult",
+                    "description": "选中项的文本内容和索引值。"
+                }
+            }
+        },
+        "onDidAppear": {
+            "description": "弹窗弹出时的事件回调。",
+            "params": {}
+        },
+        "onDidDisappear": {
+            "description": "弹窗消失时的事件回调。",
+            "params": {}
+        },
+        "onWillAppear": {
+            "description": "弹窗显示动效前的事件回调。",
+            "params": {}
+        },
+        "onWillDisappear": {
+            "description": "弹窗退出动效前的事件回调。",
+            "params": {}
+        }
+    }
+}

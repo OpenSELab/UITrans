@@ -1,0 +1,6 @@
+[
+    {
+        "description": "该示例展示了如何使用 `SwipeRefresher` 组件实现下拉刷新功能。布局上，`SwipeRefresher` 组件被嵌套在 `Column` 布局中，形成垂直排列的刷新组件。每个 `SwipeRefresher` 组件的宽度占据父容器的宽度，高度根据内容自动调整。组件的样式和外观通过 `content` 属性设置显示的文本内容，并通过 `isLoading` 属性控制刷新状态的显示。组件的排列和嵌套关系为垂直布局，每个 `SwipeRefresher` 组件依次排列。组件的功能和交互主要体现在下拉刷新的动画效果和状态切换。",
+        "code": "import { SwipeRefresher } from '@kit.ArkUI'; // 导入 SwipeRefresher 组件\n\n@Entry // 标记该组件为入口组件\n@Component // 标记该结构体为组件\nstruct Index {\n  build() {\n    Column() { // 创建一个垂直布局的容器\n      SwipeRefresher({\n        content: '正在加载中', // 设置刷新组件显示的文本内容\n        isLoading: true // 设置刷新组件为加载状态\n      })\n      SwipeRefresher({\n        content: '', // 设置刷新组件显示的文本内容为空\n        isLoading: true // 设置刷新组件为加载状态\n      })\n      SwipeRefresher({\n        content: '正在加载中', // 设置刷新组件显示的文本内容\n        isLoading: false // 设置刷新组件为非加载状态\n      })\n    }\n  }\n}"
+    }
+]

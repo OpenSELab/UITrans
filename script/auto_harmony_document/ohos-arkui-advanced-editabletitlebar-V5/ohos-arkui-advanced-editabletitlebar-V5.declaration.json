@@ -1,0 +1,82 @@
+{
+    "description": "编辑型标题栏，适用于多选界面或者内容的编辑界面，一般采取左叉右勾的形式。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitleBarItem, title: ResourceStr, subtitle?: ResourceStr, menuItems?: Array<EditableTitleBarMenuItem>, isSaveIconRequired?: boolean, onSave?: () => void, onCancel?: () => void, options?: EditableTitleBarOptions, contentMargin?: LocalizedMargin})",
+            "params": {
+                "leftIconStyle": {
+                    "type": "EditableLeftIconType",
+                    "required": true,
+                    "description": "左侧按钮类型。"
+                },
+                "imageItem": {
+                    "type": "EditableTitleBarItem",
+                    "required": false,
+                    "description": "用于左侧头像的单个菜单项目。"
+                },
+                "title": {
+                    "type": "ResourceStr",
+                    "required": true,
+                    "description": "标题。"
+                },
+                "subtitle": {
+                    "type": "ResourceStr",
+                    "required": false,
+                    "description": "副标题。"
+                },
+                "menuItems": {
+                    "type": [
+                        "EditableTitleBarMenuItem"
+                    ],
+                    "required": false,
+                    "description": "右侧菜单项目列表。"
+                },
+                "isSaveIconRequired": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否需要右侧的保存按钮。",
+                    "default": true
+                },
+                "onSave": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "保存时的动作闭包。"
+                },
+                "onCancel": {
+                    "type": "() => void",
+                    "required": false,
+                    "description": "当左侧按钮类型为 Cancel，触发取消时的动作闭包。从API version 12开始，当左侧按钮类型为 Back，触发返回时的动作闭包。"
+                },
+                "options": {
+                    "type": "EditableTitleBarOptions",
+                    "required": false,
+                    "description": "标题样式。"
+                },
+                "contentMargin": {
+                    "type": "LocalizedMargin",
+                    "required": false,
+                    "description": "标题栏外边距，不支持设置负数。",
+                    "default": {
+                        "start": "LengthMetrics.resource($r('sys.float.margin_left'))",
+                        "end": "LengthMetrics.resource($r('sys.float.margin_right'))"
+                    }
+                }
+            }
+        }
+    ],
+    "attributes": {},
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "该示例展示了如何在鸿蒙ArkUI中使用`EditableTitleBar`组件来创建一个带有编辑功能的标题栏。布局宽度占据整个屏幕，高度设为100%。组件的垂直方向上被分为多个部分，每个部分包含一个`EditableTitleBar`组件和一个分隔线（`Divider`）。每个`EditableTitleBar`组件的标题为“编辑页面”，并且具有不同的左侧图标样式和菜单项。\n\n`EditableTitleBar`组件的样式包括左侧图标的样式、标题文本、菜单项的图标和状态等属性。组件的功能包括点击左侧图标和菜单项时触发的操作，例如显示提示信息。整个布局通过`Row`和`Column`组件进行嵌套，确保界面整洁美观。",
+            "code": "import { EditableLeftIconType, EditableTitleBar, promptAction } from '@kit.ArkUI';\n\n@Entry\n@Component\nstruct Index {\n  build() {\n    Row() {\n      Column() {\n        // 创建一个高度为2vp的分隔线，颜色为0xCCCCCC\n        Divider().height(2).color(0xCCCCCC)\n        \n        // 创建一个EditableTitleBar组件，左侧图标样式为Cancel，标题为“编辑页面”，菜单项为空\n        EditableTitleBar({\n          leftIconStyle: EditableLeftIconType.Cancel,\n          title: '编辑页面',\n          menuItems: [],\n          onCancel: () => {\n            // 点击取消按钮时，显示提示信息“on cancel”\n            promptAction.showToast({ message: 'on cancel' });\n          },\n          onSave: () => {\n            // 点击保存按钮时，显示提示信息“on save”\n            promptAction.showToast({ message: 'on save' });\n          }\n        })\n        \n        // 创建一个高度为2vp的分隔线，颜色为0xCCCCCC\n        Divider().height(2).color(0xCCCCCC)\n        \n        // 创建一个EditableTitleBar组件，左侧图标样式为Back，标题为“编辑页面”，菜单项包含一个图标\n        EditableTitleBar({\n          leftIconStyle: EditableLeftIconType.Back,\n          title: '编辑页面',\n          menuItems: [\n            {\n              value: $r('app.media.ic_public_reduce'), // 菜单项的图标资源\n              isEnabled: false, // 菜单项禁用状态\n              action: () => {\n                // 点击菜单项时，显示提示信息“show toast index 2”\n                promptAction.showToast({ message: 'show toast index 2' });\n              }\n            }\n          ],\n          onSave: () => {\n            // 点击保存按钮时，显示提示信息“on save”\n            promptAction.showToast({ message: 'on save' })\n          }\n        })\n        \n        // 创建一个高度为2vp的分隔线，颜色为0xCCCCCC\n        Divider().height(2).color(0xCCCCCC)\n      }.width('100%') // 设置Column的宽度为100%\n    }.height('100%') // 设置Row的高度为100%\n  }\n}"
+        },
+        {
+            "description": "该示例展示了如何在鸿蒙ArkUI中使用`EditableTitleBar`组件。布局上，整个界面由多个`EditableTitleBar`组件和`Divider`组件组成，每个`EditableTitleBar`组件之间通过`Divider`进行分隔。布局宽度占据整个屏幕，高度根据内容自适应。每个`EditableTitleBar`组件包含一个主标题和副标题，以及可选的左侧图标、保存图标、菜单项和图片项。组件的排列方式为垂直布局，每个`EditableTitleBar`组件内部通过水平布局方式排列其内容。\n\n样式上，`EditableTitleBar`组件的背景模糊样式设置为`BlurStyle.COMPONENT_THICK`，使得背景具有一定的模糊效果。`Divider`组件的高度为2vp，颜色为0xCCCCCC，用于分隔不同的`EditableTitleBar`组件。\n\n功能上，每个`EditableTitleBar`组件支持不同的交互操作，如点击左侧图标返回上一级页面、点击保存图标显示提示信息、点击菜单项或图片项触发相应的操作并显示提示信息。整个布局通过垂直布局保证`EditableTitleBar`组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "import { EditableLeftIconType, EditableTitleBar, LengthMetrics, promptAction, router } from '@kit.ArkUI';\n\n@Entry\n@Component\nstruct Index {\n  @State titlebarMargin: LocalizedMargin = {\n    start: LengthMetrics.vp(35), // 设置标题栏左侧边距为35vp\n    end: LengthMetrics.vp(35),   // 设置标题栏右侧边距为35vp\n  };\n\n  build() {\n    Row() {\n      Column() {\n        EditableTitleBar({\n          leftIconStyle: EditableLeftIconType.Cancel, // 设置左侧图标样式为取消\n          title: '主标题',                            // 设置主标题\n          subtitle: '副标题',                         // 设置副标题\n\n          options: {\n            backgroundBlurStyle: BlurStyle.COMPONENT_THICK, // 设置背景模糊样式为COMPONENT_THICK\n          },\n          onSave: () => {\n            promptAction.showToast({ message: \"on save\" }); // 点击保存图标时显示提示信息\n          },\n        })\n\n        Divider().height(2).color(0xCCCCCC); // 添加高度为2vp、颜色为0xCCCCCC的分隔线\n\n        EditableTitleBar({\n          leftIconStyle: EditableLeftIconType.Cancel, // 设置左侧图标样式为取消\n          title: '主标题',                            // 设置主标题\n          subtitle: '副标题',                         // 设置副标题\n\n          isSaveIconRequired: false, // 不显示保存图标\n        })\n\n        Divider().height(2).color(0xCCCCCC); // 添加高度为2vp、颜色为0xCCCCCC的分隔线\n\n        EditableTitleBar({\n          leftIconStyle: EditableLeftIconType.Back, // 设置左侧图标样式为返回\n          title: '主标题',                          // 设置主标题\n          subtitle: '副标题',                       // 设置副标题\n          isSaveIconRequired: false,                // 不显示保存图标\n          onCancel: () => {\n            router.back(); // 点击左侧图标时返回上一级页面\n          },\n        })\n\n        Divider().height(2).color(0xCCCCCC); // 添加高度为2vp、颜色为0xCCCCCC的分隔线\n\n        EditableTitleBar({\n          leftIconStyle: EditableLeftIconType.Back, // 设置左侧图标样式为返回\n          title: '主标题',                          // 设置主标题\n          subtitle: '副标题',                       // 设置副标题\n          menuItems: [\n            {\n              value: $r('sys.media.ohos_ic_public_remove'), // 设置菜单项图标\n              isEnabled: true,                              // 菜单项启用\n              action: () => {\n                promptAction.showToast({ message: \"show toast index 1\" }); // 点击菜单项时显示提示信息\n              }\n            }\n          ],\n          isSaveIconRequired: false, // 不显示保存图标\n\n          onCancel: () => {\n            router.back(); // 点击左侧图标时返回上一级页面\n          },\n        })\n\n        Divider().height(2).color(0xCCCCCC); // 添加高度为2vp、颜色为0xCCCCCC的分隔线\n\n        EditableTitleBar({\n          leftIconStyle: EditableLeftIconType.Back, // 设置左侧图标样式为返回\n          title: '主标题',                          // 设置主标题\n          subtitle: '副标题',                       // 设置副标题\n\n          imageItem: {\n            value: $r('app.media.img'), // 设置图片项图标\n            isEnabled: true,            // 图片项启用\n            action: () => {\n              promptAction.showToast({ message: \"show toast index 2\" }); // 点击图片项时显示提示信息\n            }\n          },\n\n          contentMargin: this.titlebarMargin, // 设置内容边距\n\n          menuItems: [\n            {\n              value: $r('sys.media.ohos_ic_public_remove'), // 设置菜单项图标\n              isEnabled: true,                              // 菜单项启用\n              action: () => {\n                promptAction.showToast({ message: \"show toast index 3\" }); // 点击菜单项时显示提示信息\n              }\n            }\n          ],\n          onCancel: () => {\n            router.back(); // 点击左侧图标时返回上一级页面\n          },\n        })\n      }\n    }\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

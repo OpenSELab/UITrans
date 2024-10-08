@@ -1,0 +1,54 @@
+{
+    "description": "超链接组件，组件宽高范围内点击实现跳转。",
+    "details": "该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。该组件仅支持与系统浏览器配合使用。",
+    "interfaces": [
+        {
+            "description": "Hyperlink(address: string | Resource, content?: string | Resource)",
+            "params": {
+                "address": {
+                    "type": [
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "Hyperlink组件跳转的网页。"
+                },
+                "content": {
+                    "type": [
+                        "string",
+                        "Resource"
+                    ],
+                    "required": false,
+                    "description": "Hyperlink组件中超链接显示文本。组件内有子组件时，不显示超链接文本。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "color": {
+            "description": "设置超链接文本的颜色。",
+            "params": {
+                "value": {
+                    "type": [
+                        "Color",
+                        "number",
+                        "string",
+                        "Resource"
+                    ],
+                    "required": true,
+                    "description": "超链接文本的颜色。",
+                    "default": "default"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过 Flex 布局实现了一个包含两个 Hyperlink 组件的界面。布局宽度占据整个屏幕，高度设为 100%，内容在垂直方向上居中对齐。组件的垂直方向上被分为两个部分，每个部分包含一个 Hyperlink 组件。\n\n第一个 Hyperlink 组件包含一个 Image 组件，点击 Hyperlink 可以跳转到指定的 URL。Image 组件的宽度为 200vp，高度为 100vp，显示的图片资源名为 'app.media.bg'。\n\n第二个 Hyperlink 组件包含一个文本标签 'Go to the developer website'，点击 Hyperlink 可以跳转到指定的 URL。Hyperlink 的文本颜色为蓝色。\n\n整个布局通过 Flex 布局保证 Hyperlink 组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct HyperlinkExample {\n  build() {\n    Column() {\n      Column() {\n        Hyperlink('https://example.com/') {\n          Image($r('app.media.bg')) // 显示名为 'app.media.bg' 的图片资源\n            .width(200) // 设置图片宽度为 200vp\n            .height(100) // 设置图片高度为 100vp\n        }\n      }\n\n      Column() {\n        Hyperlink('https://example.com/', 'Go to the developer website') {\n        }\n        .color(Color.Blue) // 设置 Hyperlink 文本颜色为蓝色\n      }\n    }.width('100%').height('100%').justifyContent(FlexAlign.Center) // 设置布局宽度为 100%，高度为 100%，内容在垂直方向上居中对齐\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

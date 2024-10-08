@@ -1,0 +1,580 @@
+Title: ImageAnimator-图片与视频-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-imageanimator-V5
+
+Markdown Content:
+提供帧动画组件来实现逐帧播放图片的能力，可以配置需要播放的图片列表，每张图片可以配置时长。
+
+说明
+
+该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+接口
+--
+
+ImageAnimator()
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### images
+
+images(value: Array<ImageFrameInfo\>)
+
+设置图片帧信息集合。不支持动态更新。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+Array<[ImageFrameInfo](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-imageanimator-V5#imageframeinfo%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)\>
+
+是
+
+设置图片帧信息集合。每一帧的帧信息(ImageFrameInfo)包含图片路径、图片大小、图片位置和图片播放时长信息，详见ImageFrameInfo属性说明。
+
+默认值：\[\]
+
+### state
+
+state(value: AnimationStatus)
+
+控制播放状态。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[AnimationStatus](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#animationstatus)
+
+是
+
+默认为初始状态，用于控制播放状态。
+
+默认值：AnimationStatus.Initial
+
+### duration
+
+duration(value: number)
+
+设置播放时长。当Images中任意一帧图片设置了单独的duration后，该属性设置无效。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+播放时长。
+
+value为0时，不播放图片。
+
+value的改变只会在下一次循环开始时生效。
+
+单位：毫秒
+
+默认值：1000ms
+
+### reverse
+
+reverse(value: boolean)
+
+设置播放方向。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+播放方向。
+
+false表示从第1张图片播放到最后1张图片，true表示从最后1张图片播放到第1张图片。
+
+默认值：false
+
+### fixedSize
+
+fixedSize(value: boolean)
+
+设置图片大小是否固定为组件大小。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+boolean
+
+是
+
+设置图片大小是否固定为组件大小。 true表示图片大小与组件大小一致，此时设置图片的width 、height 、top 和left属性是无效的。false表示每一张图片的width 、height 、top和left属性都要单独设置。
+
+默认值：true
+
+### preDecode(deprecated)
+
+preDecode(value: number)
+
+设置预解码的图片数量。
+
+从API version 9开始废弃。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+预解码的图片数量。例如该值设为2，则播放当前页时会提前加载后面两张图片至缓存以提升性能。
+
+默认值：0
+
+### fillMode
+
+fillMode(value: FillMode)
+
+设置当前播放方向下，动画开始前和结束后的状态。动画结束后的状态由fillMode和reverse属性共同决定。例如，fillMode为Forwards表示停止时维持动画最后一个关键帧的状态，若reverse为false则维持正播的最后一帧，即最后一张图，若reverse为true则维持逆播的最后一帧，即第一张图。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[FillMode](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fillmode)
+
+是
+
+当前播放方向下，动画开始前和结束后的状态。
+
+默认值：FillMode.Forwards
+
+### iterations
+
+iterations(value: number)
+
+设置播放次数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number
+
+是
+
+默认播放一次，设置为-1时表示无限次播放。
+
+默认值：1
+
+ImageFrameInfo对象说明
+------------------
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+src
+
+string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)9+ | [PixelMap](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-image-V5#pixelmap7)12+
+
+是
+
+图片路径，图片格式为jpg、jpeg、svg、png、bmp、webp、ico和heif，从API Version9开始支持[Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)类型的路径，从API version 12开始支持[PixelMap](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-image-V5#pixelmap7)类型。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+width
+
+number | string
+
+否
+
+图片宽度。
+
+默认值：0
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用
+
+height
+
+number | string
+
+否
+
+图片高度。
+
+默认值：0
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用
+
+top
+
+number | string
+
+否
+
+图片相对于组件左上角的纵向坐标。
+
+默认值：0
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用
+
+left
+
+number | string
+
+否
+
+图片相对于组件左上角的横向坐标。
+
+默认值：0
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用
+
+duration
+
+number
+
+否
+
+每一帧图片的播放时长，单位毫秒。
+
+默认值：0
+
+### onStart
+
+onStart(event: () =\> void)
+
+状态回调，动画开始播放时触发。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onPause
+
+onPause(event: () =\> void)
+
+状态回调，动画暂停播放时触发。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onRepeat
+
+onRepeat(event: () =\> void)
+
+状态回调，动画重复播放时触发。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onCancel
+
+onCancel(event: () =\> void)
+
+状态回调，动画返回最初状态时触发。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onFinish
+
+onFinish(event: () =\> void)
+
+状态回调，动画播放完成时或者停止播放时触发。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+示例
+--
+
+### 播放Resource动画
+
+2.  @Entry
+3.  @Component
+4.  struct ImageAnimatorExample {
+5.    @State state: AnimationStatus = AnimationStatus.Initial
+6.    @State reverse: boolean = false
+7.    @State iterations: number = 1
+
+9.    build() {
+10.      Column({ space: 10 }) {
+11.        ImageAnimator()
+12.          .images(\[
+13.            {
+14.              src: $r('app.media.img1')
+15.            },
+16.            {
+17.              src: $r('app.media.img2')
+18.            },
+19.            {
+20.              src: $r('app.media.img3')
+21.            },
+22.            {
+23.              src: $r('app.media.img4')
+24.            }
+25.          \])
+26.          .duration(2000)
+27.          .state(this.state).reverse(this.reverse)
+28.          .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
+29.          .margin({ top: 100 })
+30.          .onStart(() =\> {
+31.            console.info('Start')
+32.          })
+33.          .onPause(() =\> {
+34.            console.info('Pause')
+35.          })
+36.          .onRepeat(() =\> {
+37.            console.info('Repeat')
+38.          })
+39.          .onCancel(() =\> {
+40.            console.info('Cancel')
+41.          })
+42.          .onFinish(() =\> {
+43.            console.info('Finish')
+44.            this.state = AnimationStatus.Stopped
+45.          })
+46.        Row() {
+47.          Button('start').width(100).padding(5).onClick(() =\> {
+48.            this.state = AnimationStatus.Running
+49.          }).margin(5)
+50.          Button('pause').width(100).padding(5).onClick(() =\> {
+51.            this.state = AnimationStatus.Paused     
+52.          }).margin(5)
+53.          Button('stop').width(100).padding(5).onClick(() =\> {
+54.            this.state = AnimationStatus.Stopped    
+55.          }).margin(5)
+56.        }
+
+58.        Row() {
+59.          Button('reverse').width(100).padding(5).onClick(() =\> {
+60.            this.reverse = !this.reverse
+61.          }).margin(5)
+62.          Button('once').width(100).padding(5).onClick(() =\> {
+63.            this.iterations = 1
+64.          }).margin(5)
+65.          Button('infinite').width(100).padding(5).onClick(() =\> {
+66.            this.iterations = -1 
+67.          }).margin(5)
+68.        }
+69.      }.width('100%').height('100%')
+70.    }
+71.  }
+
+### 播放PixelMap动画
+
+1.  import { image } from '@kit.ImageKit'
+
+3.  @Entry
+4.  @Component
+5.  struct ImageAnimatorExample {
+6.    imagePixelMap: Array<PixelMap\> = \[\]
+7.    @State state: AnimationStatus = AnimationStatus.Initial
+8.    @State reverse: boolean = false
+9.    @State iterations: number = 1
+10.    @State images:Array<ImageFrameInfo\> = \[\]
+11.    async aboutToAppear() {
+12.      this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')))
+13.      this.images.push({src:this.imagePixelMap\[0\]})
+14.    }
+15.    build() {
+16.      Column({ space: 10 }) {
+17.        ImageAnimator()
+18.          .images(this.images)
+19.          .duration(2000)
+20.          .state(this.state).reverse(this.reverse)
+21.          .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
+22.          .margin({ top: 100 })
+23.          .onStart(() =\> {
+24.            console.info('Start')
+25.          })
+26.          .onPause(() =\> {
+27.            console.info('Pause')
+28.          })
+29.          .onRepeat(() =\> {
+30.            console.info('Repeat')
+31.          })
+32.          .onCancel(() =\> {
+33.            console.info('Cancel')
+34.          })
+35.          .onFinish(() =\> {
+36.            console.info('Finish')
+37.            this.state = AnimationStatus.Stopped
+38.          })
+39.        Row() {
+40.          Button('start').width(100).padding(5).onClick(() =\> {
+41.            this.state = AnimationStatus.Running
+42.          }).margin(5)
+43.          Button('pause').width(100).padding(5).onClick(() =\> {
+44.            this.state = AnimationStatus.Paused     
+45.          }).margin(5)
+46.          Button('stop').width(100).padding(5).onClick(() =\> {
+47.            this.state = AnimationStatus.Stopped    
+48.          }).margin(5)
+49.        }
+50.        Row() {
+51.          Button('reverse').width(100).padding(5).onClick(() =\> {
+52.            this.reverse = !this.reverse
+53.          }).margin(5)
+54.          Button('once').width(100).padding(5).onClick(() =\> {
+55.            this.iterations = 1
+56.          }).margin(5)
+57.          Button('infinite').width(100).padding(5).onClick(() =\> {
+58.            this.iterations = -1 
+59.          }).margin(5)
+60.        }
+61.      }.width('100%').height('100%')
+62.    }
+
+64.    private async getPixmapFromMedia(resource: Resource) {
+65.      let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+66.        bundleName: resource.bundleName,
+67.        moduleName: resource.moduleName,
+68.        id: resource.id
+69.      })
+70.      let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+71.      let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+72.        desiredPixelFormat: image.PixelMapFormat.RGBA\_8888
+73.      })
+74.      await imageSource.release()
+75.      return createPixelMap
+76.    }
+77.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114448.20071999964918309425048018266963:50001231000000:2800:A76E7EC4D9AB50BD964E58877AC36602BEA03AD51CBEF9692B6B54575D2E9D3A.gif?needInitFileName=true?needInitFileName=true)

@@ -1,0 +1,179 @@
+{
+    "description": "滑动选择文本内容的组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "TextPicker(options?: TextPickerOptions)",
+            "params": {
+                "options": {
+                    "type": "TextPickerOptions",
+                    "required": false,
+                    "description": "文本选择器的选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "range": {
+            "description": "选择器的数据选择列表。",
+            "params": {
+                "value": {
+                    "type": ["string[]", "string[][]", "Resource", "TextPickerRangeContent[]", "TextCascadePickerRangeContent[]"],
+                    "required": true,
+                    "description": "选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。"
+                }
+            }
+        },
+        "selected": {
+            "description": "设置默认选中项在数组中的索引值。",
+            "params": {
+                "value": {
+                    "type": ["number", "number[]"],
+                    "required": false,
+                    "description": "默认选中项在数组中的索引值。",
+                    "default": 0
+                }
+            }
+        },
+        "value": {
+            "description": "设置默认选中项的值，优先级低于selected。",
+            "params": {
+                "value": {
+                    "type": ["string", "string[]"],
+                    "required": false,
+                    "description": "默认选中项的值。"
+                }
+            }
+        },
+        "defaultPickerItemHeight": {
+            "description": "设置Picker各选择项的高度。",
+            "params": {
+                "value": {
+                    "type": ["number", "string"],
+                    "required": true,
+                    "description": "Picker各选择项的高度。"
+                }
+            }
+        },
+        "disappearTextStyle": {
+            "description": "设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "required": true,
+                    "description": "所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。",
+                    "default": {
+                        "color": "#ff182431",
+                        "font": {
+                            "size": "14fp",
+                            "weight": "FontWeight.Regular"
+                        }
+                    }
+                }
+            }
+        },
+        "textStyle": {
+            "description": "设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "required": true,
+                    "description": "所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。",
+                    "default": {
+                        "color": "#ff182431",
+                        "font": {
+                            "size": "16fp",
+                            "weight": "FontWeight.Regular"
+                        }
+                    }
+                }
+            }
+        },
+        "selectedTextStyle": {
+            "description": "设置选中项的文本颜色、字号、字体粗细。",
+            "params": {
+                "value": {
+                    "type": "PickerTextStyle",
+                    "required": true,
+                    "description": "选中项的文本颜色、字号、字体粗细。",
+                    "default": {
+                        "color": "#ff007dff",
+                        "font": {
+                            "size": "20vp",
+                            "weight": "FontWeight.Medium"
+                        }
+                    }
+                }
+            }
+        },
+        "selectedIndex": {
+            "description": "设置默认选中项在数组中的索引值，优先级高于options中的选中值。",
+            "params": {
+                "value": {
+                    "type": ["number", "number[]"],
+                    "required": true,
+                    "description": "默认选中项在数组中的索引值。",
+                    "default": 0
+                }
+            }
+        },
+        "canLoop": {
+            "description": "设置是否可循环滚动。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否可循环滚动。",
+                    "default": true
+                }
+            }
+        },
+        "divider": {
+            "description": "设置分割线样式，不设置该属性则按“默认值”展示分割线。",
+            "params": {
+                "value": {
+                    "type": ["DividerOptions", "null"],
+                    "required": true,
+                    "description": "分割线的样式。",
+                    "default": {
+                        "strokeWidth": "2px",
+                        "startMargin": 0,
+                        "endMargin": 0,
+                        "color": "#33000000"
+                    }
+                }
+            }
+        },
+        "gradientHeight": {
+            "description": "设置渐隐效果高度，不设置该属性则显示默认渐隐效果。",
+            "params": {
+                "value": {
+                    "type": "Dimension",
+                    "required": true,
+                    "description": "内容区上下边缘的渐隐高度。",
+                    "default": "36vp"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "滑动选中TextPicker文本内容后，触发该回调。",
+            "params": {
+                "value": {
+                    "type": ["string", "string[]"],
+                    "required": true,
+                    "description": "当前选中项的文本。"
+                },
+                "index": {
+                    "type": ["number", "number[]"],
+                    "required": true,
+                    "description": "当前选中项的索引值。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

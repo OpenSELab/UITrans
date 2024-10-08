@@ -4,7 +4,7 @@ import unittest
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 
-from core.agents.retrieve_agent import RetrieveAgent
+from core.pilot.retrieve_agent import RetrieveAgent
 from core.config.config_loader import ConfigLoader
 from core.llms import LLMFactory
 from core.pilot.harmony.component import get_harmony_component

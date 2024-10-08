@@ -2,16 +2,19 @@ import os
 import unittest
 
 from core.config.config_loader import ConfigLoader
-
 from core.llms import LLMFactory
-from core.pilot.code_monkey import CodeMonkeyAgent
-from core.pilot.schema import BreakdownAndroidLayout
-from core.tools.file_tools import create_file, read_file, list_files
 
 os.chdir("../")
 config = ConfigLoader.from_file("./config.yaml")
 llm_client = LLMFactory.create_llm_from_config(llm_client_type="openai",
-                                               llm_config=config.llm_config["deepseek"].dict())
+                                               llm_config=config.llm_config["deepseek"].dict(),
+                                               generate_config={
+                                                   "temperature": 0.01
+                                               })
+
+from core.pilot.code_monkey import CodeMonkeyAgent
+from core.pilot.schema import BreakdownAndroidLayout
+from core.tools.file_tools import create_file, read_file, list_files
 
 from core.tools.search_tools import search_component_document
 
@@ -20,10 +23,10 @@ class TestCodeMonkeyAgent(unittest.TestCase):
 
     def test_search_component_document(self):
         result_document = search_component_document("""
-        Slider，用于在 Android 应用中创建一个可拖动的滑块控件。滑块的宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小，顶部边距为 16dp。滑块的初始值为 50，取值范围从 0 到 100，步长为 1。滑块的拇指、轨道、刻度线和光晕颜色均为红色 (#FF0000)，光晕半径为 10dp，标签行为设置为隐藏。用户可以通过拖动滑块来调整数值。
+        如何设置 TextInput 的提示词？
         """, filter={
             "component_name": {
-                "$in": ["Slider"]
+                "$in": ["TextInput"]
             }
         })
         print(result_document)
@@ -82,63 +85,72 @@ class TestCodeMonkeyAgent(unittest.TestCase):
 ```
         """
 
-    def test_choose_component(self):
+    def query_component_document(self):
         code_monkey_agent = CodeMonkeyAgent(llm_client=llm_client)
-        # code_monkey_agent
 
     def test_translate_component(self):
         breakdown_android_layout = BreakdownAndroidLayout.common_parse_raw(r"""
-        {
+{
     "tasks": [
         {
-            "description": "实现安卓布局组件 android.support.constraint.ConstraintLayout 的转译，作为页面的根布局。",
+            "description": "实现安卓协同布局的转译，并保持布局和样式尽可能一致。",
             "done": false,
             "component": {
-                "name": ["android.support.constraint.ConstraintLayout"],
-                "content": "<android.support.constraint.ConstraintLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"#d5efebe9\"\n    android:orientation=\"vertical\"\n    android:theme=\"@style/MyTheme\" />",
-                "description": "根布局使用 ConstraintLayout 作为父容器，允许子组件的灵活排列，并支持响应式设计。"
+                "name": ["androidx.coordinatorlayout.widget.CoordinatorLayout"],
+                "content": "<androidx.coordinatorlayout.widget.CoordinatorLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:fitsSystemWindows=\"true\">\n</androidx.coordinatorlayout.widget.CoordinatorLayout>",
+                "description": "创建一个协调布局，作为整个页面的容器。其宽度和高度均占满父容器，并适应系统窗口，以避免被状态栏遮挡。"
             }
         },
         {
-            "description": "实现 安卓布局组件 LinearLayout 作为 login 标题的背景容器。",
+            "description": "实现安卓应用栏的转译，并保持布局和样式尽可能一致。",
             "done": false,
             "component": {
-                "name": ["LinearLayout", "TextView"],
-                "content": "<LinearLayout\n    android:id=\"@+id/linearLayout3\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"150sp\"\n    android:background=\"@drawable/background\"\n    android:gravity=\"center\"\n    app:layout_constraintBottom_toBottomOf=\"parent\"\n    app:layout_constraintEnd_toEndOf=\"parent\"\n    app:layout_constraintStart_toStartOf=\"parent\"\n    app:layout_constraintTop_toTopOf=\"parent\"\n    app:layout_constraintVertical_bias=\"0.0\">\n\n    <TextView\n        android:id=\"@+id/textView2\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"Login\"\n        android:textColor=\"@color/partial_transparent\"\n        android:textSize=\"30sp\"\n        android:textStyle=\"bold\" />\n</LinearLayout>",
-                "description": "用于登录标题的 LinearLayout，内部有一个显示 \"Login\" 的 TextView，背景设置为自定义 drawable。"
+                "name": ["com.google.android.material.appbar.AppBarLayout", "androidx.appcompat.widget.Toolbar"],
+                "content": "<com.google.android.material.appbar.AppBarLayout\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"?attr/actionBarSize\"\n    android:fitsSystemWindows=\"true\">\n\n    <androidx.appcompat.widget.Toolbar\n        android:id=\"@+id/toolbar\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:background=\"?attr/colorPrimary\"\n        android:fitsSystemWindows=\"true\"\n        android:minHeight=\"?attr/actionBarSize\"\n        app:layout_scrollFlags=\"scroll|enterAlways\"\n        app:popupTheme=\"@style/ThemeOverlay.AppCompat.Light\"\n        app:theme=\"@style/ThemeOverlay.AppCompat.Dark.ActionBar\" />\n\n</com.google.android.material.appbar.AppBarLayout>",
+                "description": "在应用中创建一个顶部应用栏，作为页面导航或标题显示的容器。该应用栏布局的宽度填满其父容器，高度自适应内容。应用栏的背景颜色根据应用主题颜色属性，支持滚动与进入行为，确保良好的用户体验。"
             }
         },
         {
-            "description": "实现安卓布局组件 android.support.v7.widget.CardView 的转译，作为登录输入区块的容器。",
+            "description": "实现安卓滚动视图的转译，并保持布局和样式尽可能一致。",
             "done": false,
             "component": {
-                "name": ["android.support.v7.widget.CardView", "LinearLayout", "TextInputLayout", "EditText", "Button"],
-                "content": "<android.support.v7.widget.CardView\n    android:id=\"@+id/cardView\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"249dp\"\n    android:layout_margin=\"20dp\"\n    android:layout_marginBottom=\"8dp\"\n    app:cardBackgroundColor=\"@color/black_trans80\"\n    app:layout_constraintBottom_toBottomOf=\"parent\"\n    app:layout_constraintBottom_toTopOf=\"@+id/linearLayout4\"\n    app:layout_constraintEnd_toEndOf=\"@+id/forget\"\n    app:layout_constraintHorizontal_bias=\"0.49\"\n    app:layout_constraintStart_toStartOf=\"@+id/forget\"\n    app:layout_constraintTop_toBottomOf=\"@+id/linearLayout3\"\n    app:layout_constraintVertical_bias=\"0.0\">\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:background=\"#fafafa\"\n        android:orientation=\"vertical\">\n\n        <android.support.design.widget.TextInputLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginEnd=\"40dp\"\n            android:layout_marginStart=\"40dp\"\n            android:layout_marginTop=\"28dp\">\n\n            <EditText\n                android:id=\"@+id/loginid\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:drawablePadding=\"5sp\"\n                android:drawableStart=\"@drawable/ic_email_black\"\n                android:hint=\" Email\"\n                android:imeOptions=\"actionUnspecified\"\n                android:maxLines=\"1\"\n                android:singleLine=\"true\"\n                android:textColor=\"@color/blue_grey\" />\n\n        </android.support.design.widget.TextInputLayout>\n\n        <android.support.design.widget.TextInputLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginEnd=\"40dp\"\n            android:layout_marginStart=\"40dp\"\n            android:layout_marginTop=\"0dp\">\n\n            <EditText\n                android:id=\"@+id/password\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:drawablePadding=\"5sp\"\n                android:drawableStart=\"@drawable/ic_person_black\"\n                android:hint=\" Password\"\n                android:imeOptions=\"actionUnspecified\"\n                android:inputType=\"textPassword\"\n                android:maxLines=\"1\"\n                android:singleLine=\"true\"\n                android:textColor=\"@color/blue_grey\" />\n        </android.support.design.widget.TextInputLayout>\n\n        <Button\n            android:id=\"@+id/login\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_gravity=\"end\"\n            android:layout_margin=\"25sp\"\n            android:background=\"@drawable/btn_background\"\n            android:text=\"Sign In\"\n            android:textColor=\"@color/color_black_light\"\n            android:textStyle=\"bold\" />\n\n    </LinearLayout>\n</android.support.v7.widget.CardView>",
-                "description": "CardView 组件作为输入区域，内部包含一个垂直排列的 LinearLayout，分别放置 Email 和 Password 的输入框，以及一个 Sign In 按钮。卡片背景为自定义色彩，提供良好的可读性和视觉层次。"
+                "name": ["ScrollView"],
+                "content": "<ScrollView\n    android:id=\"@+id/nestedScrollView\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:layout_marginTop=\"?attr/actionBarSize\"\n    android:fitsSystemWindows=\"true\">\n</ScrollView>",
+                "description": "创建一个滚动视图，用于承载可以滚动的内容。该视图的宽度填满父容器，高度也填满父容器，并在顶部留有与应用栏相同的高度，以避免UI元素重叠。"
             }
         },
         {
-            "description": "实现安卓布局组件 TextView 作为忘记密码的提示链接。",
+            "description": "实现关于文本的卡片视图的转译，并保持布局和样式尽可能一致。",
             "done": false,
             "component": {
-                "name": ["TextView"],
-                "content": "<TextView\n    android:id=\"@+id/forget\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:layout_marginEnd=\"24dp\"\n    android:layout_marginStart=\"8dp\"\n    android:text=\"Forget Password? Click Here\"\n    android:textAlignment=\"textEnd\"\n    android:textColor=\"@color/blue_grey\"\n    android:textSize=\"15dp\"\n    app:layout_constraintEnd_toEndOf=\"parent\"\n    app:layout_constraintHorizontal_bias=\"0.32\"\n    app:layout_constraintStart_toStartOf=\"parent\"\n    app:layout_constraintTop_toBottomOf=\"@+id/cardView\" />",
-                "description": "用于显示 \"Forget Password? Click Here\" 提示的 TextView，提供用户点击以重置密码的功能。"
+                "name": ["androidx.cardview.widget.CardView", "LinearLayout", "TextView"],
+                "content": "<androidx.cardview.widget.CardView\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:layout_marginBottom=\"4dp\"\n    android:layout_marginLeft=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginRight=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginTop=\"4dp\"\n    android:padding=\"16dp\"\n    app:cardCornerRadius=\"8dp\">\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"vertical\">\n\n        <TextView\n            android:id=\"@+id/text_view_about\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginBottom=\"24dp\"\n            android:layout_marginLeft=\"16dp\"\n            android:layout_marginRight=\"16dp\"\n            android:layout_marginTop=\"16dp\"\n            android:breakStrategy=\"high_quality\"\n            android:hyphenationFrequency=\"full\"\n            android:text=\"@string/heading_about\"\n            android:textAppearance=\"?android:attr/textAppearanceMedium\"\n            android:textIsSelectable=\"true\"\n            android:textSize=\"16sp\" />\n\n    </LinearLayout>\n</androidx.cardview.widget.CardView>",
+                "description": "创建一个用于显示关于信息的卡片。卡片宽度占满父布局，高度根据内容自适应。其内容内边距为 16dp，边角圆度为 8dp。内部包含一个线性布局，内部使用文本视图来显示关于标题。"
             }
         },
         {
-            "description": "实现安卓布局组件 LinearLayout，作为账户存在提示的容器。",
+            "description": "实现包含Logo的卡片视图的转译，并保持布局和样式尽可能一致。",
             "done": false,
             "component": {
-                "name": ["LinearLayout", "TextView"],
-                "content": "<LinearLayout\n    android:id=\"@+id/linearLayout4\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:background=\"@color/black_trans80\"\n    android:gravity=\"bottom|center\"\n    android:orientation=\"horizontal\"\n    android:padding=\"20sp\"\n    app:layout_constraintBottom_toBottomOf=\"parent\"\n    app:layout_constraintEnd_toEndOf=\"parent\"\n    app:layout_constraintStart_toStartOf=\"parent\"\n    app:layout_constraintTop_toBottomOf=\"parent\"\n    app:layout_constraintVertical_bias=\"1.0\">\n\n    <TextView\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"match_parent\"\n        android:gravity=\"bottom\"\n        android:text=\"Don't have an Account? \"\n        android:textColor=\"@color/blue_grey\"\n        android:textSize=\"15sp\" />\n\n    <TextView\n        android:id=\"@+id/signup\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"match_parent\"\n        android:clickable=\"true\"\n        android:focusable=\"true\"\n        android:gravity=\"bottom\"\n        android:text=\"SignUp\"\n        android:textColor=\"@color/blue_grey\"\n        android:textSize=\"15sp\"\n        android:textStyle=\"bold\" />\n</LinearLayout>",
-                "description": "包含提示用户创建新账户的 LinearLayout，分为两部分，一个 TextView 显示提示信息，另一个 TextView 的文本为 \"SignUp\"，提供点击功能。"
+                "name": ["androidx.cardview.widget.CardView", "LinearLayout", "ImageView"],
+                "content": "<androidx.cardview.widget.CardView\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:layout_marginBottom=\"4dp\"\n    android:layout_marginLeft=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginRight=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginTop=\"4dp\"\n    android:padding=\"16dp\"\n    app:cardCornerRadius=\"8dp\">\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"vertical\" android:padding=\"8dp\">\n\n        <ImageView\n            android:id=\"@+id/imageViewLogo\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"200dp\"\n            android:layout_gravity=\"center\"\n            android:layout_marginBottom=\"8dp\"\n            android:layout_marginLeft=\"8dp\"\n            android:layout_marginRight=\"8dp\"\n            android:layout_marginTop=\"8dp\"\n            app:srcCompat=\"@drawable/bookdash_logo\" />\n\n    </LinearLayout>\n</androidx.cardview.widget.CardView>",
+                "description": "创建一张展示Logo的卡片。卡片的宽度占满父布局，高度根据内容自适应，内边距为 16dp，边角圆度为 8dp。卡片内部包含一个线性布局，其中有一个充满图像的视图用于展示Logo，且其横向和纵向均居中。"
+            }
+        },
+        {
+            "description": "实现关于Bookdash的介绍的卡片视图的转译，并保持布局和样式尽可能一致。",
+            "done": false,
+            "component": {
+                "name": ["androidx.cardview.widget.CardView", "LinearLayout", "TextView", "Button"],
+                "content": "<androidx.cardview.widget.CardView\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:layout_marginBottom=\"4dp\"\n    android:layout_marginLeft=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginRight=\"@dimen/activity_horizontal_margin\"\n    android:layout_marginTop=\"4dp\"\n    android:padding=\"16dp\"\n    app:cardCornerRadius=\"8dp\">\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"vertical\">\n\n        <TextView\n            android:id=\"@+id/textViewHeading\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginBottom=\"8dp\"\n            android:layout_marginLeft=\"16dp\"\n            android:layout_marginRight=\"16dp\"\n            android:layout_marginTop=\"16dp\"\n            android:text=\"@string/why_bookdash_heading\"\n            android:textAppearance=\"?android:attr/textAppearanceLarge\"\n            android:textIsSelectable=\"true\"\n            android:textSize=\"24sp\" />\n\n        <TextView\n            android:id=\"@+id/text_why_bookdash\"\n            style=\"@style/TextAppearance.AppCompat.Medium\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginBottom=\"16dp\"\n            android:layout_marginLeft=\"16dp\"\n            android:layout_marginRight=\"16dp\"\n            android:breakStrategy=\"high_quality\"\n            android:fontFamily=\"sans-serif\"\n            android:hyphenationFrequency=\"normal\"\n            android:text=\"@string/why_bookdash\"\n            android:textIsSelectable=\"true\"\n            android:textSize=\"16sp\" />\n\n        <Button\n            android:id=\"@+id/button_learn_more\"\n            style=\"@style/Widget.AppCompat.Button.Borderless\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginBottom=\"8dp\"\n            android:layout_marginLeft=\"8dp\"\n            android:layout_marginRight=\"8dp\"\n            android:fontFamily=\"sans-serif\"\n            android:text=\"@string/learn_more\"\n            android:textColor=\"@color/colorAccent\" />\n    </LinearLayout>\n</androidx.cardview.widget.CardView>",
+                "description": "创建一个用于介绍Bookdash的卡片。卡片宽度占满父布局，高度根据内容自适应，内边距为 16dp，边角圆度为 8dp。卡片内部包含一个垂直排列的线性布局，其中包含一个用于标题的文本视图和两个显示描述性文本的文本视图。布局还包含一个按钮供用户进一步的交互。"
             }
         }
     ]
 }
         """)
         code_monkey_agent = CodeMonkeyAgent(llm_client=llm_client)
+        breakdown_android_layout.tasks = [breakdown_android_layout.tasks[4]]
         all_translations = code_monkey_agent.translate_component(breakdown_android_layout)
         # developer_agent = DeveloperAgent(llm_client=llm_client)
         # android_layout = {

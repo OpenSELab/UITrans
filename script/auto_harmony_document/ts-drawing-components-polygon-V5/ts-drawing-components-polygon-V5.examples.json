@@ -1,0 +1,6 @@
+[
+    {
+        "description": "该组件通过 Column 布局实现了一个展示三种不同形状的多边形的界面。布局宽度占据整个屏幕，内边距为顶部 10vp。组件的垂直方向上被分为三个部分，每个部分包含一个 Polygon 组件。每个 Polygon 组件的宽度和高度均为 100vp，且通过 points 属性定义了不同的顶点坐标，从而形成不同的多边形形状。\n\n第一个 Polygon 组件是一个三角形，填充颜色为绿色。第二个 Polygon 组件是一个矩形，填充颜色为透明，边框宽度为 5vp，边框颜色为蓝色。第三个 Polygon 组件是一个不规则多边形，填充颜色为红色，填充透明度为 0.6。\n\n整个布局通过 Column 布局保证多边形在垂直方向上有序排列，确保界面整洁美观。",
+        "code": "@Entry\n@Component\nstruct PolygonExample {\n  build() {\n    Column({ space: 10 }) {\n\n      // 第一个 Polygon 组件，绘制一个三角形\n      Polygon({ width: 100, height: 100 })\n        .points([[0, 0], [50, 100], [100, 0]]) // 定义三角形的顶点坐标\n        .fill(Color.Green) // 设置填充颜色为绿色\n\n      // 第二个 Polygon 组件，绘制一个矩形\n      Polygon().width(100).height(100)\n        .points([[0, 0], [0, 100], [100, 100], [100, 0]]) // 定义矩形的顶点坐标\n        .fillOpacity(0) // 设置填充颜色为透明\n        .strokeWidth(5) // 设置边框宽度为 5vp\n        .stroke(Color.Blue) // 设置边框颜色为蓝色\n\n      // 第三个 Polygon 组件，绘制一个不规则多边形\n      Polygon().width(100).height(100)\n        .points([[50, 0], [0, 50], [20, 100], [80, 100], [100, 50]]) // 定义不规则多边形的顶点坐标\n        .fill(Color.Red) // 设置填充颜色为红色\n        .fillOpacity(0.6) // 设置填充透明度为 0.6\n\n    }.width('100%').margin({ top: 10 }) // 设置布局宽度为 100%，顶部边距为 10vp\n  }\n}"
+    }
+]

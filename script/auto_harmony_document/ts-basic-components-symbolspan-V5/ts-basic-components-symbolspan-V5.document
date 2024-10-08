@@ -1,0 +1,293 @@
+Title: SymbolSpan-文本与输入-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-symbolspan-V5
+
+Markdown Content:
+作为Text组件的子组件，用于显示图标小符号的组件。
+
+说明
+
+*   该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+    
+*   该组件支持继承父组件Text的属性，即如果子组件未设置属性且父组件设置属性，则继承父组件设置的全部属性。
+    
+*   SymbolSpan拖拽不会置灰显示。
+    
+
+接口
+--
+
+SymbolSpan(value: Resource)
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+[Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+是
+
+SymbolSpan组件的资源名，如 $r('sys.symbol.ohos\_wifi')。
+
+说明
+
+$r('sys.symbol.ohos\_wifi')中引用的资源为系统预置，SymbolSpan仅支持系统预置的symbol资源名，引用非symbol资源将显示异常。
+
+### fontColor
+
+fontColor(value: Array<ResourceColor\>)
+
+设置SymbolSpan组件颜色。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+Array<[ResourceColor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resourcecolor)\>
+
+是
+
+SymbolSpan组件颜色。
+
+默认值：不同渲染策略下默认值不同。
+
+### fontSize
+
+fontSize(value: number | string | Resource)
+
+设置SymbolSpan组件大小。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number | string | [Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+是
+
+SymbolSpan组件大小。
+
+默认值：系统默认值。
+
+### fontWeight
+
+fontWeight(value: number | FontWeight | string)
+
+设置SymbolSpan组件粗细。number类型取值\[100,900\]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。
+
+sys.symbol.ohos\_lungs图标不支持设置fontWeight。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+value
+
+number | [FontWeight](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-appendix-enums-V5#fontweight) | string
+
+是
+
+SymbolSpan组件粗细。
+
+默认值：FontWeight.Normal
+
+### renderingStrategy
+
+renderingStrategy(value: SymbolRenderingStrategy)
+
+设置SymbolSpan渲染策略。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+不同渲染策略效果可参考以下示意图。
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114443.69769427966506133318406080517299:50001231000000:2800:E7E4980FDDE9FD25B8799392C1D3F788A406139176121E5D77D11FAF09DFB23B.png?needInitFileName=true?needInitFileName=true)
+
+### effectStrategy
+
+effectStrategy(value: SymbolEffectStrategy)
+
+设置SymbolSpan动效策略。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+### attributeModifier12+
+
+attributeModifier(modifier: AttributeModifier<SymbolSpanAttribute\>)
+
+设置组件的动态属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+示例
+--
+
+2.  @Entry
+3.  @Component
+4.  struct Index {
+5.    build() {
+6.      Column() {
+7.        Row() {
+8.          Column() {
+9.            Text("Light")
+10.            Text() {
+11.              SymbolSpan($r('sys.symbol.ohos\_trash'))
+12.                .fontWeight(FontWeight.Lighter)
+13.                .fontSize(96)
+14.            }
+15.          }
+
+17.          Column() {
+18.            Text("Normal")
+19.            Text() {
+20.              SymbolSpan($r('sys.symbol.ohos\_trash'))
+21.                .fontWeight(FontWeight.Normal)
+22.                .fontSize(96)
+23.            }
+24.          }
+
+26.          Column() {
+27.            Text("Bold")
+28.            Text() {
+29.              SymbolSpan($r('sys.symbol.ohos\_trash'))
+30.                .fontWeight(FontWeight.Bold)
+31.                .fontSize(96)
+32.            }
+33.          }
+34.        }
+
+36.        Row() {
+37.          Column() {
+38.            Text("单色")
+39.            Text() {
+40.              SymbolSpan($r('sys.symbol.ohos\_folder\_badge\_plus'))
+41.                .fontSize(96)
+42.                .renderingStrategy(SymbolRenderingStrategy.SINGLE)
+43.                .fontColor(\[Color.Black, Color.Green, Color.White\])
+44.            }
+45.          }
+
+47.          Column() {
+48.            Text("多色")
+49.            Text() {
+50.              SymbolSpan($r('sys.symbol.ohos\_folder\_badge\_plus'))
+51.                .fontSize(96)
+52.                .renderingStrategy(SymbolRenderingStrategy.MULTIPLE\_COLOR)
+53.                .fontColor(\[Color.Black, Color.Green, Color.White\])
+54.            }
+55.          }
+
+57.          Column() {
+58.            Text("分层")
+59.            Text() {
+60.              SymbolSpan($r('sys.symbol.ohos\_folder\_badge\_plus'))
+61.                .fontSize(96)
+62.                .renderingStrategy(SymbolRenderingStrategy.MULTIPLE\_OPACITY)
+63.                .fontColor(\[Color.Black, Color.Green, Color.White\])
+64.            }
+65.          }
+66.        }
+
+68.        Row() {
+69.          Column() {
+70.            Text("无动效")
+71.            Text() {
+72.              SymbolSpan($r('sys.symbol.ohos\_wifi'))
+73.                .fontSize(96)
+74.                .effectStrategy(SymbolEffectStrategy.NONE)
+75.            }
+76.          }
+
+78.          Column() {
+79.            Text("整体缩放动效")
+80.            Text() {
+81.              SymbolSpan($r('sys.symbol.ohos\_wifi'))
+82.                .fontSize(96)
+83.                .effectStrategy(1)
+84.            }
+85.          }
+
+87.          Column() {
+88.            Text("层级动效")
+89.            Text() {
+90.              SymbolSpan($r('sys.symbol.ohos\_wifi'))
+91.                .fontSize(96)
+92.                .effectStrategy(2)
+93.            }
+94.          }
+95.        }
+96.      }
+97.    }
+98.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114444.39108611520336544832111249933922:50001231000000:2800:7863E123E128F495B9DE391D3ACC68512C59F6E20485BDE4D144C9CAD44B2000.gif?needInitFileName=true?needInitFileName=true)

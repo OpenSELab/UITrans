@@ -1,0 +1,353 @@
+{
+    "description": "可以与容器组件联动用于按逻辑结构快速定位容器显示区域的组件。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "AlphabetIndexer(value: {arrayValue: Array<string>, selected: number})",
+            "params": {
+                "value": {
+                    "type": {
+                        "arrayValue": {
+                            "type": "Array<string>",
+                            "required": true,
+                            "description": "字母索引字符串数组，不可设置为空。"
+                        },
+                        "selected": {
+                            "type": "number",
+                            "required": true,
+                            "description": "初始选中项索引值，若超出索引值范围，则取默认值0。",
+                            "default": 0
+                        }
+                    },
+                    "required": true,
+                    "description": "组件的初始化参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "color": {
+            "description": "设置文字颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "文字颜色。"
+                }
+            }
+        },
+        "selectedColor": {
+            "description": "设置选中项文字颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "选中项文字颜色。"
+                }
+            }
+        },
+        "popupColor": {
+            "description": "设置提示弹窗文字颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "提示弹窗文字颜色。"
+                }
+            }
+        },
+        "selectedBackgroundColor": {
+            "description": "设置选中项背景颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "选中项背景颜色。"
+                }
+            }
+        },
+        "popupBackground": {
+            "description": "设置提示弹窗背景色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "提示弹窗背景色。",
+                    "default": "#66808080"
+                }
+            }
+        },
+        "usingPopup": {
+            "description": "设置是否使用提示弹窗。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否使用提示弹窗。",
+                    "default": false
+                }
+            }
+        },
+        "selectedFont": {
+            "description": "设置选中项文字样式。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "选中项文字样式。",
+                    "default": {
+                        "size": "10.0vp",
+                        "style": "FontStyle.Normal",
+                        "weight": "FontWeight.Medium",
+                        "family": "HarmonyOS Sans"
+                    }
+                }
+            }
+        },
+        "popupFont": {
+            "description": "设置提示弹窗字体样式。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "提示弹窗字体样式。",
+                    "default": {
+                        "size": "24.0vp",
+                        "style": "FontStyle.Normal",
+                        "weight": "FontWeight.Normal",
+                        "family": "HarmonyOS Sans"
+                    }
+                }
+            }
+        },
+        "font": {
+            "description": "设置字母索引条默认字体样式。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "字母索引条默认字体样式。",
+                    "default": {
+                        "size": "10.0vp",
+                        "style": "FontStyle.Normal",
+                        "weight": "FontWeight.Medium",
+                        "family": "HarmonyOS Sans"
+                    }
+                }
+            }
+        },
+        "itemSize": {
+            "description": "设置字母索引条字母区域大小。",
+            "params": {
+                "value": {
+                    "type": ["string", "number"],
+                    "required": true,
+                    "description": "字母索引条字母区域大小，字母区域为正方形，即正方形边长。不支持设置为百分比。",
+                    "default": 16.0
+                }
+            }
+        },
+        "alignStyle": {
+            "description": "设置字母索引条弹框的对齐样式。",
+            "params": {
+                "value": {
+                    "type": "IndexerAlign",
+                    "required": true,
+                    "description": "字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。",
+                    "default": "IndexerAlign.END"
+                },
+                "offset": {
+                    "type": "Length",
+                    "required": false,
+                    "description": "提示弹窗与索引条之间间距，大于等于0为有效值，在不设置或设置为小于0的情况下间距与popupPosition.x相同。与popupPosition同时设置时，水平方向上offset生效，竖直方向上popupPosition.y生效。"
+                }
+            }
+        },
+        "selected": {
+            "description": "设置选中项索引值。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "选中项索引值。",
+                    "default": 0
+                }
+            }
+        },
+        "popupPosition": {
+            "description": "设置弹出窗口相对于索引器条上边框中点的位置。",
+            "params": {
+                "value": {
+                    "type": "Position",
+                    "required": true,
+                    "description": "弹出窗口相对于索引器条上边框中点的位置。",
+                    "default": {
+                        "x": 60.0,
+                        "y": 48.0
+                    }
+                }
+            }
+        },
+        "popupSelectedColor": {
+            "description": "设置提示弹窗非字母部分选中文字色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "提示弹窗非字母部分选中文字色。"
+                }
+            }
+        },
+        "popupUnselectedColor": {
+            "description": "设置提示弹窗非字母部分未选中文字色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "提示弹窗非字母部分未选中文字色。",
+                    "default": "#FF182431"
+                }
+            }
+        },
+        "popupItemFont": {
+            "description": "设置提示弹窗非字母部分字体样式。",
+            "params": {
+                "value": {
+                    "type": "Font",
+                    "required": true,
+                    "description": "提示弹窗非字母部分字体样式。",
+                    "default": {
+                        "size": 24,
+                        "weight": "FontWeight.Medium"
+                    }
+                }
+            }
+        },
+        "popupItemBackgroundColor": {
+            "description": "设置提示弹窗非字母部分背景色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "提示弹窗非字母部分背景色。",
+                    "default": "#00000000"
+                }
+            }
+        },
+        "autoCollapse": {
+            "description": "设置是否使用自适应折叠模式。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否使用自适应折叠模式。",
+                    "default": true
+                }
+            }
+        },
+        "popupItemBorderRadius": {
+            "description": "设置提示弹窗索引项背板圆角半径。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "提示弹窗索引项背板圆角半径。",
+                    "default": 24
+                }
+            }
+        },
+        "itemBorderRadius": {
+            "description": "设置索引项背板圆角半径。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "索引项背板圆角半径。",
+                    "default": 8
+                }
+            }
+        },
+        "popupBackgroundBlurStyle": {
+            "description": "设置提示弹窗的背景模糊材质。",
+            "params": {
+                "value": {
+                    "type": "BlurStyle",
+                    "required": true,
+                    "description": "提示弹窗的背景模糊材质。",
+                    "default": "COMPONENT_REGULAR"
+                }
+            }
+        },
+        "popupTitleBackground": {
+            "description": "设置提示弹窗首个索引项背板颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "提示弹窗首个索引项背板颜色。",
+                    "default": "#0c182431"
+                }
+            }
+        },
+        "enableHapticFeedback": {
+            "description": "支持触控反馈。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持触控反馈。",
+                    "default": true
+                }
+            }
+        }
+    },
+    "events": {
+        "onSelected": {
+            "description": "索引条选中回调，返回值为当前选中索引。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前选中的索引。"
+                }
+            }
+        },
+        "onSelect": {
+            "description": "索引条选中回调，返回值为当前选中索引。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前选中的索引。"
+                }
+            }
+        },
+        "onRequestPopupData": {
+            "description": "选中字母索引后，请求索引提示弹窗显示内容回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前选中的索引。"
+                }
+            },
+            "returns": {
+                "type": "Array<string>",
+                "description": "索引对应的字符串数组，此字符串数组在弹窗中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。"
+            }
+        },
+        "onPopupSelect": {
+            "description": "字母索引提示弹窗字符串列表选中回调。",
+            "params": {
+                "index": {
+                    "type": "number",
+                    "required": true,
+                    "description": "当前选中的索引。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": null,
+    "is_common_attrs": true
+}

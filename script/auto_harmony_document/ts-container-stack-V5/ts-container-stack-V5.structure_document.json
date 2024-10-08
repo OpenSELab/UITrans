@@ -1,0 +1,29 @@
+{
+    "description": "堆叠容器，子组件按照顺序依次入栈，后一个子组件覆盖前一个子组件。可以包含多个子组件。",
+    "interfaces": [
+        {
+            "description": "Stack(value?: { alignContent?: Alignment })",
+            "params": {
+                "alignContent": {
+                    "type": "Alignment",
+                    "required": false,
+                    "description": "设置子组件在容器内的对齐方式。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "alignContent": {
+            "description": "设置所有子组件在容器内的对齐方式。该属性与通用属性align同时设置时，后设置的属性生效。",
+            "params": {
+                "value": {
+                    "type": "Alignment",
+                    "required": true,
+                    "description": "所有子组件在容器内的对齐方式。"
+                }
+            }
+        }
+    },
+    "events": {},
+    "is_common_attrs": true
+}

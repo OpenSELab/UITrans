@@ -1,0 +1,105 @@
+{
+    "description": "提供勾选框样式、状态按钮样式及开关样式。",
+    "details": "该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "Toggle(options: { type: ToggleType, isOn?: boolean })",
+            "params": {
+                "options": {
+                    "type": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "ToggleType",
+                                "required": true,
+                                "description": "开关的样式。",
+                                "default": "ToggleType.Switch"
+                            },
+                            "isOn": {
+                                "type": "boolean",
+                                "required": false,
+                                "description": "开关是否打开，true：打开，false：关闭。",
+                                "default": false
+                            }
+                        }
+                    },
+                    "required": true,
+                    "description": "开关的配置选项。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "selectedColor": {
+            "description": "设置组件打开状态的背景颜色。",
+            "params": {
+                "value": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "组件打开状态的背景颜色。"
+                }
+            }
+        },
+        "switchPointColor": {
+            "description": "设置Switch类型的圆形滑块颜色。仅对type为ToggleType.Switch生效。",
+            "params": {
+                "color": {
+                    "type": "ResourceColor",
+                    "required": true,
+                    "description": "Switch类型的圆形滑块颜色。",
+                    "default": "#ffffffff"
+                }
+            }
+        },
+        "switchStyle": {
+            "description": "设置Switch类型的样式。仅对type为ToggleType.Switch生效。",
+            "params": {
+                "value": {
+                    "type": "SwitchStyle",
+                    "required": true,
+                    "description": "Switch类型的样式配置。"
+                }
+            }
+        },
+        "contentModifier": {
+            "description": "定制Toggle内容区的方法。",
+            "params": {
+                "modifier": {
+                    "type": "ContentModifier<ToggleConfiguration>",
+                    "required": true,
+                    "description": "定制Toggle内容区的方法。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "开关状态切换时触发该事件。",
+            "params": {
+                "isOn": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "为true时，代表状态从关切换为开。false时，代表状态从开切换为关。"
+                }
+            }
+        }
+    },
+    "rules": [
+        "仅当ToggleType为Button时可包含子组件。"
+    ],
+    "examples": [
+        {
+            "description": "该组件通过 Column 布局实现了一个展示自定义样式 Toggle 组件（Switch 类型）的界面。布局宽度占据整个屏幕，内边距为左右 24vp、顶部 24vp。组件的垂直方向上被分为两个部分：一个标题和一个 Flex 布局的 Toggle 组件组。\n\n标题部分使用 Text 组件展示文字 \"type: Switch\"，字体大小为 12vp，颜色为浅灰色（0xcccccc），宽度为 90%。\n\nToggle 组件组通过 Flex 布局实现，水平方向上均匀分布两个 Toggle 组件，对齐方式为居中对齐。每个 Toggle 组件的类型为 Switch，分别设置为关闭状态（isOn: false）和开启状态（isOn: true）。\n\n每个 Toggle 组件的样式通过 switchStyle 方法进行自定义，包括圆形滑块的半径（pointRadius: 15）、滑轨的圆角（trackBorderRadius: 10）、圆形滑块的颜色（pointColor: '#D2B48C'）、关闭状态的背景颜色（unselectedColor: Color.Pink）。\n\nToggle 组件的功能包括状态变化事件，当 Toggle 组件的状态发生变化时，会触发 onChange 事件，并在控制台输出当前状态。\n\n整个布局通过 Column 布局保证标题和 Toggle 组件组在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ToggleExample {\n  build() {\n    Column({ space: 10 }) { // 使用 Column 布局，垂直方向上间距为 10vp\n      Text('type: Switch') // 标题文字\n        .fontSize(12) // 字体大小为 12vp\n        .fontColor(0xcccccc) // 字体颜色为浅灰色\n        .width('90%') // 宽度为 90%\n      \n      Flex({ justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center }) { // 使用 Flex 布局，水平方向上均匀分布，对齐方式为居中对齐\n        Toggle({ type: ToggleType.Switch, isOn: false }) // 第一个 Toggle 组件，类型为 Switch，初始状态为关闭\n          .selectedColor('#007DFF') // 开启状态下的背景颜色\n          .switchStyle({\n            pointRadius: 15, // 圆形滑块的半径为 15vp\n            trackBorderRadius: 10, // 滑轨的圆角为 10vp\n            pointColor: '#D2B48C', // 圆形滑块的颜色为 '#D2B48C'\n            unselectedColor: Color.Pink // 关闭状态下的背景颜色为粉色\n          })\n          .onChange((isOn: boolean) => { // 状态变化事件\n            console.info('Component status:' + isOn) // 输出当前状态到控制台\n          })\n\n        Toggle({ type: ToggleType.Switch, isOn: true }) // 第二个 Toggle 组件，类型为 Switch，初始状态为开启\n          .selectedColor('#007DFF') // 开启状态下的背景颜色\n          .switchStyle({\n            pointRadius: 15, // 圆形滑块的半径为 15vp\n            trackBorderRadius: 10, // 滑轨的圆角为 10vp\n            pointColor: '#D2B48C', // 圆形滑块的颜色为 '#D2B48C'\n            unselectedColor: Color.Pink // 关闭状态下的背景颜色为粉色\n          })\n          .onChange((isOn: boolean) => { // 状态变化事件\n            console.info('Component status:' + isOn) // 输出当前状态到控制台\n          })\n      }\n    }.width('100%').padding(24) // 布局宽度为 100%，内边距为左右 24vp、顶部 24vp\n  }\n}"
+        },
+        {
+            "description": "该组件实现了一个自定义Toggle样式的功能，通过按钮切换圆形背景颜色的功能。布局采用Column和Row嵌套的方式，Column用于垂直布局，Row用于水平布局。组件的样式包括圆形背景颜色、按钮文字颜色和背景颜色等。组件的功能包括点击按钮切换圆形背景颜色，并通过Toggle组件的onChange事件监听Toggle状态的变化。\n\n布局属性：\n- Column组件的space属性设置为50，表示子组件之间的垂直间距为50。\n- Row组件没有设置space属性，表示子组件之间的水平间距为默认值。\n- Circle组件的width和height属性设置为150，表示圆形的宽度和高度均为150。\n- Button组件的文字颜色和背景颜色未显式设置，使用默认值。\n\n组件的样式和外观：\n- Circle组件的fill属性根据Toggle的状态（isOn）来决定填充颜色，当Toggle状态为true时，填充颜色为MySwitchStyle中的selectedColor，否则为默认的蓝色。\n- Button组件的文字颜色和背景颜色未显式设置，使用默认值。\n\n组件的排列和嵌套关系：\n- Column组件包含一个Circle组件和一个Row组件，Circle组件位于Row组件的上方。\n- Row组件包含两个Button组件，Button组件之间水平排列。\n\n组件的功能和交互：\n- Button组件的onClick事件用于触发Toggle状态的改变，点击“蓝”按钮时，Toggle状态变为false，点击“黄”按钮时，Toggle状态变为true。\n- Toggle组件的onChange事件用于监听Toggle状态的变化，并在控制台输出当前状态。",
+            "code": "// 自定义Toggle样式类，实现ContentModifier接口\nclass MySwitchStyle implements ContentModifier<ToggleConfiguration> {\n  // 选中的颜色，默认为白色\n  selectedColor: Color = Color.White;\n  // 灯的标识符，默认为字符串\n  lamp: string = 'string';\n\n  // 构造函数，初始化selectedColor和lamp\n  constructor(selectedColor: Color, lamp: string) {\n    this.selectedColor = selectedColor;\n    this.lamp = lamp;\n  }\n\n  // 应用内容的方法，返回一个WrappedBuilder\n  applyContent(): WrappedBuilder<[ToggleConfiguration]> {\n    return wrapBuilder(buildSwitch);\n  }\n}\n\n// 构建Toggle内容的Builder函数\n@Builder function buildSwitch(config: ToggleConfiguration) {\n  // 创建一个Column组件，设置子组件之间的垂直间距为50\n  Column({ space: 50 }) {\n    // 创建一个Circle组件，设置宽度和高度均为150\n    Circle({ width: 150, height: 150 })\n      // 根据Toggle的状态设置填充颜色，当Toggle状态为true时，填充颜色为MySwitchStyle中的selectedColor，否则为默认的蓝色\n      .fill(config.isOn ? (config.contentModifier as MySwitchStyle).selectedColor : Color.Blue)\n    // 创建一个Row组件，用于水平排列按钮\n    Row() {\n      // 创建一个Button组件，显示“蓝”和lamp的值\n      Button('蓝' + JSON.stringify((config.contentModifier as MySwitchStyle).lamp))\n        // 设置点击事件，点击时触发Toggle状态的改变为false\n        .onClick(() => {\n          config.triggerChange(false);\n        })\n      // 创建一个Button组件，显示“黄”和lamp的值\n      Button('黄' + JSON.stringify((config.contentModifier as MySwitchStyle).lamp))\n        // 设置点击事件，点击时触发Toggle状态的改变为true\n        .onClick(() => {\n          config.triggerChange(true);\n        })\n    }\n  }\n}\n\n// 入口组件\n@Entry\n@Component\nstruct Index {\n  // 构建方法\n  build() {\n    // 创建一个Column组件，设置子组件之间的垂直间距为50\n    Column({ space: 50 }) {\n      // 创建一个Toggle组件，设置类型为Switch\n      Toggle({ type: ToggleType.Switch })\n        // 设置Toggle为启用状态\n        .enabled(true)\n        // 设置Toggle的内容修饰器为MySwitchStyle，初始颜色为黄色，lamp为“灯”\n        .contentModifier(new MySwitchStyle(Color.Yellow, '灯'))\n        // 设置Toggle状态改变时的回调函数，输出当前状态\n        .onChange((isOn: boolean) => {\n          console.info('Switch Log:' + isOn);\n        })\n    }\n    // 设置Column组件的宽度和高度均为100%\n    .height('100%').width('100%')\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Column 布局实现了一个展示多种类型切换组件（如开关、复选框、按钮）及其状态效果的界面。布局宽度占据整个屏幕，内边距为左右 24vp、顶部 24vp。组件的垂直方向上被分为多个部分，每个部分包含一个标题和一组切换组件。每个切换组件组的组件以水平布局方式排列，组件之间的间距均匀分布，且对齐方式为居中对齐。\n切换组件的样式包括背景颜色、选中颜色、大小等属性，支持不同的样式展示。切换组件组之间通过 Column 组件进行分隔。切换组件的功能包括状态变化事件，用户可以通过操作切换组件触发相应操作，切换组件也可以在启用或禁用状态下进行展示。\n整个布局通过 Column 布局保证切换组件在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ToggleExample {\n  build() {\n    Column({ space: 10 }) { // 使用 Column 布局，设置组件之间的间距为 10vp\n      Text('type: Switch').fontSize(12).fontColor(0xcccccc).width('90%') // 显示标题文本，字体大小为 12vp，颜色为灰色，宽度为 90%\n      Flex({ justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center }) { // 使用 Flex 布局，水平方向上均匀分布组件，垂直方向上居中对齐\n        Toggle({ type: ToggleType.Switch, isOn: false }) // 创建一个开关类型的切换组件，初始状态为关闭\n          .selectedColor('#007DFF') // 设置选中状态的颜色为蓝色\n          .switchPointColor('#FFFFFF') // 设置开关滑块的颜色为白色\n          .onChange((isOn: boolean) => { // 监听状态变化事件\n            console.info('Component status:' + isOn) // 输出当前组件状态到控制台\n          })\n\n        Toggle({ type: ToggleType.Switch, isOn: true }) // 创建一个开关类型的切换组件，初始状态为开启\n          .selectedColor('#007DFF') // 设置选中状态的颜色为蓝色\n          .switchPointColor('#FFFFFF') // 设置开关滑块的颜色为白色\n          .onChange((isOn: boolean) => { // 监听状态变化事件\n            console.info('Component status:' + isOn) // 输出当前组件状态到控制台\n          })\n      }\n\n      Text('type: Checkbox').fontSize(12).fontColor(0xcccccc).width('90%') // 显示标题文本，字体大小为 12vp，颜色为灰色，宽度为 90%\n      Flex({ justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center }) { // 使用 Flex 布局，水平方向上均匀分布组件，垂直方向上居中对齐\n        Toggle({ type: ToggleType.Checkbox, isOn: false }) // 创建一个复选框类型的切换组件，初始状态为关闭\n          .size({ width: 20, height: 20 }) // 设置复选框的大小为 20vp x 20vp\n          .selectedColor('#007DFF') // 设置选中状态的颜色为蓝色\n          .onChange((isOn: boolean) => { // 监听状态变化事件\n            console.info('Component status:' + isOn) // 输出当前组件状态到控制台\n          })\n\n        Toggle({ type: ToggleType.Checkbox, isOn: true }) // 创建一个复选框类型的切换组件，初始状态为开启\n          .size({ width: 20, height: 20 }) // 设置复选框的大小为 20vp x 20vp\n          .selectedColor('#007DFF') // 设置选中状态的颜色为蓝色\n          .onChange((isOn: boolean) => { // 监听状态变化事件\n            console.info('Component status:' + isOn) // 输出当前组件状态到控制台\n          })\n      }\n\n      Text('type: Button').fontSize(12).fontColor(0xcccccc).width('90%') // 显示标题文本，字体大小为 12vp，颜色为灰色，宽度为 90%\n      Flex({ justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center }) { // 使用 Flex 布局，水平方向上均匀分布组件，垂直方向上居中对齐\n        Toggle({ type: ToggleType.Button, isOn: false }) { // 创建一个按钮类型的切换组件，初始状态为关闭\n          Text('status button').fontColor('#182431').fontSize(12) // 按钮内的文本，字体颜色为深色，字体大小为 12vp\n        }.width(106) // 设置按钮的宽度为 106vp\n        .selectedColor('rgba(0,125,255,0.20)') // 设置选中状态的颜色为半透明蓝色\n        .onChange((isOn: boolean) => { // 监听状态变化事件\n          console.info('Component status:' + isOn) // 输出当前组件状态到控制台\n        })\n\n        Toggle({ type: ToggleType.Button, isOn: true }) { // 创建一个按钮类型的切换组件，初始状态为开启\n          Text('status button').fontColor('#182431').fontSize(12) // 按钮内的文本，字体颜色为深色，字体大小为 12vp\n        }.width(106) // 设置按钮的宽度为 106vp\n        .selectedColor('rgba(0,125,255,0.20)') // 设置选中状态的颜色为半透明蓝色\n        .onChange((isOn: boolean) => { // 监听状态变化事件\n          console.info('Component status:' + isOn) // 输出当前组件状态到控制台\n        })\n      }\n    }.width('100%').padding(24) // 设置 Column 的宽度为 100%，内边距为 24vp\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

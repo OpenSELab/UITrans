@@ -1,0 +1,289 @@
+{
+    "description": "NavPushPathHelper组件用于在跳转目标NavDestination在不同的hsp分包且未被主包依赖时，先下载安装相应hsp分包，再将指定的NavDestination页面信息入栈。使Navigation支持动态加载hsp分包后再跳转。",
+    "details": "该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。",
+    "interfaces": [
+        {
+            "description": "constructor(navPathStack: NavPathStack): void",
+            "params": {
+                "navPathStack": {
+                    "type": "NavPathStack",
+                    "required": true,
+                    "description": "NavPushPathHelper的构造函数参数，用于初始化NavPathStack对象。"
+                }
+            }
+        },
+        {
+            "description": "pushPath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "info": {
+                    "type": "NavPathInfo",
+                    "required": true,
+                    "description": "新栈顶页面参数信息。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "pushPath(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "info": {
+                    "type": "NavPathInfo",
+                    "required": true,
+                    "description": "新栈顶页面参数信息。"
+                },
+                "options": {
+                    "type": "NavigationOptions",
+                    "required": false,
+                    "description": "导航选项，具体根据options中指定不同的LaunchMode，有不同的行为。"
+                }
+            }
+        },
+        {
+            "description": "pushPathByName(moduleName: string, name: string, param: Object, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination的名称。"
+                },
+                "param": {
+                    "type": "Object",
+                    "required": true,
+                    "description": "传递的数据。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "pushPathByName(moduleName: string, name: string, param: Object, onPop: Callback<PopInfo>, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination的名称。"
+                },
+                "param": {
+                    "type": "Object",
+                    "required": true,
+                    "description": "传递的数据。"
+                },
+                "onPop": {
+                    "type": "Callback<PopInfo>",
+                    "required": true,
+                    "description": "页面出栈时处理返回结果的回调。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "pushDestination(moduleName: string, info: NavPathInfo, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "info": {
+                    "type": "NavPathInfo",
+                    "required": true,
+                    "description": "新栈顶页面参数信息。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "pushDestination(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "info": {
+                    "type": "NavPathInfo",
+                    "required": true,
+                    "description": "新栈顶页面参数信息。"
+                },
+                "options": {
+                    "type": "NavigationOptions",
+                    "required": false,
+                    "description": "导航选项，具体根据options中指定不同的LaunchMode，有不同的行为。"
+                }
+            }
+        },
+        {
+            "description": "pushDestinationByName(moduleName: string, name: string, param: Object, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination的名称。"
+                },
+                "param": {
+                    "type": "Object",
+                    "required": true,
+                    "description": "传递的数据。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "pushDestinationByName(moduleName: string, name: string, param: Object, onPop: Callback<PopInfo>, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination的名称。"
+                },
+                "param": {
+                    "type": "Object",
+                    "required": true,
+                    "description": "传递的数据。"
+                },
+                "onPop": {
+                    "type": "Callback<PopInfo>",
+                    "required": true,
+                    "description": "页面出栈时处理返回结果的回调。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "replacePath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "info": {
+                    "type": "NavPathInfo",
+                    "required": true,
+                    "description": "新栈顶页面参数信息。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        },
+        {
+            "description": "replacePath(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "info": {
+                    "type": "NavPathInfo",
+                    "required": true,
+                    "description": "新栈顶页面参数信息。"
+                },
+                "options": {
+                    "type": "NavigationOptions",
+                    "required": false,
+                    "description": "导航选项，具体根据options中指定不同的LaunchMode，有不同的行为。"
+                }
+            }
+        },
+        {
+            "description": "replacePathByName(moduleName: string, name: string, param: Object, animated?: boolean): Promise<void>",
+            "params": {
+                "moduleName": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination所在分包的moduleName。"
+                },
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标NavDestination的名称。"
+                },
+                "param": {
+                    "type": "Object",
+                    "required": true,
+                    "description": "传递的数据。"
+                },
+                "animated": {
+                    "type": "boolean",
+                    "required": false,
+                    "description": "是否支持转场动画。",
+                    "default": true
+                }
+            }
+        }
+    ],
+    "attributes": {},
+    "events": {},
+    "rules": null,
+    "examples": [
+        {
+            "description": "主包：\n该组件通过 Navigation 组件实现了一个页面导航的示例。布局宽度占据整个屏幕，高度设为 100%。组件的垂直方向上包含一个按钮，按钮的宽度为 80%，高度为 40vp，边距为 20vp。按钮的样式为胶囊形状，背景颜色为默认主题色。按钮的功能包括点击事件，用户可以通过点击按钮触发页面导航操作，导航到名为 'hsptest1' 的页面，并传递参数 { name: 'pageOne' }。导航操作支持错误处理，如果导航失败，会输出错误信息到控制台。",
+            "code": "import { NavPushPathHelper } from '@kit.ArkUI'\nimport { BusinessError } from '@kit.BasicServicesKit';\n\n@Entry\n@Component\nstruct NavigationExample {\n  pageInfo: NavPathStack = new NavPathStack()\n  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo)\n\n  build() {\n    Navigation(this.pageInfo) {\n      Column() {\n        Button('StartTest', { stateEffect: true, type: ButtonType.Capsule })\n          .width('80%')\n          .height(40)\n          .margin(20)\n          .onClick(() => {\n            this.helper.pushPath('hsptest1', { name: 'pageOne' }, false)\n              .catch((error: BusinessError) => {\n                console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);\n              }).then(() => {\n                console.error('[pushPath]success.');\n              }); \n          })\n      }\n    }.title('NavIndex')\n  }\n}\n\n/*\n分包 hsptest1：\n该组件通过 Navigation 组件实现了一个页面导航的示例。布局宽度占据整个屏幕，高度设为 100%。组件的垂直方向上包含多个按钮，每个按钮的宽度为 80%，高度为 35vp，边距为 10vp。按钮的样式为胶囊形状，背景颜色为默认主题色。按钮的功能包括点击事件，用户可以通过点击按钮触发不同的页面导航操作，导航到名为 'hsptest2' 的页面，并传递不同的参数和回调函数。导航操作支持错误处理，如果导航失败，会输出错误信息到控制台。\n*/\n\nimport { NavPushPathHelper } from '@kit.ArkUI'\nimport { BusinessError } from '@kit.BasicServicesKit';\n\nclass TmpClass {\n  count: number = 10\n}\n\nclass ParamWithOp {\n  operation: number = 1\n  count: number = 10\n}\n\n@Builder\nexport function PageOneBuilder(name: string, param: Object) {\n  PageOne()\n}\n\n@Component\nexport struct PageOne {\n  pageInfo: NavPathStack = new NavPathStack();\n  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo)\n  @State message: string = 'Hello World'\n\n  build() {\n    NavDestination() {\n      Column() {\n        Text(this.message)\n          .width('80%')\n          .height(50)\n          .margin(10)\n\n        Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })\n          .width('80%')\n          .height(35)\n          .margin(10)\n          .onClick(() => {\n            this.helper.pushPath('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {\n              this.message = '[pushPath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);\n            }}).catch((error: BusinessError) => {\n              console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);\n            }).then(() => {\n              console.log('[pushPath]success.');\n            });\n          })\n\n        Button('pushPath with NavigationOptions', { stateEffect: true, type: ButtonType.Capsule })\n          .width('80%')\n          .height(35)\n          .margin(10)\n          .onClick(() => {\n            this.helper.pushPath('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {\n              this.message = '[pushPath with NavigationOptions]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);\n            }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {\n              console.error(`[pushPath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);\n            }).then(() => {\n              console.log('[pushPath with NavigationOptions]success.');\n            });\n          })\n\n        Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })\n          .width('80%')\n          .height(35)\n          .margin(10)\n          .onClick(() => {\n            let tmp = new TmpClass()\n            this.helper.pushPathByName('hsptest2', 'pageTwo', tmp, (popInfo) => {\n              this.message = '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);\n            }).catch((error: BusinessError) => {\n              console.error(`[pushPathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);\n            }).then(() => {\n              console.log('[pushPathByName]success.');\n            });\n          })\n\n        Button('pushPathByNameWithoutOnPop', { stateEffect: true, type: ButtonType.Capsule })\n          .width('80%')\n          .height(35)\n          .margin(10)\n          .onClick(() => {\n            let tmp = new TmpClass()\n            this.helper.pushPathByName('hsptest2', 'pageTwo', tmp, true)\n              .catch((error: BusinessError) => {\n                console.error(`[pushPathByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);\n              }).then(() => {\n                console.log('[pushPathByNameWithoutOnPop]success.');\n              });\n          })\n\n        Button('pushDestination', { stateEffect: true, type: ButtonType.Capsule })\n          .width('80%')\n          .height(35)\n          .margin(10)\n          .onClick(() => {\n            let tmp = new TmpClass()\n            this.helper.pushDestination('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {\n              this.message = '[pushDestination]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);\n            }}).catch((error: BusinessError) => {\n              console.error(`[pushDestination]failed, error code = ${error.code}, error.message = ${error.message}.`);\n            }).then(() => {\n              console.error('[pushDestination]success.');\n            });\n          })\n\n        Button('pushDestination with NavigationOptions', { stateEffect: true, type: ButtonType.Capsule })\n          .width('80%')\n          .height(35)\n          .margin(10)\n          .onClick(() => {\n            let tmp = new TmpClass()\n            this.helper.pushDestination('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {\n              this.message = '[pushDestination with NavigationOptions]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);\n            }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {\n              console.error(`[pushDestination with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);\n            }).then(() => {\n              console.error('[pushDestination with NavigationOptions]success.');\n            });\n          })\n\n        Button('pushDestinationByName', { stateEffect: true, type: ButtonType.Capsule })\n          .width('80%')\n          .height(35)\n          .margin(10)\n          .onClick(() => {\n            let tmp = new TmpClass()\n            this.helper.pushDestinationByName('hsptest2','pageTwo', tmp, (popInfo) => {\n              this.message = '[pushDestinationByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);\n            }).catch((error: BusinessError) => {\n              console.error(`[pushDestinationByName]failed, error code = ${error.code}, error.message = ${error.message}.`);\n            }).then(() => {\n              console.error('[pushDestinationByName]success.');\n            });\n          })\n\n        Button('pushDestinationByNameWithoutOnPop', { stateEffect: true, type: ButtonType.Capsule })\n          .width('80%')\n          .height(35)\n          .margin(10)\n          .onClick(() => {\n            let tmp = new TmpClass()\n            this.helper.pushDestinationByName('hsptest2','pageTwo', tmp, true)\n              .catch((error: BusinessError) => {\n                console.error(`[pushDestinationByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);\n              }).then(() => {\n                console.error('[pushDestinationByNameWithoutOnPop]success.');\n              });\n          })\n\n        Button('replacePath', { stateEffect: true, type: ButtonType.Capsule })\n          .width('80%')\n          .height(35)\n          .margin(10)\n          .onClick(() => {\n            this.helper.replacePath('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {\n              this.message = '[replacePath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);\n            }}).catch((error: BusinessError) => {\n              console.error(`[replacePath]failed, error code = ${error.code}, error.message = ${error.message}.`);\n            }).then(() => {\n              console.log('[replacePath]success.');\n            });\n          })\n\n        Button('replacePath with NavigationOptions', { stateEffect: true, type: ButtonType.Capsule })\n          .width('80%')\n          .height(35)\n          .margin(10)\n          .onClick(() => {\n            this.helper.replacePath('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {\n              this.message = '[replacePath with NavigationOptions]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);\n            }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {\n              console.error(`[replacePath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);\n            }).then(() => {\n              console.log('[replacePath with NavigationOptions]success.');\n            });\n          })\n\n        Button('replacePathByName', { stateEffect: true, type: ButtonType.Capsule })\n          .width('80%')\n          .height(35)\n          .margin(10)\n          .onClick(() => {\n            let tmp = new TmpClass()\n            this.helper.replacePathByName('hsptest2', 'pageTwo', tmp)\n              .catch((error: BusinessError) => {\n                console.error(`[replacePathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);\n              }).then(() => {\n                console.log('[replacePathByName]success.');\n              });\n          })\n      }.width('100%').height('100%')\n    }.title('pageOne')\n    .onBackPressed(() => {\n      this.pageInfo.pop({ number: 1 }) \n      return true\n    }).onReady((context: NavDestinationContext) => {\n      this.pageInfo = context.pathStack;\n      this.helper = new NavPushPathHelper(this.pageInfo);\n    })\n  }\n}\n\n{\n  \"routerMap\": [\n    {\n      \"name\": \"pageOne\",\n      \"pageSourceFile\": \"src/main/ets/pages/PageOne.ets\",\n      \"buildFunction\": \"PageOneBuilder\",\n      \"data\": {\n        \"description\": \"this is pageOne\"\n      }\n    }\n  ]\n}\n\n/*\n分包 hsptest2：\n该组件通过 Navigation 组件实现了一个页面导航的示例。布局宽度占据整个屏幕，高度设为 100%。组件的垂直方向上包含一个按钮，按钮的宽度为 80%，高度为 40vp，边距为 20vp。按钮的样式为胶囊形状，背景颜色为默认主题色。按钮的功能包括点击事件，用户可以通过点击按钮触发页面返回操作，并传递结果参数。返回操作支持错误处理，如果返回失败，会输出错误信息到控制台。\n*/\n\nclass resultClass {\n  constructor(count: number) {\n    this.count = count;\n  }\n  count: number = 10\n}\n\n@Builder\nexport function PageTwoBuilder() {\n  PageTwo()\n}\n\n@Component\nexport struct PageTwo {\n  pathStack: NavPathStack = new NavPathStack()\n\n  build() {\n    NavDestination() {\n      Column() {\n        Button('pop', { stateEffect: true, type: ButtonType.Capsule })\n          .width('80%')\n          .height(40)\n          .margin(20)\n          .onClick(() => {\n            this.pathStack.pop(new resultClass(1)); \n          })\n      }.width('100%').height('100%')\n    }.title('pageTwo')\n    .onBackPressed(() => {\n      this.pathStack.pop(new resultClass(0)); \n      return true;\n    }).onReady((context: NavDestinationContext) => {\n      this.pathStack = context.pathStack\n    })\n  }\n}\n\n{\n  \"routerMap\": [\n    {\n      \"name\": \"pageTwo\",\n      \"pageSourceFile\": \"src/main/ets/pages/PageTwo.ets\",\n      \"buildFunction\": \"PageTwoBuilder\",\n      \"data\": {\n        \"description\": \"this is pageTwo\"\n      }\n    }\n  ]\n}"
+        }
+    ],
+    "is_common_attrs": false
+}

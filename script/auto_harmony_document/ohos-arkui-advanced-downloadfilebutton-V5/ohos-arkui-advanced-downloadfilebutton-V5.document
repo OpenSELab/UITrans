@@ -1,0 +1,738 @@
+Title: DownloadFileButton-按钮与选择-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5
+
+Markdown Content:
+DownloadFileButton-按钮与选择-ArkTS组件-ArkUI（方舟UI框架）-应用框架 - 华为HarmonyOS开发者
+===============
+
+简体中文
+
+*   简体中文
+*   Русский
+*   English
+*   Español (América Latina)
+*   Português (Brasil)
+*   Français (Europe)
+*   Deutsch
+*   日本語
+*   한국어
+
+[App](https://developer.huawei.com/consumer/cn/huawei-app/)
+
+[](https://developer.huawei.com/consumer/cn/)
+
+*   探索
+*   设计
+*   开发
+*   分发
+*   推广与变现
+*   生态合作
+*   支持
+
+*   更多
+
+*   [探索](https://developer.huawei.com/consumer/cn/discover/)
+    
+*   [设计](https://developer.huawei.com/consumer/cn/design/)
+    
+*   [开发](https://developer.huawei.com/consumer/cn/develop/)
+    
+*   [分发](https://developer.huawei.com/consumer/cn/distribute/)
+    
+*   更多
+    *   [推广与变现](https://developer.huawei.com/consumer/cn/promote/)
+        
+    *   [生态合作](https://developer.huawei.com/consumer/cn/cooperate/)
+        
+    *   [支持](https://developer.huawei.com/consumer/cn/support/)
+        
+
+搜索
+
+热门搜索 _换一换_
+
+*   HarmonyOS NEXT
+*   HarmonyOS应用开发
+*   仓颉
+*   DevEco Studio
+*   开发者能力认证
+*   模拟器
+*   Navigation
+*   List
+*   Web
+*   TextInput
+*   Image
+*   AppGallery Connect
+
+[文档](https://developer.huawei.com/consumer/cn/doc/)[管理中心](https://developer.huawei.com/consumer/cn/console)
+
+HarmonyOS NEXT
+
+Beta1
+
+API参考
+
+*   [版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/releasenotes-baseline-V5?istab=1&catalogVersion=V5)
+*   [指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/application-dev-guide-V5?istab=1&catalogVersion=V5)
+*   [API参考](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/development-intro-api-V5?istab=1&catalogVersion=V5)
+*   [最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-develop-once-deploy-everywhere-V5?istab=1&catalogVersion=V5)
+*   [FAQ](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-development-V5?istab=1&catalogVersion=V5)
+*   [变更预告](https://developer.huawei.com/consumer/cn/doc/harmonyos-roadmap-V5/changelogs-in-31-V5?istab=1&catalogVersion=V5)
+*   更多
+
+筛选元服务API集
+
+API参考概述
+
+应用框架
+
+[Ability Kit（程序框架服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ability-api-V5)
+
+[Accessibility Kit（无障碍服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/accessibility-api-V5)
+
+[ArkData（方舟数据管理）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkdata-api-V5)
+
+[ArkTS（方舟编程语言）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkts-api-V5)
+
+[ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5)
+
+[ArkTS API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-V5)
+
+[ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5)
+
+[组件通用信息](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_1_u7ec4_u4ef6_u901a_u7528_u4fe1_u606f-V5)
+
+[行列与堆叠](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_2_u884c_u5217_u4e0e_u5806_u53e0-V5)
+
+[栅格与分栏](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_3_u6805_u683c_u4e0e_u5206_u680f-V5)
+
+[滚动与滑动](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_4_u6eda_u52a8_u4e0e_u6ed1_u52a8-V5)
+
+[导航与切换](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_5_u5bfc_u822a_u4e0e_u5207_u6362-V5)
+
+[按钮与选择](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_6_u6309_u94ae_u4e0e_u9009_u62e9-V5)
+
+[Button](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-button-V5)
+
+[Toggle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-toggle-V5)
+
+[Checkbox](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-checkbox-V5)
+
+[CheckboxGroup](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-checkboxgroup-V5)
+
+[CalendarPicker](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-calendarpicker-V5)
+
+[DatePicker](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-datepicker-V5)
+
+[TextPicker](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-textpicker-V5)
+
+[TimePicker](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-timepicker-V5)
+
+[Radio](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-radio-V5)
+
+[Rating](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-rating-V5)
+
+[Select](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-select-V5)
+
+[Slider](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-slider-V5)
+
+[DownloadFileButton](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5)
+
+[ProgressButton](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-progressbutton-V5)
+
+[SegmentButton](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5)
+
+[Filter](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-filter-V5)
+
+[文本与输入](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_7_u6587_u672c_u4e0e_u8f93_u5165-V5)
+
+[图片与视频](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_8_u56fe_u7247_u4e0e_u89c6_u9891-V5)
+
+[信息展示](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_9_u4fe1_u606f_u5c55_u793a-V5)
+
+[空白与分隔](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_10_u7a7a_u767d_u4e0e_u5206_u9694-V5)
+
+[画布绘制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_11_u753b_u5e03_u7ed8_u5236-V5)
+
+[图形绘制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_12_u56fe_u5f62_u7ed8_u5236-V5)
+
+[渲染绘制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_13_u6e32_u67d3_u7ed8_u5236-V5)
+
+[标题栏与工具栏](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_14_u6807_u9898_u680f_u4e0e_u5de5_u5177_u680f-V5)
+
+[菜单](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_15_u83dc_u5355-V5)
+
+[动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_16_u52a8_u753b-V5)
+
+[弹窗](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_17_u5f39_u7a97-V5)
+
+[卡片](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_18_u5361_u7247-V5)
+
+[安全](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_19_u5b89_u5168-V5)
+
+[主题](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_20_u4e3b_u9898-V5)
+
+[原子化服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_21_u539f_u5b50_u5316_u670d_u52a1-V5)
+
+[自定义占位组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_22_u81ea_u5b9a_u4e49_u5360_u4f4d_u7ec4_u4ef6-V5)
+
+[自定义组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_23_u81ea_u5b9a_u4e49_u7ec4_u4ef6-V5)
+
+[状态管理与渲染控制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/b6_u6001_u7ba1_u7406_u4e0e_u6e32_u67d3_u63a7_u5236-V5)
+
+[公共定义](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_25_u516c_u5171_u5b9a_u4e49-V5)
+
+[已停止维护的组件与接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/62_u7ef4_u62a4_u7684_u7ec4_u4ef6_u4e0e_u63a5_u53e3-V5)
+
+[JS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-js-comp-V5)
+
+[C API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-c-V5)
+
+[错误码](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-arkts-errcode-V5)
+
+[ArkWeb（方舟Web）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkweb-api-V5)
+
+[Background Tasks Kit（后台任务开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/background-tasks-api-V5)
+
+[Core File Kit（文件基础服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/core-file-api-V5)
+
+[Form Kit（卡片开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/form-api-V5)
+
+[IME Kit（输入法开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ime-api-V5)
+
+[IPC Kit（进程间通信服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ipc-api-V5)
+
+[Localization Kit（本地化开发服务）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/localization-api-V5)
+
+[UI Design Kit（UI设计套件）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ui-design-api-V5)
+
+系统
+
+媒体
+
+图形
+
+应用服务
+
+AI
+
+公共基础能力
+
+标准库
+
+您当前正在浏览HarmonyOS NEXT Beta1版本的配套文档，该版本API能力级别为API 12 Release，详细版本配套关系请参考[版本说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases-V5/overview-beta1-V5)。
+
+API参考 应用框架 [ArkUI（方舟UI框架）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-api-V5) [ArkTS组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/arkui-declarative-comp-V5) [按钮与选择](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/4_6_u6309_u94ae_u4e0e_u9009_u62e9-V5) DownloadFileButton
+
+DownloadFileButton
+==================
+
+更新时间: 2024-09-30 06:10
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+本文导读
+
+[导入模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%97)
+
+[子组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#%E5%AD%90%E7%BB%84%E4%BB%B6)
+
+[属性](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#%E5%B1%9E%E6%80%A7)
+
+[DownloadFileButton](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#downloadfilebutton-1)
+
+[DownloadContentOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#downloadcontentoptions)
+
+[DownloadStyleOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#downloadstyleoptions)
+
+[DownloadIconStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#downloadiconstyle)
+
+[DownloadDescription](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#downloaddescription)
+
+[DownloadLayoutDirection](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#downloadlayoutdirection)
+
+[事件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#%E4%BA%8B%E4%BB%B6)
+
+[示例](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#%E7%A4%BA%E4%BE%8B)
+
+展开章节
+
+下载文件按钮，通过点击该下载按钮，可以获取到当前应用在Download公共目录中所属的存储路径。
+
+说明
+
+该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+导入模块
+----
+
+已复制
+
+1.  import { DownloadFileButton } from '@kit.ArkUI'
+
+子组件
+---
+
+无
+
+属性
+--
+
+支持[通用属性](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-attributes-size-V5)。
+
+DownloadFileButton
+------------------
+
+Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadStyleOptions)
+
+下载文件按钮组件，默认显示图标和文字。
+
+**装饰器类型：**@Component
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**： SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+名称
+
+类型
+
+必填
+
+装饰器类型
+
+说明
+
+contentOptions
+
+[DownloadContentOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#downloadcontentoptions)
+
+否
+
+@State
+
+创建包含指定元素内容的下载按钮。
+
+styleOptions
+
+[DownloadStyleOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#downloadstyleoptions)
+
+否
+
+@State
+
+创建包含指定元素样式的下载按钮。
+
+DownloadContentOptions
+----------------------
+
+下载文件按钮中显示的内容。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**： SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+icon
+
+[DownloadIconStyle](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#downloadiconstyle)
+
+否
+
+设置下载按钮的图标风格
+
+不传入该参数表示没有图标，icon和text至少存在一个。
+
+text
+
+[DownloadDescription](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#downloaddescription)
+
+否
+
+设置下载按钮的文本描述
+
+不传入该参数表示没有文字描述，icon和text至少存在一个。
+
+DownloadStyleOptions
+--------------------
+
+下载文件按钮中图标和文字的样式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**： SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+类型
+
+必填
+
+说明
+
+iconSize
+
+Dimension
+
+否
+
+下载控件上图标的尺寸。
+
+默认值：16vp
+
+layoutDirection
+
+[DownloadLayoutDirection](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-downloadfilebutton-V5#downloadlayoutdirection)
+
+否
+
+下载控件上图标和文字分布的方向。
+
+默认值：DownloadLayoutDirection.HORIZONTAL
+
+fontSize
+
+Dimension
+
+否
+
+下载控件上文字的尺寸。
+
+默认值：16fp
+
+fontStyle
+
+FontStyle
+
+否
+
+下载控件上文字的样式。
+
+默认值：FontStyle.Normal
+
+fontWeight
+
+number | FontWeight | string
+
+否
+
+下载控件上文字粗细。
+
+默认值：FontWeight.Medium
+
+fontFamily
+
+string | Resource
+
+否
+
+下载控件上文字的字体。
+
+默认字体：'HarmonyOS Sans'
+
+fontColor
+
+ResourceColor
+
+否
+
+下载控件上文字的颜色。
+
+默认值：#ffffffff
+
+iconColor
+
+ResourceColor
+
+否
+
+下载控件上图标的颜色。
+
+默认值：#ffffffff
+
+textIconSpace
+
+Dimension
+
+否
+
+下载控件中图标和文字的间距。
+
+默认值：4vp
+
+DownloadIconStyle
+-----------------
+
+下载文件按钮中图标的风格。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**： SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+值
+
+说明
+
+FULL\_FILLED
+
+1
+
+下载按钮展示填充样式图标。
+
+LINES
+
+2
+
+下载按钮展示线条样式图标。
+
+DownloadDescription
+-------------------
+
+下载按钮中文字的内容。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**： SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+值
+
+说明
+
+DOWNLOAD
+
+1
+
+下载按钮的文字描述为“下载”。
+
+DOWNLOAD\_FILE
+
+2
+
+下载按钮的文字描述为“下载文件”。
+
+SAVE
+
+3
+
+下载按钮的文字描述为“保存”。
+
+SAVE\_IMAGE
+
+4
+
+下载按钮的文字描述为“保存图片”。
+
+SAVE\_FILE
+
+5
+
+下载按钮的文字描述为“保存文件”。
+
+DOWNLOAD\_AND\_SHARE
+
+6
+
+下载按钮的文字描述为“下载分享”。
+
+RECEIVE
+
+7
+
+下载按钮的文字描述为“接收”。
+
+CONTINUE\_TO\_RECEIVE
+
+8
+
+下载按钮的文字描述为“继续接收”。
+
+DownloadLayoutDirection
+-----------------------
+
+下载文件按钮中图标和文字的排列方式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**： SystemCapability.ArkUI.ArkUI.Full
+
+名称
+
+值
+
+说明
+
+HORIZONTAL
+
+0
+
+下载控件上图标和文字分布的方向为水平排列。
+
+VERTICAL
+
+1
+
+下载控件上图标和文字分布的方向为垂直排列。
+
+事件
+--
+
+支持[通用事件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-universal-events-click-V5)。
+
+示例
+--
+
+已复制
+
+1.  import { picker } from '@kit.CoreFileKit';
+2.  import { BusinessError } from '@kit.BasicServicesKit';
+3.  import { DownloadFileButton, DownloadLayoutDirection } from '@kit.ArkUI';
+
+5.  @Entry
+6.  @Component
+7.  struct Index {
+8.    build() {
+9.      Column() {
+10.        DownloadFileButton({
+11.          contentOptions: {
+12.            // icon: DownloadIconStyle.FULL\_FILLED,
+13.            // text: DownloadDescription.DOWNLOAD
+14.          },
+15.          styleOptions: {
+16.            iconSize: '16vp',
+17.            layoutDirection: DownloadLayoutDirection.HORIZONTAL,
+18.            fontSize: '16vp',
+19.            fontStyle: FontStyle.Normal,
+20.            fontWeight: FontWeight.Medium,
+21.            fontFamily: 'HarmonyOS Sans',
+22.            fontColor: '#ffffffff',
+23.            iconColor: '#ffffffff',
+24.            textIconSpace: '4vp'
+25.          }
+26.        })
+27.          .backgroundColor('#007dff')
+28.          .borderStyle(BorderStyle.Dotted)
+29.          .borderWidth(0)
+30.          .borderColor('')
+31.          .borderRadius('24vp')
+32.          .position({ x: 0, y: 0 })
+33.          .markAnchor({ x: 0, y: 0 })
+34.          .offset({ x: 0, y: 0 })
+35.          .constraintSize({})
+36.          .padding({
+37.            top: '12vp',
+38.            bottom: '12vp',
+39.            left: '24vp',
+40.            right: '24vp'
+41.          })
+42.          .onClick(() =\> {
+43.            this.downloadAction();
+44.          })
+45.      }
+46.    }
+
+48.    downloadAction() {
+49.      try {
+50.        const document = new picker.DocumentSaveOptions();
+51.        document.pickerMode = picker.DocumentPickerMode.DOWNLOAD;
+52.        new picker.DocumentViewPicker().save(document, (err: BusinessError, result: Array<string\>) =\> {
+53.          if (err) {
+54.            return;
+55.          }
+56.          console.info(\`downloadAction result:  ${JSON.stringify(result)}\`);
+57.        });
+58.      } catch (e) {
+59.      }
+60.    }
+61.  }
+
+![](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20240930114430.98321099028211147306330303619337:50001231000000:2800:93A11806660EAE861657CE4D17EB436FF941BFBD3EF8FB76B24C10D519DBD1A9.png?needInitFileName=true?needInitFileName=true)
+
+[Slider](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-slider-V5 "Slider")
+
+[ProgressButton](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-progressbutton-V5 "ProgressButton")
+
+**以上内容对您是否有帮助？**
+
+*   毫无帮助
+*   帮助不大
+*   一般
+*   很好
+*   非常好
+
+意见反馈
+
+更多帮助请到“[社区论坛](https://developer.huawei.com/consumer/cn/forum/)”，如需要其他帮助，请通过“[智能客服](https://developer.huawei.com/consumer/cn/customerService/#/bot-dev-top/faq-top/faq-talk-top)”提问。
+
+简体中文
+
+*   ![](/images/foot/icon-xinlang-normal.png)
+*   ![](/images/home/Bi-hover.png)
+*   ![](/images/foot/icon-weixin-normal.png)
+    
+    ![](./assets/images/head/hua_wei_kai_fa_zhe_lian_meng_fu_wu_wei_xin_er_wei_ma_fu_ben_0.jpg)
+    
+    微信公众号
+    
+*   ![](/images/foot/icon-app-normal.png)
+    
+    ![](./assets/images/head/APPerweima.png)
+    
+    下载APP
+    
+*   ![](/images/foot/icon-xinxi-normal.png)
+*   ![](/images/foot/ic_blog_hover.svg)
+
+华为开发者联盟 版权所有 ©2023-2024
+
+[使用条款](https://developer.huawei.com/consumer/cn/devservice/use)
+
+[关于华为开发者联盟与隐私的声明](https://developer.huawei.com/consumer/cn/devservice/term)
+
+[隐私政策](https://consumer.huawei.com/cn/legal/privacy-policy/)
+
+[cookies](https://consumer.huawei.com/cn/legal/cookie-policy/)
+
+[开源软件声明](https://developer.huawei.com/consumer/cn/opensource/)
+
+在 API参考 中进行搜索
+
+只在 应用框架 中搜索只搜索章节标题
+
+请输入您想要搜索的关键词
+
+*   智能客服
+    
+    您的每一次的提问，都能匹配最合适的答案
+    
+
+*   合作咨询
+    
+    我们的专家服务团队将竭诚为您提供专业的合作咨询服务
+    
+
+*   解决方案
+    
+    精准高效的一站式服务支持，助力开发者商业成功
+    
+
+*   快速入门
+    
+    面向开发者提供快速入门指南，轻松找到你想要的各类资源

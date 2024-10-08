@@ -1,0 +1,45 @@
+{
+    "description": "LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当在滚动容器中使用了LazyForEach，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会进行组件销毁回收以降低内存占用。",
+    "interfaces": [
+        {
+            "description": "LazyForEach(dataSource: IDataSource, itemGenerator: (item: Object, index: number) => void, keyGenerator?: (item: Object, index: number) => string)",
+            "params": {
+                "dataSource": {
+                    "type": "IDataSource",
+                    "required": true,
+                    "description": "LazyForEach数据源，需要开发者实现相关接口。"
+                },
+                "itemGenerator": {
+                    "type": "(item: Object, index: number) => void",
+                    "required": true,
+                    "description": "子组件生成函数，为数组中的每一个数据项创建一个子组件。"
+                },
+                "keyGenerator": {
+                    "type": "(item: Object, index: number) => string",
+                    "required": false,
+                    "description": "键值生成函数，用于给数据源中的每一个数据项生成唯一且固定的键值。"
+                }
+            }
+        },
+        {
+            "description": "onMove(handler: Optional<(from: index, to: index) => void>): T",
+            "params": {
+                "handler": {
+                    "type": "(from: number, to: number) => void",
+                    "required": false,
+                    "description": "拖拽排序数据移动回调。只有在List组件中使用，并且LazyForEach每次迭代都生成一个ListItem组件时才生效拖拽排序。"
+                }
+            }
+        }
+    ],
+    "attributes": {},
+    "events": {},
+    "rules": [
+        "itemGenerator的函数体必须使用大括号{...}。",
+        "itemGenerator每次迭代只能并且必须生成一个子组件。",
+        "itemGenerator中可以使用if语句，但是必须保证if语句每个分支都会创建一个相同类型的子组件。",
+        "itemGenerator中不允许使用ForEach和LazyForEach语句。",
+        "数据源中的每一个数据项生成的键值不能重复。"
+    ],
+    "examples": []
+}

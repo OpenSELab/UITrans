@@ -1,0 +1,120 @@
+{
+    "description": "ChipGroup高级组件，提供操作块群组，用于对文件或者资源内容进行分类等场景。",
+    "interfaces": [
+        {
+            "description": "ChipGroup({ items, itemStyle, selectedIndexes, multiple, chipGroupSpace, chipGroupPadding, onChange, suffix })",
+            "params": {
+                "items": {
+                    "type": "ChipGroupItemOptions[]",
+                    "required": true,
+                    "description": "定义每个chip的非共通属性。"
+                },
+                "itemStyle": {
+                    "type": "ChipItemStyle",
+                    "description": "定义chip的共通属性。"
+                },
+                "selectedIndexes": {
+                    "type": "Array<number>",
+                    "description": "选中的chip索引数组。"
+                },
+                "multiple": {
+                    "type": "boolean",
+                    "description": "是否允许多选。"
+                },
+                "chipGroupSpace": {
+                    "type": "ChipGroupSpaceOptions",
+                    "description": "定义chipGroup左右内边距，以及chip与chip之间的间距。"
+                },
+                "chipGroupPadding": {
+                    "type": "ChipGroupPaddingOptions",
+                    "description": "定义chipGroup上下内边距，以便控制chipGroup的整体高度。"
+                },
+                "onChange": {
+                    "type": "(selectedIndexes: Array<number>) => void",
+                    "description": "选中状态改变时的回调函数。"
+                },
+                "suffix": {
+                    "type": "Callback<void>",
+                    "description": "suffix接口，使用时需要引入IconGroupSuffix接口，不传入的情况，没有suffix。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "ChipGroupItemOptions": {
+            "description": "定义每个chip的非共通属性。",
+            "params": {
+                "suffixIcon": {
+                    "type": "IconOptions",
+                    "description": "suffixIcon有传入参数时，allowClose不生效，suffixIcon没有传入参数时，allowClose决定是否显示删除图标。"
+                }
+            }
+        },
+        "ChipItemStyle": {
+            "description": "定义chip的共通属性。",
+            "params": {
+                "size": {
+                    "type": "ChipSize",
+                    "description": "chip尺寸，默认值：ChipSize.NORMAL。"
+                },
+                "backgroundColor": {
+                    "type": "ResourceColor",
+                    "description": "chip背景颜色，默认值：$r('sys.color.ohos_id_color_button_normal')。"
+                },
+                "fontColor": {
+                    "type": "ResourceColor",
+                    "description": "chip文字颜色，默认值：$r('sys.color.ohos_id_color_text_primary')。"
+                },
+                "selectedFontColor": {
+                    "type": "ResourceColor",
+                    "description": "chip激活时的文字颜色，默认值：$r('sys.color.ohos_id_color_text_primary_contrary')。"
+                },
+                "selectedBackgroundColor": {
+                    "type": "ResourceColor",
+                    "description": "chip激活时的背景颜色，默认值：$r('sys.color.ohos_id_color_emphasize')。"
+                }
+            }
+        },
+        "ChipGroupSpaceOptions": {
+            "description": "定义chipGroup左右内边距，以及chip与chip之间的间距。",
+            "params": {
+                "itemSpace": {
+                    "type": ["string", "number"],
+                    "description": "chip与chip之间的间距，默认值：8，单位：vp。"
+                },
+                "startSpace": {
+                    "type": "Length",
+                    "description": "左侧内边距，默认值：16，单位：vp。"
+                },
+                "endSpace": {
+                    "type": "Length",
+                    "description": "右侧内边距，默认值：16，单位：vp。"
+                }
+            }
+        },
+        "ChipGroupPaddingOptions": {
+            "description": "定义chipGroup上下内边距，以便控制chipGroup的整体高度。",
+            "params": {
+                "top": {
+                    "type": "Length",
+                    "description": "chipGroup的上方内边距，默认值：14，单位：vp。"
+                },
+                "bottom": {
+                    "type": "Length",
+                    "description": "chipGroup的下方内边距，默认值：14，单位：vp。"
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "选中状态改变时的回调函数。",
+            "params": {
+                "selectedIndexes": {
+                    "type": "Array<number>",
+                    "description": "选中的chip索引数组。"
+                }
+            }
+        }
+    }
+}

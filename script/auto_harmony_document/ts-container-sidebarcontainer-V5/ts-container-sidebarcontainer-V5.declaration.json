@@ -1,0 +1,145 @@
+{
+    "description": "提供侧边栏可以显示和隐藏的侧边栏容器，通过子组件定义侧边栏和内容区，第一个子组件表示侧边栏，第二个子组件表示内容区。",
+    "details": null,
+    "interfaces": [
+        {
+            "description": "SideBarContainer( type?: SideBarContainerType )",
+            "params": {
+                "type": {
+                    "type": "SideBarContainerType",
+                    "required": false,
+                    "description": "侧边栏容器的类型。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "showSideBar": {
+            "description": "设置是否显示侧边栏。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否显示侧边栏。",
+                    "default": true
+                }
+            }
+        },
+        "controlButton": {
+            "description": "设置侧边栏控制按钮的属性。",
+            "params": {
+                "value": {
+                    "type": "ButtonStyle",
+                    "required": true,
+                    "description": "侧边栏控制按钮的属性。"
+                }
+            }
+        },
+        "showControlButton": {
+            "description": "设置是否显示控制按钮。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否显示控制按钮。",
+                    "default": true
+                }
+            }
+        },
+        "sideBarWidth": {
+            "description": "设置侧边栏的宽度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "侧边栏的宽度。",
+                    "default": 240
+                }
+            }
+        },
+        "minSideBarWidth": {
+            "description": "设置侧边栏最小宽度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "侧边栏最小宽度。",
+                    "default": 240
+                }
+            }
+        },
+        "maxSideBarWidth": {
+            "description": "设置侧边栏最大宽度。",
+            "params": {
+                "value": {
+                    "type": "number",
+                    "required": true,
+                    "description": "侧边栏最大宽度。",
+                    "default": 280
+                }
+            }
+        },
+        "autoHide": {
+            "description": "设置当侧边栏拖拽到小于最小宽度后，是否自动隐藏。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "是否自动隐藏。",
+                    "default": true
+                }
+            }
+        },
+        "sideBarPosition": {
+            "description": "设置侧边栏显示位置。",
+            "params": {
+                "value": {
+                    "type": "SideBarPosition",
+                    "required": true,
+                    "description": "侧边栏显示位置。"
+                }
+            }
+        },
+        "divider": {
+            "description": "设置分割线的样式。",
+            "params": {
+                "value": {
+                    "type": "DividerStyle",
+                    "required": true,
+                    "description": "分割线的样式。"
+                }
+            }
+        },
+        "minContentWidth": {
+            "description": "设置SideBarContainer组件内容区可显示的最小宽度。",
+            "params": {
+                "value": {
+                    "type": "Dimension",
+                    "required": true,
+                    "description": "内容区可显示的最小宽度。",
+                    "default": 360
+                }
+            }
+        }
+    },
+    "events": {
+        "onChange": {
+            "description": "当侧边栏的状态在显示和隐藏之间切换时触发回调。",
+            "params": {
+                "value": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": "true表示显示，false表示隐藏。"
+                }
+            }
+        }
+    },
+    "rules": null,
+    "examples": [
+        {
+            "description": "该组件通过 SideBarContainer 组件实现了一个侧边栏布局，侧边栏和主内容区域嵌套在同一容器中。侧边栏部分展示了多个选项，每个选项包含一个图标和文本，用户可以通过点击选项来切换当前选中的项。主内容区域展示了两个文本标签。\n\n布局属性方面，SideBarContainer 的宽度为 150vp，最小宽度为 50vp，最大宽度为 300vp，主内容区域的最小宽度为 0。侧边栏和主内容区域之间有一个分隔线，分隔线的颜色为灰色，宽度为 1vp，起始和结束的边距分别为 4vp。\n\n组件的样式和外观方面，侧边栏的背景颜色为半透明的黑色（#19000000），选项的图标和文本根据当前选中的状态显示不同的颜色。选中的图标和文本颜色为蓝色（#0A59F7），未选中的图标和文本颜色为灰色（#999）。主内容区域的文本标签字体大小为 25，上下边距为 50vp，左右边距分别为 20vp 和 30vp。\n\n组件的排列和嵌套关系方面，侧边栏和主内容区域通过 SideBarContainer 组件嵌套在一起。侧边栏部分通过 Column 组件垂直排列，每个选项通过 Column 组件垂直排列，图标和文本之间有 5vp 的间距。主内容区域通过 Column 组件垂直排列，两个文本标签之间没有间距。\n\n组件的功能和交互方面，用户可以通过点击侧边栏中的选项来切换当前选中的项，点击事件通过 onClick 方法实现。SideBarContainer 的状态变化通过 onChange 方法监听，并在控制台输出当前状态。",
+            "code": "@Entry\n@Component\nstruct SideBarContainerExample {\n  // 普通状态下的图标资源\n  normalIcon: Resource = $r(\"app.media.icon\")\n  // 选中状态下的图标资源\n  selectedIcon: Resource = $r(\"app.media.icon\")\n  // 选项数组，包含三个数字\n  @State arr: number[] = [1, 2, 3]\n  // 当前选中的选项，初始值为 1\n  @State current: number = 1\n\n  build() {\n    // 创建一个嵌入式的 SideBarContainer 组件\n    SideBarContainer(SideBarContainerType.Embed) {\n      // 侧边栏部分\n      Column() {\n        // 遍历选项数组，生成每个选项\n        ForEach(this.arr, (item: number) => {\n          Column({ space: 5 }) {\n            // 根据当前选中的状态显示不同的图标\n            Image(this.current === item ? this.selectedIcon : this.normalIcon)\n              .width(64)\n              .height(64)\n            // 显示选项的文本，根据当前选中的状态显示不同的颜色\n            Text(\"Index0\" + item)\n              .fontSize(25)\n              .fontColor(this.current === item ? '#0A59F7' : '#999')\n              .fontFamily('source-sans-pro,cursive,sans-serif')\n          }\n          .onClick(() => {\n            // 点击选项时，更新当前选中的项\n            this.current = item\n          })\n        }, (item: string) => item)\n      }\n      .width('100%')\n      .justifyContent(FlexAlign.SpaceEvenly)\n      .backgroundColor('#19000000')\n\n      // 主内容区域\n      Column() {\n        Text('SideBarContainer content text1').fontSize(25)\n        Text('SideBarContainer content text2').fontSize(25)\n      }\n      .margin({ top: 50, left: 20, right: 30 })\n    }\n    .controlButton({\n      icons: {\n        hidden: $r('app.media.drawer'),\n        shown: $r('app.media.drawer'),\n        switching: $r('app.media.drawer')\n      }\n    })\n    .sideBarWidth(150)\n    .minSideBarWidth(50)\n    .maxSideBarWidth(300)\n    .minContentWidth(0)\n    .onChange((value: boolean) => {\n      // 监听 SideBarContainer 的状态变化，并在控制台输出当前状态\n      console.info('status:' + value)\n    })\n    .divider({ strokeWidth: '1vp', color: Color.Gray, startMargin: '4vp', endMargin: '4vp' })\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}

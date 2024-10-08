@@ -1,0 +1,358 @@
+Title: Component3D-渲染绘制-ArkTS组件-ArkUI（方舟UI框架）-应用框架
+
+URL Source: https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-component3d-V5
+
+Markdown Content:
+3D渲染组件，可以加载3D模型资源并做自定义渲染，通常用于3D动效场景。
+
+说明
+
+该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+接口
+--
+
+Component3D((sceneOptions?: SceneOptions))
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+参数名
+
+参数类型
+
+必填
+
+参数描述
+
+sceneOptions
+
+[SceneOptions](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-component3d-V5#sceneoptions%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+
+否
+
+3D场景配置选项。
+
+**说明：**
+
+3D场景配置选项在控件创建后不支持动态修改。
+
+SceneOptions对象说明
+----------------
+
+Component3D组件配置选项。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+名称
+
+类型
+
+必填
+
+说明
+
+scene
+
+[Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)|[Scene](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-inner-scene-V5#scene-1)12+
+
+否
+
+3D模型资源文件或场景对象，默认值为undefined。
+
+**说明：**
+
+目前仅支持GLTF格式资源。
+
+modelType
+
+[ModelType](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-basic-components-component3d-V5#modeltype%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E)
+
+否
+
+3D场景显示合成方式。
+
+默认值：ModelType.SURFACE
+
+**说明：**
+
+设置为ModelType.TEXTURE时通过GPU合成显示。
+
+设置为ModelType.SURFACE时通过专有硬件合成显示。
+
+一般开发者可以使用默认值而无需关心此项设置。
+
+ModelType枚举说明
+-------------
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+名称
+
+描述
+
+TEXTURE
+
+使用GPU合成显示3D场景。
+
+SURFACE
+
+使用专有硬件显示3D场景。
+
+### environment
+
+environment(uri: Resource)
+
+设置3D环境资源。目前仅支持GLTF格式资源，模型资源在控件创建后不支持动态修改。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+
+### customRender
+
+customRender(uri: Resource, selfRenderUpdate: boolean)
+
+设置三维场景渲染的渲染管道。管线配置及自渲染属性在控件创建后不支持动态修改。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+uri
+
+[Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+是
+
+自定义渲染管线的配置文件。
+
+selfRenderUpdate
+
+boolean
+
+是
+
+当设置为true时外部UI没有更新时也能触发动效渲染。
+
+当设置为false时只有外部UI更新才能触发渲染。
+
+### shader
+
+shader(uri: Resource)
+
+设置自定义渲染的shader文件资源。自定义渲染的shader文件资源在控件创建后不支持动态修改。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+uri
+
+[Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+是
+
+自定义渲染的shader文件资源。
+
+### shaderImageTexture
+
+shaderImageTexture(uri: Resource)
+
+设置自定义渲染用到的纹理资源。若自定义渲染用到多个纹理资源则调用多次，绑定点与调用顺序一致，不支持纹理更换。纹理资源在控件创建后不支持动态修改。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+uri
+
+[Resource](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ts-types-V5#resource)
+
+是
+
+自定义渲染用到的纹理资源。
+
+### shaderInputBuffer
+
+shaderInputBuffer(buffer: Array<number\>)
+
+设置自定义渲染用到的动效参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+
+参数名
+
+类型
+
+必填
+
+说明
+
+buffer
+
+Array<number\>
+
+是
+
+自定义渲染用到的动效参数。
+
+### renderWidth
+
+renderWidth(value: Dimension)
+
+设置3D渲染分辨率的宽度。渲染分辨率的长宽可以不同于控件的长宽，若渲染分辨率与控件分辨率长宽不一致时会上采样或下采样到控件长宽。
+
+不调用此属性时默认渲染分辨率。
+
+渲染分辨率在控件创建后不支持动态修改。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+
+### renderHeight
+
+renderHeight(value: Dimension)
+
+设置3D渲染分辨率的长度。渲染分辨率的长宽可以不同于控件的长宽，若渲染分辨率与控件分辨率长宽不一致时会上采样或下采样到控件长宽。
+
+不调用此属性时默认渲染分辨率。
+
+渲染分辨率在控件创建后不支持动态修改。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+
+示例
+--
+
+示例效果请以真机运行为准，当前IDE预览器不支持。
+
+GLTF模型加载示例。
+
+2.  @Entry
+3.  @Component
+4.  struct Index {
+5.    scene: SceneOptions = { scene: $rawfile('gltf/DamageHemlt/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
+6.    build() {
+7.      Row() {
+8.        Column() {
+9.          Text('GLTF Example')
+10.          Component3D( this.scene )
+11.            .environment($rawfile('gltf/Environment/glTF/Environment.gltf'))
+12.            .renderWidth('90%').renderHeight('90%')
+13.        }.width('100%')
+14.      }
+15.      .height('100%')
+16.    }
+17.  }
+
+自定义渲染示例。
+
+1.  import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+
+3.  class EngineTime {
+4.    totalTimeUs = 0;
+5.    deltaTimeUs = 0;
+6.  };
+
+8.  let engineTime = new EngineTime();
+9.  let frameCount: number = 0;
+
+11.  function TickFrame() {
+12.    if (frameCount == 10) {
+13.      engineTime.totalTimeUs += 1.0;
+14.      engineTime.deltaTimeUs += 1.0;
+15.      frameCount = 0;
+16.    } else {
+17.      frameCount++;
+18.    }
+19.  }
+
+21.  @Entry
+22.  @Component
+23.  struct Index {
+24.    scene: SceneOptions = { scene: $rawfile('gltf/DamageHemlt/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
+25.    backAnimator: AnimatorResult = animator.create({
+26.      duration: 2000,
+27.      easing: "ease",
+28.      delay: 0,
+29.      fill: "none",
+30.      direction: "normal",
+31.      iterations: -1,
+32.      begin: 100,
+33.      end: 200,
+34.    });
+35.    @State timeDelta: number\[\] = \[1.0, 2.0\];
+36.    create() {
+37.      this.backAnimator.onfinish = () =\> {
+38.        console.log('backAnimator onfinish');
+39.      }
+40.      this.backAnimator.onframe = value =\> {
+41.        TickFrame();
+42.        this.timeDelta\[0\] = engineTime.deltaTimeUs;
+43.      }
+
+45.    }
+46.    build() {
+47.      Row() {
+48.        Column() {
+49.          Text('custom rendering')
+50.          Component3D()
+51.            .shader($rawfile('assets/app/shaders/shader/London.shader'))
+52.            .shaderImageTexture($rawfile('assets/London.jpg'))
+53.            .shaderInputBuffer(this.timeDelta)
+54.            .customRender($rawfile('assets/app/rendernodegraphs/London.rng'), true)
+55.            .renderWidth('90%').renderHeight('90%')
+56.            .onAppear(() =\> {
+57.              this.create();
+58.              this.backAnimator.play();
+59.            }).width('50%').height('50%')
+60.        }.width('100%')
+61.      }
+62.      .height('100%')
+63.    }
+64.  }

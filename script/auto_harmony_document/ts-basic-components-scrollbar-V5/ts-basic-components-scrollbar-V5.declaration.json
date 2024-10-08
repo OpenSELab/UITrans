@@ -1,0 +1,57 @@
+{
+    "description": "滚动条组件ScrollBar，用于配合可滚动组件使用，如List、Grid、Scroll。可以包含单个子组件。",
+    "details": "ScrollBar组件负责定义可滚动区域的行为样式，ScrollBar的子节点负责定义滚动条的行为样式。滚动条组件与可滚动组件通过Scroller进行绑定，且只有当两者方向相同时，才能联动，ScrollBar与可滚动组件仅支持一对一绑定。从API version 12开始，ScrollBar组件没有子节点时，支持显示默认样式的滚动条。",
+    "interfaces": [
+        {
+            "description": "ScrollBar(value: ScrollBarOptions)",
+            "params": {
+                "value": {
+                    "type": "ScrollBarOptions",
+                    "required": true,
+                    "description": "滚动条组件参数。"
+                }
+            }
+        }
+    ],
+    "attributes": {
+        "ScrollBarOptions": {
+            "description": "滚动条组件参数对象。",
+            "params": {
+                "scroller": {
+                    "type": "Scroller",
+                    "required": true,
+                    "description": "可滚动组件的控制器。用于与可滚动组件进行绑定。"
+                },
+                "direction": {
+                    "type": "ScrollBarDirection",
+                    "required": false,
+                    "description": "滚动条的方向，控制可滚动组件对应方向的滚动。",
+                    "default": "ScrollBarDirection.Vertical"
+                },
+                "state": {
+                    "type": "BarState",
+                    "required": false,
+                    "description": "滚动条状态。",
+                    "default": "BarState.Auto"
+                }
+            }
+        }
+    },
+    "events": {},
+    "rules": [
+        "ScrollBar组件负责定义可滚动区域的行为样式，ScrollBar的子节点负责定义滚动条的行为样式。",
+        "滚动条组件与可滚动组件通过Scroller进行绑定，且只有当两者方向相同时，才能联动，ScrollBar与可滚动组件仅支持一对一绑定。",
+        "从API version 12开始，ScrollBar组件没有子节点时，支持显示默认样式的滚动条。"
+    ],
+    "examples": [
+        {
+            "description": "该组件通过Column和Stack布局实现了一个带有垂直滚动条的滚动视图。布局宽度占据90%的屏幕宽度，高度根据内容自适应。组件的垂直方向上包含一个滚动视图，滚动视图内部包含一个Flex布局，用于展示一组数字文本。每个数字文本以Row组件的形式展示，文本内容居中对齐，背景颜色为#3366CC，边框圆角为15vp，字体大小为16vp，宽度占据80%的父容器宽度，高度为60vp，上下边距为5vp。滚动视图右侧有一个垂直滚动条，滚动条的状态为自动显示。\n\n组件的样式包括背景颜色、边框圆角、字体大小、文本对齐方式等属性，支持不同的样式展示。组件的功能包括垂直滚动和滚动条的自动显示，用户可以通过滚动视图查看超出屏幕范围的内容。\n\n整个布局通过Column和Stack布局保证内容在垂直方向上有序排列，确保界面整洁美观。",
+            "code": "@Entry\n@Component\nstruct ScrollBarExample {\n  private scroller: Scroller = new Scroller() // 创建一个Scroller对象，用于控制滚动视图的滚动行为\n  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] // 定义一个数字数组，用于生成滚动视图的内容\n\n  build() {\n    Column() {\n      Stack({ alignContent: Alignment.End }) { // 使用Stack布局，内容对齐方式为右对齐\n        Scroll(this.scroller) { // 创建一个滚动视图，使用scroller对象控制滚动行为\n          Flex({ direction: FlexDirection.Column }) { // 使用Flex布局，方向为垂直方向\n            ForEach(this.arr, (item: number) => { // 遍历数组，生成每个数字的展示内容\n              Row() { // 使用Row组件展示每个数字\n                Text(item.toString()) // 将数字转换为字符串并展示\n                  .width('80%') // 设置文本宽度为父容器的80%\n                  .height(60) // 设置文本高度为60vp\n                  .backgroundColor('#3366CC') // 设置背景颜色为#3366CC\n                  .borderRadius(15) // 设置边框圆角为15vp\n                  .fontSize(16) // 设置字体大小为16vp\n                  .textAlign(TextAlign.Center) // 设置文本对齐方式为居中对齐\n                  .margin({ top: 5 }) // 设置上边距为5vp\n              }\n            }, (item: number) => item.toString()) // 使用数字的字符串形式作为唯一标识符\n          }.margin({ right: 15 }) // 设置右侧边距为15vp\n        }\n        .width('90%') // 设置滚动视图宽度为屏幕宽度的90%\n        .scrollBar(BarState.Off) // 设置滚动条状态为关闭（不显示）\n        .scrollable(ScrollDirection.Vertical) // 设置滚动方向为垂直方向\n        ScrollBar({ scroller: this.scroller, direction: ScrollBarDirection.Vertical, state: BarState.Auto }) // 创建一个垂直滚动条，滚动条状态为自动显示\n      }\n    }\n  }\n}"
+        },
+        {
+            "description": "该组件通过 Stack 布局实现了一个带有自定义滚动条的垂直滚动列表。布局宽度占据屏幕的 90%，高度由内容决定。组件的垂直方向上包含一个 Scroll 组件和一个自定义的 ScrollBar 组件。Scroll 组件内部嵌套了一个 Flex 布局，用于展示一组数字文本。每个数字文本以 Row 组件的形式展示，宽度为 80%，高度为 60vp，背景颜色为 #3366CC，边框圆角为 15vp，字体大小为 16，文本居中对齐，上下间距为 5vp。\n\nScrollBar 组件位于 Scroll 组件的右侧，宽度为 20vp，背景颜色为 #ededed。ScrollBar 组件内部包含一个 Text 组件，用于模拟滚动条的滑块，宽度为 20vp，高度为 100vp，背景颜色为 #C0C0C0，边框圆角为 10vp。\n\n组件的功能包括垂直滚动列表的展示和自定义滚动条的显示。用户可以通过拖动滚动条或滚动列表来查看隐藏的内容。滚动条的状态为自动显示，当内容超出视图范围时，滚动条会自动出现。",
+            "code": "// xxx.ets\n@Entry\n@Component\nstruct ScrollBarExample {\n  private scroller: Scroller = new Scroller() // 创建一个 Scroller 对象，用于控制滚动行为\n  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] // 定义一个数字数组，用于展示滚动列表的内容\n\n  build() {\n    Column() {\n      Stack({ alignContent: Alignment.End }) { // 使用 Stack 布局，将 Scroll 组件和 ScrollBar 组件堆叠在一起，对齐方式为右对齐\n        Scroll(this.scroller) { // 创建一个 Scroll 组件，使用 scroller 对象控制滚动行为\n          Flex({ direction: FlexDirection.Column }) { // 使用 Flex 布局，方向为垂直方向\n            ForEach(this.arr, (item: number) => { // 遍历数组，生成每个数字的展示组件\n              Row() {\n                Text(item.toString()) // 创建一个 Text 组件，显示当前数字\n                  .width('80%') // 设置 Text 组件的宽度为 80%\n                  .height(60) // 设置 Text 组件的高度为 60vp\n                  .backgroundColor('#3366CC') // 设置 Text 组件的背景颜色为 #3366CC\n                  .borderRadius(15) // 设置 Text 组件的边框圆角为 15vp\n                  .fontSize(16) // 设置 Text 组件的字体大小为 16\n                  .textAlign(TextAlign.Center) // 设置 Text 组件的文本居中对齐\n                  .margin({ top: 5 }) // 设置 Text 组件的上边距为 5vp\n              }\n            }, (item: number) => item.toString()) // 使用数字的字符串形式作为唯一标识符\n          }.margin({ right: 15 }) // 设置 Flex 组件的右边距为 15vp\n        }\n        .width('90%') // 设置 Scroll 组件的宽度为 90%\n        .scrollBar(BarState.Off) // 设置 Scroll 组件的默认滚动条状态为关闭\n        .scrollable(ScrollDirection.Vertical) // 设置 Scroll 组件的滚动方向为垂直方向\n\n        ScrollBar({ scroller: this.scroller, direction: ScrollBarDirection.Vertical, state: BarState.Auto }) { // 创建一个自定义的 ScrollBar 组件，使用 scroller 对象控制滚动行为，方向为垂直方向，状态为自动显示\n          Text() // 创建一个 Text 组件，用于模拟滚动条的滑块\n            .width(20) // 设置 Text 组件的宽度为 20vp\n            .height(100) // 设置 Text 组件的高度为 100vp\n            .borderRadius(10) // 设置 Text 组件的边框圆角为 10vp\n            .backgroundColor('#C0C0C0') // 设置 Text 组件的背景颜色为 #C0C0C0\n        }.width(20).backgroundColor('#ededed') // 设置 ScrollBar 组件的宽度为 20vp，背景颜色为 #ededed\n      }\n    }\n  }\n}"
+        }
+    ],
+    "is_common_attrs": true
+}
