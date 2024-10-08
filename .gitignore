@@ -163,7 +163,9 @@ cython_debug/
 
 models/embedding/
 tmp/
+demos/
 main.ipynb
+test.py
 
 # 自动爬取的文档
 # script/auto_harmony_document/

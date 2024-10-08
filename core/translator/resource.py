@@ -438,6 +438,8 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
         os.makedirs(os.path.dirname(harmony_svg_path), exist_ok=True)
         with open(harmony_svg_path, "w", encoding="utf-8") as f:
             f.write(etree.tostring(svg_root, pretty_print=True, encoding="unicode"))
+    elif _root.tag == "shape":
+        logger.warning(f"Shape file is not supported: {android_vector_drawable_xml_path}")
     elif _root.tag == "bitmap":
         # 位图文件
         logger.warning(f"Bitmap file is not supported: {android_vector_drawable_xml_path}")
