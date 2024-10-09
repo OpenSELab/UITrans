@@ -116,31 +116,44 @@ def translate_android_pixel_to_harmony_pixel(pixel: str) -> str:
         raise ValueError(f"Invalid pixel value: {pixel}")
 
 
-def translate_argb_to_rgba(argb: str) -> str:
-    """将 ARGB 颜色值转换为 RGBA 颜色值
+def translate_android_color_to_harmony(color: str) -> str:
+    def translate_argb_to_rgba(argb: str) -> str:
+        """将 ARGB 颜色值转换为 RGBA 颜色值
 
-    :param argb: ARGB 颜色值
-    :return: RGBA 颜色值
-    """
-    if argb.startswith("#"):
-        # 十六进制表示的颜色值
-        argb = argb[1:]
-        if len(argb) == 8:
-            # ARGB
-            return "#" + argb[2:] + argb[:2]
-        elif len(argb) == 6:
-            # RGB
-            return "#" + argb
+        :param argb: ARGB 颜色值
+        :return: RGBA 颜色值
+        """
+        if argb.startswith("#"):
+            # 十六进制表示的颜色值
+            argb = argb[1:]
+            if len(argb) == 8:
+                # ARGB
+                return "#" + argb[2:] + argb[:2]
+            elif len(argb) == 6:
+                # RGB
+                return "#" + argb
+        else:
+            raise ValueError(f"Invalid color value: {argb}")
+    if color.startswith("#"):
+        return translate_argb_to_rgba(color)
+    elif color.startswith("@"):
+        # 引用资源
+        # TODO: 支持引用资源
+        logger.warning(f"Unsupported color reference: {color}")
+        return "#1E90FF"
     else:
-        raise ValueError(f"Invalid color value: {argb}")
+        raise ValueError(f"Invalid color value: {color}")
 
 
-def rename_filepath(filepath) -> str:
+def rename_filepath(filepath, overwrite=True) -> str:
     """若文件存在，则为文件名添加后缀序号
 
     :param filepath: 文件路径
+    :param overwrite: 覆盖
     :return:
     """
+    if overwrite:
+        return filepath
     new_filepath = filepath
     try_count = 1
     while os.path.exists(new_filepath):
@@ -150,13 +163,13 @@ def rename_filepath(filepath) -> str:
     return new_filepath
 
 
-def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable_xml_path: str, harmony_svg_path: str):
+def translate_android_drawable_xml_to_harmony_svg(android_vector_drawable_xml_path: str, harmony_svg_path: str):
     """将安卓矢量图标文件转换为鸿蒙SVG文件格式
 
     :param android_vector_drawable_xml_path: 安卓矢量图标文件路径
     :param harmony_svg_path: 鸿蒙SVG文件路径
     """
-    ANDROID_VECTOR_DRAWABLE_NAMESPACE = "http://schemas.android.com/apk/res/android"
+    ANDROID_RES_DRAWABLE_NAMESPACE = "http://schemas.android.com/apk/res/android"
     ANDROID_AAPT_NAMESPACE = "http://schemas.android.com/aapt"
 
     attributes_map = {
@@ -173,8 +186,8 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
     }
     attributes_transforms = {
         "android:fillType": lambda value: value.lower() if value else None,
-        "android:fillColor": translate_argb_to_rgba,
-        "android:strokeColor": translate_argb_to_rgba
+        "android:fillColor": translate_android_color_to_harmony,
+        "android:strokeColor": translate_android_color_to_harmony
     }
     group_attrs_map = {
         "android:name": "id",
@@ -194,6 +207,7 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
         "android:centerX": "cx",
         "android:centerY": "cy",
         "android:gradientRadius": "r",
+        "android:angle": "gradientTransform",  # 特殊处理
     }
     gradient_item_attrs_map = {
         "android:color": "stop-color",
@@ -201,17 +215,18 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
     }
 
     gradient_item_attrs_transforms = {
-        "android:color": translate_argb_to_rgba,
+        "android:color": translate_android_color_to_harmony,
+        "android:offset": lambda value: f"{float(value) * 100}%",  # 将偏移量转换为百分比
     }
 
     def get_attr(element, attr_name):
-        new_attr_name = attr_name.replace("android:", f"{{{ANDROID_VECTOR_DRAWABLE_NAMESPACE}}}")
+        new_attr_name = attr_name.replace("android:", f"{{{ANDROID_RES_DRAWABLE_NAMESPACE}}}")
         if new_attr_name in element.attrib:
             attr_value = element.attrib[new_attr_name]
             return attr_value
         return None
 
-    def parse_path_element(root, path_element):
+    def parse_path_element(root, path_element, defs):
         """处理路径节点"""
         svg_path = root.makeelement("path")
         for origin_attr_name, target_attr_name in attributes_map.items():
@@ -224,7 +239,7 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
 
         return svg_path
 
-    def parse_gradient(root, gradient_element):
+    def parse_gradient_element(root, gradient_element, defs):
         """处理渐变节点"""
         gradient_type = get_attr(gradient_element, "android:type")
         if gradient_type == "linear":
@@ -244,6 +259,21 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
             if target_attr_value is None:
                 continue
             svg_gradient.set(target_attr_name, target_attr_value)
+
+        start_color = get_attr(gradient_element, "android:startColor")
+        end_color = get_attr(gradient_element, "android:endColor")
+        if start_color and end_color:
+            start_svg_stop = etree.Element("stop")
+            start_svg_stop.set("offset", "0%")
+            start_svg_stop.set("stop-color", translate_android_color_to_harmony(start_color))
+            svg_gradient.append(start_svg_stop)
+
+            end_svg_stop = etree.Element("stop")
+            end_svg_stop.set("offset", "100%")
+            end_svg_stop.set("stop-color", translate_android_color_to_harmony(end_color))
+            svg_gradient.append(end_svg_stop)
+
+
         # 渐变节点的子节点
         for gradient_item_element in gradient_element:
             if gradient_item_element.tag == "item":
@@ -259,7 +289,7 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
 
         return svg_gradient
 
-    def parse_group_element(root, group_element):
+    def parse_group_element(root, group_element, defs):
         svg_group = root.makeelement("g")
 
         attrs = {}
@@ -311,96 +341,104 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
 
             for key, value in attrs.items():
                 svg_group.set(key, value)
+
         return svg_group
 
-    def parse_shape_element(root, shape_element):
-        """处理 shape 节点"""
-        svg_group = root.makeelement("g")
+    def parse_stroke_element(stroke_element):
+        """处理 stroke 节点"""
+        style_attrs = {}
+        color = get_attr(stroke_element, "android:color")
+        width = get_attr(stroke_element, "android:width")
+        if color:
+            style_attrs["stroke"] = translate_android_color_to_harmony(color)
+        if width:
+            style_attrs["stroke-width"] = width
+        return style_attrs
 
-        # 初始化shape相关属性
-        fill_color = None
-        stroke_color = None
-        stroke_width = None
-        rx = None
-        ry = None
+    def parse_corners_element(corners_element):
+        """处理 corners 节点"""
+        style_attrs = {}
+        radius = get_attr(corners_element, "android:radius")
+        if radius:
+            style_attrs["rx"] = radius
+        return style_attrs
+
+    def parse_solid_element(solid_element):
+        """处理 solid 节点"""
+        style_attrs = {}
+        color = get_attr(solid_element, "android:color")
+        if color:
+            style_attrs["fill"] = translate_android_color_to_harmony(color)
+        return style_attrs
+
+    def parse_shape_element(root, shape_element, defs):
+        """处理 shape 节点"""
+        shape_type = get_attr(shape_element, "android:shape")
+
+        svg_shape = None
+        style_attrs = {}
+        fill_value = None  # 用于存储填充的值（颜色或渐变）
 
         for child in shape_element:
-            if child.tag == "solid":
-                fill_color = get_attr(child, "android:color")
-                if fill_color:
-                    fill_color = translate_argb_to_rgba(fill_color)
-            elif child.tag == "stroke":
-                stroke_color = get_attr(child, "android:color")
-                if stroke_color:
-                    stroke_color = translate_argb_to_rgba(stroke_color)
-                stroke_width = get_attr(child, "android:width")
+            if child.tag == "stroke":
+                style_attrs.update(parse_stroke_element(child))
             elif child.tag == "corners":
-                rx = get_attr(child, "android:radius")
-                ry = rx  # 使用相同的圆角半径，除非定义了不同的rx和ry
+                style_attrs.update(parse_corners_element(child))
+            elif child.tag == "solid":
+                style_attrs.update(parse_solid_element(child))
             elif child.tag == "gradient":
-                svg_gradient = parse_gradient(root, child)
-                size = len(root.findall(".//defs/linearGradient")) + len(root.findall(".//defs/radialGradient"))
-                gradient_id = f"gradient_{size}"
+                # 处理渐变
+                svg_gradient = parse_gradient_element(root, child, defs)
+                gradient_id = f"gradient_{len(defs)}"
                 svg_gradient.set("id", gradient_id)
-                root.find(".//defs").append(svg_gradient)
-                fill_color = f"url(#{gradient_id})"
+                defs.append(svg_gradient)
+                fill_value = f"url(#{gradient_id})"
 
-        # 创建基本的形状
-        shape_type = get_attr(shape_element, "android:shape")
         if shape_type == "rectangle":
-            svg_rect = root.makeelement("rect", {
-                "width": "100%",  # 使用相对尺寸
-                "height": "100%",
-                "fill": fill_color or "none",
-                "stroke": stroke_color or "none",
-                "stroke-width": stroke_width or "1",
-                "rx": rx or "0",
-                "ry": ry or "0"
-            })
-            svg_group.append(svg_rect)
+            svg_shape = root.makeelement("rect")
+            # 处理圆角（半径）
+            radius = style_attrs.pop("rx", None)
+            if radius:
+                svg_shape.set("rx", radius)
+                svg_shape.set("ry", radius)
+            svg_shape.set("x", "0")
+            svg_shape.set("y", "0")
+            svg_shape.set("width", get_attr(shape_element, "android:width") or "100%")
+            svg_shape.set("height", get_attr(shape_element, "android:height") or "100%")
         elif shape_type == "oval":
-            svg_oval = root.makeelement("ellipse", {
-                "cx": "50%",  # 中心点在SVG视口的中央
-                "cy": "50%",
-                "rx": "50%",
-                "ry": "50%",
-                "fill": fill_color or "none",
-                "stroke": stroke_color or "none",
-                "stroke-width": stroke_width or "1"
-            })
-            svg_group.append(svg_oval)
+            svg_shape = root.makeelement("ellipse")
+            svg_shape.set("cx", str(float(get_attr(shape_element, "android:width")) / 2))
+            svg_shape.set("cy", str(float(get_attr(shape_element, "android:height")) / 2))
+            svg_shape.set("rx", str(float(get_attr(shape_element, "android:width")) / 2))
+            svg_shape.set("ry", str(float(get_attr(shape_element, "android:height")) / 2))
         elif shape_type == "line":
-            x1 = "0%"
-            x2 = "100%"
-            y1 = "50%"
-            y2 = "50%"
-            svg_line = root.makeelement("line", {
-                "x1": x1,
-                "y1": y1,
-                "x2": x2,
-                "y2": y2,
-                "stroke": stroke_color or "none",
-                "stroke-width": stroke_width or "1"
-            })
-            svg_group.append(svg_line)
+            svg_shape = root.makeelement("line")
+            svg_shape.set("x1", "0")
+            svg_shape.set("y1", "0")
+            svg_shape.set("x2", get_attr(shape_element, "android:width"))
+            svg_shape.set("y2", get_attr(shape_element, "android:height"))
         elif shape_type == "ring":
-            inner_radius = get_attr(shape_element, "android:innerRadius")
-            thickness = get_attr(shape_element, "android:thickness")
-            svg_ring = root.makeelement("circle", {
-                "cx": "50%",
-                "cy": "50%",
-                "r": f"{float(inner_radius) + float(thickness)}",
-                "fill": "none",
-                "stroke": stroke_color or fill_color or "none",
-                "stroke-width": thickness or "1"
-            })
-            svg_group.append(svg_ring)
+            svg_shape = root.makeelement("circle")
+            svg_shape.set("cx", str(float(get_attr(shape_element, "android:width")) / 2))
+            svg_shape.set("cy", str(float(get_attr(shape_element, "android:height")) / 2))
+            svg_shape.set("r", style_attrs.pop("stroke-width", "0"))
+        else:
+            logger.warning(f"Unsupported shape type: {shape_type} in {android_vector_drawable_xml_path}")
+            return None
 
-        return svg_group
+        # 应用填充
+        if fill_value:
+            style_attrs["fill"] = fill_value
+
+        if style_attrs:
+            for key, value in style_attrs.items():
+                svg_shape.set(key, value)
+
+        return svg_shape
 
     def transform_node(node, parent, root, defs):
         if node.tag == "path":
-            svg_path = parse_path_element(root, node)
+            svg_path = parse_path_element(root, node, defs)
             for child in node:
                 if child.tag == f"{{{ANDROID_AAPT_NAMESPACE}}}attr":
                     # 处理属性节点
@@ -409,19 +447,16 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
                         # 渐变
                         for grandchild in child:
                             if grandchild.tag == "gradient":
-                                svg_gradient = parse_gradient(root, grandchild)
-
+                                svg_gradient = parse_gradient_element(root, grandchild)
                                 size = len(defs)
                                 gradient_id = f"gradient_{size}"
-
                                 svg_gradient.set("id", gradient_id)
                                 defs.append(svg_gradient)
                                 svg_attr_name = attributes_map[attr_name]
                                 svg_path.set(svg_attr_name, f"url(#{gradient_id})")
             return svg_path
         elif node.tag == "group":
-            svg_group = parse_group_element(root, node)
-
+            svg_group = parse_group_element(root, node, defs)
             prev_clip_path_id = None
 
             for child in node:
@@ -442,12 +477,15 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
                         prev_clip_path_id = None
 
                     svg_group.append(child_path)
-
             return svg_group
 
         elif node.tag == "shape":
-            svg_shape = parse_shape_element(root, node)
+            svg_shape = parse_shape_element(root, node, defs)
             return svg_shape
+
+        elif node.tag == "gradient":
+            svg_gradient = parse_gradient_element(root, node, defs)
+            return svg_gradient
 
         elif node.tag == "clip-path":
             path_data = get_attr(node, "android:pathData")
@@ -468,6 +506,9 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
             return dimen
 
         if dimen.isdigit():
+            return dimen
+
+        if dimen.endswith("%"):
             return dimen
 
         if isinstance(dimen, str):
@@ -527,12 +568,44 @@ def translate_android_vector_drawable_xml_to_harmony_svg(android_vector_drawable
         os.makedirs(os.path.dirname(harmony_svg_path), exist_ok=True)
         with open(harmony_svg_path, "w", encoding="utf-8") as f:
             f.write(etree.tostring(svg_root, pretty_print=True, encoding="unicode"))
+        logger.debug(f"Translate {android_vector_drawable_xml_path} to {harmony_svg_path}")
     elif _root.tag == "shape":
-        parse_shape_element()
-        logger.warning(f"Shape file is not supported: {android_vector_drawable_xml_path}")
+
+        svg_width = get_attr(_root, "android:width") or "100%"
+        svg_height = get_attr(_root, "android:height") or "100%"
+        svg_width = remove_dimen_suffix(svg_width)
+        svg_height = remove_dimen_suffix(svg_height)
+        viewport_width = get_attr(_root, "android:viewportWidth") or 100
+        viewport_height = get_attr(_root, "android:viewportHeight") or 100
+
+        svg_root = etree.Element("svg", {
+            "xmlns": "http://www.w3.org/2000/svg",
+            "width": svg_width,
+            "height": svg_height,
+            "viewBox": "0 0 {viewportWidth} {viewportHeight}".format(
+                viewportWidth=viewport_width,
+                viewportHeight=viewport_height
+            )
+        })
+
+        _defs = etree.Element("defs")
+        svg_shape = parse_shape_element(svg_root, _root, _defs)
+        if svg_shape is not None:
+            svg_root.append(svg_shape)
+            if len(_defs):
+                svg_root.append(_defs)
+            # 写入文件
+            os.makedirs(os.path.dirname(harmony_svg_path), exist_ok=True)
+            with open(harmony_svg_path, "w", encoding="utf-8") as f:
+                f.write(etree.tostring(svg_root, pretty_print=True, encoding="unicode"))
+            logger.debug(f"Translated shape {android_vector_drawable_xml_path} to {harmony_svg_path}")
+        else:
+            logger.warning(f"Failed to parse shape element: {android_vector_drawable_xml_path}")
     elif _root.tag == "bitmap":
         # 位图文件
         logger.warning(f"Bitmap file is not supported: {android_vector_drawable_xml_path}")
+    else:
+        logger.warning(f"Unsupported file type: {android_vector_drawable_xml_path}")
 
 
 def translate_android_resource_values_to_harmony(
@@ -622,10 +695,11 @@ def translate_android_resource_qualifier_to_harmony(android_resource_qualifier):
     return total_harmony_qualifier
 
 
-def translate_android_resource_to_harmony(android_resource_path, harmony_resource_path):
+def translate_android_resource_to_harmony(android_resource_path, harmony_resource_path, overwrite=False):
     """将安卓资源文件转换为鸿蒙资源文件格式
     :param android_resource_path: 安卓资源文件夹路径
     :param harmony_resource_path: 鸿蒙资源文件夹路径
+    :param overwrite: 是否覆盖
     :return: None
 
     TODO: 并发处理
@@ -675,95 +749,95 @@ def translate_android_resource_to_harmony(android_resource_path, harmony_resourc
                     harmony_resource_file = os.path.join(_harmony_resource_base_dir,
                                                          resource_file.replace("xml", "svg"))
                     # 避免文件名冲突
-                    harmony_resource_file = rename_filepath(harmony_resource_file)
-                    translate_android_vector_drawable_xml_to_harmony_svg(
+                    harmony_resource_file = rename_filepath(harmony_resource_file, overwrite)
+                    translate_android_drawable_xml_to_harmony_svg(
                         origin_resource_file,
                         harmony_resource_file
                     )
-                    logger.debug(f"Translate {origin_resource_file} to {harmony_resource_file}")
         elif resource_dir.startswith("mipmap"):
+            # TODO: 支持 mipmap 格式的资源
             # 启动图标, 目前使用默认图标
             logger.warning(f"Android Resource `{resource_dir}` is not supported")
             continue
-            if resource_dir == "mipmap":
-                # 默认资源文件
-                _harmony_resource_base_dir = os.path.join(harmony_resource_path, "base", "media")
-            else:
-                # values-xxx 资源文件
-                total_harmony_qualifier = translate_android_resource_qualifier_to_harmony(resource_dir)
-                if total_harmony_qualifier:
-                    _harmony_resource_base_dir = os.path.join(harmony_resource_path, total_harmony_qualifier, "media")
-                else:
-                    _harmony_resource_base_dir = os.path.join(harmony_resource_path, "base", "media")
-
-            for resource_file in os.listdir(os.path.join(android_resource_path, resource_dir)):
-                resource_file_type = os.path.splitext(resource_file)[1].lstrip(".")
-                if resource_file_type == "webp":
-                    origin_resource_file = os.path.join(android_resource_path, resource_dir, resource_file)
-                    harmony_resource_file = os.path.join(_harmony_resource_base_dir,
-                                                         resource_file.replace("webp", "png"))
-                    os.makedirs(os.path.dirname(harmony_resource_file), exist_ok=True)
-                    webp_image = Image.open(origin_resource_file)
-                    webp_image.save(harmony_resource_file, "PNG")
-                elif resource_file_type == "xml":
-                    # anydpi，合并两个 svg 文件并转换为 png
-                    harmony_resource_file = os.path.join(_harmony_resource_base_dir,
-                                                         resource_file.replace("xml", "png"))
-                    os.makedirs(os.path.dirname(harmony_resource_file), exist_ok=True)
-
-                    mipmap_xml_root = etree.parse(os.path.join(android_resource_path, resource_dir, resource_file))
-                    mipmap_xml_background_node = mipmap_xml_root.find("background")
-                    mipmap_xml_background_file_ref = mipmap_xml_background_node.attrib[
-                        "{http://schemas.android.com/apk/res/android}drawable"]
-                    mipmap_xml_background_file = os.path.join(android_resource_path,
-                                                              mipmap_xml_background_file_ref.lstrip("@") + ".xml")
-                    temp_background_svg, temp_background_svg_path = tempfile.mkstemp()
-                    translate_android_vector_drawable_xml_to_harmony_svg(
-                        mipmap_xml_background_file,
-                        temp_background_svg_path
-                    )
-                    mipmap_xml_foreground_node = mipmap_xml_root.find("foreground")
-                    mipmap_xml_foreground_file_ref = mipmap_xml_foreground_node.attrib[
-                        "{http://schemas.android.com/apk/res/android}drawable"]
-                    mipmap_xml_foreground_file = os.path.join(android_resource_path,
-                                                              mipmap_xml_foreground_file_ref.lstrip("@") + ".xml")
-                    temp_foreground_svg, temp_foreground_svg_path = tempfile.mkstemp()
-                    translate_android_vector_drawable_xml_to_harmony_svg(
-                        mipmap_xml_foreground_file,
-                        temp_foreground_svg_path
-                    )
-                    # 合并两个 svg 文件
-                    svg1_root = etree.parse(temp_background_svg_path).getroot()
-                    svg2_root = etree.parse(temp_foreground_svg_path).getroot()
-                    combined_svg_root = etree.Element("svg", nsmap=svg1_root.nsmap)
-                    combined_svg_root.attrib.update(svg1_root.attrib)
-                    for element in svg1_root:
-                        combined_svg_root.append(element)
-                    for element in svg2_root:
-                        combined_svg_root.append(element)
-                    temp_combined_svg, temp_combined_svg_path = tempfile.mkstemp()
-                    with open(temp_combined_svg_path, "w", encoding="utf-8") as f:
-                        f.write(etree.tostring(combined_svg_root, pretty_print=True, encoding="unicode"))
-                    from svglib.svglib import svg2rlg
-                    from reportlab.graphics import renderPM
-                    drawing = svg2rlg(temp_combined_svg_path)
-                    # TODO: 渐变存在问题
-                    # 避免文件名冲突
-                    harmony_resource_file = rename_filepath(harmony_resource_file)
-                    renderPM.drawToFile(drawing, harmony_resource_file, fmt="PNG", backendFmt="RGBA")
-                    # cairosvg.svg2png(url=temp_combined_svg_path, write_to=harmony_resource_file)
-                    os.close(temp_background_svg)
-                    os.remove(temp_background_svg_path)
-                    os.close(temp_foreground_svg)
-                    os.remove(temp_foreground_svg_path)
-                    os.close(temp_combined_svg)
-                    os.remove(temp_combined_svg_path)
-                elif resource_file_type in (".png", ".jpg", ".jpeg"):
-                    origin_resource_file = os.path.join(android_resource_path, resource_dir, resource_file)
-                    harmony_resource_file = os.path.join(_harmony_resource_base_dir, resource_file)
-                    harmony_resource_file = rename_filepath(harmony_resource_file)
-                    os.makedirs(os.path.dirname(harmony_resource_file), exist_ok=True)
-                    shutil.copy(origin_resource_file, harmony_resource_file)
+            # if resource_dir == "mipmap":
+            #     # 默认资源文件
+            #     _harmony_resource_base_dir = os.path.join(harmony_resource_path, "base", "media")
+            # else:
+            #     # values-xxx 资源文件
+            #     total_harmony_qualifier = translate_android_resource_qualifier_to_harmony(resource_dir)
+            #     if total_harmony_qualifier:
+            #         _harmony_resource_base_dir = os.path.join(harmony_resource_path, total_harmony_qualifier, "media")
+            #     else:
+            #         _harmony_resource_base_dir = os.path.join(harmony_resource_path, "base", "media")
+            #
+            # for resource_file in os.listdir(os.path.join(android_resource_path, resource_dir)):
+            #     resource_file_type = os.path.splitext(resource_file)[1].lstrip(".")
+            #     if resource_file_type == "webp":
+            #         origin_resource_file = os.path.join(android_resource_path, resource_dir, resource_file)
+            #         harmony_resource_file = os.path.join(_harmony_resource_base_dir,
+            #                                              resource_file.replace("webp", "png"))
+            #         os.makedirs(os.path.dirname(harmony_resource_file), exist_ok=True)
+            #         webp_image = Image.open(origin_resource_file)
+            #         webp_image.save(harmony_resource_file, "PNG")
+            #     elif resource_file_type == "xml":
+            #         # anydpi，合并两个 svg 文件并转换为 png
+            #         harmony_resource_file = os.path.join(_harmony_resource_base_dir,
+            #                                              resource_file.replace("xml", "png"))
+            #         os.makedirs(os.path.dirname(harmony_resource_file), exist_ok=True)
+            #
+            #         mipmap_xml_root = etree.parse(os.path.join(android_resource_path, resource_dir, resource_file))
+            #         mipmap_xml_background_node = mipmap_xml_root.find("background")
+            #         mipmap_xml_background_file_ref = mipmap_xml_background_node.attrib[
+            #             "{http://schemas.android.com/apk/res/android}drawable"]
+            #         mipmap_xml_background_file = os.path.join(android_resource_path,
+            #                                                   mipmap_xml_background_file_ref.lstrip("@") + ".xml")
+            #         temp_background_svg, temp_background_svg_path = tempfile.mkstemp()
+            #         translate_android_drawable_xml_to_harmony_svg(
+            #             mipmap_xml_background_file,
+            #             temp_background_svg_path
+            #         )
+            #         mipmap_xml_foreground_node = mipmap_xml_root.find("foreground")
+            #         mipmap_xml_foreground_file_ref = mipmap_xml_foreground_node.attrib[
+            #             "{http://schemas.android.com/apk/res/android}drawable"]
+            #         mipmap_xml_foreground_file = os.path.join(android_resource_path,
+            #                                                   mipmap_xml_foreground_file_ref.lstrip("@") + ".xml")
+            #         temp_foreground_svg, temp_foreground_svg_path = tempfile.mkstemp()
+            #         translate_android_drawable_xml_to_harmony_svg(
+            #             mipmap_xml_foreground_file,
+            #             temp_foreground_svg_path
+            #         )
+            #         # 合并两个 svg 文件
+            #         svg1_root = etree.parse(temp_background_svg_path).getroot()
+            #         svg2_root = etree.parse(temp_foreground_svg_path).getroot()
+            #         combined_svg_root = etree.Element("svg", nsmap=svg1_root.nsmap)
+            #         combined_svg_root.attrib.update(svg1_root.attrib)
+            #         for element in svg1_root:
+            #             combined_svg_root.append(element)
+            #         for element in svg2_root:
+            #             combined_svg_root.append(element)
+            #         temp_combined_svg, temp_combined_svg_path = tempfile.mkstemp()
+            #         with open(temp_combined_svg_path, "w", encoding="utf-8") as f:
+            #             f.write(etree.tostring(combined_svg_root, pretty_print=True, encoding="unicode"))
+            #         from svglib.svglib import svg2rlg
+            #         from reportlab.graphics import renderPM
+            #         drawing = svg2rlg(temp_combined_svg_path)
+            #         # TODO: 渐变存在问题
+            #         # 避免文件名冲突
+            #         harmony_resource_file = rename_filepath(harmony_resource_file, overwrite)
+            #         renderPM.drawToFile(drawing, harmony_resource_file, fmt="PNG", backendFmt="RGBA")
+            #         # cairosvg.svg2png(url=temp_combined_svg_path, write_to=harmony_resource_file)
+            #         os.close(temp_background_svg)
+            #         os.remove(temp_background_svg_path)
+            #         os.close(temp_foreground_svg)
+            #         os.remove(temp_foreground_svg_path)
+            #         os.close(temp_combined_svg)
+            #         os.remove(temp_combined_svg_path)
+            #     elif resource_file_type in (".png", ".jpg", ".jpeg"):
+            #         origin_resource_file = os.path.join(android_resource_path, resource_dir, resource_file)
+            #         harmony_resource_file = os.path.join(_harmony_resource_base_dir, resource_file)
+            #         harmony_resource_file = rename_filepath(harmony_resource_file, overwrite)
+            #         os.makedirs(os.path.dirname(harmony_resource_file), exist_ok=True)
+            #         shutil.copy(origin_resource_file, harmony_resource_file)
         elif any([resource_dir.startswith(resource_type) for resource_type in ["layout", "menu", "navigation", "xml"]]):
             # 忽略 layout、menu、navigation、xml
             continue
