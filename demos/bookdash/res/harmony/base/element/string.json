@@ -1,0 +1,340 @@
+{
+    "string": [
+        {
+            "name": "app_name",
+            "value": "Book Dash"
+        },
+        {
+            "name": "action_settings",
+            "value": "Settings"
+        },
+        {
+            "name": "splash",
+            "value": "Splash Screen"
+        },
+        {
+            "name": "action_language_choice",
+            "value": "Language"
+        },
+        {
+            "name": "language_selection_heading",
+            "value": "Select a language"
+        },
+        {
+            "name": "failed_to_download_book",
+            "value": "Failed to download book.[%s]"
+        },
+        {
+            "name": "error_loading_languages",
+            "value": "Error loading available languages"
+        },
+        {
+            "name": "error_loading_languages_try_again",
+            "value": "Failed to load available languages. Please try again later."
+        },
+        {
+            "name": "book_not_available",
+            "value": "Book not available"
+        },
+        {
+            "name": "title_activity_about",
+            "value": "About Book Dash"
+        },
+        {
+            "name": "action_about",
+            "value": "About"
+        },
+        {
+            "name": "why_bookdash",
+            "value": ""
+        },
+        {
+            "name": "why_bookdash_heading",
+            "value": "Why Book Dash?"
+        },
+        {
+            "name": "heading_about",
+            "value": "Book Dash gathers volunteer creative professionals to create new, African storybooks that anyone can freely translate and distribute."
+        },
+        {
+            "name": "send_email_chooser",
+            "value": "Send us a mail."
+        },
+        {
+            "name": "no_mail_clients",
+            "value": "There are no mail clients installed."
+        },
+        {
+            "name": "button_retry_text",
+            "value": "Retry"
+        },
+        {
+            "name": "error_loading_books",
+            "value": "Error Loading Books"
+        },
+        {
+            "name": "failed_to_open_book",
+            "value": "Failed to open the book. Please try again later."
+        },
+        {
+            "name": "skip",
+            "value": "SKIP"
+        },
+        {
+            "name": "tutorial_done",
+            "value": "DONE"
+        },
+        {
+            "name": "tutorial_screen",
+            "value": "Tutorial Screen"
+        },
+        {
+            "name": "screen_book_information",
+            "value": "Book Information"
+        },
+        {
+            "name": "book_dash",
+            "value": "Book Dash"
+        },
+        {
+            "name": "about_heading",
+            "value": "About Book Dash"
+        },
+        {
+            "name": "about_book_info",
+            "value": "About"
+        },
+        {
+            "name": "date_created",
+            "value": "Date"
+        },
+        {
+            "name": "contributors",
+            "value": "Contributors"
+        },
+        {
+            "name": "book_is_downloading",
+            "value": "Book is currently downloading."
+        },
+        {
+            "name": "learn_more",
+            "value": "LEARN MORE"
+        },
+        {
+            "name": "rate_this_app",
+            "value": "Rate This App"
+        },
+        {
+            "name": "settings_thank_yous",
+            "value": "Contributors"
+        },
+        {
+            "name": "contributions_to_app",
+            "value": "Contributors"
+        },
+        {
+            "name": "list_of_contributors",
+            "value": ""
+        },
+        {
+            "name": "book_download_button",
+            "value": "DOWNLOAD"
+        },
+        {
+            "name": "slide_1_african_story_books",
+            "value": "New African Story Books"
+        },
+        {
+            "name": "slide_2_volunteer_professionals",
+            "value": "Created by Volunteer Professionals"
+        },
+        {
+            "name": "slide_3_download_and_go",
+            "value": "Download and Read on the go"
+        },
+        {
+            "name": "slide_4_different_languages",
+            "value": "Available in different languages"
+        },
+        {
+            "name": "slide_1_african_story_books_subtitle",
+            "value": "That anyone can freely translate and distribute."
+        },
+        {
+            "name": "slide_2_volunteer_professionals_subtitle",
+            "value": "On a single day, designers, writers and illustrators meet to create cool books."
+        },
+        {
+            "name": "slide_3_download_and_go_subtitle",
+            "value": "On the bus, in a train, wherever you are - the books are there too."
+        },
+        {
+            "name": "slide_4_different_languages_subtitle",
+            "value": "English, Zulu, Afrikaans, Xhosa and more!"
+        },
+        {
+            "name": "transition_book_background",
+            "value": "book_background"
+        },
+        {
+            "name": "transition_book",
+            "value": "book"
+        },
+        {
+            "name": "filter_view_book",
+            "value": "View Books"
+        },
+        {
+            "name": "book_share",
+            "value": "Share"
+        },
+        {
+            "name": "sharing_book_title",
+            "value": "I have just read \\\"%s\\\". Download Book Dash now and read it for free! http://play.google.com/store/apps/details?id=org.bookdash.android"
+        },
+        {
+            "name": "invitation_title",
+            "value": "Download Book Dash"
+        },
+        {
+            "name": "invite_error_no_apps_found",
+            "value": "Unfortunately no apps were found to invite your friends with."
+        },
+        {
+            "name": "share_book_error_no_apps_found",
+            "value": "Unfortunately no apps were found that can share this book with your friends."
+        },
+        {
+            "name": "invite_using",
+            "value": "Choose an app to invite with"
+        },
+        {
+            "name": "invitation_subject",
+            "value": "Install the Book Dash app for free books"
+        },
+        {
+            "name": "invitation_message",
+            "value": "I think you\\'ll love the Book Dash app for free children\\'s books.\\n\\nYou can get it here:\\nhttps://play.google.com/store/apps/details?id=org.bookdash.android"
+        },
+        {
+            "name": "sent_invitations_fmt",
+            "value": "Sent invites to %d"
+        },
+        {
+            "name": "invite_friends",
+            "value": "Invite Friends"
+        },
+        {
+            "name": "action_all_books",
+            "value": "All Books"
+        },
+        {
+            "name": "action_downloads",
+            "value": "Downloaded Books"
+        },
+        {
+            "name": "no_books_downloaded",
+            "value": "Oh no! You haven\\'t \\n downloaded any books.\\n Head to the \\\"All Books\\\" \\n section to download some!"
+        },
+        {
+            "name": "no_books_available",
+            "value": "No books available at the moment. Check back soon!"
+        },
+        {
+            "name": "book_info_still_loading",
+            "value": "Book information is still loading…"
+        },
+        {
+            "name": "fragment_title_downloads",
+            "value": "Downloads"
+        },
+        {
+            "name": "delete_book_confirmation",
+            "value": "Delete Downloaded Book"
+        },
+        {
+            "name": "downloads_are_you_sure",
+            "value": "Are you sure you want to delete \\'%s\\'?"
+        },
+        {
+            "name": "delete_ok",
+            "value": "Delete"
+        },
+        {
+            "name": "delete_cancel",
+            "value": "Cancel"
+        },
+        {
+            "name": "book_dash_nav_header",
+            "value": "Book Dash"
+        },
+        {
+            "name": "error_getting_contributors",
+            "value": "Error fetching contributors"
+        },
+        {
+            "name": "error_saving_selected_language",
+            "value": "There was an error saving the selected language. Please try again later."
+        },
+        {
+            "name": "error_opening_languagepopover",
+            "value": "There was an unexpected error. Please try again later."
+        },
+        {
+            "name": "action_search",
+            "value": "Search"
+        },
+        {
+            "name": "screen_title_search",
+            "value": "Search"
+        },
+        {
+            "name": "menu_search",
+            "value": "Search"
+        },
+        {
+            "name": "no_internet_text",
+            "value": "Check your connection and try again later."
+        },
+        {
+            "name": "search_no_internet_text",
+            "value": "Check your internet connection and try again."
+        },
+        {
+            "name": "search_no_results_found",
+            "value": "No results found that match your query."
+        },
+        {
+            "name": "search_query_hint",
+            "value": "Search books…"
+        },
+        {
+            "name": "show_tutorial_settings_title",
+            "value": "Show Tutorial"
+        },
+        {
+            "name": "show_tutorial_settings_summary",
+            "value": "Display the tutorial for this app"
+        },
+        {
+            "name": "settings_title",
+            "value": "Settings"
+        },
+        {
+            "name": "error_opening_app_rating",
+            "value": "Unable to open app rating link. Please make sure you have an internet browser installed on your device."
+        },
+        {
+            "name": "settings_new_book_notifications_summary",
+            "value": "Subscribe to get notified about new books"
+        },
+        {
+            "name": "settings_new_book_notifications",
+            "value": "New Book Notifications"
+        },
+        {
+            "name": "delete_book",
+            "value": "Delete Book"
+        }
+    ]
+}

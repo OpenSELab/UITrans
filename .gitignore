@@ -163,7 +163,7 @@ cython_debug/
 
 models/embedding/
 tmp/
-demos/
+#demos/
 main.ipynb
 test.py
 back/
