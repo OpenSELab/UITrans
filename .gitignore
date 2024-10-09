@@ -166,6 +166,7 @@ tmp/
 demos/
 main.ipynb
 test.py
+back/
 
 # 自动爬取的文档
 # script/auto_harmony_document/
