@@ -22,10 +22,3 @@ def init_harmony_from_android(android_project_path: str, harmony_project_path: s
         os.path.join(harmony_project_path, "entry", "src", "main", "resources"),
         True
     )
-
-
-if __name__ == '__main__':
-    init_harmony_from_android(
-        r"C:\Users\14514\Desktop\GoGrocery",
-        r"D:\Codes\ArkTS\GoGrocery",
-    )

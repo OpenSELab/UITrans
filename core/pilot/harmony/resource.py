@@ -77,5 +77,6 @@ def load_harmony_resource(harmony_resource_path: str) -> HarmonyResource:
 
 
 if __name__ == "__main__":
-    resource = load_harmony_resource(r"D:\Codes\Python\harmony-pilot\demos\haromny_demos\hmdemo\entry\src\main\resources")
+    resource = load_harmony_resource(
+        r"D:\Codes\Python\harmony-pilot\demos\haromny_demos\hmdemo\entry\src\main\resources")
     print(resource)

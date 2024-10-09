@@ -2,6 +2,7 @@ import os.path
 from typing import Dict, Any
 
 import yaml
+from core.state.global_state import global_state
 from core.config.schema import Config, LLMConfig, PromptTemplateConfig, RAGConfig, LoggerConfig, DBConfig
 from core.prompt.prompt_loader import PromptLoader
 
@@ -70,6 +71,13 @@ class ConfigLoader:
         return _db_config
 
     @classmethod
+    def _init_global_state(cls, config: Dict[str, Any]) -> None:
+        """初始化全局设置"""
+        _global_state = config.get("state", {})
+        global_state.android._data = _global_state.get("android", {})
+        global_state.harmony._data = _global_state.get("harmony", {})
+
+    @classmethod
     def from_file(cls, filepath: str) -> Config:
         """从 yaml 文件中加载环境信息
         :param filepath: yaml 文件路径
@@ -82,6 +90,8 @@ class ConfigLoader:
         _prompt_template_config = cls._init_prompt_template_config(config)
         _rag_config = cls._init_rag_config(config)
         _db_config = cls._init_db_config(config)
+
+        cls._init_global_state(config)
 
         cls.config = Config(
             llm_config=_llms_config,

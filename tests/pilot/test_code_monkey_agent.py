@@ -3,6 +3,7 @@ import unittest
 
 from core.config.config_loader import ConfigLoader
 from core.llms import LLMFactory
+from core.pilot.harmony.resource import load_harmony_resource
 
 os.chdir("../")
 config = ConfigLoader.from_file("./config.yaml")
@@ -15,80 +16,25 @@ llm_client = LLMFactory.create_llm_from_config(llm_client_type="openai",
 from core.pilot.code_monkey import CodeMonkeyAgent
 from core.pilot.schema import BreakdownAndroidLayout
 from core.tools.file_tools import create_file, read_file, list_files
+from core.state.global_state import global_state
+from core.translator import init_harmony_from_android
 
 from core.tools.search_tools import search_component_document
 
 
 class TestCodeMonkeyAgent(unittest.TestCase):
 
-    def test_search_component_document(self):
-        result_document = search_component_document("""
-        如何设置 TextInput 的提示词？
-        """, filter={
-            "component_name": {
-                "$in": ["TextInput"]
-            }
-        })
-        print(result_document)
-
-    def test_solve(self):
-        problem = """实现 安卓布局组件 LinearLayout 作为 login 标题的背景容器。
-# ["LinearLayout", "TextView"]
-用于登录标题的 LinearLayout，内部有一个显示 \"Login\" 的 TextView，背景设置为自定义 drawable。
-<LinearLayout\n    android:id=\"@+id/linearLayout3\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"150sp\"\n    android:background=\"@drawable/background\"\n    android:gravity=\"center\"\n    app:layout_constraintBottom_toBottomOf=\"parent\"\n    app:layout_constraintEnd_toEndOf=\"parent\"\n    app:layout_constraintStart_toStartOf=\"parent\"\n    app:layout_constraintTop_toTopOf=\"parent\"\n    app:layout_constraintVertical_bias=\"0.0\">\n\n    <TextView\n        android:id=\"@+id/textView2\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"Login\"\n        android:textColor=\"@color/partial_transparent\"\n        android:textSize=\"30sp\"\n        android:textStyle=\"bold\" />\n</LinearLayout>
-        """
-        code_monkey_agent = CodeMonkeyAgent(llm_client=llm_client)
-        code_monkey_agent.register_tool(create_file)
-        code_monkey_agent.register_tool(read_file)
-        code_monkey_agent.register_tool(list_files)
-        code_monkey_agent.register_tool(search_component_document)
-        code_monkey_agent.make_plan(problem)
-        """
-```json
-{
-    tasks: [
-        {
-            "type": "tool",
-            "description": "创建字符串资源 title，并将其值设置为 'Hello, World!'"
-            "tool": {
-                "name": "create_string_resource",
-                "parameters": {
-                    "name": "title",
-                    "value": "Hello, World!"
-                }
-            },
-            "explanation": "当前安卓组件中引用字符串资源 title，但鸿蒙项目中不存在字符串资源 title，需要创建一个名为 title 的字符串资源。"
-        },
-        {
-            "type: "tool",
-            "description": "查询 Button 组件的文档，了解如何设置按钮的背景颜色。",
-            "tool": {
-                "name": "search_document",
-                "parameters": {
-                    "query": "Button组件如何设置背景颜色",
-                    "filter": {
-                        "component_name": {
-                            "$in": ["Button"]
-                        }
-                    }
-                }
-            }
-        },
-        {
-            "type": "normal",
-            "description": "将安卓组件 ConstraintLayout 转译为对应的鸿蒙ArkUI组件，并保持布局和样式尽可能一致。",
-            "tool": null,
-            "explanation": "当前安卓组件 ConstraintLayout 需要转译为鸿蒙ArkUI组件，保持布局和样式尽可能一致。"
-        },
-    ]
-}
-```
-        """
-
-    def query_component_document(self):
-        code_monkey_agent = CodeMonkeyAgent(llm_client=llm_client)
+    def test_init_project(self):
+        init_harmony_from_android(
+            global_state.android.get("project_dir"),
+            global_state.harmony.get("project_dir")
+        )
+        resources = load_harmony_resource(global_state.harmony.get("project_dir") + "/entry/src/main/resources")
+        global_state.harmony.set("resources", resources)
 
     def test_translate_component(self):
+        resources = load_harmony_resource(global_state.harmony.get("project_dir") + "/entry/src/main/resources")
+        global_state.harmony.set("resources", resources)
         breakdown_android_layout = BreakdownAndroidLayout.common_parse_raw(r"""
 {
     "tasks": [

@@ -3,6 +3,7 @@ from typing import List, Dict, Any, Coroutine
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import shortuuid
+import torch
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 
@@ -22,14 +23,10 @@ from core.pilot.schema import BreakdownAndroidLayout, TranslateAndroidComponent,
 from core.prompt import PromptLoader
 from core.pilot.harmony.utils import get_harmony_component, get_component_related_types, generate_type_document, \
     generate_component_interface_document
-from core.tools.search_tools import search_component_document
 
 logger = get_logger(name="Code Monkey Agent")
 
-from core.pilot.harmony.resource import load_harmony_resource
-
-resource = load_harmony_resource(r"D:\Code\Harmony\bookdash\entry\src\main\resources")
-
+from core.state.global_state import global_state
 
 class CodeMonkeyAgent(LLMAgent):
     """技术领导智能体
@@ -55,7 +52,7 @@ class CodeMonkeyAgent(LLMAgent):
             persist_directory=ConfigLoader.get_config().rag_config.persist_directory,
             embedding_function=HuggingFaceEmbeddings(
                 model_name=ConfigLoader.get_config().rag_config.embedding.text.model,
-                model_kwargs={"device": "cuda"},
+                model_kwargs={"device": "cuda" if torch.cuda.is_available() else "cpu"},
                 encode_kwargs={"normalize_embeddings": True},
             ),
             collection_metadata={
@@ -114,7 +111,7 @@ class CodeMonkeyAgent(LLMAgent):
             current_task=task,
             harmony_components=get_harmony_component(),
             android_component=task["component"],
-            project_resources=resource
+            project_resources=global_state.harmony.get("resources")
         )
         generate_component_query_messages = self.generate_reply(generate_component_description_prompt,
                                                                       remember=False,
@@ -339,7 +336,7 @@ class CodeMonkeyAgent(LLMAgent):
             current_task=task,
             translations=translations,
             component_document=component_document,
-            project_resources=resource,
+            project_resources=global_state.harmony.get("resources"),
             android_component=task["component"]
         )
         print(translate_android_component_prompt)
@@ -401,7 +398,7 @@ class CodeMonkeyAgent(LLMAgent):
             f"{self.agent_role}/translate_android_component.prompt",
             current_task=task,
             component_document=component_document,
-            project_resources=resource,
+            project_resources=global_state.harmony.get("resources"),
             android_component=task["component"]
         )
         print(generate_harmony_component_prompt)

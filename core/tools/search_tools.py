@@ -1,5 +1,6 @@
 from typing import Annotated, Dict, Any
 
+import torch.cuda
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 
@@ -16,7 +17,7 @@ db_client = Chroma(
     persist_directory=config.rag_config.persist_directory,
     embedding_function=HuggingFaceEmbeddings(
         model_name=config.rag_config.embedding.text.model,
-        model_kwargs={"device": "cuda"},
+        model_kwargs={"device": "cuda" if torch.cuda.is_available() else "cpu"},
         encode_kwargs={"normalize_embeddings": True},
     )
 )
