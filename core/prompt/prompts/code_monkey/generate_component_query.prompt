@@ -1,22 +1,22 @@
 你在一家软件公司工作，你被指派去为将安卓组件转译为鸿蒙ArkUI代码。
 
 {# 任务描述 #}
-# 任务：
-{{ current_task.description }}
+{## 任务：#}
+{#{{ current_task.description }}#}
 
 {% if android_component %}
 待转译的安卓组件如下：
 # {{ android_component.name }}
-{{ android_component.description }}
+{{ android_component.function_description }}
 {{ android_component.content }}
 {% endif %}
 
 实现这个需求可能会使用到某些ArkUI组件。
 {% include "harmony/components.prompt" %}
 
-{% include "partials/resources_list.prompt" %}
+{#{% include "partials/resources_list.prompt" %}#}
 
-在开始任务之前，你需要对待转译的安卓组件进行分析，提取出其中的布局和样式信息。
+在开始任务之前，你需要对待转译的安卓组件进行分析，以便选择合适的ArkUI组件来实现相同的功能。
 然后，你需要从上述ArkUI组件中选择一个或多个组件，使其能够实现上述安卓组件的功能，并保持布局和样式尽可能一致。
 对于无法直接转译的安卓组件，你可以通过组合多个ArkUI组件来实现，一定不能选择不存在的组件。
 在完成选择后，你需要编写一条或多条用于在知识库或RAG系统中检索的查询语句。每条查询应聚焦于不同的功能细节或组件的具体属性，帮助快速、精确地检索到相关的文档、代码示例或实现方法。
@@ -25,5 +25,7 @@
 
 ## 以下是选择组件的额外规则：
 * 规则1：待转译的安卓布局文件中存在属性layout_constraintXXX_toXXXOf，其中XXX为Start、End、Top、Bottom等，你应该额外选择鸿蒙ArkUI的RelativeContainer组件。
+* 规则2：当使用com.google.android.material.appbar.AppBarLayout与androidx.appcompat.widget.Toolbar实现标题栏时，你应该选择Row、Text、Image等组件来实现标题栏，需要注意鸿蒙组件的Toolbar特指底部导航栏而非安卓中的标题栏。
+* 规则3：Scroll组件的子组件通常采用Column或Row组件，你应该根据滚动的方向来选择，当滚动方向为垂直时，应该选择Column组件，当滚动方向为水平时，应该选择Row组件。
 
 {% include "harmony/examples/generate_component_query_example.prompt" %}

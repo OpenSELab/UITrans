@@ -191,38 +191,45 @@ async def init_component_examples():
     """
 
     # 清空表
-    async with SessionManager(config.db_config) as session:
-        await session.execute(delete(HarmonyComponentExample))
-        await session.commit()
+    # async with SessionManager(config.db_config) as session:
+    #     await session.execute(delete(HarmonyComponentExample))
+    #     await session.commit()
+
+    async def add_example(component_example_code, component_example_description) -> Document:
+        component_example_entity = HarmonyComponentExample(
+            api_version="12",
+            component_name=component_name,
+            description=component_example_description,
+            code=component_example_code
+        )
+        async with SessionManager(config.db_config) as session:
+            session.add(component_example_entity)
+            await session.commit()
+        return Document(
+            page_content=component_example_description,
+            metadata={"source": "harmony-component-example-doc", "component_name": component_name,
+                      "table_id": component_example_entity.id},
+        )
 
     documents = []
     with open("script/initialize_database/components.json", "r", encoding="utf-8") as f:
         harmony_components = json.loads(f.read())
 
-    for component_name, component_schema in harmony_components.items():
-        if "examples" in component_schema and component_schema["examples"]:
-            for example in component_schema["examples"]:
-                if not isinstance(example, dict):
-                    print(f"组件{component_name}示例格式错误")
-                    continue
-                component_example_description = example["description"]
-                component_example_code = example["code"]
-                component_example_entity = HarmonyComponentExample(
-                    api_version="12",
-                    component_name=component_name,
-                    description=component_example_description,
-                    code=component_example_code
-                )
-                async with SessionManager(config.db_config) as session:
-                    session.add(component_example_entity)
-                    await session.commit()
-                documents.append(Document(
-                    page_content=component_example_description,
-                    metadata={"source": "harmony-component-example-doc", "component_name": component_name,
-                              "table_id": component_example_entity.id},
-                ))
-        else:
-            print(f"组件{component_name}没有不存在示例")
+    # for component_name, component_schema in harmony_components.items():
+    #     if "examples" in component_schema and component_schema["examples"]:
+    #         for example in component_schema["examples"]:
+    #             if not isinstance(example, dict):
+    #                 print(f"组件{component_name}示例格式错误")
+    #                 continue
+    #             component_example_description = example["description"]
+    #             component_example_code = example["code"]
+    #             documents.append(await add_example(component_example_code, component_example_description))
+    #     else:
+    #         print(f"组件{component_name}没有不存在示例")
+    from component_examples import examples
+    for component_name, component_examples in examples.items():
+        for example in component_examples:
+            documents.append(await add_example(example["code"], example["description"]))
     db_client.add_documents(documents)
 
 
@@ -232,9 +239,9 @@ async def main():
     # 初始化转译表
     await init_translation_table()
     # 初始化组件示例库
-    # init_component_rag_database()
+    init_component_rag_database()
     # 初始化示例库
-    # await init_component_examples()
+    await init_component_examples()
 
 
-asyncio.run(main())
+asyncio.run(init_component_examples())

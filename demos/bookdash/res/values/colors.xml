@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- app模块 -->
 <resources>
     <color name="colorAccentPressed">#6a8BC34A</color>
     <color name="colorAccentFocused">#968BC34A</color>
@@ -28,12 +27,4 @@
     <color name="download_button_tint">#616161</color>
     <color name="gray_ripple_pressed">#e0e0e0</color>
     <color name="gray_ripple_focused">#e0e0e0</color>
-
-    <color name="tutorial_buttonTextColor">#ffffff</color>
-    <color name="tutorial_subtitleTextColor">#ffffff</color>
-    <color name="tutorial_titleTextColor">#ffffff</color>
-
-    <color name="default_circle_indicator_fill_color">#FFFFFFFF</color>
-    <color name="default_circle_indicator_page_color">#00000000</color>
-    <color name="default_circle_indicator_stroke_color">#FFDDDDDD</color>
 </resources>

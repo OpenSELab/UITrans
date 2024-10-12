@@ -15,12 +15,14 @@ ANDROID_RESOURCE_VALUES_TAG_MAP = {
     "strings": "string",
     "colors": "color",
     "dimens": "dimen",
+    "integers": "integer"
 }
 
 ANDROID_HARMONY_RESOURCE_MAP = {
     "strings": "string",
     "colors": "color",
     "dimens": "float",
+    "integers": "integer"
 }
 
 ANDROID_HARMONY_RESOURCE_QUALIFIER_MAP = {
@@ -249,6 +251,7 @@ def translate_android_drawable_xml_to_harmony_svg(android_vector_drawable_xml_pa
         elif gradient_type == "sweep":
             raise ValueError("Sweep gradient is not compatible by SVG")
         else:
+            # logger.error(f"Unsupported gradient type: {gradient_type}")
             raise ValueError(f"Unsupported gradient type: {gradient_type}")
 
         svg_gradient.set('gradientUnits', 'userSpaceOnUse')
@@ -658,6 +661,8 @@ def translate_android_resource_values_to_harmony(
             elif harmony_resource_values_tag == "float":
                 # 将安卓单位转换为鸿蒙单位
                 value = translate_android_pixel_to_harmony_pixel(value)
+            elif harmony_resource_values_tag == "integer":
+                value = int(value)
             else:
                 raise AssertionError(f"Android resource file `{android_resource_values_filename}` is not supported")
             # TODO：解决键值对冲突
@@ -748,12 +753,15 @@ def translate_android_resource_to_harmony(android_resource_path, harmony_resourc
                     origin_resource_file = os.path.join(android_resource_path, resource_dir, resource_file)
                     harmony_resource_file = os.path.join(_harmony_resource_base_dir,
                                                          resource_file.replace("xml", "svg"))
-                    # 避免文件名冲突
-                    harmony_resource_file = rename_filepath(harmony_resource_file, overwrite)
-                    translate_android_drawable_xml_to_harmony_svg(
-                        origin_resource_file,
-                        harmony_resource_file
-                    )
+                    try:
+                        # 避免文件名冲突
+                        harmony_resource_file = rename_filepath(harmony_resource_file, overwrite)
+                        translate_android_drawable_xml_to_harmony_svg(
+                            origin_resource_file,
+                            harmony_resource_file
+                        )
+                    except Exception as e:
+                        logger.error(f"Failed to translate {origin_resource_file} to {harmony_resource_file}: {e}")
         elif resource_dir.startswith("mipmap"):
             # TODO: 支持 mipmap 格式的资源
             # 启动图标, 目前使用默认图标

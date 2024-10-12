@@ -1,5 +1,6 @@
 import asyncio
-from typing import List, Dict, Any, Coroutine
+import re
+from typing import List, Dict, Any, Coroutine, Tuple
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import shortuuid
@@ -9,7 +10,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 from sqlalchemy import select
 
-from core.agents.schema import AgentTasks
+from core.agents.schema import AgentTask
 from core.config.config_loader import ConfigLoader
 from core.db.model.harmony import HarmonyComponentExample
 from core.db.model.translation import TranslationTable
@@ -19,14 +20,62 @@ from core.logger.runtime import get_logger
 from core.agents.llm_agent import LLMAgent
 from core.pilot.retrieve_agent import RetrieveAgent
 from core.pilot.schema import BreakdownAndroidLayout, TranslateAndroidComponent, ChooseComponent, Translation, \
-    GenerateComponentQuery
+    GenerateComponentQuery, GenerateComponentDescription
 from core.prompt import PromptLoader
 from core.pilot.harmony.utils import get_harmony_component, get_component_related_types, generate_type_document, \
     generate_component_interface_document
+from core.state.schema import State
+from core.state.global_state import global_state
 
 logger = get_logger(name="Code Monkey Agent")
 
-from core.state.global_state import global_state
+
+def correct_wrap_content(harmony_component_code: str) -> str:
+    wrap_content_pattern = r"\.(width|height)\('wrap_content'\)"
+    return re.sub(wrap_content_pattern, lambda mat: f".{mat.group(1)}('auto')", harmony_component_code)
+
+
+def correct_match_parent(harmony_component_code: str) -> str:
+    match_parent_pattern = r"\.(width|height)\('match_parent'\)"
+    return re.sub(match_parent_pattern, lambda mat: f".{mat.group(1)}('100%')", harmony_component_code)
+
+
+def correct_text_selectable(harmony_component_code: str) -> str:
+    text_selectable_pattern = r"\.textSelectable\(([\s\S]*?)\)"
+    text_selectable_match = re.search(text_selectable_pattern, harmony_component_code)
+    if text_selectable_match:
+        text_selectable_match_text = text_selectable_match.group(1)
+        if text_selectable_match_text == "true":
+            return re.sub(text_selectable_pattern,
+                          lambda mat: f".textSelectable(TextSelectableMode.SELECTABLE_FOCUSABLE)",
+                          harmony_component_code)
+        elif text_selectable_match_text == "false":
+            return re.sub(text_selectable_pattern, lambda mat: f".textSelectable(TextSelectableMode.UNSELECTABLE)",
+                          harmony_component_code)
+        else:
+            return harmony_component_code
+    return harmony_component_code
+
+
+def correct_margin_and_padding(harmony_component_code: str) -> str:
+    margin_padding_pattern = r"\.(margin|padding)\(\{([\s\S]*?)\}\)"
+    margin_padding_match = re.search(margin_padding_pattern, harmony_component_code, re.MULTILINE)
+    if margin_padding_match:
+        attr_name = margin_padding_match.group(1)
+        margin_padding_match_text = margin_padding_match.group(2)
+        margin_padding_match_text = margin_padding_match_text.replace("start:", "left:").replace("end:", "right:")
+        return re.sub(margin_padding_pattern, f".{attr_name}({{{margin_padding_match_text}}})", harmony_component_code)
+    return harmony_component_code
+
+def correct_line_spacing(harmony_component_code: str) -> str:
+    line_spacing_pattern = r"\.lineSpacing\(([\s\S]*?)\)"
+    line_spacing_match = re.search(line_spacing_pattern, harmony_component_code)
+    if line_spacing_match:
+        line_spacing_value = line_spacing_match.group(1).strip("'").rstrip('vp').rstrip('fp').rstrip('dp').rstrip('sp')
+        line_spacing_value = f"LengthMetrics.vp({line_spacing_value})"
+        return re.sub(line_spacing_pattern, f".lineSpacing({line_spacing_value})", harmony_component_code)
+    return harmony_component_code
+
 
 class CodeMonkeyAgent(LLMAgent):
     """技术领导智能体
@@ -62,35 +111,21 @@ class CodeMonkeyAgent(LLMAgent):
             }
         )
         self.retrieve_agent = RetrieveAgent(db_client=self.component_db_client, llm_client=llm_client)
+        # Agent 执行的所有任务，task_id: 任务细节
+        self.agent_state = State()
+        self.tasks: List[AgentTask] = []
 
-    def make_plan(self, requirement: str, interactive: bool = False, **kwargs) -> AgentTasks:
-        """制定计划
-
-        Args:
-            requirement (str): 需求
-            interactive (bool): 是否支持交互式
-
-        Jinja2 Variables:
-            requirement (dict): 需求
-            tools (list): 工具列表
-            project_files (list): 项目文件列表
-            is_file_content (bool): 是否显示文件内容，默认为空
-            project_resources (dict): 项目资源列表
-            is_resource_content (bool): 是否显示资源内容，默认为空
-        """
-        ...
-
-    def query_component_document(self, task: Dict[str, Any]) -> Dict[str, Any]:
+    def _query_component_document(self, android_component: Dict[str, Any], parent_agent_task: AgentTask) -> Dict[
+        str, Any]:
         """查询组件文档
 
         Args:
-            task (Dict[str]): 任务
-                - done (bool): 任务是否完成
-                - description (str): 任务描述
-                - component (Dict[str]): 安卓组件
-                    - name (List[str]): 组件名称
-                    - content (str): 组件内容
-                    - description (str): 组件描述
+            android_component (Dict[str]): 安卓组件
+                - name (List[str]): 组件名称
+                - content (str): 组件内容
+                - layout_description (str): 组件描述
+                - function_description (str): 功能描述
+            parent_agent_task (AgentTask): 父任务
 
         Returns:
             Dict[str, Any]: 组件文档及查询
@@ -105,19 +140,31 @@ class CodeMonkeyAgent(LLMAgent):
             project_resources (Dict[str, Any]): 项目资源
             is_resource_content (bool): 是否显示资源内容，默认为空
         """
-        # 1. 生成查询描述
-        generate_component_description_prompt = PromptLoader.get_prompt(
-            f"{self.agent_role}/generate_component_query.prompt",
-            current_task=task,
-            harmony_components=get_harmony_component(),
-            android_component=task["component"],
-            project_resources=global_state.harmony.get("resources")
+        agent_task = AgentTask(
+            description="查询组件文档",
+            details={"android_component": android_component},
+            subtasks=[]
         )
-        generate_component_query_messages = self.generate_reply(generate_component_description_prompt,
-                                                                      remember=False,
-                                                                      model_schema=GenerateComponentQuery)
+        parent_agent_task.subtasks.append(agent_task)
+        # 1. 生成查询描述
+        generate_component_query_prompt = PromptLoader.get_prompt(
+            f"{self.agent_role}/generate_component_query.prompt",
+            harmony_components=get_harmony_component(),
+            android_component=android_component
+        )
+        generate_component_query_messages = self.generate_reply(generate_component_query_prompt,
+                                                                remember=False,
+                                                                model_schema=GenerateComponentQuery)
         component_query = GenerateComponentQuery.common_parse_raw(
             generate_component_query_messages[-1]["content"])
+        generate_component_query_agent_task = AgentTask(
+            description="生成组件查询",
+            details={
+                "prompt": generate_component_query_prompt,
+                "component_query": component_query.model_dump(),
+            }
+        )
+        agent_task.subtasks.append(generate_component_query_agent_task)
         # 2. 修正查询描述
         # 2.1 修正组件名称，去掉不存在的组件
         temp_components = []
@@ -132,11 +179,19 @@ class CodeMonkeyAgent(LLMAgent):
             if query.component in all_harmony_components:
                 temp_queries.append(query)
         component_query.queries = temp_queries
+        correct_component_query_agent_task = AgentTask(
+            description="修正组件查询",
+            details={
+                "component_query": component_query.model_dump(),
+                "corrected_component_query": component_query.model_dump()
+            }
+        )
+        agent_task.subtasks.append(correct_component_query_agent_task)
         # 3. 查询知识库
         # 3.1 查询示例文档
         example_threshold = 0.6
         example_results = self.component_db_client.similarity_search_with_relevance_scores(
-            query=task["component"]["description"],
+            query=android_component["function_description"],
             k=3,
             filter={
                 "$and": [
@@ -151,6 +206,10 @@ class CodeMonkeyAgent(LLMAgent):
                         }
                     }
                 ]
+            } if len(component_query.components) > 0 else {
+                "source": {
+                    "$eq": "harmony-component-example-doc"
+                }
             },
             score_threshold=example_threshold
         )
@@ -177,9 +236,31 @@ class CodeMonkeyAgent(LLMAgent):
                 "description": example_description,
                 "code": example_code
             })
+        query_examples_agent_task = AgentTask(
+            description="查询示例文档",
+            details={
+                "query": android_component["function_description"],
+                "k": 3,
+                "component_name": component_query.components,
+                "score_threshold": example_threshold,
+                "example_knowledge_results": example_results,
+                "component_examples": component_examples
+            }
+        )
+        agent_task.subtasks.append(query_examples_agent_task)
         # 3.2 查询组件文档
         # 组件：查询文档
         # chroma 原生支持多个查询，langchain 不支持
+        query_component_document_agent_task = AgentTask(
+            description="查询组件文档",
+            subtasks=[]
+        )
+        agent_task.subtasks.append(query_component_document_agent_task)
+        query_component_document_iter_agent_task = AgentTask(
+            description="依次从知识库中查询每个组件的相关属性、事件文档",
+            subtasks=[]
+        )
+        query_component_document_agent_task.subtasks.append(query_component_document_iter_agent_task)
         total_query_results = {}
         for query in component_query.queries:
             query_results = self.component_db_client._collection.query(
@@ -200,14 +281,29 @@ class CodeMonkeyAgent(LLMAgent):
                     ]
                 }
             )
+            query_component_document_iter_item_agent_task = AgentTask(
+                description=f"查询组件{query.component}的相关属性、事件文档",
+                details={
+                    "query": query.queries,
+                    "n_results": 10,
+                    "query_results": query_results
+                }
+            )
+            query_component_document_iter_agent_task.subtasks.append(query_component_document_iter_item_agent_task)
             # 3.2.1 解析查询结果
             # 舍弃低于阈值的结果，当前阈值为0.67
+            query_component_document_filter_agent_task = AgentTask(
+                description="过滤低于阈值的查询结果",
+                subtasks=[]
+            )
+            query_component_document_agent_task.subtasks.append(query_component_document_filter_agent_task)
             threshold = 0.6
             temp_existed_ids = []
             for query_text, result_ids, result_documents, result_metadatas, result_distances in zip(
                     query.queries, query_results["ids"], query_results["documents"], query_results["metadatas"],
                     query_results["distances"]
             ):
+                query_text_results = []
                 for result_id, result_document, result_metadata, result_distance in zip(result_ids, result_documents,
                                                                                         result_metadatas,
                                                                                         result_distances):
@@ -221,6 +317,22 @@ class CodeMonkeyAgent(LLMAgent):
                         continue
                     total_query_results[query.component].append((result_document, result_metadata, result_distance))
                     temp_existed_ids.append(result_id)
+                    query_text_results.append((result_document, result_metadata, result_distance))
+                query_component_document_filter_item_agent_task = AgentTask(
+                    description=f"过滤低于阈值的查询结果: {query_text}",
+                    details={
+                        "query": query_text,
+                        "result_ids": result_ids,
+                        "result_documents": result_documents,
+                        "result_metadatas": result_metadatas,
+                        "result_distances": result_distances,
+                        "threshold": threshold,
+                        "query_text_results": query_text_results
+                    }
+                )
+                query_component_document_filter_agent_task.subtasks.append(
+                    query_component_document_filter_item_agent_task)
+
         # 3.3 生成组件文档
         component_documents = []
         related_types = {}
@@ -243,18 +355,35 @@ class CodeMonkeyAgent(LLMAgent):
             temp_related_types = get_component_related_types(component_name,
                                                              attributes_and_events=temp_existed_attributes_and_events)
             related_types.update(temp_related_types)
+        generate_component_document_agent_task = AgentTask(
+            description="生成组件文档",
+            details={
+                "component_documents": component_documents,
+                "related_types": related_types
+            }
+        )
+        agent_task.subtasks.append(generate_component_document_agent_task)
         # 3.4 生成类型文档
         type_documents = []
         for type_name, type_schema in related_types.items():
             type_documents.append(
                 generate_type_document(type_name, type_schema)
             )
+        generate_type_document_agent_task = AgentTask(
+            description="生成类型文档",
+            details={
+                "type_documents": type_documents
+            }
+        )
+        agent_task.subtasks.append(generate_type_document_agent_task)
         # 3.5 组合成最终组件文档
         final_component_document = "\n".join(type_documents + component_documents)
         return {
             "document": final_component_document,
+            "component_document": get_harmony_component(component_query.components),
             "queries": total_query_results,
-            "components": component_query.components
+            "components": component_query.components,
+            "idea": component_query.idea
         }
 
     async def _query_translations_from_db(self, component: Dict[str, Any]) -> List[TranslationTable]:
@@ -297,11 +426,42 @@ class CodeMonkeyAgent(LLMAgent):
             return []
         return translations
 
-    def _translate_component(self, task: Dict[str, Any], translations: List[TranslationTable]) -> Translation:
+    def _generate_component_description(self, component: Dict[str, Any], parent_agent_task: AgentTask) -> GenerateComponentDescription:
+        """生成组件描述
+
+        Args:
+            component (Dict[str]): 安卓组件
+                - name (List[str]): 组件名称
+                - content (str): 组件内容
+                - description (str): 组件描述
+            parent_agent_task (AgentTask): 父任务
+        """
+        generate_component_description_prompt = PromptLoader.get_prompt(
+            f"{self.agent_role}/generate_component_description.prompt",
+            android_component=component
+        )
+        generate_component_description_messages = self.generate_reply(generate_component_description_prompt,
+                                                                      remember=False, model_schema=GenerateComponentDescription)
+        generate_component_description_response = generate_component_description_messages[-1]["content"].replace(
+            "TERMINATE", "")
+        generate_component_description = GenerateComponentDescription.common_parse_raw(
+            generate_component_description_response)
+        agent_task = AgentTask(
+            description="生成组件描述",
+            details={
+                "prompt": generate_component_description_prompt,
+                "component_description": generate_component_description
+            }
+        )
+        parent_agent_task.subtasks.append(agent_task)
+        return generate_component_description
+
+    def _translate_component(self, translation_task: Dict[str, Any], translations: List[TranslationTable],
+                             parent_agent_task: AgentTask = None) -> Translation:
         """根据转译表转译组件
 
         Args:
-            - task (Dict[str]): 任务
+            - translation_task (Dict[str]): 任务
                 - done (bool): 任务是否完成
                 - description (str): 任务描述
                 - component (Dict[str]): 安卓组件
@@ -319,38 +479,40 @@ class CodeMonkeyAgent(LLMAgent):
             project_resources (dict): 项目资源
             android_component (str): 待转译的Android组件
         """
+        agent_task = AgentTask(
+            description="根据转译表转译组件",
+            subtasks=[]
+        )
+        parent_agent_task.subtasks.append(agent_task)
         # 1. 查询组件文档
-        query_component_document = self.query_component_document(task)
+        query_component_document = self._query_component_document(translation_task, agent_task)
         component_document = query_component_document["document"]
         related_harmony_components = query_component_document["components"]
         # 2. 转译组件
-        task["component"]["description"] = """
-        该组件通过卡片布局实现了一个展示Logo的界面。卡片的宽度占据整个父布局，高度根据内容自适应，内边距为 16 单位，边角圆度为 8 单位。卡片内部包含一个线性布局，该布局的宽度占据整个卡片，高度根据内容自适应，内边距为 8 单位，方向为垂直排列。
-
-在卡片内部的线性布局中，包含一个图像视图用于展示Logo。图像视图的宽度根据内容自适应，高度固定为 200 单位，横向和纵向均居中对齐。图像视图的上下左右边距均为 8 单位。图像视图展示的图片资源为 bookdash_logo。
-
-整个布局通过卡片布局和线性布局的嵌套关系，确保Logo在卡片中居中展示，卡片与父布局之间有一定的边距，使得界面整洁美观。
-        """
+        # 2.1 生成详细描述
+        translation_task["component"]["description"] = self._generate_component_description(
+            translation_task["component"], agent_task)
         translate_android_component_prompt = PromptLoader.get_prompt(
             f"{self.agent_role}/translate_android_component.prompt",
-            current_task=task,
+            current_task=translation_task,
             translations=translations,
             component_document=component_document,
+            harmony_components=query_component_document["component_document"],
             project_resources=global_state.harmony.get("resources"),
-            android_component=task["component"]
+            android_component=translation_task["component"]
         )
-        print(translate_android_component_prompt)
+        # print(translate_android_component_prompt)
         translate_component_messages = self.generate_reply(translate_android_component_prompt, remember=False,
-                                       model_schema=TranslateAndroidComponent)
-        print(translate_component_messages[-1]["content"])
+                                                           model_schema=TranslateAndroidComponent)
+        # print(translate_component_messages[-1]["content"])
         # translate_android_component = TranslateAndroidComponent.common_parse_raw(translate_component_messages[-1]["content"])
         # print(translate_android_component.harmony_component)
         # print(translate_android_component.harmony_component_description)
         # print(translate_android_component.explanation)
         # 3. 检查转译结果
-        check_component_prompt = PromptLoader.get_prompt(
-            f"{self.agent_role}/check_translate_component.prompt",
-        )
+        # check_component_prompt = PromptLoader.get_prompt(
+        #     f"{self.agent_role}/check_translate_component.prompt",
+        # )
         # check_messages = translate_component_messages + [{
         #     "role": "user",
         #     "content": check_component_prompt
@@ -359,25 +521,36 @@ class CodeMonkeyAgent(LLMAgent):
         # print(checked_translate_component_messages[-1]["content"])
         # TODO: 完善Check
         checked_translate_component_messages = translate_component_messages
-        translate_android_component = TranslateAndroidComponent.common_parse_raw(checked_translate_component_messages[-1]["content"])
-        print(translate_android_component.harmony_component)
+        translate_android_component = TranslateAndroidComponent.common_parse_raw(
+            checked_translate_component_messages[-1]["content"])
+        translate_component_agent_task = AgentTask(
+            description="转译组件",
+            details={
+                "prompt": translate_android_component_prompt,
+                "translated_component": translate_android_component.model_dump()
+            }
+        )
+        agent_task.subtasks.append(translate_component_agent_task)
+        translate_android_component.harmony_component = self.postprocess_harmony_component_code(
+            translate_android_component.harmony_component, agent_task)
+        # print(translate_android_component.harmony_component)
         # print(translate_android_component.harmony_component_description)
-        print(translate_android_component.explanation)
+        # print(translate_android_component.explanation)
         translation = Translation(
-            description=task["description"],
+            description=translation_task["description"],
             source_language="android",
-            source_component=task["component"]["name"][0],
-            source_component_code=task["component"]["content"],
-            source_component_description=task["component"]["description"],
+            source_component=translation_task["component"]["name"][0],
+            source_component_code=translation_task["component"]["content"],
+            source_component_description=translation_task["component"]["description"],
             target_language="harmony",
             target_component=list(related_harmony_components),
             target_component_code=translate_android_component.harmony_component,
-            target_component_description=translate_android_component.harmony_component_description,
+            target_component_description=translation_task["component"]["description"],
             explanation=translate_android_component.explanation
         )
         return translation
 
-    def _generate_component(self, task: Dict[str, Any]) -> Translation:
+    def _generate_component(self, translation_task: Dict[str, Any], parent_agent_task: AgentTask) -> Translation:
         """根据安卓组件及鸿蒙文档生成对应组件
 
         Args:
@@ -389,22 +562,31 @@ class CodeMonkeyAgent(LLMAgent):
                     - content (str): 组件内容
                     - description (str): 组件描述
         """
+        agent_task = AgentTask(
+            description="根据转译表转译组件",
+            subtasks=[]
+        )
+        parent_agent_task.subtasks.append(agent_task)
         # 1. 查询组件文档
-        query_component_document = self.query_component_document(task)
+        query_component_document = self._query_component_document(translation_task, agent_task)
         component_document = query_component_document["document"]
         related_components = query_component_document["components"]
         # 2. 根据组件文档生成鸿蒙代码
+        translation_task["component"]["description"] = self._generate_component_description(
+            translation_task["component"], agent_task)
         generate_harmony_component_prompt = PromptLoader.get_prompt(
             f"{self.agent_role}/translate_android_component.prompt",
-            current_task=task,
+            current_task=translation_task,
             component_document=component_document,
+            harmony_components=query_component_document["component_document"],
             project_resources=global_state.harmony.get("resources"),
-            android_component=task["component"]
+            android_component=translation_task["component"],
+            related_harmony_component=related_components
         )
-        print(generate_harmony_component_prompt)
+        # print(generate_harmony_component_prompt)
         generate_harmony_component_messages = self.generate_reply(generate_harmony_component_prompt, remember=False,
                                                                   model_schema=TranslateAndroidComponent)
-        print(generate_harmony_component_messages[-1]["content"])
+        # print(generate_harmony_component_messages[-1]["content"])
         # 3. 检查生成结果
         # check_messages = generate_harmony_component_messages + [{
         #     "role": "user",
@@ -415,27 +597,65 @@ class CodeMonkeyAgent(LLMAgent):
         checked_generate_harmony_component_messages = generate_harmony_component_messages
         translate_android_component = TranslateAndroidComponent.common_parse_raw(
             checked_generate_harmony_component_messages[-1]["content"])
-        print(translate_android_component.harmony_component)
+        generate_harmony_component_agent_task = AgentTask(
+            description="生成鸿蒙组件",
+            details={
+                "prompt": generate_harmony_component_prompt,
+                "generated_component": translate_android_component.model_dump()
+            }
+        )
+        agent_task.subtasks.append(generate_harmony_component_agent_task)
+        translate_android_component.harmony_component = self.postprocess_harmony_component_code(
+            translate_android_component.harmony_component, agent_task)
+        # print(translate_android_component.harmony_component)
         translation = Translation(
-            description=task["description"],
+            description=translation_task["description"],
             source_language="android",
-            source_component=task["component"]["name"][0],
-            source_component_code=task["component"]["content"],
-            source_component_description=task["component"]["description"],
+            source_component=translation_task["component"]["name"][0],
+            source_component_code=translation_task["component"]["content"],
+            source_component_description=translation_task["component"]["description"],
             target_language="harmony",
             target_component=related_components,
             target_component_code=translate_android_component.harmony_component,
-            target_component_description=translate_android_component.harmony_component_description,
+            target_component_description=translation_task["component"]["description"],
             explanation=translate_android_component.explanation
         )
         return translation
 
-    def translate_component(self, breakdown_android_layout: BreakdownAndroidLayout) -> List[Translation]:
+    def postprocess_harmony_component_code(self, harmony_component_code: str, parent_agent_task: AgentTask) -> str:
+        # 高度、宽度随父组件及自适应
+        harmony_component_code = correct_match_parent(harmony_component_code)
+        harmony_component_code = correct_wrap_content(harmony_component_code)
+        # 文本可选
+        harmony_component_code = correct_text_selectable(harmony_component_code)
+        # 间距
+        harmony_component_code = correct_margin_and_padding(harmony_component_code)
+        # 行间距
+        harmony_component_code = correct_line_spacing(harmony_component_code)
+        agent_task = AgentTask(
+            description="后处理鸿蒙组件代码",
+            details={
+                "harmony_component_code": harmony_component_code
+            }
+        )
+        parent_agent_task.subtasks.append(agent_task)
+        return harmony_component_code
+
+    def translate_component(self, breakdown_android_layout: BreakdownAndroidLayout) -> Tuple[
+        List[Translation], AgentTask]:
         """根据转译表转译安卓布局组件
 
         Args:
             - breakdown_android_layout (BreakdownAndroidLayout): 任务列表
         """
+
+        agent_task = AgentTask(
+            description="转译安卓布局组件",
+            details={
+                "breakdown_android_layout": breakdown_android_layout.model_dump()
+            }
+        )
+        self.tasks.append(agent_task)
 
         # 异步查询所有组件的转译表
         async def async_query_translations():
@@ -455,16 +675,26 @@ class CodeMonkeyAgent(LLMAgent):
         #     translate_component_tasks = {}
         #     for index, (task, translation) in enumerate(zip(breakdown_android_layout.tasks, translations)):
         #         if len(translation) == 0:
-        #             future = executor.submit(self._generate_component, task.model_dump())
+        #             future = executor.submit(self._generate_component(task.model_dump(), agent_task))
         #         else:
-        #             future = executor.submit(self._translate_component, task.model_dump(), translation)
+        #             future = executor.submit(self._translate_component(task.model_dump(), translation, agent_task))
         #         translate_component_tasks[future] = index
         #
         #     # 等待所有转译任务完成
         #     translate_component_results = []
         #     for future in as_completed(translate_component_tasks):
-        #         translate_component_results.append((translate_component_tasks[future], future.result()))
-        # return [result[1] for result in sorted(translate_component_results, key=lambda x: x[0])]
+        #         try:
+        #             translation, sub_agent_task = future.result()
+        #             agent_task.subtasks.append(sub_agent_task)
+        #             translate_component_results.append((translate_component_tasks[future], translation))
+        #         except Exception as e:
+        #             logger.error(f"Failed to translate component: {e}")
+        #             continue
+        # translate_android_components = []
+        # for result in sorted(translate_component_results, key=lambda x: x[0]):
+        #     translate_android_components.append(result[1])
+        # agent_task.details["translated_android_components"] = translate_android_components
+        # return translate_android_components, agent_task
 
         # 异步转译所有组件
         # async def async_translate_components():
@@ -482,15 +712,203 @@ class CodeMonkeyAgent(LLMAgent):
         translate_android_components = []
         for index, (task, translation) in enumerate(zip(breakdown_android_layout.tasks, translations)):
             if len(translation) == 0:
-                translate_android_components.append(self._generate_component(task.model_dump()))
+                translate_android_components.append(self._generate_component(task.model_dump(), agent_task))
             else:
-                translate_android_components.append(self._translate_component(task.model_dump(), translation))
-        return translate_android_components
+                translate_android_components.append(
+                    self._translate_component(task.model_dump(), translation, agent_task))
+        agent_task.details["translated_android_components"] = translate_android_components
+        return translate_android_components, agent_task
+
+    def _translate_component_v1(self, all_translation_tasks, translation_task: Dict[str, Any], translations: List[TranslationTable], parent_agent_task: AgentTask = None) -> Translation:
+        """根据转译表转译组件
+
+        Args:
+            translation_task (Dict[str]): 任务
+                - done (bool): 任务是否完成
+                - description (str): 任务描述
+                - component (Dict[str]): 安卓组件
+                    - name (List[str]): 组件名称
+                    - content (str): 组件内容
+                    - description (str): 组件描述
+            translations (List[TranslationTable]): 转译表
+        """
+        agent_task = AgentTask(
+            description="根据转译表转译组件v1",
+            subtasks=[]
+        )
+        parent_agent_task.subtasks.append(agent_task)
+        # 1. 生成组件描述, 包括组件样式布局描述和功能描述
+        generate_component_description = self._generate_component_description(translation_task["component"], agent_task)
+        translation_task["component"]["layout_description"] = generate_component_description.layout_description
+        translation_task["component"]["function_description"] = generate_component_description.function_description
+        # 2. 查询组件文档
+        query_component_document = self._query_component_document(translation_task["component"], agent_task)
+        translate_android_component_prompt = PromptLoader.get_prompt(
+            f"{self.agent_role}/translate_android_component.prompt",
+            tasks=all_translation_tasks,
+            current_task=translation_task,
+            translations=translations,
+            component_document=query_component_document["document"],
+            harmony_components=query_component_document["component_document"],
+            project_resources=global_state.harmony.get("resources"),
+            android_component=translation_task["component"],
+            idea=query_component_document["idea"]
+        )
+        # print(translate_android_component_prompt)
+        translate_component_messages = self.generate_reply(translate_android_component_prompt, remember=False,
+                                                           model_schema=TranslateAndroidComponent)
+        translate_android_component = TranslateAndroidComponent.common_parse_raw(translate_component_messages[-1]["content"])
+        translate_android_component_agent_task = AgentTask(
+            description="转译组件v1",
+            details={
+                "prompt": translate_android_component_prompt,
+                "translated_component": translate_android_component.model_dump()
+            }
+        )
+        agent_task.subtasks.append(translate_android_component_agent_task)
+        translate_android_component.harmony_component = self.postprocess_harmony_component_code(
+            translate_android_component.harmony_component, agent_task)
+        translation = Translation(
+            description=translation_task["description"],
+            source_language="android",
+            source_component=translation_task["component"]["name"][0],
+            source_component_code=translation_task["component"]["content"],
+            source_component_description=translation_task["component"]["layout_description"],
+            target_language="harmony",
+            target_component=list(query_component_document["components"]),
+            target_component_code=translate_android_component.harmony_component,
+            target_component_description=translation_task["component"]["layout_description"],
+            explanation=translate_android_component.explanation
+        )
+        return translation
+
+    def _generate_component_v1(self, all_translation_tasks, translation_task: Dict[str, Any], parent_agent_task: AgentTask) -> Translation:
+        """根据安卓组件及鸿蒙文档生成对应组件
+
+        Args:
+            task (Dict[str]): 任务
+                - done (bool): 任务是否完成
+                - description (str): 任务描述
+                - component (Dict[str]): 安卓组件
+                    - name (List[str]): 组件名称
+                    - content (str): 组件内容
+                    - description (str): 组件描述
+        """
+        agent_task = AgentTask(
+            description="根据转译表转译组件v1",
+            subtasks=[]
+        )
+        parent_agent_task.subtasks.append(agent_task)
+        # 1. 生成组件描述, 包括组件样式布局描述和功能描述
+        generate_component_description = self._generate_component_description(translation_task["component"], agent_task)
+        translation_task["component"]["layout_description"] = generate_component_description.layout_description
+        translation_task["component"]["function_description"] = generate_component_description.function_description
+        # 2. 查询组件文档
+        query_component_document = self._query_component_document(translation_task["component"], agent_task)
+        generate_harmony_component_prompt = PromptLoader.get_prompt(
+            f"{self.agent_role}/translate_android_component.prompt",
+            tasks=all_translation_tasks,
+            current_task=translation_task,
+            component_document=query_component_document["document"],
+            harmony_components=query_component_document["component_document"],
+            project_resources=global_state.harmony.get("resources"),
+            android_component=translation_task["component"],
+            idea=query_component_document["idea"]
+        )
+        # print(generate_harmony_component_prompt)
+        generate_harmony_component_messages = self.generate_reply(generate_harmony_component_prompt, remember=False,
+                                                                  model_schema=TranslateAndroidComponent)
+        # print(generate_harmony_component_messages[-1]["content"])
+        translate_android_component = TranslateAndroidComponent.common_parse_raw(
+            generate_harmony_component_messages[-1]["content"])
+        translate_android_component.harmony_component = self.postprocess_harmony_component_code(
+            translate_android_component.harmony_component, agent_task)
+        translation = Translation(
+            description=translation_task["description"],
+            source_language="android",
+            source_component=translation_task["component"]["name"][0],
+            source_component_code=translation_task["component"]["content"],
+            source_component_description=translation_task["component"]["layout_description"],
+            target_language="harmony",
+            target_component=query_component_document["components"],
+            target_component_code=translate_android_component.harmony_component,
+            target_component_description=translation_task["component"]["layout_description"],
+            explanation=translate_android_component.explanation
+        )
+        return translation
 
 
-"""
-{
-    "description": "在应用中创建一个卡片视图，作为登录输入区域的容器。卡片视图的宽度占据整个父布局，高度固定为 249dp，四周留有 20dp 的边距，底部额外留有 8dp 的边距。卡片背景颜色为自定义的半透明黑色。卡片内部包含一个垂直排列的线性布局，背景颜色为浅灰色。线性布局中包含两个文本输入框，分别用于输入 Email 和 Password，每个输入框的左右边距为 40dp，Email 输入框顶部边距为 28dp，Password 输入框顶部边距为 0dp。每个输入框左侧有一个图标，提示文本分别为“Email”和“Password”，文本颜色为蓝色灰色。线性布局底部包含一个 Sign In 按钮，按钮宽度自适应，高度固定，右对齐，上下左右边距为 25sp，背景颜色为自定义的按钮背景色，文本为“Sign In”，文本颜色为浅黑色，字体加粗。",
-    "components": ["Column", "TextInput", "Button", "RelativeContainer"]
-}
-"""
+    def translate_component_v1(self, breakdown_android_layout: BreakdownAndroidLayout) -> Tuple[
+        List[Translation], AgentTask]:
+        """根据转译表转译安卓布局组件
+
+        Args:
+            - breakdown_android_layout (BreakdownAndroidLayout): 任务列表
+        """
+
+        agent_task = AgentTask(
+            description="转译安卓布局组件",
+            details={
+                "breakdown_android_layout": breakdown_android_layout.model_dump()
+            }
+        )
+        self.tasks.append(agent_task)
+
+        # 异步查询所有组件的转译表
+        async def async_query_translations():
+            # 从数据库中查询转译表
+            query_translations_tasks = []
+            for task in breakdown_android_layout.tasks:
+                query_translations_tasks.append(self._query_translations_from_db(task.component.model_dump()))
+            # 等待所有查询任务完成
+            return await asyncio.gather(*query_translations_tasks)
+
+        # 转译表: [[...], [...], ...]
+        translations = asyncio.run(async_query_translations())
+
+        translate_component_results = []
+        # TODO: 修改为并发转译
+        with ThreadPoolExecutor(max_workers=len(breakdown_android_layout.tasks)) as executor:
+            # 生成所有组件的转译任务
+            translate_component_tasks = {}
+            for index, (task, translation) in enumerate(zip(breakdown_android_layout.tasks, translations)):
+                if len(translation) == 0:
+                    future = executor.submit(
+                        self._generate_component_v1,
+                        all_translation_tasks=breakdown_android_layout.tasks,
+                        translation_task=task.model_dump(),
+                        parent_agent_task=agent_task
+                    )
+                else:
+                    future = executor.submit(
+                        self._translate_component_v1,
+                        all_translation_tasks=breakdown_android_layout.tasks,
+                        translation_task=task.model_dump(),
+                        translations=translation,
+                        parent_agent_task=agent_task
+                    )
+                translate_component_tasks[future] = index
+
+            # 等待所有转译任务完成
+            for future in as_completed(list(translate_component_tasks.keys())):
+                try:
+                    translation = future.result()
+                    translate_component_results.append((translate_component_tasks[future], translation))
+                except Exception as e:
+                    logger.error(f"Failed to translate component: {e}")
+                    continue
+        translate_android_components = []
+        for result in sorted(translate_component_results, key=lambda x: x[0]):
+            translate_android_components.append(result[1])
+        agent_task.details["translated_android_components"] = translate_android_components
+        return translate_android_components, agent_task
+
+        # translate_android_components = []
+        # for index, (task, translation) in enumerate(zip(breakdown_android_layout.tasks, translations)):
+        #     if len(translation) == 0:
+        #         translate_android_components.append(self._generate_component_v1(breakdown_android_layout.tasks, task.model_dump(), agent_task))
+        #     else:
+        #         translate_android_components.append(self._translate_component_v1(breakdown_android_layout.tasks, task.model_dump(), translation, agent_task))
+        # agent_task.details["translated_android_components"] = translate_android_components
+        #
+        # return translate_android_components, agent_task

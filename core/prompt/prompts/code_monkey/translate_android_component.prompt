@@ -1,24 +1,17 @@
 {#你在一家软件公司工作，你被指派去为将安卓组件转译为鸿蒙ArkUI代码。#}
 你在一家软件公司工作，你被指派去根据安卓组件描述生成鸿蒙ArkUI代码。
 
-{#
-技术主管已经将代码转译分为以下步骤：
-{% for task in tasks %}
-{{ loop.index }}. {{ task.description }}{% if task.done %}（已完成）{% endif %}\n
-{% endfor %}
-#}
-
-你当前需要处理的任务是：
-{{ current_task.description }}
 
 {# 类型文档 #}
 {#{% include "harmony/types.prompt" %}#}
 
+{#{% include "harmony/components.prompt" %}#}
+
 {# 组件文档 #}
 以下是可供参考的鸿蒙组件文档：
+{#{{ component_document }}#}
+{% include "harmony/components.prompt" %}
 {% include "harmony/description/ui_description.prompt " %}
-{{ component_document }}
-{#{% include "harmony/components.prompt" %}#}
 
 {# 转译示例文档 #}
 {% include "harmony/translations/components.prompt" %}
@@ -26,11 +19,22 @@
 {# 资源列表 #}
 {% include "partials/resources_list.prompt" %}
 
+技术主管已经将代码转译分为以下步骤：
+{% for task in tasks %}
+{{ loop.index }}. {{ task.description }}{% if task.done %}（已完成）{% endif %}\n
+{% endfor %}
+
+
+你当前需要处理的任务是：
+{{ current_task.description }}
+
 以下是待转译的安卓组件描述：
 {% if android_component %}
 # 待转译的安卓组件名：{{ android_component.name }}
-{{ android_component.description }}
-{#{{ android_component.content }}#}
+功能描述：{{ android_component.function_description }}
+安卓布局描述：{{ android_component.layout_description }}
+实现转译的思路：{{ idea }}
+{{ android_component.content }}
 {% endif %}
 
 {#
@@ -57,17 +61,22 @@
 {#在整个过程中，请严格遵循文档规范，每一步都需要详细对照官方文档，确保没有任何遗漏或误解。#}
 {#**重要**：必须确保所选用的组件、类型、属性和方法完全符合鸿蒙ArkUI官方文档的定义与规范, 必须确保使用的资源文件都已被定义。#}
 {#**重要**：ArkUI以声明方式组合和扩展组件来描述应用程序的UI，同时还提供了基本的属性、事件和子组件配置方法。#}
-你的工作是根据**鸿蒙组件文档**、当前项目信息准确地、完整的根据安卓组件及其描述生成鸿蒙ArkUI组件代码，不可以使用不存在的鸿蒙组件。
+你的工作是根据**鸿蒙组件文档**、当前项目信息准确地、完整的根据安卓组件描述生成鸿蒙ArkUI组件代码，不可以使用不存在的鸿蒙组件以及不存在的属性和事件。
 在生成时，你需要确保生成过程中所有使用的ArkUI组件、属性和事件与安卓组件描述实现的功能、行为一致。
 在整个过程中，请严格遵循文档规范，每一步都需要详细对照官方文档，确保没有任何遗漏或误解。
+{#在生成时可以优先考虑使用{{ related_harmony_component }} 组件来实现上述功能。#}
+**重要**：你必须严格按照待转译的安卓组件描述来编写鸿蒙ArkUI代码，不可忽略任何可以实现的属性、样式、功能等，也不可以添加任何未在安卓组件描述中提到的功能。
 **重要**：必须确保所选用的组件、类型、属性和方法完全符合鸿蒙ArkUI官方文档的定义与规范, 必须确保使用的资源文件都已被定义。
+**重要**：当你无法通过单个组件实现功能时，可以通过组合多个组件来实现，但不可选择不存在的组件，例如Checkbox需要与Text组件搭配才能够实现复选框旁侧有文字的效果，卡片需要利用Stack布局及Text等组件来实现。
 **重要**：ArkUI以声明方式组合和扩展组件来描述应用程序的UI，同时还提供了基本的属性、事件和子组件配置方法。
-**重要**：直接输出生成的鸿蒙ArkUI组件代码，无需使用build()方法。
+{#**重要**：直接输出生成的鸿蒙ArkUI组件代码，无需使用struct定义页面，给出组件代码即可。#}
 {#首先你需要认真考虑提供的安卓布局代码的功能，然后再进行转译。#}
 
+在你编写鸿蒙ArUI组件时，需要遵守以下规则：
+* 1. 当组件的宽度和高度是根据内容自适应时，需要使用'auto'；当组件的宽度和高度是跟随父组件时，需要使用'100%'，例如：android:layout_width="wrap_content"应该转译为width="auto"；android:layout_width="match_parent"应该转译为width="100%"。
+* 2. 引用资源时，需要使用$r('app.xxx.yyy'), 其中xxx为资源类型，yyy为资源名称，例如：Image($r('app.media.custom_background'))。
 
-
-{#{% include "harmony/rules/layout_translation_rules.prompt" %}#}
+{% include "harmony/examples/translate_android_component.prompt" %}
 
 
 {#直接给出鸿蒙ArkUI代码即可。#}

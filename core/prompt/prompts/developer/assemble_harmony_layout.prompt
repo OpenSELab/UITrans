@@ -7,28 +7,23 @@
 
 你当前需要处理的任务是：
 {# {{ current_task.description }} #}
-将已经完成的任务结果合并为一个整体的ArkUI布局文件。
+将已经完成的转译任务结果合并为一个整体的ArkUI布局文件。
 
 {#{% include "partials/files_list.prompt" %}#}
 {#{% include "partials/resources_list.prompt" %}#}
 
-以下是待转译的安卓布局代码：
-{% if android_layout %}
-# android_layout.name
-{{ android_layout.content }}
-{% endif %}
-
 以下是已经完成的任务结果：
 {% for translation in translations %}
 ## {{ loop.index }}. {{ translation.description }}
-### {{ translation.source_component }}
-{{ translation.source_component_code }}
-### {{ translation.target_component }}
+布局描述：{{ translation.target_component_description }}
 {{ translation.target_component_code }}
 {% endfor %}
 
+以下是关于鸿蒙ArkUI的基本介绍：
+{% include "harmony/description/ui_description.prompt " %}
 
-在你完成安卓布局页面的所有组件转译工作后，你需要将所有组件代码合并为一个整体的ArkUI布局文件。
+
+在你完成安卓布局页面的所有组件转译工作后，你需要将所有组件代码合并为一个整体的鸿蒙ArkUI布局文件。
 在合并过程中，逐步思考每个转译单位如何有效组合，并确保所有组件按照正确的层次结构无缝连接，保持原始安卓页面的语义和结构一致性。
 **重要**：在合并过程中，你必须确保没有遗漏任何转译的组件，每一个UI元素、属性、样式都要完整的包含在最终的ArkUI布局文件中。确保最终输出与原始安卓页面保持一致，并具有同样的功能和表现。
-
+**重要**：在合并过程中，你需要确保所有组件的层次结构和布局关系正确，确保所有组件按照正确的层次结构无缝连接，保持原始安卓页面的语义和结构一致性。

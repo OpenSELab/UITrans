@@ -165,7 +165,7 @@ models/embedding/
 tmp/
 #demos/
 main.ipynb
-test.py
+demo.py
 back/
 
 # 自动爬取的文档

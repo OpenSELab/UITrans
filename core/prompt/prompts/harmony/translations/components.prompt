@@ -2,11 +2,6 @@
 
 {% for translation in translations %}
 ## 示例#{{ loop.index }}
-### {{ translation.source_component }} 组件
-{{ translation.source_component_description }}
-```
-{{ translation.source_component_code }}
-```
 ### {{ translation.target_component }} 组件
 {{ translation.target_component_description }}
 ```

@@ -42,6 +42,6 @@ db:
 # global state配置
 state:
   android:
-    project_dir: D:/Codes/Python/harmony-pilot/demos/bookdash
+    project_dir: demos/GoGrocery
   harmony:
-    project_dir: D:/Codes/Harmony/bookdash1
+    project_dir: D:/Code/Harmony/GoGrocery

@@ -11,9 +11,18 @@
     <string name="book_not_available">Book not available</string>
     <string name="title_activity_about">About Book Dash</string>
     <string name="action_about">About</string>
-    <string name="why_bookdash"></string>
+    <string name="why_bookdash"><![CDATA[
+        Children in South Africa need more books, but they cost too much purchased from publishers.
+        The cheapest books have no publisher – then the only cost is printing. So our participants do
+        the work of publishers in a single day. After that, anyone can get print runs sponsored and put finished books into the hands of children.
+              <br/><br/>
+        We believe every child should own a hundred books by the age of five. In South Africa, that means giving 600 million free books to children
+        who could never afford to buy them. Every day we lose, more children grow up unable to read and write well, and to enjoy the worlds that books
+        open up. ]]>
+    </string>
     <string name="why_bookdash_heading">Why Book Dash?</string>
-    <string name="heading_about"><![CDATA[Book Dash gathers volunteer creative professionals to create new, African storybooks that anyone can freely translate and distribute.]]></string>
+    <string name="heading_about"><![CDATA[Book Dash gathers volunteer creative professionals to create new, African storybooks that anyone can freely translate and distribute.]]>
+    </string>
     <string name="send_email_chooser">Send us a mail.</string>
     <string name="no_mail_clients">There are no mail clients installed.</string>
     <string name="button_retry_text">Retry</string>
@@ -33,7 +42,21 @@
     <string name="rate_this_app">Rate This App</string>
     <string name="settings_thank_yous">Contributors</string>
     <string name="contributions_to_app">Contributors</string>
-    <string name="list_of_contributors"></string>
+    <string name="list_of_contributors"><![CDATA[Special thanks to the following people for contributing to making this app possible:  <br/><br/>
+
+    <b>Michael Cook</b> - <a href="http://cookicons.co/" title="Cookicons">Cookicons</a>  - For the Book Dash App icon   <br/><br/>
+    <b>Volunteers at Book Dash</b> - For the content <br/><br/>
+
+
+    Imagery for Help Tutorial <a href="http://www.freepik.com">Designed by Freepik</a><br/>
+    Background cartoon image from <a href="http://all-free-download.com">all-free-download.com</a>
+    School imagery from <a href="http://www.freepik.com/free-vector/hand-drawn-school-graphics_720632.htm">Designed by Freepik</a>
+    <div>Book Icon made by <a href="http://www.flaticon.com/authors/rami-mcmin" title="Rami McMin">Rami McMin</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>  is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+   <b> The following libraries have been used in the app: <br/></b>
+    <a href="https://github.com/JakeWharton/ViewPagerIndicator">ViewPagerIndicator</a> which is licensed under the Apache License, Version 2.0.<br/>
+    <a href="https://github.com/ckurtm/FabButton">FabButton</a> which is licensed under The MIT License (MIT).<br/>
+      <a href="https://github.com/bumptech/glide">Glide</a> which is licensed under BSD, part MIT and Apache 2.0
+]]></string>
 
     <string name="book_download_button">DOWNLOAD</string>
 

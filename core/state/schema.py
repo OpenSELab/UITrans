@@ -2,7 +2,7 @@ from typing import Dict, List, Any, Optional
 from pydantic import BaseModel
 
 HarmonyResourceQualifierType = str
-HarmonyResourceValueType = Dict[str, Dict[str, str]]
+HarmonyResourceValueType = Dict[str, Dict[str, str | int]]
 
 
 class State(BaseModel):

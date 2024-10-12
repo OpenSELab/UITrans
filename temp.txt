@@ -1,0 +1,98 @@
+为了将已经完成的转译任务结果合并为一个整体的ArkUI布局文件，我们需要确保所有组件按照正确的层次结构无缝连接，并且保持原始安卓页面的语义和结构一致性。以下是合并后的ArkUI布局文件的示例：
+
+```ets
+@Entry
+@Component
+struct MainPage {
+  private imagePath: string = 'https://xyz/background.jpg';
+  private logoPath: string = 'https://xyz/logo.png';
+  private title: string = 'BookDash';
+  private aboutText: string = 'About BookDash';
+  private whyChooseText: string = 'Why Choose BookDash';
+
+  build() {
+    Column() {
+      // 背景图片
+      Image(this.imagePath)
+        .width('100%')
+        .height(200)
+        .objectFit(ImageFit.Cover)
+
+      // 标题工具栏
+      Row() {
+        Text(this.title)
+          .fontSize(24)
+          .fontWeight(FontWeight.Bold)
+          .padding(10)
+      }
+      .width('100%')
+      .backgroundColor(Color.Gray)
+
+      // 滚动区域
+      Scroll() {
+        Column() {
+          // 关于文本卡片
+          Card() {
+            Text(this.aboutText)
+              .fontSize(18)
+              .padding(10)
+          }
+          .width('90%')
+          .margin(10)
+
+          // Logo图片卡片
+          Card() {
+            Image(this.logoPath)
+              .width(100)
+              .height(100)
+              .objectFit(ImageFit.Contain)
+          }
+          .width('90%')
+          .margin(10)
+
+          // 为什么选择BookDash文本卡片
+          Card() {
+            Text(this.whyChooseText)
+              .fontSize(18)
+              .padding(10)
+          }
+          .width('90%')
+          .margin(10)
+        }
+        .width('100%')
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### 合并步骤说明：
+
+1. **背景图片**：
+   - 使用`Image`组件来显示背景图片，并设置其宽度和高度以覆盖整个屏幕的上部。
+
+2. **标题工具栏**：
+   - 使用`Row`组件来创建一个水平布局的标题栏，包含一个`Text`组件显示标题。
+
+3. **滚动区域**：
+   - 使用`Scroll`组件来创建一个可滚动的区域，内部包含多个`Column`组件来垂直排列内容。
+
+4. **关于文本卡片**：
+   - 使用`Card`组件包裹`Text`组件，显示关于文本内容。
+
+5. **Logo图片卡片**：
+   - 使用`Card`组件包裹`Image`组件，显示Logo图片。
+
+6. **为什么选择BookDash文本卡片**：
+   - 使用`Card`组件包裹`Text`组件，显示为什么选择BookDash的文本内容。
+
+### 关键点：
+- **层次结构**：确保所有组件按照正确的层次结构嵌套，例如`Column`、`Row`、`Card`等组件的嵌套关系。
+- **属性配置**：每个组件的属性（如`width`、`height`、`fontSize`等）都按照原始安卓页面的样式进行配置。
+- **事件处理**：虽然示例中没有涉及事件处理，但在实际应用中，如果有事件需要处理，可以使用`onClick`等事件方法进行配置。
+
+通过以上步骤，我们确保了所有转译的组件都被正确地合并到一个整体的ArkUI布局文件中，并且保持了原始安卓页面的语义和结构一致性。

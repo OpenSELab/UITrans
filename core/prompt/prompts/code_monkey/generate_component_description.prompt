@@ -1,29 +1,89 @@
-你在一家软件公司工作，你被指派去为将安卓组件转译为鸿蒙ArkUI代码。
+请根据以下安卓XML代码编写一个详细的通用描述和功能描述，供其他开发框架如iOS或鸿蒙的开发者实现同样的布局样式。描述应包含以下内容：
 
-{# 任务描述 #}
-# 任务：
-{{ current_task.description }}
+布局属性：包括组件的宽度、高度、边距、填充、对齐方式等。
+组件样式和外观：包括颜色、字体、透明度、圆角等。
+组件排列和嵌套关系：例如垂直或水平布局、组件之间的对齐方式、父子关系。
+组件功能和交互：例如按钮的点击事件、输入框的输入验证逻辑等。
+引用的资源：如自定义的背景图片、颜色等，请指出资源路径或名称。
+请避免使用安卓特有的术语，而是使用通用的描述语言，确保其他框架的开发者可以理解并实现同样的布局和功能，例如：match_parent描述为占满父容器的宽度。同时，请确保描述涵盖每个组件的属性、样式和功能。
 
-{% if android_component %}
-待转译的安卓组件如下：
-# {{ android_component.name }}
-{{ android_component.description }}
+你在编写通用描述和功能描述时，需要遵守以下规则：
+## 规则#1
+这条规则适用于所有组件的宽度、高度、外边距、内边距、字体大小等属性的单位。
+对于高度、宽度、外边距、内边距等等属性的单位应全部采用vp；
+对于字体大小等属性的单位应全部采用fp。
+
+## 规则#2
+这条规则适用于字体设置。
+若安卓组件中存在字体集的设置，应将其修改为'HarmonyOS Sans'字体集；
+若安卓组件中不存在字体集的设置，请保持不变。
+
+## 规则#3
+这条规则适用于资源引用。
+对于引用@drawable的资源，请将其修改为media;
+对于引用@color的资源，请将其修改为color;
+对于引用@strings的资源，请将其修改为string;
+对于引用@dimen的资源，请将其修改为float;
+对于引用@array的资源，如果资源是字符串数组，请将其修改为strarray，如果资源是整型数组，请将其修改为intarray。
+
+## 规则#4
+这条规则适用于通用描述的顺序。
+通用描述的顺序应该按照组件的逻辑顺序进行排列，确保描述的完整性和逻辑性。
+每个组件的描述应该包括布局属性、样式和外观、排列和嵌套关系、功能和交互、引用的资源等内容。
+
+## 规则#5
+这条规则适用于通用描述的内容。
+通用描述应该按照组件的嵌套关系进行描述，从外到内逐级描述每个组件的属性、样式和功能。
+请忽略有关主题的描述。
+
+## 规则6
+这条规则适用于功能效果描述。
+功能效果描述应该侧重于页面呈现的效果，包括组件的默认属性和默认行为，而不是具体的代码实现细节。
+例如：安卓复选框是包含文字的，而鸿蒙复选框是不包含文字的，因此在功能效果描述中应该添加复选框右侧文字的描述。
+安卓组件：
+<ChekBox
+    android:id="@+id/checkbox"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Check me" />
+功能效果描述：一个复选框，右侧包含文字“Check me”，整体宽度和高度自适应。
+
+以下是一个可供参考的示例：
+安卓XML示例代码：
+```xml
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/custom_background">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World"
+        android:textColor="@color/primary_text"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:backgroundTint="#FF5722" />
+</LinearLayout>
+```
+通用描述示例：
+- 垂直线性容器，宽度占满父容器，高度自适应，内边距为16vp，背景引用资源app.media.custom_background。
+    - 文本视图，宽度自适应，高度自适应，文本内容为“Hello World”，文本颜色引用资源app.color.primary_text，字体大小为18fp。
+    - 按钮，宽度自适应，高度自适应，文本内容为“Submit”，背景颜色为#FF5722。
+
+功能效果描述示例：
+实现了一个垂直线性容器，在容器中包含一个文本视图和一个按钮，其中文本视图，高度和宽度自适应，显示“Hello World”，字体颜色引用了 app.color.primary_text 资源，字体大小为18fp；在文本视图的正下方有一个按钮，按钮宽度和高度自适应，按钮显示“Submit”，背景颜色为 #FF5722。
+
+安卓XML代码如下：
 {{ android_component.content }}
-{% endif %}
+请根据以上安卓XML代码编写一个通用描述，然后编写这页面实现的功能效果描述。
 
-实现这个需求可能会使用到某些ArkUI组件。
-{% include "harmony/components.prompt" %}
-
-{% include "partials/resources_list.prompt" %}
-
-在开始任务之前，你需要对待转译的安卓组件进行分析，提取出其中的布局和样式信息。
-然后，你需要从上述ArkUI组件中选择一个或多个组件，使其能够实现上述安卓组件的功能，并保持布局和样式尽可能一致。
-对于无法直接转译的安卓组件，你可以通过组合多个ArkUI组件来实现，一定不能选择不存在的组件。
-在完成选择后，你需要编写一条或多条用于在知识库或RAG系统中检索的查询语句。每条查询应聚焦于不同的功能细节或组件的具体属性，帮助快速、精确地检索到相关的文档、代码示例或实现方法。
-**重要**：你只能从[{% for component_name in harmony_components.keys() %}{{component_name}}{% if not loop.last %}, {% endif %}{% endfor %}]中选择ArkUI组件，请你认真检查，一定不可以选择不存在的ArkUI组件。
-**重要**：查询语句需要涵盖以下方面：布局属性（如宽度、高度、边距等）、组件的样式和外观（如颜色、字体、透明度等）、组件的排列和嵌套关系（如垂直或水平布局、对齐方式）、组件的功能和交互（如点击事件、输入验证），确保每条查询简洁明了且仅聚焦单一方面，突出关键信息，以便加快内容检索过程。
-
-## 以下是选择组件的额外规则：
-* 规则1：待转译的安卓布局文件中存在属性layout_constraintXXX_toXXXOf，其中XXX为Start、End、Top、Bottom等，你应该额外选择鸿蒙ArkUI的RelativeContainer组件。
-
-{% include "harmony/examples/generate_component_query_example.prompt" %}
+**重要**：请确保通用描述和功能效果描述的准确性和完整性，确保其他开发者可以根据描述实现相同的布局和功能。

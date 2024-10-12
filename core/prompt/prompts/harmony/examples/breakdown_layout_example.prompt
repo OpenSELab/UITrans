@@ -11,7 +11,7 @@
             "component": {
                 "name": ["com.google.android.material.appbar.AppBarLayout", "com.google.android.material.appbar.MaterialToolbar"],
                 "content": "    <com.google.android.material.appbar.AppBarLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:fitsSystemWindows=\"true\">\n\n        <com.google.android.material.appbar.MaterialToolbar\n            android:id=\"@+id/toolbar\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"?attr/actionBarSize\" />\n\n    </com.google.android.material.appbar.AppBarLayout>",
-                "description": "在应用中创建一个顶部应用栏，作为页面导航或标题显示的容器。该应用栏布局的宽度填满其父容器，高度根据内容自适应。应用栏支持适应系统窗口，以确保布局元素不被系统状态栏遮挡。"
+{#                "description": "在应用中创建一个顶部应用栏，作为页面导航或标题显示的容器。该应用栏布局的宽度填满其父容器，高度根据内容自适应。应用栏支持适应系统窗口，以确保布局元素不被系统状态栏遮挡。"#}
             }
         },
         {
@@ -20,7 +20,7 @@
             "component": {
                 "name": ["com.google.android.material.card.MaterialCardView", "LinearLayout", "TextView"],
                 "content": "\n    <com.google.android.material.card.MaterialCardView\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_margin=\"16dp\"\n        app:cardBackgroundColor=\"#FF018786\"\n        app:cardCornerRadius=\"16dp\"\n        app:cardElevation=\"8dp\"\n        app:cardMaxElevation=\"12dp\"\n        app:cardPreventCornerOverlap=\"true\"\n        app:cardUseCompatPadding=\"true\"\n        app:contentPadding=\"16dp\"\n        app:strokeColor=\"#FF03DAC5\"\n        app:strokeWidth=\"2dp\">\n\n        <LinearLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:orientation=\"vertical\"\n            android:padding=\"16dp\">\n\n            <TextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"Card Title\"\n                android:textColor=\"#FFBB86FC\"\n                android:textSize=\"24sp\"\n                android:textStyle=\"bold\" />\n\n            <TextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"This is a sample description text for the card.\"\n                android:textColor=\"#FF6200EE\"\n                android:textSize=\"16sp\"\n                android:paddingTop=\"8dp\" />\n        </LinearLayout>\n    </com.google.android.material.card.MaterialCardView>\n    ",
-                "description": "创建一个卡片视图，作为主要内容显示的容器。卡片的宽度占满父布局，高度根据内容自适应。卡片四周留有 16dp 的外边距，背景颜色为自定义的深绿色（#FF018786），圆角半径为 16dp，卡片具有 8dp 的投影效果，并支持更高达 12dp 的最大投影高度。卡片视图设置为防止角重叠，使用兼容的内边距处理方式，内容内边距为 16dp。卡片边框颜色为自定义的青绿色（#FF03DAC5），边框宽度为 2dp。\n卡片内部包含一个垂直排列的线性布局，内边距为 16dp。线性布局中包含两个文本视图，第一个用于显示标题，字体大小为 24sp，颜色为淡紫色（#FFBB86FC），并设置为加粗样式。第二个文本视图显示描述性内容，字体大小为 16sp，颜色为紫色（#FF6200EE），并在顶部留有 8dp 的内边距。"
+{#                "description": "创建一个卡片视图，作为主要内容显示的容器。卡片的宽度占满父布局，高度根据内容自适应。卡片四周留有 16dp 的外边距，背景颜色为自定义的深绿色（#FF018786），圆角半径为 16dp，卡片具有 8dp 的投影效果，并支持更高达 12dp 的最大投影高度。卡片视图设置为防止角重叠，使用兼容的内边距处理方式，内容内边距为 16dp。卡片边框颜色为自定义的青绿色（#FF03DAC5），边框宽度为 2dp。\n卡片内部包含一个垂直排列的线性布局，内边距为 16dp。线性布局中包含两个文本视图，第一个用于显示标题，字体大小为 24sp，颜色为淡紫色（#FFBB86FC），并设置为加粗样式。第二个文本视图显示描述性内容，字体大小为 16sp，颜色为紫色（#FF6200EE），并在顶部留有 8dp 的内边距。"#}
             }
         }
         ...

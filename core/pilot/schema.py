@@ -68,7 +68,7 @@ class WriteComponentQuery(CommonBaseModel):
 class BreakdownAndroidLayoutComponent(CommonBaseModel):
     name: List[str] = Field(description="待转译的所有安卓组件名称。")
     content: str = Field(description="待转译的安卓组件布局代码。")
-    description: str = Field(description="待转译的组件的描述。")
+    # description: str = Field(description="待转译的组件的描述。")
 
 
 class BreakdownAndroidLayoutTask(Task):
@@ -108,3 +108,9 @@ class GenerateComponentQueryItem(CommonBaseModel):
 class GenerateComponentQuery(CommonBaseModel):
     components: List[str] = Field(description="所需的鸿蒙ArkUI组件列表")
     queries: List[GenerateComponentQueryItem] = Field(description="组件的查询描述列表")
+    idea: str = Field(description="选择组件的思路，即为什么要选择这些组件")
+
+
+class GenerateComponentDescription(CommonBaseModel):
+    layout_description: str = Field(description="组件的布局通用描述")
+    function_description: str = Field(description="组件的功能通用描述")

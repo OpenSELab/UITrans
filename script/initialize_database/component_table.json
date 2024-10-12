@@ -459,7 +459,6 @@
         "source_component_version": "21",
         "target_language": "harmony",
         "target_component": [
-            "Stack",
             "Column",
             "Text"
         ],
@@ -779,7 +778,6 @@
         "source_component_version": "9",
         "target_language": "harmony",
         "target_component": [
-            "Stack",
             "Column",
             "Text"
         ],
@@ -795,8 +793,6 @@
         "source_component_version": "1",
         "target_language": "harmony",
         "target_component": [
-            "Scroll",
-            "Stack",
             "Column",
             "Text"
         ],
@@ -818,6 +814,38 @@
         ],
         "target_component_code": "Row(){\nImage($r('app.media.input_text'))\n.width(60)\n.height(60)\n.padding(15)\n.align(Alignment.Start)\nTextInput({placeholder:\"请输入密码\"})\n.type(InputType.Password)\n.placeholderColor('#DCDCDC')\n.placeholderFont({size:'35px'})\n.fontSize('35px')\n.fontColor(Color.Black)\n.width('460px')\n.height('80px')\n.padding({\nright:'65px'\n})\n.margin({\ntop:'10px',\nright:'80px'\n})\n}",
         "target_component_description": "通过 Row 布局实现了一个自定义的输入视图，包含一个图标和一个密码输入框。图标使用 Image 组件，宽度为 60vp，高度为 60vp，内边距为 15vp，并设置为左对齐。密码输入框使用 TextInput 组件，占位符文本为“请输入密码”，输入类型为密码，占位符颜色为 #DCDCDC，占位符字体大小为 35px，字体大小为 35px，字体颜色为黑色，宽度为 460px，高度为 80px，右侧内边距为 65px，顶部和右侧外边距分别为 10px 和 80px。整个布局确保了图标和输入框在视觉上具有良好的对齐和适当的间距，适合用于用户输入密码的场景。",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "TextView",
+        "source_component_code": "该代码片段定义了一个 TextView，用于在 Android 应用中显示文本和图标。TextView 的宽度占据整个父布局，高度自适应内容，背景颜色为默认背景色。图标位于文本左侧，图标与文本之间的间距为 20dp，文本居中垂直对齐。TextView 的文本内容为“设置”，字体大小为 50sp，字体样式为粗体，文本颜色为黑色。文本最多显示两行，超出部分以省略号结尾。用户可以通过该 TextView 进行设置操作，并查看相关信息。",
+        "source_component_description": "<TextView\nandroid:id=\"@+id/txt_my_orders\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:background=\"@color/design_default_color_background\"\nandroid:drawableLeft=\"@drawable/setting\"\nandroid:drawablePadding=\"5dp\"\nandroid:gravity=\"center_vertical\"\nandroid:padding=\"4dp\"\nandroid:text=\"设置\"\nandroid:textColor=\"@color/black\"\nandroid:textSize=\"50sp\"\nandroid:textStyle=\"bold\"\nandroid:maxLines=\"2\"\nandroid:ellipsize=\"end\"\n/>",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Row",
+            "Image",
+            "Text"
+        ],
+        "target_component_code": "    Row(){\nImage($r('app.media.text_view'))\n.width('40vp')\n.height('40vp')\n.padding('5vp')\n.objectFit(ImageFit.Auto)\nText('设置')\n.fontSize('50fp')\n.font({weight:FontWeight.Bold})\n.fontColor($r('app.color.black'))\n.maxLines(2)\n.ellipsisMode(EllipsisMode.END)\n.width('calc(100% - 40vp)')\n}\n.width('100%')\n.height('auto')\n.padding(4)\n.align(Alignment.Start)",
+        "target_component_description": "这段代码通过使用 Row 布局组件，创建了一个包含图像和文本的水平排列的界面元素。首先，代码中定义了一个 Row 组件，其中包含两个子元素：一个 Image 组件和一个 Text 组件。\n\nImage 组件用于显示一个图标，该图标的资源路径为 $r('app.media.startIcon')。图像的宽度设置为 40vp，高度也为 40vp，并且通过 padding 属性设置了 5vp 的内边距。此外，图像的 objectFit 属性被设置为 ImageFit.Auto，这意味着图像将根据其内容自动调整大小。\n\n紧接着，Text 组件用于显示文本“设置”。文本的字体大小设置为 50fp，字体加粗（FontWeight.Bold），颜色为 $r('app.color.black')。文本的最大行数限制为 2 行，并且在文本超出两行时，使用 EllipsisMode.END 模式在末尾显示省略号。文本的宽度设置为 calc(100% - 40vp)，以确保文本不会与图像重叠。\n\n整个 Row 布局的宽度设置为 100%，高度自适应（auto），并且通过 padding 属性设置了 4vp 的内边距。最后，Row 布局的对齐方式设置为 Alignment.Start，确保子元素在水平方向上左对齐。\n\n这段代码的整体效果是一个水平排列的界面元素，左侧是一个图标，右侧是对应的文本描述，适用于需要在界面上展示图标和相关文本信息的场景。",
+        "target_component_version": "12"
+    },
+    {
+        "source_language": "android",
+        "source_component": "com.google.android.material.appbar.AppBarLayout",
+        "source_component_code": "<com.google.android.material.appbar.AppBarLayout\\n        android:layout_width=\\\"match_parent\\\"\\n        android:layout_height=\\\"wrap_content\\\"\\n        android:fitsSystemWindows=\\\"true\\\">\\n\\n        <com.google.android.material.appbar.MaterialToolbar\\n            android:id=\\\"@+id/toolbar\\\"\\n            android:layout_width=\\\"match_parent\\\"\\n            android:layout_height=\\\"?attr/actionBarSize\\\">\\n\\n            <TextView\\n                android:layout_width=\\\"wrap_content\\\"\\n                android:layout_height=\\\"wrap_content\\\"\\n                android:text=\\\"这是一个标题栏\\\"\\n                android:textColor=\\\"@android:color/white\\\"\\n                android:textSize=\\\"18sp\\\"\\n                android:layout_gravity=\\\"center\\\" />\\n\\n        </com.google.android.material.appbar.MaterialToolbar>\\n\\n    </com.google.android.material.appbar.AppBarLayout>",
+        "source_component_description": "该代码片段定义了一个 AppBarLayout，用于在 Android 应用中创建一个应用栏布局。布局的宽度占据整个父布局，高度为 wrap_content，根据内容自动调整大小，并适配系统窗口。布局内部包含一个 MaterialToolbar，作为应用的主要导航和操作工具栏。工具栏的宽度占据整个父布局，高度为 actionBarSize，确保与标准的应用栏高度一致。工具栏内部包含一个 TextView，用于显示文本“这是一个ToolBar”，文本颜色为白色，字体大小为 18sp，文本居中对齐。用户可以通过工具栏进行导航和操作。",
+        "source_component_version": "1",
+        "target_language": "harmony",
+        "target_component": [
+            "Row",
+            "Text",
+            "Image"
+        ],
+        "target_component_code": "Row() {\\n        Text('这是一个标题栏')\\n          .fontSize(24)\\n          .fontWeight(500)\\n          .fontColor('#18181A')\\n          .textAlign(TextAlign.Start)\\n          .height(56)\\n          .width('100%')\\n          .margin({left: 20})\\n      }\\n      .width('100%')",
+        "target_component_description": "通过 Row 布局实现了一个标题栏，用于在应用中显示标题信息。标题栏包含一个 Text 组件，用于显示文本“这是一个标题栏”。文本的字体大小为 24，字体加粗（FontWeight.Bold），颜色为 #18181A，左对齐。标题栏的高度为 56，宽度为 100%，左外边距为 20。整个 Row 布局的宽度为 100%，用于包裹标题栏的内容。",
         "target_component_version": "12"
     }
 ]

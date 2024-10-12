@@ -51,9 +51,9 @@ class DeveloperAgent(LLMAgent):
             current_task=layout_translation.tasks[current_task_index],
             android_layout=android_layouts[layout_translation.tasks[current_task_index].android]
         )
-        print(breakdown_android_layout_prompt)
+        # print(breakdown_android_layout_prompt)
         messages = self.generate_reply(breakdown_android_layout_prompt, model_schema=BreakdownAndroidLayout, remember=False, temperatur=0.0)
-        print(messages[-1]["content"])
+        # print(messages[-1]["content"])
         response = BreakdownAndroidLayout.common_parse_raw(messages[-1]["content"])
         self.logger.info(f"Breakdown Android Layout: {response}")
         return response
@@ -77,6 +77,7 @@ class DeveloperAgent(LLMAgent):
             translations=translations,
             android_layout=android_layout
         )
+        # print(assemble_harmony_layout_prompt)
         messages = self.generate_reply(assemble_harmony_layout_prompt, remember=False)
         self.logger.info(f"Assemble Harmony Layout: {messages[-1]['content']}")
         return messages[-1]["content"]

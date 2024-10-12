@@ -9,7 +9,7 @@ from core.logger.runtime import get_logger
 from core.utils.function_utils import get_function_schema
 from core.prompt.prompt_loader import PromptLoader
 from core.llms.base import Tool, LLMClient
-from core.agents.schema import AgentTasks
+from core.agents.schema import AgentTask
 
 
 logger = get_logger(name="LLM Agent")
@@ -113,7 +113,7 @@ class LLMAgent:
             else:
                 print("Role: {role}\nContent: {content}\n\n".format(role=message["role"], content=message["content"]))
 
-    def make_plan(self, requirement: str, interactive: bool = False, **kwargs) -> AgentTasks:
+    def make_plan(self, requirement: str, interactive: bool = False, **kwargs) -> AgentTask:
         """制定计划
 
         Args:

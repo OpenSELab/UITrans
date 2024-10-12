@@ -2,6 +2,8 @@ import json
 import jsonref
 from typing import Any, Literal, Optional, Dict, List
 import re
+
+import shortuuid
 from pydantic import BaseModel, Field
 from pydantic.json_schema import DEFAULT_REF_TEMPLATE, GenerateJsonSchema, JsonSchemaMode
 
@@ -56,18 +58,25 @@ class CommonBaseModel(BaseModel):
         return hash(str(self))
 
 
-class AgentTaskTool(CommonBaseModel):
-    name: str = Field(description="工具名称")
-    parameters: Dict[str, Any] = Field(description="工具参数, key 为参数名, value 为参数值")
+# class AgentTaskTool(CommonBaseModel):
+#     name: str = Field(description="工具名称")
+#     parameters: Dict[str, Any] = Field(description="工具参数, key 为参数名, value 为参数值")
 
+
+# class AgentTask(CommonBaseModel):
+#     type: # Literal["normal", "tool"] = Field(
+#         description="任务类型, normal: 一般任务, tool: 需要调用工具的任务, function: 调用函数的任务")
+#     description: str = Field(description="任务描述")
+#     tool: Optional[List[AgentTaskTool]] = Field(description="需要调用的工具列表，仅当 type 为 tool 时有效")
+#     explanation: Optional[str] = Field(description="原因说明")
+#
+#
+# class AgentTasks(CommonBaseModel):
+#     tasks: list[AgentTask] = Field(description="任务列表")
 
 class AgentTask(CommonBaseModel):
-    type: Literal["normal", "tool"] = Field(
-        description="任务类型, normal: 一般任务, tool: 需要调用工具的任务")
+    id: str = Field(description="任务ID", default_factory=shortuuid.uuid)
     description: str = Field(description="任务描述")
-    tool: Optional[List[AgentTaskTool]] = Field(description="需要调用的工具列表，仅当 type 为 tool 时有效")
-    explanation: Optional[str] = Field(description="原因说明")
+    subtasks: Optional[List["AgentTask"]] = Field(description="子任务列表", default=[])
+    details: Optional[Dict[str, Any]] = Field(description="任务详情", default=None)
 
-
-class AgentTasks(CommonBaseModel):
-    tasks: list[AgentTask] = Field(description="任务列表")
