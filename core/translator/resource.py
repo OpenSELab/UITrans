@@ -115,7 +115,8 @@ def translate_android_pixel_to_harmony_pixel(pixel: str) -> str:
     elif pixel.endswith("px"):
         return pixel
     else:
-        raise ValueError(f"Invalid pixel value: {pixel}")
+        return pixel
+        # raise ValueError(f"Invalid pixel value: {pixel}")
 
 
 def translate_android_color_to_harmony(color: str) -> str:
@@ -720,12 +721,16 @@ def translate_android_resource_to_harmony(android_resource_path, harmony_resourc
                 # 默认资源文件
                 _harmony_resource_base_dir = os.path.join(harmony_resource_path, "base", "element")
             else:
-                # values-xxx 资源文件
-                total_harmony_qualifier = translate_android_resource_qualifier_to_harmony(resource_dir)
-                if total_harmony_qualifier:
-                    _harmony_resource_base_dir = os.path.join(harmony_resource_path, total_harmony_qualifier, "element")
-                else:
-                    _harmony_resource_base_dir = os.path.join(harmony_resource_path, "base", "element")
+                try:
+                    # values-xxx 资源文件
+                    total_harmony_qualifier = translate_android_resource_qualifier_to_harmony(resource_dir)
+                    if total_harmony_qualifier:
+                        _harmony_resource_base_dir = os.path.join(harmony_resource_path, total_harmony_qualifier, "element")
+                    else:
+                        _harmony_resource_base_dir = os.path.join(harmony_resource_path, "base", "element")
+                except Exception as e:
+                    logger.error(f"Failed to translate {resource_dir} to harmony: {e}")
+                    continue
 
             for resource_file in os.listdir(os.path.join(android_resource_path, resource_dir)):
                 if resource_file.endswith(".xml"):
@@ -762,6 +767,11 @@ def translate_android_resource_to_harmony(android_resource_path, harmony_resourc
                         )
                     except Exception as e:
                         logger.error(f"Failed to translate {origin_resource_file} to {harmony_resource_file}: {e}")
+                elif resource_file.endswith((".png", ".jpg", ".jpeg")):
+                    origin_resource_file = os.path.join(android_resource_path, resource_dir, resource_file)
+                    harmony_resource_file = os.path.join(_harmony_resource_base_dir, resource_file)
+                    os.makedirs(os.path.dirname(harmony_resource_file), exist_ok=True)
+                    shutil.copy(origin_resource_file, harmony_resource_file)
         elif resource_dir.startswith("mipmap"):
             # TODO: 支持 mipmap 格式的资源
             # 启动图标, 目前使用默认图标

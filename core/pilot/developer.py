@@ -77,7 +77,7 @@ class DeveloperAgent(LLMAgent):
             translations=translations,
             android_layout=android_layout
         )
-        # print(assemble_harmony_layout_prompt)
+        print(assemble_harmony_layout_prompt)
         messages = self.generate_reply(assemble_harmony_layout_prompt, remember=False)
         self.logger.info(f"Assemble Harmony Layout: {messages[-1]['content']}")
         return messages[-1]["content"]

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:animateLayoutChanges="true"
+	android:paddingBottom="8dp"
+	tools:context=".trips.search.DirectionsActivity"
+	tools:showIn="@layout/activity_directions">
+
+	<androidx.appcompat.widget.Toolbar
+		android:id="@+id/toolbar"
+		style="@style/ToolbarStyle"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/buttonSize">
+
+			<androidx.appcompat.widget.AppCompatImageButton
+				android:id="@+id/favIcon"
+				android:layout_width="@dimen/buttonSize"
+				android:layout_height="@dimen/buttonSize"
+				android:background="?selectableItemBackgroundBorderless"
+				android:contentDescription="@string/action_fav_trip"
+				android:tint="@color/md_white_1000"
+				android:visibility="gone"
+				app:layout_constraintEnd_toStartOf="@+id/swapIcon"
+				app:layout_constraintTop_toTopOf="@+id/viaIcon"
+				app:srcCompat="@drawable/ic_action_star_empty"
+				tools:visibility="visible"/>
+
+			<androidx.appcompat.widget.AppCompatImageButton
+				android:id="@+id/swapIcon"
+				android:layout_width="@dimen/buttonSize"
+				android:layout_height="@dimen/buttonSize"
+				android:background="?selectableItemBackgroundBorderless"
+				android:contentDescription="@string/action_swap_locations"
+				android:src="@drawable/ic_menu_swap_location"
+				android:tint="@color/md_white_1000"
+				app:layout_constraintEnd_toStartOf="@+id/viaIcon"
+				app:layout_constraintTop_toTopOf="@+id/viaIcon"/>
+
+			<androidx.appcompat.widget.AppCompatImageButton
+				android:id="@+id/viaIcon"
+				android:layout_width="@dimen/buttonSize"
+				android:layout_height="@dimen/buttonSize"
+				android:background="?selectableItemBackgroundBorderless"
+				android:contentDescription="@string/action_navigation_expand"
+				android:src="@drawable/ic_action_navigation_unfold_more_white"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:visibility="gone" />
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+	</androidx.appcompat.widget.Toolbar>
+
+	<androidx.cardview.widget.CardView
+		android:id="@+id/fromCard"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="8dp"
+		android:layout_marginLeft="8dp"
+		android:layout_marginRight="8dp"
+		android:layout_marginStart="8dp"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+		<de.grobox.transportr.locations.LocationGpsView
+			android:id="@+id/fromLocation"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:hint="@string/from"/>
+
+	</androidx.cardview.widget.CardView>
+
+	<androidx.cardview.widget.CardView
+		android:id="@+id/viaCard"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_margin="8dp"
+		android:visibility="gone"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/fromCard"
+		tools:visibility="visible">
+
+		<de.grobox.transportr.locations.LocationView
+			android:id="@+id/viaLocation"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:hint="@string/via"/>
+
+	</androidx.cardview.widget.CardView>
+
+	<androidx.cardview.widget.CardView
+		android:id="@+id/toCard"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_margin="8dp"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/viaCard">
+
+		<de.grobox.transportr.locations.LocationView
+			android:id="@+id/toLocation"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:hint="@string/to"/>
+
+	</androidx.cardview.widget.CardView>
+
+	<View
+		android:id="@+id/timeBackground"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:background="?selectableItemBackgroundBorderless"
+		android:clickable="true"
+		android:focusable="true"
+		app:layout_constraintTop_toTopOf="@+id/timeIcon"
+		app:layout_constraintBottom_toBottomOf="@+id/timeIcon"
+		app:layout_constraintStart_toStartOf="@+id/timeIcon"
+		app:layout_constraintEnd_toStartOf="@id/timeBarrier"/>
+
+
+	<androidx.appcompat.widget.AppCompatImageButton
+		android:id="@+id/timeIcon"
+		android:layout_width="@dimen/buttonSize"
+		android:layout_height="@dimen/buttonSize"
+		android:layout_marginTop="8dp"
+		android:background="?selectableItemBackgroundBorderless"
+		android:clickable="false"
+		android:focusable="false"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/toCard"
+		app:srcCompat="@drawable/ic_time"/>
+
+	<TextView
+		android:id="@+id/departure"
+		android:layout_width="wrap_content"
+		android:layout_height="24dp"
+		android:paddingEnd="4dp"
+		android:paddingRight="4dp"
+		android:gravity="center"
+		android:textColor="@color/md_grey_300"
+		app:layout_constraintStart_toEndOf="@+id/timeIcon"
+		app:layout_constraintTop_toTopOf="@+id/timeIcon"
+		app:layout_constraintBottom_toBottomOf="@+id/timeIcon"
+		tools:text="@string/trip_dep"/>
+
+	<TextView
+		android:id="@+id/date"
+		android:layout_width="wrap_content"
+		android:layout_height="24dp"
+		android:gravity="center"
+		android:textColor="@color/md_grey_300"
+		android:visibility="gone"
+		app:layout_constraintStart_toEndOf="@+id/departure"
+		app:layout_constraintEnd_toStartOf="@+id/timeBarrier"
+		app:layout_constraintBottom_toTopOf="@+id/time"
+		app:layout_constraintTop_toTopOf="@+id/timeIcon"
+		tools:text="2042-12-23"
+		tools:visibility="gone"/>
+
+	<TextView
+		android:id="@+id/time"
+		android:layout_width="wrap_content"
+		android:layout_height="24dp"
+		android:gravity="center"
+		android:textColor="@color/md_grey_300"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/timeBarrier"
+		app:layout_constraintStart_toEndOf="@+id/departure"
+		app:layout_constraintTop_toBottomOf="@+id/date"
+		tools:text="@string/now_small"/>
+
+	<androidx.constraintlayout.widget.Barrier
+		android:id="@+id/timeBarrier"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		app:barrierDirection="end"
+		app:constraint_referenced_ids="time,date"/>
+
+	<androidx.appcompat.widget.AppCompatImageButton
+		android:id="@+id/productsIcon"
+		android:layout_width="@dimen/buttonSize"
+		android:layout_height="@dimen/buttonSize"
+		android:layout_marginLeft="16dp"
+		android:layout_marginStart="16dp"
+		android:background="?selectableItemBackgroundBorderless"
+		android:contentDescription="@string/action_choose_products"
+		android:src="@drawable/product_bus"
+		android:tint="@color/md_white_1000"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/timeIcon"/>
+
+	<ImageView
+		android:id="@+id/productsMarked"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/ic_action_dot"
+		android:layout_marginLeft="16dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginBottom="16dp"
+		app:tint="@color/md_grey_300"
+		app:layout_constraintStart_toStartOf="@+id/productsIcon"
+		app:layout_constraintEnd_toEndOf="@+id/productsIcon"
+		app:layout_constraintTop_toTopOf="@+id/productsIcon"
+		app:layout_constraintBottom_toBottomOf="@+id/productsIcon"
+		android:visibility="visible"
+		tools:ignore="ContentDescription"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

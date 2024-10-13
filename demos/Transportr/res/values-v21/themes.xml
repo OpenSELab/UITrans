@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="AppTheme" parent="AppDayNightTheme">
+		<item name="android:windowContentTransitions">true</item>
+
+		<!-- specify enter and exit transitions -->
+		<item name="android:windowEnterTransition">@transition/window</item>
+		<item name="android:windowExitTransition">@transition/window</item>
+
+		<!-- specify shared element transitions -->
+		<item name="android:windowSharedElementEnterTransition">@transition/element</item>
+		<item name="android:windowSharedElementExitTransition">@transition/element</item>
+	</style>
+
+</resources>

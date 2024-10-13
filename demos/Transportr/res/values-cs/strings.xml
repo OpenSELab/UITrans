@@ -1,0 +1,348 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Open-source veřejná doprava</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Bezplatný asistent pro veřejnou dopravu bez reklam a sledovacích prvků</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
+Transportr je nezisková aplikace vyvinutá lidmi po celém světě ve volném čase.
+Chce všem co nejvíce usnadnit používání veřejné dopravy.
+
+Tato aplikace využívá data různých místních dopravních agentur a poskytuje jim jednotné rozhraní. Nemůže ověřit správnost údajů, a proto &lt;i&gt;neposkytuje žádné záruky&lt;/i&gt; za zobrazené informace. Používejte ji prosím na své vlastní riziko.
+
+🛣️ Navigace výletů&lt;/b&gt;. Stačí říct Transportru, kam chcete jít! Najde pro vás nejlepší spojení, poradí vám, kde přestoupit na autobus, a dokonce vám poskytne odhadovaný čas příjezdu.
+
+⏱️ Odjezdy v reálném čase&lt;/b&gt; . Zobrazuje nadcházející odjezdy ze všech stanic. V podporovaných&lt;/i&gt; oblastech se také zobrazí zpoždění v reálném čase.
+
+🗽 Svobodný software&lt;/b&gt;. Zdrojový kód pro Transportr je 100% otevřený. Můžete jej libovolně používat, studovat, sdílet a vylepšovat. Tato aplikace je jen tak dobrá, jakou ji vy&lt;/i&gt; uděláte. Můžete dokonce přidat své město sami, pokud již není podporováno.
+
+🛰️ Vyhledá vaši pozici&lt;/b&gt;. Transportr využívá satelitní navigaci GPS ke sledování své aktuální polohy - abyste se nikdy neztratili. Můžete najít nedaleké stanice a zahájit novou cestu a poté zjistit, jak daleko jste na cestě.
+
+🌟 Pamatuje si oblíbená místa&lt;/b&gt;. Abyste se dostali rychleji, kam potřebujete, Transportr ukládá často používaná místa a výlety. Tímto způsobem je nemusíte psát znovu a znovu.
+
+🚫 Žádné reklamy, žádné sledování.&lt;/b&gt; Tato aplikace nezobrazuje reklamy ani nepříjemná oznámení. Rovněž nepoužívá nástroje pro sledování, jako je Google Analytics, aby vás špehovalo.
+
+🗺️ Krásné mapy.&lt;/b&gt; Zobrazuje stanice, nebo celou vaši cestu na mapě a vždy ví, co si nenechat ujít, kde vystoupit z autobusu.
+]]></string>
+  <string name="drawer_settings">Nastavení</string>
+  <string name="drawer_changelog">Seznam změn</string>
+  <string name="drawer_about">O aplikaci</string>
+  <string name="drawer_contributors">Přispěvatelé</string>
+  <string name="drawer_report_issue">Nahlásit problém</string>
+  <string name="action_fav_trip">Označit cestu jako oblíbenou</string>
+  <string name="action_unfav_trip">Neoznačit cestu jako oblíbený</string>
+  <string name="action_switch_locations">Přepnout z a do</string>
+  <string name="trip_dep">Odjezd</string>
+  <string name="trip_arr">Příjezd</string>
+  <string name="action_refresh">Obnovit</string>
+  <string name="action_navigation_expand">Zobrazit Přes</string>
+  <string name="action_choose_products">Dopravní prostředky</string>
+  <string name="action_share">Sdílet</string>
+  <string name="action_trip_calendar">Přidat do kalednáře</string>
+  <string name="action_trip_delete">Smazat cestu</string>
+  <string name="action_show_on_external_map">Zobrazit na externí mapě</string>
+  <string name="action_copy">Kopírování</string>
+  <string name="directions">Instrukce</string>
+  <string name="directions_search">Vyhledat trasy</string>
+  <string name="drawer_departures">Odjezdy</string>
+  <string name="tab_about">O aplikaci</string>
+  <string name="tab_libraries">Knihovny</string>
+  <string name="about_description">Transportr je společník veřejné dopravy vyvinutý všemi lidmi po celém světě, aby využil veřejnou dopravu co nejjednodušší, ať jste kdekoli.</string>
+  <string name="about_warning_title">Upozornění</string>
+  <string name="about_warning_text">Neexistuje žádná záruka správnosti údajů (externě poskytovaných). Použijte tuto aplikaci pouze na vlastní nebezpečí.</string>
+  <string name="about_contributions">Tato aplikace je svobodný software, takže můžete volně používat, studovat, sdílet a vylepšovat. Příspěvky jsou podporovány a oceňovány. Pokud chcete přispět, navštivte prosím domovskou stránku, kde naleznete další informace.</string>
+  <string name="about_visit_website">Navštívit webové stránky</string>
+  <string name="map_attribution_improve">Vylepšit tuto mapu</string>
+  <string name="open_navigation_drawer">Otevřít navigační panel</string>
+  <string name="from">Z</string>
+  <string name="to">Do</string>
+  <string name="via">Přes</string>
+  <string name="search_hint">Hledej tady</string>
+  <string name="from_here">Odsud</string>
+  <string name="to_here">Zde</string>
+  <string name="clear_location">Vymazat polohu</string>
+  <string name="walk">Chůze.</string>
+  <string name="alpha">alpha</string>
+  <string name="beta">beta</string>
+  <string name="network">Síť</string>
+  <string name="pick_network_activity">Zvolte oblast</string>
+  <string name="pick_network_first_run">Vítejte v aplikaci Transportr!\n\nProsím vyberte dopravní síť z vaší oblasti, abyste mohli pokračovat. Můžete ji kdykoliv změnit. </string>
+  <string name="stations_searching_position">Vyhledávání aktuální polohy #8230;</string>
+  <string name="drawer_nearby_stations">Stanice v okolí</string>
+  <string name="find_nearby_stations">Hledat stanice poblíž.</string>
+  <string name="find_departures">Hledat odjezdy</string>
+  <string name="share_trip_via">Sdílet cestu přes…</string>
+  <string name="show_location_in">Zobrazit místo v…</string>
+  <string name="more">Více</string>
+  <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
+  <string name="for_x_min">pro %d min</string>
+  <string name="change_time">Změnit času</string>
+  <string name="now">Nyní.</string>
+  <string name="now_small">nyní</string>
+  <string name="yesterday">Včera</string>
+  <string name="today">Dnes</string>
+  <string name="tomorrow">Zítra</string>
+  <string name="in_x_minutes">v %d min </string>
+  <string name="x_minutes_ago">před %dmin</string>
+  <string name="total_time">Celkový čas: %s</string>
+  <string name="time_picker_previous_day">Předchozí den</string>
+  <string name="time_picker_next_day">Další den</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Zrušit</string>
+  <string name="pref_transport_network">Dopravní síť</string>
+  <string name="pref_display">Zobraz</string>
+  <string name="pref_theme_title">Motiv</string>
+  <string name="pref_theme_light">Světlý</string>
+  <string name="pref_theme_dark">Tmavý</string>
+  <string name="pref_theme_auto_battery">Nastaveno šetřičem baterie</string>
+  <string name="pref_theme_auto_system">Výchozí nastavení systému</string>
+  <string name="pref_language_title">Jazyk</string>
+  <string name="pref_directions_routing">Směry a směrování cesty.</string>
+  <string name="pref_optimize">Optimalizovat na</string>
+  <string name="pref_optimize_least_duration">Nejkratší čas cesty</string>
+  <string name="pref_optimize_least_changes">Nejméně přestupů</string>
+  <string name="pref_optimize_least_walking">Nejméně chůze</string>
+  <string name="pref_walk_speed">Rychlost chůze</string>
+  <string name="pref_walk_speed_slow">Pomalá</string>
+  <string name="pref_walk_speed_normal">Normální</string>
+  <string name="pref_walk_speed_fast">Rychlá</string>
+  <string name="pref_show_when_locked_title">Zobrazte výlet a výsledky vyhledávání, i když je obrazovka uzamčena.</string>
+  <string name="pref_show_when_locked_summary">Zobrazte obrazovku uzamčení</string>
+  <string name="error">Chyba</string>
+  <string name="error_no_internet">Připojení k internetu je nutné. Ujistěte se, že váš přístup k internetu funguje.</string>
+  <string name="error_connection_failure">Připojení se nezdařilo. Prosím zkuste to znovu. </string>
+  <string name="error_trip_refresh_failed">Nepodařilo se aktualizovat data pro aktuální cestu.</string>
+  <string name="error_geo_intent">Nelze otevřít externí umístění</string>
+  <string name="error_find_nearby_stations">Stanice v okolí nebyly nalezeny</string>
+  <string name="error_departures">Nelze najít žádné odjezdy</string>
+  <string name="error_no_calendar">Není nainstalován žádný kalendář :(</string>
+  <string name="error_no_map">Není nainstalována žádná externí mapa :(</string>
+  <string name="trip_error_ambiguous">Nelze najít místo. Zkuste zkusit vyhledávání s různými místy.</string>
+  <string name="trip_error_too_close">poloha \"od\" a \"do\" jsou příliš blízko.</string>
+  <string name="trip_error_unknown_from">Nelze najít \\"z\\" umístění. Zkuste prosím jinou.</string>
+  <string name="trip_error_unknown_via">Nelze najít lokalitu \\"přes\\". Zkuste prosím jinou.</string>
+  <string name="trip_error_unknown_to">Nelze najít umístění \\"do\\". Zkuste prosím jinou.</string>
+  <string name="trip_error_unresolvable_address">Nelze najít zadanou adresu. Zkuste prosím jinou.</string>
+  <string name="trip_error_no_trips">Žádné spojení nebylo nalezeno :(</string>
+  <string name="trip_error_invalid_date">Datum hledání momentálně není podporován poskytovatelem dat. Zkuste prosím jiný den.</string>
+  <string name="trip_error_service_down">Poskytovatel dat je momentálně mimo provoz: (zkuste to prosím znovu později.</string>
+  <string name="trip_error_pte">Chcete-li tuto chybu nahlásit, oznamte ji prosím přímo %1$s a přiložte snímek obrazovky.</string>
+  <string name="trip_issue">S tímto spojením může být problém.</string>
+  <string name="trip_not_travelable">Nemožné nebo zrušené</string>
+  <string name="try_again">Zkuste to znovu</string>
+  <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <string name="meter">%d m.</string>
+  <plurals name="stops">
+    <item quantity="one">%d zastávka</item>
+    <item quantity="few">%d zastávky</item>
+    <item quantity="many">%d zastávek</item>
+    <item quantity="other">%d zastávek</item>
+  </plurals>
+  <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
+  <string name="platform">(Nástupiště %s)</string>
+  <string name="system_default">Výchozí nastavení systému</string>
+  <string name="trip_share_date">Datum: %s</string>
+  <string name="times_include_delays">(Upozornění: časy mohou zahrnovat hlášené zpoždění)</string>
+  <string name="created_by">Vytvořil %s</string>
+  <string name="home">Domů</string>
+  <string name="home_dialog_title">Nastavte polohu domova</string>
+  <string name="widget_name_quickhome">Dostaň mě domů</string>
+  <string name="work">Práce</string>
+  <string name="work_hint">Nastavte polohu pracoviště</string>
+  <string name="widget_name_quickwork">Jít do práce</string>
+  <string name="tap_to_set">Klepnutím nastavte</string>
+  <string name="widget_name_favorites">%1$s do %2$s</string>
+  <string name="widget_name_favorites_via">%1$s do %2$s (přes %3$s)</string>
+  <string name="action_set_locations">Editace vyhledávání</string>
+  <string name="action_swap_locations">Zobrazit zpáteční cestu</string>
+  <string name="action_change">Změna</string>
+  <string name="action_add_shortcut">Přidat zástupce na Plochu</string>
+  <string name="location_gps">Použít aktuální pozici.</string>
+  <string name="warning_no_gps_fix">Vaši pozici zatím nebylo možné najít.</string>
+  <string name="permission_denied_gps">Neumožnil jste přístup k vaší poloze, takže tato funkce nebude fungovat. Prosím udělit oprávnění v nastavení aplikace.</string>
+  <string name="warning_gps_off">Poloha je vypnutá. Zapněte ji v nastaveních.</string>
+  <string name="onboarding_location_title">Vytáhnout </string>
+  <string name="onboarding_location_message">Další funkce se skrývají níže</string>
+  <string name="select_products">Vyberte dopravní prostředky</string>
+  <string name="product_high_speed_train">Rychlík</string>
+  <string name="product_regional_train">Regionální vlak</string>
+  <string name="product_suburban_train">Příměstský vlak</string>
+  <string name="product_subway">Metro</string>
+  <string name="product_tram">Tramvaj</string>
+  <string name="product_bus">Autobus</string>
+  <string name="product_ferry">Trajekt</string>
+  <string name="product_cablecar">Lanovka</string>
+  <string name="product_on_demand">Na požádání</string>
+  <!--ckChangeLog-->
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Seznam změn</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Co je nového</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Více…</string>
+  <string name="np_continent_europe">Evropa</string>
+  <string name="np_continent_africa">Afrika</string>
+  <string name="np_continent_north_america">Severní Amerika</string>
+  <string name="np_continent_central_america">Centrální Amerika</string>
+  <string name="np_continent_south_america">Jižní Amerika</string>
+  <string name="np_continent_asia">Asie</string>
+  <string name="np_continent_oceania">Oceánie</string>
+  <string name="np_region_australia">Austrálie</string>
+  <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
+  <string name="np_desc_sydney">Australia, New South Wales, Sydney</string>
+  <string name="np_region_pt">Portugalsko</string>
+  <string name="np_name_pt">Portugalsko</string>
+  <string name="np_desc_pt">Lisabon</string>
+  <string name="np_desc_pt_networks">Autobus, Vlak, Pozemní lanovka, Trajekt, Metro</string>
+  <string name="np_region_austria">Rakousko</string>
+  <string name="np_desc_ivb">Innsbruck</string>
+  <string name="np_desc_linz">Horní Rakousko, Linz</string>
+  <string name="np_desc_oebb">Rakousko</string>
+  <string name="np_desc_stv">Štýrsko, Štýrský Hradec, Marburg, Maribor</string>
+  <string name="np_desc_vor">Dolní Rakousy, Burgenlandsko, Vídeň</string>
+  <string name="np_desc_vvt">Tyrolsko</string>
+  <string name="np_desc_wien">Vídeň</string>
+  <string name="np_region_belgium">Belgie</string>
+  <string name="np_desc_sncb">Hromadná doprava v Belgii</string>
+  <string name="np_name_br">Brazílie</string>
+  <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte a Porto Alegre</string>
+  <string name="np_name_br_floripa">Florianopolis</string>
+  <string name="np_desc_br_floripa">Mnoho autobusových linek, žádné Executivos</string>
+  <string name="np_region_canada">Kanada</string>
+  <string name="np_name_ontario">Ontario</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Hamilton, Waterloo Region</string>
+  <string name="np_name_quebec">Québec</string>
+  <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_name_britishcolumbia">Britská Kolumbie</string>
+  <string name="np_desc_britishcolumbia">Veřejná doprava v BC</string>
+  <string name="np_desc_britishcolumbia_networks">Translink (Metro Vancouver) a BC Transit (zbytek BC)</string>
+  <string name="np_region_denmark">Dánsko</string>
+  <string name="np_desc_dsb">Dánsko, Kodaň</string>
+  <string name="np_name_rt">Evropa</string>
+  <string name="np_desc_rt">Pouze dálkové vlaky</string>
+  <string name="np_desc_rt_networks">Railteam aliance</string>
+  <string name="np_region_finland">Finsko</string>
+  <string name="np_desc_fi">Helsinki, Turku, Tampere, Jyväskylä, Oulu</string>
+  <string name="np_region_france">Francie</string>
+  <string name="np_name_francenortheast">Severovýchod Francie</string>
+  <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
+  <string name="np_name_francenorthwest">Severozápad Francie</string>
+  <string name="np_desc_francenorthwest">Bretaň, Pays de la Loire, Střední, Dolní Normandie, Horní Normandie</string>
+  <string name="np_name_frenchsoutheast">Jihovýchod Francie</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corsica, Lyon</string>
+  <string name="np_name_frenchsouthwest">Jihozápad Francie</string>
+  <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
+  <string name="np_name_paris">Paříž</string>
+  <string name="np_desc_paris">Ile-de-France, France, Paris</string>
+  <string name="np_region_gb">Velká Británie</string>
+  <string name="np_desc_mersey">Liverpool City Region</string>
+  <string name="np_desc_tlem">Greater London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
+  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
+  <string name="np_region_germany">Německo</string>
+  <string name="np_desc_avv">Augsburg</string>
+  <string name="np_name_avvaachen">AVV</string>
+  <string name="np_desc_avvaachen">Cáchy</string>
+  <string name="np_desc_bayern">Bavorsko, Würzburg, Regensburg</string>
+  <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
+  <string name="np_desc_bvg">Berlín</string>
+  <string name="np_desc_db">Většina Německa</string>
+  <string name="np_desc_db2">Dálkové spojení v Evropě</string>
+  <string name="np_desc_ding">Bádensko-Württembersko, Ulm, Neu-Ulm</string>
+  <string name="np_desc_gvh">Dolní Sasko, Hannover, Hamburk, Bremerhaven</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
+  <string name="np_desc_invg">Ingolstadt</string>
+  <string name="np_desc_kvv">Bádensko-Württembersko, Karlsruhe</string>
+  <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
+  <string name="np_desc_mvv">Bavorsko, Mnichov</string>
+  <string name="np_desc_nasa">Sasko, Lipsko, Sasko-Anhaltsko, Magdeburg, Halle</string>
+  <string name="np_desc_nvbw">Bádensko-Württembersko, Kostnice, Basilej, Basilej-město, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
+  <string name="np_desc_nvv">Hesensko, Frankfurt nad Mohanem, Kassel</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_name_sh">NAH.SH</string>
+  <string name="np_desc_sh">Šlesvicko-Holštýnsko, Kiel, Flensburg, Lübeck</string>
+  <string name="np_desc_vbb">Braniborsko, Berlín</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Dolní Sasko, Brémy, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vgn">Norimberk, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_name_vgs">saarVV</string>
+  <string name="np_desc_vgs">Sársko, Saarbrücken</string>
+  <string name="np_desc_vmv">Meklenbursko-Přední Pomořansko, Schwerin</string>
+  <string name="np_desc_vrn">Bádensko-Württembersko, Porýní-Falc, Mannheim, Mohuč, Trier</string>
+  <string name="np_desc_vrr">Severní Porýní-Vestfálsko, Kolín nad Rýnem, Bonn, Essen, Dortmund, Dusseldorf, Munster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Kolín nad Rýnem, Bonn</string>
+  <string name="np_desc_vvm">Švábsko, Střední Švábsko, Krumbach, Günzburg, Memmingen</string>
+  <string name="np_desc_vvo">Sasko, Drážďany</string>
+  <string name="np_desc_vvs">Bádensko-Württembersko, Stuttgart</string>
+  <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">VMT</string>
+  <string name="np_region_ireland">Irsko</string>
+  <string name="np_desc_tfi">Irsko, Dublin, Belfast</string>
+  <string name="np_region_israel" tools:keep="@string/np_region_israel">Izrael</string>
+  <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Izrael, Jeruzalém</string>
+  <string name="np_name_it">Itálie</string>
+  <string name="np_desc_it">Řím, Milán, Turín, Benátky, Palermo, Trento</string>
+  <string name="np_region_liechtenstein">Lichtenštejnsko</string>
+  <string name="np_name_vmobil">VVV</string>
+  <string name="np_desc_vmobil">Lichtenštejnsko, Vorarlbersko, Břežnice</string>
+  <string name="np_region_luxembourg">Lucembursko</string>
+  <string name="np_desc_lu">Lucembursko</string>
+  <string name="np_region_netherlands">Nizozemsko</string>
+  <string name="np_desc_ns">Nizozemí, Amsterdam</string>
+  <string name="np_desc_negentwee">Všechny veřejné dopravy v Nizozemsku</string>
+  <string name="np_name_nz">Nový Zéland</string>
+  <string name="np_desc_nz">Nový Zéland, Wellington, Auckland</string>
+  <string name="np_region_poland">Polsko</string>
+  <string name="np_name_spain">Španělsko</string>
+  <string name="np_desc_spain">Madrid, Barcelona, ​​Baskicko, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
+  <string name="np_name_hungary">Maďarsko</string>
+  <string name="np_desc_hungary">Budapešť, Miškovec</string>
+  <string name="np_name_czechia">Česko</string>
+  <string name="np_desc_czechia">Praha a další</string>
+  <string name="np_region_sweden">Švédsko</string>
+  <string name="np_desc_se">Švédsko, Stockholm</string>
+  <string name="np_region_switzerland">Švýcarsko</string>
+  <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
+  <string name="np_name_sbb" translatable="true">Švýcarské spolkové dráhy</string>
+  <string name="np_desc_sbb">Švýcarsko</string>
+  <string name="np_desc_vbl">Lucern</string>
+  <string name="np_desc_zvv">Curych</string>
+  <string name="np_region_uae">Spojené Arabské Emiráty</string>
+  <string name="np_name_dub">Dubaj</string>
+  <string name="np_desc_dub">Spojené arabské Emiráty, Dubai</string>
+  <string name="np_region_usa">Spojené státy americké</string>
+  <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Francisco</string>
+  <string name="np_name_cmta">Capital Metro</string>
+  <string name="np_desc_cmta">Austin</string>
+  <string name="np_name_usny">Státy New York a New Jersey</string>
+  <string name="np_name_california">Kalifornie</string>
+  <string name="np_desc_california">Hromadná doprava v Kalifornii (USA)</string>
+  <string name="np_name_oregon">Oregon</string>
+  <string name="np_desc_oregon">Globální doprava ve státě Oregon (USA)</string>
+  <string name="np_name_costa_rica">Kostarika</string>
+  <string name="np_name_ghana">Ghana</string>
+  <string name="np_desc_ghana">Akkra</string>
+  <string name="np_name_nicaragua">Nikaragua</string>
+  <string name="np_desc_nicaragua">Městské, venkovské a celostátní autobusy poskytované spolupracovníky MapNica.net a OpenStreetMap</string>
+  <string name="maintainer">Udržovatel</string>
+  <string name="contributors">Příspívatelé</string>
+  <string name="translators">Překladatelé</string>
+  <string name="dutch">Holandsky</string>
+  <string name="french">Fancouzsky.</string>
+  <string name="german">Německy.</string>
+  <string name="italian">Italsky</string>
+  <string name="portuguese_br">Portugalština (Brazílie)</string>
+  <string name="spanish">Španělsky</string>
+  <string name="turkish">Turecky.</string>
+  <string name="norwegian_bokmal">Norská Bokmål</string>
+  <string name="basque">Baskicko</string>
+  <string name="english">Anglicky</string>
+  <string name="catalan">Katalánsko</string>
+  <string name="polish">Polsky</string>
+  <string name="tamil">Tamil</string>
+  <string name="esperanto">Esperanto</string>
+  <string name="czech">Čeština</string>
+  <string name="hungarian">Maďarština</string>
+  <string name="japanese">Japonština</string>
+  <string name="russian">Ruština</string>
+  <string name="greek">Řečtina</string>
+  <string name="farsi">Perština</string>
+  <string name="taiwanese">Čínština (Tchaj-wan)</string>
+  <string name="swedish">Švédština</string>
+  <string name="ukrainian">Ukrajinština</string>
+  <string name="danish">Dánsko</string>
+</resources>

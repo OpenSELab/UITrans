@@ -7,7 +7,8 @@
 {% if android_component %}
 待转译的安卓组件如下：
 # {{ android_component.name }}
-{{ android_component.function_description }}
+功能效果描述：{{ android_component.function_description }}
+通用布局描述：{{ android_component.layout_description }}
 {{ android_component.content }}
 {% endif %}
 

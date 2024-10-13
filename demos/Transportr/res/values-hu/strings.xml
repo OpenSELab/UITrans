@@ -1,0 +1,368 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr – Nyílt forráskódú tömegközlekedés</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Szabad tömegközlekedési segéd reklámok és követés nélkül</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
+A Transportr egy nonprofit alkalmazás, amelyet emberek a szabadidejükben fejlesztenek
+a világ minden tájáról. Azt szeretnék, hogy a tömegközlekedés olyan könnyű legyen
+mindenki számára, amennyire csak lehetséges.
+
+Ez az alkalmazás számos tömegközlekedési cég adatait használja, és
+egységes felületet biztosít hozzájuk.
+Az adatok helyességét viszont nem tudjuk ellenőrizni,
+és ezért <i>garanciát sem vállalunk</i> a megjelenített információkért.
+Saját felelősségére használja.
+
+<b>🛣️ Útvonaltervezés</b>. Csak mondja meg a Tansportrnek, hogy merre menne!
+Megkeresi Önnek a legjobb csatlakozást, és tanácsot ad hogy szálljon át,
+és még a becsült érkezési időt is megmondja.
+
+<b>⏱️ Élő indulások</b>. Megjeleníti a soron következő indulásokat minden megállóhoz.
+A <i>támogatott</i> területeken a valós idejű adatok is megjelennek.
+
+<b>🗽 Szoftverszabadság</b>. A Transportr forráskódja 100%-ban nyílt.
+Szabadon használhatja, tanulmányozhatja, megoszthatja és fejlesztheti.
+Ez csak annyira jó, amennyire <i>Ön</i> azzá teszi.
+A saját városát is hozzáadhatja, ha az még nem támogatott.
+
+<b>🛰️ Megtalálja a helyzetét.</b> A Transportr GPS műholdas navigációt használ
+a jelenlegi pozíciója követésére – így sosem téved el.
+Megtalálhatja a közeli megállókat egy új utazás elkezdéséhez,
+majd láthatja, hogy milyen messzire viszi az útja.
+
+<b>🌟 Megjegyzi a kedvenc helyeit.</b> Hogy gyorsabban megtalálja merre kell mennie,
+a Transportr elmenti a gyakran használt helyeit és útjait.
+Így nem kell őket újra és újra begépelnie.
+
+<b>🚫 Nincsenek reklámok, nincs követés</b>. Az alkalmazás nem jelenít meg reklámokat
+vagy idegesítő értesítéseket. Emellett nem használ olyan követő eszközöket,
+mint a Google Analytics, amely kémkedik Ön után.
+
+<b>🗺️ Gyönyörű térképek</b>. Megjeleníti a megállókat a teljes utazása
+alatt egy térképen, és mindig megmutatja hogy hol van, így nem téveszti el,
+hogy hol kell leszállnia a buszról…
+]]>
+
+</string>
+  <string name="drawer_settings">Beállítások</string>
+  <string name="drawer_changelog">Változásnapló</string>
+  <string name="drawer_about">Névjegy</string>
+  <string name="drawer_contributors">Közreműködők</string>
+  <string name="drawer_report_issue">Hiba jelentése</string>
+  <string name="action_fav_trip">Útvonal megjelölése kedvencként</string>
+  <string name="action_unfav_trip">Útvonal eltávolítása a kedvencek közül</string>
+  <string name="action_switch_locations">Kiindulópont és célpont felcserélése</string>
+  <string name="trip_dep">Indulás</string>
+  <string name="trip_arr">Érkezés</string>
+  <string name="action_refresh">Frissítés</string>
+  <string name="action_navigation_expand">Érintett pont megjelenítése</string>
+  <string name="action_choose_products">Közlekedési eszközök</string>
+  <string name="action_share">Megosztás</string>
+  <string name="action_trip_calendar">Hozzáadás a naptárhoz</string>
+  <string name="action_trip_delete">Útvonal törlése</string>
+  <string name="action_show_on_external_map">Megjelenítés külső térképen</string>
+  <string name="action_copy">Másolás</string>
+  <string name="directions">Útvonalak</string>
+  <string name="directions_search">Útvonalak keresése</string>
+  <string name="drawer_departures">Indulások</string>
+  <string name="tab_about">Névjegy</string>
+  <string name="tab_libraries">Programkönyvtárak</string>
+  <string name="about_description">A Transportr egy olyan tömegközlekedési segéd, amelyet az emberek a világ minden tájáról azért fejlesztenek, hogy a tömegközlekedést a lehető legegyszerűbbé tegyek, bárhol is legyen.</string>
+  <string name="about_warning_title">Figyelmeztetés</string>
+  <string name="about_warning_text">Nincs garancia a (kívülről érkező) adatok helyességére. Ezt az alkalmazást csak saját felelősségére használja!</string>
+  <string name="about_contributions">Ez az alkalmazás szabad szoftver, így szabadon használhatja, tanulmányozhatja, megoszthatja és továbbfejlesztheti. A hozzájárulását szorgalmazzák és megköszönik. Ha szeretne közreműködni, akkor látogassa meg a honlapot a további információkért.</string>
+  <string name="about_visit_website">Weblap megtekintése</string>
+  <string name="map_attribution_improve">Térkép továbbfejlesztése</string>
+  <string name="open_navigation_drawer">Navigációs fiók megnyitása</string>
+  <string name="from">Kiindulópont</string>
+  <string name="to">Célpont</string>
+  <string name="via">Érintett pont</string>
+  <string name="search_hint">Keresés itt</string>
+  <string name="from_here">Innen</string>
+  <string name="to_here">Ide</string>
+  <string name="clear_location">Hely törlése</string>
+  <string name="walk">Séta</string>
+  <string name="alpha">alfa</string>
+  <string name="beta">béta</string>
+  <string name="network">Hálózat</string>
+  <string name="pick_network_activity">Válasszon területet</string>
+  <string name="pick_network_first_run">Üdvözli a Transportr!\n\nA folytatáshoz válassza ki a tömegközlekedési hálózatot a területről. Ezt bármikor megváltoztathatja.</string>
+  <string name="stations_searching_position">Jelenlegi helyzet keresése…</string>
+  <string name="drawer_nearby_stations">Közeli megállók</string>
+  <string name="find_nearby_stations">Közeli megállók keresése</string>
+  <string name="find_departures">Indulások keresése</string>
+  <string name="share_trip_via">Útvonal megosztása…</string>
+  <string name="show_location_in">Hely megjelenítése…</string>
+  <string name="more">Több</string>
+  <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
+  <string name="for_x_min">%d perc</string>
+  <string name="change_time">Idő megváltoztatása</string>
+  <string name="now">Most</string>
+  <string name="now_small">most</string>
+  <string name="yesterday">Tegnap</string>
+  <string name="today">Ma</string>
+  <string name="tomorrow">Holnap</string>
+  <string name="in_x_minutes">%d percen belül</string>
+  <string name="x_minutes_ago">%d perce</string>
+  <string name="total_time">Teljes idő: %s</string>
+  <string name="time_picker_previous_day">Előző nap</string>
+  <string name="time_picker_next_day">Következő nap</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Mégse</string>
+  <string name="pref_transport_network">Tömegközlekedési hálózat</string>
+  <string name="pref_display">Kijelző</string>
+  <string name="pref_theme_title">Téma</string>
+  <string name="pref_theme_light">Világos</string>
+  <string name="pref_theme_dark">Sötét</string>
+  <string name="pref_theme_auto_battery">Akkumulátoroptimalizálás által beálítva</string>
+  <string name="pref_theme_auto_system">Rendszer alapértelmezése</string>
+  <string name="pref_language_title">Nyelv</string>
+  <string name="pref_directions_routing">Útvonalválasztás és irányok</string>
+  <string name="pref_optimize">Optimalizálás erre</string>
+  <string name="pref_optimize_least_duration">Leggyorsabb</string>
+  <string name="pref_optimize_least_changes">Legkevesebb átszállás</string>
+  <string name="pref_optimize_least_walking">Legkevesebb séta</string>
+  <string name="pref_walk_speed">Séta sebessége</string>
+  <string name="pref_walk_speed_slow">Lassú</string>
+  <string name="pref_walk_speed_normal">Normál</string>
+  <string name="pref_walk_speed_fast">Gyors</string>
+  <string name="pref_show_when_locked_title">Útvonal megjelenítése akkor is, ha a kijelző zárolt</string>
+  <string name="pref_show_when_locked_summary">Megjelenítés a zárolási képernyő fölött</string>
+  <string name="error">Hiba</string>
+  <string name="error_no_internet">Internetkapcsolat szükséges. Győződjön meg arról, hogy az internet-hozzáférése működik.</string>
+  <string name="error_connection_failure">Kapcsolódás sikertelen. Próbálja újra.</string>
+  <string name="error_trip_refresh_failed">Nem sikerült frissíteni az adatokat a jelenlegi útvonalhoz.</string>
+  <string name="error_geo_intent">Nem sikerült megnyitni a külső helyet</string>
+  <string name="error_find_nearby_stations">Nem sikerült megtalálni a közeli megállókat</string>
+  <string name="error_departures">Nem sikerül megtalálni egyetlen indulást sem</string>
+  <string name="error_no_calendar">Nincs telepített naptáralkalmazás :(</string>
+  <string name="error_no_map">Nincs külső térkép telepítve :(</string>
+  <string name="trip_error_ambiguous">Nem sikerült megtalálni a helyet. Próbáljon meg eltérő helyeket keresni.</string>
+  <string name="trip_error_too_close">A „kiindulópont” és a „célpont” helyek túl közel vannak egymáshoz.</string>
+  <string name="trip_error_unknown_from">Nem sikerült megtalálni a „kiindulópont” helyet. Próbáljon egy másikat.</string>
+  <string name="trip_error_unknown_via">Nem sikerült megtalálni az „érintett pont” helyet. Próbáljon egy másikat.</string>
+  <string name="trip_error_unknown_to">Nem sikerült megtalálni a „célpont” helyet. Próbáljon egy másikat.</string>
+  <string name="trip_error_unresolvable_address">Nem sikerült megtalálni a megadott címet. Próbáljon egy másikat.</string>
+  <string name="trip_error_no_trips">Nem találhatók csatlakozások :(</string>
+  <string name="trip_error_invalid_date">A keresési dátumot jelenleg nem támogatja az adatszolgáltató. Próbáljon egy másik dátumot.</string>
+  <string name="trip_error_service_down">Az adatszolgáltató jelenleg nem érhető el :(\nPróbálja meg később.</string>
+  <string name="trip_error_pte">Ha be akarja jelenteni ezt a hibát, akkor jelentse közvetlenül ide: %1$s.</string>
+  <string name="trip_issue">Probléma lehet ezzel a csatlakozással.</string>
+  <string name="trip_not_travelable">Lehetetlen vagy visszavont</string>
+  <string name="try_again">Próbálja újra</string>
+  <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <string name="meter">%d m</string>
+  <plurals name="stops">
+    <item quantity="one">%d megálló</item>
+    <item quantity="other">%d megálló</item>
+  </plurals>
+  <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
+  <string name="platform">(Platform: %s)</string>
+  <string name="system_default">Rendszer alapértelmezett</string>
+  <string name="trip_share_date">Dátum: %s</string>
+  <string name="times_include_delays">(Figyelem: az idők tartalmazhatják a bejelentett késéseket)</string>
+  <string name="created_by">Létrehozta: %s</string>
+  <string name="home">Otthon</string>
+  <string name="home_dialog_title">Otthon helyének beállítása</string>
+  <string name="widget_name_quickhome">Vigyél haza</string>
+  <string name="work">Munkahely</string>
+  <string name="work_hint">Munkahely helyének beállítása</string>
+  <string name="widget_name_quickwork">Vigyél dolgozni</string>
+  <string name="tap_to_set">Érintse meg a beállításhoz</string>
+  <string name="widget_name_favorites">%1$s → %2$s</string>
+  <string name="widget_name_favorites_via">%1$s → %2$s (érintve: %3$s)</string>
+  <string name="action_set_locations">Keresés szerkesztése</string>
+  <string name="action_swap_locations">Visszaút keresése</string>
+  <string name="action_change">Változtatás</string>
+  <string name="action_add_shortcut">Gyorsindító hozzáadása</string>
+  <string name="location_gps">Jelenlegi helyzet használata</string>
+  <string name="warning_no_gps_fix">Nem sikerült megtalálni a helyzetét még.</string>
+  <string name="permission_denied_gps">Nem engedélyezett hozzáférést a helyzetéhez, így ez a funkcionalitás nem fog működni. Adja meg a jogosultságot az alkalmazás beállításaiban.</string>
+  <string name="warning_gps_off">A tartózkodási hely ki van kapcsolva. Kapcsolja be a beállításokban.</string>
+  <string name="onboarding_location_title">Húzza fel</string>
+  <string name="onboarding_location_message">További funkciók vannak lent elrejtve</string>
+  <string name="select_products">Közlekedési eszközök kiválasztása</string>
+  <string name="product_high_speed_train">Gyorsvasút</string>
+  <string name="product_regional_train">Regionális vasút</string>
+  <string name="product_suburban_train">Elővárosi vasút</string>
+  <string name="product_subway">Metró</string>
+  <string name="product_tram">Villamos</string>
+  <string name="product_bus">Busz</string>
+  <string name="product_ferry">Komp</string>
+  <string name="product_cablecar">Felvonó</string>
+  <string name="product_on_demand">Igény szerint</string>
+  <!--ckChangeLog-->
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Változásnapló</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Újdonságok</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Továbbiak…</string>
+  <string name="np_continent_europe">Európa</string>
+  <string name="np_continent_africa">Afrika</string>
+  <string name="np_continent_north_america">Észak-Amerika</string>
+  <string name="np_continent_central_america">Közép-Amerika</string>
+  <string name="np_continent_south_america">Dél-Amerika</string>
+  <string name="np_continent_asia">Ázsia</string>
+  <string name="np_continent_oceania">Óceánia</string>
+  <string name="np_region_australia">Ausztrália</string>
+  <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
+  <string name="np_desc_sydney">Ausztrália, Új-Dél-Wales, Sydney</string>
+  <string name="np_region_pt">Portugália</string>
+  <string name="np_name_pt">Portugália</string>
+  <string name="np_desc_pt">Lisszabon</string>
+  <string name="np_desc_pt_networks">Busz, Vonat, Sikló, Komp, Metró</string>
+  <string name="np_region_austria">Ausztria</string>
+  <string name="np_desc_ivb">Innsbruck</string>
+  <string name="np_desc_linz">Felső-Ausztria, Linz</string>
+  <string name="np_desc_oebb">Ausztria</string>
+  <string name="np_desc_stv">Stájerország, Grác, Marburg, Maribor</string>
+  <string name="np_desc_vor">Alsó-Ausztria, Burgenland, Bécs</string>
+  <string name="np_desc_vvt">Tirol</string>
+  <string name="np_desc_wien">Bécs</string>
+  <string name="np_region_belgium">Belgium</string>
+  <string name="np_desc_sncb">Belgiumi tömegközlekedés</string>
+  <string name="np_name_br">Brazília</string>
+  <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte és Porto Alegre</string>
+  <string name="np_name_br_floripa">Florianópolis</string>
+  <string name="np_desc_br_floripa">Sok buszútvonal, Executivos nélkül</string>
+  <string name="np_region_canada">Kanada</string>
+  <string name="np_name_ontario">Ontario</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Hamilton, Waterloo régi</string>
+  <string name="np_name_quebec">Quebec</string>
+  <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_name_britishcolumbia">Brit Columbia</string>
+  <string name="np_desc_britishcolumbia">Tömegközlekedés Brit Columbiában</string>
+  <string name="np_desc_britishcolumbia_networks">Translink (Metro Vancouver) és BC Transit (BC többi része)</string>
+  <string name="np_region_denmark">Dánia</string>
+  <string name="np_desc_dsb">Dánia, Koppenhága</string>
+  <string name="np_name_rt">Európa</string>
+  <string name="np_desc_rt">Csak távolsági vonatok </string>
+  <string name="np_desc_rt_networks">Railteam szövetség</string>
+  <string name="np_region_finland">Finnország</string>
+  <string name="np_desc_fi">Helsinki, Turku, Tampere, Jyväskylä, Oulu</string>
+  <string name="np_region_france">Franciaország</string>
+  <string name="np_name_francenortheast">Északkelet-Franciaország</string>
+  <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
+  <string name="np_name_francenorthwest">Északnyugat-Franciaország</string>
+  <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre, Alsó-Normandia, Felső-Normandia</string>
+  <string name="np_name_frenchsoutheast">Délkelet-Franciaország</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpok-Azúr-part, Rhône-Alpok, Languedoc-Roussillon, Auvergne, Korzika, Lyon</string>
+  <string name="np_name_frenchsouthwest">Délkelet-Franciaország</string>
+  <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitáina, Midi-Pyrénées, Bordeaux, Toulouse</string>
+  <string name="np_name_paris">Párizs</string>
+  <string name="np_desc_paris">Ile-de-France, France, Párizs</string>
+  <string name="np_region_gb">Nagy-Britannia</string>
+  <string name="np_desc_mersey">Liverpool városi régió</string>
+  <string name="np_desc_tlem">Nagy-London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Wight-sziget, Kent, Oxfordshire, Surrey, Nyugat-Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, Nyugat-Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
+  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
+  <string name="np_region_germany">Németország</string>
+  <string name="np_desc_avv">Augsburg</string>
+  <string name="np_name_avvaachen">AVV</string>
+  <string name="np_desc_avvaachen">Aachen</string>
+  <string name="np_desc_bayern">Bajorország, Würzburg, Regensburg</string>
+  <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
+  <string name="np_desc_bvg">Berlin</string>
+  <string name="np_desc_db">Németország nagyobb része</string>
+  <string name="np_desc_db2">Hosszú távú csatlakozások Európában</string>
+  <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
+  <string name="np_desc_gvh">Alsó-Szászország, Hannover, Hamburg, Bremerhaven</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
+  <string name="np_desc_invg">Ingolstadt</string>
+  <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
+  <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
+  <string name="np_desc_mvv">Bajorország, München</string>
+  <string name="np_desc_nasa">Szászország, Lipcse, Szász-Anhalt, Magdeburg, Halle</string>
+  <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
+  <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_name_sh">NAH.SH</string>
+  <string name="np_desc_sh">Schleswig-Holstein, Kiel, Flensburg, Lübeck</string>
+  <string name="np_desc_vbb">Brandenburg, Berlin</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Alsó-Szászország, Bréma, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_name_vgs">saarVV</string>
+  <string name="np_desc_vgs">Saar-vidék, Saarbrücken</string>
+  <string name="np_desc_vmv">Mecklenburg-Elő-Pomeránia, Schwerin</string>
+  <string name="np_desc_vrn">Baden-Württemberg, Rajna-vidék-Pfalz, Mannheim, Mainz, Trier</string>
+  <string name="np_desc_vrr">Észak-Rajna-Vesztfália, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Köln, Bonn</string>
+  <string name="np_desc_vvm">Svábia, Középső-Svábia, Krumbach, Günzburg, Memmingen</string>
+  <string name="np_desc_vvo">Szászország, Drezda</string>
+  <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
+  <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">Közép-Türingia</string>
+  <string name="np_region_ireland">Írország</string>
+  <string name="np_desc_tfi">Írország, Dublin, Belfast</string>
+  <string name="np_region_israel" tools:keep="@string/np_region_israel">Izrael</string>
+  <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Izrael, Jeruzsálem</string>
+  <string name="np_name_it">Olaszország</string>
+  <string name="np_desc_it">Róma, Milánó, Torino, Velence, Palermo, Tréntó</string>
+  <string name="np_region_liechtenstein">Liechtenstein</string>
+  <string name="np_name_vmobil">VVV</string>
+  <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
+  <string name="np_region_luxembourg">Luxemburg</string>
+  <string name="np_desc_lu">Luxemburg</string>
+  <string name="np_region_netherlands">Hollandia</string>
+  <string name="np_desc_ns">Hollandia, Amszterdam</string>
+  <string name="np_desc_negentwee">Az összes tömegközlekedési hálózat Hollandiában</string>
+  <string name="np_name_nz">Új-Zéland</string>
+  <string name="np_desc_nz">Új-Zéland, Welligton, Auckland</string>
+  <string name="np_region_poland">Lengyelország</string>
+  <string name="np_name_spain">Spanyolország</string>
+  <string name="np_desc_spain">Madrid, Barcelona, Baszkföld, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
+  <string name="np_name_hungary">Magyarország</string>
+  <string name="np_desc_hungary">Budapest, Miskolc</string>
+  <string name="np_name_czechia">Csehország</string>
+  <string name="np_desc_czechia">Prága és egyebek</string>
+  <string name="np_region_sweden">Svédország</string>
+  <string name="np_desc_se">Svédország, Stockholm</string>
+  <string name="np_region_switzerland">Svájc</string>
+  <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
+  <string name="np_name_sbb" translatable="true">SBB</string>
+  <string name="np_desc_sbb">Svájc</string>
+  <string name="np_desc_vbl">Luzern</string>
+  <string name="np_desc_zvv">Zürich</string>
+  <string name="np_region_uae">Egyesült Arab Emírségek</string>
+  <string name="np_name_dub">Dubaj</string>
+  <string name="np_desc_dub">Egyesült Arab Emírségek, Dubaj</string>
+  <string name="np_region_usa">Amerikai Egyesült Államok</string>
+  <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Francisco</string>
+  <string name="np_name_cmta">Capital Metro</string>
+  <string name="np_desc_cmta">Austin</string>
+  <string name="np_name_usny">New York és New-Jersey államok</string>
+  <string name="np_name_california">Kalifornia</string>
+  <string name="np_desc_california">Tömegközlekedés Kaliforniában (USA)</string>
+  <string name="np_name_oregon">Oregon</string>
+  <string name="np_desc_oregon">Globális tömegközlekedés Oregon államban (USA)</string>
+  <string name="np_name_costa_rica">Costa Rica</string>
+  <string name="np_name_ghana">Ghána</string>
+  <string name="np_desc_ghana">Accra</string>
+  <string name="np_name_nicaragua">Nicaragua</string>
+  <string name="np_desc_nicaragua">Városi, vidéki és országos buszjáratok a MapaNica.nettől és OpenStreetMap közreműködőktől</string>
+  <string name="maintainer">Karbantartó</string>
+  <string name="contributors">Közreműködők</string>
+  <string name="translators">Fordítók</string>
+  <string name="dutch">Holland</string>
+  <string name="french">Francia</string>
+  <string name="german">Német</string>
+  <string name="italian">Olasz</string>
+  <string name="portuguese_br">Portugál (brazil)</string>
+  <string name="spanish">Spanyol</string>
+  <string name="turkish">Török</string>
+  <string name="norwegian_bokmal">Norvég bokmål</string>
+  <string name="basque">Baszk</string>
+  <string name="english">Angol</string>
+  <string name="catalan">Katalán</string>
+  <string name="polish">Lengyel</string>
+  <string name="tamil">Tamil</string>
+  <string name="esperanto">Eszperantó</string>
+  <string name="czech">Cseh</string>
+  <string name="hungarian">Magyar</string>
+  <string name="japanese">Japán</string>
+  <string name="russian">Orosz</string>
+  <string name="greek">Görög</string>
+  <string name="farsi">Perzsa</string>
+  <string name="taiwanese">Kínai (Taiwan)</string>
+  <string name="swedish">Svéd</string>
+  <string name="ukrainian">Ukrán</string>
+  <string name="danish">Dán</string>
+</resources>

@@ -42,6 +42,6 @@ db:
 # global state配置
 state:
   android:
-    project_dir: demos/GoGrocery
+    project_dir: demos/forecastie
   harmony:
-    project_dir: D:/Code/Harmony/GoGrocery
+    project_dir: D:/Code/Harmony/forecastie

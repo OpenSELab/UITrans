@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:showIn="@layout/activity_map">
+
+	<ImageView
+		android:id="@+id/statusButton"
+		android:layout_width="38dp"
+		android:layout_height="48dp"
+		android:layout_gravity="center"
+		android:background="?attr/selectableItemBackgroundBorderless"
+		android:contentDescription="@string/open_navigation_drawer"
+		android:scaleType="center"
+		app:tint="?colorControlNormal"
+		app:srcCompat="@drawable/ic_location"/>
+
+	<AutoCompleteTextView
+		android:id="@+id/location"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:background="@android:color/transparent"
+		android:completionThreshold="1"
+		android:dropDownHeight="wrap_content"
+		android:dropDownWidth="match_parent"
+		android:importantForAutofill="no"
+		android:inputType="text|textNoSuggestions|textAutoComplete|textFilter"
+		android:maxLines="1"
+		tools:ignore="LabelFor"/>
+
+	<ProgressBar
+		android:id="@+id/progress"
+		style="?android:attr/progressBarStyleSmall"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
+		android:visibility="gone"
+		tools:visibility="visible"/>
+
+	<ImageButton
+		android:id="@+id/clearButton"
+		android:layout_width="38dp"
+		android:layout_height="48dp"
+		android:background="?attr/selectableItemBackgroundBorderless"
+		android:contentDescription="@string/clear_location"
+		android:src="@drawable/ic_action_content_remove"
+		app:tint="?colorControlNormal"
+		android:visibility="gone"
+		app:srcCompat="@drawable/ic_action_content_remove"
+		tools:visibility="visible"/>
+
+</merge>

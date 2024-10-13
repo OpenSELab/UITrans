@@ -75,6 +75,11 @@
 在你编写鸿蒙ArUI组件时，需要遵守以下规则：
 * 1. 当组件的宽度和高度是根据内容自适应时，需要使用'auto'；当组件的宽度和高度是跟随父组件时，需要使用'100%'，例如：android:layout_width="wrap_content"应该转译为width="auto"；android:layout_width="match_parent"应该转译为width="100%"。
 * 2. 引用资源时，需要使用$r('app.xxx.yyy'), 其中xxx为资源类型，yyy为资源名称，例如：Image($r('app.media.custom_background'))。
+* 3. 对于安卓系统属性例如@attr/black，在鸿蒙中你应该将其转译为Color.Black。
+* 4. 在鸿蒙中，对于marquee效果的文本，你应该使用.textOverflow({ overflow: TextOverflow.MARQUEE })即可，不需要额外的设置。
+* 5. 在鸿蒙中，当你转译的只有容器组件时，你需要注明子组件所在的位置，例如：Scroll() {\n  Column() {\n    // 子组件\n  }\n}。
+* 6. 在鸿蒙中，你应该根据所需效果确保为每一个Image添加objectFit，以保证图片的显示效果，例如：Image(xxx)\n  .objectFit(ImageFit.Contain)。
+
 
 {% include "harmony/examples/translate_android_component.prompt" %}
 
