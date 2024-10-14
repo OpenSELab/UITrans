@@ -42,7 +42,7 @@ def analyse_page_dict(base_path, android_config):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
         print(f"{output_dir}已成功初始化")
-    output_res_dir = os.path.join(output_dir, "res")
+    output_res_dir = f"{output_dir}/res"
     if not os.path.exists(output_res_dir):
         os.makedirs(output_res_dir)
         print(f"{output_res_dir}已成功初始化")
