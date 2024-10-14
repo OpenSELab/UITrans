@@ -99,12 +99,11 @@ def parse_android_project(android_zip):
     if not zipfile.is_zipfile(android_zip):
         gr.Warning("错误: 无效的 zip 文件!")
         return False, None
-    unzip_dir = f"./android_projects/{shortuuid.uuid()}/"
+    unzip_dir = f"android_projects/{shortuuid.uuid()}"
     print(unzip_dir)
     os.makedirs(unzip_dir, exist_ok=True)
 
     with zipfile.ZipFile(android_zip, 'r') as zip_ref:
-        root_dirs = list(file for file in zip_ref.namelist() if file.endswith('/') and file.count('/') == 1)
         print(zip_ref.namelist())
         file_list = zip_ref.namelist()
         root_folders = set(file.split('/')[0] for file in file_list if '/' in file)

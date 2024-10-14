@@ -38,7 +38,7 @@ def analyse_page_dict(base_path, android_config):
             module_nested_page_dict, module_page_dict = page_analyser.organize_page(activities)
             nested_page_dict.update(module_nested_page_dict)
             page_dict.update(module_page_dict)
-    output_dir = f"{base_path}output/{android_config.PROJ_NAME}"
+    output_dir = f"{base_path}/output/{android_config.PROJ_NAME}"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
         print(f"{output_dir}已成功初始化")
