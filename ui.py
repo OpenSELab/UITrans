@@ -1,3 +1,4 @@
+import json
 import os
 import time
 import zipfile
@@ -14,6 +15,7 @@ from core.llms import LLMFactory
 from core.pilot.code_monkey import CodeMonkeyAgent
 from core.pilot.developer import DeveloperAgent
 from core.pilot.schema import BreakdownAndroidLayout, BreakdownLayoutTranslation
+from core.translator import init_harmony_from_android
 
 config = ConfigLoader.from_file("config.yaml")
 component_name_pattern = re.compile(r"<\s*([\w\.]+)")
@@ -38,6 +40,9 @@ def get_llm_client():
 
 # Define a function to convert Android XML components to HarmonyOS code.
 def convert_android_component_to_harmony(android_xml):
+    if not android_xml:
+        gr.Warning("错误: 请先输入 Android XML 组件代码!")
+        return ""
     # 初始化llm
     llm_client = get_llm_client()
     code_monkey_agent = CodeMonkeyAgent(llm_client=llm_client)
@@ -57,6 +62,9 @@ def convert_android_component_to_harmony(android_xml):
 
 
 def convert_android_page_to_harmony(android_xml):
+    if not android_xml:
+        gr.Warning("错误: 请先输入 Android XML 页面代码!")
+        return ""
     # 初始化llm
     tqdm_progress = tqdm(total=100, desc="转译进度")
     llm_client = get_llm_client()
@@ -125,14 +133,75 @@ def parse_android_project(android_zip):
     return True, unzip_dir
 
 
-def convert_android_project_to_harmony(project_id):
-    # Simple conversion logic (this is a placeholder, actual conversion logic should be implemented)
-    for i in tqdm(range(100), desc="转译进度"):
-        if i == 99:
-            yield "完成"
+def convert_android_project_to_harmony(project_path_id):
+    return "转译完成", project_path_id
+    if not project_path_id:
+        gr.Warning("错误: 请先上传 Android 项目 Zip 压缩包!")
+        return "请先上传 Android 项目 Zip 压缩包!", ""
+    project_progress_bar = tqdm(total=100, desc="转译进度")
+    parsed_android_project_path = os.path.join(project_path_id, "output")
+    parsed_page_filepath = os.path.join(parsed_android_project_path, "page_data.json")
+    harmony_project_path = parsed_android_project_path.replace("android_projects", "harmony_projects")
+    os.makedirs(harmony_project_path, exist_ok=True)
+    project_progress_bar.update(5)
+    # 初始化项目
+    init_harmony_from_android(
+        parsed_android_project_path,
+        harmony_project_path
+    )
+    project_progress_bar.update(10)
+    # 将页面拉伸
+    with open(parsed_page_filepath, "r", encoding="utf-8") as f:
+        page_tasks = json.loads(f.read())
+    page_num = len(page_tasks)
+    llm_client = get_llm_client()
+    code_monkey_agent = CodeMonkeyAgent(llm_client=llm_client)
+    developer_agent = DeveloperAgent(llm_client=llm_client)
+    project_progress_bar.update(15)
+    for i, (android_layout_xml_name, android_layout_xml_dict) in enumerate(page_tasks.items()):
+        android_page_name = android_layout_xml_name.replace("\\", "/").split("/")[-1].strip(".xml")
+        words = reversed(android_page_name.split("_"))
+        harmony_page_name = "".join([word.capitalize() for word in words])
+        android_layouts = {
+            android_layout_xml_name: android_layout_xml_dict
+        }
+        layout_translation = BreakdownLayoutTranslation(
+            tasks=[{
+                "description": f"将{android_layout_xml_name}转译为对应的Harmony页面",
+                "done": False,
+                "android": android_layout_xml_name,
+                "harmony": f"ets/pages/{harmony_page_name}.ets"
+            }]
+        )
+        breakdown_android_layout = developer_agent.breakdown_android_layout(layout_translation, android_layouts)
+        translations, agent_state = code_monkey_agent.translate_component_v1(breakdown_android_layout)
+        code_block_pattern = r"```(?:\w+)?\n([\s\S]*?)```"
+        assemble_result = developer_agent.assemble_harmony_layout(breakdown_android_layout,
+                                                                    android_layouts[android_layout_xml_name], translations)
+        code_block_match = re.search(code_block_pattern, assemble_result)
+        if code_block_match:
+            harmonyos_code = code_block_match.group(1)
         else:
-            yield f"进度: {i}"
-            time.sleep(0.1)
+            harmonyos_code = assemble_result
+        with open(os.path.join(harmony_project_path, "entry", "src", "main", "ets", "pages", f"{harmony_page_name}.ets"), "w", encoding="utf-8") as f:
+            f.write(harmonyos_code)
+        project_progress_bar.update((i+1)/page_num)
+    project_progress_bar.update(100)
+    return "转译完成", harmony_project_path
+
+
+def handle_download_harmony_project(harmony_project_path: str):
+    if not harmony_project_path:
+        gr.Warning("错误: 请先转译 Android 项目!")
+        return ""
+    zip_file_path = f"{harmony_project_path}.zip"
+    with zipfile.ZipFile(zip_file_path, 'w', zipfile.ZIP_DEFLATED) as zip_ref:
+        for root, dirs, files in os.walk(harmony_project_path):
+            for file in files:
+                file_path = os.path.join(root, file)
+                arcname = os.path.relpath(file_path, harmony_project_path)
+                zip_ref.write(file_path, arcname)
+    return zip_file_path
 
 
 # Create a Gradio Blocks app with a single tab for component conversion.
@@ -192,37 +261,26 @@ with gr.Blocks() as app:
         message_output = gr.Text(label="转译进度", interactive=False, lines=1, max_lines=1, autoscroll=True)
         download_button = gr.Button("下载", interactive=True)
         project_progress_bar = gr.Progress(track_tqdm=True)
-
-        # 存储解析后的内容
-        android_xml_parsed_content = ""
-
+        android_project_path_id_text = gr.Text("安卓项目路径", visible=True)
+        harmony_project_path_id_text = gr.Text("鸿蒙项目路径", visible=True)
 
         def handle_parse_android_project(_android_xml_zip):
-            android_xml_parsed_flag, android_xml_parsed_content = parse_android_project(_android_xml_zip)
+            android_xml_parsed_flag, project_path_id = parse_android_project(_android_xml_zip)
             if android_xml_parsed_flag:
-                print(f"解析返回文件夹路径为：{android_xml_parsed_content}")
-                return "解析成功，点击确定按钮开始转译"
+                print(f"解析返回文件夹路径为：{project_path_id}")
+                return "解析成功，点击确定按钮开始转译", project_path_id
             else:
-                return "解析失败，请上传正确的 Android 项目 Zip 压缩包"
-
-
-        def handle_convert_android_project_to_harmony():
-            for message in convert_android_project_to_harmony(android_xml_parsed_content):
-                yield message
-
-
-        def handle_download_harmony_project():
-            return "文件路径"
+                return "解析失败，请上传正确的 Android 项目 Zip 压缩包", ""
 
 
         # Define the event listener for the file upload.
         android_xml_zip_input.upload(handle_parse_android_project, inputs=android_xml_zip_input,
-                                     outputs=[message_output])
-        convert_button.click(handle_convert_android_project_to_harmony, inputs=[], outputs=[message_output])
+                                     outputs=[message_output, android_project_path_id_text])
+        convert_button.click(convert_android_project_to_harmony, inputs=[android_project_path_id_text], outputs=[message_output, harmony_project_path_id_text])
         # Define the event listener for the button click.
-        download_button.click(handle_download_harmony_project, inputs=[], outputs=gr.File())
+        download_button.click(handle_download_harmony_project, inputs=[harmony_project_path_id_text], outputs=gr.File())
 
 # Launch the Gradio app.
 if __name__ == "__main__":
     # 设置队列最大为20，最大并发数为3
-    app.queue(max_size=20, default_concurrency_limit=3).launch(show_error=True, share=True, show_api=False)
+    app.queue(max_size=20, default_concurrency_limit=3).launch(show_error=True, share=False, show_api=False)
