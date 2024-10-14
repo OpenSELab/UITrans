@@ -18,6 +18,12 @@ from core.pilot.schema import BreakdownAndroidLayout, BreakdownLayoutTranslation
 config = ConfigLoader.from_file("config.yaml")
 component_name_pattern = re.compile(r"<\s*([\w\.]+)")
 
+all_examples = {
+    "component": [
+
+    ]
+}
+
 
 def get_llm_client():
     llm_client = LLMFactory.create_llm_from_config(
