@@ -11,12 +11,12 @@ from android.util import extract_last, transform_to_xml_filename, read_file, fin
     evaluate_page_component_complexity
 from android.layout_parser import generate_resources
 from typing import Dict
-from android.base import android_config, PageItem, CustomEncoder
+from android.base import PageItem, CustomEncoder
 
-client = OpenAI(api_key=android_config.LLM_DEEPSEEK_API_KEY, base_url=android_config.LLM_DEEPSEEK_BASEURL)
+client = OpenAI(api_key="sk-ffc130d906ac4de391b4720b8be8c034", base_url="https://api.deepseek.com/v1")
 
 
-def init_proj_structure():
+def init_proj_structure(android_config):
     """
     初始化项目结构配置项
     """
@@ -69,9 +69,10 @@ def extract_manifest(f_path: str) -> dict:
 
 
 class PageAnalyser:
-    def __init__(self):
+    def __init__(self, android_config):
         # 默认分析app模块下的页面
         self.module = 'app'
+        self.android_config = android_config
 
     def analyse_xml_contains_by_llm(self, content, code_type):
         """
@@ -97,7 +98,7 @@ class PageAnalyser:
             stream=False
         )
         print(response.choices[0].message.content)
-        contains_list = parse_json_to_list(response.choices[0].message.content, self.module)
+        contains_list = parse_json_to_list(response.choices[0].message.content, self.module, self.android_config)
         contains_list = [item if item.endswith(".xml") else item + ".xml" for item in contains_list]
         return contains_list
 
@@ -200,18 +201,18 @@ class PageAnalyser:
         将fragment也组织成为一个主页面
         """
         for fragment_name in fragments.keys():
-            fragment_java_path = find_file(android_config.PROJ_STRUCTURE[self.module]["JAVA_ROOT"],
+            fragment_java_path = find_file(self.android_config.PROJ_STRUCTURE[self.module]["JAVA_ROOT"],
                                            fragments[fragment_name])
             if fragment_java_path is None:
                 print(f"{fragment_name}对应的java文件{fragment_java_path}未找到")
                 continue
 
             java = read_file(fragment_java_path)
-            fragment_xml_path = find_file(android_config.PROJ_STRUCTURE[self.module]["RES_ROOT"],
+            fragment_xml_path = find_file(self.android_config.PROJ_STRUCTURE[self.module]["RES_ROOT"],
                                           transform_to_xml_filename(fragment_name, 'fragment'))
             if fragment_xml_path is None:
                 xml_file_name = self.find_xml_by_java(java)
-                fragment_xml_path = find_file(android_config.PROJ_STRUCTURE[self.module]["RES_ROOT"], xml_file_name)
+                fragment_xml_path = find_file(self.android_config.PROJ_STRUCTURE[self.module]["RES_ROOT"], xml_file_name)
             if fragment_xml_path is None:
                 print(fragment_name + "未找到对应的布局文件")
                 continue
@@ -219,8 +220,8 @@ class PageAnalyser:
                 print(fragment_name + "成功找到对应的布局文件")
             content = read_file(fragment_xml_path)
 
-            page_name = os.path.relpath(fragment_xml_path, android_config.PROJECT_ROOT).replace("\\", "/")
-            resources = generate_resources(fragment_xml_path)
+            page_name = os.path.relpath(fragment_xml_path, self.android_config.PROJECT_ROOT).replace("\\", "/")
+            resources = generate_resources(fragment_xml_path, self.android_config)
             contains_by_xml = self.analyse_xml_contains_by_llm(content, 'xml')
             contains_by_java = self.analyse_xml_contains_by_llm(java, 'java')
 
@@ -239,7 +240,7 @@ class PageAnalyser:
                         sub_page_name = sub_page + ".xml"
                     else:
                         sub_page_name = sub_page
-                    sub_page_xml_path = find_file(android_config.PROJ_STRUCTURE[self.module]["RES_ROOT"],
+                    sub_page_xml_path = find_file(self.android_config.PROJ_STRUCTURE[self.module]["RES_ROOT"],
                                                   os.path.basename(sub_page_name))
                     print(os.path.basename(sub_page_name))
                     if sub_page_xml_path is not None:
@@ -252,15 +253,15 @@ class PageAnalyser:
                     sub_page_content = read_file(sub_page_xml_path)
                     sub_page_contains = self.analyse_xml_contains_by_llm(sub_page_content, 'xml')
                     organize_sub_page(sub_page_contains)
-                    sub_page_resources = generate_resources(sub_page_xml_path)
+                    sub_page_resources = generate_resources(sub_page_xml_path, self.android_config)
                     sub_page_item = PageItem(sub_page_name, sub_page_content, sub_page_java, sub_page_contains,
-                                             sub_page_resources, False, self.module)
+                                             sub_page_resources, False, self.module, self.android_config.PROJ_NAME)
                     page_dict[sub_page_name] = sub_page_item
 
             print(f">>>>>>>>>>>>>>>>>>>>>>>{fragment_name}开始递归寻找子页面<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
             organize_sub_page(contains)
             print(f">>>>>>>>>>>>>>>>>>>>>>>{fragment_name}结束递归寻找子页面<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-            page_item = PageItem(page_name, content, java, contains, resources, True, self.module)
+            page_item = PageItem(page_name, content, java, contains, resources, True, self.module, self.android_config.PROJ_NAME)
             page_dict[page_name] = page_item
 
     def is_dynamic_data_binding_required(self, xml_content) -> bool:
@@ -308,7 +309,7 @@ class PageAnalyser:
                 print(data_model_dict)
                 print("*****************************************************")
                 for k in data_model_dict.keys():
-                    model_file_path = find_file(android_config.PROJ_STRUCTURE[page.module]["JAVA_ROOT"],
+                    model_file_path = find_file(self.android_config.PROJ_STRUCTURE[page.module]["JAVA_ROOT"],
                                                 extract_last(data_model_dict[k]) + '.java')
                     print(model_file_path)
                     model_code = read_file(model_file_path)
@@ -395,7 +396,7 @@ class PageAnalyser:
         """
         if activity_name.startswith('.'):
             return self.module
-        for module in android_config.PROJ_STRUCTURE.keys():
+        for module in self.android_config.PROJ_STRUCTURE.keys():
             pattern = r".*\." + re.escape(module) + r"\."
             if re.search(pattern, activity_name):
                 return module
@@ -454,22 +455,22 @@ class PageAnalyser:
             # 构造主页面
             activity_name = extract_last(activity_name)
             # TODO 目前仅支持使用kotlin编写的Activity逻辑文件，尚未支持基于kotlin的页面依赖分析
-            activity_java_path = find_file(android_config.PROJ_STRUCTURE[self.module]["JAVA_ROOT"],
+            activity_java_path = find_file(self.android_config.PROJ_STRUCTURE[self.module]["JAVA_ROOT"],
                                            activity_name + '.java') or find_file(
-                android_config.PROJ_STRUCTURE[self.module]["JAVA_ROOT"], activity_name + '.kt')
+                self.android_config.PROJ_STRUCTURE[self.module]["JAVA_ROOT"], activity_name + '.kt')
             java = read_file(activity_java_path) if read_file(activity_java_path) else ""
-            activity_xml_path = find_file(android_config.PROJ_STRUCTURE[self.module]["RES_ROOT"],
+            activity_xml_path = find_file(self.android_config.PROJ_STRUCTURE[self.module]["RES_ROOT"],
                                           transform_to_xml_filename(activity_name, 'activity'))
             if activity_xml_path is None and java != "":
                 xml_file_name = self.find_xml_by_java(java)
-                activity_xml_path = find_file(android_config.PROJ_STRUCTURE[self.module]["RES_ROOT"], xml_file_name)
+                activity_xml_path = find_file(self.android_config.PROJ_STRUCTURE[self.module]["RES_ROOT"], xml_file_name)
             print(f"------------------------{activity_name}-----------------------------")
             print(activity_java_path)
             print(activity_xml_path)
             print("---------------------------------------------------------------------")
 
             if activity_xml_path is not None:
-                main_page_name = os.path.relpath(activity_xml_path, android_config.PROJECT_ROOT).replace("\\", "/")
+                main_page_name = os.path.relpath(activity_xml_path, self.android_config.PROJECT_ROOT).replace("\\", "/")
             else:
                 print(activity_name + " 对应的主布局文件未找到 ===> " + " 将跳过该Activity！")
                 continue
@@ -483,7 +484,7 @@ class PageAnalyser:
                 adapter = self.find_adapter_by_recycler(java, recycler_id)
                 if adapter != "":
                     adapter_file_name = adapter + '.java'
-                    adapter_file_path = find_file(android_config.PROJ_STRUCTURE[self.module]["JAVA_ROOT"],
+                    adapter_file_path = find_file(self.android_config.PROJ_STRUCTURE[self.module]["JAVA_ROOT"],
                                                   adapter_file_name)
                     adapter_file_code = read_file(adapter_file_path)
                     contains_by_adapter = self.analyse_contains_by_adapter(adapter_file_code)
@@ -508,7 +509,7 @@ class PageAnalyser:
                         sub_page_name = sub_page + ".xml"
                     else:
                         sub_page_name = sub_page
-                    sub_page_xml_path = find_file(android_config.PROJ_STRUCTURE[self.module]["RES_ROOT"],
+                    sub_page_xml_path = find_file(self.android_config.PROJ_STRUCTURE[self.module]["RES_ROOT"],
                                                   os.path.basename(sub_page_name))
                     if sub_page_xml_path is not None:
                         print(f"{sub_page_name}对应的主布局文件成功找到！")
@@ -520,17 +521,17 @@ class PageAnalyser:
                     sub_page_content = read_file(sub_page_xml_path)
                     sub_page_contains = self.analyse_xml_contains_by_llm(sub_page_content, 'xml')
                     organize_sub_page(sub_page_contains)
-                    sub_page_resources = generate_resources(sub_page_xml_path)
+                    sub_page_resources = generate_resources(sub_page_xml_path, self.android_config)
                     sub_page_item = PageItem(sub_page_name, sub_page_content, sub_page_java, sub_page_contains,
-                                             sub_page_resources, False, self.module)
+                                             sub_page_resources, False, self.module, self.android_config.PROJ_NAME)
                     page_dict[sub_page_name] = sub_page_item
 
             print(f">>>>>>>>>>>>>>>>>>>>>>>{activity_name}开始递归寻找子页面<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
             organize_sub_page(contains)
             print(f">>>>>>>>>>>>>>>>>>>>>>>{activity_name}结束递归寻找子页面<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
 
-            resources = generate_resources(activity_xml_path)
-            page_item = PageItem(main_page_name, content, java, contains, resources, True, self.module)
+            resources = generate_resources(activity_xml_path, self.android_config)
+            page_item = PageItem(main_page_name, content, java, contains, resources, True, self.module, self.android_config.PROJ_NAME)
             page_list.append(page_item)
             page_dict[main_page_name] = page_item
             self.organize_page_from_fragment(fragments, page_dict)

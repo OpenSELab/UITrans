@@ -5,18 +5,11 @@ class AndroidProjConfig:
     PROJ_NAME: str
     PROJECT_ROOT: str
     PROJ_STRUCTURE: dict
-    LLM_DEEPSEEK_BASEURL: str
-    LLM_DEEPSEEK_API_KEY: str
 
     def __init__(self):
         self.PROJ_NAME = ""
         self.PROJECT_ROOT = ""
         self.PROJ_STRUCTURE = {}
-        self.LLM_DEEPSEEK_BASEURL = "https://api.deepseek.com/v1"
-        self.LLM_DEEPSEEK_API_KEY = "sk-ffc130d906ac4de391b4720b8be8c034"
-
-
-android_config = AndroidProjConfig()
 
 
 class PageItem:
@@ -37,7 +30,8 @@ class PageItem:
     # 所属项目
     proj_name: str
 
-    def __init__(self, name: str, content: str, java: str, contains: list, resources: dict, is_main_page: bool, module):
+    def __init__(self, name: str, content: str, java: str, contains: list, resources: dict, is_main_page: bool, module,
+                 proj_name):
         self.name = name
         self.content = content
         self.java = java
@@ -47,7 +41,7 @@ class PageItem:
         self.mock_data = {}
         self.module = module
         self.data_analysis = {}
-        self.proj_name = android_config.PROJ_NAME
+        self.proj_name = proj_name
 
     def to_dict(self):
         return {

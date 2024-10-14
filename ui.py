@@ -5,8 +5,8 @@ import zipfile
 import shortuuid
 from tqdm import tqdm
 import gradio as gr
-from android.base import android_config
 from android.main import analyse_page_dict
+from android.base import AndroidProjConfig
 
 
 # Define a function to convert Android XML components to HarmonyOS code.
@@ -45,11 +45,12 @@ def parse_android_project(android_zip):
         print(f"Android项目已解压到: {unzip_dir}")
         proj_root = os.path.join(unzip_dir, root_folder)
         print(f"Android项目根目录为：{proj_root}")
+        android_config = AndroidProjConfig()
         android_config.PROJ_NAME = os.path.basename(proj_root)
         android_config.PROJECT_ROOT = proj_root
-        analyse_page_dict(unzip_dir)
+        output_dir = analyse_page_dict(unzip_dir, android_config)
 
-    return True, unzip_dir
+    return True, output_dir
 
 
 def convert_android_project_to_harmony(project_id):
@@ -63,7 +64,12 @@ def convert_android_project_to_harmony(project_id):
 
 
 # Create a Gradio Blocks app with a single tab for component conversion.
-with gr.Blocks() as app:
+css = """
+.tab-container button {
+  font-size: 20px;
+}
+"""
+with gr.Blocks(css=css) as app:
     html_content = """
     <div style="display: flex; align-items: center; justify-content: center; height: 30vh; padding: 10px; margin: 0 auto;">
         <div style="margin-right: 10px;">
@@ -77,8 +83,8 @@ with gr.Blocks() as app:
     """
     gr.HTML(html_content)
     with gr.Tab("组件转译"):
-        gr.Markdown("## 组件转译")
-        gr.Markdown("请在下列输入框中粘贴 Android XML 组件代码，然后点击“确定”按钮以将其转译为 HarmonyOS 代码。")
+        gr.Markdown("# 组件转译")
+        gr.Markdown("### 请在下列输入框中粘贴 Android XML 组件代码，然后点击“确定”按钮以将其转译为 HarmonyOS 代码。")
         android_xml_input = gr.TextArea(label="输入 Android XML 组件", lines=20, max_lines=100)
         convert_button = gr.Button("确定")
         harmonyos_output = gr.TextArea(label="输出 HarmonyOS 代码", lines=10, max_lines=100)
@@ -86,8 +92,8 @@ with gr.Blocks() as app:
         # Define the event listener for the button click.
         convert_button.click(convert_android_component_to_harmony, inputs=android_xml_input, outputs=harmonyos_output)
     with gr.Tab("页面转译"):
-        gr.Markdown("## 页面转译")
-        gr.Markdown("请在下列输入框中粘贴 Android XML 页面代码，然后点击“确定”按钮以将其转译为 HarmonyOS 代码。")
+        gr.Markdown("# 页面转译")
+        gr.Markdown("### 请在下列输入框中粘贴 Android XML 页面代码，然后点击“确定”按钮以将其转译为 HarmonyOS 代码。")
         android_xml_input = gr.TextArea(label="输入 Android XML 页面", lines=20, max_lines=100)
         convert_button = gr.Button("确定")
         harmonyos_output = gr.TextArea(label="输出 HarmonyOS 代码", lines=10, max_lines=100)
@@ -95,8 +101,8 @@ with gr.Blocks() as app:
         # Define the event listener for the button click.
         convert_button.click(convert_android_page_to_harmony, inputs=android_xml_input, outputs=harmonyos_output)
     with gr.Tab("项目转译"):
-        gr.Markdown("## 项目转译")
-        gr.Markdown("请在下列文件上传框中上传 Android 项目的 Zip 压缩包，然后点击“确定”按钮以将其转译为 HarmonyOS 代码。")
+        gr.Markdown("# 项目转译")
+        gr.Markdown("### 请在下列文件上传框中上传 Android 项目的 Zip 压缩包，然后点击“确定”按钮以将其转译为 HarmonyOS 代码。")
         android_xml_zip_input = gr.File(label="上传 Android 项目压缩包")
         convert_button = gr.Button("确定", interactive=True)
         message_output = gr.Text(label="转译进度", interactive=False, lines=1, max_lines=1, autoscroll=True)

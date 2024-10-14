@@ -8,7 +8,7 @@ import zipfile
 from lxml import etree
 from pyparsing import Word, alphas, alphanums, Suppress, Group, delimitedList, QuotedString, Literal, SkipTo
 
-from android.base import android_config, simple_components
+from android.base import simple_components
 import pandas as pd
 import json
 
@@ -88,7 +88,7 @@ def write_file_from_string(path, output_string):
     print(f"文件已生成：{output_string}")
 
 
-def parse_json_to_list(json_str, module):
+def parse_json_to_list(json_str, module, android_config):
     if json_str == "{}":
         return []
     try:
@@ -103,7 +103,7 @@ def parse_json_to_list(json_str, module):
         return []
 
 
-def get_modules():
+def get_modules(android_config):
     """
     基于规则解析得到当前安卓App有哪些模块及其对应的目录
     :return:
