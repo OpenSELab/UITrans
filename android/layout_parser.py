@@ -1,18 +1,17 @@
 
 from android.util import get_file_extension
 from lxml import etree
-from android.base import android_config
 
 attribute_values = []
 
 
-def generate_resources(layout_file_path):
+def generate_resources(layout_file_path, android_config):
     with open(layout_file_path, 'r', encoding='utf-8') as file:
         layout = file.read().encode('utf-8')
     root = etree.fromstring(layout)
     traverse_tree(root)
     # print(attribute_values)
-    return build_resources_dict()
+    return build_resources_dict(android_config)
 
 
 def traverse_tree(element):
@@ -23,7 +22,7 @@ def traverse_tree(element):
         traverse_tree(child)
 
 
-def build_resources_dict():
+def build_resources_dict(android_config):
     """
     @string,@style等引用单个字段的语句采用按类型聚合到单个文件的方式实现
     例如，@string所指向的字段均存储于xxx/xxx/strings.xml，直接按类型构造索引

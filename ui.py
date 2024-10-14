@@ -8,8 +8,8 @@ import gradio
 import shortuuid
 from tqdm import tqdm
 import gradio as gr
-from android.base import android_config
 from android.main import analyse_page_dict
+from android.base import AndroidProjConfig
 from core.config.config_loader import ConfigLoader
 from core.llms import LLMFactory
 from core.pilot.code_monkey import CodeMonkeyAgent
@@ -107,12 +107,11 @@ def parse_android_project(android_zip):
     if not zipfile.is_zipfile(android_zip):
         gr.Warning("错误: 无效的 zip 文件!")
         return False, None
-    unzip_dir = f"./android_projects/{shortuuid.uuid()}/"
+    unzip_dir = f"android_projects/{shortuuid.uuid()}"
     print(unzip_dir)
     os.makedirs(unzip_dir, exist_ok=True)
 
     with zipfile.ZipFile(android_zip, 'r') as zip_ref:
-        root_dirs = list(file for file in zip_ref.namelist() if file.endswith('/') and file.count('/') == 1)
         print(zip_ref.namelist())
         file_list = zip_ref.namelist()
         root_folders = set(file.split('/')[0] for file in file_list if '/' in file)
@@ -126,11 +125,12 @@ def parse_android_project(android_zip):
         print(f"Android项目已解压到: {unzip_dir}")
         proj_root = os.path.join(unzip_dir, root_folder)
         print(f"Android项目根目录为：{proj_root}")
+        android_config = AndroidProjConfig()
         android_config.PROJ_NAME = os.path.basename(proj_root)
         android_config.PROJECT_ROOT = proj_root
-        analyse_page_dict(unzip_dir)
+        output_dir = analyse_page_dict(unzip_dir, android_config)
 
-    return True, unzip_dir
+    return True, output_dir
 
 
 def convert_android_project_to_harmony(project_path_id):
@@ -205,7 +205,12 @@ def handle_download_harmony_project(harmony_project_path: str):
 
 
 # Create a Gradio Blocks app with a single tab for component conversion.
-with gr.Blocks() as app:
+css = """
+.tab-container button {
+  font-size: 20px;
+}
+"""
+with gr.Blocks(css=css) as app:
     html_content = """
     <div style="display: flex; align-items: center; justify-content: center; height: 30vh; padding: 10px; margin: 0 auto;">
         <div style="margin-right: 10px;">
