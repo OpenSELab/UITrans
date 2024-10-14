@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item
+		android:id="@+id/action_swap_locations"
+		android:icon="@drawable/ic_menu_swap_location"
+		android:title="@string/action_swap_locations"/>
+
+	<item
+		android:id="@+id/action_set_locations"
+		android:icon="@drawable/ic_mode_edit"
+		android:title="@string/action_set_locations"/>
+
+	<item
+		android:id="@+id/action_mark_favorite"
+		android:icon="@drawable/ic_action_star"
+		android:title="@string/action_fav_trip"/>
+
+	<item
+		android:id="@+id/action_add_shortcut"
+		android:icon="@drawable/ic_add_shortcut"
+		android:title="@string/action_add_shortcut"
+		android:visible="true"/>
+
+	<item
+		android:id="@+id/action_trip_delete"
+		android:icon="@drawable/ic_delete"
+		android:title="@string/action_trip_delete"/>
+
+</menu>

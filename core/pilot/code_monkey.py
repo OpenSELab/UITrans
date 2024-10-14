@@ -76,6 +76,11 @@ def correct_line_spacing(harmony_component_code: str) -> str:
         return re.sub(line_spacing_pattern, f".lineSpacing({line_spacing_value})", harmony_component_code)
     return harmony_component_code
 
+def correct_some_more(harmony_component_code: str) -> str:
+    fit_system_windows_pattern = r"\.fitsSystemWindows\(true\)"
+    harmony_component_code = re.sub(fit_system_windows_pattern, "", harmony_component_code)
+    return harmony_component_code
+
 
 class CodeMonkeyAgent(LLMAgent):
     """技术领导智能体
@@ -632,6 +637,8 @@ class CodeMonkeyAgent(LLMAgent):
         harmony_component_code = correct_margin_and_padding(harmony_component_code)
         # 行间距
         harmony_component_code = correct_line_spacing(harmony_component_code)
+        # 多余的内容
+        harmony_component_code = correct_some_more(harmony_component_code)
         agent_task = AgentTask(
             description="后处理鸿蒙组件代码",
             details={
@@ -777,7 +784,7 @@ class CodeMonkeyAgent(LLMAgent):
             target_language="harmony",
             target_component=list(query_component_document["components"]),
             target_component_code=translate_android_component.harmony_component,
-            target_component_description=translation_task["component"]["layout_description"],
+            target_component_description=translation_task["component"]["function_description"] + "\n\n" + translation_task["component"]["layout_description"],
             explanation=translate_android_component.explanation
         )
         return translation
@@ -832,7 +839,7 @@ class CodeMonkeyAgent(LLMAgent):
             target_language="harmony",
             target_component=query_component_document["components"],
             target_component_code=translate_android_component.harmony_component,
-            target_component_description=translation_task["component"]["layout_description"],
+            target_component_description=translation_task["component"]["function_description"] + "\n\n" + translation_task["component"]["layout_description"],
             explanation=translate_android_component.explanation
         )
         return translation

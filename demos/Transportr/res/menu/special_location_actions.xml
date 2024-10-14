@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:ignore="AlwaysShowAction">
+
+	<item
+		android:id="@+id/action_swap_locations"
+		android:icon="@drawable/ic_menu_swap_location"
+		android:title="@string/action_swap_locations"
+		app:showAsAction="always"/>
+
+	<item
+		android:id="@+id/action_show_departures"
+		android:icon="@drawable/ic_action_departures"
+		android:title="@string/find_departures"
+		app:showAsAction="always"/>
+
+	<item
+		android:id="@+id/action_add_shortcut"
+		android:icon="@drawable/ic_add_shortcut"
+		android:title="@string/action_add_shortcut"
+		app:showAsAction="always"/>
+
+	<item
+		android:id="@+id/action_change"
+		android:icon="@drawable/ic_action_settings"
+		android:title="@string/action_change"
+		app:showAsAction="always"/>
+
+</menu>

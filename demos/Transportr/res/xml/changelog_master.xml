@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelog xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="UnusedResources">
+
+    <release
+        version="2.2.1"
+        versioncode="125">
+        <change>Fix app crash at startup when no network-backed location provider was available (thanks Altonss!)</change>
+        <change>Make sure all parts of the app follow theme settings consistently</change>
+    </release>
+
+    <release
+        version="2.2.0"
+        versioncode="124">
+        <change>Switch map library to MapLibre - finally bringing Transportr back to F-Droid!</change>
+        <change>Remember preferred means of transport for future searches (thanks Prat!)</change>
+        <change>Fix minor issues on About page and with the time picker (thanks Altonss!)</change>
+        <change>Fix and re-add formerly broken regions: SBB (thanks Tobias!), VVO, AVV (Augsburg), GVH, VRS</change>
+        <change>Remove regions where information is no longer available: VOR, STV, VVV, SNCB, 9292, TFI</change>
+        <change>Remove regions that are no longer served by Navitia: Finland, Portugal, Hungary, Czech Republic, Ghana, California, Oregon, New York, Ontario, Quebec, British Colombia, Costa Rica, Nicaragua, Florianópolis (Brazil), Brazil, New Zealand</change>
+    </release>
+
+    <release
+        version="2.1.5"
+        versioncode="123">
+        <change>Support themed adaptive app icon.</change>
+        <change>Require at least Android 5 now.</change>
+        <change>Fix bug where calendar and map apps are not found.</change>
+        <change>Update PTE data library - remove VMS (Mittelsachsen, Chemnitz), VRS (Cologne, Bonn), and PKP (Poland, railways in Poland).</change>
+    </release>
+
+    <release
+        version="2.1.4"
+        versioncode="122">
+        <change>Update PTE data library, fixes issues with Berlin BVG, removes SBB</change>
+    </release>
+
+    <release
+        version="2.1.3"
+        versioncode="121">
+        <change>Update PTE data library, fixes issues in Berlin</change>
+    </release>
+
+    <release
+        version="2.1.2"
+        versioncode="120">
+        <change>Prevent crash on first startup</change>
+    </release>
+
+    <release
+        version="2.1.1"
+        versioncode="119">
+        <change>Fix and (re-)add several regions: VMS, VTT, saarVV, VBN, nah.sh, AVV (Aachen), Luxembourg, BART, CMTA</change>
+        <change>Fix issues related to location sharing</change>
+        <change>Fix rare app crash and UI glitches in directions form</change>
+        <change>Enable encrypted backups</change>
+    </release>
+
+    <release version="2.1.0" versioncode="118">
+        <change>Rearranged directions form to see all of the options at first glance</change>
+        <change>New option to adapt app theme to Android settings</change>
+        <change>Give attribution to OpenStreetMap as map source</change>
+    </release>
+
+    <release version="2.0.8" versioncode="117">
+        <change>Fix bug where the app would crash after updating</change>
+    </release>
+
+    <release version="2.0.7" versioncode="116">
+        <change>Added data source for Czechia (Thanks Ondra!)</change>
+        <change>Display standard fares for trip results (Thanks Mikolai!)</change>
+        <change>Better error handling in case of failing trip queries (Thanks Mikolai!)</change>
+        <change>New translation: Danish (Thanks Daniel!)</change>
+    </release>
+
+    <release version="2.0.6" versioncode="115">
+        <change>Indicate when connections are cancelled or impossible</change>
+        <change>Fix bug where search results would sometimes not appear</change>
+        <change>New translation: Ukrainian (Thanks Paul!)</change>
+    </release>
+
+    <release version="2.0.5" versioncode="114">
+        <change>Show exact trip polylines on map for more networks</change>
+        <change>Fix VGS network (Thanks Mikolai!)</change>
+        <change>Fix crash on opening settings (Thanks Mikolai!)</change>
+        <change>New translation: Swedish (Thanks Jonatan!)</change>
+    </release>
+
+    <release version="2.0.4" versioncode="113">
+        <change>Support trip launcher shortcuts on more devices</change>
+        <change>Remove VAGFR transport network, use NVBW instead</change>
+        <change>Fix start location field in directions search (Thanks ajbruin!)</change>
+        <change>Re-enable data sources that don't use https on Android 9 (Thanks hoejmann!)</change>
+    </release>
+
+    <release version="2.0.3" versioncode="112">
+        <change>Add launcher shortcut for directions search</change>
+        <change>Show swap location button in directions search (Thanks ByteHamster!)</change>
+        <change>Don't show search results over lockscreen anymore</change>
+        <change>Add Persian translation (Thanks Reza!)</change>
+        <change>Add Chinese (Taiwan) translation (Thanks Gerrit!)</change>
+        <change>Fix home and work location input in dark theme</change>
+        <change>Disable Android's auto-fill feature for location views</change>
+    </release>
+
+    <release version="2.0.2" versioncode="111">
+        <change>Added data source for Hungary (Thanks Balázs!)</change>
+        <change>Added data source for Municipal Transports of Poland (Thanks Michel!)</change>
+        <change>Fix data source for Finland (Thanks Adrian!)</change>
+        <change>New translation: Greek (Thanks Vangelis!)</change>
+        <change>Improve location auto-completion list (Thanks Sylvia!)</change>
+        <change>Fix crash when adding trip to calendar without calendar installed</change>
+        <change>Fix crash when sharing an intermediate stop without arrival time</change>
+        <change>Fix crash related to setting home or work location</change>
+    </release>
+
+    <release version="2.0.1" versioncode="109">
+        <change>Fix KVV network</change>
+        <change>Remove IVB network, use VVT instead</change>
+        <change>Fix crash due to invalid GPS location</change>
+        <change>Fix crash on Android 4 for time setting and product dialog</change>
+    </release>
+
+	<release version="2.0.0" versioncode="108">
+		<change>New Design and complete code rewrite</change>
+		<change>Shiny new map given a more prominent place</change>
+		<change>Current location is used by default</change>
+		<change>Trip overview shows warning icon if there is a problem</change>
+		<change>Add your "Work" place</change>
+		<change>Addresses will be saved</change>
+		<change>Round icon for new Android versions</change>
+		<change>Added New York, California, Ghana and Costa Rica</change>
+		<change>New translation: Russian</change>
+	</release>
+
+	<release version="1.1.9" versioncode="49">
+		<change>Added Nicaragua (Thanks MapaNica!)</change>
+		<change>Fixed various issues with some transport networks</change>
+	</release>
+
+	<release version="1.1.8" versioncode="48">
+        <change>Fixed various networks (e.g. Belgium, NSW, HSL, etc.)</change>
+        <change>Fixed bug when searching nearby stations from current location</change>
+        <change>Fixed bug with BVG network when refreshing a trip</change>
+        <change>Fixed crash when user has no calendar app installed</change>
+    </release>
+
+    <release version="1.1.7" versioncode="47">
+        <change>New setting: Add "Get me home" shortcut to launcher (Thanks Patrick!)</change>
+        <change>Added Oregon, USA (Thanks craftguy!)</change>
+        <change>Added Mittelthüringen, Germany (Thanks Andreas!)</change>
+        <change>New logos for MET, SYDNEY and DSB (Thanks André!)</change>
+        <change>Fixed Android 7.1 issue when returning to directions list</change>
+    </release>
+
+    <release version="1.1.6" versioncode="45">
+        <change>Fixed some German and Austrian networks</change>
+        <change>Improved trip icons on map for some devices</change>
+        <change>Fixed center on trip when viewing trip on map</change>
+        <change>Fixed bug where sometimes "now" and "today" where not respected</change>
+        <change>New translation: Hungarian (Thanks András!)</change>
+        <change>Removed San Francisco and Jerusalem</change>
+    </release>
+
+    <release version="1.1.5" versioncode="42">
+        <change>Added France North West (Thanks Patrick!)</change>
+        <change>Reduce amount of scrolling needed to load more information</change>
+        <change>Use TODAY and NOW when searching for directions unless changed</change>
+        <change>Improved departure layout and show long line names</change>
+        <change>Added help screens</change>
+        <change>Reduced size of the app</change>
+        <change>Updated and improved network provider list (Thanks Patrick!)</change>
+        <change>New translation: Czech (Thanks Miloš!)</change>
+    </release>
+
+    <release version="1.1.4" versioncode="40">
+        <change>Added France North East (Thanks Stéphane!)</change>
+        <change>Added Chicago (Thanks Andreas!)</change>
+        <change>Added emoticon flags for some countries</change>
+        <change>New translation: Esperanto (Thanks Verdulo!)</change>
+        <change>Complete Spanish translation (Thanks acuccaro!)</change>
+        <change>Complete Polish translation (Thanks Verdulo!)</change>
+        <change>Fix white dialogs in dark theme</change>
+        <change>Remember when all products have ben re-selected (Thanks schachmat!)</change>
+        <change>Allow OK, Cancel, Yes and No to be translated in all languages (Thanks kas70!)</change>
+    </release>
+
+    <release version="1.1.3" versioncode="38">
+        <change>Remember selected means of transports for each network (Thanks kas70!)</change>
+        <change>Fix problem with NVV/RMV network</change>
+        <change>Prevent crash when turning screen during trip search</change>
+    </release>
+
+    <release version="1.1.2" versioncode="36">
+        <change>New product icons that are now shown for all lines</change>
+        <change>Add button to map that shows current position and follows it</change>
+        <change>New product icons - They shown for all lines and have a selection dialog</change>
+        <change>"Get Location from Map" now zooms in to your area</change>
+        <change>Turn off GPS when leaving map and turn it back on when you return</change>
+        <change>Show the name instead of the destination for lines of selected networks</change>
+        <change>Added Tamil translation (Thanks Prasanna!)</change>
+    </release>
+
+    <release version="1.1.1" versioncode="33">
+        <change>Support via/intermediate locations for direction search</change>
+        <change>Show little graphics for favourite and recent trips to better highlight new via locations</change>
+        <change>Allow to navigate trip results and map without entering lockscreen PIN.</change>
+        <change>Do not show keyboard and location list on startup</change>
+        <change>Add setting for whether app should always exit when pressing back in start screen</change>
+        <change>Return 10 instead of 5 nearby stations and improve their display</change>
+        <change>Better icons to symbolize start and final station of a trip on the map</change>
+        <change>Fix bug where the navigation drawer selection did not update when pressing back button</change>
+    </release>
+
+    <release version="1.1.0" versioncode="30">
+        <change>Added Quebec, Canada (Thanks Chimo!)</change>
+        <change>Many changes under the hood that improve performance, memory usage and new multi-window mode</change>
+        <change>Add animation when changing pages and opening dialogs</change>
+        <change>Modern UI for built-in map</change>
+        <change>Improvements for location auto-completion</change>
+        <change>Improvements for networks provided by Navitia.io</change>
+        <change>Add more and better logos (Thanks André and Vincent!)</change>
+        <change>Small visual improvements</change>
+        <change>Remove Salzburg and Schleswig-Holstein (require API authorization now)</change>
+    </release>
+
+    <release version="1.0.6" versioncode="27">
+        <change>Added Ontario, Canada (Thanks Chimo!)</change>
+        <change>Added Catalan translation (Thanks el_libre!)</change>
+        <change>Added Polish translation (Thanks Daniel!)</change>
+        <change>Improve start screen for devices with small screens</change>
+        <change>Improve usability for network provider selection</change>
+        <change>Do not remove other location when choosing "To here" or "From here"</change>
+        <change>Fix rare crash when reloading trip</change>
+    </release>
+
+    <release version="1.0.5" versioncode="26">
+        <change>Entire trips can now be shown on the map</change>
+        <change>Major improvements when auto-completing entered locations</change>
+        <change>Long click on the map to find directions or stations from that location</change>
+        <change>Added map button that zooms map to show all stations</change>
+        <change>Click on departure now searches for this trip</change>
+        <change>Added logo for MVV, INVG and VVM network (Thanks Hartmut!)</change>
+    </release>
+
+    <release version="1.0.4" versioncode="25">
+        <change>You can now optimize the directions for certain criteria</change>
+        <change>You can now also set your preferred walking speed in the settings</change>
+        <change>Add experimental support for Florianópolis, Brazil</change>
+        <change>Only show departures from given station, not also from stations in the area</change>
+        <change>Fix some issues with networks provided by Navitia.io</change>
+        <change>Fix exotic bug when turning phone and closing physical keyboard at the same time</change>
+        <change>Added logo for VRN and VVS network (Thanks Robert!)</change>
+        <change>Added logo for BSVAG and NASA network (Thanks 0x11de784a!)</change>
+    </release>
+
+    <release version="1.0.3" versioncode="24">
+        <change>Fix for broken dark theme</change>
+        <change>Allow English to be selected as app language</change>
+    </release>
+
+    <release version="1.0.2" versioncode="23">
+        <change>Added Italy (Thanks Antonio!)</change>
+        <change>Added South West of France (Thanks Nicolas!)</change>
+        <change>New setting to change app language</change>
+        <change>Include updated delays when exporting/sharing trips</change>
+        <change>Shorten long location names in the middle, not at the end</change>
+        <change>Show toolbar icons in white even on old devices</change>
+        <change>Fix issues with KVV, AVV and VMS networks</change>
+    </release>
+
+    <release version="1.0.1" versioncode="22">
+        <change>Added "From Here" and "To Here" to Location Popup Menu (Thanks Rob!)</change>
+        <change>Fixed KVV network</change>
+        <change>Fixed GVH network</change>
+        <change>Disabled VBN network, because it now requires an API secret</change>
+        <change>Fixed rare crash</change>
+        <change>Added logo for AVV provider (Thanks Vinzenz!)</change>
+    </release>
+
+    <release version="1.0.0" versioncode="21">
+        <change>Renamed app from Liberario to Transportr</change>
+        <change>New Logo</change>
+        <change>New user interface in material design with navigation drawer</change>
+        <change>Lots of new features like trip refresh, favorites on start screen, interactions with stations on the map and many more</change>
+        <change>Trips can now be favorited directly from the search results</change>
+        <change>Fix VRR transport network (Thanks Andreas!)</change>
+        <change>Added logo for GVH provider (Thanks  Sebastian!)</change>
+        <change>Added logo for Melbourne provider (Thanks Peter)</change>
+        <change>Added Norwegian Bokmål translation (Thanks Allan!)</change>
+        <change>Added Basque translation (Thanks Aitor)!</change>
+    </release>
+
+    <release version="0.6.1" versioncode="16">
+        <change>Added Portuguese (Brazil) translation (Thanks Gislene!)</change>
+        <change>Show place names in location auto-completion to prevent ambiguities</change>
+        <change>Fix two crashes</change>
+    </release>
+
+    <release version="0.6" versioncode="15">
+        <change>Redesigned start screen for better usability</change>
+        <change>Favorite trips can be sorted by last used</change>
+        <change>Improved trip list with better contrasts and popup menu (try long touch)</change>
+        <change>You can now share parts of trips or copy their names to clipboard</change>
+        <change>Stations can be shown on integrated and external map</change>
+        <change>Show departures and other nearby stations for locations in your trip</change>
+        <change>Show logos of transportation networks in settings dialog (send me the missing ones!)</change>
+        <change>Added support for Paris, New Zealand, Helsinki, Spain and Cologne/Bonn</change>
+        <change>Added Spanish, Dutch and Turkish Translation (Thanks Adolfo and Emre!)</change>
+        <change>Many smaller bug fixes</change>
+    </release>
+
+    <release version="0.5.3" versioncode="12">
+        <change>Updated PTE: Fix API changes by various networks (Thanks Jochen Sprickerhof!)</change>
+        <change>Activate SBB network again for Switzerland</change>
+    </release>
+
+	<release version="0.5.2" versioncode="11">
+        <change>Updated PTE: This enables "Find Nearby Stations" feature for many providers</change>
+        <change>Fix issue with BVG provider (new API base)</change>
+        <change>Do not crash on autocompletion like sometimes with VRR provider</change>
+    </release>
+
+    <release version="0.5.1" versioncode="10">
+        <change>Station position is now shown in calendar export and shared trip text</change>
+        <change>Long press on products now shows their name</change>
+        <change>Special connection messages are shown in red and without HTML code</change>
+        <change>Updated PTE: Added support for Rostock (RSAG), fixed encoding errors in auto-completion, fewer departures shown</change>
+    </release>
+
+    <release version="0.5" versioncode="9">
+        <change>Favorite locations, trips and your home needed to be reset :(</change>
+        <change>The favorite trips list has been improved</change>
+        <change>You can now share trips via SMS or email</change>
+        <change>You can add trips directly into your calendar</change>
+        <change>Show walking between stations on external map app</change>
+        <change>Show nearby stations on map</change>
+        <change>Choose the products you want to use for your trip (Thanks to MRay for the icons)</change>
+        <change>You can now pull to refresh the list of next departures</change>
+        <change>Removed Region: Maribor, Bremen</change>
+        <change>Added Region: Jerusalem, Dubai, Provence-Alpes-Côte d'Azur, Göttingen &amp; South Lower Saxony</change>
+        <change>Added Italian Translation (Thanks Giuseppe!)</change>
+    </release>
+
+    <release version="0.4" versioncode="6">
+        <change>New start screen</change>
+        <change>Find trips from current position</change>
+        <change>New home button as a shortcut for your home station, long press to change later</change>
+        <change>+15 minutes button to quickly change time for trip</change>
+        <change>Wider input field for location/station name</change>
+        <change>Input fields for stations now have a X button to delete the text</change>
+        <change>Names in the auto completion lists now also show the city of the proposed location (Thanks Michael!)</change>
+        <change>Hide less used settings from start screen</change>
+        <change>Action Bar button to show less used settings</change>
+        <change>Little trip boxes are now shown in correct order (Thanks Sam!)</change>
+    </release>
+
+	<release version="0.3.1" versioncode="5">
+        <change>Added support for NVV (Hessen, Kassel) (Thanks Paspartout!)</change>
+        <change>Added suport for Wiener Linien (Wien)</change>
+        <change>Fix crash for certain connections without line style (Thanks Paspartout!)</change>
+    </release>
+
+    <release version="0.3" versioncode="4">
+        <change>Added third tab for stations</change>
+        <change>Find next departures from given station</change>
+        <change>Find nearby stations (from current position) and their next departures</change>
+    </release>
+
+    <release version="0.2.1" versioncode="3">
+        <change>Remember whether you want to see the train platform or not</change>
+        <change>Show actual error messages if a search goes wrong</change>
+        <change>Added French Translation (Thanks @Mina_Vidar!)</change>
+        <change>Fixed bug #13 crash for walking-only connections</change>
+        <change>Fixed bug #10 crash when searching in airplane mode</change>
+    </release>
+
+    <release version="0.2" versioncode="2">
+        <change>Trips can now be marked as favorites and be accessed by swiping right in the main screen or by using the new tab bar</change>
+        <change>Automatically show connection delays (alpha!)</change>
+        <change>Add button to show/hide platforms where trains will arrive/depart</change>
+        <change>Button to swap From and To location</change>
+        <change>Show changelog after updates and add menu option to show full changelog</change>
+        <change>Added German Translation (Thanks Martin!)</change>
+    </release>
+
+    <release version="0.1" versioncode="1">
+        <change>First release</change>
+    </release>
+
+</changelog>

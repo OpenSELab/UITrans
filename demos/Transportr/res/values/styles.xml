@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+		<item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+		<item name="popupTheme">?popupTheme</item>
+	</style>
+
+	<style name="LineBox">
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:maxLines">1</item>
+		<item name="android:paddingBottom">2dp</item>
+		<item name="android:paddingTop">2dp</item>
+		<item name="android:paddingRight">4dp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:layout_marginRight">4dp</item>
+	</style>
+
+	<style name="DialogAnimation" parent="@android:style/Animation.Dialog">
+		<item name="android:windowEnterAnimation">@anim/scale_up</item>
+		<item name="android:windowExitAnimation">@anim/scale_down</item>
+	</style>
+
+	<style name="FavoriteCard" parent="CardView">
+		<item name="android:foreground">?selectableItemBackground</item>
+		<item name="android:clickable">true</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+	</style>
+
+	<style name="ContributorsCard" parent="CardView">
+		<item name="cardBackgroundColor">?attr/cardBackgroundColor</item>
+		<item name="cardCornerRadius">2dp</item>
+		<item name="cardUseCompatPadding">true</item>
+	</style>
+
+	<style name="Button" parent="Widget.AppCompat.Button.Borderless.Colored">
+		<item name="android:textColor">@color/buttonColor</item>
+	</style>
+
+	<style name="Divider">
+		<item name="android:background">@color/md_grey_500</item>
+		<item name="android:layout_height">1px</item>
+		<item name="android:layout_width">match_parent</item>
+	</style>
+
+	<style name="ActivityAnimation" parent="@android:style/Animation.Activity">
+		<item name="android:activityOpenEnterAnimation">@anim/screen_new_in</item>
+		<item name="android:activityOpenExitAnimation">@anim/screen_old_out</item>
+		<item name="android:activityCloseEnterAnimation">@anim/screen_old_in</item>
+		<item name="android:activityCloseExitAnimation">@anim/screen_new_out</item>
+	</style>
+
+	<style name="MapStyle">
+		<item name="maplibre_uiAttribution">false</item>
+		<item name="maplibre_uiCompass">true</item>
+		<item name="maplibre_uiLogo">false</item>
+		<item name="maplibre_uiTiltGestures">false</item>
+	</style>
+
+</resources>

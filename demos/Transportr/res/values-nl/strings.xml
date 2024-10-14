@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - open-bron Openbaar Vervoer</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Gratis openbaarvervoerhulpmiddel zonder reclame of gevolgd te worden</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
+Transportr is een niet-commerciële app ontwikkeld door mensen over de hele wereld in hun vrije tijd. Zij willen het gebruik van openbaar vervoer zo makkelijk mogelijk maken voor iedereen.
+
+Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbieders, zoals 9292, NS en Railteam, en geeft deze overzichtelijk weer. De app kan de correctheid van de gegevens niet verifiëren en <i>biedt daarom geen garanties</i> voor de weergegeven informatie. Gebruik op eigen risico.
+
+<b>🛣️ Routebeschrijvingen</b>. Vertel Transportr gewoon waar je heen wilt gaan! Het vindt de beste verbindingen voor je, adviseert je waar je van bus moet veranderen, en geeft zelf een verwachte aankomsttijd.
+
+<b>⏱️ Live vertrektijden</b>. Laat de vertrektijden zien van elk station. In <i>ondersteunde</i> gebieden worden ook vertragingen weergegeven.
+
+<b>🗽 Vrije software</b>. De broncode van Transportr is 100% open. Je kan het vrij bekijken, bestuderen, delen of het verbeteren. Deze app is zo goed als <i>jij</i> het maakt! Je kan zelfs je eigen stad toevoegen, als het nog niet ondersteund wordt.
+
+<b>🛰️ Vind je locatie.</b> Transportr gebruikt GPS satellietnavigatie om je locatie bij te houden zodat je nooit verdwaalt. Je kan de dichtstbijzijnde stations vinden om een nieuwe reis te beginnen en te zien hoe ver je bent op je reis.
+
+<b>🌟 Onthoud favoriete plaatsen.</b> Om sneller te gaan naar waar je wilt zijn slaat Transportr vaak gebruikte locaties en reizen op. Op die manier hoef je ze niet steeds opnieuw in te typen.
+
+<b>🚫 Geen reclame, volgt je niet</b>. Deze app bevat geen reclames of irritante notificaties. Het gebruikt ook geen volgtechnieken zoals Google Analytics om je te bespioneren. 
+
+<b>🗺️ Prachtige kaarten</b>. Bekijk stations van je hele reis op een kaart en weet altijd waar je bent om je bushalte niet te missen.
+]]></string>
+  <string name="drawer_settings">Instellingen</string>
+  <string name="drawer_changelog">Wijzigingslog</string>
+  <string name="drawer_about">Over</string>
+  <string name="drawer_contributors">Bijdragers</string>
+  <string name="drawer_report_issue">Probleem rapporteren</string>
+  <string name="action_fav_trip">Reis toevoegen aan favorieten</string>
+  <string name="action_unfav_trip">Reis verwijderen uit favorieten</string>
+  <string name="action_switch_locations">Begin- en eindpunt omwisselen</string>
+  <string name="trip_dep">Vertrek</string>
+  <string name="trip_arr">Aankomst</string>
+  <string name="action_refresh">Verversen</string>
+  <string name="action_navigation_expand">\'Via\' tonen</string>
+  <string name="action_choose_products">Transportmiddel</string>
+  <string name="action_share">Delen</string>
+  <string name="action_trip_calendar">Toevoegen aan agenda</string>
+  <string name="action_trip_delete">Reis verwijderen</string>
+  <string name="action_show_on_external_map">Op externe kaart tonen</string>
+  <string name="action_copy">Kopiëren</string>
+  <string name="directions">Verbindingen</string>
+  <string name="directions_search">Verbindingen zoeken</string>
+  <string name="drawer_departures">Vertrekken</string>
+  <string name="tab_about">Over</string>
+  <string name="tab_libraries">Bibliotheken</string>
+  <string name="about_copyright">© 2013 – 2023 Torsten Grote\nVrije softwarelicentie: GPLv3+</string>
+  <string name="about_description">Transportr is een openbaar vervoer-hulpmiddel, ontwikkeld door mensen van over de hele wereld om het gebruik van openbaar vervoer zo makkelijk mogelijk te maken.</string>
+  <string name="about_warning_title">Waarschuwing</string>
+  <string name="about_warning_text">Wij geven geen garantie op de (extern aangeleverde) gegevens. Gebruik de app op eigen risico.</string>
+  <string name="about_contributions">Deze app is vrije software, dus je kunt het vrij gebruiken, bestuderen, delen of verbeteren. Bijdragen worden aangemoedigd en gewaardeerd. Als je wilt bijdragen, bezoek dan de homepagina voor meer informatie.</string>
+  <string name="about_visit_website">Website bezoeken</string>
+  <string name="map_attribution_improve">Verbeter deze kaart</string>
+  <string name="open_navigation_drawer">Navigatiemenu openen</string>
+  <string name="from">Van</string>
+  <string name="to">Naar</string>
+  <string name="via">Via</string>
+  <string name="search_hint">Hier zoeken</string>
+  <string name="from_here">Vanaf hier</string>
+  <string name="to_here">Naar hier</string>
+  <string name="clear_location">Locatie wissen</string>
+  <string name="walk">Wandel</string>
+  <string name="alpha">alfa</string>
+  <string name="beta">bèta</string>
+  <string name="network">Netwerk</string>
+  <string name="pick_network_activity">Kies vervoersgebied</string>
+  <string name="pick_network_first_run">Welkom bij Transportr!\n\nKies hieronder een vervoersnetwerk uit je regio om door te gaan. Je kunt dit later altijd aanpassen.</string>
+  <string name="stations_searching_position">Bezig met zoeken naar huidige locatie…</string>
+  <string name="drawer_nearby_stations">Nabije stations</string>
+  <string name="find_nearby_stations">Zoeken naar nabije stations</string>
+  <string name="find_departures">Vertrekken zoeken</string>
+  <string name="share_trip_via">Reis delen via…</string>
+  <string name="show_location_in">Locatie tonen in…</string>
+  <string name="more">Meer</string>
+  <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
+  <string name="for_x_min">%d min</string>
+  <string name="change_time">Tijdstip wijzigen</string>
+  <string name="now">Nu</string>
+  <string name="now_small">nu</string>
+  <string name="yesterday">Gisteren</string>
+  <string name="today">Vandaag</string>
+  <string name="tomorrow">Morgen</string>
+  <string name="in_x_minutes">over %dmin</string>
+  <string name="x_minutes_ago">%dmin geleden</string>
+  <string name="total_time">Totaalduur: %s</string>
+  <string name="time_picker_previous_day">Vorige dag</string>
+  <string name="time_picker_next_day">Volgende dag</string>
+  <string name="ok">Oké</string>
+  <string name="cancel">Annuleren</string>
+  <string name="pref_transport_network">Vervoernetwerk</string>
+  <string name="pref_display">Weergave</string>
+  <string name="pref_theme_title">Thema</string>
+  <string name="pref_theme_light">Licht</string>
+  <string name="pref_theme_dark">Donker</string>
+  <string name="pref_theme_auto_battery">Ingesteld door batterijbesparing</string>
+  <string name="pref_theme_auto_system">Systeemstandaard</string>
+  <string name="pref_language_title">Taal</string>
+  <string name="pref_directions_routing">Navigatie en routeplanning</string>
+  <string name="pref_optimize">Optimaliseren voor</string>
+  <string name="pref_optimize_least_duration">Kortste tijdsduur</string>
+  <string name="pref_optimize_least_changes">Minste aantal overstappen</string>
+  <string name="pref_optimize_least_walking">Kortste loopafstand</string>
+  <string name="pref_walk_speed">Loopsnelheid</string>
+  <string name="pref_walk_speed_slow">Langzaam</string>
+  <string name="pref_walk_speed_normal">Normaal</string>
+  <string name="pref_walk_speed_fast">Snel</string>
+  <string name="pref_show_when_locked_title">Reis tonen, zelfs als het scherm vergrendeld is</string>
+  <string name="pref_show_when_locked_summary">Op vergrendelscherm tonen</string>
+  <string name="error">Fout</string>
+  <string name="error_no_internet">Internetverbinding vereist. Zorg ervoor dat je verbonden bent met het internet.</string>
+  <string name="error_connection_failure">Verbinding mislukt; probeer het opnieuw.</string>
+  <string name="error_trip_refresh_failed">De gegevens voor de huidige reis kunnen niet worden ververst.</string>
+  <string name="error_geo_intent">Externe locatie kan niet worden geopend</string>
+  <string name="error_find_nearby_stations">Geen nabije stations gevonden</string>
+  <string name="error_departures">Geen vertrekken gevonden</string>
+  <string name="error_no_calendar">Geen kalenderapp aangetroffen :(</string>
+  <string name="error_no_map">Geen externe kaartenapp aangetroffen :(</string>
+  <string name="trip_error_ambiguous">De locatie kan niet worden gevonden. Probeer een andere locatie.</string>
+  <string name="trip_error_too_close">\'Van\' en \'Naar\' liggen te dicht bij elkaar.</string>
+  <string name="trip_error_unknown_from">De \'Van\'-locatie kan niet worden gevonden. Probeer een andere.</string>
+  <string name="trip_error_unknown_via">De \'Via\'-locatie kan niet worden gevonden. Probeer een andere.</string>
+  <string name="trip_error_unknown_to">De \'Naar\'-locatie kan niet worden gevonden. Probeer een andere.</string>
+  <string name="trip_error_unresolvable_address">Het opgegeven adres kan niet worden gevonden. Probeer een ander.</string>
+  <string name="trip_error_no_trips">Geen verbindingen gevonden :(</string>
+  <string name="trip_error_invalid_date">De zoekdatum wordt momenteel niet ondersteund door de leverancier. Probeer een andere datum.</string>
+  <string name="trip_error_service_down">De leveranciersdienst is momenteel uit de lucht :(\nProbeer het later opnieuw.</string>
+  <string name="trip_error_pte">Als je deze fout wilt rapporteren, doe dat dan naar %1$s. </string>
+  <string name="trip_issue">Er is wellicht een probleem met deze verbinding.</string>
+  <string name="trip_not_travelable">Onmogelijk of vervallen</string>
+  <string name="try_again">Opnieuw proberen</string>
+  <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <string name="meter">%d m</string>
+  <plurals name="stops">
+    <item quantity="one">%d halte</item>
+    <item quantity="other">%d haltes</item>
+  </plurals>
+  <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
+  <string name="platform">(Perron %s)</string>
+  <string name="system_default">Systeemstandaard</string>
+  <string name="trip_share_date">Datum: %s</string>
+  <string name="times_include_delays">(Let op: tijden kunnen gemelde vertragingen bevatten)</string>
+  <string name="created_by">Gecreëerd door %s</string>
+  <string name="home">Thuis</string>
+  <string name="home_dialog_title">Thuislocatie instellen</string>
+  <string name="widget_name_quickhome">Stuur me naar huis</string>
+  <string name="work">Werk</string>
+  <string name="work_hint">Werklocatie instellen</string>
+  <string name="widget_name_quickwork">Stuur me naar mijn werk</string>
+  <string name="tap_to_set">Druk om in te stellen</string>
+  <string name="widget_name_favorites">%1$s naar %2$s</string>
+  <string name="widget_name_favorites_via">%1$s naar %2$s (via %3$s)</string>
+  <string name="action_set_locations">Zoekopdracht bewerken</string>
+  <string name="action_swap_locations">Zoeken naar terugreis</string>
+  <string name="action_change">Wijzigen</string>
+  <string name="action_add_shortcut">Beginscherm-snelkoppeling toevoegen</string>
+  <string name="location_gps">Huidige locatie gebruiken</string>
+  <string name="warning_no_gps_fix">Je locatie kan niet worden bepaald.</string>
+  <string name="permission_denied_gps">Je hebt geen toegang gegeven tot je locatie; deze functionaliteit zal dus niet werken. Machtig deze app via de instellingen.</string>
+  <string name="warning_gps_off">Locatie is uitgeschakeld. Schakel deze in via de instellingen.</string>
+  <string name="onboarding_location_title">Omhoogtrekken</string>
+  <string name="onboarding_location_message">Hieronder verbergen zich functies</string>
+  <string name="select_products">Kies transportmiddelen</string>
+  <string name="product_high_speed_train">InterCity- of hogesnelheidstrein</string>
+  <string name="product_regional_train">Regionale trein</string>
+  <string name="product_suburban_train">Stadstrein</string>
+  <string name="product_subway">Metro</string>
+  <string name="product_tram">Tram</string>
+  <string name="product_bus">Bus</string>
+  <string name="product_ferry">Veerboot</string>
+  <string name="product_cablecar">Kabelbaan</string>
+  <string name="product_on_demand">Op aanvraag</string>
+  <!--ckChangeLog-->
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Wijzigingslog</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Wijzigingen</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Meer…</string>
+  <string name="np_continent_europe">Europa</string>
+  <string name="np_continent_africa">Afrika</string>
+  <string name="np_continent_north_america">Noord-Amerika</string>
+  <string name="np_continent_central_america">Midden-Amerika</string>
+  <string name="np_continent_south_america">Zuid-Amerika</string>
+  <string name="np_continent_asia">Azië</string>
+  <string name="np_continent_oceania">Oceanië</string>
+  <string name="np_region_australia">Australië</string>
+  <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
+  <string name="np_desc_sydney">Australië, Nieuw-Zuid-Wales, Sydney</string>
+  <string name="np_region_pt">Portugal</string>
+  <string name="np_name_pt">Portugal</string>
+  <string name="np_desc_pt">Lissabon</string>
+  <string name="np_desc_pt_networks">Bus, trein, kabelspoorweg, veerboot, metro</string>
+  <string name="np_region_austria">Oostenrijk</string>
+  <string name="np_desc_ivb">Innsbruck</string>
+  <string name="np_desc_linz">Opper-Oostenrijk, Linz</string>
+  <string name="np_desc_oebb">Oostenrijk</string>
+  <string name="np_desc_stv">Stiermarken, Graz, Marburg, Maribor</string>
+  <string name="np_desc_vor">Neder-Oostenrijk, Burgenland, Wenen</string>
+  <string name="np_desc_vvt">Tirol</string>
+  <string name="np_desc_wien">Wenen</string>
+  <string name="np_region_belgium">België</string>
+  <string name="np_desc_sncb">Openbaar vervoer in België</string>
+  <string name="np_name_br">Brazilie</string>
+  <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte en Porto Alegre</string>
+  <string name="np_name_br_floripa">Florianópolis</string>
+  <string name="np_desc_br_floripa">Veel busroutes, geen Executivos</string>
+  <string name="np_region_canada">Canada</string>
+  <string name="np_name_ontario">Ontario</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Hamilton, Waterloo-regio</string>
+  <string name="np_name_quebec">Quebec</string>
+  <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_name_britishcolumbia">Brits-Columbia</string>
+  <string name="np_desc_britishcolumbia">Openbaar vervoer in BC</string>
+  <string name="np_desc_britishcolumbia_networks">Translink (Metro Vancouver) en BC Transit (rest van BC)</string>
+  <string name="np_region_denmark">Denemarken</string>
+  <string name="np_desc_dsb">Denemarken, Kopenhagen</string>
+  <string name="np_name_rt">Europa</string>
+  <string name="np_desc_rt">Alleen langeafstandstreinen</string>
+  <string name="np_desc_rt_networks">Railteam-alliantie</string>
+  <string name="np_region_finland">Finland</string>
+  <string name="np_desc_fi">Helsinki, Turku, Tampere, Jyväskylä, Oulu</string>
+  <string name="np_region_france">Frankrijk</string>
+  <string name="np_name_francenortheast">Noordoosten van Frankrijk</string>
+  <string name="np_desc_francenortheast">Straatsburg, Metz, Rijsel, Nancy</string>
+  <string name="np_name_francenorthwest">Noordwesten van Frankrijk</string>
+  <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre, Basse-Normandie, Haute-Normandië</string>
+  <string name="np_name_frenchsoutheast">Zuidoosten van Frankrijk</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corsica, Lyon</string>
+  <string name="np_name_frenchsouthwest">Zuidwesten van Frankrijk</string>
+  <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitanië, Midi-Pyrénées, Bordeaux, Toulouse</string>
+  <string name="np_name_paris">Parijs</string>
+  <string name="np_desc_paris">Île-de-France, Frankrijk, Parijs</string>
+  <string name="np_region_gb">Groot-Brittannië</string>
+  <string name="np_desc_mersey">Stadsregio Liverpool</string>
+  <string name="np_desc_tlem">Groot-Londen, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
+  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
+  <string name="np_region_germany">Duitsland</string>
+  <string name="np_desc_avv">Augsburg</string>
+  <string name="np_name_avvaachen">AVV</string>
+  <string name="np_desc_avvaachen">Aken</string>
+  <string name="np_desc_bayern">Beieren, Würzburg, Regensburg</string>
+  <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
+  <string name="np_desc_bvg">Berlijn</string>
+  <string name="np_desc_db">Het grootste deel van Duitsland</string>
+  <string name="np_desc_db2">Langeafstandsverbindingen in Europa</string>
+  <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
+  <string name="np_desc_gvh">Nedersaksen, Hannover, Hamburg, Bremerhaven</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
+  <string name="np_desc_invg">Ingolstadt</string>
+  <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
+  <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
+  <string name="np_desc_mvv">Beieren, München</string>
+  <string name="np_desc_nasa">Saksen, Leipzig, Saksen-Anhalt, Maagdenburg, Halle</string>
+  <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Bazel, Bazel-Stad, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
+  <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_name_sh">NAH.SH</string>
+  <string name="np_desc_sh">Sleeswijk-Holstein, Kiel, Flensburg, Lübeck</string>
+  <string name="np_desc_vbb">Brandenburg, Berlijn</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Nedersaksen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vgn">Neurenberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_name_vgs">saarVV</string>
+  <string name="np_desc_vgs">Saarland, Saarbrücken</string>
+  <string name="np_desc_vmv">Mecklenburg-Voor-Pommeren, Schwerin</string>
+  <string name="np_desc_vrn">Baden-Württemberg, Rijnland-Palts, Mannheim, Mainz, Trier</string>
+  <string name="np_desc_vrr">Noordrijn-Westfalen, Keulen, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Keulen, Bonn</string>
+  <string name="np_desc_vvm">Zwaben, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
+  <string name="np_desc_vvo">Saksen, Dresden</string>
+  <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
+  <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">Mittelthüringen</string>
+  <string name="np_region_ireland">Ierland</string>
+  <string name="np_desc_tfi">Ierland, Dublin, Belfast</string>
+  <string name="np_region_israel" tools:keep="@string/np_region_israel">Israël</string>
+  <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israël, Jeruzalem</string>
+  <string name="np_name_it">Italië</string>
+  <string name="np_desc_it">Rome, Milaan, Turijn, Venetië, Palermo, Trente</string>
+  <string name="np_region_liechtenstein">Liechtenstein</string>
+  <string name="np_name_vmobil">VVV</string>
+  <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
+  <string name="np_region_luxembourg">Luxemburg</string>
+  <string name="np_desc_lu">Luxemburg</string>
+  <string name="np_region_netherlands">Nederland</string>
+  <string name="np_desc_ns">Nederland, Amsterdam</string>
+  <string name="np_desc_negentwee">Al het openbaar vervoer in Nederland</string>
+  <string name="np_name_nz">Nieuw-Zeeland</string>
+  <string name="np_desc_nz">Nieuw-Zeeland, Wellington, Auckland</string>
+  <string name="np_region_poland">Polen</string>
+  <string name="np_name_spain">Spanje</string>
+  <string name="np_desc_spain">Madrid, Barcelona, Baskenland, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
+  <string name="np_name_hungary">Hongarije</string>
+  <string name="np_desc_hungary">Boedapest, Miskolc</string>
+  <string name="np_name_czechia">Tsjechië</string>
+  <string name="np_desc_czechia">Praag en omstreken</string>
+  <string name="np_region_sweden">Zweden</string>
+  <string name="np_desc_se">Zweden, Stockholm</string>
+  <string name="np_region_switzerland">Zwitserland</string>
+  <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
+  <string name="np_name_sbb" translatable="true">SBB</string>
+  <string name="np_desc_sbb">Zwitserland</string>
+  <string name="np_desc_vbl">Luzern</string>
+  <string name="np_desc_zvv">Zürich</string>
+  <string name="np_region_uae">Verenigde Arabische Emiraten</string>
+  <string name="np_name_dub">Dubai</string>
+  <string name="np_desc_dub">Verenigde Arabische Emiraten, Dubai</string>
+  <string name="np_region_usa">Verenigde Staten</string>
+  <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Francisco</string>
+  <string name="np_name_cmta">Capital Metro</string>
+  <string name="np_desc_cmta">Austin</string>
+  <string name="np_name_usny">De staten New York en New Jersey</string>
+  <string name="np_name_california">Californië</string>
+  <string name="np_desc_california">Openbaar vervoer in Californië (VS)</string>
+  <string name="np_name_oregon">Oregon</string>
+  <string name="np_desc_oregon">Al het openbaar vervoer in de staat Oregon (VS)</string>
+  <string name="np_name_costa_rica">Costa Rica</string>
+  <string name="np_name_ghana">Ghana</string>
+  <string name="np_desc_ghana">Accra</string>
+  <string name="np_name_nicaragua">Nicaragua</string>
+  <string name="np_desc_nicaragua">Stads-, streek- en binnenlandse bussen, verstrekt door MapaNica.net en OpenStreetMap-bijdragers</string>
+  <string name="maintainer">Onderhouder</string>
+  <string name="contributors">Bijdragers</string>
+  <string name="translators">Vertalers</string>
+  <string name="dutch">Nederlands</string>
+  <string name="french">Frans</string>
+  <string name="german">Duits</string>
+  <string name="italian">Italiaans</string>
+  <string name="portuguese_br">Portugees (Brazilië)</string>
+  <string name="spanish">Spaans</string>
+  <string name="turkish">Turks</string>
+  <string name="norwegian_bokmal">Noors Bokmål</string>
+  <string name="basque">Baskisch</string>
+  <string name="english">Engels</string>
+  <string name="catalan">Catalaans</string>
+  <string name="polish">Pools</string>
+  <string name="tamil">Tamil</string>
+  <string name="esperanto">Esperanto</string>
+  <string name="czech">Tsjechisch</string>
+  <string name="hungarian">Hongaars</string>
+  <string name="japanese">Japans</string>
+  <string name="russian">Russisch</string>
+  <string name="greek">Grieks</string>
+  <string name="farsi">Perzisch</string>
+  <string name="taiwanese">Chinees (Taiwan)</string>
+  <string name="swedish">Zweeds</string>
+  <string name="ukrainian">Oekraïens</string>
+  <string name="danish">Deens</string>
+</resources>

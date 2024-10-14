@@ -15,7 +15,7 @@ llm_client = LLMFactory.create_llm_from_config(llm_client_type="openai",
                                                llm_config=config.llm_config["deepseek"].model_dump())
 
 
-with open("pages/page_tasks1.json", "r", encoding="utf-8") as f:
+with open("pages/page_tasks.json", "r", encoding="utf-8") as f:
     page_tasks = json.loads(f.read())
 
 for page_task in page_tasks:
@@ -24,20 +24,22 @@ for page_task in page_tasks:
     android_layouts = {
         android_layout_xml_name: page_task
     }
-    tests_page = ["list_item_cart"]
-    target_filepath = f"pages/results/{android_layouts[android_layout_xml_name]['source']}_temp_agent_task_{android_layout_xml_name.replace('/', '_')}.json"
+    tests_page = None
+    android_layout_xml_name_path = android_layout_xml_name.replace('\\', '/').replace('/', '_')
+    target_filepath = f"pages/results/{android_layouts[android_layout_xml_name]['source']}_temp_agent_task_{android_layout_xml_name_path}.json"
     if os.path.exists(target_filepath):
         flag = True
-        for test_page in tests_page:
-            if test_page in android_layout_xml_name:
-                print(f"Processing {android_layout_xml_name}...")
-                flag = False
-                break
+        if tests_page:
+            for test_page in tests_page:
+                if test_page in target_filepath:
+                    print(f"Processing {android_layout_xml_name} from {android_layouts[android_layout_xml_name]['source']}...")
+                    flag = False
+                    break
         if flag:
-            print(f"Skipping {android_layout_xml_name}...")
+            print(f"Skipping {android_layout_xml_name} from {android_layouts[android_layout_xml_name]['source']}...")
             continue
     else:
-        print(f"Processing {android_layout_xml_name}...")
+        print(f"Processing {android_layout_xml_name} from {android_layouts[android_layout_xml_name]['source']}...")
     try:
         layout_translation = BreakdownLayoutTranslation(
             tasks=[{
@@ -61,6 +63,7 @@ for page_task in page_tasks:
                                                                                      android_layout_xml_name],
                                                                                  all_translations)
         end_time = time.time()
+        print(f"Time: {end_time - start_time}")
         with open(target_filepath, "w", encoding="utf-8") as f:
             f.write(json.dumps({
                 "android_layout": android_layouts[android_layout_xml_name],

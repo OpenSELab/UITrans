@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_service_description">Tjeneste for Forecastie vejr påmindelse visning.</string>
+    <string name="channel_name">Vejr påmindelse</string>
+    <string name="no_data">Ingen data</string>
+
+    <string name="settings_title_notifications">Påmindelse</string>
+    <string name="settings_enable_notification_title">Vis vejr i påmindelse</string>
+    <string name="settings_notification_type_title">Påmindelse type</string>
+    <string name="settings_notification_type_default">Standard Android visning</string>
+    <string name="settings_notification_type_simple">Enkel påmindelse</string>
+    <string name="settings_show_temperature_in_status_bar_title">Vis temperatur i påmindelse</string>
+    <string name="settings_show_temperature_in_status_bar_summary">Hvis aktiveret, vises aktuel temperatur i påmindelse i stedet for program ikon. Tilgængelig fra Android 6.0 (Marshmallow).</string>
+</resources>

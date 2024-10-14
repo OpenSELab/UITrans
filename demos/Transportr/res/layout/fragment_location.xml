@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="?android:windowBackground"
+	tools:ignore="Overdraw">
+
+	<View
+		style="@style/Divider"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintTop_toTopOf="parent"/>
+
+	<ImageView
+		android:id="@+id/locationIcon"
+		android:layout_width="wrap_content"
+		android:layout_height="0dp"
+		android:layout_marginLeft="16dp"
+		android:background="?attr/selectableItemBackgroundBorderless"
+		android:scaleType="center"
+		app:tint="?colorControlNormal"
+		app:layout_constraintBottom_toBottomOf="@+id/locationName"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/locationName"
+		tools:ignore="ContentDescription,RtlHardcoded"
+		tools:src="@drawable/ic_location_address_fav"/>
+
+	<TextView
+		android:id="@+id/locationName"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="8dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginTop="8dp"
+		android:background="?attr/selectableItemBackground"
+		android:paddingBottom="8dp"
+		android:paddingTop="8dp"
+		android:textAppearance="@style/TextAppearance.AppCompat"
+		android:textSize="16sp"
+		app:layout_constraintLeft_toRightOf="@+id/locationIcon"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:ignore="RtlHardcoded"
+		tools:text="Name of Location that can be very long and fill two lines"/>
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/linesLayout"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="16dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginTop="8dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="@+id/locationIcon"
+		app:layout_constraintTop_toBottomOf="@+id/locationName"
+		tools:layout_height="35dp"
+		tools:listitem="@layout/list_item_line"/>
+
+	<TextView
+		android:id="@+id/locationInfo"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:textAppearance="@style/TextAppearance.AppCompat.Small"
+		app:layout_constraintLeft_toLeftOf="@+id/locationIcon"
+		app:layout_constraintTop_toBottomOf="@+id/linesLayout"
+		tools:text="Place of Location, 12.34/56.78"/>
+
+	<ImageButton
+		android:id="@+id/overflowButton"
+		android:layout_width="@dimen/buttonSize"
+		android:layout_height="@dimen/buttonSize"
+		android:layout_marginLeft="8dp"
+		android:layout_marginStart="8dp"
+		android:adjustViewBounds="false"
+		android:background="?selectableItemBackgroundBorderless"
+		android:contentDescription="@string/more"
+		android:cropToPadding="false"
+		app:tint="?colorControlNormal"
+		app:layout_constraintBottom_toBottomOf="@+id/locationInfo"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toEndOf="@+id/locationInfo"
+		app:layout_constraintTop_toTopOf="@+id/locationInfo"
+		app:srcCompat="@drawable/ic_more_horiz"/>
+
+	<de.grobox.transportr.ui.ImageTextButton
+		android:id="@+id/departuresButton"
+		style="@style/Button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="16dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginTop="16dp"
+		android:background="?attr/selectableItemBackground"
+		android:drawablePadding="8dp"
+		android:drawableTop="@drawable/ic_action_departures"
+		android:maxWidth="120dp"
+		android:padding="8dp"
+		android:text="@string/drawer_departures"
+		app:layout_constraintEnd_toStartOf="@+id/nearbyStationsButton"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/locationInfo"
+		tools:visibility="visible"/>
+
+	<de.grobox.transportr.ui.ImageTextButton
+		android:id="@+id/nearbyStationsButton"
+		style="@style/Button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:background="?attr/selectableItemBackground"
+		android:drawablePadding="8dp"
+		android:drawableTop="@drawable/ic_nearby_stations"
+		android:maxWidth="120dp"
+		android:padding="8dp"
+		android:text="@string/drawer_nearby_stations"
+		app:layout_constraintEnd_toStartOf="@+id/shareButton"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toEndOf="@+id/departuresButton"
+		app:layout_constraintTop_toBottomOf="@+id/locationInfo"/>
+
+	<ProgressBar
+		android:id="@+id/nearbyStationsProgress"
+		style="?android:attr/progressBarStyle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:visibility="invisible"
+		app:layout_constraintBottom_toBottomOf="@+id/nearbyStationsButton"
+		app:layout_constraintLeft_toLeftOf="@+id/nearbyStationsButton"
+		app:layout_constraintRight_toRightOf="@+id/nearbyStationsButton"
+		app:layout_constraintTop_toTopOf="@+id/nearbyStationsButton"/>
+
+	<de.grobox.transportr.ui.ImageTextButton
+		android:id="@+id/shareButton"
+		style="@style/Button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="16dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginTop="16dp"
+		android:background="?attr/selectableItemBackground"
+		android:drawablePadding="8dp"
+		android:drawableTop="@drawable/ic_action_social_share"
+		android:maxWidth="120dp"
+		android:padding="8dp"
+		android:text="@string/action_share"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toEndOf="@+id/nearbyStationsButton"
+		app:layout_constraintTop_toBottomOf="@+id/locationInfo"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
