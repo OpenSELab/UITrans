@@ -219,10 +219,14 @@ global_css = """
 .tab-container button {
   font-size: 20px;
 }
-.tab-container {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
+.demo-video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.demo-video iframe {
+    width: 960px;
+    height: 642px;
 }
 """
 
@@ -263,7 +267,7 @@ all_examples = {
 
 with gr.Blocks(css=global_css) as app:
     html_content = f"""
-        <div style="display: flex; align-items: center; justify-content: center; height: 30vh; padding: 10px; margin: 0 auto;">
+        <div style="display: flex; align-items: center; justify-content: center; height: 28vh; padding: 10px; margin: 0 auto;">
             <div style="margin-right: 10px;">
                 <img src="https://hyj-first-1306572465.cos.ap-nanjing.myqcloud.com/a2h_logo.svg" alt="Logo Image" style="width: 200px; height: 200px;">
             </div>
@@ -271,12 +275,16 @@ with gr.Blocks(css=global_css) as app:
                 <h1 style="font-size: 64px; color: black;">A2H Converter</h1>
                 <p style="font-size: 16px; color: gray;">一款支持安卓UI到鸿蒙ArkUI的智能转译工具</p>
             </div>
-            <div class="video">
-                <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113305867783593&bvid=BV1GMmjYbE5d&cid=26289898999&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-            </div>
+        </div>
         """
     gr.HTML(html_content)
     # gr.Video("examples/video/demo.mp4", label="演示视频", width=960)
+    video_url = "https://outin-3bb925968a2f11ef940e00163e0edab2.oss-cn-shanghai.aliyuncs.com/sv/1d60ba83-1928e88ad92/1d60ba83-1928e88ad92.mp4?Expires=1728972131&OSSAccessKeyId=LTAIVVfYx6D0HeL2&Signature=KO1BpcEfclEjBqKGYAtriaiLN%2Fo%3D"
+    gr.HTML(f"""
+        <div class="demo-video">
+            <iframe src="{video_url}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+        </div>
+    """)
     with gr.Tab("组件转译"):
         gr.Markdown("## 组件转译")
         gr.Markdown("请在下列输入框中粘贴 Android XML 组件代码，然后点击“确定”按钮以将其转译为 HarmonyOS 代码。")
