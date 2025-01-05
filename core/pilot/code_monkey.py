@@ -269,7 +269,7 @@ class CodeMonkeyAgent(LLMAgent):
         total_query_results = {}
         for query in component_query.queries:
             query_results = self.component_db_client._collection.query(
-                query_embeddings=self.component_db_client.embedding_function.embed_documents(query.queries),
+                query_embeddings=self.component_db_client._embedding_function.embed_documents(query.queries),
                 n_results=10,
                 where={
                     "$and": [
@@ -750,6 +750,8 @@ class CodeMonkeyAgent(LLMAgent):
         translation_task["component"]["function_description"] = generate_component_description.function_description
         # 2. 查询组件文档
         query_component_document = self._query_component_document(translation_task["component"], agent_task)
+        query_component_document["document"] = ""
+        query_component_document["component_document"] = ""
         translate_android_component_prompt = PromptLoader.get_prompt(
             f"{self.agent_role}/translate_android_component.prompt",
             tasks=all_translation_tasks,
@@ -761,7 +763,7 @@ class CodeMonkeyAgent(LLMAgent):
             android_component=translation_task["component"],
             idea=query_component_document["idea"]
         )
-        # print(translate_android_component_prompt)
+        print(translate_android_component_prompt)
         translate_component_messages = self.generate_reply(translate_android_component_prompt, remember=False,
                                                            model_schema=TranslateAndroidComponent)
         translate_android_component = TranslateAndroidComponent.common_parse_raw(translate_component_messages[-1]["content"])
@@ -812,6 +814,8 @@ class CodeMonkeyAgent(LLMAgent):
         translation_task["component"]["function_description"] = generate_component_description.function_description
         # 2. 查询组件文档
         query_component_document = self._query_component_document(translation_task["component"], agent_task)
+        query_component_document["document"] = ""
+        query_component_document["component_document"] = {}
         generate_harmony_component_prompt = PromptLoader.get_prompt(
             f"{self.agent_role}/translate_android_component.prompt",
             tasks=all_translation_tasks,
@@ -822,12 +826,20 @@ class CodeMonkeyAgent(LLMAgent):
             android_component=translation_task["component"],
             idea=query_component_document["idea"]
         )
-        # print(generate_harmony_component_prompt)
+        print(generate_harmony_component_prompt)
         generate_harmony_component_messages = self.generate_reply(generate_harmony_component_prompt, remember=False,
                                                                   model_schema=TranslateAndroidComponent)
         # print(generate_harmony_component_messages[-1]["content"])
         translate_android_component = TranslateAndroidComponent.common_parse_raw(
             generate_harmony_component_messages[-1]["content"])
+        translate_android_component_agent_task = AgentTask(
+            description="生成组件v1",
+            details={
+                "prompt": generate_harmony_component_prompt,
+                "translated_component": translate_android_component.model_dump()
+            }
+        )
+        agent_task.subtasks.append(translate_android_component_agent_task)
         translate_android_component.harmony_component = self.postprocess_harmony_component_code(
             translate_android_component.harmony_component, agent_task)
         translation = Translation(
@@ -879,6 +891,7 @@ class CodeMonkeyAgent(LLMAgent):
             # 生成所有组件的转译任务
             translate_component_tasks = {}
             for index, (task, translation) in enumerate(zip(breakdown_android_layout.tasks, translations)):
+                translation = []
                 if len(translation) == 0:
                     future = executor.submit(
                         self._generate_component_v1,

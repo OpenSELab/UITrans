@@ -112,8 +112,8 @@ def get_modules(android_config):
     }
     支持settings.gradle和settings.gradle.kts两种类型的配置文件
     """
-    sg_path = android_config.PROJECT_ROOT + "\\settings.gradle"
-    sg_kts_path = android_config.PROJECT_ROOT + "\\settings.gradle.kts"
+    sg_path = android_config.PROJECT_ROOT + "/settings.gradle"
+    sg_kts_path = android_config.PROJECT_ROOT + "/settings.gradle.kts"
 
     # identifier = Word(alphas + "_", alphanums + "_")
     string = QuotedString('"', escChar='\\') | QuotedString("'", escChar='\\')

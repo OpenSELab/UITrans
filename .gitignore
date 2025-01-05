@@ -171,6 +171,7 @@ test.py
 results
 android_projects
 harmony_projects
+paper_prompts
 
 # 自动爬取的文档
 # script/auto_harmony_document/

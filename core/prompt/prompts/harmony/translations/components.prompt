@@ -1,5 +1,5 @@
+{% if translations %}
 以下是关于安卓组件转译为鸿蒙ArkUI组件的示例代码：
-
 {% for translation in translations %}
 ## 示例#{{ loop.index }}
 ### {{ translation.target_component }} 组件
@@ -8,3 +8,5 @@
 {{ translation.target_component_code }}
 ```
 {% endfor %}
+{% endif %}
+

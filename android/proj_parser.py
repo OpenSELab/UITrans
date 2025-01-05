@@ -192,7 +192,7 @@ class PageAnalyser:
             stream=False
         )
         print(response.choices[0].message.content)
-        contains_list = parse_json_to_list(response.choices[0].message.content, self.module)
+        contains_list = parse_json_to_list(response.choices[0].message.content, self.module, self.android_config)
         contains_list = [item if item.endswith(".xml") else item + ".xml" for item in contains_list]
         return contains_list
 

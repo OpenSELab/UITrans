@@ -177,6 +177,7 @@ def _init_harmony_components():
         if component_schema.is_common_attrs:
             component_schema.attributes.update(get_harmony_common_attributes())
         COMPONENTS[component_name] = component_schema
+    print("文档初始化完成：", len(COMPONENTS))
 
 
 def get_harmony_component(component_name: Optional[str | List[str]] = None) -> Dict[str, ComponentDeclaration]:

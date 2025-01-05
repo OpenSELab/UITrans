@@ -111,7 +111,7 @@ class LLMAgent:
                     print("Tool Call: {tool_call}".format(tool_call=tool_call))
                 print("\n")
             else:
-                print("Role: {role}\nContent: {content}\n\n".format(role=message["role"], content=message["content"]))
+                print("Role: {role}\Content: {content}\n\n".format(role=message["role"], content=message["content"]))
 
     def make_plan(self, requirement: str, interactive: bool = False, **kwargs) -> AgentTask:
         """制定计划

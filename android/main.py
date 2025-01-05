@@ -14,7 +14,7 @@ def analyse_page_dict(base_path, android_config):
     # 依据模块初始化项目配置字典
     for m in modules:
         android_config.PROJ_STRUCTURE[m] = {
-            "MODULE_BASE_PATH": os.path.join(android_config.PROJECT_ROOT, modules[m]),
+            "MODULE_BASE_PATH": os.path.join(android_config.PROJECT_ROOT, modules[m]).replace("\\", "/"),
             "MANIFEST_PATH": "",
             "JAVA_ROOT": "",
             "RES_ROOT": ""

@@ -8,8 +8,10 @@
 {#{% include "harmony/components.prompt" %}#}
 
 {# 组件文档 #}
+{% if component_document %}
 以下是可供参考的鸿蒙组件文档：
-{#{{ component_document }}#}
+{{ component_document }}
+{% endif %}
 {% include "harmony/components.prompt" %}
 {% include "harmony/description/ui_description.prompt " %}
 
@@ -19,21 +21,23 @@
 {# 资源列表 #}
 {% include "partials/resources_list.prompt" %}
 
+{% if tasks %}
 技术主管已经将代码转译分为以下步骤：
 {% for task in tasks %}
 {{ loop.index }}. {{ task.description }}{% if task.done %}（已完成）{% endif %}\n
 {% endfor %}
+{% endif %}
 
 
 你当前需要处理的任务是：
 {{ current_task.description }}
 
-以下是待转译的安卓组件描述：
 {% if android_component %}
+以下是待转译的安卓组件描述：
 # 待转译的安卓组件名：{{ android_component.name }}
-功能描述：{{ android_component.function_description }}
-安卓布局描述：{{ android_component.layout_description }}
-实现转译的思路：{{ idea }}
+{% if android_component.function_description %}功能描述：{{ android_component.function_description }}{% endif %}
+{% if android_component.layout_description %}安卓布局描述：{{ android_component.layout_description }}{% endif %}
+{% if idea %}实现转译的思路：{{ idea }}{% endif %}
 {{ android_component.content }}
 {% endif %}
 
