@@ -3,8 +3,8 @@ Seamless user interface (i.e., UI) translation has emerged as a pivotal techniqu
 
 # Our Approach
 UITrans's architecture is depicted in Figure~\ref{fig:overview}, which takes the source code of Android project as input and the source code of HarmonyOS as output. The core of UITrans relies on a multi-agent reflective collaboration mechanism~\cite{hong2023metagpt, shinn2024reflexion, singh2024agentic, park2023generative}, powered by a large language model, to parse Android components, convert them into intermediate functional representations, and ultimately generate HarmonyOS code.
-\begin{itemize}
-\item {\texttt{Android Project Parsing}}: is responsible for analyzing the logical structure of the application, including both pages and subpages, to prepare the application for the migration process (see Section~\ref{sec:parse} for details).
-\item {\texttt{Translation Task Planning and Decomposition}}: employs systematic decomposition rules to identify and isolate the smallest translatable units, allowing for an organized and efficient translation strategy (see Section~\ref{sec:task_plan}).
-\item {\texttt{HarmonyOS Code Generation}}: utilizes a multi-agent collaboration mechanism, enhanced by the RAG and UI mapping table, to translate Android components into ArkUI components. Then it reassembles the generated ArkUI components in accordance with the logical structure provided by the parsing module, thus generating the complete HarmonyOS source code (see Section~\ref{sec:harmonyOS}).
-\end{itemize}
+1. Android Project Parsing: is responsible for analyzing the logical structure of the application, including both pages and subpages, to prepare the application for the migration process (see Section~\ref{sec:parse} for details).
+2. Translation Task Planning and Decomposition: employs systematic decomposition rules to identify and isolate the smallest translatable units, allowing for an organized and efficient translation strategy (see Section~\ref{sec:task_plan}).
+3. HarmonyOS Code Generation: utilizes a multi-agent collaboration mechanism, enhanced by the RAG and UI mapping table, to translate Android components into ArkUI components. Then it reassembles the generated ArkUI components in accordance with the logical structure provided by the parsing module, thus generating the complete HarmonyOS source code.
+
+
