@@ -1,0 +1,17 @@
+{
+    "name": "app/res/layout/activity_main/activity_main.xml",
+    "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\n<androidx.drawerlayout.widget.DrawerLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nxmlns:tools=\"http://schemas.android.com/tools\"\nandroid:id=\"@+id/drawer_layout\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:fitsSystemWindows=\"true\"\ntools:openDrawer=\"start\">\n\n<include\nlayout=\"@layout/app_bar_main\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\" />\n\n<com.google.android.material.navigation.NavigationView\nandroid:id=\"@+id/nav_view\"\nandroid:layout_width=\"wrap_content\"\nandroid:layout_height=\"match_parent\"\nandroid:layout_gravity=\"start\"\nandroid:fitsSystemWindows=\"true\"\napp:headerLayout=\"@layout/nav_header_main\"\napp:menu=\"@menu/activity_main_drawer\" />\n\n</androidx.drawerlayout.widget.DrawerLayout>",
+    "java": "",
+    "contains": [
+        "app\\src\\main\\res\\layout\\app_bar_main.xml",
+        "app\\src\\main\\res\\layout\\nav_header_main.xml",
+        "app\\src\\main\\res\\menu\\activity_main_drawer.xml"
+    ],
+    "mock_data": {},
+    "source": "PSLab",
+    "time": 20.973374366760254,
+    "result": {
+        "harmony_component_code": "Column() {\n  Stack() {\n    // 包含app_bar_main布局的组件\n    Column() {\n      // 子组件\n    }\n    .width('100%')\n    .height('100%')\n    // 导航视图\n    NavigationView() {\n      // 包含nav_header_main布局的组件\n      Column() {\n        // 子组件\n      }\n      // 菜单\n      Menu() {\n        // 子组件\n      }\n    }\n    .width('auto')\n    .height('100%')\n    .layoutDirection(LayoutDirection.Start)\n  }\n}\n"
+    },
+    "explanation": "1. 使用Column作为根容器，模拟DrawerLayout的布局结构。\n2. 使用Stack组件来包含app_bar_main布局和NavigationView，模拟DrawerLayout的嵌套结构。\n3. 使用Column组件来包含app_bar_main布局的子组件，确保宽度和高度占满父容器。\n4. 使用NavigationView组件来模拟安卓的NavigationView，设置宽度和高度，并指定布局方向为Start。\n5. 在NavigationView中嵌套Column组件来包含nav_header_main布局的子组件。\n6. 在NavigationView中嵌套Menu组件来包含菜单的子组件。"
+}

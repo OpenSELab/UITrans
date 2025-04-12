@@ -1,0 +1,13 @@
+{
+    "name": "app/src/main/res/layout/activity_profile.xml",
+    "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<FrameLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/fragment_container\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".ProfileActivity\" />",
+    "java": "package app.infiniverse.grocery;\n\nimport android.app.FragmentTransaction;\nimport android.os.Bundle;\nimport android.support.v7.app.AppCompatActivity;\n\npublic class ProfileActivity extends AppCompatActivity {\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_profile);\n\n        if(savedInstanceState == null) {\n            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();\n            fragmentTransaction.add(R.id.fragment_container, new MainFragment(ProfileActivity.this), \"MainFragment\");\n            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);\n            fragmentTransaction.commit();\n        }\n\n\n\n    }\n}\n",
+    "contains": [],
+    "mock_data": {},
+    "source": "GoGrocery",
+    "time": 7.5904381275177,
+    "result": {
+        "harmony_component_code": "Frame() {\n  // 子组件\n}\n  .width('100%')\n  .height('100%')"
+    },
+    "explanation": "根据安卓组件描述，FrameLayout被转译为鸿蒙的Frame组件。FrameLayout的android:layout_width=\"match_parent\"和android:layout_height=\"match_parent\"被转译为Frame组件的width='100%'和height='100%'。由于安卓组件描述中没有具体的子组件，因此在鸿蒙代码中注释了子组件的位置。"
+}

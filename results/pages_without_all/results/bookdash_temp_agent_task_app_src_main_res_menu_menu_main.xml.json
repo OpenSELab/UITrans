@@ -1,0 +1,13 @@
+{
+    "name": "app/src/main/res/menu/menu_main.xml",
+    "content": "<menu xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    tools:context=\".MainActivity\">\n\n    <item\n        android:id=\"@+id/action_search_books\"\n        android:contentDescription=\"@string/action_search\"\n        android:icon=\"@drawable/ic_search\"\n        android:orderInCategory=\"1\"\n        android:title=\"@string/action_search\"\n        app:showAsAction=\"ifRoom\" />\n\n</menu>\n",
+    "java": "",
+    "contains": [],
+    "mock_data": {},
+    "source": "bookdash",
+    "time": 17.648971557617188,
+    "result": {
+        "harmony_component_code": "```json\n{\n  \"harmony_component\": \"Menu() {\\n  MenuItem()\\n    .id('action_search_books')\\n    .contentDescription($r('app.string.action_search'))\\n    .icon($r('app.media.ic_search'))\\n    .order(1)\\n    .title($r('app.string.action_search'))\\n    .showAsAction(MenuItemShowType.IfRoom)\\n}\",\n  \"explanation\": \"1. 使用Menu组件作为根组件，对应安卓的<menu>标签。\\n2. 使用MenuItem组件对应安卓的<item>标签。\\n3. 将android:id=\"@+id/action_search_books\"转译为.id('action_search_books')。\\n4. 将android:contentDescription=\"@string/action_search\"转译为.contentDescription($r('app.string.action_search'))。\\n5. 将android:icon=\"@drawable/ic_search\"转译为.icon($r('app.media.ic_search'))。\\n6. 将android:orderInCategory=\"1\"转译为.order(1)。\\n7. 将android:title=\"@string/action_search\"转译为.title($r('app.string.action_search'))。\\n8. 将app:showAsAction=\"ifRoom\"转译为.showAsAction(MenuItemShowType.IfRoom)。\"\n}\n```"
+    },
+    "explanation": "1 validation error for TranslateAndroidComponent\n  Invalid JSON: expected `,` or `}` at line 3 column 161 [type=json_invalid, input_value='{\\n  \"harmony_component\"...ShowType.IfRoom)。\"\\n}', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/json_invalid"
+}

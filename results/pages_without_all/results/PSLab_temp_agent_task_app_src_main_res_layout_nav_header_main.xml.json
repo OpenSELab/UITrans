@@ -1,0 +1,12 @@
+{
+    "name": "app\\src\\main\\res\\layout\\nav_header_main.xml",
+    "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nandroid:id=\"@+id/view_container\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"@dimen/nav_header_height\"\nandroid:gravity=\"bottom\"\nandroid:orientation=\"vertical\"\nandroid:theme=\"@style/ThemeOverlay.AppCompat.Dark\">\n\n<LinearLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_centerVertical=\"true\"\nandroid:baselineAlignBottom=\"true\"\nandroid:orientation=\"vertical\"\nandroid:padding=\"@dimen/nav_header_padding\">\n\n<ImageView\nandroid:id=\"@+id/img_profile\"\nandroid:layout_width=\"@dimen/profile_width\"\nandroid:layout_height=\"@dimen/profile_height\"\nandroid:contentDescription=\"@string/app_name\"\nandroid:src=\"@drawable/ic_nav_header_logo\" />\n\n<TextView\nandroid:id=\"@+id/name\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:layout_gravity=\"center\"\nandroid:paddingTop=\"@dimen/nav_header_vertical_spacing\"\nandroid:textColor=\"@android:color/black\" />\n\n</LinearLayout>\n</RelativeLayout>",
+    "java": "",
+    "contains": [],
+    "source": "PSLab",
+    "time": 25.288762092590332,
+    "result": {
+        "harmony_component_code": "Column() {\n  Column() {\n    Image($r('app.media.ic_nav_header_logo'))\n      .id('img_profile')\n      .width($r('app.dimen.profile_width'))\n      .height($r('app.dimen.profile_height'))\n      .objectFit(ImageFit.Contain)\n    Text()\n      .id('name')\n      .width('100%')\n      .height('auto')\n      .fontColor(Color.Black)\n      .padding({ top: $r('app.dimen.nav_header_vertical_spacing') })\n  }\n  .width('100%')\n  .height('auto')\n  .padding($r('app.dimen.nav_header_padding'))\n}\n.width('100%')\n.height($r('app.dimen.nav_header_height'))\n.alignItems(VerticalAlign.Bottom)\n.backgroundColor($r('app.color.ThemeOverlay.AppCompat.Dark'))"
+    },
+    "explanation": "1. 使用Column组件作为根容器，对应于Android中的RelativeLayout，设置宽度为100%，高度为nav_header_height，并设置对齐方式为底部对齐。\n2. 嵌套的Column组件对应于Android中的LinearLayout，设置宽度为100%，高度自适应，并设置垂直方向的padding。\n3. Image组件对应于Android中的ImageView，设置id、宽度、高度，并确保图片显示效果。\n4. Text组件对应于Android中的TextView，设置id、宽度为100%、高度自适应，并设置字体颜色和顶部padding。\n5. 所有组件的宽度和高度设置均按照规则进行转译，资源引用使用$r('app.xxx.yyy')格式。"
+}

@@ -1,0 +1,13 @@
+{
+    "name": "app/src/main/res/layout/toolbar.xml",
+    "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<shape xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:shape=\"rectangle\">\n    <gradient\n        android:angle=\"1395\"\n        android:endColor=\"#DA4453\"\n        android:startColor=\"#9C27B0\"\n        android:type=\"linear\" />\n</shape>",
+    "java": "",
+    "contains": [],
+    "mock_data": {},
+    "source": "GoGrocery",
+    "time": 12.104539155960083,
+    "result": {
+        "harmony_component_code": "Shape()\n  .width('100%')\n  .height('100%')\n  .gradient({ angle: 1395, endColor: '#DA4453', startColor: '#9C27B0', type: GradientType.Linear })"
+    },
+    "explanation": "在转译过程中，首先创建了一个Shape组件，该组件用于定义一个矩形形状。接着，通过.width('100%')和.height('100%')设置形状的宽度和高度为父容器的100%。然后，使用.gradient方法配置渐变效果，其中angle设置为1395度，endColor设置为'#DA4453'，startColor设置为'#9C27B0'，type设置为GradientType.Linear，以实现与安卓组件描述中相同的线性渐变效果。"
+}

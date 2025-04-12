@@ -1,0 +1,12 @@
+{
+    "name": "app\\src\\main\\res\\layout\\toolbar.xml",
+    "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.appcompat.widget.Toolbar\n xmlns:android=\"http://schemas.android.com/apk/res/android\"\n xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n xmlns:tools=\"http://schemas.android.com/tools\"\n style=\"@style/ToolbarStyle\"\n android:id=\"@+id/toolbar\"\n android:layout_height=\"wrap_content\"\n android:layout_width=\"match_parent\"\n android:background=\"?attr/colorPrimary\"\n app:layout_scrollFlags=\"scroll|enterAlways\"\n tools:ignore=\"Overdraw\"/>\n",
+    "java": "",
+    "contains": [],
+    "source": "Transportr",
+    "time": 14.268615961074829,
+    "result": {
+        "harmony_component_code": "Toolbar()\n  .id('toolbar')\n  .width('100%')\n  .height('auto')\n  .backgroundColor(Color.Primary)\n  .scrollable(true)\n  .enterAlways(true)"
+    },
+    "explanation": "根据安卓组件描述，我们创建了一个Toolbar组件，并设置了以下属性：\n1. id('toolbar')：对应安卓中的android:id=\"@+id/toolbar\"。\n2. width('100%')：对应安卓中的android:layout_width=\"match_parent\"。\n3. height('auto')：对应安卓中的android:layout_height=\"wrap_content\"。\n4. backgroundColor(Color.Primary)：对应安卓中的android:background=\"?attr/colorPrimary\"。\n5. scrollable(true)：对应安卓中的app:layout_scrollFlags=\"scroll\"。\n6. enterAlways(true)：对应安卓中的app:layout_scrollFlags=\"enterAlways\"。\n\n注意：鸿蒙ArkUI中没有直接对应app:layout_scrollFlags的属性，因此我们使用了scrollable和enterAlways来模拟相同的行为。"
+}

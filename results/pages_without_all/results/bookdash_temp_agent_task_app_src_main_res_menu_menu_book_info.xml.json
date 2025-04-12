@@ -1,0 +1,13 @@
+{
+    "name": "app/src/main/res/menu/menu_book_info.xml",
+    "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<menu xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\">\n    <item\n        android:id=\"@+id/action_share_book\"\n        android:icon=\"@drawable/ic_share\"\n        android:contentDescription=\"@string/book_share\"\n        android:orderInCategory=\"1\"\n        android:title=\"@string/book_share\"\n        app:showAsAction=\"ifRoom\" />\n</menu>",
+    "java": "",
+    "contains": [],
+    "mock_data": {},
+    "source": "bookdash",
+    "time": 16.921129941940308,
+    "result": {
+        "harmony_component_code": "Menu() {\n  MenuItem()\n    .icon($r('app.media.ic_share'))\n    .contentDescription($r('app.string.book_share'))\n    .title($r('app.string.book_share'))\n    .showAsAction(MenuItemShowAsAction.IF_ROOM)\n    .onClick(() => {\n      // Handle share action\n    })\n}"
+    },
+    "explanation": "1. 使用Menu组件作为根容器，对应安卓的<menu>标签。\n2. 使用MenuItem组件对应安卓的<item>标签。\n3. icon属性使用$r('app.media.ic_share')引用资源文件，对应安卓的android:icon=\"@drawable/ic_share\"。\n4. contentDescription属性使用$r('app.string.book_share')引用资源文件，对应安卓的android:contentDescription=\"@string/book_share\"。\n5. title属性使用$r('app.string.book_share')引用资源文件，对应安卓的android:title=\"@string/book_share\"。\n6. showAsAction属性使用MenuItemShowAsAction.IF_ROOM，对应安卓的app:showAsAction=\"ifRoom\"。\n7. 添加onClick事件处理函数，对应安卓中点击菜单项后的行为。"
+}

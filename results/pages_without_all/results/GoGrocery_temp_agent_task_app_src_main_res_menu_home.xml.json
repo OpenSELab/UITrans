@@ -1,0 +1,13 @@
+{
+    "name": "app/src/main/res/menu/home.xml",
+    "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<menu xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\">\n    <item\n        android:id=\"@+id/action_search\"\n        android:icon=\"@drawable/ic_search_black\"\n        app:showAsAction=\"always\"\n        app:actionViewClass=\"android.support.v7.widget.SearchView\"\n        android:title=\"Search\"/>\n    <item\n        android:id=\"@+id/cart\"\n        android:icon=\"@drawable/ic_shopping_cart_white\"\n        android:orderInCategory=\"100\"\n        android:title=\"@string/cart\"\n        app:showAsAction=\"always\" />\n</menu>\n",
+    "java": "",
+    "contains": [],
+    "mock_data": {},
+    "source": "GoGrocery",
+    "time": 25.0304114818573,
+    "result": {
+        "harmony_component_code": "```json\n{\n  \"harmony_component\": \"Column() {\\n  Search()\\n    .id('action_search')\\n    .icon($r('app.media.ic_search_black'))\\n    .title('Search')\\n    .showAsAction(true)\\n  Button()\\n    .id('cart')\\n    .icon($r('app.media.ic_shopping_cart_white'))\\n    .title($r('app.string.cart'))\\n    .showAsAction(true)\\n}\",\n  \"explanation\": \"1. 使用Column组件作为根容器，因为安卓的menu组件在鸿蒙中没有直接对应的组件，因此使用Column来组织子组件。\\n2. 将android:id=\"@+id/action_search\"转译为.id('action_search')。\\n3. 将android:icon=\"@drawable/ic_search_black\"转译为.icon($r('app.media.ic_search_black'))。\\n4. 将android:title=\"Search\"转译为.title('Search')。\\n5. 将app:showAsAction=\"always\"转译为.showAsAction(true)。\\n6. 将android:id=\"@+id/cart\"转译为.id('cart')。\\n7. 将android:icon=\"@drawable/ic_shopping_cart_white\"转译为.icon($r('app.media.ic_shopping_cart_white'))。\\n8. 将android:title=\"@string/cart\"转译为.title($r('app.string.cart'))。\\n9. 将app:showAsAction=\"always\"转译为.showAsAction(true)。\\n10. 由于鸿蒙中没有直接对应的SearchView组件，因此使用Search组件来替代，并确保其功能和行为尽可能一致。\"\n}\n```"
+    },
+    "explanation": "1 validation error for TranslateAndroidComponent\n  Invalid JSON: expected `,` or `}` at line 3 column 184 [type=json_invalid, input_value='{\\n  \"harmony_component\"...尽可能一致。\"\\n}', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/json_invalid"
+}

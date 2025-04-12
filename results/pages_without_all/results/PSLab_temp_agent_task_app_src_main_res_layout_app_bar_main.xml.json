@@ -1,0 +1,12 @@
+{
+    "name": "app\\src\\main\\res\\layout\\app_bar_main.xml",
+    "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\nxmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:fitsSystemWindows=\"true\"\nandroid:id=\"@+id/cl\">\n\n<com.google.android.material.appbar.AppBarLayout\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"wrap_content\"\nandroid:theme=\"@style/AppTheme.AppBarOverlay\">\n\n<androidx.appcompat.widget.Toolbar\nandroid:id=\"@+id/toolbar\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"?attr/actionBarSize\"\nandroid:background=\"?attr/colorPrimary\"\napp:popupTheme=\"@style/AppTheme.PopupOverlay\" />\n\n</com.google.android.material.appbar.AppBarLayout>\n\n<FrameLayout\nandroid:id=\"@+id/frame\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\napp:layout_behavior=\"@string/appbar_scrolling_view_behavior\" />\n\n</androidx.coordinatorlayout.widget.CoordinatorLayout>",
+    "java": "",
+    "contains": [],
+    "source": "PSLab",
+    "time": 25.21136999130249,
+    "result": {
+        "harmony_component_code": "Column() {\n  AppBar() {\n    Toolbar()\n      .width('100%')\n      .height(56)\n      .backgroundColor(Color.Primary)\n  }\n  .width('100%')\n  .height('auto')\n  .theme($r('app.string.AppTheme.AppBarOverlay'))\n\n  Stack() {\n    // 子组件\n  }\n  .width('100%')\n  .height('100%')\n  .layoutBehavior($r('app.string.appbar_scrolling_view_behavior'))\n}\n.width('100%')\n.height('100%')\n.fitsSystemWindows(true)\n.id('cl')"
+    },
+    "explanation": "1. 使用Column组件作为根容器，对应于安卓的CoordinatorLayout，设置宽度和高度为100%以匹配父组件。\n2. 在Column中嵌套AppBar组件，对应于安卓的AppBarLayout，设置宽度和高度为100%和auto以匹配内容。\n3. 在AppBar中嵌套Toolbar组件，对应于安卓的Toolbar，设置宽度为100%以匹配父组件，高度为56（对应于安卓的?attr/actionBarSize），背景颜色为Color.Primary（对应于安卓的?attr/colorPrimary）。\n4. 使用Stack组件作为内容区域，对应于安卓的FrameLayout，设置宽度和高度为100%以匹配父组件，并设置layoutBehavior属性以实现滚动行为。\n5. 为Column组件设置fitsSystemWindows属性为true，以确保系统窗口的正确显示。\n6. 为Column组件设置id属性为'cl'，以对应安卓的id属性。"
+}

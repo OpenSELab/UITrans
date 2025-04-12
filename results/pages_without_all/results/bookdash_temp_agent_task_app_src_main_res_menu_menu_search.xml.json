@@ -1,0 +1,13 @@
+{
+    "name": "app/src/main/res/menu/menu_search.xml",
+    "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\n<menu xmlns:android=\"http://schemas.android.com/apk/res/android\"\n      xmlns:app=\"http://schemas.android.com/apk/res-auto\">\n    <item\n        android:id=\"@+id/action_menu_search\"\n        android:icon=\"@drawable/ic_search\"\n        android:title=\"@string/menu_search\"\n        app:actionViewClass=\"androidx.appcompat.widget.SearchView\"\n        app:showAsAction=\"collapseActionView|always\"/>\n</menu>",
+    "java": "",
+    "contains": [],
+    "mock_data": {},
+    "source": "bookdash",
+    "time": 17.531012058258057,
+    "result": {
+        "harmony_component_code": "Column() {\n  Search()\n    .id('action_menu_search')\n    .icon($r('app.media.ic_search'))\n    .title($r('app.string.menu_search'))\n    .showAsAction([ActionMenu.CollapseActionView, ActionMenu.Always])\n}"
+    },
+    "explanation": "在转译过程中，首先将安卓的<menu>标签转译为鸿蒙的Column容器组件，因为鸿蒙中没有直接对应的菜单组件。然后，将<item>标签中的属性逐一转译为鸿蒙的Search组件的属性。具体来说：\n1. android:id=\"@+id/action_menu_search\" 转译为 .id('action_menu_search')\n2. android:icon=\"@drawable/ic_search\" 转译为 .icon($r('app.media.ic_search'))\n3. android:title=\"@string/menu_search\" 转译为 .title($r('app.string.menu_search'))\n4. app:showAsAction=\"collapseActionView|always\" 转译为 .showAsAction([ActionMenu.CollapseActionView, ActionMenu.Always])\n\n由于鸿蒙中没有直接对应的SearchView组件，我们使用了Search组件来替代，并确保所有属性和行为与安卓组件描述一致。"
+}

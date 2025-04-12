@@ -168,7 +168,7 @@ main.ipynb
 demo.py
 back/
 test.py
-results
+#results
 android_projects
 harmony_projects
 paper_prompts

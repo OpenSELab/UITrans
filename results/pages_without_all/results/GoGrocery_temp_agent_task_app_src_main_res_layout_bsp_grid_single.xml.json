@@ -1,0 +1,13 @@
+{
+    "name": "app/src/main/res/layout/bsp_grid_single.xml",
+    "content": "<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:layout_width=\"wrap_content\"\n    android:layout_height=\"wrap_content\"\n    android:layout_margin=\"5dp\"\n    android:padding=\"5dp\"\n    android:background=\"@drawable/grid_color_selector\"\n    android:orientation=\"vertical\">\n\n    <ImageView\n        android:id=\"@+id/grid_item_image\"\n        android:layout_width=\"103dp\"\n        android:scaleType=\"fitCenter\"\n        android:layout_height=\"100dp\" />\n\n    <TextView\n        android:id=\"@+id/grid_item_title\"\n        android:layout_width=\"fill_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"5dp\"\n        android:ellipsize=\"marquee\"\n        android:gravity=\"center\"\n        android:maxLines=\"2\"\n        android:textSize=\"10sp\" />\n\n</LinearLayout>",
+    "java": "",
+    "contains": [],
+    "mock_data": {},
+    "source": "GoGrocery",
+    "time": 21.482462406158447,
+    "result": {
+        "harmony_component_code": "Column() {\n  Image($r('app.media.grid_item_image'))\n    .width(103)\n    .height(100)\n    .objectFit(ImageFit.FitCenter)\n    .id('grid_item_image')\n\n  Text($r('app.string.grid_item_title'))\n    .width('100%')\n    .height('auto')\n    .marginTop(5)\n    .textOverflow({ overflow: TextOverflow.Marquee })\n    .textAlign(TextAlign.Center)\n    .maxLines(2)\n    .fontSize(10)\n    .id('grid_item_title')\n}\n.margin(5)\n.padding(5)\n.backgroundColor($r('app.color.grid_color_selector'))"
+    },
+    "explanation": "1. 使用Column组件来替代LinearLayout，并设置其orientation为vertical。\n2. Image组件替代ImageView，设置其src为资源文件，width和height根据原布局设置，objectFit设置为FitCenter以保持图片的缩放方式。\n3. Text组件替代TextView，设置其content为资源文件，width为100%以匹配父组件宽度，height为auto以自适应内容高度，marginTop设置为5以保持与原布局一致的间距，textOverflow设置为Marquee以实现文本的marquee效果，textAlign设置为Center以使文本居中，maxLines设置为2以限制文本行数，fontSize设置为10以保持字体大小。\n4. 使用margin和padding属性来设置组件的外边距和内边距，backgroundColor设置为资源文件以保持背景颜色。"
+}

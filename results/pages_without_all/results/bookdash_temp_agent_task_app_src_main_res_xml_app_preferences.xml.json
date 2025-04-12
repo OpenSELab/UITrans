@@ -1,0 +1,13 @@
+{
+    "name": "app/src/main/res/xml/app_preferences.xml",
+    "content": "<androidx.preference.PreferenceScreen\n    xmlns:android=\"http://schemas.android.com/apk/res/android\">\n\n    <androidx.preference.Preference\n        android:key=\"tutorial_display_key\"\n        android:summary=\"@string/show_tutorial_settings_summary\"\n        android:title=\"@string/show_tutorial_settings_title\" />\n\n    <androidx.preference.SwitchPreferenceCompat\n        android:defaultValue=\"true\"\n        android:key=\"pref_new_book_notification\"\n        android:summary=\"@string/settings_new_book_notifications_summary\"\n        android:title=\"@string/settings_new_book_notifications\"\n        />\n</androidx.preference.PreferenceScreen>",
+    "java": "",
+    "contains": [],
+    "mock_data": {},
+    "source": "bookdash",
+    "time": 23.61415410041809,
+    "result": {
+        "harmony_component_code": "Column() {\n  Text($r('app.string.show_tutorial_settings_title'))\n    .fontSize(20)\n    .fontWeight(FontWeight.Bold)\n    .margin({ bottom: '8vp' })\n  Text($r('app.string.show_tutorial_settings_summary'))\n    .fontSize(16)\n    .fontColor(Color.Gray)\n    .margin({ bottom: '16vp' })\n  Toggle($r('app.string.settings_new_book_notifications'))\n    .fontSize(20)\n    .fontWeight(FontWeight.Bold)\n    .margin({ bottom: '8vp' })\n    .checked(true)\n  Text($r('app.string.settings_new_book_notifications_summary'))\n    .fontSize(16)\n    .fontColor(Color.Gray)\n}\n.width('100%')"
+    },
+    "explanation": "1. 使用Column组件作为根容器，宽度设置为100%以匹配父组件宽度。\n2. 第一个Text组件显示标题，使用$r('app.string.show_tutorial_settings_title')引用资源，字体大小为20，加粗，底部间距为8vp。\n3. 第二个Text组件显示摘要，使用$r('app.string.show_tutorial_settings_summary')引用资源，字体大小为16，灰色，底部间距为16vp。\n4. Toggle组件用于开关设置，使用$r('app.string.settings_new_book_notifications')引用资源，字体大小为20，加粗，默认选中状态为true，底部间距为8vp。\n5. 最后一个Text组件显示开关设置的摘要，使用$r('app.string.settings_new_book_notifications_summary')引用资源，字体大小为16，灰色。"
+}
